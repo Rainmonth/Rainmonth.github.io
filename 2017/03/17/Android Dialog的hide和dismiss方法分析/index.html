@@ -6,17 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>荏苒追寻个人博客</title>
+  <title>Android Dialog的hide和dismiss方法分析 | 荏苒追寻个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Android Dialog的hide和dismiss方法分析方法说明相同之处 都可以隐藏对话框，在需要显示对话框的时候也都可以调用show方法来显示。  不同之处 dismiss方法在隐藏之后，会释放对话框所占用的资源，而hide则不会。  使用场景根据上面描述的区别，可以判断：  hide方法适用于不用释放dialog所占资源的隐藏，只要其所依赖的Activity不被销毁，都可以调用hide方">
+<meta name="keywords" content="Android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="荏苒追寻个人博客">
+<meta property="og:title" content="Android Dialog的hide和dismiss方法分析">
 <meta property="og:url" content="http://yoursite.com/2017/03/17/Android Dialog的hide和dismiss方法分析/index.html">
 <meta property="og:site_name" content="荏苒追寻个人博客">
 <meta property="og:description" content="Android Dialog的hide和dismiss方法分析方法说明相同之处 都可以隐藏对话框，在需要显示对话框的时候也都可以调用show方法来显示。  不同之处 dismiss方法在隐藏之后，会释放对话框所占用的资源，而hide则不会。  使用场景根据上面描述的区别，可以判断：  hide方法适用于不用释放dialog所占资源的隐藏，只要其所依赖的Activity不被销毁，都可以调用hide方">
-<meta property="og:updated_time" content="2018-01-12T09:29:27.076Z">
+<meta property="og:updated_time" content="2018-01-17T12:00:40.616Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="荏苒追寻个人博客">
+<meta name="twitter:title" content="Android Dialog的hide和dismiss方法分析">
 <meta name="twitter:description" content="Android Dialog的hide和dismiss方法分析方法说明相同之处 都可以隐藏对话框，在需要显示对话框的时候也都可以调用show方法来显示。  不同之处 dismiss方法在隐藏之后，会释放对话框所占用的资源，而hide则不会。  使用场景根据上面描述的区别，可以判断：  hide方法适用于不用释放dialog所占资源的隐藏，只要其所依赖的Activity不被销毁，都可以调用hide方">
   
     <link rel="alternative" href="/atom.xml" title="荏苒追寻个人博客" type="application/atom+xml">
@@ -166,6 +167,21 @@
             <article id="post-Android Dialog的hide和dismiss方法分析" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android Dialog的hide和dismiss方法分析
+    </h1>
+  
+
+        
+        <a href="/2017/03/17/Android Dialog的hide和dismiss方法分析/" class="archive-article-date">
+  	<time datetime="2017-03-17T06:02:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-17</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="Android-Dialog的hide和dismiss方法分析"><a href="#Android-Dialog的hide和dismiss方法分析" class="headerlink" title="Android Dialog的hide和dismiss方法分析"></a>Android Dialog的hide和dismiss方法分析</h1><h2 id="方法说明"><a href="#方法说明" class="headerlink" title="方法说明"></a>方法说明</h2><h3 id="相同之处"><a href="#相同之处" class="headerlink" title="相同之处"></a>相同之处</h3><blockquote>
@@ -211,7 +227,29 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Android//" class="article-tag-list-link color3">Android</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
