@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Android 零散知识点（持续更新） | 荏苒追寻个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="#Android 零散知识点（持续更新）  为什么Android的更新试图操作必须在主线程中进行？   这是因为Android系统中的视图组件并不是线程安全的。通常应该让主线程负责创建、  显示和更新UI，启动子线程，停止子线程。让子线程完成计算并向主线程发出更新UI  的消息，让主线程来更新UI。这就促使Android中产生了Handler机制。  如何更改Android Studio编译所采用">
+  <meta name="description" content="#Android 零散知识点（持续更新） [TOC]  Q：为什么Android的更新试图操作必须在主线程中进行？  这是因为Android系统中的视图组件并不是线程安全的。通常应该让主线程负责创建、显示和更新UI，启动子线程，停止子线程。让子线程完成计算并向主线程发出更新UI的消息，让主线程来更新UI。这就促使Android中产生了Handler机制。     Q：如何更改Android Stu">
 <meta name="keywords" content="Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 零散知识点（持续更新）">
 <meta property="og:url" content="http://yoursite.com/2016/10/19/Android 零散知识点（问答形式）/index.html">
 <meta property="og:site_name" content="荏苒追寻个人博客">
-<meta property="og:description" content="#Android 零散知识点（持续更新）  为什么Android的更新试图操作必须在主线程中进行？   这是因为Android系统中的视图组件并不是线程安全的。通常应该让主线程负责创建、  显示和更新UI，启动子线程，停止子线程。让子线程完成计算并向主线程发出更新UI  的消息，让主线程来更新UI。这就促使Android中产生了Handler机制。  如何更改Android Studio编译所采用">
-<meta property="og:updated_time" content="2018-01-17T12:38:07.963Z">
+<meta property="og:description" content="#Android 零散知识点（持续更新） [TOC]  Q：为什么Android的更新试图操作必须在主线程中进行？  这是因为Android系统中的视图组件并不是线程安全的。通常应该让主线程负责创建、显示和更新UI，启动子线程，停止子线程。让子线程完成计算并向主线程发出更新UI的消息，让主线程来更新UI。这就促使Android中产生了Handler机制。     Q：如何更改Android Stu">
+<meta property="og:updated_time" content="2018-01-17T15:11:46.081Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 零散知识点（持续更新）">
-<meta name="twitter:description" content="#Android 零散知识点（持续更新）  为什么Android的更新试图操作必须在主线程中进行？   这是因为Android系统中的视图组件并不是线程安全的。通常应该让主线程负责创建、  显示和更新UI，启动子线程，停止子线程。让子线程完成计算并向主线程发出更新UI  的消息，让主线程来更新UI。这就促使Android中产生了Handler机制。  如何更改Android Studio编译所采用">
+<meta name="twitter:description" content="#Android 零散知识点（持续更新） [TOC]  Q：为什么Android的更新试图操作必须在主线程中进行？  这是因为Android系统中的视图组件并不是线程安全的。通常应该让主线程负责创建、显示和更新UI，启动子线程，停止子线程。让子线程完成计算并向主线程发出更新UI的消息，让主线程来更新UI。这就促使Android中产生了Handler机制。     Q：如何更改Android Stu">
   
     <link rel="alternative" href="/atom.xml" title="荏苒追寻个人博客" type="application/atom+xml">
   
@@ -185,183 +185,250 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>#Android 零散知识点（持续更新）</p>
-<ol>
-<li><p>为什么Android的更新试图操作必须在主线程中进行？</p>
-<p>  这是因为Android系统中的视图组件并不是线程安全的。通常应该让主线程负责创建、<br>  显示和更新UI，启动子线程，停止子线程。让子线程完成计算并向主线程发出更新UI<br>  的消息，让主线程来更新UI。这就促使Android中产生了Handler机制。</p>
-</li>
-<li><p>如何更改Android Studio编译所采用的API版本？</p>
-<pre><code>通过module setting 的Flavors选项卡进行Android API编译版本的更改；
-</code></pre></li>
-<li><p>小米手机更改应用程序图标后，桌面上图标没有什么变化？</p>
-<pre><code>重启后可解决问题；
-</code></pre></li>
-<li><p>EditText 的光标为何不显示？</p>
-<pre><code>首先设置cursorVisible属性为true，然后设置textCursorDrawable（背景色与
-控件背景色不要一样），textCursorDrawable属性是在API11才推出的属性；
-</code></pre></li>
-<li><p>ListView的android:listSelector属性如何使用？</p>
+<p>[TOC]</p>
 <ul>
-<li><p>解决为什么无效；</p>
-</li>
-<li><p>找到替代方法；</p>
+<li><p>Q：为什么Android的更新试图操作必须在主线程中进行？</p>
 <blockquote>
-<ul>
-<li>首先，在自己实现的Adapter的getView()方法中进行如设置：</li>
+<p>这是因为Android系统中的视图组件并不是线程安全的。通常应该让主线程负责创建、显示和更新UI，启动子线程，停止子线程。让子线程完成计算并向主线程发出更新UI的消息，让主线程来更新UI。这就促使Android中产生了Handler机制。</p>
+</blockquote>
+</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;if (position == selectItem) &#123;  </span><br><span class="line">&gt;	convertView.setBackgroundColor(Color.RED);  </span><br><span class="line">&gt;&#125; else &#123;  </span><br><span class="line">&gt;	convertView.setBackgroundColor(Color.TRANSPARENT);  </span><br><span class="line">&gt;&#125;   </span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Q：如何更改Android Studio编译所采用的API版本？</p>
+<blockquote>
+<p>通过module setting 的Flavors选项卡进行Android API编译版本的更改；</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="控件问题"><a href="#控件问题" class="headerlink" title="控件问题"></a>控件问题</h2><ul>
+<li><p>EditText 的光标为何不显示？</p>
+<blockquote>
+<p>首先设置cursorVisible属性为true，然后设置textCursorDrawable（背景色与<br>控件背景色不要一样），textCursorDrawable属性是在API11才推出的属性；</p>
+</blockquote>
+</li>
+<li><p>ListView的android:listSelector属性如何使用？</p>
+<blockquote>
+<p>​</p>
+</blockquote>
+</li>
+<li><p>ListView设置android:listSelector无效如何解决</p>
+<ul>
+<li><p>找到为什么无效</p>
+</li>
+<li><p>采用替代的方法</p>
+<blockquote>
+<p>首先，在自己实现的Adapter的getView()方法中进行如设置：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="keyword">if</span> (position == selectItem) &#123;  </span><br><span class="line">&gt;	convertView.setBackgroundColor(Color.RED);  </span><br><span class="line">&gt;&#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">&gt;	convertView.setBackgroundColor(Color.TRANSPARENT);  </span><br><span class="line">&gt;&#125; </span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
 <p>&gt;</p>
 <blockquote>
-<ul>
-<li>然后，在onItemClick()方法中，进行如下设置：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;adapter.setSelectedItem(position)</span><br><span class="line">&gt;adapter.notifyDatasetInvalidated(); 		</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<p>然后，在onItemClick()方法中，进行如下设置：</p>
+<p>   adapter.setSelectedItem(position)<br>   adapter.notifyDatasetInvalidated();     </p>
 </blockquote>
 </li>
 </ul>
 </li>
 <li><p>如何对TextView的部分文字进行特定样式设置？</p>
 <ol>
-<li>采用strings.xml文件，即在该文件中利用相应的Html标签对要改变样式的问题进行更改</li>
-<li>采用SpannableStringBuilder类，具体说明</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">该类提供了setSpan(Object what, int start, int end,int flags) 方法，其中的what可以为以下类的实例：</span><br><span class="line">	URLSpan；</span><br><span class="line">	ClickableSpan；</span><br><span class="line">	BackgroundColorSpan；</span><br><span class="line">	ForegroundColorSpan；</span><br><span class="line">	MaskFilterSpan；</span><br><span class="line">	AbsoluteSizeSpan；</span><br><span class="line">	RelativeSizeSpan；</span><br><span class="line">	ImageSpan；</span><br><span class="line">	ScaleXSpan；</span><br><span class="line">	StyleSpan；</span><br><span class="line">	SubscriptSpan；</span><br><span class="line">	SuperscriptSpan；</span><br><span class="line">	TextAppearanceSpan；</span><br><span class="line">	TypefaceSpan；</span><br><span class="line">	RasterizerSpan；</span><br><span class="line">	StrikethroughSpan；</span><br><span class="line">	UnderlineSpan；</span><br><span class="line">	</span><br><span class="line">使用方法：</span><br><span class="line">	a、得到SpannableStringBuilder类的实例：builder；</span><br><span class="line">	b、得到Span子类的实例，如ForegroundColorSpan的实例 forgroundColorSpan；</span><br><span class="line">	c、调用setSpan方法，指定要进行样式修饰的起始位置，进行参数填充；</span><br><span class="line">	d、调用TextView的setText(SpannableStringBuilder builder)方法；</span><br></pre></td></tr></table></figure>
+<li><p>采用strings.xml文件，即在该文件中利用相应的Html标签对要改变样式的问题进行更改</p>
 </li>
-<li><p>mac版eclipse导入Android项目里面的中文乱码问题如何解决？<br> 1、在Preference中找到Text File Encoding，选择Other，手动输入GBK即可<br> 2、选择乱码的文件，右键选择属性，在Text File Encoding中进行修改（这是针对单个文件的修改方法），针对所有的*.java文件，可采用在Eclipse的偏好设置中的General-&gt;Content Type-&gt;Text-&gt;Java Source Files-&gt;Default Encoding中进行设置。</p>
-</li>
-<li><p>Activity中应用Fragment进行数据的加载与显示时，第一次进入正常，推出再次进入崩溃？</p>
-<p>出现这种情况的原因可能有以下几点：</p>
-<pre><code>1、采用getInstance方法获取Fragment的实例，但推出时没有置空，导致Fragment里面的控件不为空，但数据为
-空，其他地方又没有很好的对这种情况进行处理，导致空指针；
-2、Fragment的生命周期没有管理好
-</code></pre></li>
-<li><p>Android启动时很长一段时间出现白屏（或黑屏）如何解决？</p>
-<p>to be answered…</p>
-</li>
-<li><p>Android 如何避免软键盘弹出时遮挡住用户交互界面？</p>
-<p>在AndroidManifest.xml中为对应的activity添加android:windowSoftInputMode=”adjustResize”<br>  在AndroidManifest.xml文件中的android:windowSoftInputMode属性使用</p>
-<p>  The AndroidManifest.xml File</p>
-  <activity android:windowsoftinputmode="["stateUnspecified"," "stateunchanged",="" "statehidden",="" "statealwayshidden",="" "statevisible",="" "statealwaysvisible",="" "adjustunspecified",="" "adjustresize",="" "adjustpan"]="" ……=""><br><br>  </activity>
-
-<p>  这个属性的设置将会影响两件事情:</p>
-<pre><code>1&gt;软键盘的状态——是否它是隐藏或显示——当活动(Activity)成为用户关注的焦点。
-2&gt;活动的主窗口调整——是否减少活动主窗口大小以便腾出空间放软键盘或是否当活动窗口的部分被软键盘覆盖
-    时它的内容的当前焦点是可见的。
-</code></pre><p>  这个属性的值最好是state + adjust同时设置。</p>
-<p>  注意：在这设置的值(除”stateUnspecified”和”adjustUnspecified”以外)将覆盖在主题中设置的值。</p>
-<p>  描述</p>
-<p>  “stateUnspecified”</p>
-<pre><code>软键盘的状态(是否它是隐藏或可见)没有被指定。系统将选择一个合适的状态或依赖于主题
-</code></pre><p>  的设置。这个是为了软件盘行为默认的设置。</p>
-<p>  “stateUnchanged”</p>
-<pre><code>软键盘被保持无论它上次是什么状态，是否可见或隐藏，当主窗口出现在前面时。
-</code></pre><p>  “stateHidden”</p>
-<pre><code>当用户选择该Activity时，软键盘被隐藏——也就是，当用户确定导航到该Activity时，而不是返回到它由于离        开另一个Activity。
-</code></pre><p>  “stateAlwaysHidden”</p>
-<pre><code>软键盘总是被隐藏的，当该Activity主窗口获取焦点时。
-</code></pre><p>  “stateVisible”</p>
-<pre><code>软键盘是可见的，当那个是正常合适的时(当用户导航到Activity主窗口时)。
-</code></pre><p>  “stateAlwaysVisible”</p>
-<pre><code>当用户选择这个Activity时，软键盘是可见的——也就是，也就是，当用户确定导航到该Activity时，而不是返        回到它由于离开另一个Activity。
-</code></pre><p>  “adjustUnspecified”</p>
-<pre><code>它不被指定是否该Activity主窗口调整大小以便留出软键盘的空间，或是否窗口上的内容得到屏幕上当前的焦点        是可见的。系统将自动选择这些模式中一种主要依赖于是否窗口的内容有任何布局视图能够滚动他们的内容。如果有这        样的    一个视图，这个窗口将调整大小，这样的假设可以使滚动窗口的内容在一个较小的区域中可见的。这个是主窗口        默认的行为设置。
-</code></pre><p>  “adjustResize”</p>
-<pre><code>该Activity主窗口总是被调整屏幕的大小以便留出软键盘的空间。
-</code></pre><p>  “adjustPan”</p>
-<pre><code>该Activity主窗口并不调整屏幕的大小以便留出软键盘的空间。相反，当前窗口的内容将自动移动以便当前焦点        从不被键盘覆盖和用户能总是看到输入内容的部分。这个通常是不期望比调整大小，因为用户可能关闭软键盘以便获得        与被覆盖内容的交互操作。
-</code></pre></li>
-<li><p>遇到Manifest mergerfailed问题，如下：</p>
+<li><p>采用SpannableStringBuilder类，具体说明：</p>
 <blockquote>
-<p>Error:Execution failed for task ‘:vitamio-sample:processDebugManifest’.Manifest merger         failed : uses-sdk:minSdkVersion 11 cannot be smaller than version 15 declared in         library [io.vov.vitamio:vitamio:4.2.0-SNAPSHOT] /Users/RandyZhang/        AndroidStudioProjects/VitamioBundle/vitamio-sample/build/intermediates/exploded-aar/        io.vov.vitamio/vitamio/4.2.0-SNAPSHOT/AndroidManifest.xml    </p>
+<p>该类提供了setSpan(Object what, int start, int end,int flags) 方法，其中的what可以为以下类的实例：<br>   URLSpan；<br>   ClickableSpan；<br>   BackgroundColorSpan；<br>   ForegroundColorSpan；<br>   MaskFilterSpan；<br>   AbsoluteSizeSpan；<br>   RelativeSizeSpan；<br>   ImageSpan；<br>   ScaleXSpan；<br>   StyleSpan；<br>   SubscriptSpan；<br>   SuperscriptSpan；<br>   TextAppearanceSpan；<br>   TypefaceSpan；<br>   RasterizerSpan；<br>   StrikethroughSpan；<br>   UnderlineSpan；</p>
+<p>使用方法：<br>   a、得到SpannableStringBuilder类的实例：builder；<br>   b、得到Span子类的实例，如ForegroundColorSpan的实例 forgroundColorSpan；<br>   c、调用setSpan方法，指定要进行样式修饰的起始位置，进行参数填充；<br>   d、调用TextView的setText(SpannableStringBuilder builder)方法；</p>
 </blockquote>
-<p>解决方法：<br>在相应的AndroidManifest文件的manifest标签中加上</p>
-<pre><code>xmlns:tools=&quot;http://schemas.android.com/tools&quot;
-</code></pre><p>同时添加以下uses-sdk说明:</p>
-<pre><code>&lt;uses-sdk tools:overrideLibrary=&quot;name&quot; /&gt;
-</code></pre></li>
-<li><p>不要在ScrollView中直接嵌套ViewPager，这样会导致ViewPager不能显示，如果真要显示需要对ScrollView或者ViewPager进行处理</p>
+</li>
+</ol>
+</li>
+<li><p>滑动控件嵌套问题（如ScrollView中嵌套ViewPager、ScrollView中嵌套RecycleView或ListView等）</p>
+<blockquote>
+<p>建议不要写这样的嵌套，但实在没办法的时候，我们要对嵌套的控件做处理（可以处理嵌套的控件，也可以处理处理被嵌套的控件）</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="编译配置问题"><a href="#编译配置问题" class="headerlink" title="编译配置问题"></a>编译配置问题</h2><ul>
+<li><p>mac版eclipse导入Android项目里面的中文乱码问题如何解决？</p>
+<blockquote>
+<ol>
+<li>在Preference中找到Text File Encoding，选择Other，手动输入GBK即可；</li>
+<li>针对单个文件，选择乱码的文件，右键选择属性，在Text File Encoding中进行修改；</li>
+<li>针对所有的*.java文件，可采用在Eclipse的偏好设置中的General-&gt;Content Type-&gt;Text-&gt;Java Source Files-&gt;Default Encoding中进行设置。</li>
+</ol>
+</blockquote>
 </li>
 <li><p>Android Studio或者Eclipse编译项目时提示Error:java.lang.OutOfMemoryError: GC overhead limit exceeded如何解决？</p>
+<blockquote>
 <p>解决方法：</p>
 <ul>
-<li>Android Studio：在项目的build.gradle文件的android节点添加如下代码:</li>
+<li><p>Android Studio：在项目的build.gradle文件的android节点添加如下代码:</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;   dexOptions &#123;</span><br><span class="line">&gt;   	javaMaxHeapSize <span class="string">"2048m"</span></span><br><span class="line">&gt;       <span class="comment">// 以下为Android Studio默认值</span></span><br><span class="line">&gt;       <span class="comment">// javaMaxHeapSize "256m"</span></span><br><span class="line">&gt;   &#125; </span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> dexOptions &#123;</span><br><span class="line">        javaMaxHeapSize &quot;2048m&quot;</span><br><span class="line">        // 以下为Android Studio默认值</span><br><span class="line">//        javaMaxHeapSize &quot;2048m&quot;</span><br><span class="line">    &#125;   Android Studio javaMaxHeapSize 默认值为256m</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
 <ul>
 <li><p>Eclipse: 方法同Android Studio，更改eclipse.ini文件的相关配置： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-Xms40m</span><br><span class="line">-Xmx512m</span><br><span class="line"></span><br><span class="line">修改为</span><br><span class="line">-Xms512m</span><br><span class="line">-Xmx1024m</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;   -Xms40m</span><br><span class="line">&gt;   -Xmx512m</span><br><span class="line">&gt;</span><br><span class="line">&gt;   修改为</span><br><span class="line">&gt;   -Xms512m</span><br><span class="line">&gt;   -Xmx1024m</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-</li>
-<li><p>App 的WebView加载使用了rem为单位的H5页面时，若改变了手机的系统字体大小，会导致央视错乱</p>
-<p>解决方法：</p>
-<p>调用WebView.getSettings().setTextZoom(100)即可。在固定大小的布局中，如果想文字大小不随系统字体改变而改变，应该采用dp为单位（而不是sp）</p>
-</li>
-<li><p>Android Studio中启动模拟器时提示<code>Emulator: WARNING: HAXM 6.0.1 is installed. Please install HAXM &gt;= 6.2.1 to fix compatibility issues on Mac.</code></p>
-<p>解决方法:</p>
-<ul>
-<li>首先查看Android Studio的SDK Manager，看看SDK Tool选项卡下面的Intel X86 Emulator Accelector（HAXM installer）的最新版本是否是installed的状态，如果是，看下一步</li>
-<li>在安装的Android SDK目录找到extra文件夹，找到Intel文件夹，点击Hardware_Accelerated_Execution_Manager，找到IntelHAXM_6.2.1.dmg进行手动安装，安装之后最好能重启Android Studio和已经开启的模拟器，即可解决问题</li>
-</ul>
-</li>
-<li><p>使用Glide报错</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">java.lang.IllegalArgumentException: You cannot start a load for a destroyed activity</span><br><span class="line">	com.bumptech.glide.manager.k.b(Unknown Source)</span><br><span class="line">	com.bumptech.glide.manager.k.a(Unknown Source)</span><br><span class="line">	com.bumptech.glide.manager.k.a(Unknown Source)</span><br><span class="line">	com.bumptech.glide.e.b(Unknown Source)</span><br></pre></td></tr></table></figure>
-<p>解决方案：</p>
-<p>先说明一下原因，上面的日志记录已经说得很清楚了，Glide加载图片是和Activity和Fragment的生命周期相关联的，如果Activity已经被销毁，Activity里面Glide加载任务仍在进行，就会抛出上述异常，可以</p>
-<p>参考这篇文章解决问题<a href="https://stackoverflow.com/questions/31964737/glide-image-loading-with-application-context/32887693#32887693" target="_blank" rel="noopener">https://stackoverflow.com/questions/31964737/glide-image-loading-with-application-context/32887693#32887693</a></p>
-</li>
-<li><p>同步项目报错：Android - Gradle “xxx” project refresh failed</p>
-<p>解决方法：</p>
-<ul>
-<li><a href="http://blog.csdn.net/caroline_wendy/article/details/21187769" target="_blank" rel="noopener">http://blog.csdn.net/caroline_wendy/article/details/21187769</a></li>
-<li>重启Android Studio或重启电脑（我遇到这个问题的时候是通过重启电脑解决的）</li>
-</ul>
-</li>
-<li><p>不要轻易使用Android Studio的Removed unused resources</p>
-<blockquote>
-<p>因为你的项目中可能引用了一些第三方module，这些module中使用的资源文件可能在主module中声明了，执行该命令如果操作不慎可能会导致资源误删</p>
 </blockquote>
 </li>
 <li><p>当打release包的时候，提示如下错误信息时，如何解决？</p>
 <blockquote>
 <p>Error:Execution failed for task ‘:loggertest:processDebugManifest’. Manifest merger failed : Attribute application@icon value=(@mipmap/iclauncher) from AndroidManifest.xml:7:9-43 is also present at [TuringOSLoggerAPI:app:unspecified] AndroidManifest.xml:16:9-45 value=(@drawable/iclauncher). Suggestion: add ‘tools:replace=”android:icon”‘ to element at AndroidManifest.xml:5:5-18:19 to override.</p>
 </blockquote>
-<p>解决方案，在提示信息中已经给出了，我们只要在主module的application节点添加tools:replace=”属性名”，同时在AndroidManifest.xml的根节点上添加对应的命名空间</p>
+<p>解决方案：</p>
 <blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; xmlns:tools=&quot;http://schemas.android.com/tools&quot;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
-</blockquote>
+<p>在提示信息中已经给出了，我们只要在主module的application节点添加tools:replace=”属性名”，同时在AndroidManifest.xml的根节点上添加对应的命名空间</p>
+<p><code>xmlns:tools=&quot;http://schemas.android.com/tools&quot;</code></p>
 <p><strong><em>注意：多个属性需要用’,’隔开。</em></strong></p>
+</blockquote>
 </li>
 <li><p>Android Studio修改apk文件名、修改apk文件输出路径之后，点击run或debug项目提示在app主module的build文件夹下找不到对应的apk文件，导致apk无法安装如何解决？</p>
 <p>解决方案:</p>
+<blockquote>
 <p>这是因为你当前的构建变体是不允许直接通过Android Studio来运行（或调试）的，此时你只需要在AS的菜单栏上点击<strong>Build-&gt;Edit Build Types-&gt;选择相应的BuildVariants，debuggable属性设置为true即可</strong>。</p>
+</blockquote>
 </li>
 <li><p>Android Studio多种构建变体添加applicationIdSuffix后，logcat找不到对应的包名，取而代之的时问号？</p>
 <p>解决方案：</p>
+<blockquote>
 <p>这同样是因为当前的构建变体是不允许直接通过Android Studio来运行（或调试）的，此时你只需要在AS的菜单栏上点击<strong>Build-&gt;Edit Build Types-&gt;选择相应的BuildVariants，debuggable属性设置为true即可</strong>。</p>
+</blockquote>
 </li>
 <li><p>某个类型的构建变体（BuildVariants）不能调试，提示如下：</p>
 <blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;Error running app:</span><br><span class="line">&gt;Cannot debug application from module app on device xxx.</span><br><span class="line">&gt;This application does not have the debuggable attribute enabled in its manifest.</span><br><span class="line">&gt;If you have manually set it in the manifest, then remove it and let the IDE automatically assign it.</span><br><span class="line">&gt;If you are using Gradle, make sure that your current variant is debuggable.</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; Error running app:</span><br><span class="line">&gt; Cannot debug application from module app on device xxx.</span><br><span class="line">&gt; This application does not have the debuggable attribute enabled in its manifest.</span><br><span class="line">&gt; If you have manually set it in the manifest, then remove it and let the IDE automatically assign it.</span><br><span class="line">&gt; If you are using Gradle, make sure that your current variant is debuggable.</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
 <p>解决方案：</p>
+<blockquote>
 <ul>
 <li>在Android Studio的BuildVariants选择以Debug结尾的BuildVariants即可（因为Debug结尾的默认是可以调试的）</li>
 <li>在Android Studio的build菜单选择Edit Build type，可以配置不同BuildVariants的相关属性</li>
 </ul>
+</blockquote>
 </li>
 <li><p>Android Studio开启instant run运行项目报如下错误：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error:java.io.IOException: Could not delete path &apos;/Users/RandyZhang/AndroidStudioProjects/TRJ/app/build/intermediates/instant-run-support/sc-trj/yw/package_directories/dex-renamer-state.txt&apos;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Error:java.io.IOException: Could not delete path ‘/Users/RandyZhang/AndroidStudioProjects/TRJ/app/build/intermediates/instant-run-support/sc-trj/yw/package_directories/dex-renamer-state.txt’</p>
+</blockquote>
 <p>解决方案：</p>
+<blockquote>
 <ul>
 <li>关闭instant run（不推荐，毕竟instant run还是很好用的）</li>
 <li>手动删除对应目录下对应的文件</li>
 <li>先debug运行，带run运行（很有效）</li>
 </ul>
+</blockquote>
 </li>
-<li><p>​</p>
+<li><p>Android Studio中启动模拟器时提示<code>Emulator: WARNING: HAXM 6.0.1 is installed. Please install HAXM &gt;= 6.2.1 to fix compatibility issues on Mac.</code>如何解决？</p>
+<p>解决方法:</p>
+<blockquote>
+<ul>
+<li>首先查看Android Studio的SDK Manager，看看SDK Tool选项卡下面的Intel X86 Emulator Accelector（HAXM installer）的最新版本是否是installed的状态，如果是，看下一步</li>
+<li>在安装的Android SDK目录找到extra文件夹，找到Intel文件夹，点击Hardware_Accelerated_Execution_Manager，找到IntelHAXM_6.2.1.dmg进行手动安装，安装之后最好能重启Android Studio和已经开启的模拟器，即可解决问题</li>
+</ul>
+</blockquote>
 </li>
+<li><p>同步项目报错：Android - Gradle “xxx” project refresh failed 如何解决？</p>
+<p>解决方法：</p>
+<blockquote>
+<ul>
+<li><a href="http://blog.csdn.net/caroline_wendy/article/details/21187769" target="_blank" rel="noopener">http://blog.csdn.net/caroline_wendy/article/details/21187769</a></li>
+<li>重启Android Studio或重启电脑（我遇到这个问题的时候是通过重启电脑解决的）</li>
+</ul>
+</blockquote>
+</li>
+<li><p>遇到Manifest mergerfailed问题，如下：</p>
+<blockquote>
+<p>Error:Execution failed for task ‘:vitamio-sample:processDebugManifest’.Manifest merger         failed : uses-sdk:minSdkVersion 11 cannot be smaller than version 15 declared in         library [io.vov.vitamio:vitamio:4.2.0-SNAPSHOT] /Users/RandyZhang/        AndroidStudioProjects/VitamioBundle/vitamio-sample/build/intermediates/exploded-aar/        io.vov.vitamio/vitamio/4.2.0-SNAPSHOT/AndroidManifest.xml    </p>
+</blockquote>
+<p>解决方法：<br>在相应的AndroidManifest文件的manifest标签中加上如下内容：</p>
+<blockquote>
+<p><code>xmlns:tools=&quot;http://schemas.android.com/tools&quot;</code></p>
+</blockquote>
+<p>同时添加以下uses-sdk说明:</p>
+<blockquote>
+<p><code>&lt;uses-sdk tools:overrideLibrary=&quot;name&quot; /&gt;</code>    </p>
+</blockquote>
+</li>
+</ul>
+<h2 id="四大组件问题"><a href="#四大组件问题" class="headerlink" title="四大组件问题"></a>四大组件问题</h2><ul>
+<li><p>Activity中应用Fragment进行数据的加载与显示时，第一次进入正常，推出再次进入崩溃？</p>
+<blockquote>
+<p>出现这种情况的原因可能有以下几点：</p>
+<ol>
+<li>采用getInstance方法获取Fragment的实例，但推出时没有置空，导致Fragment里面的控件不为空，但数据为空，其他地方又没有很好的对这种情况进行处理，导致空指针；</li>
+<li>Fragment的生命周期没有管理好</li>
 </ol>
+</blockquote>
+</li>
+<li><p>Android启动时很长一段时间出现白屏（或黑屏）如何解决？</p>
+<blockquote>
+<p>to be answered…</p>
+</blockquote>
+</li>
+<li><p>Android 如何避免软键盘弹出时遮挡住用户交互界面？</p>
+<blockquote>
+<p>在AndroidManifest.xml中为对应的activity添加android:windowSoftInputMode=”adjustResize”</p>
+</blockquote>
+<p><strong><em>NOTE：</em></strong><code>android:windowSoftInputMode</code>属性说明：</p>
+<blockquote>
+<p>该属性一般使用在AndroidManifest.xml文件的<code>&lt;activity&gt;...&lt;/activity&gt;</code>标签上，可以设置成如下值：</p>
+<ul>
+<li><code>stateUnspecified</code></li>
+<li><code>stateUnchanged</code></li>
+<li><code>stateHidden</code></li>
+<li><code>stateAlwaysHidden</code></li>
+<li><code>stateVisible</code></li>
+<li><code>stateAlwaysVisible</code></li>
+<li><code>adjustUnspecified</code></li>
+<li><code>adjustResize</code></li>
+<li><code>adjustPan</code></li>
+</ul>
+<p>这个属性将会影响<strong><em>两件事情</em></strong>：</p>
+<ol>
+<li><strong>state</strong>，即软键盘的状态，软键盘是否显示；</li>
+<li><strong>adjust</strong>，即是否调整当前窗口。</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<h2 id="WebView问题"><a href="#WebView问题" class="headerlink" title="WebView问题"></a>WebView问题</h2><ul>
+<li><p>App 的WebView加载使用了rem为单位的H5页面时，若改变了手机的系统字体大小，会导致央视错乱</p>
+<p>解决方法：</p>
+<blockquote>
+<p>调用WebView.getSettings().setTextZoom(100)即可。在固定大小的布局中，如果想文字大小不随系统字体改变而改变，应该采用dp为单位（而不是sp）</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="第三方库常见问题"><a href="#第三方库常见问题" class="headerlink" title="第三方库常见问题"></a>第三方库常见问题</h2><ul>
+<li><p>使用Glide报如下错误如何解决？</p>
+<blockquote>
+<p>java.lang.IllegalArgumentException: You cannot start a load for a destroyed activity<br>​    com.bumptech.glide.manager.k.b(Unknown Source)<br>​    com.bumptech.glide.manager.k.a(Unknown Source)<br>​    com.bumptech.glide.manager.k.a(Unknown Source)<br>​    com.bumptech.glide.e.b(Unknown Source)</p>
+<p>​    …</p>
+<p>​    …</p>
+</blockquote>
+<p>解决方案：</p>
+<blockquote>
+<p>先说明一下原因，上面的日志记录已经说得很清楚了，Glide加载图片是和Activity和Fragment的生命周期相关联的，如果Activity已经被销毁，Activity里面Glide加载任务仍在进行，就会抛出上述异常，可以</p>
+<p>参考这篇文章解决问题<a href="https://stackoverflow.com/questions/31964737/glide-image-loading-with-application-context/32887693#32887693" target="_blank" rel="noopener">https://stackoverflow.com/questions/31964737/glide-image-loading-with-application-context/32887693#32887693</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
+<li><p>Q：小米手机更改应用程序图标后，桌面上图标没有什么变化？</p>
+<blockquote>
+<p>重启后可解决问题；</p>
+</blockquote>
+</li>
+<li><p>不要轻易使用Android Studio的Removed unused resources</p>
+<blockquote>
+<p>因为你的项目中可能引用了一些第三方module，这些module中使用的资源文件可能在主module中声明了，执行该命令如果操作不慎可能会导致资源误删</p>
+</blockquote>
+</li>
+</ul>
 
       
 
