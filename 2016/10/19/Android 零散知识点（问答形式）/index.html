@@ -6,17 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>荏苒追寻个人博客</title>
+  <title>Android 零散知识点 | 荏苒追寻个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="#Android 零散知识点（持续更新）  为什么Android的更新试图操作必须在主线程中进行？   这是因为Android系统中的视图组件并不是线程安全的。通常应该让主线程负责创建、  显示和更新UI，启动子线程，停止子线程。让子线程完成计算并向主线程发出更新UI  的消息，让主线程来更新UI。这就促使Android中产生了Handler机制。  如何更改Android Studio编译所采用">
+<meta name="keywords" content="Android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="荏苒追寻个人博客">
+<meta property="og:title" content="Android 零散知识点">
 <meta property="og:url" content="http://yoursite.com/2016/10/19/Android 零散知识点（问答形式）/index.html">
 <meta property="og:site_name" content="荏苒追寻个人博客">
 <meta property="og:description" content="#Android 零散知识点（持续更新）  为什么Android的更新试图操作必须在主线程中进行？   这是因为Android系统中的视图组件并不是线程安全的。通常应该让主线程负责创建、  显示和更新UI，启动子线程，停止子线程。让子线程完成计算并向主线程发出更新UI  的消息，让主线程来更新UI。这就促使Android中产生了Handler机制。  如何更改Android Studio编译所采用">
-<meta property="og:updated_time" content="2018-01-11T05:01:49.530Z">
+<meta property="og:updated_time" content="2018-01-17T11:49:15.010Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="荏苒追寻个人博客">
+<meta name="twitter:title" content="Android 零散知识点">
 <meta name="twitter:description" content="#Android 零散知识点（持续更新）  为什么Android的更新试图操作必须在主线程中进行？   这是因为Android系统中的视图组件并不是线程安全的。通常应该让主线程负责创建、  显示和更新UI，启动子线程，停止子线程。让子线程完成计算并向主线程发出更新UI  的消息，让主线程来更新UI。这就促使Android中产生了Handler机制。  如何更改Android Studio编译所采用">
   
     <link rel="alternative" href="/atom.xml" title="荏苒追寻个人博客" type="application/atom+xml">
@@ -166,6 +167,21 @@
             <article id="post-Android 零散知识点（问答形式）" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android 零散知识点
+    </h1>
+  
+
+        
+        <a href="/2016/10/19/Android 零散知识点（问答形式）/" class="archive-article-date">
+  	<time datetime="2016-10-19T07:45:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-10-19</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
         <p>#Android 零散知识点（持续更新）</p>
@@ -260,7 +276,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> dexOptions &#123;</span><br><span class="line">        javaMaxHeapSize &quot;2048m&quot;</span><br><span class="line">        // 以下为Android Studio默认值</span><br><span class="line">//        javaMaxHeapSize &quot;2048m&quot;</span><br><span class="line">    &#125;   Android Studio javaMaxHeapSize 默认值为256m</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>​Eclipse: 方法同Android Studio，更改eclipse.ini文件的相关配置： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-Xms40m</span><br><span class="line">-Xmx512m</span><br><span class="line"></span><br><span class="line">修改为</span><br><span class="line">-Xms512m</span><br><span class="line">-Xmx1024m</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-Xms40m</span><br><span class="line">-Xmx512m</span><br><span class="line">    </span><br><span class="line">修改为</span><br><span class="line">-Xms512m</span><br><span class="line">-Xmx1024m</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
@@ -362,7 +378,29 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Android//" class="article-tag-list-link color3">Android</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -430,7 +468,7 @@
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          (no title)
+          Android 软键盘相关问题总结
         
       </div>
     </a>
