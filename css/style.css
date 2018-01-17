@@ -84,7 +84,7 @@ h6 {
 	color: #151515;
 }
 h2 {
-	text-transform: uppercase;
+	text-transform: capitalize;
 	font-style: normal;
 	font-weight: 400;
 	font-size: 22px;
@@ -346,7 +346,7 @@ a.custom-button span {
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
 	border-radius: 4px;
-	text-transform: uppercase;
+	text-transform: capitalize;
 	border: none;
 }
 .btn-lg {
@@ -526,7 +526,7 @@ a.custom-button span {
 	margin:23px 0px;
 	color: #151515;
 	font-family: 'Montserrat', "Open Sans", "Helvetica Neue", "Helvetica", "Hiragino Sans GB", "Microsoft YaHei", "Source Han Sans CN", "WenQuanYi Micro Hei", Arial, sans-serif;
-	text-transform: uppercase;
+	text-transform: capitalize;
 	letter-spacing: 1px;
 	font-size: 11px;
 	font-weight: 400;
@@ -541,7 +541,7 @@ a.custom-button span {
 	text-shadow: none;
 	letter-spacing: 1px;
 	line-height: 14px;
-	text-transform: uppercase;
+	text-transform: capitalize;
 	font-size: 11px;
 	margin:23px 0px;
 	border-right:1px solid #aaa;
@@ -636,7 +636,7 @@ nav i.icon-basic-eye {
 	z-index: 1060;
 	color: #151515;
 	font-family: 'Montserrat', "Open Sans", "Helvetica Neue", "Helvetica", "Hiragino Sans GB", "Microsoft YaHei", "Source Han Sans CN", "WenQuanYi Micro Hei", Arial, sans-serif;
-	text-transform: uppercase;
+	text-transform: capitalize;
 	letter-spacing: 1px;
 	font-size: 11px;
 	font-weight: 400;
@@ -738,7 +738,7 @@ html.sb-init.sb-active.sb-active-right #projects .filter-item div a {
 	color: #666; /* Link colour. */
 	text-decoration: none;
 	font-weight: 700;
-	text-transform: uppercase;
+	text-transform: capitalize;
 	font-size: 13px
 }
 .sb-slidebar a:hover {
@@ -790,7 +790,7 @@ html.sb-init.sb-active.sb-active-right #projects .filter-item div a {
 /* Sb Dropdown */
 li.sb-toggle-submenu {
 	font-weight: 600;
-	text-transform: uppercase;
+	text-transform: capitalize;
 	font-size: 13px;
 	border-left: 3px solid transparent;
 	padding: 3px 10px;
@@ -994,7 +994,7 @@ span.sb-caret { /* Caret Down */
 .titleblock h6 {
 	color: #151515;
 	margin-bottom: 20px;
-	text-transform: uppercase;
+	text-transform: capitalize;
 }
 
 .titleblock p {
@@ -1235,7 +1235,7 @@ span.sb-caret { /* Caret Down */
 	font-family: 'Montserrat', Helvetica, "Helvetica Neue", "Hiragino Sans GB", "Microsoft YaHei", "Source Han Sans CN", "WenQuanYi Micro Hei", Arial, sans-serif;
 	text-transform: none;
 	font-weight: 400;
-	text-transform: uppercase;
+	text-transform: capitalize;
 	position: relative;
 }
 @media (max-width:991px) {
@@ -1418,7 +1418,7 @@ span.sb-caret { /* Caret Down */
 	font-style: normal;
 	font-size: 24px;
 	font-weight: 400;
-	text-transform: uppercase;
+	text-transform: capitalize;
 	letter-spacing: 1px;
 	display: block;
 	line-height: 32px;
@@ -1470,7 +1470,7 @@ hr.byline-accent {
 	}
 	#featured .view {
 		font-style: normal;
-		text-transform: uppercase;
+		text-transform: capitalize;
 		font-size: 12px;
 		text-align: left;
 		color: #151515;
@@ -1967,7 +1967,7 @@ a.flex-next {
 }
 #pagetabs .credit h3 {
 	margin-bottom: 40px;
-	text-transform: uppercase;
+	text-transform: capitalize;
 }
 #pagetabs .page-nav {
 	border-bottom: none;
@@ -2010,7 +2010,7 @@ ul.page-nav i {
 	font-size: 14px;
 	font-family: 'Montserrat', Helvetica, "Helvetica Neue", "Hiragino Sans GB", "Microsoft YaHei", "Source Han Sans CN", "WenQuanYi Micro Hei", Arial, sans-serif;
 	font-weight: 400;
-	text-transform: uppercase;
+	text-transform: capitalize;
 	color: #bbb;
 	border: none;
 }
@@ -2139,7 +2139,7 @@ ul.page-nav i {
 }
 .popover-title {
 	font-size: 14px;
-	text-transform: uppercase;
+	text-transform: capitalize;
 	font-family: 'Georgia', serif, Helvetica, "Helvetica Neue", "Hiragino Sans GB", "Microsoft YaHei", "Source Han Sans CN", "WenQuanYi Micro Hei", Arial, sans-serif;
 	letter-spacing: 1px;
 	color: #fff;
@@ -2222,7 +2222,7 @@ ul.page-nav i {
 	font-size: 13px;
 	letter-spacing: 1px;
 	font-weight: 400;
-	text-transform: uppercase;
+	text-transform: capitalize;
 }
 #leftcol .nav>li {
 	-webkit-transition: all ease 0.3s;
@@ -2363,7 +2363,7 @@ ul.page-nav i {
 	font-size: 14px;
 	letter-spacing: 1px;
 	font-weight: 400;
-	text-transform: uppercase;
+	text-transform: capitalize;
 	margin-top: 10px;
 	margin-bottom: 20px;
 }
@@ -2587,7 +2587,7 @@ ul.page-nav i {
 	font-family: 'Montserrat', Helvetica, Arial, sans-serif;
 	color: #151515;
 	text-decoration: none;
-	text-transform: uppercase;
+	text-transform: capitalize;
 }
 #projects .filter-item img {
 	max-width:100%;
@@ -2618,7 +2618,7 @@ ul.filters li p {
 	font-size: 14px;
 	font-weight: 700;
 	letter-spacing: 1px;
-	text-transform: uppercase;
+	text-transform: capitalize;
 	cursor: pointer;
 	-webkit-transition: all ease 0.3s;
 	-moz-transition: all ease .3s;
@@ -2783,7 +2783,7 @@ ul.filters li p:hover {
 	z-index: 4;
 }
 #mailinglist h4 {
-	text-transform: uppercase;
+	text-transform: capitalize;
 	font-style: normal;
 	font-weight: 400;
 	font-size: 22px;
@@ -3106,7 +3106,7 @@ footer .extra-wrap h5 {
 	font-size: 13px;
 	letter-spacing: 1px;
 	font-weight: 400;
-	text-transform: uppercase;
+	text-transform: capitalize;
 }
 footer .address{
 	margin-top:1em;
