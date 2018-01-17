@@ -161,442 +161,162 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Android 震动反馈（HapticFeedback）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Android-震动反馈（HapticFeedback）"><a href="#Android-震动反馈（HapticFeedback）" class="headerlink" title="Android 震动反馈（HapticFeedback）"></a>Android 震动反馈（HapticFeedback）</h1>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Android//" class="article-tag-list-link color3">Android</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/11/Android 震动反馈（HapticFeedback）/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Android adb学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Android-adb学习"><a href="#Android-adb学习" class="headerlink" title="Android adb学习"></a>Android adb学习</h1><h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><blockquote>
-<p>adb，指的是Android Debug Bridge，即Android调试桥，顾名思义，和Android调试有莫大的关系。</p>
-</blockquote>
-<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><ul>
-<li><p>首先要已经搭建好Android开发环境（具体请自行百度）</p>
-</li>
-<li><p>其次，为了避免频繁调用cd（切换目录命令，建议配置好环境变量，Mac下具体配置如下）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=$&#123;PATH&#125;:/Users/RandyZhang/Library/Android/sdk/platform-tools</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="具体使用"><a href="#具体使用" class="headerlink" title="具体使用"></a>具体使用</h2><p>运行如下</p>
-<h3 id="全局配置选项"><a href="#全局配置选项" class="headerlink" title="全局配置选项"></a>全局配置选项</h3><ul>
-<li><p>-a，使用该选项将监听所有的网络接口，而不仅仅是localhost；</p>
-</li>
-<li><p>-d，使用USB设备（即真机设备，当连有多个设备时将报错，因为不知道到底该用哪个）</p>
-</li>
-<li><p>-e，使用TCP/IP设备（即模拟器设备，同上多个设备将报错）</p>
-</li>
-<li><p>-s SERIAL，使用使用给定的序列号设备（序列号唯一，多个设备不会报错，会覆盖$ANDROID_SERIAL环境变量），使用如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb -s SERIAL command</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>-p PRODUCT，指定输出apk的名字或输出路径（会覆盖$ANDROID_PRODUCT_OUT环境变量），使用如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb -p name(or path) command</span><br></pre></td></tr></table></figure>
-<p><strong><em>注意：这里是小写的p</em></strong></p>
-</li>
-<li><p>-H，adb server的名称，默认localhost；</p>
-</li>
-<li><p>-P，adb server的端口号，默认5037；</p>
-</li>
-<li><p>-L SOCKET，在指定的socket上监听adb server，默认tcp:=localhost:5037;</p>
-</li>
-</ul>
-<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><h4 id="devices-l"><a href="#devices-l" class="headerlink" title="devices[-l]"></a>devices[-l]</h4><p> 列出已连接的设备（-l时输出详细结果）</p>
-<h4 id="help"><a href="#help" class="headerlink" title="help"></a>help</h4><p>查看帮助，如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb help 查看所有帮助</span><br><span class="line">adb help command 查看commond命令的帮助</span><br></pre></td></tr></table></figure>
-<h4 id="version"><a href="#version" class="headerlink" title="version"></a>version</h4><p>查看adb 版本号</p>
-<h3 id="网络相关命令"><a href="#网络相关命令" class="headerlink" title="网络相关命令"></a>网络相关命令</h3><h4 id="connect-disconnect"><a href="#connect-disconnect" class="headerlink" title="connect/disconnect"></a>connect/disconnect</h4><ul>
-<li>adb connect 192.168.56.101:5555， 连接tcp/ip为192.168.56.101:5555的设备；</li>
-<li>adb disconnect 192.168.56.101:5555，断开192.168.56.101:5555的连接；</li>
-</ul>
-<h4 id="forward"><a href="#forward" class="headerlink" title="forward"></a>forward</h4><p>todo…</p>
-<h4 id="reverse"><a href="#reverse" class="headerlink" title="reverse"></a>reverse</h4><p>todo…</p>
-<h3 id="文件传输"><a href="#文件传输" class="headerlink" title="文件传输"></a>文件传输</h3><h3 id="shell命令"><a href="#shell命令" class="headerlink" title="shell命令"></a>shell命令</h3><p>通用使用方法：adb [-d|-e|-s serial_number] shell shell_command</p>
-<ul>
-<li>adb shell am        am(activity manager)<ul>
-<li>adb shell pm     pm(package manager)</li>
-</ul>
-</li>
-<li>adb shell pm list permissions  列出权限组</li>
-</ul>
-<h3 id="app安装／卸载"><a href="#app安装／卸载" class="headerlink" title="app安装／卸载"></a>app安装／卸载</h3><h3 id="备份／恢复"><a href="#备份／恢复" class="headerlink" title="备份／恢复"></a>备份／恢复</h3><h3 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h3><ul>
-<li>adb bugreport [PATH]，将bug报告输出到PATH指定位置</li>
-<li>adb jdwp，列出所有持有JDWP（Java 平台调试体系结构）的进程id</li>
-<li>adb logcat，logcat相关配置</li>
-</ul>
-<h3 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h3><h3 id="脚本命令"><a href="#脚本命令" class="headerlink" title="脚本命令"></a>脚本命令</h3><h3 id="内部调试"><a href="#内部调试" class="headerlink" title="内部调试"></a>内部调试</h3><ul>
-<li>adb start-server    开启服务器<ul>
-<li>adb kill-server关闭服务器</li>
-</ul>
-</li>
-<li>adb reconnect         服务器端的重连</li>
-<li>adb reconnect device 设备端的重连</li>
-</ul>
-<h2 id="相关环境变量"><a href="#相关环境变量" class="headerlink" title="相关环境变量"></a>相关环境变量</h2><p>例如：<br>    1、推送 到设备号为5LM7N16531010541的设备上<br>    adb -s 5LM7N16531010541 push /Users/RandyZhang/AndroidStudioProjects/tinker/tinker-sample-android/app/build/outputs/apk/app-debug.apk /data/local/tmp/tinker.sample.android</p>
-<pre><code>2、安装(-r 替换已存在的应用)
-adb -s 5LM7N16531010541 shell pm install -r &quot;/data/local/tmp/tinker.sample.android&quot;
-</code></pre><p>adb push <local apk="" file="" path=""> <remote apk="" file="" path=""> 将本地apk文件推送到模拟器（或手机）上</remote></local></p>
-<p>例如：<br>    1、推送<br>    adb push /Users/RandyZhang/AndroidStudioProjects/tinker/tinker-sample-android/app/build/outputs/apk/app-debug.apk /data/local/tmp/tinker.sample.android<br>    2、安装(-r 替换已存在的应用)<br>    adb shell pm install -r “/data/local/tmp/tinker.sample.android”</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Android//" class="article-tag-list-link color3">Android</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/26/Android adb学习/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Android SdkVersion那些事儿" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Android 是时候了解一波MD库控件了" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/22/Android SdkVersion那些事儿/">Android SdkVersion那些事儿</a>
+      <a class="article-title" href="/2017/11/28/Android 是时候了解一波MD库控件了/">Android 从一个简单的弹窗说起</a>
     </h1>
   
 
         
-        <a href="/2017/09/22/Android SdkVersion那些事儿/" class="archive-article-date">
-  	<time datetime="2017-09-22T06:37:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-22</time>
+        <a href="/2017/11/28/Android 是时候了解一波MD库控件了/" class="archive-article-date">
+  	<time datetime="2017-11-28T01:36:39.067Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Android-SdkVersion那些事儿"><a href="#Android-SdkVersion那些事儿" class="headerlink" title="Android SdkVersion那些事儿"></a>Android SdkVersion那些事儿</h1><p><strong><em>本文对android项目中的compileSdkVersion、targetSdkVersion、minSdkVersion、maxSdkVersion和buildTarget等概念做一个说明。</em></strong></p>
-<h2 id="compileSdkVersion"><a href="#compileSdkVersion" class="headerlink" title="compileSdkVersion"></a>compileSdkVersion</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><blockquote>
-<p>编译或构件时采用的API版本，你在项目中查看的android系统相关的源码与这个compileSdkVersion指定的是一致的。</p>
-</blockquote>
-<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><ol>
-<li>在eclipse中位于项目根目录中的project.properties文件中(target=xx);</li>
-<li>在android studio中位于项目中的build.gradle中；</li>
-<li>强烈推荐总是使用最新的 SDK 进行编译（默认就是最新的）；</li>
-<li>修改 compileSdkVersion 不会改变运行时的行，但可能会出现新的编译警告、编译错误；</li>
-<li>compileSdkVersion 不会被包含到 APK 中：它纯粹只是在编译的时候使用；</li>
-<li>如果使用 Support Library ，那么使用最新发布的 Support Library 就需要使用最新的 SDK 编译（对应关系）。</li>
-</ol>
-<h2 id="targetSdkVersion"><a href="#targetSdkVersion" class="headerlink" title="targetSdkVersion"></a>targetSdkVersion</h2><h4 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h4><blockquote>
-<p>表明当系统api小于或等于targetSdkVersion值时，系统运行程序不用做兼容处理；（相当于告诉系统，我开发时是针对targetSdkVersion指定版本已经做过兼容的）</p>
-</blockquote>
-<p>说明</p>
-<ol>
-<li>如果不设置，默认值和minSdkVersion相同；</li>
-<li>应用程序仍然能在低于targetSdkVersion的系统上运行；</li>
-<li>系统API高于targetSdkVersion，系统会开启向前兼容模式；反之，系统将不采用兼容模式，认为<strong><em>开发者已做兼容处理</em></strong>，而直接正常运行这个程序；</li>
-<li>targetSdkVersion这个值是在运行时起作用的，该值告诉系统到底要不要采用向前兼容模式来运行程序；</li>
-</ol>
-<blockquote>
-<p><strong><em>建议开发时将targetSdkVersion设置为最新的值，这样就可以应用新功能，并对新功能做兼容性测试</em></strong></p>
-</blockquote>
-<h2 id="minSdkVersion"><a href="#minSdkVersion" class="headerlink" title="minSdkVersion"></a>minSdkVersion</h2><h3 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h3><blockquote>
-<p>运行应用程序所需要的最低Sdk 版本</p>
-</blockquote>
-<h3 id="说明-1"><a href="#说明-1" class="headerlink" title="说明"></a>说明</h3><ol>
-<li>不指定，默认值为1，表明兼容所有android版本；</li>
-<li>系统API高于minSdkVersion时，系统会组织应用的安装；</li>
-<li>如果使用了高于minSdkVersion 的api（方法属性等），编译时会报错；</li>
-<li>minSdkVersion要取所有依赖项目中minSdkVersion的最大值，这样才能保证项目运行后不会报错；</li>
-</ol>
-<h3 id="maxSdkVersion"><a href="#maxSdkVersion" class="headerlink" title="maxSdkVersion"></a>maxSdkVersion</h3><blockquote>
-<p>运行应用程序支持的最高版本（超过该版本运行不了）</p>
-</blockquote>
-<h3 id="说明-2"><a href="#说明-2" class="headerlink" title="说明"></a>说明</h3><p><strong><em>显然这个属性不符合事物发展的规律，现已不推荐使用，或者说已经失效了</em></strong>。</p>
-<h2 id="高版本方法在低版本系统上的兼容性处理"><a href="#高版本方法在低版本系统上的兼容性处理" class="headerlink" title="高版本方法在低版本系统上的兼容性处理"></a>高版本方法在低版本系统上的兼容性处理</h2><ol>
-<li><p>采用注解的方式</p>
+        <p>Android 是时候了解一波MD库控件了</p>
 <ul>
-<li>添加@TargetApi($API_LEVEL)可使编译通过</li>
-<li>添加@SuppressLint(“NewApi”)屏蔽一切新API才可使编译通过(一个方法中引用了多种不同API的新方法)</li>
+<li>AppBarLayout</li>
+<li>CoordinatorLayout</li>
+<li>​SwipeRefreshLayout</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">举个例子，某个方法中使用了api9新加入的方法，而项目设置的android:minSdkVersion=8，此时在方法上加@SuppressLint(&quot;NewApi&quot;）</span><br><span class="line">和@TargetApi(Build.VERSION_CODES.GINGERBREAD)都可以，以上是通用的情况。</span><br><span class="line">而当你在此方法中又引用了一个api11才加入的方法时，@TargetApi(Build.VERSION_CODES.GINGERBREAD)注解的方法又报错了，而</span><br><span class="line">@SuppressLint(&quot;NewApi&quot;）不会报错</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>运行时判断</p>
-<blockquote>
-<p>在低版本上不调用该方法，而自己提供低版本上的功能实现</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Android//" class="article-tag-list-link color3">Android</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/28/Android 是时候了解一波MD库控件了/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Android 从一个简单的弹窗说起" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/23/Android 从一个简单的弹窗说起/">Android 从一个简单的弹窗说起</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/23/Android 从一个简单的弹窗说起/" class="archive-article-date">
+  	<time datetime="2017-11-23T02:18:30.386Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Android-从一个简单的弹窗说起"><a href="#Android-从一个简单的弹窗说起" class="headerlink" title="Android 从一个简单的弹窗说起"></a>Android 从一个简单的弹窗说起</h1><blockquote>
+<p>App开发中，或多或少都需要用到弹框，而Android中弹窗的实现有很多种，常见的有Dialog、PopupWindow等，本文先介绍各种形式弹窗的具体实现，然后对他们做一个对比与总结。</p>
 </blockquote>
-</li>
-</ol>
-<p>下表列出了各 Android 平台版本支持的 API 级别：</p>
-<table>
+<h2 id="具体实现方式"><a href="#具体实现方式" class="headerlink" title="具体实现方式"></a>具体实现方式</h2><h3 id="Dialog"><a href="#Dialog" class="headerlink" title="Dialog"></a>Dialog</h3><p> 去掉顶部标题</p>
+<h3 id="PopupWindow"><a href="#PopupWindow" class="headerlink" title="PopupWindow"></a>PopupWindow</h3><p><strong><em>注意：在弹出的PopupWindow中再显示一个PopupWindow</em></strong>，如在一个</p>
+<h3 id="Activity（采用Dialog-style）"><a href="#Activity（采用Dialog-style）" class="headerlink" title="Activity（采用Dialog style）"></a>Activity（采用Dialog style）</h3><h3 id="View的显示与隐藏"><a href="#View的显示与隐藏" class="headerlink" title="View的显示与隐藏"></a>View的显示与隐藏</h3><h2 id="各种实现方式的优缺点"><a href="#各种实现方式的优缺点" class="headerlink" title="各种实现方式的优缺点"></a>各种实现方式的优缺点</h2><table>
 <thead>
 <tr>
-<th>平台版本</th>
-<th>API 级别</th>
-<th>VERSION_CODE</th>
-<th>备注</th>
+<th style="text-align:left">表现</th>
+<th>Dialog</th>
+<th>PopupWindow</th>
+<th>Activity（采用Dialog style）</th>
+<th>View的显示与隐藏</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="https://developer.android.google.cn/about/versions/nougat/android-7.0.html" target="_blank" rel="noopener">Android 7.0</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/24/changes.html" target="_blank" rel="noopener">24</a></td>
-<td><code>N</code></td>
-<td><a href="https://developer.android.google.cn/about/versions/nougat/index.html" target="_blank" rel="noopener">平台亮点</a></td>
-</tr>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/marshmallow/android-6.0.html" target="_blank" rel="noopener">Android 6.0</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/23/changes.html" target="_blank" rel="noopener">23</a></td>
-<td><code>M</code></td>
-<td><a href="https://developer.android.google.cn/about/versions/marshmallow/index.html" target="_blank" rel="noopener">平台亮点</a></td>
-</tr>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/android-5.1.html" target="_blank" rel="noopener">Android 5.1</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/22/changes.html" target="_blank" rel="noopener">22</a></td>
-<td><code>LOLLIPOP_MR1</code></td>
-<td><a href="https://developer.android.google.cn/about/versions/lollipop.html" target="_blank" rel="noopener">平台亮点</a></td>
-</tr>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/android-5.0.html" target="_blank" rel="noopener">Android 5.0</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/21/changes.html" target="_blank" rel="noopener">21</a></td>
-<td><code>LOLLIPOP</code></td>
+<td style="text-align:left">灵活性</td>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
-<td>Android 4.4W</td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/20/changes.html" target="_blank" rel="noopener">20</a></td>
-<td><code>KITKAT_WATCH</code></td>
-<td>仅限 KitKat for Wearables</td>
-</tr>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/android-4.4.html" target="_blank" rel="noopener">Android 4.4</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/19/changes.html" target="_blank" rel="noopener">19</a></td>
-<td><code>KITKAT</code></td>
-<td><a href="https://developer.android.google.cn/about/versions/kitkat.html" target="_blank" rel="noopener">平台亮点</a></td>
-</tr>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/android-4.3.html" target="_blank" rel="noopener">Android 4.3</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/18/changes.html" target="_blank" rel="noopener">18</a></td>
-<td><code>JELLY_BEAN_MR2</code></td>
-<td><a href="https://developer.android.google.cn/about/versions/jelly-bean.html" target="_blank" rel="noopener">平台亮点</a></td>
-</tr>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/android-4.2.html" target="_blank" rel="noopener">Android 4.2、4.2.2</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/17/changes.html" target="_blank" rel="noopener">17</a></td>
-<td><code>JELLY_BEAN_MR1</code></td>
-<td><a href="https://developer.android.google.cn/about/versions/jelly-bean.html#android-42" target="_blank" rel="noopener">平台亮点</a></td>
-</tr>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/android-4.1.html" target="_blank" rel="noopener">Android 4.1、4.1.1</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/16/changes.html" target="_blank" rel="noopener">16</a></td>
-<td><code>JELLY_BEAN</code></td>
-<td><a href="https://developer.android.google.cn/about/versions/jelly-bean.html#android-41" target="_blank" rel="noopener">平台亮点</a></td>
-</tr>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/android-4.0.3.html" target="_blank" rel="noopener">Android 4.0.3、4.0.4</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/15/changes.html" target="_blank" rel="noopener">15</a></td>
-<td><code>ICE_CREAM_SANDWICH_MR1</code></td>
-<td><a href="https://developer.android.google.cn/about/versions/android-4.0-highlights.html" target="_blank" rel="noopener">平台亮点</a></td>
-</tr>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/android-4.0.html" target="_blank" rel="noopener">Android 4.0、4.0.1、4.0.2</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/14/changes.html" target="_blank" rel="noopener">14</a></td>
-<td><code>ICE_CREAM_SANDWICH</code></td>
+<td style="text-align:left">定制性</td>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://developer.android.google.cn/about/versions/android-3.2.html" target="_blank" rel="noopener">Android 3.2</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/13/changes.html" target="_blank" rel="noopener">13</a></td>
-<td><code>HONEYCOMB_MR2</code></td>
+<td style="text-align:left">代码量</td>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://developer.android.google.cn/about/versions/android-3.1.html" target="_blank" rel="noopener">Android 3.1.x</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/12/changes.html" target="_blank" rel="noopener">12</a></td>
-<td><code>HONEYCOMB_MR1</code></td>
-<td><a href="https://developer.android.google.cn/about/versions/android-3.1-highlights.html" target="_blank" rel="noopener">平台亮点</a></td>
-</tr>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/android-3.0.html" target="_blank" rel="noopener">Android 3.0.x</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/11/changes.html" target="_blank" rel="noopener">11</a></td>
-<td><code>HONEYCOMB</code></td>
-<td><a href="https://developer.android.google.cn/about/versions/android-3.0-highlights.html" target="_blank" rel="noopener">平台亮点</a></td>
-</tr>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/android-2.3.3.html" target="_blank" rel="noopener">Android 2.3.4Android 2.3.3</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/10/changes.html" target="_blank" rel="noopener">10</a></td>
-<td><code>GINGERBREAD_MR1</code></td>
-<td><a href="https://developer.android.google.cn/about/versions/android-2.3-highlights.html" target="_blank" rel="noopener">平台亮点</a></td>
-</tr>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/android-2.3.html" target="_blank" rel="noopener">Android 2.3.2Android 2.3.1Android 2.3</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/9/changes.html" target="_blank" rel="noopener">9</a></td>
-<td><code>GINGERBREAD</code></td>
+<td style="text-align:left"></td>
 <td></td>
-</tr>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/android-2.2.html" target="_blank" rel="noopener">Android 2.2.x</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/8/changes.html" target="_blank" rel="noopener">8</a></td>
-<td><code>FROYO</code></td>
-<td><a href="https://developer.android.google.cn/about/versions/android-2.2-highlights.html" target="_blank" rel="noopener">平台亮点</a></td>
-</tr>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/android-2.1.html" target="_blank" rel="noopener">Android 2.1.x</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/7/changes.html" target="_blank" rel="noopener">7</a></td>
-<td><code>ECLAIR_MR1</code></td>
-<td><a href="https://developer.android.google.cn/about/versions/android-2.0-highlights.html" target="_blank" rel="noopener">平台亮点</a></td>
-</tr>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/android-2.0.1.html" target="_blank" rel="noopener">Android 2.0.1</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/6/changes.html" target="_blank" rel="noopener">6</a></td>
-<td><code>ECLAIR_0_1</code></td>
 <td></td>
-</tr>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/android-2.0.html" target="_blank" rel="noopener">Android 2.0</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/5/changes.html" target="_blank" rel="noopener">5</a></td>
-<td><code>ECLAIR</code></td>
-<td></td>
-</tr>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/android-1.6.html" target="_blank" rel="noopener">Android 1.6</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/4/changes.html" target="_blank" rel="noopener">4</a></td>
-<td><code>DONUT</code></td>
-<td><a href="https://developer.android.google.cn/about/versions/android-1.6-highlights.html" target="_blank" rel="noopener">平台亮点</a></td>
-</tr>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/android-1.5.html" target="_blank" rel="noopener">Android 1.5</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/3/changes.html" target="_blank" rel="noopener">3</a></td>
-<td><code>CUPCAKE</code></td>
-<td><a href="https://developer.android.google.cn/about/versions/android-1.5-highlights.html" target="_blank" rel="noopener">平台亮点</a></td>
-</tr>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/android-1.1.html" target="_blank" rel="noopener">Android 1.1</a></td>
-<td>2</td>
-<td><code>BASE_1_1</code></td>
-<td></td>
-</tr>
-<tr>
-<td>Android 1.0</td>
-<td>1</td>
-<td><code>BASE</code></td>
 <td></td>
 </tr>
 </tbody>
 </table>
-
+<h3 id="Dialog-1"><a href="#Dialog-1" class="headerlink" title="Dialog"></a>Dialog</h3><h3 id="PopupWindow-1"><a href="#PopupWindow-1" class="headerlink" title="PopupWindow"></a>PopupWindow</h3><h3 id="Activity（采用Dialog-style）-1"><a href="#Activity（采用Dialog-style）-1" class="headerlink" title="Activity（采用Dialog style）"></a>Activity（采用Dialog style）</h3><h3 id="View的显示与隐藏-1"><a href="#View的显示与隐藏-1" class="headerlink" title="View的显示与隐藏"></a>View的显示与隐藏</h3>
       
 
       
@@ -630,7 +350,7 @@ adb -s 5LM7N16531010541 shell pm install -r &quot;/data/local/tmp/tinker.sample.
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/22/Android SdkVersion那些事儿/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/11/23/Android 从一个简单的弹窗说起/">展开全文 >></a>
         </p>
       
 
@@ -660,62 +380,32 @@ adb -s 5LM7N16531010541 shell pm install -r &quot;/data/local/tmp/tinker.sample.
 
 
   
-    <article id="post-Android 浅谈Retrofit的封装" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Android Kotlin 拾遗" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/11/Android 浅谈Retrofit的封装/">Android 浅谈Retrofit的封装</a>
+      <a class="article-title" href="/2017/11/20/Android Kotlin 拾遗/">Android Kotlin 拾遗</a>
     </h1>
   
 
         
-        <a href="/2017/04/11/Android 浅谈Retrofit的封装/" class="archive-article-date">
-  	<time datetime="2017-04-11T01:54:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-11</time>
+        <a href="/2017/11/20/Android Kotlin 拾遗/" class="archive-article-date">
+  	<time datetime="2017-11-20T03:34:24.038Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Android-浅谈Retrofit的封装"><a href="#Android-浅谈Retrofit的封装" class="headerlink" title="Android 浅谈Retrofit的封装"></a>Android 浅谈Retrofit的封装</h1><p>先了解Retrofit一般的使用步骤：</p>
-<ol>
-<li><p>配置OkHttpClient，设置各种拦截器；</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> OkHttpClient okHttpClient;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> Retrofit retrofit;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_CACHE_SIZE = <span class="number">1024</span> * <span class="number">1024</span> * <span class="number">20</span>;<span class="comment">//默认缓存大小20M</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_MAX_AGE = <span class="number">60</span> * <span class="number">60</span>;<span class="comment">// 默认缓存时间单位</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_MAX_STALE_ONLINE = DEFAULT_MAX_AGE * <span class="number">24</span>;<span class="comment">// 默认在线缓存时间</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_MAX_STALE_OFFLINE = DEFAULT_MAX_AGE * <span class="number">24</span> * <span class="number">7</span>;<span class="comment">// 默认离线缓存时间</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 保存cookies拦截器</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> Interceptor SAVE_COOKIES_INTERCEPTOR = <span class="keyword">new</span> Interceptor() &#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> Response <span class="title">intercept</span><span class="params">(Chain chain)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    SharedPreferences sharedPreferences = SuperRandyApplicationContext.context</span><br><span class="line">      .getSharedPreferences(<span class="string">"cookie_sp"</span>, Context.MODE_PRIVATE);</span><br><span class="line">    Response originalResponse = chain.proceed(chain.request());</span><br><span class="line">    <span class="comment">// 如果cookie为空，保存cookie到sp文件</span></span><br><span class="line">    <span class="keyword">if</span> (CommonUtils.isNullOrEmpty(sharedPreferences.getString(<span class="string">"cookie"</span>, <span class="string">""</span>))) &#123;</span><br><span class="line">      <span class="comment">// 获取请求返回的cookies</span></span><br><span class="line">      <span class="keyword">if</span> (!CommonUtils.isNullOrEmpty(originalResponse.header(<span class="string">"Set-Cookie"</span>)) &amp;&amp;</span><br><span class="line">          !originalResponse.header(<span class="string">"Set-Cookie"</span>).isEmpty()) &#123;</span><br><span class="line">        <span class="keyword">final</span> StringBuffer cookieBuffer = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">        Observable.from(originalResponse.headers(<span class="string">"Set-Cookie"</span>))</span><br><span class="line">          .map(<span class="keyword">new</span> Func1&lt;String, String&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> String <span class="title">call</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">              String[] cookieArray = s.split(<span class="string">";"</span>);</span><br><span class="line">              <span class="keyword">return</span> cookieArray[<span class="number">0</span>];</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;)</span><br><span class="line">          .subscribe(<span class="keyword">new</span> Action1&lt;String&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">              cookieBuffer.append(s).append(<span class="string">";"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;);</span><br><span class="line">        KLog.e(<span class="string">"save_cookie"</span>, cookieBuffer.toString());</span><br><span class="line">        <span class="comment">// 保存cookies到sp文件</span></span><br><span class="line">        SharedPreferences.Editor editor = sharedPreferences.edit();</span><br><span class="line">        editor.putString(<span class="string">"cookie"</span>, cookieBuffer.deleteCharAt(cookieBuffer.length() - <span class="number">1</span>).toString());</span><br><span class="line">        editor.apply();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> originalResponse;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 添加cookies拦截器</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> Interceptor ADD_COOKIES_INTERCEPTOR = <span class="keyword">new</span> Interceptor() &#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> Response <span class="title">intercept</span><span class="params">(Chain chain)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> Request.Builder builder = chain.request().newBuilder();</span><br><span class="line">    SharedPreferences sharedPreferences = SuperRandyApplicationContext.context</span><br><span class="line">      .getSharedPreferences(<span class="string">"cookie_sp"</span>, Context.MODE_PRIVATE);</span><br><span class="line">    Observable.just(sharedPreferences.getString(<span class="string">"cookie"</span>, <span class="string">""</span>))</span><br><span class="line">      .subscribe(<span class="keyword">new</span> Action1&lt;String&gt;() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">          builder.addHeader(<span class="string">"Cookie"</span>, s);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">    KLog.e(<span class="string">"add_cookie"</span>, sharedPreferences.getString(<span class="string">"cookie"</span>, <span class="string">""</span>));</span><br><span class="line">    <span class="keyword">return</span> chain.proceed(builder.build());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * request 拦截器定义</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Interceptor REQUEST_INTERCEPTOR = <span class="keyword">new</span> Interceptor() &#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> Response <span class="title">intercept</span><span class="params">(Chain chain)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    Request request = chain.request();</span><br><span class="line">    <span class="keyword">int</span> maxStale = DEFAULT_MAX_STALE_ONLINE;</span><br><span class="line">    <span class="comment">//向服务期请求数据缓存1个小时</span></span><br><span class="line">    CacheControl tempCacheControl = <span class="keyword">new</span> CacheControl.Builder()</span><br><span class="line">      <span class="comment">//                .onlyIfCached()</span></span><br><span class="line">      .maxStale(<span class="number">5</span>, TimeUnit.SECONDS)</span><br><span class="line">      .build();</span><br><span class="line">    request = request.newBuilder()</span><br><span class="line">      .cacheControl(tempCacheControl)</span><br><span class="line">      .build();</span><br><span class="line">    <span class="keyword">return</span> chain.proceed(request);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * response 拦截器定义</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Interceptor RESPONSE_INTERCEPTOR = <span class="keyword">new</span> Interceptor() &#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> Response <span class="title">intercept</span><span class="params">(Chain chain)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    <span class="comment">//针对那些服务器不支持缓存策略的情况下，使用强制修改响应头，达到缓存的效果</span></span><br><span class="line">    <span class="comment">//响应拦截只不过是出于规范，向服务器发出请求，至于服务器搭不搭理我们我们不管他，我们在响应里面做手脚，有网没有情况下的缓存策略</span></span><br><span class="line">    Request request = chain.request();</span><br><span class="line">    Response originalResponse = chain.proceed(request);</span><br><span class="line">    <span class="keyword">int</span> maxAge;</span><br><span class="line">    <span class="comment">// 缓存的数据</span></span><br><span class="line">    <span class="keyword">if</span> (!NetworkUtils.isConnected(SuperRandyApplicationContext.context)) &#123;</span><br><span class="line">      maxAge = DEFAULT_MAX_STALE_OFFLINE;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      maxAge = DEFAULT_MAX_STALE_ONLINE;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> originalResponse.newBuilder()</span><br><span class="line">      .removeHeader(<span class="string">"Pragma"</span>)<span class="comment">// 清除头信息，因为服务器如果不支持，会返回一些干扰信息，不清除下面无法生效</span></span><br><span class="line">      .removeHeader(<span class="string">"Cache-Control"</span>)</span><br><span class="line">      .header(<span class="string">"Cache-Control"</span>, <span class="string">"public, max-age="</span> + maxAge)</span><br><span class="line">      .build();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 打印返回的json数据拦截器</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Interceptor LOGGING_INTERCEPTOR = <span class="keyword">new</span> Interceptor() &#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> Response <span class="title">intercept</span><span class="params">(Chain chain)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">final</span> Request request = chain.request();</span><br><span class="line">    <span class="keyword">final</span> Response response = chain.proceed(request);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">final</span> ResponseBody responseBody = response.body();</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">long</span> contentLength = responseBody.contentLength();</span><br><span class="line"></span><br><span class="line">    BufferedSource source = responseBody.source();</span><br><span class="line">    source.request(Long.MAX_VALUE); <span class="comment">// Buffer the entire body.</span></span><br><span class="line">    Buffer buffer = source.buffer();</span><br><span class="line"></span><br><span class="line">    Charset charset = Charset.forName(<span class="string">"UTF-8"</span>);</span><br><span class="line">    MediaType contentType = responseBody.contentType();</span><br><span class="line">    <span class="keyword">if</span> (contentType != <span class="keyword">null</span>) &#123;</span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">        charset = contentType.charset(charset);</span><br><span class="line">      &#125; <span class="keyword">catch</span> (UnsupportedCharsetException e) &#123;</span><br><span class="line">        KLog.e(<span class="string">""</span>);</span><br><span class="line">        KLog.e(<span class="string">"Couldn't decode the response body; charset is likely malformed."</span>);</span><br><span class="line">        <span class="keyword">return</span> response;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (contentLength != <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">long</span> t1 = System.nanoTime();</span><br><span class="line">      Log.i(<span class="string">"OkHttp:"</span>, String.format(<span class="string">"Sending %s request %s on %s%n%s"</span>, request.method(), request.url(), chain.connection(), request.headers()));</span><br><span class="line">      <span class="keyword">long</span> t2 = System.nanoTime();</span><br><span class="line">      Log.i(<span class="string">"OkHttp:"</span>, String.format(<span class="string">"Received response for %s in %.1fms%n%s"</span>, response.request().url(), (t2 - t1) / <span class="number">1e6</span>d, response.headers()));</span><br><span class="line">      KLog.v(<span class="string">"--------------------------------------------开始打印返回数据----------------------------------------------------"</span>);</span><br><span class="line">      KLog.json(buffer.clone().readString(charset));</span><br><span class="line">      KLog.v(<span class="string">"--------------------------------------------结束打印返回数据----------------------------------------------------"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> response;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 获取OkHttpClient实例</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> OkHttpClient实例</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> OkHttpClient <span class="title">getOkHttpClient</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (okHttpClient == <span class="keyword">null</span>) &#123;</span><br><span class="line">    <span class="keyword">synchronized</span> (OkHttpClient.class) &#123;<span class="comment">// 同步访问</span></span><br><span class="line">      <span class="keyword">if</span> (okHttpClient == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="comment">// 网络请求相关缓存</span></span><br><span class="line">        File cacheFile = <span class="keyword">new</span> File(SuperRandyApplicationContext.application.getCacheDir(), <span class="string">"responses"</span>);</span><br><span class="line">        Cache cache = <span class="keyword">new</span> Cache(cacheFile, DEFAULT_CACHE_SIZE);</span><br><span class="line">        okHttpClient = <span class="keyword">new</span> OkHttpClient.Builder()</span><br><span class="line">          .cache(cache)</span><br><span class="line">          <span class="comment">// 添加相关拦截器</span></span><br><span class="line">          .addInterceptor(SAVE_COOKIES_INTERCEPTOR)</span><br><span class="line">          .addInterceptor(ADD_COOKIES_INTERCEPTOR)</span><br><span class="line">          .addNetworkInterceptor(RESPONSE_INTERCEPTOR)</span><br><span class="line">          .addInterceptor(REQUEST_INTERCEPTOR)</span><br><span class="line">          .addInterceptor(LOGGING_INTERCEPTOR)</span><br><span class="line">          .build();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> okHttpClient;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-<li><p>配置Retrofit实例，主要是client；</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 获取OkHttpClient实例</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> OkHttpClient实例</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> OkHttpClient <span class="title">getOkHttpClient</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (okHttpClient == <span class="keyword">null</span>) &#123;</span><br><span class="line">    <span class="keyword">synchronized</span> (OkHttpClient.class) &#123;<span class="comment">// 同步访问</span></span><br><span class="line">      <span class="keyword">if</span> (okHttpClient == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="comment">// 网络请求相关缓存</span></span><br><span class="line">        File cacheFile = <span class="keyword">new</span> File(SuperRandyApplicationContext.application.getCacheDir(), <span class="string">"responses"</span>);</span><br><span class="line">        Cache cache = <span class="keyword">new</span> Cache(cacheFile, DEFAULT_CACHE_SIZE);</span><br><span class="line">        okHttpClient = <span class="keyword">new</span> OkHttpClient.Builder()</span><br><span class="line">          .cache(cache)</span><br><span class="line">          <span class="comment">// 添加相关拦截器</span></span><br><span class="line">          .addInterceptor(SAVE_COOKIES_INTERCEPTOR)</span><br><span class="line">          .addInterceptor(ADD_COOKIES_INTERCEPTOR)</span><br><span class="line">          .addNetworkInterceptor(RESPONSE_INTERCEPTOR)</span><br><span class="line">          .addInterceptor(REQUEST_INTERCEPTOR)</span><br><span class="line">          .addInterceptor(LOGGING_INTERCEPTOR)</span><br><span class="line">          .build();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> okHttpClient;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>定义Service接口类，如</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">User</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@FormUrlEncoded</span></span><br><span class="line">    <span class="meta">@POST</span>(<span class="string">"login/login"</span>)</span><br><span class="line">    Observable&lt;Response&lt;BaseResponse&lt;LoginResultBean&gt;&gt;&gt; login(<span class="meta">@Field</span>(<span class="string">"mobile"</span>) String username,</span><br><span class="line">                                                              <span class="meta">@Field</span>(<span class="string">"password"</span>) String psw);</span><br><span class="line"></span><br><span class="line">    <span class="meta">@POST</span>(<span class="string">"login/logout"</span>)</span><br><span class="line">    Observable&lt;Response&lt;BaseResponse&lt;Object&gt;&gt;&gt; logout();</span><br><span class="line"></span><br><span class="line">    <span class="meta">@FormUrlEncoded</span></span><br><span class="line">    <span class="meta">@POST</span>(<span class="string">"login/is_registered"</span>)</span><br><span class="line">    Observable&lt;Response&lt;BaseResponse&lt;Boolean&gt;&gt;&gt; isRegistered(<span class="meta">@Field</span>(<span class="string">"mobile"</span>) String mobile);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-<li><p>获取Retrofit实例；</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 获取retrofit实例</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> baseUrl baseURL</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> retrofit实例</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Retrofit <span class="title">getRetrofit</span><span class="params">(String baseUrl)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (retrofit == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (Retrofit.class) &#123;</span><br><span class="line">            <span class="keyword">if</span> (retrofit == <span class="keyword">null</span>) &#123;</span><br><span class="line">                retrofit = <span class="keyword">new</span> Retrofit.Builder()</span><br><span class="line">                        .client(getOkHttpClient())</span><br><span class="line">                        .baseUrl(baseUrl)</span><br><span class="line">                        .addConverterFactory(GsonConverterFactory.create())</span><br><span class="line">                        .addCallAdapterFactory(RxJavaCallAdapterFactory.create())</span><br><span class="line">                        .build();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> retrofit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建Service，并访问接口</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getRetrofit(<span class="string">"http://local.rainmonth.com"</span>).create(User.class).login(<span class="string">"mobile"</span>, <span class="string">"password"</span>);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>处理返回结果。</p>
-</li>
-</ol>
-<p>封装所需要的功能</p>
-<ol>
-<li>采用现在流行的链式结构进行创建；</li>
-<li>提供一个接口形式的ApiService即可完成各种请求；</li>
-<li>提供必要的回调函数处理返回结果；</li>
-<li>提供通用的接收返回数据的容器；</li>
-<li>支持多文件上传下载，并提供进度显示；（Download and upload）</li>
-<li>可以动态配置；（Config）</li>
-<li>良好的容错处理，能对返回结果进行统一处理和差异性处理；（网络错误，通用异常）（Exception and Error）</li>
-<li>Cookies持久化处理；（Cookie）</li>
-<li>数据的缓存功能；（Cache，不同的缓存方式：内存，SD卡，数据库）</li>
-<li>支持请求的取消，支持同步请求、支持异步请求；（方便调用get、post方法）</li>
-<li>支持请求数据的拦截（方便后期调试）</li>
-</ol>
+        <h1 id="Android-Kotlin-拾遗"><a href="#Android-Kotlin-拾遗" class="headerlink" title="Android Kotlin 拾遗"></a>Android Kotlin 拾遗</h1><p>这里只记录下自己编码时遇到的Kotlin问题</p>
+<h2 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h2><h3 id="延迟加载"><a href="#延迟加载" class="headerlink" title="延迟加载"></a>延迟加载</h3><p>lateinit和lazy都是Kotlin中的两种不同的延迟初始化技术</p>
+<ul>
+<li><code>lateinit</code> 只用于var修饰的变量</li>
+<li><code>lazy</code> 只用于修饰val修饰的变量</li>
+</ul>
 
       
 
@@ -741,7 +431,7 @@ adb -s 5LM7N16531010541 shell pm install -r &quot;/data/local/tmp/tinker.sample.
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/Android//" class="article-tag-list-link color3">Android</a>
+        			<a href="/categories/基础知识//" class="article-tag-list-link color5">基础知识</a>
         		</li>
       		
 		</ul>
@@ -750,7 +440,7 @@ adb -s 5LM7N16531010541 shell pm install -r &quot;/data/local/tmp/tinker.sample.
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/11/Android 浅谈Retrofit的封装/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/11/20/Android Kotlin 拾遗/">展开全文 >></a>
         </p>
       
 
@@ -780,41 +470,35 @@ adb -s 5LM7N16531010541 shell pm install -r &quot;/data/local/tmp/tinker.sample.
 
 
   
-    <article id="post-Android Dialog的hide和dismiss方法分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Android 自定义键盘" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/17/Android Dialog的hide和dismiss方法分析/">Android Dialog的hide和dismiss方法分析</a>
+      <a class="article-title" href="/2017/11/15/Android 自定义键盘/">Android 从一个简单的弹窗说起</a>
     </h1>
   
 
         
-        <a href="/2017/03/17/Android Dialog的hide和dismiss方法分析/" class="archive-article-date">
-  	<time datetime="2017-03-17T06:02:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-17</time>
+        <a href="/2017/11/15/Android 自定义键盘/" class="archive-article-date">
+  	<time datetime="2017-11-15T02:16:57.099Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-15</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Android-Dialog的hide和dismiss方法分析"><a href="#Android-Dialog的hide和dismiss方法分析" class="headerlink" title="Android Dialog的hide和dismiss方法分析"></a>Android Dialog的hide和dismiss方法分析</h1><h2 id="方法说明"><a href="#方法说明" class="headerlink" title="方法说明"></a>方法说明</h2><h3 id="相同之处"><a href="#相同之处" class="headerlink" title="相同之处"></a>相同之处</h3><blockquote>
-<p>都可以隐藏对话框，在需要显示对话框的时候也都可以调用show方法来显示。</p>
-</blockquote>
-<h3 id="不同之处"><a href="#不同之处" class="headerlink" title="不同之处"></a>不同之处</h3><blockquote>
-<p>dismiss方法在隐藏之后，会释放对话框所占用的资源，而hide则不会。</p>
-</blockquote>
-<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><p>根据上面描述的区别，可以判断：</p>
+        <h1 id="Android-自定义键盘"><a href="#Android-自定义键盘" class="headerlink" title="Android 自定义键盘"></a>Android 自定义键盘</h1><p>现在的App里面自定义键盘已经数见不鲜了，今天就来研究下自定义键盘的实现方式。个人觉得自定义键盘可以通过如下几个方面入手。</p>
 <ul>
-<li><p>hide方法适用于不用释放dialog所占资源的隐藏，只要其所依赖的Activity不被销毁，都可以调用hide方法，而且还能保存住dialog之前hide之前的状态</p>
-</li>
-<li><p>dismiss方法适用于要释放dialog资源的隐藏，比如activity调用finish方法之前，必须采用dismiss方法，不然就会报android.view.WindowLeaked错误，也就是内存泄漏了。</p>
-<p>​</p>
-</li>
+<li>通过布局堆叠的方式（小白用户）</li>
+<li>通过继承Android系统KeyboardView的方式</li>
+<li>自定义View（高度定制的键盘）</li>
 </ul>
-
+<p>至于上面三种方式各是具体怎么实现的，客官们别急，带我细细道来。</p>
+<h2 id="布局堆叠方式"><a href="#布局堆叠方式" class="headerlink" title="布局堆叠方式"></a>布局堆叠方式</h2><p>低级方式</p>
+<h2 id="继承KeyboardView"><a href="#继承KeyboardView" class="headerlink" title="继承KeyboardView"></a>继承KeyboardView</h2><h2 id="自定义View"><a href="#自定义View" class="headerlink" title="自定义View"></a>自定义View</h2>
       
 
       
@@ -848,7 +532,7 @@ adb -s 5LM7N16531010541 shell pm install -r &quot;/data/local/tmp/tinker.sample.
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/17/Android Dialog的hide和dismiss方法分析/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/11/15/Android 自定义键盘/">展开全文 >></a>
         </p>
       
 
@@ -878,150 +562,27 @@ adb -s 5LM7N16531010541 shell pm install -r &quot;/data/local/tmp/tinker.sample.
 
 
   
-    <article id="post-Android 原生与H5交互" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Android-原生与H5交互"><a href="#Android-原生与H5交互" class="headerlink" title="Android 原生与H5交互"></a>Android 原生与H5交互</h1><p>[TOC]</p>
-<h2 id="JS中调用Android的函数方法"><a href="#JS中调用Android的函数方法" class="headerlink" title="JS中调用Android的函数方法"></a>JS中调用Android的函数方法</h2><ol>
-<li><h3 id="在Android程序中建立接口，并用建立的handler对象处理"><a href="#在Android程序中建立接口，并用建立的handler对象处理" class="headerlink" title="在Android程序中建立接口，并用建立的handler对象处理"></a>在Android程序中建立接口，并用建立的handler对象处理</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> Handler handler = <span class="keyword">new</span> Handler();</span><br><span class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">InJavaScript</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">runOnAndroidJavaScript</span><span class="params">(<span class="keyword">final</span> String str)</span></span>&#123;</span><br><span class="line">		handler.post(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="comment">// todo 对传递过来的参数进行处理</span></span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><h3 id="通过给WebView添加JavaScriptInterface接口"><a href="#通过给WebView添加JavaScriptInterface接口" class="headerlink" title="通过给WebView添加JavaScriptInterface接口"></a>通过给WebView添加JavaScriptInterface接口</h3><p>即调用addJavaScriptInterface(new InJavaScript(), “injs”)，其中第一个参数为前面定义的接口的实例，第二个参数为该对象对应的名字</p>
-</li>
-<li><h3 id="在js代码中通过类似一下函数的方法调用Android中定义好的方法"><a href="#在js代码中通过类似一下函数的方法调用Android中定义好的方法" class="headerlink" title="在js代码中通过类似一下函数的方法调用Android中定义好的方法"></a>在js代码中通过类似一下函数的方法调用Android中定义好的方法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sendToAndroid</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> str = <span class="string">"Call the Android method in js"</span>;</span><br><span class="line">	<span class="built_in">window</span>.injs.runOnAndroidJavaScript(str);<span class="comment">// injs为Android程序中建立的InJavaScript对象的一个实例名字</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="Android中调用JS中的方法"><a href="#Android中调用JS中的方法" class="headerlink" title="Android中调用JS中的方法"></a>Android中调用JS中的方法</h2><ol>
-<li><h3 id="在JS代码中定义好要被Android程序调用的方法"><a href="#在JS代码中定义好要被Android程序调用的方法" class="headerlink" title="在JS代码中定义好要被Android程序调用的方法"></a>在JS代码中定义好要被Android程序调用的方法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFromAndroid</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">	<span class="built_in">document</span>.getElementById(<span class="string">"android"</span>).innerHTML = str;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><h3 id="在Android程序中通过以下方式调用该方法（要注意调用的格式javascript-要调用的方法名）"><a href="#在Android程序中通过以下方式调用该方法（要注意调用的格式javascript-要调用的方法名）" class="headerlink" title="在Android程序中通过以下方式调用该方法（要注意调用的格式javascript:+要调用的方法名）"></a>在Android程序中通过以下方式调用该方法（要注意调用的格式javascript:+要调用的方法名）</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Button button = (Button) findViewById(R.id.button);  </span><br><span class="line">button.setOnClickListener(<span class="keyword">new</span> OnClickListener() &#123;  </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View arg0)</span> </span>&#123;  </span><br><span class="line">    <span class="comment">//调用javascript中的方法  </span></span><br><span class="line">    webView.loadUrl(<span class="string">"javascript:getFromAndroid('Cookie call the js function from Android')"</span>);  </span><br><span class="line">	&#125;  </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="通过约定的scheme来完成H5到原生App的跳转"><a href="#通过约定的scheme来完成H5到原生App的跳转" class="headerlink" title="通过约定的scheme来完成H5到原生App的跳转"></a>通过约定的scheme来完成H5到原生App的跳转</h2><ol>
-<li><p>在H5要跳转到的原生页面所在的Activity中设定好scheme，如SplashActivity中</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">activity</span> <span class="attr">android:name</span>=<span class="string">".SplashActivity"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.MAIN"</span> /&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.LAUNCHER"</span> /&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">data</span> <span class="attr">android:scheme</span>=<span class="string">"myapp"</span> <span class="attr">android:host</span>=<span class="string">"path"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>其中schema表示这个链接的前缀，host代表短链的名字。如果你要在你的schema里面传参数，比如你要传uid和user_type，那么就跟普通的url的get参数格式一样：mls://userpage?uid=123&amp;user_type=mogujie。</p>
-<p><strong><em>注意，中间千万不能有空格</em></strong>。</p>
-<ol>
-<li><p>SplashActivity接受参数</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">String uid,userType;  </span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">parseUriParams</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">  	Uri uri = getIntent().getData();  </span><br><span class="line">  	<span class="keyword">if</span> (uri != <span class="keyword">null</span>) &#123;  </span><br><span class="line">    	uid = uri.getQueryParameter(<span class="string">"uid"</span>);  </span><br><span class="line">    	userType = uri.getQueryParameter(<span class="string">"user_type"</span>);  </span><br><span class="line">  	&#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在WebViewClient的shouldOverrideUrlLoading方法中作拦截URL判断</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyWebChromeClient</span> <span class="keyword">extends</span> <span class="title">WebViewClient</span> </span>&#123;  </span><br><span class="line">  	<span class="meta">@Override</span>  </span><br><span class="line">  	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">shouldOverrideUrlLoading</span><span class="params">(WebView view, String url)</span> </span>&#123;  </span><br><span class="line">    	<span class="keyword">if</span> (url.startsWith(<span class="string">"mls://"</span>)) &#123;  </span><br><span class="line">      		Intent intent = <span class="keyword">new</span> Intent();  </span><br><span class="line">      		intent.setData(Uri.parse(url));  </span><br><span class="line">      		startActivity(intent);  </span><br><span class="line">      		Log.v(<span class="string">"tag_2"</span>, url);  </span><br><span class="line">      		<span class="keyword">return</span> <span class="keyword">true</span>;  </span><br><span class="line">    	&#125;  </span><br><span class="line">   		<span class="keyword">return</span> <span class="keyword">super</span>.shouldOverrideUrlLoading(view, url);  </span><br><span class="line">  	&#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="设置问题"><a href="#设置问题" class="headerlink" title="设置问题"></a>设置问题</h2><ul>
-<li><p>通过WebView的setWebChromeClient方法还可以处理JS的警告、对话框以及输出JS控制台的信息到logcat中；</p>
-</li>
-<li><p>Android 4.2以后（API17+）出于安全因素的考虑，JS只能访问带有@JavascriptInterface注解的函数。</p>
-<blockquote>
-<p>在此之前，任何public的函数都可以在JS中访问，而Java对象的继承关系会导致很多public函数都可以在JS中访问，其中一个重要的函数就是getClass()。然后JS可以通过反射来访问一些其他内容，就会出现安全问题，加上注解之后，JS就只能访问带有@JavascriptInterface注解的public函数，增强了安全性。</p>
-</blockquote>
-</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Android//" class="article-tag-list-link color3">Android</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/13/Android 原生与H5交互/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Android 软键盘相关问题总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Android Monkey测试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/27/Android 软键盘相关问题总结/">Android 软键盘相关问题总结</a>
+      <a class="article-title" href="/2017/11/07/Android Monkey测试/">Android Monkey测试</a>
     </h1>
   
 
         
-        <a href="/2017/02/27/Android 软键盘相关问题总结/" class="archive-article-date">
-  	<time datetime="2017-02-27T12:20:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-27</time>
+        <a href="/2017/11/07/Android Monkey测试/" class="archive-article-date">
+  	<time datetime="2017-11-07T03:01:50.089Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-07</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Android-软键盘相关问题总结"><a href="#Android-软键盘相关问题总结" class="headerlink" title="Android 软键盘相关问题总结"></a>Android 软键盘相关问题总结</h1><p>1&gt;软键盘的状态——隐藏或显示。</p>
-<h2 id="显示隐藏软键盘"><a href="#显示隐藏软键盘" class="headerlink" title="显示隐藏软键盘"></a>显示隐藏软键盘</h2><p>一：自动弹出软键盘</p>
-<p>Timer timer=new Timer();<br>        timer.schedule(new TimerTask() {  </p>
-<pre><code>    public void run() {  
-        InputMethodManager inputMethodManager=(InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);  
-        inputMethodManager.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);  
-    }  
-}, 2000);  
-</code></pre><p>二：软键盘<br>              Activity中设置：<br> Android:windowSoftInputMode=”stateUnspecified”,默认设置：软键盘的状态(隐藏或可见)没有被指定。系统将选择一个合适的状态或依赖于主题的设置。                                        “stateUnchanged”, 软键盘被保持上次的状态。 “stateHidden”, 当用户选择该Activity时，软键盘被隐藏。                                        “stateAlwaysHidden”, 软键盘总是被隐藏的。 “stateVisible”,. 软键盘是可见的。                                        “stateAlwaysVisible”, 当用户选择这个Activity时，软键盘是可见的。 “adjustUnspecified”, . 它不被指定是否该Activity主窗口调整大小以便留出软键盘的空间， 或是否窗口上的内容得到屏幕上当前的焦点是可见的。系统将自动选择这些模式中一种主要依赖于是否窗口的内容有任何布局视图能够滚动他们的内容。 如果有这样的一个视图，这个窗口将调整大小，这样的假设可以使滚动窗口的内容在一个较小的区域中可见的。这个是主窗口默认的行为设置。也就是说， 系统自动决定是采用平移模式还是压缩模式，决定因素在于内容是否可以滚动。                                        “adjustResize”, （压缩模式） 当软键盘弹出时，要对主窗口调整屏幕的大小以便留出软键盘的空间。 “adjustPan”] &gt; （平移模式：当输入框不会被遮挡时，该模式没有对布局进行调整，然而当输入框将要被遮挡时， 窗口就会进行平移。也就是说，该模式始终是保持输入框为可见      . . .<br>三：隐藏软键盘：</p>
-<pre><code>EditText edit=(EditText)findViewById(R.id.edit);  
-InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE); 
-imm.hideSoftInputFromWindow(edit.getWindowToken(),0);
-</code></pre><p>4.EditText默认不弹出软件键盘<br>方法一：<br>在AndroidMainfest.xml中选择哪个activity，设置windowSoftInputMode属性为adjustUnspecified|stateHidden<br>例如：<activity android:name=".Main" android:label="@string/app_name" android:windowsoftinputmode="adjustUnspecified|stateHidden" android:configchanges="orientation|keyboardHidden"><br>          <intent-filter><br>              <action android:name="android.intent.action.MAIN"><br>              <category android:name="android.intent.category.LAUNCHER"><br>          </category></action></intent-filter><br>      </activity><br>方法二：<br>让EditText失去焦点，使用EditText的clearFocus方法<br>例如：EditText edit=(EditText)findViewById(R.id.edit);<br>     edit.clearFocus();<br>方法三：<br>强制隐藏Android输入法窗口<br>例如：EditText edit=(EditText)findViewById(R.id.edit);<br>           InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);<br>           imm.hideSoftInputFromWindow(edit.getWindowToken(),0);<br>5.EditText始终不弹出软件键盘<br>例：EditText edit=(EditText)findViewById(R.id.edit);<br>       edit.setInputType(InputType.TYPE_NULL);</p>
-<p>android 调用系统裁剪功能的代码：<br>Intent intent ＝ new Intent(“com.android.camera.action.CROP”);<br>intent.setDataAndType(uri, “image/*”);<br>intent.putExtra(“crop”,”true”);<br>intent.putExtra(“aspectX”, 1);<br>intent.putExtra(“aspectY”, 1);<br>intent.putExtra(“outputX”, size);<br>intent.putExtra(“outputY”, size);<br>intent.putExtra(“outputFormat”, “JPEG”);<br>intent.putExtra(“return-data”, true);<br>startActivityForResult(intent, REQREST_CODE_CROP_IMAGE);</p>
-<p>5、利用上下文对象Application 的context调用startActivity(Intent intent)时，若没有设置FLAG_ACTIVITY_NEW_TASK会报AndroidRuntimeException</p>
-
+        <h1 id="Android-Monkey测试"><a href="#Android-Monkey测试" class="headerlink" title="Android Monkey测试"></a>Android Monkey测试</h1>
       
 
       
@@ -1055,7 +616,7 @@ imm.hideSoftInputFromWindow(edit.getWindowToken(),0);
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/02/27/Android 软键盘相关问题总结/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/11/07/Android Monkey测试/">展开全文 >></a>
         </p>
       
 
@@ -1085,191 +646,51 @@ imm.hideSoftInputFromWindow(edit.getWindowToken(),0);
 
 
   
-    <article id="post-Android 零散知识点（问答形式）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Android Studio 升级到3.0运行项目指北" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/19/Android 零散知识点（问答形式）/">Android 零散知识点</a>
+      <a class="article-title" href="/2017/11/01/Android Studio 升级到3.0运行项目指北/">Android Studio 升级到3.0运行项目指北</a>
     </h1>
   
 
         
-        <a href="/2016/10/19/Android 零散知识点（问答形式）/" class="archive-article-date">
-  	<time datetime="2016-10-19T07:45:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-10-19</time>
+        <a href="/2017/11/01/Android Studio 升级到3.0运行项目指北/" class="archive-article-date">
+  	<time datetime="2017-11-01T09:33:32.362Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-01</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#Android 零散知识点（持续更新）</p>
-<ol>
-<li><p>为什么Android的更新试图操作必须在主线程中进行？</p>
-<p>  这是因为Android系统中的视图组件并不是线程安全的。通常应该让主线程负责创建、<br>  显示和更新UI，启动子线程，停止子线程。让子线程完成计算并向主线程发出更新UI<br>  的消息，让主线程来更新UI。这就促使Android中产生了Handler机制。</p>
-</li>
-<li><p>如何更改Android Studio编译所采用的API版本？</p>
-<pre><code>通过module setting 的Flavors选项卡进行Android API编译版本的更改；
-</code></pre></li>
-<li><p>小米手机更改应用程序图标后，桌面上图标没有什么变化？</p>
-<pre><code>重启后可解决问题；
-</code></pre></li>
-<li><p>EditText 的光标为何不显示？</p>
-<pre><code>首先设置cursorVisible属性为true，然后设置textCursorDrawable（背景色与
-控件背景色不要一样），textCursorDrawable属性是在API11才推出的属性；
-</code></pre></li>
-<li><p>ListView的android:listSelector属性如何使用？</p>
-<p>a、解决为什么无效；</p>
-<pre><code>b、找到替代方法：
-    首先，在自己实现的Adapter的getView()方法中进行如设置：
-        if (position == selectItem) {  
-             convertView.setBackgroundColor(Color.RED);  
-        } else {  
-             convertView.setBackgroundColor(Color.TRANSPARENT);  
-        }   
-     然后，在onItemClick()方法中，进行如下设置：
-         adapter.setSelectedItem(position)
-         adapter.notifyDatasetInvalidated();
-</code></pre></li>
-<li><p>如何对TextView的部分文字进行特定样式设置？</p>
-<ol>
-<li>采用strings.xml文件，即在该文件中利用相应的Html标签对要改变样式的问题进行更改</li>
-<li>采用SpannableStringBuilder类，具体说明</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">该类提供了setSpan(Object what, int start, int end,</span><br><span class="line">int flags) 方法，其中的what可以为以下类的实例：</span><br><span class="line">	URLSpan；</span><br><span class="line">	ClickableSpan；</span><br><span class="line">	BackgroundColorSpan；</span><br><span class="line">	ForegroundColorSpan；</span><br><span class="line">	MaskFilterSpan；</span><br><span class="line">	AbsoluteSizeSpan；</span><br><span class="line">	RelativeSizeSpan；</span><br><span class="line">	ImageSpan；</span><br><span class="line">	ScaleXSpan；</span><br><span class="line">	StyleSpan；</span><br><span class="line">	SubscriptSpan；</span><br><span class="line">	SuperscriptSpan；</span><br><span class="line">	TextAppearanceSpan；</span><br><span class="line">	TypefaceSpan；</span><br><span class="line">	RasterizerSpan；</span><br><span class="line">	StrikethroughSpan；</span><br><span class="line">	UnderlineSpan；</span><br><span class="line">	</span><br><span class="line">使用方法：</span><br><span class="line">	a、得到SpannableStringBuilder类的实例：builder；</span><br><span class="line">	b、得到Span子类的实例，如ForegroundColorSpan的实例 forgroundColorSpan；</span><br><span class="line">	c、调用setSpan方法，指定要进行样式修饰的起始位置，进行参数填充；</span><br><span class="line">	d、调用TextView的setText(SpannableStringBuilder builder)方法；</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>mac版eclipse导入Android项目里面的中文乱码问题如何解决？<br> 1、在Preference中找到Text File Encoding，选择Other，手动输入GBK即可<br> 2、选择乱码的文件，右键选择属性，在Text File Encoding中进行修改（这是针对单个文件的修改方法），针对所有的*.java文件，可采用在Eclipse的偏好设置中的General-&gt;Content Type-&gt;Text-&gt;Java Source Files-&gt;Default Encoding中进行设置。</p>
-</li>
-<li><p>Activity中应用Fragment进行数据的加载与显示时，第一次进入正常，推出再次进入崩溃？</p>
-<p>出现这种情况的原因可能有以下几点：</p>
-<pre><code>1、采用getInstance方法获取Fragment的实例，但推出时没有置空，导致Fragment里面的控件不为空，但数据为
-空，其他地方又没有很好的对这种情况进行处理，导致空指针；
-2、Fragment的生命周期没有管理好
-</code></pre></li>
-<li><p>Android启动时很长一段时间出现白屏（或黑屏）如何解决？</p>
-<p>to be answered…</p>
-</li>
-<li><p>Android 如何避免软键盘弹出时遮挡住用户交互界面？</p>
-<p>在AndroidManifest.xml中为对应的activity添加android:windowSoftInputMode=”adjustResize”<br>  在AndroidManifest.xml文件中的android:windowSoftInputMode属性使用</p>
-<p>  The AndroidManifest.xml File</p>
-  <activity android:windowsoftinputmode="["stateUnspecified"," "stateunchanged",="" "statehidden",="" "statealwayshidden",="" "statevisible",="" "statealwaysvisible",="" "adjustunspecified",="" "adjustresize",="" "adjustpan"]="" ……=""><br><br>  </activity>
-
-<p>  这个属性的设置将会影响两件事情:</p>
-<pre><code>1&gt;软键盘的状态——是否它是隐藏或显示——当活动(Activity)成为用户关注的焦点。
-2&gt;活动的主窗口调整——是否减少活动主窗口大小以便腾出空间放软键盘或是否当活动窗口的部分被软键盘覆盖
-    时它的内容的当前焦点是可见的。
-</code></pre><p>  这个属性的值最好是state + adjust同时设置。</p>
-<p>  注意：在这设置的值(除”stateUnspecified”和”adjustUnspecified”以外)将覆盖在主题中设置的值。</p>
-<p>  描述</p>
-<p>  “stateUnspecified”</p>
-<pre><code>软键盘的状态(是否它是隐藏或可见)没有被指定。系统将选择一个合适的状态或依赖于主题
-</code></pre><p>  的设置。这个是为了软件盘行为默认的设置。</p>
-<p>  “stateUnchanged”</p>
-<pre><code>软键盘被保持无论它上次是什么状态，是否可见或隐藏，当主窗口出现在前面时。
-</code></pre><p>  “stateHidden”</p>
-<pre><code>当用户选择该Activity时，软键盘被隐藏——也就是，当用户确定导航到该Activity时，而不是返回到它由于离        开另一个Activity。
-</code></pre><p>  “stateAlwaysHidden”</p>
-<pre><code>软键盘总是被隐藏的，当该Activity主窗口获取焦点时。
-</code></pre><p>  “stateVisible”</p>
-<pre><code>软键盘是可见的，当那个是正常合适的时(当用户导航到Activity主窗口时)。
-</code></pre><p>  “stateAlwaysVisible”</p>
-<pre><code>当用户选择这个Activity时，软键盘是可见的——也就是，也就是，当用户确定导航到该Activity时，而不是返        回到它由于离开另一个Activity。
-</code></pre><p>  “adjustUnspecified”</p>
-<pre><code>它不被指定是否该Activity主窗口调整大小以便留出软键盘的空间，或是否窗口上的内容得到屏幕上当前的焦点        是可见的。系统将自动选择这些模式中一种主要依赖于是否窗口的内容有任何布局视图能够滚动他们的内容。如果有这        样的    一个视图，这个窗口将调整大小，这样的假设可以使滚动窗口的内容在一个较小的区域中可见的。这个是主窗口        默认的行为设置。
-</code></pre><p>  “adjustResize”</p>
-<pre><code>该Activity主窗口总是被调整屏幕的大小以便留出软键盘的空间。
-</code></pre><p>  “adjustPan”</p>
-<pre><code>该Activity主窗口并不调整屏幕的大小以便留出软键盘的空间。相反，当前窗口的内容将自动移动以便当前焦点        从不被键盘覆盖和用户能总是看到输入内容的部分。这个通常是不期望比调整大小，因为用户可能关闭软键盘以便获得        与被覆盖内容的交互操作。
-</code></pre></li>
-<li><p>遇到Manifest mergerfailed问题，如下：<br>​<br>Error:Execution failed for task ‘:vitamio-sample:processDebugManifest’.Manifest merger         failed : uses-sdk:minSdkVersion 11 cannot be smaller than version 15 declared in         library [io.vov.vitamio:vitamio:4.2.0-SNAPSHOT] /Users/RandyZhang/        AndroidStudioProjects/VitamioBundle/vitamio-sample/build/intermediates/exploded-aar/        io.vov.vitamio/vitamio/4.2.0-SNAPSHOT/AndroidManifest.xml<br>​<br>解决方法：<br>在相应的AndroidManifest文件的manifest标签中加上<br>​        </p>
-<pre><code>xmlns:tools=&quot;http://schemas.android.com/tools&quot;
-</code></pre><p>同时添加以下uses-sdk说明:<br>​        </p>
-<pre><code>&lt;uses-sdk tools:overrideLibrary=&quot;name&quot; /&gt;
-</code></pre></li>
-<li><p>不要在ScrollView中直接嵌套ViewPager，这样会导致ViewPager不能显示，如果真要显示需要对ScrollView或者ViewPager进行处理</p>
-</li>
-<li><p>Android Studio或者Eclipse编译项目时提示Error:java.lang.OutOfMemoryError: GC overhead limit exceeded如何解决？</p>
-<p>解决方法：</p>
-<ul>
-<li><p>Android Studio：在项目的build.gradle文件的android节点添加如下代码:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> dexOptions &#123;</span><br><span class="line">        javaMaxHeapSize &quot;2048m&quot;</span><br><span class="line">        // 以下为Android Studio默认值</span><br><span class="line">//        javaMaxHeapSize &quot;2048m&quot;</span><br><span class="line">    &#125;   Android Studio javaMaxHeapSize 默认值为256m</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>​Eclipse: 方法同Android Studio，更改eclipse.ini文件的相关配置： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-Xms40m</span><br><span class="line">-Xmx512m</span><br><span class="line">    </span><br><span class="line">修改为</span><br><span class="line">-Xms512m</span><br><span class="line">-Xmx1024m</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>App 的WebView加载使用了rem为单位的H5页面时，若改变了手机的系统字体大小，会导致央视错乱</p>
-<p>解决方法：</p>
-<p>调用WebView.getSettings().setTextZoom(100)即可。在固定大小的布局中，如果想文字大小不随系统字体改变而改变，应该采用dp为单位（而不是sp）</p>
-</li>
-<li><p>Android Studio中启动模拟器时提示<code>Emulator: WARNING: HAXM 6.0.1 is installed. Please install HAXM &gt;= 6.2.1 to fix compatibility issues on Mac.</code></p>
-<p>解决方法:</p>
-<ul>
-<li>首先查看Android Studio的SDK Manager，看看SDK Tool选项卡下面的Intel X86 Emulator Accelector（HAXM installer）的最新版本是否是installed的状态，如果是，看下一步</li>
-<li>在安装的Android SDK目录找到extra文件夹，找到Intel文件夹，点击Hardware_Accelerated_Execution_Manager，找到IntelHAXM_6.2.1.dmg进行手动安装，安装之后最好能重启Android Studio和已经开启的模拟器，即可解决问题</li>
-</ul>
-</li>
-<li><p>使用Glide报错</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">java.lang.IllegalArgumentException: You cannot start a load for a destroyed activity</span><br><span class="line">	com.bumptech.glide.manager.k.b(Unknown Source)</span><br><span class="line">	com.bumptech.glide.manager.k.a(Unknown Source)</span><br><span class="line">	com.bumptech.glide.manager.k.a(Unknown Source)</span><br><span class="line">	com.bumptech.glide.e.b(Unknown Source)</span><br></pre></td></tr></table></figure>
-<p>解决方案：</p>
-<p>先说明一下原因，上面的日志记录已经说得很清楚了，Glide加载图片是和Activity和Fragment的生命周期相关联的，如果Activity已经被销毁，Activity里面Glide加载任务仍在进行，就会抛出上述异常，可以</p>
-<p>参考这篇文章解决问题<a href="https://stackoverflow.com/questions/31964737/glide-image-loading-with-application-context/32887693#32887693" target="_blank" rel="noopener">https://stackoverflow.com/questions/31964737/glide-image-loading-with-application-context/32887693#32887693</a></p>
-</li>
-<li><p>同步项目报错：Android - Gradle “xxx” project refresh failed</p>
-<p>解决方法：</p>
-<ul>
-<li><a href="http://blog.csdn.net/caroline_wendy/article/details/21187769" target="_blank" rel="noopener">http://blog.csdn.net/caroline_wendy/article/details/21187769</a></li>
-<li>重启Android Studio或重启电脑（我遇到这个问题的时候是通过重启电脑解决的）</li>
-</ul>
-</li>
-<li><p>不要轻易使用Android Studio的Removed unused resources</p>
+        <h1 id="Android-Studio-升级到3-0运行项目指北"><a href="#Android-Studio-升级到3-0运行项目指北" class="headerlink" title="Android Studio 升级到3.0运行项目指北"></a>Android Studio 升级到3.0运行项目指北</h1><p>最近Android Studio升级到了3.0，为什么要升级，看看它新的特性就知道了：</p>
+<p>但我们都知道，每一次升级都或多或少的会伴随一些问题，我编译项目就遇到了这些问题。</p>
+<h2 id="buildTool变化"><a href="#buildTool变化" class="headerlink" title="buildTool变化"></a>buildTool变化</h2><p>升级到Android Studio 3.0之后，项目主module（app module）和依赖module的buildToolVersion 都要升级到26.0.2（默认的就是这个值，可以直接删除掉buildToolVersion这个配置，不建议）</p>
+<h2 id="注解引入的变化"><a href="#注解引入的变化" class="headerlink" title="注解引入的变化"></a>注解引入的变化</h2><p>升级之后，一些注解处理器（Annotation processors）必须被明确指定，对应的解决方法就是在主module（app module）的build.gradle的android节点添加如下代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">defaultConfig &#123;</span><br><span class="line">  javaCompileOptions &#123;</span><br><span class="line">    annotationProcessorOptions &#123;</span><br><span class="line">      includeCompileClasspath = true</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>大概就是在默认配置中的Java编译选型中配置注解处理选项：包含编译的类路径。</p>
+<h2 id="提示一些属性找不到"><a href="#提示一些属性找不到" class="headerlink" title="提示一些属性找不到"></a>提示一些属性找不到</h2><p>升级之后，编译项目会提示如<strong><em>@android:attr/windowEnterAnimation’not found</em></strong>，这是因为3.0中使用了aapt2，而aapt2可能对低版本的Android系统不兼容，导致编译时找不到对应资源文件。解决方法如下</p>
 <blockquote>
-<p>因为你的项目中可能引用了一些第三方module，这些module中使用的资源文件可能在主module中声明了，执行该命令如果操作不慎可能会导致资源误删</p>
+<p>在项目的根目录中添加gradle.properties文件，文件内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; android.enableAapt2=false</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
-</li>
-<li><p>当打release包的时候，提示如下错误信息时，如何解决？</p>
+<p>&gt;</p>
 <blockquote>
-<p>Error:Execution failed for task ‘:loggertest:processDebugManifest’. Manifest merger failed : Attribute application@icon value=(@mipmap/iclauncher) from AndroidManifest.xml:7:9-43 is also present at [TuringOSLoggerAPI:app:unspecified] AndroidManifest.xml:16:9-45 value=(@drawable/iclauncher). Suggestion: add ‘tools:replace=”android:icon”‘ to element at AndroidManifest.xml:5:5-18:19 to override.</p>
+<p>即禁用aapt2</p>
 </blockquote>
-<p>解决方案，在提示信息中已经给出了，我们只要在主module的application节点添加tools:replace=”属性名”，同时在AndroidManifest.xml的根节点上添加对应的命名空间</p>
-<blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; xmlns:tools=&quot;http://schemas.android.com/tools&quot;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p><strong><em>注意：多个属性需要用’,’隔开。</em></strong></p>
+<h2 id="多渠道打包"><a href="#多渠道打包" class="headerlink" title="多渠道打包"></a>多渠道打包</h2><ul>
+<li><p>output的outputFile属性变为只读的了，所以如果想修改outputFile的文件名，不能通过原来的方法，即：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">output.outputFile = new File(apkDir, fileName)</span><br></pre></td></tr></table></figure>
+<p>而要通过如下方式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">output.outputFileName = filename</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>Android Studio修改apk文件名、修改apk文件输出路径之后，点击run或debug项目提示在app主module的build文件夹下找不到对应的apk文件，导致apk无法安装如何解决？</p>
-<p>解决方案:</p>
-<p>这是因为你当前的构建变体是不允许直接通过Android Studio来运行（或调试）的，此时你只需要在AS的菜单栏上点击<strong>Build-&gt;Edit Build Types-&gt;选择相应的BuildVariants，debuggable属性设置为true即可</strong>。</p>
+<li><p>Error:All flavors must now belong to a named flavor dimension</p>
+<p>出现这个的原因是buildTools 3.0之后，对于多渠道包，要求所有多渠道包都属于同一个纬度，解决方法，在</p>
 </li>
-<li><p>Android Studio多种构建变体添加applicationIdSuffix后，logcat找不到对应的包名，取而代之的时问号？</p>
-<p>解决方案：</p>
-<p>这同样是因为当前的构建变体是不允许直接通过Android Studio来运行（或调试）的，此时你只需要在AS的菜单栏上点击<strong>Build-&gt;Edit Build Types-&gt;选择相应的BuildVariants，debuggable属性设置为true即可</strong>。</p>
-</li>
-<li><p>某个类型的构建变体（BuildVariants）不能调试，提示如下：</p>
-<blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;Error running app:</span><br><span class="line">&gt;Cannot debug application from module app on device xxx.</span><br><span class="line">&gt;This application does not have the debuggable attribute enabled in its manifest.</span><br><span class="line">&gt;If you have manually set it in the manifest, then remove it and let the IDE automatically assign it.</span><br><span class="line">&gt;If you are using Gradle, make sure that your current variant is debuggable.</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>解决方案：</p>
-<ul>
-<li>在Android Studio的BuildVariants选择以Debug结尾的BuildVariants即可（因为Debug结尾的默认是可以调试的）</li>
-<li>在Android Studio的build菜单选择Edit Build type，可以配置不同BuildVariants的相关属性</li>
 </ul>
-</li>
-<li><p>Android Studio开启instant run运行项目报如下错误：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error:java.io.IOException: Could not delete path &apos;/Users/RandyZhang/AndroidStudioProjects/TRJ/app/build/intermediates/instant-run-support/sc-trj/yw/package_directories/dex-renamer-state.txt&apos;</span><br></pre></td></tr></table></figure>
-<p>解决方案：</p>
-<ul>
-<li>关闭instant run（不推荐，毕竟instant run还是很好用的）</li>
-<li>手动删除对应目录下对应的文件</li>
-<li>先debug运行，带run运行（很有效）</li>
-</ul>
-</li>
-<li><p>​</p>
-</li>
-</ol>
 
       
 
@@ -1295,7 +716,7 @@ imm.hideSoftInputFromWindow(edit.getWindowToken(),0);
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/Android//" class="article-tag-list-link color3">Android</a>
+        			<a href="/categories/环境配置//" class="article-tag-list-link color5">环境配置</a>
         		</li>
       		
 		</ul>
@@ -1304,7 +725,432 @@ imm.hideSoftInputFromWindow(edit.getWindowToken(),0);
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/10/19/Android 零散知识点（问答形式）/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/11/01/Android Studio 升级到3.0运行项目指北/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Android NDK开发" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/30/Android NDK开发/">Android NDK开发</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/30/Android NDK开发/" class="archive-article-date">
+  	<time datetime="2017-10-30T08:49:49.275Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Android-NDK开发"><a href="#Android-NDK开发" class="headerlink" title="Android NDK开发"></a>Android NDK开发</h1>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/JNI开发//" class="article-tag-list-link color1">JNI开发</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/30/Android NDK开发/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Android Launcher3分析——自定义控件之Workspace" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/17/Android Launcher3分析——自定义控件之Workspace/">Android Launcher3分析——自定义控件之Workspace</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/17/Android Launcher3分析——自定义控件之Workspace/" class="archive-article-date">
+  	<time datetime="2017-10-17T06:05:04.026Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Android-Launcher3分析——自定义控件之Workspace"><a href="#Android-Launcher3分析——自定义控件之Workspace" class="headerlink" title="Android Launcher3分析——自定义控件之Workspace"></a>Android Launcher3分析——自定义控件之Workspace</h1><h2 id="绘制方面"><a href="#绘制方面" class="headerlink" title="绘制方面"></a>绘制方面</h2><p>可以参考文章<a href="http://blog.csdn.net/rainmonth/article/details/50937272" target="_blank" rel="noopener">Android View的绘制流程分析</a></p>
+<h3 id="onMeasure"><a href="#onMeasure" class="headerlink" title="onMeasure"></a>onMeasure</h3><p>Workspace 并没有进行什么测量工作，测量工作都交给其父类PagedView处理，看看PagedView的onMeasure如何处理的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onMeasure</span><span class="params">(<span class="keyword">int</span> widthMeasureSpec, <span class="keyword">int</span> heightMeasureSpec)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 没有子View直接调用View的onMeasure方法，退出</span></span><br><span class="line">  <span class="keyword">if</span> (getChildCount() == <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">super</span>.onMeasure(widthMeasureSpec, heightMeasureSpec);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// We measure the dimensions of the PagedView to be larger than the pages so that when we</span></span><br><span class="line">  <span class="comment">// zoom out (and scale down), the view is still contained in the parent</span></span><br><span class="line">  <span class="keyword">int</span> widthMode = MeasureSpec.getMode(widthMeasureSpec);</span><br><span class="line">  <span class="keyword">int</span> widthSize = MeasureSpec.getSize(widthMeasureSpec);</span><br><span class="line">  <span class="keyword">int</span> heightMode = MeasureSpec.getMode(heightMeasureSpec);</span><br><span class="line">  <span class="keyword">int</span> heightSize = MeasureSpec.getSize(heightMeasureSpec);</span><br><span class="line">  <span class="comment">// <span class="doctag">NOTE:</span> We multiply by 2f to account for the fact that depending on the offset of the</span></span><br><span class="line">  <span class="comment">// viewport, we can be at most one and a half screens offset once we scale down</span></span><br><span class="line">  DisplayMetrics dm = getResources().getDisplayMetrics();</span><br><span class="line">  <span class="keyword">int</span> maxSize = Math.max(dm.widthPixels + mInsets.left + mInsets.right,</span><br><span class="line">                         dm.heightPixels + mInsets.top + mInsets.bottom);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> parentWidthSize = (<span class="keyword">int</span>) (<span class="number">2f</span> * maxSize);</span><br><span class="line">  <span class="keyword">int</span> parentHeightSize = (<span class="keyword">int</span>) (<span class="number">2f</span> * maxSize);</span><br><span class="line">  <span class="keyword">int</span> scaledWidthSize, scaledHeightSize;</span><br><span class="line">  <span class="keyword">if</span> (mUseMinScale) &#123;</span><br><span class="line">    scaledWidthSize = (<span class="keyword">int</span>) (parentWidthSize / mMinScale);</span><br><span class="line">    scaledHeightSize = (<span class="keyword">int</span>) (parentHeightSize / mMinScale);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    scaledWidthSize = widthSize;</span><br><span class="line">    scaledHeightSize = heightSize;</span><br><span class="line">  &#125;</span><br><span class="line">  mViewport.set(<span class="number">0</span>, <span class="number">0</span>, widthSize, heightSize);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (widthMode == MeasureSpec.UNSPECIFIED || heightMode == MeasureSpec.UNSPECIFIED) &#123;</span><br><span class="line">    <span class="keyword">super</span>.onMeasure(widthMeasureSpec, heightMeasureSpec);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Return early if we aren't given a proper dimension</span></span><br><span class="line">  <span class="keyword">if</span> (widthSize &lt;= <span class="number">0</span> || heightSize &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">super</span>.onMeasure(widthMeasureSpec, heightMeasureSpec);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* Allow the height to be set as WRAP_CONTENT. This allows the particular case</span></span><br><span class="line"><span class="comment">   * of the All apps view on XLarge displays to not take up more space then it needs. Width</span></span><br><span class="line"><span class="comment">   * is still not allowed to be set as WRAP_CONTENT since many parts of the code expect</span></span><br><span class="line"><span class="comment">   * each page to have the same width.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">final</span> <span class="keyword">int</span> verticalPadding = getPaddingTop() + getPaddingBottom();</span><br><span class="line">  <span class="keyword">final</span> <span class="keyword">int</span> horizontalPadding = getPaddingLeft() + getPaddingRight();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> referenceChildWidth = <span class="number">0</span>;</span><br><span class="line">  <span class="comment">// The children are given the same width and height as the workspace</span></span><br><span class="line">  <span class="comment">// unless they were set to WRAP_CONTENT</span></span><br><span class="line">  <span class="keyword">if</span> (DEBUG) Log.d(TAG, <span class="string">"PagedView.onMeasure(): "</span> + widthSize + <span class="string">", "</span> + heightSize);</span><br><span class="line">  <span class="keyword">if</span> (DEBUG) Log.d(TAG, <span class="string">"PagedView.scaledSize: "</span> + scaledWidthSize + <span class="string">", "</span> + scaledHeightSize);</span><br><span class="line">  <span class="keyword">if</span> (DEBUG) Log.d(TAG, <span class="string">"PagedView.parentSize: "</span> + parentWidthSize + <span class="string">", "</span> + parentHeightSize);</span><br><span class="line">  <span class="keyword">if</span> (DEBUG) Log.d(TAG, <span class="string">"PagedView.horizontalPadding: "</span> + horizontalPadding);</span><br><span class="line">  <span class="keyword">if</span> (DEBUG) Log.d(TAG, <span class="string">"PagedView.verticalPadding: "</span> + verticalPadding);</span><br><span class="line">  <span class="keyword">final</span> <span class="keyword">int</span> childCount = getChildCount();</span><br><span class="line">  <span class="comment">// 遍历子View（只处理可见的子View）</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; childCount; i++) &#123;</span><br><span class="line">    <span class="comment">// disallowing padding in paged view (just pass 0)</span></span><br><span class="line">    <span class="keyword">final</span> View child = getPageAt(i);</span><br><span class="line">    <span class="comment">// 处理可见子View</span></span><br><span class="line">    <span class="keyword">if</span> (child.getVisibility() != GONE) &#123;</span><br><span class="line">      <span class="comment">// 获取子布局的布局参数</span></span><br><span class="line">      <span class="keyword">final</span> LayoutParams lp = (LayoutParams) child.getLayoutParams();</span><br><span class="line"></span><br><span class="line">      <span class="keyword">int</span> childWidthMode;<span class="comment">// 子View的宽度测量规范</span></span><br><span class="line">      <span class="keyword">int</span> childHeightMode;<span class="comment">// 子View的高度测量规范</span></span><br><span class="line">      <span class="keyword">int</span> childWidth;<span class="comment">// 子View的宽</span></span><br><span class="line">      <span class="keyword">int</span> childHeight;<span class="comment">// 子View的高</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">// 根据布局参数来设置子View的宽、高以及宽高规范</span></span><br><span class="line">      <span class="keyword">if</span> (!lp.isFullScreenPage) &#123;</span><br><span class="line">        <span class="keyword">if</span> (lp.width == LayoutParams.WRAP_CONTENT) &#123;</span><br><span class="line">          childWidthMode = MeasureSpec.AT_MOST;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          childWidthMode = MeasureSpec.EXACTLY;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (lp.height == LayoutParams.WRAP_CONTENT) &#123;</span><br><span class="line">          childHeightMode = MeasureSpec.AT_MOST;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          childHeightMode = MeasureSpec.EXACTLY;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        childWidth = getViewportWidth() - horizontalPadding</span><br><span class="line">          - mInsets.left - mInsets.right;</span><br><span class="line">        childHeight = getViewportHeight() - verticalPadding</span><br><span class="line">          - mInsets.top - mInsets.bottom;</span><br><span class="line">        mNormalChildHeight = childHeight;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        childWidthMode = MeasureSpec.EXACTLY;</span><br><span class="line">        childHeightMode = MeasureSpec.EXACTLY;</span><br><span class="line"></span><br><span class="line">        childWidth = getViewportWidth() - mInsets.left - mInsets.right;</span><br><span class="line">        childHeight = getViewportHeight();</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (referenceChildWidth == <span class="number">0</span>) &#123;</span><br><span class="line">        referenceChildWidth = childWidth;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 获取子View的宽高测量规范</span></span><br><span class="line">      <span class="keyword">final</span> <span class="keyword">int</span> childWidthMeasureSpec =</span><br><span class="line">        MeasureSpec.makeMeasureSpec(childWidth, childWidthMode);</span><br><span class="line">      <span class="keyword">final</span> <span class="keyword">int</span> childHeightMeasureSpec =</span><br><span class="line">        MeasureSpec.makeMeasureSpec(childHeight, childHeightMode);</span><br><span class="line">      <span class="comment">// 根据获取到的测量规范测量每个子View</span></span><br><span class="line">      child.measure(childWidthMeasureSpec, childHeightMeasureSpec);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  setMeasuredDimension(scaledWidthSize, scaledHeightSize);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="onLayout"><a href="#onLayout" class="headerlink" title="onLayout"></a>onLayout</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onLayout</span><span class="params">(<span class="keyword">boolean</span> changed, <span class="keyword">int</span> left, <span class="keyword">int</span> top, <span class="keyword">int</span> right, <span class="keyword">int</span> bottom)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (mFirstLayout &amp;&amp; mCurrentPage &gt;= <span class="number">0</span> &amp;&amp; mCurrentPage &lt; getChildCount()) &#123;</span><br><span class="line">    mWallpaperOffset.syncWithScroll();</span><br><span class="line">    mWallpaperOffset.jumpToFinal();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">super</span>.onLayout(changed, left, top, right, bottom);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>主要还是调用PagedView的onLayout方法，只是在调用之前根据是否第一次Layout及当前页是否在有效范围来对Launcher壁纸的偏移量做处理。</p>
+<h3 id="onDraw"><a href="#onDraw" class="headerlink" title="onDraw"></a>onDraw</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDraw</span><span class="params">(Canvas canvas)</span> </span>&#123;</span><br><span class="line"><span class="keyword">super</span>.onDraw(canvas);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Call back to LauncherModel to finish binding after the first draw</span></span><br><span class="line">post(mBindPages);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>调用PagedView的onDraw方法，然后告知通知LauncherModel绑定完成。</p>
+<blockquote>
+<p>注意：ViewGroup作为一个View的容器，为了性能上的考虑，通常是不需要调用自己的onDraw函数的（不需要重写），只有在我们设置了ViewGroup的背景或者调用setWillNotDraw(false)时才会调用。</p>
+</blockquote>
+<h2 id="事件处理方面"><a href="#事件处理方面" class="headerlink" title="事件处理方面"></a>事件处理方面</h2><p>可以参考文章<a href="">Android View的时间处理流程分析</a></p>
+<h3 id="onInterceptTouchEvent-MotionEvent-ev"><a href="#onInterceptTouchEvent-MotionEvent-ev" class="headerlink" title="onInterceptTouchEvent(MotionEvent ev)"></a>onInterceptTouchEvent(MotionEvent ev)</h3><h3 id="onTouchEvent-MotionEvent-ev"><a href="#onTouchEvent-MotionEvent-ev" class="headerlink" title="onTouchEvent(MotionEvent ev)"></a>onTouchEvent(MotionEvent ev)</h3>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/源码分析//" class="article-tag-list-link color5">源码分析</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/17/Android Launcher3分析——自定义控件之Workspace/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Android Launcher3分析——LauncherModel" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/13/Android Launcher3分析——LauncherModel/">Android Launcher3分析——LauncherModel</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/13/Android Launcher3分析——LauncherModel/" class="archive-article-date">
+  	<time datetime="2017-10-13T06:54:39.497Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Android-Launcher3分析——LauncherModel"><a href="#Android-Launcher3分析——LauncherModel" class="headerlink" title="Android Launcher3分析——LauncherModel"></a>Android Launcher3分析——LauncherModel</h1><p>接上篇<a href="http://blog.csdn.net/rainmonth/article/details/78209539" target="_blank" rel="noopener">Android Launcher3分析——开篇</a>，上篇提到LauncherModel是Launcher3处理数据的核心，这当然不是瞎掰的，我们用具体的代码分析来予以佐证。</p>
+<p>LauncherModel本身继承自<strong><em>BroadcastReceiver</em></strong>，实现了<strong>OnAppsChangedCallbackCompat接口</strong>，该接口在LauncherAppsCompat.java中定义，由LauncherModel中实现，并在LauncherAppsCompat子类的内部类PackageMonitor（<strong>API16以上</strong>）（继承BroadcastReceiver类型）或WrapperCallback（<strong>API15以下</strong>）调用，源码中关于LauncherModel的说明，大致含义如下：</p>
+<blockquote>
+<p><strong>保持Launcher的内存状态</strong>。在内存静态区应该只能有一个LauncherModel的实例，同时它还为Launcher提供了一系列的<strong>更新数据库的Api</strong>。</p>
+</blockquote>
+<h2 id="内部类或接口"><a href="#内部类或接口" class="headerlink" title="内部类或接口"></a>内部类或接口</h2><h3 id="Callbacks（接口）"><a href="#Callbacks（接口）" class="headerlink" title="Callbacks（接口）"></a>Callbacks（接口）</h3><p>该接口定义了一些绑定数据时的具体方法，由Launcher实现，在LauncherModel中调用。</p>
+<h3 id="ItemInfoFilter（接口）"><a href="#ItemInfoFilter（接口）" class="headerlink" title="ItemInfoFilter（接口）"></a>ItemInfoFilter（接口）</h3><p>ItemInfo过滤器，过滤掉不符合条件的ItemInfo</p>
+<h3 id="LoaderTask（实现了Runnable接口）"><a href="#LoaderTask（实现了Runnable接口）" class="headerlink" title="LoaderTask（实现了Runnable接口）"></a>LoaderTask（实现了Runnable接口）</h3><p>核心内部类，主要任务负责加载数据（workspace、all apps）和绑定数据（workspace、all apps）</p>
+<h4 id="核心方法run"><a href="#核心方法run" class="headerlink" title="核心方法run"></a>核心方法run</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">synchronized</span> (mLock) &#123;</span><br><span class="line">    <span class="keyword">if</span> (mStopped) &#123;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    mIsLoaderTaskRunning = <span class="keyword">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// Optimize for end-user experience: if the Launcher is up and // running with the</span></span><br><span class="line">  <span class="comment">// All Apps interface in the foreground, load All Apps first. Otherwise, load the</span></span><br><span class="line">  <span class="comment">// workspace first (default).</span></span><br><span class="line">  keep_running:</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> (DEBUG_LOADERS) Log.d(TAG, <span class="string">"step 1: loading workspace"</span>);</span><br><span class="line">    loadAndBindWorkspace();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (mStopped) &#123;</span><br><span class="line">      <span class="keyword">break</span> keep_running;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    waitForIdle();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// second step</span></span><br><span class="line">    <span class="keyword">if</span> (DEBUG_LOADERS) Log.d(TAG, <span class="string">"step 2: loading all apps"</span>);</span><br><span class="line">    loadAndBindAllApps();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Clear out this reference, otherwise we end up holding it until all of the</span></span><br><span class="line">  <span class="comment">// callback runnables are done.</span></span><br><span class="line">  mContext = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">synchronized</span> (mLock) &#123;</span><br><span class="line">    <span class="comment">// If we are still the last one to be scheduled, remove ourselves.</span></span><br><span class="line">    <span class="keyword">if</span> (mLoaderTask == <span class="keyword">this</span>) &#123;</span><br><span class="line">      mLoaderTask = <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    mIsLoaderTaskRunning = <span class="keyword">false</span>;</span><br><span class="line">    mHasLoaderCompletedOnce = <span class="keyword">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>先加载并绑定workspace，然后调用waitForIdle方法等待资源锁的释放，从而开始加载并绑定All Apps。在手动置空mContext（不然的话LoaderTask将持有mContext直至所有的runnable对象都被执行完毕，容易引起内存泄漏），接着指控LoaderTask本身，更新相关标识位。那么两个run里面的两个load函数到底有什么功能呢？</p>
+<h3 id="PackageUpdatedTask（）"><a href="#PackageUpdatedTask（）" class="headerlink" title="PackageUpdatedTask（）"></a>PackageUpdatedTask（）</h3><p>核心内部类， 实现了Runnable接口，主要负责更新Package信息（如package的增删改查等）</p>
+<h3 id="AppsAvailabilityCheck"><a href="#AppsAvailabilityCheck" class="headerlink" title="AppsAvailabilityCheck"></a>AppsAvailabilityCheck</h3><p>BroadcastReceiver类型，根据包名检查对应app的有效性。</p>
+<h2 id="核心方法"><a href="#核心方法" class="headerlink" title="核心方法"></a>核心方法</h2><h3 id="loadAndBindWorkspace"><a href="#loadAndBindWorkspace" class="headerlink" title="loadAndBindWorkspace"></a>loadAndBindWorkspace</h3><blockquote>
+<p>加载并绑定workspace，先加载后绑定；</p>
+</blockquote>
+<h4 id="loadWorkspace"><a href="#loadWorkspace" class="headerlink" title="loadWorkspace"></a>loadWorkspace</h4><p>loadWorkspace的代码实现较复杂，这里就不贴代码了，只根据代码做个简单的梳理：</p>
+<ol>
+<li>初始化必要的变量值，判断是否需要执行MigrateFromRestoreTask任务，根据mFlags判断是否需要对LauncherProvider中定义的数据库做初始化操作；</li>
+<li>进入同步代码块：<ol>
+<li>清空sBg的数据，使其恢复到初始化状态，定义用于接受清洗过后的数据的数据结构（itemsToRemove、restoreRows和occupied，这里的occupied指的就是Launcher桌面已经被Item占据的单元列表）；</li>
+<li>利用ContentResolver查询Favorites表，获取所有列的索引，以便后面根据对应索引去的对应列的值；</li>
+<li>遍历Favorites表，根据ItemType对数据进行清洗：<ul>
+<li>Application和Shortcut类型Item：<ul>
+<li>将需要删除的item，需要移除的item，加入到对应的存储数据结构中，并将需要更新的item进行跟新操作</li>
+<li>数据清洗完后，根据提供的条件，得到ShortcutInfo（最终展示在Launcher桌面上的那些图标），设置其属性（其中主要属性有intent（点击图标会对应的跳转操作），坐标（cellX，cellY）、占地面积（spanX，spanY），容纳图标的容器，所属的是哪一个屏幕等），这里还会根据container决定将当前item放入到什么位置（container为Workspace和Hotseat时，放入workspace中，其他情况放入Folder中</li>
+</ul>
+</li>
+<li>文件夹类型Item：<ol>
+<li>设置folderInfo的属性，对于FolderInfo类型的Item，其本身位于容器Workspace之中，但又可以作为容器来承载（Application和Shortcut类Item）</li>
+<li>设置完属性后，将其加入到对应的数据存储结构中，以便后面处理</li>
+</ol>
+</li>
+<li>Widget类型（自定义的或App提供的）<ol>
+<li>根据对应的id机appWidgetId判断其有效性（将无效的加入到itemsToRemoved列表中，有效的则获取其appWidgetInfo信息）；</li>
+<li>移除不知道归属容器的Widget（就是不知道放哪儿的Widget）</li>
+<li>更新providerName不一致的非自定义widget，然后将其加入到相应的数据结构；</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>处理清洗后的数据（itemsToRemoved、restoredRows等），这一步实质上是根据列表生成相应的sql语句，进行数据库操作；</li>
+<li>移除空的屏幕，并更新。</li>
+</ol>
+<p>以上就是loadWorkspace的全部过程，接下来看bindWorkspace时如何实现的。</p>
+<h4 id="bindWorkspace"><a href="#bindWorkspace" class="headerlink" title="bindWorkspace"></a>bindWorkspace</h4><p>由于bindWorkspace涉及到的都是UI操作，所以毫无疑问这些操作是在UI线程（即主线程）中完成的，具体实现方式是由LauncherModel调用Launcher实现的Callbacks接口里面的相应方法。bindWorkspace具体分析</p>
+<ol>
+<li>绑定前的准备工作（待使用的数据结构初始化，变量的初始化）；</li>
+<li>在主线程中解除当前已存在的items的绑定；</li>
+<li>过滤数据，将要绑定的内容分为当前的和非当前的；</li>
+<li>通知Launcher开始绑定</li>
+<li>先绑定screen，在绑定item</li>
+<li>通知Launcher所有绑定已完成</li>
+<li>善后处理</li>
+</ol>
+<h3 id="loadAndBindAllApps"><a href="#loadAndBindAllApps" class="headerlink" title="loadAndBindAllApps"></a>loadAndBindAllApps</h3><blockquote>
+<p>加载并绑定all apps，先加载后绑定，具体实现的分析与loadAndBindWorkspace类似，不做赘述。</p>
+</blockquote>
+<h2 id="更新数据库的操作"><a href="#更新数据库的操作" class="headerlink" title="更新数据库的操作"></a>更新数据库的操作</h2><p>主要包括对（App、App Shortcut、Widget、Folder的增删改查，具体体现在以下方法。</p>
+<ul>
+<li>addItemToDatabase，向数据库添加数据；</li>
+<li>deletePackageFromDatabase，从数据库删除数据Package</li>
+<li>deleteItemFromDatabase，从数据库删除Item</li>
+<li>deleteItemsFromDatabase，从数据库批量删除item</li>
+<li>deleteFolderContentsFromDatabase，从数据库删除文件夹里面的内容信息</li>
+<li>moveItemInDatabase，更新Item的位置信息</li>
+<li>moveItemsIndatabase，批量更新Item的位置信息</li>
+<li>modifyItemInDatabase，更新Item的信息</li>
+<li>updateItemInDatabase，更新Item的信息</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上就是本人根据源码结合自己对Launcher3中的数据处理核心LauncherModel的粗陋分析，个人觉得值得借鉴的地方在于Callbacks的设计以及开始绑定之前的数据区分处理，当然个人觉得这里还是有不足之处的，那就是LauncherModel的loadWorkspace方法似乎太庞大了，如果自定义Launcher需要在这方面上进行优化。接下来会对Launcher3中的一些展示核心（自定义控件进行分析）。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/源码分析//" class="article-tag-list-link color5">源码分析</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/13/Android Launcher3分析——LauncherModel/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Android Launcher3分析——需要了解的概念" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/12/Android Launcher3分析——需要了解的概念/">学习Launcher需要了解的概念</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/12/Android Launcher3分析——需要了解的概念/" class="archive-article-date">
+  	<time datetime="2017-10-12T03:26:58.016Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="学习Launcher需要了解的概念"><a href="#学习Launcher需要了解的概念" class="headerlink" title="学习Launcher需要了解的概念"></a>学习Launcher需要了解的概念</h1><h2 id="ComponentName"><a href="#ComponentName" class="headerlink" title="ComponentName"></a>ComponentName</h2><blockquote>
+<p>位于android.content中</p>
+</blockquote>
+<h2 id="LauncherApps"><a href="#LauncherApps" class="headerlink" title="LauncherApps"></a>LauncherApps</h2><blockquote>
+<p>位于android.content.pm中</p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/源码分析//" class="article-tag-list-link color5">源码分析</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/12/Android Launcher3分析——需要了解的概念/">展开全文 >></a>
         </p>
       
 
@@ -1336,7 +1182,7 @@ imm.hideSoftInputFromWindow(edit.getWindowToken(),0);
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 
