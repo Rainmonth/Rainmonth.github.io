@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Android 自定义键盘 | 荏苒追寻个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Android 自定义键盘现在的App里面自定义键盘已经数见不鲜了，今天就来研究下自定义键盘的实现方式。个人觉得自定义键盘可以通过如下几个方面入手。  通过布局堆叠的方式（小白用户） 通过继承Android系统KeyboardView的方式 自定义View（高度定制的键盘）  至于上面三种方式各是具体怎么实现的，客官们别急，带我细细道来。 布局堆叠方式低级方式 继承KeyboardView自定义V">
+  <meta name="description" content="Android 自定义键盘现在的App里面自定义键盘已经数见不鲜了，今天就来研究下自定义键盘的实现方式。个人觉得自定义键盘可以通过如下几个方面入手。  通过布局堆叠的方式（小白用户） 通过继承Android系统KeyboardView的方式 自定义View（高度定制的键盘）  至于上面三种方式各是具体怎么实现的，客官们别急，带我细细道来。 布局堆叠方式直接采用布局堆叠，实现起来很简单，但如果封装的">
 <meta name="keywords" content="Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 自定义键盘">
 <meta property="og:url" content="http://yoursite.com/2017/11/15/Android 自定义键盘/index.html">
 <meta property="og:site_name" content="荏苒追寻个人博客">
-<meta property="og:description" content="Android 自定义键盘现在的App里面自定义键盘已经数见不鲜了，今天就来研究下自定义键盘的实现方式。个人觉得自定义键盘可以通过如下几个方面入手。  通过布局堆叠的方式（小白用户） 通过继承Android系统KeyboardView的方式 自定义View（高度定制的键盘）  至于上面三种方式各是具体怎么实现的，客官们别急，带我细细道来。 布局堆叠方式低级方式 继承KeyboardView自定义V">
-<meta property="og:updated_time" content="2018-01-18T11:07:28.525Z">
+<meta property="og:description" content="Android 自定义键盘现在的App里面自定义键盘已经数见不鲜了，今天就来研究下自定义键盘的实现方式。个人觉得自定义键盘可以通过如下几个方面入手。  通过布局堆叠的方式（小白用户） 通过继承Android系统KeyboardView的方式 自定义View（高度定制的键盘）  至于上面三种方式各是具体怎么实现的，客官们别急，带我细细道来。 布局堆叠方式直接采用布局堆叠，实现起来很简单，但如果封装的">
+<meta property="og:updated_time" content="2018-01-29T02:48:26.210Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 自定义键盘">
-<meta name="twitter:description" content="Android 自定义键盘现在的App里面自定义键盘已经数见不鲜了，今天就来研究下自定义键盘的实现方式。个人觉得自定义键盘可以通过如下几个方面入手。  通过布局堆叠的方式（小白用户） 通过继承Android系统KeyboardView的方式 自定义View（高度定制的键盘）  至于上面三种方式各是具体怎么实现的，客官们别急，带我细细道来。 布局堆叠方式低级方式 继承KeyboardView自定义V">
+<meta name="twitter:description" content="Android 自定义键盘现在的App里面自定义键盘已经数见不鲜了，今天就来研究下自定义键盘的实现方式。个人觉得自定义键盘可以通过如下几个方面入手。  通过布局堆叠的方式（小白用户） 通过继承Android系统KeyboardView的方式 自定义View（高度定制的键盘）  至于上面三种方式各是具体怎么实现的，客官们别急，带我细细道来。 布局堆叠方式直接采用布局堆叠，实现起来很简单，但如果封装的">
   
     <link rel="alternative" href="/atom.xml" title="荏苒追寻个人博客" type="application/atom+xml">
   
@@ -60,8 +60,6 @@
 			<ul>
 			
 				<li><a href="/">主页</a></li>
-	        
-				<li><a href="/tags/随笔/">随笔</a></li>
 	        
 				<li><a href="/tags/Android">Android</a></li>
 	        
@@ -125,8 +123,6 @@
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -141,15 +137,13 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 20%"><a href="/">主页</a></li>
+					<li style="width: 25%"><a href="/">主页</a></li>
 		        
-					<li style="width: 20%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 25%"><a href="/tags/Android">Android</a></li>
 		        
-					<li style="width: 20%"><a href="/tags/Android">Android</a></li>
+					<li style="width: 25%"><a href="/tags/Python">Python</a></li>
 		        
-					<li style="width: 20%"><a href="/tags/Python">Python</a></li>
-		        
-					<li style="width: 20%"><a href="/tags/Java">Java</a></li>
+					<li style="width: 25%"><a href="/tags/Java">Java</a></li>
 		        
 				</ul>
 			</nav>
@@ -191,7 +185,14 @@
 <li>自定义View（高度定制的键盘）</li>
 </ul>
 <p>至于上面三种方式各是具体怎么实现的，客官们别急，带我细细道来。</p>
-<h2 id="布局堆叠方式"><a href="#布局堆叠方式" class="headerlink" title="布局堆叠方式"></a>布局堆叠方式</h2><p>低级方式</p>
+<h2 id="布局堆叠方式"><a href="#布局堆叠方式" class="headerlink" title="布局堆叠方式"></a>布局堆叠方式</h2><p>直接采用布局堆叠，实现起来很简单，但如果封装的好的话，也不是为一种好办法。（注意：使用这种办法实现的时候，一定要尽可能的减少布局的层级。</p>
+<p>对于自定义控件，我们对UI的要求都是相同的，那就是可以定制，那么自定义键盘要求至少实现以下功能：</p>
+<ul>
+<li>键盘整体背景可以自由设置；</li>
+<li>键盘的按键背景可以自由设置；</li>
+<li>键盘支持隐藏、删除功能；</li>
+<li>键盘显示、隐藏动画可以设置；</li>
+</ul>
 <h2 id="继承KeyboardView"><a href="#继承KeyboardView" class="headerlink" title="继承KeyboardView"></a>继承KeyboardView</h2><h2 id="自定义View"><a href="#自定义View" class="headerlink" title="自定义View"></a>自定义View</h2>
       
 
@@ -445,15 +446,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">环境配置</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">前端配置</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
             
             <div class="clearfix"></div>
