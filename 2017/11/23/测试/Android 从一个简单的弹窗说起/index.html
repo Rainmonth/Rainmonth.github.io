@@ -99,25 +99,25 @@
 
 
 
-  <meta name="description" content="#Android Activity启动模式详解 四种启动模式分别是 standard signleTop singleTask singleInstance  设置方式 在AndroidManifest.xml文件中配置，设置示例：​         在代码中动态的设置，相关的Activity Flag有： /**  * 设置后，不会记录在Activity Stack，离开就finish()掉了">
+  <meta name="description" content="Android 从一个简单的弹窗说起 App开发中，或多或少都需要用到弹框，而Android中弹窗的实现有很多种，常见的有Dialog、PopupWindow等，本文先介绍各种形式弹窗的具体实现，然后对他们做一个对比与总结。  具体实现方式Dialog 去掉顶部标题 PopupWindow注意：在弹出的PopupWindow中再显示一个PopupWindow，如在一个 Activity（采用Dia">
 <meta name="keywords" content="Android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android Activity启动模式详解">
-<meta property="og:url" content="http://yoursite.com/2016/08/19/Android Activity启动模式/index.html">
+<meta property="og:title" content="Android 从一个简单的弹窗说起">
+<meta property="og:url" content="http://yoursite.com/2017/11/23/测试/Android 从一个简单的弹窗说起/index.html">
 <meta property="og:site_name" content="荏苒追寻个人博客">
-<meta property="og:description" content="#Android Activity启动模式详解 四种启动模式分别是 standard signleTop singleTask singleInstance  设置方式 在AndroidManifest.xml文件中配置，设置示例：​         在代码中动态的设置，相关的Activity Flag有： /**  * 设置后，不会记录在Activity Stack，离开就finish()掉了">
+<meta property="og:description" content="Android 从一个简单的弹窗说起 App开发中，或多或少都需要用到弹框，而Android中弹窗的实现有很多种，常见的有Dialog、PopupWindow等，本文先介绍各种形式弹窗的具体实现，然后对他们做一个对比与总结。  具体实现方式Dialog 去掉顶部标题 PopupWindow注意：在弹出的PopupWindow中再显示一个PopupWindow，如在一个 Activity（采用Dia">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-01-18T11:07:59.533Z">
+<meta property="og:updated_time" content="2018-01-17T11:47:59.786Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android Activity启动模式详解">
-<meta name="twitter:description" content="#Android Activity启动模式详解 四种启动模式分别是 standard signleTop singleTask singleInstance  设置方式 在AndroidManifest.xml文件中配置，设置示例：​         在代码中动态的设置，相关的Activity Flag有： /**  * 设置后，不会记录在Activity Stack，离开就finish()掉了">
+<meta name="twitter:title" content="Android 从一个简单的弹窗说起">
+<meta name="twitter:description" content="Android 从一个简单的弹窗说起 App开发中，或多或少都需要用到弹框，而Android中弹窗的实现有很多种，常见的有Dialog、PopupWindow等，本文先介绍各种形式弹窗的具体实现，然后对他们做一个对比与总结。  具体实现方式Dialog 去掉顶部标题 PopupWindow注意：在弹出的PopupWindow中再显示一个PopupWindow，如在一个 Activity（采用Dia">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/08/19/Android Activity启动模式/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/11/23/测试/Android 从一个简单的弹窗说起/"/>
 
 
 
@@ -127,7 +127,7 @@
   };
 </script>
 
-  <title>Android Activity启动模式详解 | 荏苒追寻个人博客</title>
+  <title>Android 从一个简单的弹窗说起 | 荏苒追寻个人博客</title>
   
 
 
@@ -312,7 +312,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/08/19/Android Activity启动模式/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/23/测试/Android 从一个简单的弹窗说起/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Randy Zhang">
@@ -329,7 +329,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Android Activity启动模式详解</h1>
+          <h1 class="post-title" itemprop="name headline">Android 从一个简单的弹窗说起</h1>
         
 
         <div class="post-meta">
@@ -341,7 +341,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-19T13:52:36+08:00">2016-08-19</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-23T10:18:30+08:00">2017-11-23</time>
             
 
             
@@ -396,132 +396,52 @@
       
 
       
-        <p>#Android Activity启动模式详解</p>
-<h2 id="四种启动模式分别是"><a href="#四种启动模式分别是" class="headerlink" title="四种启动模式分别是"></a>四种启动模式分别是</h2><ul>
-<li>standard</li>
-<li>signleTop</li>
-<li>singleTask</li>
-<li>singleInstance</li>
-</ul>
-<h2 id="设置方式"><a href="#设置方式" class="headerlink" title="设置方式"></a>设置方式</h2><ol>
-<li>在AndroidManifest.xml文件中配置，设置示例：<br>​    <activity android:name="com.rainmonth.MainActivity" android:launchmode="singleInstance"><br>    </activity></li>
-<li><p>在代码中动态的设置，相关的Activity Flag有：</p>
-<p>/**</p>
-<pre><code> * 设置后，不会记录在Activity Stack，离开就finish()掉了
- */
-Intent.FLAG_ACTIVITY_NO_HISTORY;
-/**
- * 设置后，如果该Activity在栈顶，则该Activity不再重新启动
- */
-Inent.FLAG_ACTIVITY_SINGLE_TOP;    
-/**
- * 比较复杂，后面会详细说明
- */
-Intent.FLAG_ACTIVITY_NEW_TASK;
-/**
- * 设置后，会创建一个Task，并在这个Task中启动一个Activity,该Flag要配置
- * NEW_TASK或者NEW_DOCUMENT来使用单独使用会被忽略，该Flag要慎用（除非
- * 你实现了应用层Launcher）
- */
-Intent.FLAG_ACTIVITY_MULTIPLE_TASK;        
-/**
- * 设置后，且该Activity已经运行于当前task中，那么Activity栈中位于该
- * Activity之上的都将关闭，该Activity将视传递过来的启动自己的intent为
- * 新的intent，接受的方法为onNewIntent()，通常配
- * Intent.FLAG_ACTIVITY_NEW_TASK来用于通知的管理中
- */
-Intent.FLAG_ACTIVITY_CLEAR_TOP;    
-/**
- * 设置后，且该Intent是用于启动一个已经有实例存在与Activity栈的
- * Activity新实例，那么接受该Activity返回结果的目标将会被传递到这个
- * Activity新实例，也就是说这个Activity可以通过setResult()方法来将结果
- * 返回到之前接受返回结果的目标，通俗讲就是新来的也可以和老的上级交互
- */
-Intent.FLAG_ACTIVITY_FORWARD_RESULT;
-Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP;
-Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS;
-Intent.FLAG_ACTIVITY_RETAIN_IN_RECENTS;
-Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT;
-Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED;
-Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY;
-Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET;
-Intent.FLAG_ACTIVITY_NEW_DOCUMENT;
-Intent.FLAG_ACTIVITY_NO_USER_ACTION;
-Intent.FLAG_ACTIVITY_REORDER_TO_FRONT;
-/**
- * 设置后，防止在Activity上应用动画
- */
-Intent.FLAG_ACTIVITY_NO_ANIMATION;
-Intent.FLAG_ACTIVITY_CLEAR_TASK;
-Intent.FLAG_ACTIVITY_TASK_ON_HOME;
-</code></pre></li>
-</ol>
-<p>   设置示例：<br>   ​<br>       Intent intent = new Intent(this, XxxActivity.class);<br>        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);<br>        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);<br>        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);<br>        …<br>        startActivity(intent)</p>
-<p>##四种模式的作用</p>
-<ul>
-<li><p>###standard<br>  默认模式，可以不用写配置。在这个模式下，都会默认创建一个新的实例。因此，在这种<br>  模式下，可以有多个相同的实例，也允许多个相同Activity叠加。例如：</p>
-<pre><code>若我有一个Activity名为A1, 上面有一个按钮可跳转到A1。那么如果我点击按钮，
-便会新启一个Activity A1叠在刚才的A1之上，再点击，又会再新启一个在它之上……
-点back键会依照栈顺序依次退出。
-</code></pre></li>
-<li><p>###singleTop<br>  可以有多个实例，但是不允许多个相同Activity叠加。即，如果Activity在栈顶的时候，<br>  启动相同的Activity，不会创建新的实例，而会调用其onNewIntent方法。例如：</p>
-<pre><code>若我有两个Activity名为B1,B2,两个Activity内容功能完全相同，都有两个按钮可
-以跳到B1或者B2，唯一不同的是B1为standard，B2为singleTop。
-
-若我意图打开的顺序为B1-&gt;B2-&gt;B2，则实际打开的顺序为B1-&gt;B2（
-后一次意图打开B2，实际只调用了前一个的onNewIntent方法）；
-
-若我意图打开的顺序为B1-&gt;B2-&gt;B1-&gt;B2，则实际打开的顺序与意图的一致，
-为B1-&gt;B2-&gt;B1-&gt;B2。
-</code></pre></li>
-</ul>
-<ul>
-<li><p>###singleTask<br>  只有一个实例。在同一个应用程序中启动他的时候，若Activity不存在，则会在当前task<br>  创建一个新的实例，若存在，则会把task中在其之上的其它Activity destroy掉并调用<br>  它的onNewIntent方法。如果是在别的应用程序中启动它，则会新建一个task，并在该<br>  task中启动这个Activity，singleTask允许别的Activity与其在一个task中共存，<br>  也就是说，如果我在这个singleTask的实例中再打开新的Activity，这个新的<br>  Activity还是会在singleTask的实例的task中。例如：</p>
-<pre><code>若我的应用程序中有三个Activity,C1,C2,C3，三个Activity可互相启动，其中
-C2为singleTask模式，那么，无论我在这个程序中如何点击启动，如：
-C1-&gt;C2-&gt;C3-&gt;C2-&gt;C3-&gt;C1-C2，C1,C3可能存在多个实例，但是C2只会存在
-一个，并且这三个Activity都在同一个task里面。
-但是C1-&gt;C2-&gt;C3-&gt;C2-&gt;C3-&gt;C1-C2，这样的操作过程实际应该是如下这样的，
-因为singleTask会把task中在其之上的其它Activity destory掉。
-操作：
-    C1-&gt;C2          
-    C1-&gt;C2-&gt;C3          
-    C1-&gt;C2-&gt;C3-&gt;C2            
-    C1-&gt;C2-&gt;C3-&gt;C2-&gt;C3-&gt;C1             
-    C1-&gt;C2-&gt;C3-&gt;C2-&gt;C3-&gt;C1-C2
-实际：
-    C1-&gt;C2          
-    C1-&gt;C2-&gt;C3          
-    C1-&gt;C2                              
-    C1-&gt;C2-&gt;C3-&gt;C1                               
-    C1-&gt;C2
-
-若是别的应用程序打开C2，则会新启一个task。如别的应用Other中有一个
-activity，taskId为200，从它打开C2，则C2的taskIdI不会为200，例如C2的
-taskId    为201，那么再从C2打开C1、C3，则C2、C3的taskId仍为201。
-
-注意：
-    如果此时你点击home，然后再打开Other，发现这时显示的肯定会是Other应用
-    中的内容，而不会是我们应用中的C1 C2 C3中的其中一个。
-</code></pre></li>
-</ul>
-<ul>
-<li><p>###singleInstance<br>  只有一个实例，并且这个实例独立运行在一个task中，这个task只有这个实例，不允许有<br>  别的Activity存在。例如：</p>
-<pre><code>程序有三个Activity:D1,D2,D3，三个Activity可互相启动，其中D2为
-singleInstance模式。那么程序从
-D1开始运行，假设D1的taskId为200，那么从D1启动D2时，
-D2会新启动一个task，即D2与D1不在一个task中
-运行。假设D2的taskId为201，再从D2启动D3时，
-D3的taskId为200，也就是说它被压到了D1启动的任务栈中。
-
-若是在别的应用程序打开D2，假设Other的taskId为200，
-打开D2，D2会新建一个task运行，假设它的taskId为
-201，那么如果这时再从D2启动D1或者D3，则又会再创建
-一个task，因此，若操作步骤为other-&gt;D2-&gt;D1，这过
-程就涉及到了3个task了。
-</code></pre></li>
-</ul>
-
+        <h1 id="Android-从一个简单的弹窗说起"><a href="#Android-从一个简单的弹窗说起" class="headerlink" title="Android 从一个简单的弹窗说起"></a>Android 从一个简单的弹窗说起</h1><blockquote>
+<p>App开发中，或多或少都需要用到弹框，而Android中弹窗的实现有很多种，常见的有Dialog、PopupWindow等，本文先介绍各种形式弹窗的具体实现，然后对他们做一个对比与总结。</p>
+</blockquote>
+<h2 id="具体实现方式"><a href="#具体实现方式" class="headerlink" title="具体实现方式"></a>具体实现方式</h2><h3 id="Dialog"><a href="#Dialog" class="headerlink" title="Dialog"></a>Dialog</h3><p> 去掉顶部标题</p>
+<h3 id="PopupWindow"><a href="#PopupWindow" class="headerlink" title="PopupWindow"></a>PopupWindow</h3><p><strong><em>注意：在弹出的PopupWindow中再显示一个PopupWindow</em></strong>，如在一个</p>
+<h3 id="Activity（采用Dialog-style）"><a href="#Activity（采用Dialog-style）" class="headerlink" title="Activity（采用Dialog style）"></a>Activity（采用Dialog style）</h3><h3 id="View的显示与隐藏"><a href="#View的显示与隐藏" class="headerlink" title="View的显示与隐藏"></a>View的显示与隐藏</h3><h2 id="各种实现方式的优缺点"><a href="#各种实现方式的优缺点" class="headerlink" title="各种实现方式的优缺点"></a>各种实现方式的优缺点</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">表现</th>
+<th>Dialog</th>
+<th>PopupWindow</th>
+<th>Activity（采用Dialog style）</th>
+<th>View的显示与隐藏</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">灵活性</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">定制性</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">代码量</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="Dialog-1"><a href="#Dialog-1" class="headerlink" title="Dialog"></a>Dialog</h3><h3 id="PopupWindow-1"><a href="#PopupWindow-1" class="headerlink" title="PopupWindow"></a>PopupWindow</h3><h3 id="Activity（采用Dialog-style）-1"><a href="#Activity（采用Dialog-style）-1" class="headerlink" title="Activity（采用Dialog style）"></a>Activity（采用Dialog style）</h3><h3 id="View的显示与隐藏-1"><a href="#View的显示与隐藏-1" class="headerlink" title="View的显示与隐藏"></a>View的显示与隐藏</h3>
       
     </div>
 
@@ -554,14 +474,18 @@ D3的taskId为200，也就是说它被压到了D1启动的任务栈中。
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/11/20/Android Kotlin 拾遗/" rel="next" title="Android Kotlin 拾遗">
+                <i class="fa fa-chevron-left"></i> Android Kotlin 拾遗
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/08/19/Android Service详解/" rel="prev" title="Android Service详解">
-                Android Service详解 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/11/23/Android 从一个简单的弹窗说起/" rel="prev" title="Android 从一个简单的弹窗说起">
+                Android 从一个简单的弹窗说起 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -737,7 +661,7 @@ D3的taskId为200，也就是说它被压到了D1启动的任务栈中。
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#四种启动模式分别是"><span class="nav-number">1.</span> <span class="nav-text">四种启动模式分别是</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置方式"><span class="nav-number">2.</span> <span class="nav-text">设置方式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Android-从一个简单的弹窗说起"><span class="nav-number">1.</span> <span class="nav-text">Android 从一个简单的弹窗说起</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#具体实现方式"><span class="nav-number">1.1.</span> <span class="nav-text">具体实现方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dialog"><span class="nav-number">1.1.1.</span> <span class="nav-text">Dialog</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PopupWindow"><span class="nav-number">1.1.2.</span> <span class="nav-text">PopupWindow</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Activity（采用Dialog-style）"><span class="nav-number">1.1.3.</span> <span class="nav-text">Activity（采用Dialog style）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#View的显示与隐藏"><span class="nav-number">1.1.4.</span> <span class="nav-text">View的显示与隐藏</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#各种实现方式的优缺点"><span class="nav-number">1.2.</span> <span class="nav-text">各种实现方式的优缺点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dialog-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">Dialog</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PopupWindow-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">PopupWindow</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Activity（采用Dialog-style）-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">Activity（采用Dialog style）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#View的显示与隐藏-1"><span class="nav-number">1.2.4.</span> <span class="nav-text">View的显示与隐藏</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
