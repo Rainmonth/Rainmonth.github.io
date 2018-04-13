@@ -99,18 +99,18 @@
 
 
 
-  <meta name="description" content="#Android Service详解 ###1. 调用startService() 和 bindService()后，要销毁service必须同时调用stopService()和unbindService()方法才可以，因为：  点击Stop Service按钮只会让Service停止； 点击Unbind Service按钮只会让Service和Activity解除关联； ​一个Service必须">
+  <meta name="description" content="#Android Service详解 ###1. 调用startService() 和 bindService()后，要销毁service必须同时调用stopService()和unbindService()方法才可以，因为：  点击Stop Service按钮只会让Service停止；  点击Unbind Service按钮只会让Service和Activity解除关联； ​一个Service必">
 <meta name="keywords" content="Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android Service详解">
 <meta property="og:url" content="http://yoursite.com/2016/08/19/Android Service详解/index.html">
 <meta property="og:site_name" content="荏苒追寻个人博客">
-<meta property="og:description" content="#Android Service详解 ###1. 调用startService() 和 bindService()后，要销毁service必须同时调用stopService()和unbindService()方法才可以，因为：  点击Stop Service按钮只会让Service停止； 点击Unbind Service按钮只会让Service和Activity解除关联； ​一个Service必须">
+<meta property="og:description" content="#Android Service详解 ###1. 调用startService() 和 bindService()后，要销毁service必须同时调用stopService()和unbindService()方法才可以，因为：  点击Stop Service按钮只会让Service停止；  点击Unbind Service按钮只会让Service和Activity解除关联； ​一个Service必">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-01-17T12:20:36.542Z">
+<meta property="og:updated_time" content="2018-04-13T05:12:50.278Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android Service详解">
-<meta name="twitter:description" content="#Android Service详解 ###1. 调用startService() 和 bindService()后，要销毁service必须同时调用stopService()和unbindService()方法才可以，因为：  点击Stop Service按钮只会让Service停止； 点击Unbind Service按钮只会让Service和Activity解除关联； ​一个Service必须">
+<meta name="twitter:description" content="#Android Service详解 ###1. 调用startService() 和 bindService()后，要销毁service必须同时调用stopService()和unbindService()方法才可以，因为：  点击Stop Service按钮只会让Service停止；  点击Unbind Service按钮只会让Service和Activity解除关联； ​一个Service必">
 
 
 
@@ -399,10 +399,15 @@
         <p>#Android Service详解</p>
 <p>###1. 调用startService() 和 bindService()后，要销毁service必须<strong><em>同时调用</em></strong>stopService()和unbindService()方法才可以，因为：</p>
 <ul>
-<li>点击Stop Service按钮只会让Service停止；</li>
-<li><p>点击Unbind Service按钮只会让Service和Activity解除关联；</p>
-<p>​<br><strong><em>一个Service必须要在既没有和任何Activity关联又处理停止状态的时候才会被销毁；</em></strong><br>###2. Service和Thread的关系：<strong><em>没有半毛钱关系</em></strong></p>
+<li><p>点击Stop Service按钮只会让Service停止；</p>
 </li>
+<li><p>点击Unbind Service按钮只会让Service和Activity解除关联；</p>
+<p>​<br><strong><em>一个Service必须要在既没有和任何Activity关联又处理停止状态的时候才会被销毁；</em></strong></p>
+<a id="more"></a>
+</li>
+</ul>
+<p>###2. Service和Thread的关系：<strong><em>没有半毛钱关系</em></strong></p>
+<ul>
 <li>Thread，用于开启一个子线程，在里面执行一些耗时操作就不会阻塞主线程的运行；</li>
 <li>Service，最初的理解是用来处理一些“后台”任务的，就认为一些比较耗时的操作就可以放在这里<br>（后台任务嘛），这就产生了混淆了；</li>
 </ul>

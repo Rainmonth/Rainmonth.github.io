@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="荏苒追寻个人博客">
 <meta property="og:description" content="Android View事件传递基础知识 所有的Touch事件都被封装成了MotionEvent对象，包括Touch的位置、时间、历史记录以及第几个手指（多指触摸）等。 事件的类型分为ACTION_DOWN，ACTION_UP，ACTION_MOVE，ACTION_POINTER_DOWN，ACTION_POINTER_UP，ACTION_CANCEL，每个事件都是以ACTION_DOWN开始AC">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-01-17T12:20:46.007Z">
+<meta property="og:updated_time" content="2018-04-13T05:13:08.397Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android View事件传递">
 <meta name="twitter:description" content="Android View事件传递基础知识 所有的Touch事件都被封装成了MotionEvent对象，包括Touch的位置、时间、历史记录以及第几个手指（多指触摸）等。 事件的类型分为ACTION_DOWN，ACTION_UP，ACTION_MOVE，ACTION_POINTER_DOWN，ACTION_POINTER_UP，ACTION_CANCEL，每个事件都是以ACTION_DOWN开始AC">
@@ -406,6 +406,7 @@
 </ul>
 </li>
 </ol>
+<a id="more"></a>
 <h2 id="传递流程"><a href="#传递流程" class="headerlink" title="传递流程"></a>传递流程</h2><ol>
 <li>事件从Activity.dispatchTouchEvent()开始传递，<strong><em>只要事件没被拦截</em></strong>，事件都会从最上层的View（ViewGroup）开始往下（子View）传递。子View可以通过onTouchEvent()对事件进行处理。</li>
 <li>事件由父View（ViewGroup）传递给子View，ViewGroup可以通过onInterceptTouchEvent()对事件做拦截，停止其往下传递。</li>

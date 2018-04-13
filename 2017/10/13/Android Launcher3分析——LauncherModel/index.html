@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="荏苒追寻个人博客">
 <meta property="og:description" content="Android Launcher3分析——LauncherModel接上篇Android Launcher3分析——开篇，上篇提到LauncherModel是Launcher3处理数据的核心，这当然不是瞎掰的，我们用具体的代码分析来予以佐证。 LauncherModel本身继承自BroadcastReceiver，实现了OnAppsChangedCallbackCompat接口，该接口在Launc">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-13T03:20:13.559Z">
+<meta property="og:updated_time" content="2018-04-13T05:12:07.171Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android Launcher3分析——LauncherModel">
 <meta name="twitter:description" content="Android Launcher3分析——LauncherModel接上篇Android Launcher3分析——开篇，上篇提到LauncherModel是Launcher3处理数据的核心，这当然不是瞎掰的，我们用具体的代码分析来予以佐证。 LauncherModel本身继承自BroadcastReceiver，实现了OnAppsChangedCallbackCompat接口，该接口在Launc">
@@ -408,6 +408,7 @@
 <blockquote>
 <p><strong>保持Launcher的内存状态</strong>。在内存静态区应该只能有一个LauncherModel的实例，同时它还为Launcher提供了一系列的<strong>更新数据库的Api</strong>。</p>
 </blockquote>
+<a id="more"></a>
 <h2 id="内部类或接口"><a href="#内部类或接口" class="headerlink" title="内部类或接口"></a>内部类或接口</h2><h3 id="Callbacks（接口）"><a href="#Callbacks（接口）" class="headerlink" title="Callbacks（接口）"></a>Callbacks（接口）</h3><p>该接口定义了一些绑定数据时的具体方法，由Launcher实现，在LauncherModel中调用。</p>
 <h3 id="ItemInfoFilter（接口）"><a href="#ItemInfoFilter（接口）" class="headerlink" title="ItemInfoFilter（接口）"></a>ItemInfoFilter（接口）</h3><p>ItemInfo过滤器，过滤掉不符合条件的ItemInfo</p>
 <h3 id="LoaderTask（实现了Runnable接口）"><a href="#LoaderTask（实现了Runnable接口）" class="headerlink" title="LoaderTask（实现了Runnable接口）"></a>LoaderTask（实现了Runnable接口）</h3><p>核心内部类，主要任务负责加载数据（workspace、all apps）和绑定数据（workspace、all apps）</p>

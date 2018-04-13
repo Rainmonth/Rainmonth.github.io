@@ -405,15 +405,19 @@
 
       
         
-          
-            <h1 id="学习Launcher需要了解的概念"><a href="#学习Launcher需要了解的概念" class="headerlink" title="学习Launcher需要了解的概念"></a>学习Launcher需要了解的概念</h1><h2 id="ComponentName"><a href="#ComponentName" class="headerlink" title="ComponentName"></a>ComponentName</h2><blockquote>
+          <h1 id="学习Launcher需要了解的概念"><a href="#学习Launcher需要了解的概念" class="headerlink" title="学习Launcher需要了解的概念"></a>学习Launcher需要了解的概念</h1><h2 id="ComponentName"><a href="#ComponentName" class="headerlink" title="ComponentName"></a>ComponentName</h2><blockquote>
 <p>位于android.content中</p>
 </blockquote>
 <h2 id="LauncherApps"><a href="#LauncherApps" class="headerlink" title="LauncherApps"></a>LauncherApps</h2><blockquote>
 <p>位于android.content.pm中</p>
 </blockquote>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/10/12/Android Launcher3分析——需要了解的概念/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -552,9 +556,14 @@
 
       
         
-          
-            <h1 id="Android-ContentProvider和ContentResolver的使用"><a href="#Android-ContentProvider和ContentResolver的使用" class="headerlink" title="Android ContentProvider和ContentResolver的使用"></a>Android ContentProvider和ContentResolver的使用</h1>
-          
+          <h1 id="Android-ContentProvider和ContentResolver的使用"><a href="#Android-ContentProvider和ContentResolver的使用" class="headerlink" title="Android ContentProvider和ContentResolver的使用"></a>Android ContentProvider和ContentResolver的使用</h1>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/10/11/Android ContentProvider和ContentResolver的使用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -693,45 +702,17 @@
 
       
         
-          
-            <h1 id="Android-震动相关实现"><a href="#Android-震动相关实现" class="headerlink" title="Android 震动相关实现"></a>Android 震动相关实现</h1><p>[TOC]</p>
+          <h1 id="Android-震动相关实现"><a href="#Android-震动相关实现" class="headerlink" title="Android 震动相关实现"></a>Android 震动相关实现</h1><p>[TOC]</p>
 <p>Android中的震动可以通过多种方法实现，其中包括使用Vibrate类和HapticFeedback类，本文主要介绍通过这两个类来实现震动的方式。</p>
 <h2 id="Vibrator"><a href="#Vibrator" class="headerlink" title="Vibrator"></a>Vibrator</h2><p>震动属于系统服务，获取Vibrator示例的方式如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mVibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);</span><br></pre></td></tr></table></figure>
-<h3 id="震动效果VibrateEffects（API-gt-26才可使用）"><a href="#震动效果VibrateEffects（API-gt-26才可使用）" class="headerlink" title="震动效果VibrateEffects（API&gt;=26才可使用）"></a>震动效果VibrateEffects（API&gt;=26才可使用）</h3><p>VibrateEffects类用来描述一次震动效果，常见的效果有一下两种：</p>
-<ul>
-<li>one shot vibration，只震动一次，通过VibrationEffect的<code>createOneShot</code>方法创建，在API&lt;26时，对应Vibrator下的<code>vibrate(long milliseconds)</code>方法；</li>
-<li>wave form vibration，周期性震动，通过VibrationEffect的<code>createWaveform</code>方法创建，在API&lt;26时，对应Vibrator下的<code>vibrate(long[] pattern, int repeat)</code>方法；</li>
-</ul>
-<blockquote>
-<p><strong>NOTE</strong>具体参数参见源码</p>
-</blockquote>
-<h3 id="取消震动"><a href="#取消震动" class="headerlink" title="取消震动"></a>取消震动</h3><blockquote>
-<p>调用Vibrator下的<code>cancel()</code>即可取消震动，如果震动不取消的话，只要进程没有关闭，会一直震动</p>
-</blockquote>
-<h2 id="HapticFeedback"><a href="#HapticFeedback" class="headerlink" title="HapticFeedback"></a>HapticFeedback</h2><h3 id="系统控件震动反馈效果"><a href="#系统控件震动反馈效果" class="headerlink" title="系统控件震动反馈效果"></a>系统控件震动反馈效果</h3><p>Android 好多系统应用在长按某个空间（如Button）时会有一个震动反馈，看如下的代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">btnSystemFeedback.setOnLongClickListener(<span class="keyword">new</span> View.OnLongClickListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onLongClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">                Toast.makeText(HapticFeedbackActivity.<span class="keyword">this</span>,<span class="string">"长按点击"</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line"><span class="comment">//                return false;// 返回false时，是没有长按震动反馈的</span></span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;<span class="comment">// 返回true时，有震动反馈</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
-<p>上面的代码在onLongClick返回true的时候，有震动反馈；返回false的时候，没有震动反馈。那么查看调用onLongClick的地方，最终定位到View的<code>performLongClickInternal(float x, float y)</code>方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">performLongClickInternal</span><span class="params">(<span class="keyword">float</span> x, <span class="keyword">float</span> y)</span> </span>&#123;</span><br><span class="line">        sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_LONG_CLICKED);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">boolean</span> handled = <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">final</span> ListenerInfo li = mListenerInfo;</span><br><span class="line">        <span class="keyword">if</span> (li != <span class="keyword">null</span> &amp;&amp; li.mOnLongClickListener != <span class="keyword">null</span>) &#123;</span><br><span class="line">            handled = li.mOnLongClickListener.onLongClick(View.<span class="keyword">this</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (!handled) &#123;</span><br><span class="line">            <span class="keyword">final</span> <span class="keyword">boolean</span> isAnchored = !Float.isNaN(x) &amp;&amp; !Float.isNaN(y);</span><br><span class="line">            handled = isAnchored ? showContextMenu(x, y) : showContextMenu();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> ((mViewFlags &amp; TOOLTIP) == TOOLTIP) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!handled) &#123;</span><br><span class="line">                handled = showLongClickTooltip((<span class="keyword">int</span>) x, (<span class="keyword">int</span>) y);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (handled) &#123;</span><br><span class="line">            performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> handled;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>上面的代码中<code>performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)</code>就是触发震动反馈的，它的执行条件是handled为true，所以冬onLongClick返回为true时就会触发震动反馈，那么可不可以手动触发震动反馈呢？往下看。</p>
-<h3 id="手动触发震动反馈效果"><a href="#手动触发震动反馈效果" class="headerlink" title="手动触发震动反馈效果"></a>手动触发震动反馈效果</h3><p>从上面的分析可以看出，我们可以手动调用<code>performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)</code>方法来触发震动反馈效果，看下面代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">btnUserFeedback.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">                v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
-<p>添加完上面代码后，也可触发震动效果。看看<code>performHapticFeedback(int feedbackConstants)</code>的源码，最终调用同名重载函数<code>performHapticFeedback(int feedbackConstants, int flags)</code>，其实现如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * BZZZTT!!1!</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * &lt;p&gt;Like &#123;<span class="doctag">@link</span> #performHapticFeedback(int)&#125;, with additional options.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> feedbackConstant One of the constants defined in</span></span><br><span class="line"><span class="comment">     * &#123;<span class="doctag">@link</span> HapticFeedbackConstants&#125;</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> flags Additional flags as per &#123;<span class="doctag">@link</span> HapticFeedbackConstants&#125;.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">performHapticFeedback</span><span class="params">(<span class="keyword">int</span> feedbackConstant, <span class="keyword">int</span> flags)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (mAttachInfo == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//noinspection SimplifiableIfStatement</span></span><br><span class="line">        <span class="keyword">if</span> ((flags &amp; HapticFeedbackConstants.FLAG_IGNORE_VIEW_SETTING) == <span class="number">0</span></span><br><span class="line">                &amp;&amp; !isHapticFeedbackEnabled()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> mAttachInfo.mRootCallbacks.performHapticFeedback(feedbackConstant,</span><br><span class="line">                (flags &amp; HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING) != <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>从上面可以看到，在不考虑flags参数的情况下，如果要想有震动反馈效果，<code>isHapticFeedbackEnabled()</code>必须返回true，但考虑flags时，在其返回为false的情况下，如果flags的值设置为<code>HapticFeedbackConstants.FLAG_IGNORE_VIEW_SETTING</code>，<strong>同样可以出发震动效果</strong>。还可以通过设置flags为<code>`HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING</code>，<strong>即使用户关闭了系统的震动反馈</strong>，同样会有效果，不过不建议这样使用。</p>
-<p>看代码，这样设置，即使关闭了Button的震动反馈效果（设置<code>android:hapticFeedbackEnabled=&quot;false&quot;</code>)，同样会有震动：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> Button btnUserFeedback = findViewById(R.id.btn_user_feedback);</span><br><span class="line">        btnUserFeedback.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line"><span class="comment">//                v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);</span></span><br><span class="line">                </span><br><span class="line">                v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, HapticFeedbackConstants.FLAG_IGNORE_VIEW_SETTING);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
-<p>这样设置，即使用户关闭了系统的震动反馈效果，同样会有震动：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Button btnUserFeedback = findViewById(R.id.btn_user_feedback);</span><br><span class="line">        btnUserFeedback.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line"><span class="comment">//                v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);</span></span><br><span class="line"></span><br><span class="line">                v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
-<h2 id="震动反馈常量"><a href="#震动反馈常量" class="headerlink" title="震动反馈常量"></a>震动反馈常量</h2><p>震动反馈常量在<code>HapticFeedbackConstants</code>类中定义，比较重要的是如下几个：</p>
-<ul>
-<li><code>LONG_PRESS</code>，长按</li>
-<li><code>FLAG_IGNORE_VIEW_SETTING</code>，忽略View的限制</li>
-<li><code>FLAG_IGNORE_GLOBAL_SETTING</code>，忽略系统的限制</li>
-</ul>
-<p>本文完，本文源码请<a href="https://github.com/Rainmonth/VibrateHapticFeedbackDemo" target="_blank" rel="noopener">点这</a></p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/10/11/Android 震动反馈（HapticFeedback）/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -870,34 +851,14 @@
 
       
         
-          
-            <h1 id="Android-进阶面试题"><a href="#Android-进阶面试题" class="headerlink" title="Android 进阶面试题"></a>Android 进阶面试题</h1><h2 id="1-如下在activity的onCreate-里开一个子线程更新UI，可以运行吗？"><a href="#1-如下在activity的onCreate-里开一个子线程更新UI，可以运行吗？" class="headerlink" title="1.如下在activity的onCreate()里开一个子线程更新UI，可以运行吗？"></a>1.如下在activity的onCreate()里开一个子线程更新UI，可以运行吗？</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">private</span> TextView tvText;  </span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);  </span><br><span class="line">        setContentView(R.layout.activity_main);  </span><br><span class="line">        tvText = (TextView) findViewById(R.id.main_tv);  </span><br><span class="line">        <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;  </span><br><span class="line">            <span class="meta">@Override</span>  </span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">                <span class="keyword">try</span> &#123;  </span><br><span class="line">                    Thread.sleep(<span class="number">200</span>);  </span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;  </span><br><span class="line">                    e.printStackTrace();  </span><br><span class="line">                &#125;  </span><br><span class="line">                tvText.setText(<span class="string">"OtherThread"</span>);  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;).start();  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>结果：可以运行。</p>
-<p>原因如下</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">ViewRootImpl</span> <span class="keyword">implements</span> <span class="title">ViewParent</span>,  </span></span><br><span class="line"><span class="class">        <span class="title">View</span>.<span class="title">AttachInfo</span>.<span class="title">Callbacks</span>, <span class="title">HardwareRenderer</span>.<span class="title">HardwareDrawCallbacks</span> </span>&#123;  </span><br><span class="line">    <span class="comment">// 省去海量代码…………………………  </span></span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">checkThread</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">if</span> (mThread != Thread.currentThread()) &#123;  </span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> CalledFromWrongThreadException(  </span><br><span class="line">                    <span class="string">"Only the original thread that created a view hierarchy can touch its views."</span>);  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="comment">// 省去巨量代码……………………  </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>不能更新ui是因为ViewRootImpl的checkThread()会检查，而ViewRootImpl是在onResume()方法里创建。在哦你Creat()里还没有创建ViewRootImpl，所以不会抛出异常。如果耗时的话，才会抛出异常。</p>
-<ol>
-<li><p>Activity的onCreate方法有两个重载，二者的作用分别是什么？</p>
-<ul>
-<li><p><code>onCreate(Bundle savedInstanceState)</code></p>
-<p>一般情况下调用的是这个方法</p>
-</li>
-<li><p><code>onCreate(Bundle savedInstanceState, PersistableBundle persistentState)</code></p>
-<p>当创建的Activity的persistableMode属性值为persistAcrossReboots时，调用这个方法，二者作用相同</p>
-</li>
-</ul>
-</li>
-</ol>
-<ol>
-<li>使用ButterKnife时，若布局里面包含了include布局，并且我们还为include的布局设置了id时，这时候我们使用ButterKnife要注意，直接利用Android Studio的ButterKnife插件会导致问题，就是include的布局中的控件会找不到，因为多了include这一层id。</li>
-<li>使用过design包么，遇到过什么问题？<ul>
-<li>在使用TabLayout + ViewPager的时候，若ViewPager对应的Fragment中没有内容，滑动的时候，tabLayout的indicator会出现卡顿的现象</li>
-<li>若上面对应的布局的跟布局是ConstraintLayout，那么在ViewPager的Fragment跟布局也要设置成ConstraintLayout，不然内容就显示不出来</li>
-</ul>
-</li>
-</ol>
-
-          
+          <h1 id="Android-进阶面试题"><a href="#Android-进阶面试题" class="headerlink" title="Android 进阶面试题"></a>Android 进阶面试题</h1><h2 id="1-如下在activity的onCreate-里开一个子线程更新UI，可以运行吗？"><a href="#1-如下在activity的onCreate-里开一个子线程更新UI，可以运行吗？" class="headerlink" title="1.如下在activity的onCreate()里开一个子线程更新UI，可以运行吗？"></a>1.如下在activity的onCreate()里开一个子线程更新UI，可以运行吗？</h2>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/10/10/Android 进阶面试题/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1036,9 +997,14 @@
 
       
         
-          
-            <h1 id="Android-组件化开发实践"><a href="#Android-组件化开发实践" class="headerlink" title="Android 组件化开发实践"></a>Android 组件化开发实践</h1>
-          
+          <h1 id="Android-组件化开发实践"><a href="#Android-组件化开发实践" class="headerlink" title="Android 组件化开发实践"></a>Android 组件化开发实践</h1>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/09/27/Android 组件化开发实践/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1177,8 +1143,7 @@
 
       
         
-          
-            <h1 id="Android-adb学习"><a href="#Android-adb学习" class="headerlink" title="Android adb学习"></a>Android adb学习</h1><h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><blockquote>
+          <h1 id="Android-adb学习"><a href="#Android-adb学习" class="headerlink" title="Android adb学习"></a>Android adb学习</h1><h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><blockquote>
 <p>adb，指的是Android Debug Bridge，即Android调试桥，顾名思义，和Android调试有莫大的关系。</p>
 </blockquote>
 <h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><ul>
@@ -1188,66 +1153,13 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=$&#123;PATH&#125;:/Users/RandyZhang/Library/Android/sdk/platform-tools</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h2 id="具体使用"><a href="#具体使用" class="headerlink" title="具体使用"></a>具体使用</h2><p>运行如下</p>
-<h3 id="全局配置选项"><a href="#全局配置选项" class="headerlink" title="全局配置选项"></a>全局配置选项</h3><ul>
-<li><p>-a，使用该选项将监听所有的网络接口，而不仅仅是localhost；</p>
-</li>
-<li><p>-d，使用USB设备（即真机设备，当连有多个设备时将报错，因为不知道到底该用哪个）</p>
-</li>
-<li><p>-e，使用TCP/IP设备（即模拟器设备，同上多个设备将报错）</p>
-</li>
-<li><p>-s SERIAL，使用使用给定的序列号设备（序列号唯一，多个设备不会报错，会覆盖$ANDROID_SERIAL环境变量），使用如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb -s SERIAL command</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>-p PRODUCT，指定输出apk的名字或输出路径（会覆盖$ANDROID_PRODUCT_OUT环境变量），使用如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb -p name(or path) command</span><br></pre></td></tr></table></figure>
-<p><strong><em>注意：这里是小写的p</em></strong></p>
-</li>
-<li><p>-H，adb server的名称，默认localhost；</p>
-</li>
-<li><p>-P，adb server的端口号，默认5037；</p>
-</li>
-<li><p>-L SOCKET，在指定的socket上监听adb server，默认tcp:=localhost:5037;</p>
-</li>
-</ul>
-<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><h4 id="devices-l"><a href="#devices-l" class="headerlink" title="devices[-l]"></a>devices[-l]</h4><p> 列出已连接的设备（-l时输出详细结果）</p>
-<h4 id="help"><a href="#help" class="headerlink" title="help"></a>help</h4><p>查看帮助，如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb help 查看所有帮助</span><br><span class="line">adb help command 查看commond命令的帮助</span><br></pre></td></tr></table></figure>
-<h4 id="version"><a href="#version" class="headerlink" title="version"></a>version</h4><p>查看adb 版本号</p>
-<h3 id="网络相关命令"><a href="#网络相关命令" class="headerlink" title="网络相关命令"></a>网络相关命令</h3><h4 id="connect-disconnect"><a href="#connect-disconnect" class="headerlink" title="connect/disconnect"></a>connect/disconnect</h4><ul>
-<li>adb connect 192.168.56.101:5555， 连接tcp/ip为192.168.56.101:5555的设备；</li>
-<li>adb disconnect 192.168.56.101:5555，断开192.168.56.101:5555的连接；</li>
-</ul>
-<h4 id="forward"><a href="#forward" class="headerlink" title="forward"></a>forward</h4><p>todo…</p>
-<h4 id="reverse"><a href="#reverse" class="headerlink" title="reverse"></a>reverse</h4><p>todo…</p>
-<h3 id="文件传输"><a href="#文件传输" class="headerlink" title="文件传输"></a>文件传输</h3><h3 id="shell命令"><a href="#shell命令" class="headerlink" title="shell命令"></a>shell命令</h3><p>通用使用方法：adb [-d|-e|-s serial_number] shell shell_command</p>
-<ul>
-<li>adb shell am        am(activity manager)<ul>
-<li>adb shell pm     pm(package manager)</li>
-</ul>
-</li>
-<li>adb shell pm list permissions  列出权限组</li>
-</ul>
-<h3 id="app安装／卸载"><a href="#app安装／卸载" class="headerlink" title="app安装／卸载"></a>app安装／卸载</h3><h3 id="备份／恢复"><a href="#备份／恢复" class="headerlink" title="备份／恢复"></a>备份／恢复</h3><h3 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h3><ul>
-<li>adb bugreport [PATH]，将bug报告输出到PATH指定位置</li>
-<li>adb jdwp，列出所有持有JDWP（Java 平台调试体系结构）的进程id</li>
-<li>adb logcat，logcat相关配置</li>
-</ul>
-<h3 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h3><h3 id="脚本命令"><a href="#脚本命令" class="headerlink" title="脚本命令"></a>脚本命令</h3><h3 id="内部调试"><a href="#内部调试" class="headerlink" title="内部调试"></a>内部调试</h3><ul>
-<li>adb start-server    开启服务器<ul>
-<li>adb kill-server关闭服务器</li>
-</ul>
-</li>
-<li>adb reconnect         服务器端的重连</li>
-<li>adb reconnect device 设备端的重连</li>
-</ul>
-<h2 id="相关环境变量"><a href="#相关环境变量" class="headerlink" title="相关环境变量"></a>相关环境变量</h2><p>例如：<br>    1、推送 到设备号为5LM7N16531010541的设备上<br>    adb -s 5LM7N16531010541 push /Users/RandyZhang/AndroidStudioProjects/tinker/tinker-sample-android/app/build/outputs/apk/app-debug.apk /data/local/tmp/tinker.sample.android</p>
-<pre><code>2、安装(-r 替换已存在的应用)
-adb -s 5LM7N16531010541 shell pm install -r &quot;/data/local/tmp/tinker.sample.android&quot;
-</code></pre><p>adb push <local apk="" file="" path=""> <remote apk="" file="" path=""> 将本地apk文件推送到模拟器（或手机）上</remote></local></p>
-<p>例如：<br>    1、推送<br>    adb push /Users/RandyZhang/AndroidStudioProjects/tinker/tinker-sample-android/app/build/outputs/apk/app-debug.apk /data/local/tmp/tinker.sample.android<br>    2、安装(-r 替换已存在的应用)<br>    adb shell pm install -r “/data/local/tmp/tinker.sample.android”</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/09/26/Android adb学习/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1386,8 +1298,7 @@ adb -s 5LM7N16531010541 shell pm install -r &quot;/data/local/tmp/tinker.sample.
 
       
         
-          
-            <h1 id="Android中的Handler机制"><a href="#Android中的Handler机制" class="headerlink" title="Android中的Handler机制"></a>Android中的Handler机制</h1><h2 id="Handler"><a href="#Handler" class="headerlink" title="Handler"></a>Handler</h2><h3 id="Handler初识"><a href="#Handler初识" class="headerlink" title="Handler初识"></a>Handler初识</h3><p>先看源码中关于handler的解释：</p>
+          <h1 id="Android中的Handler机制"><a href="#Android中的Handler机制" class="headerlink" title="Android中的Handler机制"></a>Android中的Handler机制</h1><h2 id="Handler"><a href="#Handler" class="headerlink" title="Handler"></a>Handler</h2><h3 id="Handler初识"><a href="#Handler初识" class="headerlink" title="Handler初识"></a>Handler初识</h3><p>先看源码中关于handler的解释：</p>
 <blockquote>
 <ol>
 <li>Handler允许你发送和处理与<strong><em>线程消息队列相关联的</em></strong>Message和Runnable对象；</li>
@@ -1395,65 +1306,13 @@ adb -s 5LM7N16531010541 shell pm install -r &quot;/data/local/tmp/tinker.sample.
 <li>当在一个线程中创建Handler对象时，创建的Handler对象就和创建它的线程的消息队列绑定了，之后它就开始工作了（调度消息）</li>
 </ol>
 </blockquote>
-<h3 id="主要作用"><a href="#主要作用" class="headerlink" title="主要作用"></a>主要作用</h3><ul>
-<li>调度消息——调度消息和Runnable对象以使其在将来某个时间点执行；</li>
-<li>线程通信——将一个action加入到另一个线程的消息队列；</li>
-<li>定时触发操作——通过sendMessageAtTime、postAtTime等方法来实现；</li>
-</ul>
-<h3 id="消息调度方式"><a href="#消息调度方式" class="headerlink" title="消息调度方式"></a>消息调度方式</h3><ul>
-<li><p>send方式</p>
-<p>即利用sendMessage、sendMessageAtTime和sendMessageDelayed等方法，这些方法将一个<strong><em>携带了数据信息的</em></strong>、<strong><em>会被Handler的handlerMessage方法处理的</em></strong>Message对象加入到消息队列（这种情况要求你定义一个Handler的子类以自己实现handlerMessage方法）。</p>
-</li>
-<li><p>post方式</p>
-<p>即利用post、postAtTime和postDelayed等方法，这些方法将可执行的Runnable对象加入到线程的消息对列中以被执行。</p>
-</li>
-</ul>
-<h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><p>当一<strong><em>个应用（Application）的进程</em></strong>被创建时，它的主线程（UI线程）就致力于运行一个<strong><em>管理应用级对象（activities、broadcast、receivers等）和应用级对象创建的窗口的</em></strong>消息队列。你可以创建自己的线程，然后通过Handler来与主线程（UI线程）进行通信。具体实现方式就是在你创建的线程中调用post和sendMessage等方法，传递过去的Runnable和Message对象会<strong><em>在Handler的消息队列中完成调度</em></strong>。</p>
-<p>上面多次提到消息队列（MessageQueue），那么Handler是在什么时候给MessageQueue赋值的呢？观察Handler代码会发现，Handler有如下构造函数</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Handler</span><span class="params">(Callback callback, <span class="keyword">boolean</span> async)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (FIND_POTENTIAL_LEAKS) &#123;</span><br><span class="line">    <span class="keyword">final</span> Class&lt;? extends Handler&gt; klass = getClass();</span><br><span class="line">    <span class="keyword">if</span> ((klass.isAnonymousClass() || klass.isMemberClass() || klass.isLocalClass()) &amp;&amp;</span><br><span class="line">        (klass.getModifiers() &amp; Modifier.STATIC) == <span class="number">0</span>) &#123;</span><br><span class="line">      Log.w(TAG, <span class="string">"The following Handler class should be static or leaks might occur: "</span> +</span><br><span class="line">            klass.getCanonicalName());</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  mLooper = Looper.myLooper();</span><br><span class="line">  <span class="keyword">if</span> (mLooper == <span class="keyword">null</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(</span><br><span class="line">      <span class="string">"Can't create handler inside thread that has not called Looper.prepare()"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  mQueue = mLooper.mQueue;</span><br><span class="line">  mCallback = callback;</span><br><span class="line">  mAsynchronous = async;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>由此可见，Handler的mQueue是通过Looper来赋值的，而mLooper又是通过Looper.myLooper()来赋值的，那么接下来我们看看Looper到底是何方神圣。</p>
-<h2 id="Looper"><a href="#Looper" class="headerlink" title="Looper"></a>Looper</h2><h3 id="Looper初识"><a href="#Looper初识" class="headerlink" title="Looper初识"></a>Looper初识</h3><p>先看源码中的解释：</p>
-<blockquote>
-<p>一个类，什么类？为线程进行消息循环的类。</p>
-</blockquote>
-<p>线程默认是没有与之关联的消息循环的，要得到消息循环，首先要在线程中调用Looper.prepare()，然后写处理代码，在调用Looper.loop();开启消息循环。代码实例：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LooperThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> Handler mHandler;</span><br><span class="line">  	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      	<span class="comment">// 初始化</span></span><br><span class="line">        Looper.prepare();</span><br><span class="line">      	<span class="comment">//</span></span><br><span class="line">      	mHandler = <span class="keyword">new</span> Handler() &#123;</span><br><span class="line">          	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(Message msg)</span> </span>&#123;</span><br><span class="line">                <span class="comment">// process incomming messages here</span></span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;;</span><br><span class="line">      	<span class="comment">// 开启looper</span></span><br><span class="line">      	Looper.loop();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意：通常情况下在线程中创建Handler实例，必须显示的调用Looper.prepare()和Looper.loop()方法，但是在主线程（UI线程）中创建Handler时，是不需要显示调用的，因为主线程默认会自己创建Looper对象（其实看源码你会发现，在ActivityTread中，有调用Looper.prepareMainLooper()方法）。</p>
-<h3 id="核心方法"><a href="#核心方法" class="headerlink" title="核心方法"></a>核心方法</h3><h4 id="prepare"><a href="#prepare" class="headerlink" title="prepare()"></a>prepare()</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** Initialize the current thread as a looper.</span></span><br><span class="line"><span class="comment"> * This gives you a chance to create handlers that then reference</span></span><br><span class="line"><span class="comment"> * this looper, before actually starting the loop. Be sure to call</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@link</span> #loop()&#125; after calling this method, and end it by calling</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@link</span> #quit()&#125;.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">prepare</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  	prepare(<span class="keyword">true</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">prepare</span><span class="params">(<span class="keyword">boolean</span> quitAllowed)</span> </span>&#123;</span><br><span class="line">  	<span class="keyword">if</span> (sThreadLocal.get() != <span class="keyword">null</span>) &#123;</span><br><span class="line">    	<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"Only one Looper may be created per thread"</span>);</span><br><span class="line">  	&#125;</span><br><span class="line">  	sThreadLocal.set(<span class="keyword">new</span> Looper(quitAllowed));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>由此可见，prepare(boolean quitAllowed)负责了Looper的创建，并保证了其唯一性。唯一性由ThreadLocal对象来实现。</p>
-<blockquote>
-<p>那么这个sThreadLocal是什么呢？它是一个本地线程存储类，所有线程共享这个对象，但是这个对象对每一个线程而言却具有不同的值，且每个线程对这个对象的访问或修改都不会影响到其他线程，即它的值对于每个线程来说都是独立的。</p>
-</blockquote>
-<h4 id="Looper的构造函数"><a href="#Looper的构造函数" class="headerlink" title="Looper的构造函数"></a>Looper的构造函数</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="title">Looper</span><span class="params">(<span class="keyword">boolean</span> quitAllowed)</span> </span>&#123;</span><br><span class="line">    mQueue = <span class="keyword">new</span> MessageQueue(quitAllowed);</span><br><span class="line">    mThread = Thread.currentThread();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>私有方法，防止手动调用破坏唯一性，主要工作就是初始化消息队列，绑定当前线程。</strong></p>
-<h4 id="Loop-方法"><a href="#Loop-方法" class="headerlink" title="Loop()方法"></a>Loop()方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Run the message queue in this thread. Be sure to call</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@link</span> #quit()&#125; to end the loop.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> Looper me = myLooper();</span><br><span class="line">  <span class="keyword">if</span> (me == <span class="keyword">null</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"No Looper; Looper.prepare() wasn't called on this thread."</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">final</span> MessageQueue queue = me.mQueue;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Make sure the identity of this thread is that of the local process,</span></span><br><span class="line">  <span class="comment">// and keep track of what that identity token actually is.</span></span><br><span class="line">  <span class="comment">// 线程身份核实</span></span><br><span class="line">  Binder.clearCallingIdentity();</span><br><span class="line">  <span class="keyword">final</span> <span class="keyword">long</span> ident = Binder.clearCallingIdentity();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">    Message msg = queue.next(); <span class="comment">// might block</span></span><br><span class="line">    <span class="keyword">if</span> (msg == <span class="keyword">null</span>) &#123;</span><br><span class="line">      <span class="comment">// No message indicates that the message queue is quitting.</span></span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// This must be in a local variable, in case a UI event sets the logger</span></span><br><span class="line">    <span class="keyword">final</span> Printer logging = me.mLogging;</span><br><span class="line">    <span class="keyword">if</span> (logging != <span class="keyword">null</span>) &#123;</span><br><span class="line">      logging.println(<span class="string">"&gt;&gt;&gt;&gt;&gt; Dispatching to "</span> + msg.target + <span class="string">" "</span> +</span><br><span class="line">                      msg.callback + <span class="string">": "</span> + msg.what);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">long</span> traceTag = me.mTraceTag;</span><br><span class="line">    <span class="keyword">if</span> (traceTag != <span class="number">0</span> &amp;&amp; Trace.isTagEnabled(traceTag)) &#123;</span><br><span class="line">      Trace.traceBegin(traceTag, msg.target.getTraceName(msg));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      msg.target.dispatchMessage(msg);</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (traceTag != <span class="number">0</span>) &#123;</span><br><span class="line">        Trace.traceEnd(traceTag);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (logging != <span class="keyword">null</span>) &#123;</span><br><span class="line">      logging.println(<span class="string">"&lt;&lt;&lt;&lt;&lt; Finished to "</span> + msg.target + <span class="string">" "</span> + msg.callback);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Make sure that during the course of dispatching the</span></span><br><span class="line">    <span class="comment">// identity of the thread wasn't corrupted.</span></span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">long</span> newIdent = Binder.clearCallingIdentity();</span><br><span class="line">    <span class="keyword">if</span> (ident != newIdent) &#123;</span><br><span class="line">      Log.wtf(TAG, <span class="string">"Thread identity changed from 0x"</span></span><br><span class="line">              + Long.toHexString(ident) + <span class="string">" to 0x"</span></span><br><span class="line">              + Long.toHexString(newIdent) + <span class="string">" while dispatching to "</span></span><br><span class="line">              + msg.target.getClass().getName() + <span class="string">" "</span></span><br><span class="line">              + msg.callback + <span class="string">" what="</span> + msg.what);</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">// 回收Message对象</span></span><br><span class="line">    msg.recycleUnchecked();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上面代码主要工作：得到Looper实例me，然后通过me.mQueue得到MessageQueue实例queue，身份核查，开启无限循环不断的读取消息（通过MessageQueue的<strong><em>next()</em></strong>方法）分发消息（通过msg.target.<strong><em>dispatchMessage()</em></strong>实现），最后回收Message对象（通过Message.<strong><em>recycleUnchecked()</em></strong>实现），至此，Looper核心方法分析完毕。</p>
-<h2 id="MessageQueue"><a href="#MessageQueue" class="headerlink" title="MessageQueue"></a>MessageQueue</h2><p>MessageQueue是用来存放Message的集合，并由Looper实例来分发里面的Message对象。同时，message并不是直接加入到MessageQueue中的, 而是通过与Looper对象相关联的<code>MessageQueue.IdleHandler</code> 对象来完成的。我们可以通过<code>Looper.myQueue()</code> 方法来获得当前线程的MessageQueue。 </p>
-<blockquote>
-<p>注意：MessageQueue的中文翻译是消息队列，顾名思义，它的内部存储了一组消息，以队列的形式对外提供插入和删除的工作。虽然叫消息队列，但是它<strong><em>的内部存储结构并不是真正的队列</em></strong>，而是采用<strong><em>单链表的数据结构</em></strong>来存储消息列表。</p>
-</blockquote>
-<p>为了证实上面的单链表存储结构，可以看看MessageQueue的源码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Message <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Return here if the message loop has already quit and been disposed.</span></span><br><span class="line">    <span class="comment">// This can happen if the application tries to restart a looper after quit</span></span><br><span class="line">    <span class="comment">// which is not supported.</span></span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">long</span> ptr = mPtr;</span><br><span class="line">    <span class="keyword">if</span> (ptr == <span class="number">0</span>) &#123;</span><br><span class="line">      	<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  	<span class="keyword">int</span> pendingIdleHandlerCount = -<span class="number">1</span>; <span class="comment">// -1 only during first iteration</span></span><br><span class="line">  	<span class="keyword">int</span> nextPollTimeoutMillis = <span class="number">0</span>;</span><br><span class="line">  	<span class="keyword">for</span> (;;) &#123;</span><br><span class="line">    	<span class="keyword">if</span> (nextPollTimeoutMillis != <span class="number">0</span>) &#123;</span><br><span class="line">      		Binder.flushPendingCommands();</span><br><span class="line">    	&#125;</span><br><span class="line"></span><br><span class="line">    	nativePollOnce(ptr, nextPollTimeoutMillis);</span><br><span class="line"></span><br><span class="line">	    <span class="keyword">synchronized</span> (<span class="keyword">this</span>) &#123;</span><br><span class="line">    	  	<span class="comment">// Try to retrieve the next message.  Return if found.</span></span><br><span class="line">	      	<span class="keyword">final</span> <span class="keyword">long</span> now = SystemClock.uptimeMillis();</span><br><span class="line">    	  	Message prevMsg = <span class="keyword">null</span>;</span><br><span class="line">      		Message msg = mMessages;</span><br><span class="line">      		<span class="keyword">if</span> (msg != <span class="keyword">null</span> &amp;&amp; msg.target == <span class="keyword">null</span>) &#123;</span><br><span class="line">        		<span class="comment">// Stalled by a barrier.  Find the next asynchronous message in the queue.</span></span><br><span class="line">        		<span class="keyword">do</span> &#123;</span><br><span class="line">	          		prevMsg = msg;</span><br><span class="line">		          	msg = msg.next;</span><br><span class="line">        		&#125; <span class="keyword">while</span> (msg != <span class="keyword">null</span> &amp;&amp; !msg.isAsynchronous());</span><br><span class="line">      		&#125;</span><br><span class="line">      		<span class="keyword">if</span> (msg != <span class="keyword">null</span>) &#123;</span><br><span class="line">        		<span class="keyword">if</span> (now &lt; msg.when) &#123;</span><br><span class="line">          			<span class="comment">// Next message is not ready.  Set a timeout to wake up when it is ready.</span></span><br><span class="line">          			nextPollTimeoutMillis = (<span class="keyword">int</span>) Math.min(msg.when - now, Integer.MAX_VALUE);</span><br><span class="line">        		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          			<span class="comment">// Got a message.</span></span><br><span class="line">		          	mBlocked = <span class="keyword">false</span>;</span><br><span class="line">          			<span class="keyword">if</span> (prevMsg != <span class="keyword">null</span>) &#123;</span><br><span class="line">            			prevMsg.next = msg.next;</span><br><span class="line">          			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            			mMessages = msg.next;</span><br><span class="line">          			&#125;</span><br><span class="line">          			msg.next = <span class="keyword">null</span>;</span><br><span class="line">          			<span class="keyword">if</span> (DEBUG) Log.v(TAG, <span class="string">"Returning message: "</span> + msg);</span><br><span class="line">          			msg.markInUse();</span><br><span class="line">          			<span class="keyword">return</span> msg;</span><br><span class="line">        		&#125;</span><br><span class="line">      		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        	<span class="comment">// No more messages.</span></span><br><span class="line">        	nextPollTimeoutMillis = -<span class="number">1</span>;</span><br><span class="line">      	&#125;</span><br><span class="line"></span><br><span class="line">      	<span class="comment">// Process the quit message now that all pending messages have been handled.</span></span><br><span class="line">      	<span class="keyword">if</span> (mQuitting) &#123;</span><br><span class="line">        	dispose();</span><br><span class="line">        	<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">      	&#125;</span><br><span class="line"></span><br><span class="line">      	<span class="comment">// If first time idle, then get the number of idlers to run.</span></span><br><span class="line">      	<span class="comment">// Idle handles only run if the queue is empty or if the first message</span></span><br><span class="line">      	<span class="comment">// in the queue (possibly a barrier) is due to be handled in the future.</span></span><br><span class="line">      	<span class="keyword">if</span> (pendingIdleHandlerCount &lt; <span class="number">0</span></span><br><span class="line">          	&amp;&amp; (mMessages == <span class="keyword">null</span> || now &lt; mMessages.when)) &#123;</span><br><span class="line">        	pendingIdleHandlerCount = mIdleHandlers.size();</span><br><span class="line">      	&#125;</span><br><span class="line">      	<span class="keyword">if</span> (pendingIdleHandlerCount &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">        	<span class="comment">// No idle handlers to run.  Loop and wait some more.</span></span><br><span class="line">        	mBlocked = <span class="keyword">true</span>;</span><br><span class="line">        	<span class="keyword">continue</span>;</span><br><span class="line">      	&#125;</span><br><span class="line"></span><br><span class="line">      	<span class="keyword">if</span> (mPendingIdleHandlers == <span class="keyword">null</span>) &#123;</span><br><span class="line">        	mPendingIdleHandlers = <span class="keyword">new</span> IdleHandler[Math.max(pendingIdleHandlerCount, <span class="number">4</span>)];</span><br><span class="line">      	&#125;</span><br><span class="line">      	mPendingIdleHandlers = mIdleHandlers.toArray(mPendingIdleHandlers);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Run the idle handlers.</span></span><br><span class="line">    <span class="comment">// We only ever reach this code block during the first iteration.</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; pendingIdleHandlerCount; i++) &#123;</span><br><span class="line">      	<span class="keyword">final</span> IdleHandler idler = mPendingIdleHandlers[i];</span><br><span class="line">      	mPendingIdleHandlers[i] = <span class="keyword">null</span>; <span class="comment">// release the reference to the handler</span></span><br><span class="line"></span><br><span class="line">      	<span class="keyword">boolean</span> keep = <span class="keyword">false</span>;</span><br><span class="line">      	<span class="keyword">try</span> &#123;</span><br><span class="line">        	keep = idler.queueIdle();</span><br><span class="line">      	&#125; <span class="keyword">catch</span> (Throwable t) &#123;</span><br><span class="line">        	Log.wtf(TAG, <span class="string">"IdleHandler threw exception"</span>, t);</span><br><span class="line">      	&#125;</span><br><span class="line"></span><br><span class="line">      	<span class="keyword">if</span> (!keep) &#123;</span><br><span class="line">        	<span class="keyword">synchronized</span> (<span class="keyword">this</span>) &#123;</span><br><span class="line">          		mIdleHandlers.remove(idler);</span><br><span class="line">        	&#125;</span><br><span class="line">      	&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    	<span class="comment">// Reset the idle handler count to 0 so we do not run them again.</span></span><br><span class="line">    	pendingIdleHandlerCount = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    	<span class="comment">// While calling an idle handler, a new message could have been delivered</span></span><br><span class="line">    	<span class="comment">// so go back and look again for a pending message without waiting.</span></span><br><span class="line">    	nextPollTimeoutMillis = <span class="number">0</span>;</span><br><span class="line">  	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>遍历链表取消息部分主要发生在sychronised部分，代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (msg != <span class="keyword">null</span> &amp;&amp; msg.target == <span class="keyword">null</span>) &#123;</span><br><span class="line">    <span class="comment">// Stalled by a barrier.  Find the next asynchronous message in the queue.</span></span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        prevMsg = msg;</span><br><span class="line">        msg = msg.next;</span><br><span class="line">    &#125; <span class="keyword">while</span> (msg != <span class="keyword">null</span> &amp;&amp; !msg.isAsynchronous());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>得到msg后，判断其处理时间是否到达，到达就予以处理，未到达就设置一个唤醒时间以待处理。遍历完成后，如果Looper是可退出的，就退出。接下来就处理IdleHandler（与Looper及MessageQueue关联的Handler）了。</p>
-<p>上面Looper部分还说到了一个方法，那就是dispatchMessage（即消息分发），该方法位于Handler中，由Message的target（target为Handler的一个实例）在lopper中进行调用，该方法源码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Handle system messages here.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dispatchMessage</span><span class="params">(Message msg)</span> </span>&#123;</span><br><span class="line">  	<span class="keyword">if</span> (msg.callback != <span class="keyword">null</span>) &#123;</span><br><span class="line">      	handleCallback(msg);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      	<span class="keyword">if</span> (mCallback != <span class="keyword">null</span>) &#123;</span><br><span class="line">          	<span class="keyword">if</span> (mCallback.handleMessage(msg)) &#123;</span><br><span class="line">              	<span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      	handleMessage(msg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>从上面的代码可以看出，handler中处理分发小刺的函数有三个，分别如下：</p>
-<ul>
-<li>Message的回调方法优先级最高，即message.callback.run()；</li>
-<li>Handler的回调方法优先级次之，即Handler.mCallback.handleMessage(msg)；</li>
-<li>Handler的默认方法优先级最低，即Handler.handleMessage(msg)。</li>
-</ul>
-<h2 id="Message"><a href="#Message" class="headerlink" title="Message"></a>Message</h2><p>先从源码的注释中来了解Message</p>
-<blockquote>
-<p>定义了一个包含一个自身描述信息和任意数据对象的结构用以交给Handler处理，有两个extra int field和一个extra object field。</p>
-<p>虽然它的构造函数是public的，但实例化其对象的方式官方推荐的还是Message.obtain和Handler.obtainMessage，因为后面两种方式是从一个可回收对象池中创建的。</p>
-</blockquote>
-<p>也就是说，Message对象包含两个额外的int类型变量和一个额外的对象，利用它们大多数情况下我们不用再做内存分配相关工作。实例化Message最好的方法是调用<code>Message.obtain()</code>或<code>Handler.obtainMessage()</code>（实际上最终调用的仍然是<code>Message.obtain()</code>），因为这两个方法都是从一个可回收利用的对象池中获取Message的。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Android的Handler机制在Android多线程编程中应用十分广泛，通过阅读Handler以及相关类（MessageQueue、Looper、Message）的源码，可以很清楚的了解其大致运行机制。</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/09/26/Android中的Handler机制/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1592,8 +1451,7 @@ adb -s 5LM7N16531010541 shell pm install -r &quot;/data/local/tmp/tinker.sample.
 
       
         
-          
-            <h1 id="Android路由框架初识"><a href="#Android路由框架初识" class="headerlink" title="Android路由框架初识"></a>Android路由框架初识</h1><p>目前比较成熟的Android路由框架由：（统计时间2017/09/27）</p>
+          <h1 id="Android路由框架初识"><a href="#Android路由框架初识" class="headerlink" title="Android路由框架初识"></a>Android路由框架初识</h1><p>目前比较成熟的Android路由框架由：（统计时间2017/09/27）</p>
 <ul>
 <li><a href="https://github.com/alibaba/ARouter" target="_blank" rel="noopener">ARouter</a>（阿里开源路由框架，3238 star）</li>
 <li><a href="https://github.com/mzule/ActivityRouter" target="_blank" rel="noopener">ActivityRouter</a>（mzule开源框架，1959 star）</li>
@@ -1601,8 +1459,13 @@ adb -s 5LM7N16531010541 shell pm install -r &quot;/data/local/tmp/tinker.sample.
 <li><a href="https://github.com/JumeiRdGroup/Router" target="_blank" rel="noopener">Router</a>()（JumeiRdGroup开源框架，471 star)</li>
 </ul>
 <p>在了解路由框架如何实现之前，先要了解注解，因为上面路由框架都或多或少的用到了注解，可以参考《Java编程思想》第四版第20章中关于注解的描述，Java注解、Aandroid注解。本文主要分析ARouter。</p>
-<h2 id="ARouter"><a href="#ARouter" class="headerlink" title="ARouter"></a>ARouter</h2><h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><h4 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h4><h4 id="注解处理器"><a href="#注解处理器" class="headerlink" title="注解处理器"></a>注解处理器</h4><h3 id="API分析"><a href="#API分析" class="headerlink" title="API分析"></a>API分析</h3>
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/09/25/Android路由框架初识/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1741,218 +1604,17 @@ adb -s 5LM7N16531010541 shell pm install -r &quot;/data/local/tmp/tinker.sample.
 
       
         
-          
-            <h1 id="Android-SdkVersion那些事儿"><a href="#Android-SdkVersion那些事儿" class="headerlink" title="Android SdkVersion那些事儿"></a>Android SdkVersion那些事儿</h1><p><strong><em>本文对android项目中的compileSdkVersion、targetSdkVersion、minSdkVersion、maxSdkVersion和buildTarget等概念做一个说明。</em></strong></p>
+          <h1 id="Android-SdkVersion那些事儿"><a href="#Android-SdkVersion那些事儿" class="headerlink" title="Android SdkVersion那些事儿"></a>Android SdkVersion那些事儿</h1><p><strong><em>本文对android项目中的compileSdkVersion、targetSdkVersion、minSdkVersion、maxSdkVersion和buildTarget等概念做一个说明。</em></strong></p>
 <h2 id="compileSdkVersion"><a href="#compileSdkVersion" class="headerlink" title="compileSdkVersion"></a>compileSdkVersion</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><blockquote>
 <p>编译或构件时采用的API版本，你在项目中查看的android系统相关的源码与这个compileSdkVersion指定的是一致的。</p>
 </blockquote>
-<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><ol>
-<li>在eclipse中位于项目根目录中的project.properties文件中(target=xx);</li>
-<li>在android studio中位于项目中的build.gradle中；</li>
-<li>强烈推荐总是使用最新的 SDK 进行编译（默认就是最新的）；</li>
-<li>修改 compileSdkVersion 不会改变运行时的行，但可能会出现新的编译警告、编译错误；</li>
-<li>compileSdkVersion 不会被包含到 APK 中：它纯粹只是在编译的时候使用；</li>
-<li>如果使用 Support Library ，那么使用最新发布的 Support Library 就需要使用最新的 SDK 编译（对应关系）。</li>
-</ol>
-<h2 id="targetSdkVersion"><a href="#targetSdkVersion" class="headerlink" title="targetSdkVersion"></a>targetSdkVersion</h2><h4 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h4><blockquote>
-<p>表明当系统api小于或等于targetSdkVersion值时，系统运行程序不用做兼容处理；（相当于告诉系统，我开发时是针对targetSdkVersion指定版本已经做过兼容的）</p>
-</blockquote>
-<p>说明</p>
-<ol>
-<li>如果不设置，默认值和minSdkVersion相同；</li>
-<li>应用程序仍然能在低于targetSdkVersion的系统上运行；</li>
-<li>系统API高于targetSdkVersion，系统会开启向前兼容模式；反之，系统将不采用兼容模式，认为<strong><em>开发者已做兼容处理</em></strong>，而直接正常运行这个程序；</li>
-<li>targetSdkVersion这个值是在运行时起作用的，该值告诉系统到底要不要采用向前兼容模式来运行程序；</li>
-</ol>
-<blockquote>
-<p><strong><em>建议开发时将targetSdkVersion设置为最新的值，这样就可以应用新功能，并对新功能做兼容性测试</em></strong></p>
-</blockquote>
-<h2 id="minSdkVersion"><a href="#minSdkVersion" class="headerlink" title="minSdkVersion"></a>minSdkVersion</h2><h3 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h3><blockquote>
-<p>运行应用程序所需要的最低Sdk 版本</p>
-</blockquote>
-<h3 id="说明-1"><a href="#说明-1" class="headerlink" title="说明"></a>说明</h3><ol>
-<li>不指定，默认值为1，表明兼容所有android版本；</li>
-<li>系统API高于minSdkVersion时，系统会组织应用的安装；</li>
-<li>如果使用了高于minSdkVersion 的api（方法属性等），编译时会报错；</li>
-<li>minSdkVersion要取所有依赖项目中minSdkVersion的最大值，这样才能保证项目运行后不会报错；</li>
-</ol>
-<h3 id="maxSdkVersion"><a href="#maxSdkVersion" class="headerlink" title="maxSdkVersion"></a>maxSdkVersion</h3><blockquote>
-<p>运行应用程序支持的最高版本（超过该版本运行不了）</p>
-</blockquote>
-<h3 id="说明-2"><a href="#说明-2" class="headerlink" title="说明"></a>说明</h3><p><strong><em>显然这个属性不符合事物发展的规律，现已不推荐使用，或者说已经失效了</em></strong>。</p>
-<h2 id="高版本方法在低版本系统上的兼容性处理"><a href="#高版本方法在低版本系统上的兼容性处理" class="headerlink" title="高版本方法在低版本系统上的兼容性处理"></a>高版本方法在低版本系统上的兼容性处理</h2><ol>
-<li><p>采用注解的方式</p>
-<ul>
-<li>添加@TargetApi($API_LEVEL)可使编译通过</li>
-<li>添加@SuppressLint(“NewApi”)屏蔽一切新API才可使编译通过(一个方法中引用了多种不同API的新方法)</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">举个例子，某个方法中使用了api9新加入的方法，而项目设置的android:minSdkVersion=8，此时在方法上加@SuppressLint(&quot;NewApi&quot;）</span><br><span class="line">和@TargetApi(Build.VERSION_CODES.GINGERBREAD)都可以，以上是通用的情况。</span><br><span class="line">而当你在此方法中又引用了一个api11才加入的方法时，@TargetApi(Build.VERSION_CODES.GINGERBREAD)注解的方法又报错了，而</span><br><span class="line">@SuppressLint(&quot;NewApi&quot;）不会报错</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>运行时判断</p>
-<blockquote>
-<p>在低版本上不调用该方法，而自己提供低版本上的功能实现</p>
-</blockquote>
-</li>
-</ol>
-<p>下表列出了各 Android 平台版本支持的 API 级别：</p>
-<table>
-<thead>
-<tr>
-<th>平台版本</th>
-<th>API 级别</th>
-<th>VERSION_CODE</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/nougat/android-7.0.html" target="_blank" rel="noopener">Android 7.0</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/24/changes.html" target="_blank" rel="noopener">24</a></td>
-<td><code>N</code></td>
-<td><a href="https://developer.android.google.cn/about/versions/nougat/index.html" target="_blank" rel="noopener">平台亮点</a></td>
-</tr>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/marshmallow/android-6.0.html" target="_blank" rel="noopener">Android 6.0</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/23/changes.html" target="_blank" rel="noopener">23</a></td>
-<td><code>M</code></td>
-<td><a href="https://developer.android.google.cn/about/versions/marshmallow/index.html" target="_blank" rel="noopener">平台亮点</a></td>
-</tr>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/android-5.1.html" target="_blank" rel="noopener">Android 5.1</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/22/changes.html" target="_blank" rel="noopener">22</a></td>
-<td><code>LOLLIPOP_MR1</code></td>
-<td><a href="https://developer.android.google.cn/about/versions/lollipop.html" target="_blank" rel="noopener">平台亮点</a></td>
-</tr>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/android-5.0.html" target="_blank" rel="noopener">Android 5.0</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/21/changes.html" target="_blank" rel="noopener">21</a></td>
-<td><code>LOLLIPOP</code></td>
-<td></td>
-</tr>
-<tr>
-<td>Android 4.4W</td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/20/changes.html" target="_blank" rel="noopener">20</a></td>
-<td><code>KITKAT_WATCH</code></td>
-<td>仅限 KitKat for Wearables</td>
-</tr>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/android-4.4.html" target="_blank" rel="noopener">Android 4.4</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/19/changes.html" target="_blank" rel="noopener">19</a></td>
-<td><code>KITKAT</code></td>
-<td><a href="https://developer.android.google.cn/about/versions/kitkat.html" target="_blank" rel="noopener">平台亮点</a></td>
-</tr>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/android-4.3.html" target="_blank" rel="noopener">Android 4.3</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/18/changes.html" target="_blank" rel="noopener">18</a></td>
-<td><code>JELLY_BEAN_MR2</code></td>
-<td><a href="https://developer.android.google.cn/about/versions/jelly-bean.html" target="_blank" rel="noopener">平台亮点</a></td>
-</tr>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/android-4.2.html" target="_blank" rel="noopener">Android 4.2、4.2.2</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/17/changes.html" target="_blank" rel="noopener">17</a></td>
-<td><code>JELLY_BEAN_MR1</code></td>
-<td><a href="https://developer.android.google.cn/about/versions/jelly-bean.html#android-42" target="_blank" rel="noopener">平台亮点</a></td>
-</tr>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/android-4.1.html" target="_blank" rel="noopener">Android 4.1、4.1.1</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/16/changes.html" target="_blank" rel="noopener">16</a></td>
-<td><code>JELLY_BEAN</code></td>
-<td><a href="https://developer.android.google.cn/about/versions/jelly-bean.html#android-41" target="_blank" rel="noopener">平台亮点</a></td>
-</tr>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/android-4.0.3.html" target="_blank" rel="noopener">Android 4.0.3、4.0.4</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/15/changes.html" target="_blank" rel="noopener">15</a></td>
-<td><code>ICE_CREAM_SANDWICH_MR1</code></td>
-<td><a href="https://developer.android.google.cn/about/versions/android-4.0-highlights.html" target="_blank" rel="noopener">平台亮点</a></td>
-</tr>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/android-4.0.html" target="_blank" rel="noopener">Android 4.0、4.0.1、4.0.2</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/14/changes.html" target="_blank" rel="noopener">14</a></td>
-<td><code>ICE_CREAM_SANDWICH</code></td>
-<td></td>
-</tr>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/android-3.2.html" target="_blank" rel="noopener">Android 3.2</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/13/changes.html" target="_blank" rel="noopener">13</a></td>
-<td><code>HONEYCOMB_MR2</code></td>
-<td></td>
-</tr>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/android-3.1.html" target="_blank" rel="noopener">Android 3.1.x</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/12/changes.html" target="_blank" rel="noopener">12</a></td>
-<td><code>HONEYCOMB_MR1</code></td>
-<td><a href="https://developer.android.google.cn/about/versions/android-3.1-highlights.html" target="_blank" rel="noopener">平台亮点</a></td>
-</tr>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/android-3.0.html" target="_blank" rel="noopener">Android 3.0.x</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/11/changes.html" target="_blank" rel="noopener">11</a></td>
-<td><code>HONEYCOMB</code></td>
-<td><a href="https://developer.android.google.cn/about/versions/android-3.0-highlights.html" target="_blank" rel="noopener">平台亮点</a></td>
-</tr>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/android-2.3.3.html" target="_blank" rel="noopener">Android 2.3.4Android 2.3.3</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/10/changes.html" target="_blank" rel="noopener">10</a></td>
-<td><code>GINGERBREAD_MR1</code></td>
-<td><a href="https://developer.android.google.cn/about/versions/android-2.3-highlights.html" target="_blank" rel="noopener">平台亮点</a></td>
-</tr>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/android-2.3.html" target="_blank" rel="noopener">Android 2.3.2Android 2.3.1Android 2.3</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/9/changes.html" target="_blank" rel="noopener">9</a></td>
-<td><code>GINGERBREAD</code></td>
-<td></td>
-</tr>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/android-2.2.html" target="_blank" rel="noopener">Android 2.2.x</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/8/changes.html" target="_blank" rel="noopener">8</a></td>
-<td><code>FROYO</code></td>
-<td><a href="https://developer.android.google.cn/about/versions/android-2.2-highlights.html" target="_blank" rel="noopener">平台亮点</a></td>
-</tr>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/android-2.1.html" target="_blank" rel="noopener">Android 2.1.x</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/7/changes.html" target="_blank" rel="noopener">7</a></td>
-<td><code>ECLAIR_MR1</code></td>
-<td><a href="https://developer.android.google.cn/about/versions/android-2.0-highlights.html" target="_blank" rel="noopener">平台亮点</a></td>
-</tr>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/android-2.0.1.html" target="_blank" rel="noopener">Android 2.0.1</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/6/changes.html" target="_blank" rel="noopener">6</a></td>
-<td><code>ECLAIR_0_1</code></td>
-<td></td>
-</tr>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/android-2.0.html" target="_blank" rel="noopener">Android 2.0</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/5/changes.html" target="_blank" rel="noopener">5</a></td>
-<td><code>ECLAIR</code></td>
-<td></td>
-</tr>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/android-1.6.html" target="_blank" rel="noopener">Android 1.6</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/4/changes.html" target="_blank" rel="noopener">4</a></td>
-<td><code>DONUT</code></td>
-<td><a href="https://developer.android.google.cn/about/versions/android-1.6-highlights.html" target="_blank" rel="noopener">平台亮点</a></td>
-</tr>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/android-1.5.html" target="_blank" rel="noopener">Android 1.5</a></td>
-<td><a href="https://developer.android.google.cn/sdk/api_diff/3/changes.html" target="_blank" rel="noopener">3</a></td>
-<td><code>CUPCAKE</code></td>
-<td><a href="https://developer.android.google.cn/about/versions/android-1.5-highlights.html" target="_blank" rel="noopener">平台亮点</a></td>
-</tr>
-<tr>
-<td><a href="https://developer.android.google.cn/about/versions/android-1.1.html" target="_blank" rel="noopener">Android 1.1</a></td>
-<td>2</td>
-<td><code>BASE_1_1</code></td>
-<td></td>
-</tr>
-<tr>
-<td>Android 1.0</td>
-<td>1</td>
-<td><code>BASE</code></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/09/22/Android SdkVersion那些事儿/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2091,38 +1753,19 @@ adb -s 5LM7N16531010541 shell pm install -r &quot;/data/local/tmp/tinker.sample.
 
       
         
-          
-            <p>##Android中MVP模式、MVC模式</p>
+          <p>##Android中MVP模式、MVC模式</p>
 <p>###模式简介</p>
 <p>####MVC</p>
 <p>Model-View-Controller简称，将数据模型（数据的定义及相关操作）、界面显示（接受用户的操作）与业务逻辑（接受界面操作并控制操作数据）分离的方式组织代码；</p>
 <p>####MVP</p>
 <p>Model-View-Presenter简称，将MVC中的C层采用P层来换， 该模式下，M层和V层不再像MVC中的那样，他们不发生联系，沟通都是通过P层来实现的。</p>
-<p>###通信方式</p>
-<p>####MVC</p>
-<ul>
-<li>View层接受到用户交互请求；</li>
-<li>View层将请求传递给Controller层；</li>
-<li>Controller层操作Model层进行数据更新；</li>
-<li>更新之后，Model层通知View层做相应的变化</li>
-<li>View层更新界面</li>
-</ul>
-<p>####MVP</p>
-<ul>
-<li>View接受用户的请求（如用户输入用户名密码进行登录）</li>
-<li>View将请求发送至对应的Presenter（如UserPresenter）</li>
-<li>Presenter通多Model获取数据的变化信息（如通过网络查询或本地数据库查询）</li>
-<li>Model通知Presenter数据发生了改变（如登录成功，登录失败等）</li>
-<li>Presenter将数据的改变反应在View上（对不同的改变，通知View层作不同的处理）</li>
-</ul>
-<p>###进化历史</p>
-<p>MVC-&gt;MVP，这种改变的原因主要就是MVC中，Model不依赖于View，但View依赖于Model，V层可以直接访问M层，不可避免的V层就会包含数据逻辑处理，这样当V层在某个需求变化下需要更改时，就会变的麻烦（需要考虑View 层之前包含的那部分逻辑），于是MVP就产生了，他阻断了Model和View之间的直接通信，二者要联系起来必须都依赖于Presenter，即MP间可上相交互，PV间也可双向交互。</p>
-<p>发现美团的一篇讲解MVVM模式的文章：</p>
-<ul>
-<li><a href="https://tech.meituan.com/android_mvvm.html" target="_blank" rel="noopener">如何构建Android MVVM 应用框架</a> </li>
-</ul>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/09/18/Android中MVP模式、MVC模式以/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

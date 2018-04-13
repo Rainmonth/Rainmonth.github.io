@@ -99,18 +99,18 @@
 
 
 
-  <meta name="description" content="Android Dialog的hide和dismiss方法分析方法说明相同之处 都可以隐藏对话框，在需要显示对话框的时候也都可以调用show方法来显示。  不同之处 dismiss方法在隐藏之后，会释放对话框所占用的资源，而hide则不会。  使用场景根据上面描述的区别，可以判断：  hide方法适用于不用释放dialog所占资源的隐藏，只要其所依赖的Activity不被销毁，都可以调用hide方">
+  <meta name="description" content="Android Dialog的hide和dismiss方法分析方法说明相同之处 都可以隐藏对话框，在需要显示对话框的时候也都可以调用show方法来显示。  不同之处 dismiss方法在隐藏之后，会释放对话框所占用的资源，而hide则不会。">
 <meta name="keywords" content="Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android Dialog的hide和dismiss方法分析">
 <meta property="og:url" content="http://yoursite.com/2017/03/17/Android Dialog的hide和dismiss方法分析/index.html">
 <meta property="og:site_name" content="荏苒追寻个人博客">
-<meta property="og:description" content="Android Dialog的hide和dismiss方法分析方法说明相同之处 都可以隐藏对话框，在需要显示对话框的时候也都可以调用show方法来显示。  不同之处 dismiss方法在隐藏之后，会释放对话框所占用的资源，而hide则不会。  使用场景根据上面描述的区别，可以判断：  hide方法适用于不用释放dialog所占资源的隐藏，只要其所依赖的Activity不被销毁，都可以调用hide方">
+<meta property="og:description" content="Android Dialog的hide和dismiss方法分析方法说明相同之处 都可以隐藏对话框，在需要显示对话框的时候也都可以调用show方法来显示。  不同之处 dismiss方法在隐藏之后，会释放对话框所占用的资源，而hide则不会。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-01-17T12:00:40.616Z">
+<meta property="og:updated_time" content="2018-04-13T05:11:07.738Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android Dialog的hide和dismiss方法分析">
-<meta name="twitter:description" content="Android Dialog的hide和dismiss方法分析方法说明相同之处 都可以隐藏对话框，在需要显示对话框的时候也都可以调用show方法来显示。  不同之处 dismiss方法在隐藏之后，会释放对话框所占用的资源，而hide则不会。  使用场景根据上面描述的区别，可以判断：  hide方法适用于不用释放dialog所占资源的隐藏，只要其所依赖的Activity不被销毁，都可以调用hide方">
+<meta name="twitter:description" content="Android Dialog的hide和dismiss方法分析方法说明相同之处 都可以隐藏对话框，在需要显示对话框的时候也都可以调用show方法来显示。  不同之处 dismiss方法在隐藏之后，会释放对话框所占用的资源，而hide则不会。">
 
 
 
@@ -402,6 +402,7 @@
 <h3 id="不同之处"><a href="#不同之处" class="headerlink" title="不同之处"></a>不同之处</h3><blockquote>
 <p>dismiss方法在隐藏之后，会释放对话框所占用的资源，而hide则不会。</p>
 </blockquote>
+<a id="more"></a>
 <h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><p>根据上面描述的区别，可以判断：</p>
 <ul>
 <li><p>hide方法适用于不用释放dialog所占资源的隐藏，只要其所依赖的Activity不被销毁，都可以调用hide方法，而且还能保存住dialog之前hide之前的状态</p>

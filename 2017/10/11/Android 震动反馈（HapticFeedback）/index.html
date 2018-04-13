@@ -99,18 +99,18 @@
 
 
 
-  <meta name="description" content="Android 震动相关实现[TOC] Android中的震动可以通过多种方法实现，其中包括使用Vibrate类和HapticFeedback类，本文主要介绍通过这两个类来实现震动的方式。 Vibrator震动属于系统服务，获取Vibrator示例的方式如下： 1mVibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE); 震">
+  <meta name="description" content="Android 震动相关实现[TOC] Android中的震动可以通过多种方法实现，其中包括使用Vibrate类和HapticFeedback类，本文主要介绍通过这两个类来实现震动的方式。 Vibrator震动属于系统服务，获取Vibrator示例的方式如下： 1mVibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);">
 <meta name="keywords" content="Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 震动相关实现">
 <meta property="og:url" content="http://yoursite.com/2017/10/11/Android 震动反馈（HapticFeedback）/index.html">
 <meta property="og:site_name" content="荏苒追寻个人博客">
-<meta property="og:description" content="Android 震动相关实现[TOC] Android中的震动可以通过多种方法实现，其中包括使用Vibrate类和HapticFeedback类，本文主要介绍通过这两个类来实现震动的方式。 Vibrator震动属于系统服务，获取Vibrator示例的方式如下： 1mVibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE); 震">
+<meta property="og:description" content="Android 震动相关实现[TOC] Android中的震动可以通过多种方法实现，其中包括使用Vibrate类和HapticFeedback类，本文主要介绍通过这两个类来实现震动的方式。 Vibrator震动属于系统服务，获取Vibrator示例的方式如下： 1mVibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-01-18T11:02:40.238Z">
+<meta property="og:updated_time" content="2018-04-13T05:09:59.134Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 震动相关实现">
-<meta name="twitter:description" content="Android 震动相关实现[TOC] Android中的震动可以通过多种方法实现，其中包括使用Vibrate类和HapticFeedback类，本文主要介绍通过这两个类来实现震动的方式。 Vibrator震动属于系统服务，获取Vibrator示例的方式如下： 1mVibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE); 震">
+<meta name="twitter:description" content="Android 震动相关实现[TOC] Android中的震动可以通过多种方法实现，其中包括使用Vibrate类和HapticFeedback类，本文主要介绍通过这两个类来实现震动的方式。 Vibrator震动属于系统服务，获取Vibrator示例的方式如下： 1mVibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);">
 
 
 
@@ -400,6 +400,7 @@
 <p>Android中的震动可以通过多种方法实现，其中包括使用Vibrate类和HapticFeedback类，本文主要介绍通过这两个类来实现震动的方式。</p>
 <h2 id="Vibrator"><a href="#Vibrator" class="headerlink" title="Vibrator"></a>Vibrator</h2><p>震动属于系统服务，获取Vibrator示例的方式如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mVibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h3 id="震动效果VibrateEffects（API-gt-26才可使用）"><a href="#震动效果VibrateEffects（API-gt-26才可使用）" class="headerlink" title="震动效果VibrateEffects（API&gt;=26才可使用）"></a>震动效果VibrateEffects（API&gt;=26才可使用）</h3><p>VibrateEffects类用来描述一次震动效果，常见的效果有一下两种：</p>
 <ul>
 <li>one shot vibration，只震动一次，通过VibrationEffect的<code>createOneShot</code>方法创建，在API&lt;26时，对应Vibrator下的<code>vibrate(long milliseconds)</code>方法；</li>

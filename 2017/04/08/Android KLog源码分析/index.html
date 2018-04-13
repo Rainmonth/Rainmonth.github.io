@@ -99,18 +99,18 @@
 
 
 
-  <meta name="description" content="Android KLog源码分析[TOC] 一直使用这个库，但没有仔细研究，今天就来研究一下，该库的地址： KLog，在这里先感谢下作者，棒棒哒！ 代码结构整个代码的结构很简单，如下： 12345678library	klog		BaseLog.java		FileLog.java		JsonLog.java		XmlLog.java	KLog.java	KLogUtil.java 共六个文件：">
+  <meta name="description" content="Android KLog源码分析[TOC] 一直使用这个库，但没有仔细研究，今天就来研究一下，该库的地址： KLog，在这里先感谢下作者，棒棒哒！">
 <meta name="keywords" content="Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android KLog源码分析">
 <meta property="og:url" content="http://yoursite.com/2017/04/08/Android KLog源码分析/index.html">
 <meta property="og:site_name" content="荏苒追寻个人博客">
-<meta property="og:description" content="Android KLog源码分析[TOC] 一直使用这个库，但没有仔细研究，今天就来研究一下，该库的地址： KLog，在这里先感谢下作者，棒棒哒！ 代码结构整个代码的结构很简单，如下： 12345678library	klog		BaseLog.java		FileLog.java		JsonLog.java		XmlLog.java	KLog.java	KLogUtil.java 共六个文件：">
+<meta property="og:description" content="Android KLog源码分析[TOC] 一直使用这个库，但没有仔细研究，今天就来研究一下，该库的地址： KLog，在这里先感谢下作者，棒棒哒！">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-13T03:22:03.908Z">
+<meta property="og:updated_time" content="2018-04-13T05:11:26.338Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android KLog源码分析">
-<meta name="twitter:description" content="Android KLog源码分析[TOC] 一直使用这个库，但没有仔细研究，今天就来研究一下，该库的地址： KLog，在这里先感谢下作者，棒棒哒！ 代码结构整个代码的结构很简单，如下： 12345678library	klog		BaseLog.java		FileLog.java		JsonLog.java		XmlLog.java	KLog.java	KLogUtil.java 共六个文件：">
+<meta name="twitter:description" content="Android KLog源码分析[TOC] 一直使用这个库，但没有仔细研究，今天就来研究一下，该库的地址： KLog，在这里先感谢下作者，棒棒哒！">
 
 
 
@@ -406,6 +406,7 @@
         <h2 id="Android-KLog源码分析"><a href="#Android-KLog源码分析" class="headerlink" title="Android KLog源码分析"></a>Android KLog源码分析</h2><p>[TOC]</p>
 <p>一直使用这个库，但没有仔细研究，今天就来研究一下，该库的地址：</p>
 <p><a href="https://github.com/ZhaoKaiQiang/KLog" target="_blank" rel="noopener">KLog</a>，在这里先感谢下作者，棒棒哒！</p>
+<a id="more"></a>
 <h4 id="代码结构"><a href="#代码结构" class="headerlink" title="代码结构"></a>代码结构</h4><p>整个代码的结构很简单，如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">library</span><br><span class="line">	klog</span><br><span class="line">		BaseLog.java</span><br><span class="line">		FileLog.java</span><br><span class="line">		JsonLog.java</span><br><span class="line">		XmlLog.java</span><br><span class="line">	KLog.java</span><br><span class="line">	KLogUtil.java</span><br></pre></td></tr></table></figure>
 <p>共六个文件：</p>

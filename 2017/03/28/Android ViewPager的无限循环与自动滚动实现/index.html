@@ -99,18 +99,18 @@
 
 
 
-  <meta name="description" content="Android ViewPager的无限循环与自动滚动实现前言关于ViewPager时Android开发时经常要用到的控件，但系统提供的ViewPager往往总有一些功能限制，如不能无限循环，不能自动滚动，今天就介绍ViewPager无限循环和自动滚动的不同实现。 实现思路实现方式有很多种，具体如下，后面会分析各种实现方式的优缺点。 无限循环方式更改Adapter实现方式 即getCount返回I">
+  <meta name="description" content="Android ViewPager的无限循环与自动滚动实现前言关于ViewPager时Android开发时经常要用到的控件，但系统提供的ViewPager往往总有一些功能限制，如不能无限循环，不能自动滚动，今天就介绍ViewPager无限循环和自动滚动的不同实现。 实现思路实现方式有很多种，具体如下，后面会分析各种实现方式的优缺点。">
 <meta name="keywords" content="Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android ViewPager的无限循环与自动滚动实现">
 <meta property="og:url" content="http://yoursite.com/2017/03/28/Android ViewPager的无限循环与自动滚动实现/index.html">
 <meta property="og:site_name" content="荏苒追寻个人博客">
-<meta property="og:description" content="Android ViewPager的无限循环与自动滚动实现前言关于ViewPager时Android开发时经常要用到的控件，但系统提供的ViewPager往往总有一些功能限制，如不能无限循环，不能自动滚动，今天就介绍ViewPager无限循环和自动滚动的不同实现。 实现思路实现方式有很多种，具体如下，后面会分析各种实现方式的优缺点。 无限循环方式更改Adapter实现方式 即getCount返回I">
+<meta property="og:description" content="Android ViewPager的无限循环与自动滚动实现前言关于ViewPager时Android开发时经常要用到的控件，但系统提供的ViewPager往往总有一些功能限制，如不能无限循环，不能自动滚动，今天就介绍ViewPager无限循环和自动滚动的不同实现。 实现思路实现方式有很多种，具体如下，后面会分析各种实现方式的优缺点。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-01-17T12:20:52.837Z">
+<meta property="og:updated_time" content="2018-04-13T05:13:18.685Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android ViewPager的无限循环与自动滚动实现">
-<meta name="twitter:description" content="Android ViewPager的无限循环与自动滚动实现前言关于ViewPager时Android开发时经常要用到的控件，但系统提供的ViewPager往往总有一些功能限制，如不能无限循环，不能自动滚动，今天就介绍ViewPager无限循环和自动滚动的不同实现。 实现思路实现方式有很多种，具体如下，后面会分析各种实现方式的优缺点。 无限循环方式更改Adapter实现方式 即getCount返回I">
+<meta name="twitter:description" content="Android ViewPager的无限循环与自动滚动实现前言关于ViewPager时Android开发时经常要用到的控件，但系统提供的ViewPager往往总有一些功能限制，如不能无限循环，不能自动滚动，今天就介绍ViewPager无限循环和自动滚动的不同实现。 实现思路实现方式有很多种，具体如下，后面会分析各种实现方式的优缺点。">
 
 
 
@@ -398,6 +398,7 @@
       
         <h1 id="Android-ViewPager的无限循环与自动滚动实现"><a href="#Android-ViewPager的无限循环与自动滚动实现" class="headerlink" title="Android ViewPager的无限循环与自动滚动实现"></a>Android ViewPager的无限循环与自动滚动实现</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>关于ViewPager时Android开发时经常要用到的控件，但系统提供的ViewPager往往总有一些功能限制，如不能无限循环，不能自动滚动，今天就介绍ViewPager无限循环和自动滚动的不同实现。</p>
 <h2 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h2><p>实现方式有很多种，具体如下，后面会分析各种实现方式的优缺点。</p>
+<a id="more"></a>
 <h3 id="无限循环方式"><a href="#无限循环方式" class="headerlink" title="无限循环方式"></a>无限循环方式</h3><h4 id="更改Adapter实现方式"><a href="#更改Adapter实现方式" class="headerlink" title="更改Adapter实现方式"></a>更改Adapter实现方式</h4><blockquote>
 <p>即getCount返回Integer.MAX_VALUE</p>
 </blockquote>
