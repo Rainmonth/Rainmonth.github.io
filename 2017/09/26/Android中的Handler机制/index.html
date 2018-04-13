@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="荏苒追寻个人博客">
 <meta property="og:description" content="Android中的Handler机制HandlerHandler初识先看源码中关于handler的解释：   Handler允许你发送和处理与线程消息队列相关联的Message和Runnable对象； 每个Handler实例只与一个线程相关联，而一个线程只有一个消息队列，从而Handler只与一个消息队列相关联； 当在一个线程中创建Handler对象时，创建的Handler对象就和创建它的线程的消">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-13T05:13:58.579Z">
+<meta property="og:updated_time" content="2018-04-13T08:31:16.925Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android中的Handler机制">
 <meta name="twitter:description" content="Android中的Handler机制HandlerHandler初识先看源码中关于handler的解释：   Handler允许你发送和处理与线程消息队列相关联的Message和Runnable对象； 每个Handler实例只与一个线程相关联，而一个线程只有一个消息队列，从而Handler只与一个消息队列相关联； 当在一个线程中创建Handler对象时，创建的Handler对象就和创建它的线程的消">
@@ -449,7 +449,7 @@
 <p>得到msg后，判断其处理时间是否到达，到达就予以处理，未到达就设置一个唤醒时间以待处理。遍历完成后，如果Looper是可退出的，就退出。接下来就处理IdleHandler（与Looper及MessageQueue关联的Handler）了。</p>
 <p>上面Looper部分还说到了一个方法，那就是dispatchMessage（即消息分发），该方法位于Handler中，由Message的target（target为Handler的一个实例）在lopper中进行调用，该方法源码如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Handle system messages here.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dispatchMessage</span><span class="params">(Message msg)</span> </span>&#123;</span><br><span class="line">  	<span class="keyword">if</span> (msg.callback != <span class="keyword">null</span>) &#123;</span><br><span class="line">      	handleCallback(msg);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      	<span class="keyword">if</span> (mCallback != <span class="keyword">null</span>) &#123;</span><br><span class="line">          	<span class="keyword">if</span> (mCallback.handleMessage(msg)) &#123;</span><br><span class="line">              	<span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      	handleMessage(msg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>从上面的代码可以看出，handler中处理分发小刺的函数有三个，分别如下：</p>
+<p>从上面的代码可以看出，handler中处理分发消息的函数有三个，分别如下：</p>
 <ul>
 <li>Message的回调方法优先级最高，即message.callback.run()；</li>
 <li>Handler的回调方法优先级次之，即Handler.mCallback.handleMessage(msg)；</li>
@@ -581,7 +581,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">50</span>
+                    <span class="site-state-item-count">51</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -618,7 +618,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">12</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -641,7 +645,23 @@
                     
                       
                     
-                    <span class="site-state-item-count">5</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
