@@ -107,12 +107,13 @@
 <meta property="og:site_name" content="荏苒追寻个人博客">
 <meta property="og:description" content="摘要 从启动过程、运行状态、组件使用注意事项、组件的特点等方面来分析Android四大基本组件，并对组件的特性做一些详细说明。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/2018/04/18/Android开发艺术探索读书笔记之四大组件/Android%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6/startService%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B%E5%9B%BE.png">
-<meta property="og:updated_time" content="2018-04-18T06:43:59.633Z">
+<meta property="og:image" content="http://yoursite.com/2018/04/18/Android开发艺术探索读书笔记之四大组件/Activity启动流程.png">
+<meta property="og:image" content="http://yoursite.com/2018/04/18/Android开发艺术探索读书笔记之四大组件/startService启动过程图.png">
+<meta property="og:updated_time" content="2018-04-18T06:50:51.145Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android开发艺术探索读书笔记之四大组件">
 <meta name="twitter:description" content="摘要 从启动过程、运行状态、组件使用注意事项、组件的特点等方面来分析Android四大基本组件，并对组件的特性做一些详细说明。">
-<meta name="twitter:image" content="http://yoursite.com/2018/04/18/Android开发艺术探索读书笔记之四大组件/Android%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6/startService%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B%E5%9B%BE.png">
+<meta name="twitter:image" content="http://yoursite.com/2018/04/18/Android开发艺术探索读书笔记之四大组件/Activity启动流程.png">
 
 
 
@@ -418,7 +419,7 @@
 <li>Activity的启动过程</li>
 </ul>
 <h4 id="Activity的启动过程"><a href="#Activity的启动过程" class="headerlink" title="Activity的启动过程"></a>Activity的启动过程</h4><p>具体启动过程如下图：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% asset_img &quot;Android开发艺术探索读书笔记之四大组件/Activity启动流程.jpg&quot; &quot;Activity启动流程&quot; %&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/04/18/Android开发艺术探索读书笔记之四大组件/Activity启动流程.png" alt="Activity启动流程"></p>
 <p>上面的流程途中，<code>handleLaunchActivity</code>中调用的<code>performLaunchActivity</code>主要做以下几件事：</p>
 <ol>
 <li>从ActivityClientRecord中获取待启动的Activity的组件信息；</li>
@@ -434,7 +435,7 @@
 <li>Service的绑定过程</li>
 </ul>
 <h4 id="Service的启动过程（startService）"><a href="#Service的启动过程（startService）" class="headerlink" title="Service的启动过程（startService）"></a>Service的启动过程（startService）</h4><p>具体启动过程如下：</p>
-<p><img src="Android%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6/startService%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B%E5%9B%BE.png" alt="startService启动过程图"></p>
+<p><img src="/2018/04/18/Android开发艺术探索读书笔记之四大组件/startService启动过程图.png" alt="startService启动过程图"></p>
 <p>handlerCreateService主要做以下工作：</p>
 <ul>
 <li>通过类加载器，创建Service的实例；</li>
