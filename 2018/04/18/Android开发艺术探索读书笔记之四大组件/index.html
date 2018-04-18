@@ -99,17 +99,21 @@
 
 
 
-  <meta name="description" content="文章摘要">
+  <meta name="description" content="摘要 从启动过程、运行状态、组件使用注意事项、组件的特点等方面来分析Android四大基本组件，并对组件的特性做一些详细说明。">
+<meta name="keywords" content="四大组件">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android开发艺术探索读书笔记之四大组件">
 <meta property="og:url" content="http://yoursite.com/2018/04/18/Android开发艺术探索读书笔记之四大组件/index.html">
 <meta property="og:site_name" content="荏苒追寻个人博客">
-<meta property="og:description" content="文章摘要">
+<meta property="og:description" content="摘要 从启动过程、运行状态、组件使用注意事项、组件的特点等方面来分析Android四大基本组件，并对组件的特性做一些详细说明。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-18T05:26:58.811Z">
+<meta property="og:image" content="http://yoursite.com/Users/RandyZhang/Documents/hexo/source/_posts/Android%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6/Activity%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B.png">
+<meta property="og:image" content="http://yoursite.com/Users/RandyZhang/Documents/hexo/source/_posts/Android%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6/startService%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B%E5%9B%BE.png">
+<meta property="og:updated_time" content="2018-04-18T05:57:50.587Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android开发艺术探索读书笔记之四大组件">
-<meta name="twitter:description" content="文章摘要">
+<meta name="twitter:description" content="摘要 从启动过程、运行状态、组件使用注意事项、组件的特点等方面来分析Android四大基本组件，并对组件的特性做一些详细说明。">
+<meta name="twitter:image" content="http://yoursite.com/Users/RandyZhang/Documents/hexo/source/_posts/Android%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6/Activity%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B.png">
 
 
 
@@ -350,6 +354,31 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/读书笔记/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -377,9 +406,51 @@
       
 
       
-        <h2 id="文章摘要"><a href="#文章摘要" class="headerlink" title="文章摘要"></a>文章摘要</h2><blockquote>
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><blockquote>
+<p>从启动过程、运行状态、组件使用注意事项、组件的特点等方面来分析Android四大基本组件，并对组件的特性做一些详细说明。</p>
 </blockquote>
 <a id="more"></a>
+<p>注册方式上，Android的四大组件中除BroadcastReceiver以外，其他三种都必须在AndroidManifest中注册，对于BroadcastReceiver，它既可以在AndroidManifest中注册，也可以在代码中注册。</p>
+<p>调用方式上，Activity、Service、BroadcastReceiver需要借助Intent，而ContentProvider则无须借助Intent。</p>
+<h2 id="四大组件的运行状态"><a href="#四大组件的运行状态" class="headerlink" title="四大组件的运行状态"></a>四大组件的运行状态</h2><h3 id="Activity"><a href="#Activity" class="headerlink" title="Activity"></a>Activity</h3><p>Activity是一种展示型组件。有一种运行状态：启动状态。需要掌握的知识点：</p>
+<ul>
+<li>Activity的生命周期</li>
+<li>Activity的启动模式，参考文章<a href="">Android Activity的启动模式</a></li>
+<li>Activity的启动过程</li>
+</ul>
+<h4 id="Activity的启动过程"><a href="#Activity的启动过程" class="headerlink" title="Activity的启动过程"></a>Activity的启动过程</h4><p>具体启动过程如下图：</p>
+<p><img src="/Users/RandyZhang/Documents/hexo/source/_posts/Android%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6/Activity%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B.png" alt="Activity启动流程"></p>
+<p>上面的流程途中，<code>handleLaunchActivity</code>中调用的<code>performLaunchActivity</code>主要做以下几件事：</p>
+<ol>
+<li>从ActivityClientRecord中获取待启动的Activity的组件信息；</li>
+<li>通过Instrumentation的newActivity方法使用类加载器创建Activity对象；</li>
+<li>通过LoadedApk的makeApplication方法来尝试创建Application对象；</li>
+<li>创建ContextImpl对象并通过Activity的attach方法来完成一些重要数据的初始化；</li>
+<li>调用Instrumentation调用callActivityOnCreate方法来调用Activity的onCreate方法，来启动Activity</li>
+</ol>
+<p>至此，Activity的启动流程走完了。</p>
+<h3 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h3><p>Service是一种计算型组件。有两种运行状态：启动状态和绑定状态。需要掌握的知识点：</p>
+<ul>
+<li>Service的启动过程；</li>
+<li>Service的绑定过程</li>
+</ul>
+<h4 id="Service的启动过程（startService）"><a href="#Service的启动过程（startService）" class="headerlink" title="Service的启动过程（startService）"></a>Service的启动过程（startService）</h4><p>具体启动过程如下：</p>
+<p><img src="/Users/RandyZhang/Documents/hexo/source/_posts/Android%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6/startService%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B%E5%9B%BE.png" alt="startService启动过程图"></p>
+<p>handlerCreateService主要做以下工作：</p>
+<ul>
+<li>通过类加载器，创建Service的实例；</li>
+<li>创建ContextImpl对象；</li>
+<li>创建Application对象；</li>
+<li>通过Service的attach方法将ContextImpl对象和Application对象绑定；</li>
+<li>调用Service的onCreate方法，并将Service对象放入到列表中</li>
+</ul>
+<p>handleServiceArgs方法主要工作：</p>
+<ul>
+<li>调用Service的onStartCommand方法</li>
+</ul>
+<h4 id="Service的绑定过程（bindService）"><a href="#Service的绑定过程（bindService）" class="headerlink" title="Service的绑定过程（bindService）"></a>Service的绑定过程（bindService）</h4><h3 id="BroadcastReceiver"><a href="#BroadcastReceiver" class="headerlink" title="BroadcastReceiver"></a>BroadcastReceiver</h3><p>BroadcastReceiver是一种消息型组件。</p>
+<h3 id="ContentProvider"><a href="#ContentProvider" class="headerlink" title="ContentProvider"></a>ContentProvider</h3><p>ContentProvider是一种数据共享型组件。</p>
+
       
     </div>
 
@@ -396,6 +467,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/四大组件/" rel="tag"># 四大组件</a>
+          
+        </div>
       
 
       
@@ -488,7 +565,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">59</span>
+                    <span class="site-state-item-count">58</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -627,7 +704,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#文章摘要"><span class="nav-number">1.</span> <span class="nav-text">文章摘要</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四大组件的运行状态"><span class="nav-number">2.</span> <span class="nav-text">四大组件的运行状态</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Activity"><span class="nav-number">2.1.</span> <span class="nav-text">Activity</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Activity的启动过程"><span class="nav-number">2.1.1.</span> <span class="nav-text">Activity的启动过程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Service"><span class="nav-number">2.2.</span> <span class="nav-text">Service</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Service的启动过程（startService）"><span class="nav-number">2.2.1.</span> <span class="nav-text">Service的启动过程（startService）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Service的绑定过程（bindService）"><span class="nav-number">2.2.2.</span> <span class="nav-text">Service的绑定过程（bindService）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BroadcastReceiver"><span class="nav-number">2.3.</span> <span class="nav-text">BroadcastReceiver</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ContentProvider"><span class="nav-number">2.4.</span> <span class="nav-text">ContentProvider</span></a></li></ol></li></ol></div>
             
 
           </div>
