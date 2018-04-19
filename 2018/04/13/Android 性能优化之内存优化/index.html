@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="荏苒追寻个人博客">
 <meta property="og:description" content="摘要 虽说Android硬件水平在不断的提高在App开发过程中，性能优化似乎是一个经常性的话题，本文将从内存的角度来分析如何对Android App的性能进行优化。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-17T03:36:55.773Z">
+<meta property="og:updated_time" content="2018-04-19T01:40:14.374Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 性能优化之内存优化">
 <meta name="twitter:description" content="摘要 虽说Android硬件水平在不断的提高在App开发过程中，性能优化似乎是一个经常性的话题，本文将从内存的角度来分析如何对Android App的性能进行优化。">
@@ -407,9 +407,15 @@
 <p>虽说Android硬件水平在不断的提高在App开发过程中，性能优化似乎是一个经常性的话题，本文将从内存的角度来分析如何对Android App的性能进行优化。</p>
 </blockquote>
 <a id="more"></a>
-<p>[TOC]</p>
 <h2 id="内存优化"><a href="#内存优化" class="headerlink" title="内存优化"></a>内存优化</h2><p>内存优化，说直白点就是高效的使用内存、高效的回收内存及有效的避免内存泄漏。</p>
-<h3 id="高效的使用内存"><a href="#高效的使用内存" class="headerlink" title="高效的使用内存"></a>高效的使用内存</h3><h3 id="高效的回收内存"><a href="#高效的回收内存" class="headerlink" title="高效的回收内存"></a>高效的回收内存</h3><h3 id="避免内泄漏"><a href="#避免内泄漏" class="headerlink" title="避免内泄漏"></a>避免内泄漏</h3><p>参考文章<a href="https://www.jianshu.com/p/ab4a7e353076" target="_blank" rel="noopener">Android内存优化——常见内存泄露及优化方案</a></p>
+<h3 id="高效的使用内存"><a href="#高效的使用内存" class="headerlink" title="高效的使用内存"></a>高效的使用内存</h3><p>为了更好的适用于Android手机（内存小，CPU资源紧张）这个应用场景，Google 封装了一些比较常用的数据结构（在android.util包下），如ArrayMap、ArraySet、SparseArray(SparseBooleanArray、SparseIntArray、SparseLongArray)等。</p>
+<h4 id="SparseArray"><a href="#SparseArray" class="headerlink" title="SparseArray"></a>SparseArray</h4><p>在Android中当<code>HashMap&lt;Key, Value&gt;</code>中的<code>Key</code>为<code>Integer</code>类型时，可以采用<code>SparseArray</code>类替换以提高效率（在<strong>数据量很大</strong>的时候还是<code>HashMap</code>效率更高）。</p>
+<p>SpareArray特点</p>
+<ul>
+<li>采用的两个数组来实现，一个int数组，一个Object数组</li>
+<li>采用binary search算法来查找元素</li>
+</ul>
+<h3 id="高效的回收内存"><a href="#高效的回收内存" class="headerlink" title="高效的回收内存"></a>高效的回收内存</h3><h3 id="避免内泄漏"><a href="#避免内泄漏" class="headerlink" title="避免内泄漏"></a>避免内泄漏</h3><p>参考文章<a href="https://www.jianshu.com/p/ab4a7e353076" target="_blank" rel="noopener">Android内存优化——常见内存泄露及优化方案</a></p>
 <h4 id="内存泄漏的原因"><a href="#内存泄漏的原因" class="headerlink" title="内存泄漏的原因"></a>内存泄漏的原因</h4><h4 id="监测内存泄漏"><a href="#监测内存泄漏" class="headerlink" title="监测内存泄漏"></a>监测内存泄漏</h4><h4 id="常见的内存泄漏情景"><a href="#常见的内存泄漏情景" class="headerlink" title="常见的内存泄漏情景"></a>常见的内存泄漏情景</h4><ol>
 <li>使用内部类（或匿名内部类）</li>
 <li>使用AsyncTask或Handler</li>
@@ -540,7 +546,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">58</span>
+                    <span class="site-state-item-count">57</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -589,9 +595,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-count">18</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -656,9 +660,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-count">26</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -703,7 +705,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存优化"><span class="nav-number">2.</span> <span class="nav-text">内存优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#高效的使用内存"><span class="nav-number">2.1.</span> <span class="nav-text">高效的使用内存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高效的回收内存"><span class="nav-number">2.2.</span> <span class="nav-text">高效的回收内存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#避免内泄漏"><span class="nav-number">2.3.</span> <span class="nav-text">避免内泄漏</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#内存泄漏的原因"><span class="nav-number">2.3.1.</span> <span class="nav-text">内存泄漏的原因</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#监测内存泄漏"><span class="nav-number">2.3.2.</span> <span class="nav-text">监测内存泄漏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常见的内存泄漏情景"><span class="nav-number">2.3.3.</span> <span class="nav-text">常见的内存泄漏情景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何避免"><span class="nav-number">2.3.4.</span> <span class="nav-text">如何避免</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存优化"><span class="nav-number">2.</span> <span class="nav-text">内存优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#高效的使用内存"><span class="nav-number">2.1.</span> <span class="nav-text">高效的使用内存</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SparseArray"><span class="nav-number">2.1.1.</span> <span class="nav-text">SparseArray</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高效的回收内存"><span class="nav-number">2.2.</span> <span class="nav-text">高效的回收内存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#避免内泄漏"><span class="nav-number">2.3.</span> <span class="nav-text">避免内泄漏</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#内存泄漏的原因"><span class="nav-number">2.3.1.</span> <span class="nav-text">内存泄漏的原因</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#监测内存泄漏"><span class="nav-number">2.3.2.</span> <span class="nav-text">监测内存泄漏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常见的内存泄漏情景"><span class="nav-number">2.3.3.</span> <span class="nav-text">常见的内存泄漏情景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何避免"><span class="nav-number">2.3.4.</span> <span class="nav-text">如何避免</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
