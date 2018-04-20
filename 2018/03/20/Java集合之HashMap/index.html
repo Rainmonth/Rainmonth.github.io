@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="荏苒追寻个人博客">
 <meta property="og:description" content="前言本文分析的代码对应的JDK版本为1.8，采用的IDE环境为IntellJ IDEA，注意本文不做细致分析，所以不会对源码细节做过多说明，而是指出使用HashMap前需要了解哪些方面的内容，可能会发生什么问题，细节可以自己参考JDK源码。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-20T05:15:04.378Z">
+<meta property="og:updated_time" content="2018-04-20T05:16:59.849Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java集合之HashMap">
 <meta name="twitter:description" content="前言本文分析的代码对应的JDK版本为1.8，采用的IDE环境为IntellJ IDEA，注意本文不做细致分析，所以不会对源码细节做过多说明，而是指出使用HashMap前需要了解哪些方面的内容，可能会发生什么问题，细节可以自己参考JDK源码。">
@@ -412,7 +412,7 @@
 </ul>
 <p>数组说明</p>
 <ol>
-<li>长度大小需为2^n(n为整数，n&gt;= 0)（默认为16），至于为什么有这个要求，后面说明；</li>
+<li>长度大小需为2^n^(n为整数，n&gt;= 0)（默认为16），至于为什么有这个要求，后面说明；</li>
 <li>有一个关联的加载因子loadFactor（默认为0.75），默认的可用的桶为12个，由一个threshold变量记录；长度大于数组length * loadFactor 会重新resize；</li>
 </ol>
 <h2 id="元素如何添加进HashMap的"><a href="#元素如何添加进HashMap的" class="headerlink" title="元素如何添加进HashMap的"></a>元素如何添加进HashMap的</h2><p>添加元素，采用put方法，put方法实现如下：</p>
