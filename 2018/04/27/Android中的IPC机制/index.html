@@ -110,7 +110,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/04/27/Android中的IPC机制/ipc之新建aidl文件.png">
 <meta property="og:image" content="http://yoursite.com/2018/04/27/Android中的IPC机制/ipc之自动生成的文件.png">
 <meta property="og:image" content="http://yoursite.com/2018/04/27/Android中的IPC机制/ipc之自动生成的aidl文件结构.png">
-<meta property="og:updated_time" content="2018-05-04T03:06:49.391Z">
+<meta property="og:updated_time" content="2018-05-04T03:23:08.977Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android中的IPC机制">
 <meta name="twitter:description" content="摘要IPC，即Inter-Process Communication，进程间通信（也叫跨进程通信），可以是两个应用（每个应用是一个进程），亦可以是一个应用中的两个进程。由于不同的进程有不同的内存地址分配，所以多进程在通信的时候会发生一些问题，本文从介绍多进程通信可能引发的问题开始，慢慢介绍IPC的基本概念、具体的IPC方式及其具体实现，并在最后对各种通信方式做了简单的比较。">
@@ -417,7 +417,7 @@
 <p>上面两种开启多进程方式的区别：</p>
 <ul>
 <li>:process表示在包名后添加:process构成完整的进程名，表示该进程是当前应用的私有进程，其他应用组件不能跑在这个进程中</li>
-<li>ThirdActivity开启的进程属于全局进程，其他应用可以通过ShareUID的方式和它跑在同一个进程中（前提是这两个应用具有相同的ShareUID和<strong>相同的签名</strong>（？）</li>
+<li>ThirdActivity开启的进程属于全局进程，其他应用可以通过ShareUID的方式和它跑在同一个进程中（前提是这两个应用具有相同的ShareUID</li>
 </ul>
 <h2 id="Android多进程的运行机制"><a href="#Android多进程的运行机制" class="headerlink" title="Android多进程的运行机制"></a>Android多进程的运行机制</h2><h3 id="多进程会引发什么问题"><a href="#多进程会引发什么问题" class="headerlink" title="多进程会引发什么问题"></a>多进程会引发什么问题</h3><p>先给出结论，稍后论证：</p>
 <ol>
@@ -515,7 +515,7 @@
 <p>根据上面的描述，共享文件的适用于对数据同步要求不高的进程之间通信的场景，并且我们还要处理好并发读写问题。</p>
 <p>虽然SharedPreference也是一种xml形式的文件，但是不推荐用它做共享文件来完成进程间通信。为什么呢？</p>
 <p>SharedPreference是Android提供的轻量级数据存储方案，具有一定的缓存策略，它在内存中会有一份SharedPreference文件的缓存。涉及到内存，那么多进程（每个进程的内存空间都不一样）模式下就不可靠了，容易丢失数据，所以不建议使用SharedPreference文件来做共享文件来完成进程间通信。</p>
-<h3 id="使用Messenger"><a href="#使用Messenger" class="headerlink" title="使用Messenger"></a>使用Messenger</h3><p>底层实现是AIDL，类本身实现了Parcelable接口，通过大可以实现进程间通信（通过Message来传递数据信息），一般步骤：</p>
+<h3 id="使用Messenger"><a href="#使用Messenger" class="headerlink" title="使用Messenger"></a>使用Messenger</h3><p>底层实现是AIDL，类本身实现了Parcelable接口，通过它可以实现进程间通信（通过Message来传递数据信息），一般步骤：</p>
 <ul>
 <li><p>服务端进程</p>
 <blockquote>
