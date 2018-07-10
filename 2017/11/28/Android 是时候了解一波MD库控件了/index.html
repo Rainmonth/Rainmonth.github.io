@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="荏苒追寻个人博客">
 <meta property="og:description" content="摘要 本文主要介绍android.support.design.widget包下的一些Material Design控件，很多市场上绚丽的App的实现都是基于这些库的，Android本身为我们封装出来的效果就足够平常使用了，下面我讲分别详细介绍各个MD控件，同时自己会做一些扩展，本文先大体介绍一下各个控件，然后详细介绍CoordinatorLayout控件。  系列文章参考：  AppBarLay">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-18T07:23:27.275Z">
+<meta property="og:updated_time" content="2018-06-11T15:58:38.516Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 是时候了解一波MD库控件了">
 <meta name="twitter:description" content="摘要 本文主要介绍android.support.design.widget包下的一些Material Design控件，很多市场上绚丽的App的实现都是基于这些库的，Android本身为我们封装出来的效果就足够平常使用了，下面我讲分别详细介绍各个MD控件，同时自己会做一些扩展，本文先大体介绍一下各个控件，然后详细介绍CoordinatorLayout控件。  系列文章参考：  AppBarLay">
@@ -416,6 +416,35 @@
 <li><a href="">FloatingActionButton</a></li>
 </ul>
 <a id="more"></a>
+<h2 id="android-support-v7-Toolbar"><a href="#android-support-v7-Toolbar" class="headerlink" title="android.support.v7.Toolbar"></a>android.support.v7.Toolbar</h2><p>Toolbar为我们顶部导航栏的开发带来了许多便利，但如果使用不注意也会有很多坑。</p>
+<h3 id="便利"><a href="#便利" class="headerlink" title="便利"></a>便利</h3><ul>
+<li><p>可以只将Toolbar当做一个容器，它本身就是继承自ViewGroup的，然后在里面定义自己的顶部导航栏布局</p>
+</li>
+<li><p>在没有ActionBar的AppCompatActivity中，可以通过setSupportActionBar(Toolbar)来设置ActionBar，然后使用ActionBar的一些功能。</p>
+<blockquote>
+<p>注意：这里必须是没有ActionBar的AppCompatActivity，否则会报如下错误：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; Caused by: java.lang.IllegalStateException: This Activity already has an action bar supplied by the window decor. Do not request Window.FEATURE_SUPPORT_ACTION_BAR and set windowActionBar to false in your theme to use a Toolbar instead.</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<h3 id="坑"><a href="#坑" class="headerlink" title="坑"></a>坑</h3><h4 id="Toolbar元素间距调整麻烦"><a href="#Toolbar元素间距调整麻烦" class="headerlink" title="Toolbar元素间距调整麻烦"></a>Toolbar元素间距调整麻烦</h4><p>直接使用Toolbar或由它初始化的ActionBar时，UI上的定制性比较差，Toolbar主要包含以下几个元素（按从左到右的顺序）：</p>
+<ol>
+<li>NavigationIcon，导航图标，默认为向左箭头，可以自己设置；</li>
+<li>Logo，当前页面对应的Logo，国内很少使用这个属性；</li>
+<li>标题，有两种标题<ol>
+<li>Title，页面标题，常用；</li>
+<li>SubTitle，页面子标题，较常用；</li>
+</ol>
+</li>
+<li>Menu，页面右边对应的菜单；</li>
+</ol>
+<p>说UI的定制，主要就是前面1、2、3三个元素之间的间距调整，在V22之前，由于不存在<code>contentInsetStartWithNavigation</code>属性，1和3的间距还可以接受，但V22之后，添加了这个属性，会发现1和3的间距太大了，解决方法就是设置给属性的值为0dp，设置完成后发现NavigationIcon与Title的距离还是太大了，这是因为NavigationIcon是存在padding值得，那么如何搞定这个padding值呢，我们可以通过AppTheme的如下属性来设置：</p>
+<p><code>&lt;item name=&quot;toolbarNavigationButtonStyle&quot;&gt;@style/myToolbarNavigationButtonStyle&lt;/item&gt;</code></p>
+<p>其中<code>myToolbarNavigationButtonStyle</code>定义如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">"myToolbarNavigationButtonStyle"</span> <span class="attr">parent</span>=<span class="string">"@style/Widget.AppCompat.Toolbar.Button.Navigation"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:minWidth"</span>&gt;</span>32dp<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:padding"</span>&gt;</span>0dp<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:scaleType"</span>&gt;</span>centerInside<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>通过上面的padding可以实现NavigationIcon相关的属性定制。</p>
+<h4 id="ActionBar方法调用存在限制"><a href="#ActionBar方法调用存在限制" class="headerlink" title="ActionBar方法调用存在限制"></a>ActionBar方法调用存在限制</h4><p>一定要先调用<code>setSupportActionBar</code>这个方法之后然后在调用ActionBar的相关方法</p>
+
       
     </div>
 
@@ -534,7 +563,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">46</span>
+                    <span class="site-state-item-count">47</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -656,6 +685,8 @@
                     
                       
                     
+                      
+                    
                     <span class="site-state-item-count">30</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
@@ -701,7 +732,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#android-support-v7-Toolbar"><span class="nav-number">2.</span> <span class="nav-text">android.support.v7.Toolbar</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#便利"><span class="nav-number">2.1.</span> <span class="nav-text">便利</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#坑"><span class="nav-number">2.2.</span> <span class="nav-text">坑</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Toolbar元素间距调整麻烦"><span class="nav-number">2.2.1.</span> <span class="nav-text">Toolbar元素间距调整麻烦</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ActionBar方法调用存在限制"><span class="nav-number">2.2.2.</span> <span class="nav-text">ActionBar方法调用存在限制</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

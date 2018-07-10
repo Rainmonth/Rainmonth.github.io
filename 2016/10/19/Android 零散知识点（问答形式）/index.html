@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="荏苒追寻个人博客">
 <meta property="og:description" content="#Android 零散知识点（持续更新） [TOC]  Q：为什么Android的更新试图操作必须在主线程中进行？  这是因为Android系统中的视图组件并不是线程安全的。通常应该让主线程负责创建、显示和更新UI，启动子线程，停止子线程。让子线程完成计算并向主线程发出更新UI的消息，让主线程来更新UI。这就促使Android中产生了Handler机制。     Q：如何更改Android Stu">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-19T02:24:46.075Z">
+<meta property="og:updated_time" content="2018-06-22T05:15:25.751Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 零散知识点（持续更新）">
 <meta name="twitter:description" content="#Android 零散知识点（持续更新） [TOC]  Q：为什么Android的更新试图操作必须在主线程中进行？  这是因为Android系统中的视图组件并不是线程安全的。通常应该让主线程负责创建、显示和更新UI，启动子线程，停止子线程。让子线程完成计算并向主线程发出更新UI的消息，让主线程来更新UI。这就促使Android中产生了Handler机制。     Q：如何更改Android Stu">
@@ -420,6 +420,18 @@
 </li>
 </ul>
 <a id="more"></a>
+<h2 id="自定义模板"><a href="#自定义模板" class="headerlink" title="自定义模板"></a>自定义模板</h2><ol>
+<li><a href="https://blog.csdn.net/lmj623565791/article/details/51635533" target="_blank" rel="noopener">Android Studio自定义模板 写页面竟然可以如此轻松</a></li>
+<li>新建类文件的自定义模板方法<ul>
+<li>File and code template-&gt;新建模板，输入名字，选择扩展名，填入模板内容</li>
+<li>模板内容中的自定义变量采用<code>${变量}</code>来声明，声明之后会在新建的时候要求你输入，<strong>但要注意，这个变量必须是在当前这个模板中声明的，不能是引用自其它模板的自定义变量</strong></li>
+<li>模板中可以使用静态文本，也可以使用预设的变量，如${DATE}等。</li>
+</ul>
+</li>
+</ol>
+<h2 id="权限适配问题"><a href="#权限适配问题" class="headerlink" title="权限适配问题"></a>权限适配问题</h2><ul>
+<li>索尼手机，debug模式打开webView就崩溃</li>
+</ul>
 <h2 id="控件问题"><a href="#控件问题" class="headerlink" title="控件问题"></a>控件问题</h2><ul>
 <li><p>EditText 的光标为何不显示？</p>
 <blockquote>
@@ -778,7 +790,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">46</span>
+                    <span class="site-state-item-count">47</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -900,6 +912,8 @@
                     
                       
                     
+                      
+                    
                     <span class="site-state-item-count">30</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
@@ -945,7 +959,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#控件问题"><span class="nav-number">1.</span> <span class="nav-text">控件问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译配置问题"><span class="nav-number">2.</span> <span class="nav-text">编译配置问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四大组件问题"><span class="nav-number">3.</span> <span class="nav-text">四大组件问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WebView问题"><span class="nav-number">4.</span> <span class="nav-text">WebView问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三方库常见问题"><span class="nav-number">5.</span> <span class="nav-text">第三方库常见问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">6.</span> <span class="nav-text">其他</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义模板"><span class="nav-number">1.</span> <span class="nav-text">自定义模板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#权限适配问题"><span class="nav-number">2.</span> <span class="nav-text">权限适配问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#控件问题"><span class="nav-number">3.</span> <span class="nav-text">控件问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译配置问题"><span class="nav-number">4.</span> <span class="nav-text">编译配置问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四大组件问题"><span class="nav-number">5.</span> <span class="nav-text">四大组件问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WebView问题"><span class="nav-number">6.</span> <span class="nav-text">WebView问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三方库常见问题"><span class="nav-number">7.</span> <span class="nav-text">第三方库常见问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">8.</span> <span class="nav-text">其他</span></a></li></ol></div>
             
 
           </div>

@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="荏苒追寻个人博客">
 <meta property="og:description" content="状态栏攻略[TOC] 本文目标 MaterialDesign 状态栏 沉浸式效果（视觉上就是toolbar和status bar颜色相同） 全屏（带状态栏的全屏）  基本概念 colorPrimary，一般指ActionBar的颜色 textColorPrimary，一般指ActionBar上标题文字的颜色 colorPrimaryDark，一般指状态栏的颜色 colorAccent，一般指强调色">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-19T02:31:06.252Z">
+<meta property="og:updated_time" content="2018-06-12T09:04:11.591Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 状态栏攻略">
 <meta name="twitter:description" content="状态栏攻略[TOC] 本文目标 MaterialDesign 状态栏 沉浸式效果（视觉上就是toolbar和status bar颜色相同） 全屏（带状态栏的全屏）  基本概念 colorPrimary，一般指ActionBar的颜色 textColorPrimary，一般指ActionBar上标题文字的颜色 colorPrimaryDark，一般指状态栏的颜色 colorAccent，一般指强调色">
@@ -450,7 +450,9 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">"AppTheme.NoActionBar"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"windowActionBar"</span>&gt;</span>false<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"windowNoTitle"</span>&gt;</span>true<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:windowDrawsSystemBarBackgrounds"</span>&gt;</span>true<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:statusBarColor"</span>&gt;</span>@android:color/transparent<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h4 id="带有状态栏的全屏"><a href="#带有状态栏的全屏" class="headerlink" title="带有状态栏的全屏"></a>带有状态栏的全屏</h4><p>App主题依然使用AppTheme.NoActionBar，去掉根布局里面的<em>android:fitSystemWindow=”true”</em>，对于v21的，在Window上附加如下属性：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FLAG_TRANSLUCENT_NAVIGATION</span><br></pre></td></tr></table></figure>
-<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><p><a href="https://github.com/laobie/StatusBarUtil" target="_blank" rel="noopener">StatusBarUtil</a>提供了一个状态栏颜色相关的库，很不错</p>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><p><a href="https://github.com/laobie/StatusBarUtil" target="_blank" rel="noopener">StatusBarUtil</a>提供了一个状态栏颜色相关的库，很不错。</p>
+<p>扩展阅读文章：</p>
+<p><a href="https://www.jianshu.com/p/932568ed31af" target="_blank" rel="noopener">Android修改状态栏颜色全方位教程</a></p>
 <p>​</p>
 <p>以上就是全部了，若要了解更多，请多多留意。</p>
 <p>​</p>
@@ -574,7 +576,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">46</span>
+                    <span class="site-state-item-count">47</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -635,6 +637,8 @@
                 <div class="site-state-item site-state-tags">
                   <a href="/tags/index.html">
                     
+                    
+                      
                     
                       
                     
