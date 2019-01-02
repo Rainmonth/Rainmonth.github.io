@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="荏苒追寻个人博客">
 <meta property="og:description" content="摘要 日常开发中难免会要用到.9.png图片，如果每次都让UI提供就显得很low了，其实摘要我们能熟练掌握Android Studio这一强大的IDE，我们就能很轻松的制作满足条件的.9.png图片，然后你会说，这么简单啊！">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-13T06:23:51.035Z">
+<meta property="og:updated_time" content="2019-01-02T15:17:01.769Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 使用Android Stuido 快速制作.9.png图">
 <meta name="twitter:description" content="摘要 日常开发中难免会要用到.9.png图片，如果每次都让UI提供就显得很low了，其实摘要我们能熟练掌握Android Studio这一强大的IDE，我们就能很轻松的制作满足条件的.9.png图片，然后你会说，这么简单啊！">
@@ -403,6 +403,12 @@
 <h2 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h2><p>用Android Studio打开一个Android项目，找到app（主module）下的res文件夹（资源文件夹），定位到mipmap目录，如果没有，自己手动新建。</p>
 <h2 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h2><p>找到上面的mipmap文件夹，讲要转换成<code>.9.png</code>格式的图片复制到改目录下面，选择图片点击右键，选择<strong>Create 9-patch file</strong>，选择文件保存位置，这里我选择保存到当前文件夹（即mipmap文件夹），在Android Studio打开该文件，就可以开始修改<code>.9.png</code>图片了，具体怎么修改看第三部</p>
 <h2 id="第三步"><a href="#第三步" class="headerlink" title="第三步"></a>第三步</h2><p>制作<code>.9.png</code>的目的其实就是为了更好的图片适配，适配就涉及到图片的拉伸。定义拉伸区域的方法就是通过鼠标左键点击图片边缘添加黑点，然后鼠标放在黑点上就会出现水平或垂直的双向拉伸箭头，就可以拉伸了，注意，黑线区域为可以拉伸区域，非黑线区域为不可拉伸区域。</p>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>.9.png这个格式的图片控制拉伸的原理如下：</p>
+<ul>
+<li>通过左上两条边上的黑点（线）来分别控制水平竖直拉伸区域；</li>
+<li>通过右下两条边上的黑点（线）来分别控制水平竖直方向的不变区域；</li>
+</ul>
+<p>不变区域确保内容不会因拉伸而改变，可变区域用来进行图片大小的适配。</p>
 <p>开始您的制作之旅吧！</p>
 
       
@@ -570,8 +576,6 @@
                     
                       
                     
-                      
-                    
                     <span class="site-state-item-count">17</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
@@ -690,7 +694,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一步"><span class="nav-number">2.</span> <span class="nav-text">第一步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二步"><span class="nav-number">3.</span> <span class="nav-text">第二步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三步"><span class="nav-number">4.</span> <span class="nav-text">第三步</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一步"><span class="nav-number">2.</span> <span class="nav-text">第一步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二步"><span class="nav-number">3.</span> <span class="nav-text">第二步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三步"><span class="nav-number">4.</span> <span class="nav-text">第三步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意"><span class="nav-number">5.</span> <span class="nav-text">注意</span></a></li></ol></div>
             
 
           </div>
@@ -710,7 +714,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate"> 
     <i class="fa fa-user"></i>
   </span>

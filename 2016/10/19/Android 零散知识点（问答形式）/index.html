@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="荏苒追寻个人博客">
 <meta property="og:description" content="#Android 零散知识点（持续更新） [TOC]  Q：为什么Android的更新试图操作必须在主线程中进行？  这是因为Android系统中的视图组件并不是线程安全的。通常应该让主线程负责创建、显示和更新UI，启动子线程，停止子线程。让子线程完成计算并向主线程发出更新UI的消息，让主线程来更新UI。这就促使Android中产生了Handler机制。     Q：如何更改Android Stu">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-22T05:15:25.751Z">
+<meta property="og:updated_time" content="2018-09-27T13:41:48.432Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 零散知识点（持续更新）">
 <meta name="twitter:description" content="#Android 零散知识点（持续更新） [TOC]  Q：为什么Android的更新试图操作必须在主线程中进行？  这是因为Android系统中的视图组件并不是线程安全的。通常应该让主线程负责创建、显示和更新UI，启动子线程，停止子线程。让子线程完成计算并向主线程发出更新UI的消息，让主线程来更新UI。这就促使Android中产生了Handler机制。     Q：如何更改Android Stu">
@@ -479,6 +479,16 @@
 </li>
 </ul>
 <h2 id="编译配置问题"><a href="#编译配置问题" class="headerlink" title="编译配置问题"></a>编译配置问题</h2><ul>
+<li><p>Could not download support-compat.aar</p>
+<p>&gt;</p>
+</li>
+<li><p>Unable to open debugger port (localhost:8617): java.net.ConnectException “连接超时”</p>
+<blockquote>
+<p>很可能是localhost地址找不到的原因，在hosts中添加：</p>
+<p>127.0.0.1        localhost</p>
+<p>这一行即可</p>
+</blockquote>
+</li>
 <li><p>mac版eclipse导入Android项目里面的中文乱码问题如何解决？</p>
 <blockquote>
 <ol>
@@ -639,8 +649,8 @@
 <li><p>使用Glide报如下错误如何解决？</p>
 <blockquote>
 <p>java.lang.IllegalArgumentException: You cannot start a load for a destroyed activity<br>​    com.bumptech.glide.manager.k.b(Unknown Source)<br>​    com.bumptech.glide.manager.k.a(Unknown Source)<br>​    com.bumptech.glide.manager.k.a(Unknown Source)<br>​    com.bumptech.glide.e.b(Unknown Source)</p>
-<p>​    …</p>
-<p>​    …</p>
+<p>   …</p>
+<p>   …</p>
 </blockquote>
 <p>解决方案：</p>
 <blockquote>
@@ -837,8 +847,6 @@
                     
                       
                     
-                      
-                    
                     <span class="site-state-item-count">17</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
@@ -977,7 +985,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate"> 
     <i class="fa fa-user"></i>
   </span>
