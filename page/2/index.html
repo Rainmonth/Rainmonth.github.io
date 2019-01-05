@@ -629,7 +629,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/14/Java设计模式之装饰器模式/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/14/Hexo 搭建个人博客/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Randy Zhang">
@@ -648,7 +648,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/14/Java设计模式之装饰器模式/" itemprop="url">Java设计模式之装饰器模式</a></h1>
+                <a class="post-title-link" href="/2018/01/14/Hexo 搭建个人博客/" itemprop="url">Hexo搭建个人博客</a></h1>
         
 
         <div class="post-meta">
@@ -681,14 +681,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/前端/" itemprop="url" rel="index"><span itemprop="name">前端</span></a></span>
 
                 
                 
                   ， 
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/设计模式/" itemprop="url" rel="index"><span itemprop="name">设计模式</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/前端/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a></span>
 
                 
                 
@@ -723,10 +723,38 @@
 
       
         
-          <h2 id="模式定义"><a href="#模式定义" class="headerlink" title="模式定义"></a>模式定义</h2><p>装饰器模式允许向一个现有对象添加新的功能，同时又不改变其结构。装饰者可以在所委托被装饰者的行为之前或之后加上自己的行为，以达到自己的目的。</p>
+          <blockquote>
+<p>官方文档参考点击<a href="https://hexo.io/docs/" target="_blank" rel="noopener">Hexo官方文档</a></p>
+<ul>
+<li>制作主题介绍文章参考<a href="https://www.imooc.com/article/17220" target="_blank" rel="noopener">2017年最新基于hexo搭建个人免费博客——自定义页面样式一</a></li>
+<li><a href="http://www.360doc.com/content/16/0913/16/33651124_590545274.shtml" target="_blank" rel="noopener">Hexo主题制作指南</a></li>
+<li><a href="http://shenzekun.cn/hexo%E7%9A%84next%E4%B8%BB%E9%A2%98%E4%B8%AA%E6%80%A7%E5%8C%96%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B.html" target="_blank" rel="noopener">hexo个性化配置</a>(修改的时next主题)</li>
+</ul>
+</blockquote>
+<h2 id="Hexo-文章分类"><a href="#Hexo-文章分类" class="headerlink" title="Hexo 文章分类"></a>Hexo 文章分类</h2><p>在文章开头的yaml属性配置中添加如下内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">categories: </span><br><span class="line">- 一级分类</span><br><span class="line">- 二级分类</span><br></pre></td></tr></table></figure>
+<p>yaml支持以下属性：</p>
+<ul>
+<li>layout，采用的布局可以是post，page，draft；</li>
+<li>title，文章的标题，含空格的时候要用引号括起来；</li>
+<li>date，日期，如2018-01-14</li>
+<li>updated，修改日期</li>
+<li>comments，是否开启评论</li>
+<li>tags，标签，多个采用Markdown的无序列表</li>
+<li>categories，分类，支持多级分类，采用Markdown无序列表，最上面代表一级分类</li>
+</ul>
+<h2 id="Hexo-更换主题"><a href="#Hexo-更换主题" class="headerlink" title="Hexo 更换主题"></a>Hexo 更换主题</h2><ul>
+<li>下载好要更换的主题</li>
+<li>在Hexo根目录找到配置文件，搜索theme，讲主题名字替换为你下载好的主题</li>
+</ul>
+<p>常用主题配置说明：</p>
+<ul>
+<li><a href="http://shenzekun.cn/hexo%E7%9A%84next%E4%B8%BB%E9%A2%98%E4%B8%AA%E6%80%A7%E5%8C%96%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B.html" target="_blank" rel="noopener">hexo个性化配置</a>(修改的时next主题)</li>
+<li><a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="noopener">yilia主题配置说明</a></li>
+</ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/14/Java设计模式之装饰器模式/#more" rel="contents">
+            <a class="btn" href="/2018/01/14/Hexo 搭建个人博客/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -942,7 +970,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/14/Hexo 搭建个人博客/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/14/Java设计模式之装饰器模式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Randy Zhang">
@@ -961,7 +989,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/14/Hexo 搭建个人博客/" itemprop="url">Hexo搭建个人博客</a></h1>
+                <a class="post-title-link" href="/2018/01/14/Java设计模式之装饰器模式/" itemprop="url">Java设计模式之装饰器模式</a></h1>
         
 
         <div class="post-meta">
@@ -994,14 +1022,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/前端/" itemprop="url" rel="index"><span itemprop="name">前端</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
 
                 
                 
                   ， 
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/前端/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/设计模式/" itemprop="url" rel="index"><span itemprop="name">设计模式</span></a></span>
 
                 
                 
@@ -1036,38 +1064,10 @@
 
       
         
-          <blockquote>
-<p>官方文档参考点击<a href="https://hexo.io/docs/" target="_blank" rel="noopener">Hexo官方文档</a></p>
-<ul>
-<li>制作主题介绍文章参考<a href="https://www.imooc.com/article/17220" target="_blank" rel="noopener">2017年最新基于hexo搭建个人免费博客——自定义页面样式一</a></li>
-<li><a href="http://www.360doc.com/content/16/0913/16/33651124_590545274.shtml" target="_blank" rel="noopener">Hexo主题制作指南</a></li>
-<li><a href="http://shenzekun.cn/hexo%E7%9A%84next%E4%B8%BB%E9%A2%98%E4%B8%AA%E6%80%A7%E5%8C%96%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B.html" target="_blank" rel="noopener">hexo个性化配置</a>(修改的时next主题)</li>
-</ul>
-</blockquote>
-<h2 id="Hexo-文章分类"><a href="#Hexo-文章分类" class="headerlink" title="Hexo 文章分类"></a>Hexo 文章分类</h2><p>在文章开头的yaml属性配置中添加如下内容：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">categories: </span><br><span class="line">- 一级分类</span><br><span class="line">- 二级分类</span><br></pre></td></tr></table></figure>
-<p>yaml支持以下属性：</p>
-<ul>
-<li>layout，采用的布局可以是post，page，draft；</li>
-<li>title，文章的标题，含空格的时候要用引号括起来；</li>
-<li>date，日期，如2018-01-14</li>
-<li>updated，修改日期</li>
-<li>comments，是否开启评论</li>
-<li>tags，标签，多个采用Markdown的无序列表</li>
-<li>categories，分类，支持多级分类，采用Markdown无序列表，最上面代表一级分类</li>
-</ul>
-<h2 id="Hexo-更换主题"><a href="#Hexo-更换主题" class="headerlink" title="Hexo 更换主题"></a>Hexo 更换主题</h2><ul>
-<li>下载好要更换的主题</li>
-<li>在Hexo根目录找到配置文件，搜索theme，讲主题名字替换为你下载好的主题</li>
-</ul>
-<p>常用主题配置说明：</p>
-<ul>
-<li><a href="http://shenzekun.cn/hexo%E7%9A%84next%E4%B8%BB%E9%A2%98%E4%B8%AA%E6%80%A7%E5%8C%96%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B.html" target="_blank" rel="noopener">hexo个性化配置</a>(修改的时next主题)</li>
-<li><a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="noopener">yilia主题配置说明</a></li>
-</ul>
+          <h2 id="模式定义"><a href="#模式定义" class="headerlink" title="模式定义"></a>模式定义</h2><p>装饰器模式允许向一个现有对象添加新的功能，同时又不改变其结构。装饰者可以在所委托被装饰者的行为之前或之后加上自己的行为，以达到自己的目的。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/14/Hexo 搭建个人博客/#more" rel="contents">
+            <a class="btn" href="/2018/01/14/Java设计模式之装饰器模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
