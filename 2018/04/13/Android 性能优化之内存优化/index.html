@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="荏苒追寻个人博客">
 <meta property="og:description" content="摘要 虽说Android硬件水平在不断的提高在App开发过程中，性能优化似乎是一个经常性的话题，本文将从内存的角度来分析如何对Android App的性能进行优化。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-19T03:07:30.917Z">
+<meta property="og:updated_time" content="2019-10-17T01:33:40.801Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 性能优化之内存优化">
 <meta name="twitter:description" content="摘要 虽说Android硬件水平在不断的提高在App开发过程中，性能优化似乎是一个经常性的话题，本文将从内存的角度来分析如何对Android App的性能进行优化。">
@@ -422,8 +422,16 @@
 <li>支持K迭代、V迭代及KV迭代（内部实现了三种迭代器）</li>
 </ul>
 <h3 id="高效的回收内存"><a href="#高效的回收内存" class="headerlink" title="高效的回收内存"></a>高效的回收内存</h3><h3 id="避免内泄漏"><a href="#避免内泄漏" class="headerlink" title="避免内泄漏"></a>避免内泄漏</h3><p>参考文章<a href="https://www.jianshu.com/p/ab4a7e353076" target="_blank" rel="noopener">Android内存优化——常见内存泄露及优化方案</a></p>
-<h4 id="内存泄漏的原因"><a href="#内存泄漏的原因" class="headerlink" title="内存泄漏的原因"></a>内存泄漏的原因</h4><h4 id="监测内存泄漏"><a href="#监测内存泄漏" class="headerlink" title="监测内存泄漏"></a>监测内存泄漏</h4><h4 id="常见的内存泄漏情景"><a href="#常见的内存泄漏情景" class="headerlink" title="常见的内存泄漏情景"></a>常见的内存泄漏情景</h4><ol>
-<li>使用内部类（或匿名内部类）</li>
+<h4 id="内存泄漏的原因"><a href="#内存泄漏的原因" class="headerlink" title="内存泄漏的原因"></a>内存泄漏的原因</h4><h3 id="监测内存泄漏"><a href="#监测内存泄漏" class="headerlink" title="监测内存泄漏"></a>监测内存泄漏</h3><ul>
+<li><p>使用LeakCanary监测内存泄漏；（LeakCanary的原理）</p>
+</li>
+<li><p>使用BlockCanary监测UI卡顿</p>
+</li>
+<li>使用SystemTrace分析卡顿</li>
+<li><a href="https://blog.csdn.net/u011240877/article/details/54347396" target="_blank" rel="noopener">使用Traceview进行性能分析</a></li>
+</ul>
+<h4 id="常见的内存泄漏情景"><a href="#常见的内存泄漏情景" class="headerlink" title="常见的内存泄漏情景"></a>常见的内存泄漏情景</h4><ol>
+<li>使用非静态内部类（或匿名内部类）</li>
 <li>使用AsyncTask或Handler</li>
 <li>使用Timer或TimerTask</li>
 <li>使用单例模式</li>
@@ -466,8 +474,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/21/Java设计模式之责任链模式/" rel="next" title="Java设计模式之责任链模式">
-                <i class="fa fa-chevron-left"></i> Java设计模式之责任链模式
+              <a href="/2018/03/21/Java设计模式之建造者模式/" rel="next" title="Java设计模式之建造者模式">
+                <i class="fa fa-chevron-left"></i> Java设计模式之建造者模式
               </a>
             
           </div>
@@ -552,7 +560,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">44</span>
+                    <span class="site-state-item-count">50</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -599,7 +607,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">17</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -672,7 +684,15 @@
                     
                       
                     
-                    <span class="site-state-item-count">29</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">31</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -717,7 +737,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存优化"><span class="nav-number">2.</span> <span class="nav-text">内存优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#高效的使用内存"><span class="nav-number">2.1.</span> <span class="nav-text">高效的使用内存</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SparseArray"><span class="nav-number">2.1.1.</span> <span class="nav-text">SparseArray</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高效的回收内存"><span class="nav-number">2.2.</span> <span class="nav-text">高效的回收内存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#避免内泄漏"><span class="nav-number">2.3.</span> <span class="nav-text">避免内泄漏</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#内存泄漏的原因"><span class="nav-number">2.3.1.</span> <span class="nav-text">内存泄漏的原因</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#监测内存泄漏"><span class="nav-number">2.3.2.</span> <span class="nav-text">监测内存泄漏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常见的内存泄漏情景"><span class="nav-number">2.3.3.</span> <span class="nav-text">常见的内存泄漏情景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何避免"><span class="nav-number">2.3.4.</span> <span class="nav-text">如何避免</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存优化"><span class="nav-number">2.</span> <span class="nav-text">内存优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#高效的使用内存"><span class="nav-number">2.1.</span> <span class="nav-text">高效的使用内存</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SparseArray"><span class="nav-number">2.1.1.</span> <span class="nav-text">SparseArray</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高效的回收内存"><span class="nav-number">2.2.</span> <span class="nav-text">高效的回收内存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#避免内泄漏"><span class="nav-number">2.3.</span> <span class="nav-text">避免内泄漏</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#内存泄漏的原因"><span class="nav-number">2.3.1.</span> <span class="nav-text">内存泄漏的原因</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#监测内存泄漏"><span class="nav-number">2.4.</span> <span class="nav-text">监测内存泄漏</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#常见的内存泄漏情景"><span class="nav-number">2.4.1.</span> <span class="nav-text">常见的内存泄漏情景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何避免"><span class="nav-number">2.4.2.</span> <span class="nav-text">如何避免</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>

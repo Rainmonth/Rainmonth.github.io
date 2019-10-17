@@ -110,7 +110,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/04/27/Android中的IPC机制/ipc之新建aidl文件.png">
 <meta property="og:image" content="http://yoursite.com/2018/04/27/Android中的IPC机制/ipc之自动生成的文件.png">
 <meta property="og:image" content="http://yoursite.com/2018/04/27/Android中的IPC机制/ipc之自动生成的aidl文件结构.png">
-<meta property="og:updated_time" content="2018-05-04T03:23:08.977Z">
+<meta property="og:updated_time" content="2019-09-26T14:45:31.969Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android中的IPC机制">
 <meta name="twitter:description" content="摘要IPC，即Inter-Process Communication，进程间通信（也叫跨进程通信），可以是两个应用（每个应用是一个进程），亦可以是一个应用中的两个进程。由于不同的进程有不同的内存地址分配，所以多进程在通信的时候会发生一些问题，本文从介绍多进程通信可能引发的问题开始，慢慢介绍IPC的基本概念、具体的IPC方式及其具体实现，并在最后对各种通信方式做了简单的比较。">
@@ -419,6 +419,14 @@
 <li>:process表示在包名后添加:process构成完整的进程名，表示该进程是当前应用的私有进程，其他应用组件不能跑在这个进程中</li>
 <li>ThirdActivity开启的进程属于全局进程，其他应用可以通过ShareUID的方式和它跑在同一个进程中（前提是这两个应用具有相同的ShareUID</li>
 </ul>
+<blockquote>
+<p>补充说明：</p>
+<ul>
+<li>如果process（即主进程的私有进程）被杀死了，对主进程的存货没有影响（这里的没影响指的是不会被干掉）</li>
+<li>如果主进程被杀死了，对主进程的私有进程process也没有影响（这里的没影响指的是不会被干掉）</li>
+<li>如果需要在主进程被干掉的同时也干掉其私有进程，可以通过遍历当前应用存在的进程，然后手动kill，注意，主进程必须最后再kill</li>
+</ul>
+</blockquote>
 <h2 id="Android多进程的运行机制"><a href="#Android多进程的运行机制" class="headerlink" title="Android多进程的运行机制"></a>Android多进程的运行机制</h2><h3 id="多进程会引发什么问题"><a href="#多进程会引发什么问题" class="headerlink" title="多进程会引发什么问题"></a>多进程会引发什么问题</h3><p>先给出结论，稍后论证：</p>
 <ol>
 <li>静态成员和单例模式完全失效；</li>
@@ -444,15 +452,22 @@
 <p>在了解这些方式之前，先了解一些基本概念，有助于更好的理解进程间的通信方式</p>
 <h2 id="IPC基本概念"><a href="#IPC基本概念" class="headerlink" title="IPC基本概念"></a>IPC基本概念</h2><p>利用Intent传值或利用共享文件传值都涉及到对象的序列化问题，而Android中可用的序列号方式有如下两种：</p>
 <p>Serializable接口和Parcelable接口</p>
-<h3 id="Serializable接口"><a href="#Serializable接口" class="headerlink" title="Serializable接口"></a>Serializable接口</h3><p>Java提供的空接口，用来持久化对象，实现时最好制定serialVersionUID，有助于反序列化。下面给出示例：</p>
+<h3 id="Serializable接口"><a href="#Serializable接口" class="headerlink" title="Serializable接口"></a>Serializable接口</h3><p><strong>那为什么现在实现Serializable接口不用指定serialVersionUID了呢？</strong></p>
+<blockquote>
+<p>serialVersionUID是用来辅助序列化和反序列化过程的，序列化的时候系统会把当前类的serialVersionUID写入序列化的文件中，当反序列化的时候系统会检测当前文件中的serialVersionUID是否和当前类的serialVersionUID一致，如果一致这个时候可以反序列化成功，否则就说明当前类和序列化的类相比发生了某些变换，比如成员变量的数量、类型可能发生了改变，这个时候是无法正常反序列化的</p>
+</blockquote>
+<p>Java提供的空接口，用来持久化对象，实现时最好指定serialVersionUID，有助于反序列化，如果没有指定，系统会根据当前类的结构自动生成它的hash值，并将其赋值给serialVersionUID。下面给出示例：</p>
 <p>序列化</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">serializableObject</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                File appFilePath = <span class="keyword">new</span> File(Const.SD_PATH + File.separator + getPackageName());</span><br><span class="line">                <span class="keyword">if</span> (!appFilePath.exists())</span><br><span class="line">                    appFilePath.mkdirs();</span><br><span class="line">                File file = <span class="keyword">new</span> File(appFilePath, <span class="string">"cache.txt"</span>);</span><br><span class="line">                <span class="keyword">if</span> (!file.exists())</span><br><span class="line">                    file.createNewFile();</span><br><span class="line">                ObjectOutputStream out = <span class="keyword">new</span> ObjectOutputStream(</span><br><span class="line">                        <span class="keyword">new</span> FileOutputStream(file));</span><br><span class="line">                out.writeObject(user);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p>反序列化</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">deserializableObject</span><span class="params">(String fileName)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            File filePath = <span class="keyword">new</span> File(Const.SD_PATH + File.separator + getPackageName());</span><br><span class="line">            <span class="keyword">if</span> (!filePath.exists())</span><br><span class="line">                filePath.mkdir();</span><br><span class="line">            ObjectInputStream in = <span class="keyword">new</span> ObjectInputStream(<span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(filePath, fileName)));</span><br><span class="line">            User user = (User) in.readObject();</span><br><span class="line">            Log.d(<span class="string">"user"</span>, user.toString());</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>要注意两点：</p>
+<p>要注意三点：</p>
 <ul>
-<li>类的静态变量不参与序列化过程</li>
-<li><code>transient</code>修饰的变量不参与序列化过程</li>
+<li><p>手动指定serialVersionUID可以很大程度上避免反序列化失败</p>
+</li>
+<li><p>类的静态变量不参与序列化过程（为什么，因为它并不被该类的某一个对象所特有）</p>
+</li>
+<li><code>transient</code>修饰的变量不参与序列过程</li>
 </ul>
 <h3 id="Parcelable接口"><a href="#Parcelable接口" class="headerlink" title="Parcelable接口"></a>Parcelable接口</h3><p>继承给接口，实现CREATOR完成反序列化过程，实现writeToParcel完成序列化过程，具体代码实现如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User2</span> <span class="keyword">implements</span> <span class="title">Parcelable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> userId;</span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> isMale;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User2</span><span class="params">(<span class="keyword">int</span> userId, String username, <span class="keyword">boolean</span> isMale)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.userId = userId;</span><br><span class="line">        <span class="keyword">this</span>.username = username;</span><br><span class="line">        <span class="keyword">this</span>.isMale = isMale;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getUserId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userId;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUserId</span><span class="params">(<span class="keyword">int</span> userId)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.userId = userId;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getUsername</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> username;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUsername</span><span class="params">(String username)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.username = username;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isMale</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> isMale;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMale</span><span class="params">(<span class="keyword">boolean</span> male)</span> </span>&#123;</span><br><span class="line">        isMale = male;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">User2</span><span class="params">(Parcel in)</span> </span>&#123;</span><br><span class="line">        userId = in.readInt();</span><br><span class="line">        username = in.readString();</span><br><span class="line">        isMale = in.readInt() == <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Creator&lt;User2&gt; CREATOR = <span class="keyword">new</span> Creator&lt;User2&gt;() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> User2 <span class="title">createFromParcel</span><span class="params">(Parcel in)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> User2(in);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> User2[] newArray(<span class="keyword">int</span> size) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> User2[size];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">describeContents</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">writeToParcel</span><span class="params">(Parcel dest, <span class="keyword">int</span> flags)</span> </span>&#123;</span><br><span class="line">        dest.writeInt(userId);</span><br><span class="line">        dest.writeString(username);</span><br><span class="line">        dest.writeInt(isMale ? <span class="number">1</span> : <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -467,7 +482,7 @@
 <blockquote>
 <p>建议:如果是内存中的序列化操作，建议使用Parcelable，如果是要序列化存储，建议采用Serializable</p>
 </blockquote>
-<h3 id="另一个概念——Binder"><a href="#另一个概念——Binder" class="headerlink" title="另一个概念——Binder"></a>另一个概念——Binder</h3><p>如果说序列化是前面两种通信方式的基础，那么Binder就是第三种(AIDL和Messe）的实现基础。</p>
+<h3 id="另一个概念——Binder"><a href="#另一个概念——Binder" class="headerlink" title="另一个概念——Binder"></a>另一个概念——Binder</h3><p>如果说序列化是前面两种通信方式的基础，那么Binder就是第三种(AIDL和Messenger）的实现基础。</p>
 <h4 id="在Android-Studio中使用AIDL"><a href="#在Android-Studio中使用AIDL" class="headerlink" title="在Android Studio中使用AIDL"></a>在Android Studio中使用AIDL</h4><p>把这个单独拎出来是因为我在使用的时候出现了问题。步骤：</p>
 <ol>
 <li><p>在app module下新建AIDL文件（Android Studio提供了对应模板）这时main目录下会有一个aidl文件夹，同时里面会有对应的aidl文件，如下图</p>
@@ -524,7 +539,7 @@
 </li>
 <li><p>客户端进程</p>
 <blockquote>
-<p>首先绑定服务端的Service，绑定成功后会得到服务端返回的Binder，利用这个Binder构造一个Messenger，利用这个Messenger就可以像Service发送消息了，发送的消息为Message对象。如果<strong><em>需要响应服务端</em></strong>返回的信息，首先客户端要指定装载服务端返回信息的容器Messenger（这个Messenger应该包含一个处理消息的Handler），这样服务端在接收到消息后就可以难道这个客户端定义的容器，然后利用这个容器发送服务端要发送给客户端的消息，发送后，客户端定义好的消息处理Handler就可以处理服务端返回的消息了</p>
+<p>首先绑定服务端的Service，绑定成功后会得到服务端返回的Binder，利用这个Binder构造一个Messenger，利用这个Messenger就可以像Service发送消息了，发送的消息为Message对象。如果<strong><em>需要响应服务端</em></strong>返回的信息，首先客户端要指定装载服务端返回信息的容器Messenger（这个Messenger应该包含一个处理消息的Handler），这样服务端在接收到消息后就可以拿到这个客户端定义的容器，然后利用这个容器发送服务端要发送给客户端的消息，发送后，客户端定义好的消息处理Handler就可以处理服务端返回的消息了</p>
 </blockquote>
 </li>
 </ul>
@@ -564,9 +579,9 @@
 <ol>
 <li><p>客户端线程被挂起时，如果这个线程是UI线程，调用服务端的方法如果是耗时操作，就会ANR；</p>
 </li>
-<li><p>服务端线程被挂起时，如果服务端线程是UI线程，调用了客户端的回调方法是好事操作，就会ANR；</p>
+<li><p>服务端线程被挂起时，如果服务端线程是UI线程，调用了客户端的回调方法是耗时操作，就会ANR；</p>
 </li>
-<li><p>服务端线程被挂起是，调用客户端回调方法运行在客户端Binder线程池中，如果回调里面有UI处理，请采用Handler将其切换到UI线程中；</p>
+<li><p>服务端线程被挂起时，调用客户端回调方法运行在客户端Binder线程池中，如果回调里面有UI处理，请采用Handler将其切换到UI线程中；</p>
 </li>
 <li><p>删除跨进程listener时要采用RemoteCallbackList，因为采用跨进程通信的基础是Binder，而Binder依靠的时序列化和反序列化过程中，这写对象虽然值相等，但却不是同一个对象，简单的使用List的remove方法是无法解除listener的注册的。</p>
 </li>
@@ -794,7 +809,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">44</span>
+                    <span class="site-state-item-count">50</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -841,7 +856,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">17</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -914,7 +933,15 @@
                     
                       
                     
-                    <span class="site-state-item-count">29</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">31</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
