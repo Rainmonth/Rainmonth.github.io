@@ -1118,7 +1118,9 @@
       
         
           
-            <p>Binder系统中的Binder线程类型</p>
+            <p>要分析的源码文件</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">frameworks/base/cmds/app_process/app_main.cpp </span><br><span class="line">frameworks/native/libs/binder/ProcessState.cpp </span><br><span class="line">framework/native/libs/binder/IPCThreadState.cpp </span><br><span class="line">kernel/drivers/staging/android/binder.c</span><br></pre></td></tr></table></figure>
+<p>Binder系统中的Binder线程类型</p>
 <ul>
 <li>Binder主线程，进程创建的时候会调用startThreadPool()方法，该方法又会调用<code>spawnPooledThread(true)</code>方法，在这个方法中穿件Binder主线程，编号从1开始(即binder主线程名为<code>binder_1</code></li>
 <li>Binder普通线程，由Binder Driver根据是否有空闲的binder线程(因为Binder线程池中线程个数是有限制的一般为15，注意不包括主线程)通过回调<code>spawnPooledThread(false)</code>方法来创建，该线程名称格式为<code>binder_x</code>；</li>
@@ -1196,7 +1198,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/09/26/Android adb学习/" itemprop="url">Android adb学习</a></h1>
+                <a class="post-title-link" href="/2019/09/26/Android adb学习/" itemprop="url">未命名</a></h1>
         
 
         <div class="post-meta">
@@ -1217,24 +1219,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -1264,7 +1248,12 @@
 
       
         
-          <h1 id="Android-adb学习"><a href="#Android-adb学习" class="headerlink" title="Android adb学习"></a>Android adb学习</h1><h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><blockquote>
+          <h4 id="title-Android-adb学习"><a href="#title-Android-adb学习" class="headerlink" title="title: Android adb学习"></a>title: Android adb学习</h4><p>categories:</p>
+<ul>
+<li>Android<br>tags:</li>
+<li>Android</li>
+</ul>
+<h1 id="Android-adb学习"><a href="#Android-adb学习" class="headerlink" title="Android adb学习"></a>Android adb学习</h1><h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><blockquote>
 <p>adb，指的是Android Debug Bridge，即Android调试桥，顾名思义，和Android调试有莫大的关系。</p>
 </blockquote>
 <h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><ul>
