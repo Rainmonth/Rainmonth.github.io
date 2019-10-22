@@ -99,18 +99,18 @@
 
 
 
-  <meta name="description" content="##Android中MVP模式、MVC模式 ###模式简介 ####MVC Model-View-Controller简称，将数据模型（数据的定义及相关操作）、界面显示（接受用户的操作）与业务逻辑（接受界面操作并控制操作数据）分离的方式组织代码； ####MVP Model-View-Presenter简称，将MVC中的C层采用P层来换， 该模式下，M层和V层不再像MVC中的那样，他们不发生联系，">
+  <meta name="description" content="Android中MVP模式、MVC模式模式简介MVCModel-View-Controller简称，将数据模型（数据的定义及相关操作）、界面显示（接受用户的操作）与业务逻辑（接受界面操作并控制操作数据）分离的方式组织代码； MVPModel-View-Presenter简称，将MVC中的C层采用P层来换， 该模式下，M层和V层不再像MVC中的那样，他们不发生联系，沟通都是通过P层来实现的。">
 <meta name="keywords" content="MVP,MVC">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android中MVP模式、MVC模式">
 <meta property="og:url" content="http://yoursite.com/posts/cfcb96f.html">
 <meta property="og:site_name" content="荏苒追寻个人博客">
-<meta property="og:description" content="##Android中MVP模式、MVC模式 ###模式简介 ####MVC Model-View-Controller简称，将数据模型（数据的定义及相关操作）、界面显示（接受用户的操作）与业务逻辑（接受界面操作并控制操作数据）分离的方式组织代码； ####MVP Model-View-Presenter简称，将MVC中的C层采用P层来换， 该模式下，M层和V层不再像MVC中的那样，他们不发生联系，">
+<meta property="og:description" content="Android中MVP模式、MVC模式模式简介MVCModel-View-Controller简称，将数据模型（数据的定义及相关操作）、界面显示（接受用户的操作）与业务逻辑（接受界面操作并控制操作数据）分离的方式组织代码； MVPModel-View-Presenter简称，将MVC中的C层采用P层来换， 该模式下，M层和V层不再像MVC中的那样，他们不发生联系，沟通都是通过P层来实现的。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-22T14:52:42.310Z">
+<meta property="og:updated_time" content="2019-10-22T15:31:47.586Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android中MVP模式、MVC模式">
-<meta name="twitter:description" content="##Android中MVP模式、MVC模式 ###模式简介 ####MVC Model-View-Controller简称，将数据模型（数据的定义及相关操作）、界面显示（接受用户的操作）与业务逻辑（接受界面操作并控制操作数据）分离的方式组织代码； ####MVP Model-View-Presenter简称，将MVC中的C层采用P层来换， 该模式下，M层和V层不再像MVC中的那样，他们不发生联系，">
+<meta name="twitter:description" content="Android中MVP模式、MVC模式模式简介MVCModel-View-Controller简称，将数据模型（数据的定义及相关操作）、界面显示（接受用户的操作）与业务逻辑（接受界面操作并控制操作数据）分离的方式组织代码； MVPModel-View-Presenter简称，将MVC中的C层采用P层来换， 该模式下，M层和V层不再像MVC中的那样，他们不发生联系，沟通都是通过P层来实现的。">
 
 
 
@@ -403,32 +403,24 @@
       
 
       
-        <p>##Android中MVP模式、MVC模式</p>
-<p>###模式简介</p>
-<p>####MVC</p>
-<p>Model-View-Controller简称，将数据模型（数据的定义及相关操作）、界面显示（接受用户的操作）与业务逻辑（接受界面操作并控制操作数据）分离的方式组织代码；</p>
-<p>####MVP</p>
-<p>Model-View-Presenter简称，将MVC中的C层采用P层来换， 该模式下，M层和V层不再像MVC中的那样，他们不发生联系，沟通都是通过P层来实现的。</p>
+        <h2 id="Android中MVP模式、MVC模式"><a href="#Android中MVP模式、MVC模式" class="headerlink" title="Android中MVP模式、MVC模式"></a>Android中MVP模式、MVC模式</h2><h3 id="模式简介"><a href="#模式简介" class="headerlink" title="模式简介"></a>模式简介</h3><h4 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h4><p>Model-View-Controller简称，将数据模型（数据的定义及相关操作）、界面显示（接受用户的操作）与业务逻辑（接受界面操作并控制操作数据）分离的方式组织代码；</p>
+<h4 id="MVP"><a href="#MVP" class="headerlink" title="MVP"></a>MVP</h4><p>Model-View-Presenter简称，将MVC中的C层采用P层来换， 该模式下，M层和V层不再像MVC中的那样，他们不发生联系，沟通都是通过P层来实现的。</p>
 <a id="more"></a>
-<p>###通信方式</p>
-<p>####MVC</p>
-<ul>
+<h3 id="通信方式"><a href="#通信方式" class="headerlink" title="通信方式"></a>通信方式</h3><h4 id="MVC-1"><a href="#MVC-1" class="headerlink" title="MVC"></a>MVC</h4><ul>
 <li>View层接受到用户交互请求；</li>
 <li>View层将请求传递给Controller层；</li>
 <li>Controller层操作Model层进行数据更新；</li>
 <li>更新之后，Model层通知View层做相应的变化</li>
 <li>View层更新界面</li>
 </ul>
-<p>####MVP</p>
-<ul>
+<h4 id="MVP-1"><a href="#MVP-1" class="headerlink" title="MVP"></a>MVP</h4><ul>
 <li>View接受用户的请求（如用户输入用户名密码进行登录）</li>
 <li>View将请求发送至对应的Presenter（如UserPresenter）</li>
 <li>Presenter通多Model获取数据的变化信息（如通过网络查询或本地数据库查询）</li>
 <li>Model通知Presenter数据发生了改变（如登录成功，登录失败等）</li>
 <li>Presenter将数据的改变反应在View上（对不同的改变，通知View层作不同的处理）</li>
 </ul>
-<p>###进化历史</p>
-<p>MVC-&gt;MVP，这种改变的原因主要就是MVC中，Model不依赖于View，但View依赖于Model，V层可以直接访问M层，不可避免的V层就会包含数据逻辑处理，这样当V层在某个需求变化下需要更改时，就会变的麻烦（需要考虑View 层之前包含的那部分逻辑），于是MVP就产生了，他阻断了Model和View之间的直接通信，二者要联系起来必须都依赖于Presenter，即MP间可上相交互，PV间也可双向交互。</p>
+<h3 id="进化历史"><a href="#进化历史" class="headerlink" title="进化历史"></a>进化历史</h3><p>MVC-&gt;MVP，这种改变的原因主要就是MVC中，Model不依赖于View，但View依赖于Model，V层可以直接访问M层，不可避免的V层就会包含数据逻辑处理，这样当V层在某个需求变化下需要更改时，就会变的麻烦（需要考虑View 层之前包含的那部分逻辑），于是MVP就产生了，他阻断了Model和View之间的直接通信，二者要联系起来必须都依赖于Presenter，即MP间可上相交互，PV间也可双向交互。</p>
 <p>发现美团的一篇讲解MVVM模式的文章：</p>
 <ul>
 <li><a href="https://tech.meituan.com/android_mvvm.html" target="_blank" rel="noopener">如何构建Android MVVM 应用框架</a> </li>
@@ -468,8 +460,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/a2278306.html" rel="next" title="Android 震动相关实现">
-                <i class="fa fa-chevron-left"></i> Android 震动相关实现
+              <a href="/posts/A181003.html" rel="next" title="Android Studio 升级到3.0运行项目指北">
+                <i class="fa fa-chevron-left"></i> Android Studio 升级到3.0运行项目指北
               </a>
             
           </div>
@@ -478,8 +470,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/posts/887e60e1.html" rel="prev" title="Android中的Handler机制">
-                Android中的Handler机制 <i class="fa fa-chevron-right"></i>
+              <a href="/posts/1401.html" rel="prev" title="Java设计模式之单例模式">
+                Java设计模式之单例模式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -529,8 +521,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -712,6 +713,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Android中MVP模式、MVC模式"><span class="nav-number">1.</span> <span class="nav-text">Android中MVP模式、MVC模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模式简介"><span class="nav-number">1.1.</span> <span class="nav-text">模式简介</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#MVC"><span class="nav-number">1.1.1.</span> <span class="nav-text">MVC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MVP"><span class="nav-number">1.1.2.</span> <span class="nav-text">MVP</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通信方式"><span class="nav-number">1.2.</span> <span class="nav-text">通信方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#MVC-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">MVC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MVP-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">MVP</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进化历史"><span class="nav-number">1.3.</span> <span class="nav-text">进化历史</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

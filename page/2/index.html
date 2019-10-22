@@ -311,7 +311,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/a2278306.html">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A191018.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Randy Zhang">
@@ -330,7 +330,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/posts/a2278306.html" itemprop="url">Android 震动相关实现</a></h1>
+                <a class="post-title-link" href="/posts/A191018.html" itemprop="url">Android AMS分析</a></h1>
         
 
         <div class="post-meta">
@@ -342,7 +342,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-22T22:52:42+08:00">2019-10-22</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-18T00:00:00+08:00">2019-10-18</time>
             
 
             
@@ -398,181 +398,143 @@
 
       
         
-          <h1 id="Android-震动相关实现"><a href="#Android-震动相关实现" class="headerlink" title="Android 震动相关实现"></a>Android 震动相关实现</h1><p>[TOC]</p>
-<p>Android中的震动可以通过多种方法实现，其中包括使用Vibrate类和HapticFeedback类，本文主要介绍通过这两个类来实现震动的方式。</p>
-<h2 id="Vibrator"><a href="#Vibrator" class="headerlink" title="Vibrator"></a>Vibrator</h2><p>震动属于系统服务，获取Vibrator示例的方式如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mVibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/a2278306.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/ec05aba6.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Randy Zhang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/ec05aba6.html" itemprop="url">Android 零散知识点（持续更新）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-22T22:52:42+08:00">2019-10-22</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/工作小记/" itemprop="url" rel="index"><span itemprop="name">工作小记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>#Android 零散知识点（持续更新）</p>
-<p>[TOC]</p>
-<ul>
-<li><p>Q：为什么Android的更新试图操作必须在主线程中进行？</p>
-<blockquote>
-<p>这是因为Android系统中的视图组件并不是线程安全的。通常应该让主线程负责创建、显示和更新UI，启动子线程，停止子线程。让子线程完成计算并向主线程发出更新UI的消息，让主线程来更新UI。这就促使Android中产生了Handler机制。</p>
+          <blockquote>
+<p>在这里非常感谢<a href="http://gityuan.com" target="_blank" rel="noopener">Gityuan</a>的博客，让人受益匪浅。</p>
 </blockquote>
-</li>
-</ul>
-<ul>
-<li><p>Q：如何更改Android Studio编译所采用的API版本？</p>
-<blockquote>
-<p>通过module setting 的Flavors选项卡进行Android API编译版本的更改；</p>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>AMS，即ActivityManagerService，是Android系统的核心服务，负责四大组件的启动、切换、调度以及应用进程的调度和管理，其API并未对我们直接开放，在开放的ActivityManager中主要通过ActivityManagerNative来使用AMS提供的一些API，本文主要介绍AMS的启动过程。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/A191018.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A191017.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Randy Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/A191017.html" itemprop="url">Android Android Studio 导入android 8.0源码</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-17T00:00:00+08:00">2019-10-17</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><blockquote>
+<p>在之前的文章<a href="https://rainmonth.github.io/2019/10/12/Android%20MacOs%E4%B8%8B%E7%9A%84%E6%BA%90%E7%A0%81%E4%B8%8B%E8%BD%BD%E5%8F%8A%E7%BC%96%E8%AF%91/" target="_blank" rel="noopener">Android MacOs 下的源码下载及编译</a>中介绍了源码下载以及编译的方法，本文介绍如何把下载编译好的源码导入Android Studio，并且可以进行代码调试</p>
 </blockquote>
-</li>
-</ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/posts/ec05aba6.html#more" rel="contents">
+            <a class="btn" href="/posts/A191017.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -628,7 +590,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/9cdb3fb8.html">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/O191017.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Randy Zhang">
@@ -647,7 +609,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/posts/9cdb3fb8.html" itemprop="url">Android 状态栏攻略</a></h1>
+                <a class="post-title-link" href="/posts/O191017.html" itemprop="url">Mac 使用tree打印目录结构</a></h1>
         
 
         <div class="post-meta">
@@ -659,7 +621,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-22T22:52:42+08:00">2019-10-22</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-17T00:00:00+08:00">2019-10-17</time>
             
 
             
@@ -668,31 +630,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/适配/" itemprop="url" rel="index"><span itemprop="name">适配</span></a></span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -722,22 +659,10 @@
 
       
         
-          <h1 id="状态栏攻略"><a href="#状态栏攻略" class="headerlink" title="状态栏攻略"></a>状态栏攻略</h1><p>[TOC]</p>
-<h4 id="本文目标"><a href="#本文目标" class="headerlink" title="本文目标"></a>本文目标</h4><ol>
-<li>MaterialDesign 状态栏</li>
-<li>沉浸式效果（视觉上就是toolbar和status bar颜色相同）</li>
-<li>全屏（带状态栏的全屏）</li>
-</ol>
-<h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><ol>
-<li><em>colorPrimary</em>，一般指ActionBar的颜色</li>
-<li><em>textColorPrimary</em>，一般指ActionBar上标题文字的颜色</li>
-<li><em>colorPrimaryDark</em>，一般指状态栏的颜色</li>
-<li><em>colorAccent</em>，一般指强调色，如EditText获取到焦点，RadioButton、CheckBox等的选中状态</li>
-<li><em>windowBackground</em>，视图背景颜色</li>
-</ol>
+          <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>最近在研究源码，需要快速打印当前目录的结构，于是找到便有了这篇文章，这里简要介绍一下tree的使用（该命令其实就是<code>ls</code> 命令的加强版本）。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/posts/9cdb3fb8.html#more" rel="contents">
+            <a class="btn" href="/posts/O191017.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -793,7 +718,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/99599cf7.html">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A191012.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Randy Zhang">
@@ -812,7 +737,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/posts/99599cf7.html" itemprop="url">Android 浅谈Retrofit的封装</a></h1>
+                <a class="post-title-link" href="/posts/A191012.html" itemprop="url">Android MacOs下的源码下载及编译</a></h1>
         
 
         <div class="post-meta">
@@ -824,7 +749,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-22T22:52:42+08:00">2019-10-22</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-12T00:00:00+08:00">2019-10-12</time>
             
 
             
@@ -833,24 +758,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -880,10 +787,13 @@
 
       
         
-          <h1 id="Android-浅谈Retrofit的封装"><a href="#Android-浅谈Retrofit的封装" class="headerlink" title="Android 浅谈Retrofit的封装"></a>Android 浅谈Retrofit的封装</h1><p>先了解Retrofit一般的使用步骤：</p>
+          <p>[toc]</p>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><blockquote>
+<p>最近在研究Android系统的启动过程，就想着应该有一套自己的Android源码，边把之前一直想做的编译Android源码这件事提上了日程，过程比较曲折，但好歹最终编译成功了，仅以此文记录之。</p>
+</blockquote>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/posts/99599cf7.html#more" rel="contents">
+            <a class="btn" href="/posts/A191012.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -939,7 +849,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/4e442cf3.html">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A191004.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Randy Zhang">
@@ -958,7 +868,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/posts/4e442cf3.html" itemprop="url">Android 是时候了解一波MD库控件了</a></h1>
+                <a class="post-title-link" href="/posts/A191004.html" itemprop="url">Gradle学习day1——基本的gradle命令</a></h1>
         
 
         <div class="post-meta">
@@ -970,7 +880,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-22T22:52:42+08:00">2019-10-22</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-04T00:00:00+08:00">2019-10-04</time>
             
 
             
@@ -998,7 +908,7 @@
                   ， 
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/控件/" itemprop="url" rel="index"><span itemprop="name">控件</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/Gradle/" itemprop="url" rel="index"><span itemprop="name">Gradle</span></a></span>
 
                 
                 
@@ -1034,474 +944,11 @@
       
         
           <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><blockquote>
-<p>本文主要介绍android.support.design.widget包下的一些Material Design控件，很多市场上绚丽的App的实现都是基于这些库的，Android本身为我们封装出来的效果就足够平常使用了，下面我讲分别详细介绍各个MD控件，同时自己会做一些扩展，本文先大体介绍一下各个控件，然后详细介绍CoordinatorLayout控件。</p>
-</blockquote>
-<p>系列文章参考：</p>
-<ul>
-<li><a href="">AppBarLayout介绍</a></li>
-<li><a href="">CoordinatorLayout</a></li>
-<li><a href="">SwipeRefreshLayout</a></li>
-<li><a href="">CardView</a></li>
-<li><a href="">CollapsingToolbarLayout</a></li>
-<li><a href="">FloatingActionButton</a></li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/4e442cf3.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/855662c1.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Randy Zhang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/855662c1.html" itemprop="url">Android 时间选择相关系统控件</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-22T22:52:42+08:00">2019-10-22</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/控件/" itemprop="url" rel="index"><span itemprop="name">控件</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Android-时间选择相关系统控件"><a href="#Android-时间选择相关系统控件" class="headerlink" title="Android 时间选择相关系统控件"></a>Android 时间选择相关系统控件</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>日期时间选择，在App开发中十分常见，因此android系统对日期、时间等都做了最基本的封装，同样也提供了丰富的API供开发者进行实际开发。</p>
-<h2 id="Date"><a href="#Date" class="headerlink" title="Date"></a>Date</h2><p>Java中Date类有如下两个：</p>
-<blockquote>
-<p>java.sql.Date extends java.util.Date;</p>
-<p>java.util.Date;</p>
-</blockquote>
-<p>前者主要是构造SQL语句的时候调用，比如读写数据库的时候，大多情况下使用的后者，二者的用法基本相同。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/855662c1.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/84b5d0b.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Randy Zhang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/84b5d0b.html" itemprop="url">Android 原生与H5交互</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-22T22:52:42+08:00">2019-10-22</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Android-原生与H5交互"><a href="#Android-原生与H5交互" class="headerlink" title="Android 原生与H5交互"></a>Android 原生与H5交互</h1><p>[TOC]</p>
-<h2 id="JS中调用Android的函数方法"><a href="#JS中调用Android的函数方法" class="headerlink" title="JS中调用Android的函数方法"></a>JS中调用Android的函数方法</h2><h3 id="在Android程序中建立接口，并用建立的handler对象处理"><a href="#在Android程序中建立接口，并用建立的handler对象处理" class="headerlink" title="在Android程序中建立接口，并用建立的handler对象处理"></a>在Android程序中建立接口，并用建立的handler对象处理</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> Handler handler = <span class="keyword">new</span> Handler();</span><br><span class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">InJavaScript</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">runOnAndroidJavaScript</span><span class="params">(<span class="keyword">final</span> String str)</span></span>&#123;</span><br><span class="line">		handler.post(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="comment">// todo 对传递过来的参数进行处理</span></span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/84b5d0b.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/99b4b560.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Randy Zhang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/99b4b560.html" itemprop="url">Android 使用Android Stuido 快速制作.9.png图</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-22T22:52:42+08:00">2019-10-22</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><blockquote>
-<p>日常开发中难免会要用到.9.png图片，如果每次都让UI提供就显得很low了，其实摘要我们能熟练掌握Android Studio这一强大的IDE，我们就能很轻松的制作满足条件的.9.png图片，然后你会说，这么简单啊！</p>
+<p>通过本文，记录下gradle最基本的命令讲解。如创建gradle项目的方法、gradle基本命令以及gradle里面的基本概念等。</p>
 </blockquote>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/posts/99b4b560.html#more" rel="contents">
+            <a class="btn" href="/posts/A191004.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1557,7 +1004,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/63f6dd3d.html">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A191001.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Randy Zhang">
@@ -1576,7 +1023,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/posts/63f6dd3d.html" itemprop="url">Android WebView 独立进程启动速度优化</a></h1>
+                <a class="post-title-link" href="/posts/A191001.html" itemprop="url">Android WebView 独立进程启动速度优化</a></h1>
         
 
         <div class="post-meta">
@@ -1588,7 +1035,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-22T22:52:42+08:00">2019-10-22</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-01T00:00:00+08:00">2019-10-01</time>
             
 
             
@@ -1713,7 +1160,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/a819618e.html">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A190918.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Randy Zhang">
@@ -1732,7 +1179,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/posts/a819618e.html" itemprop="url">Android ViewPager的无限循环与自动滚动实现</a></h1>
+                <a class="post-title-link" href="/posts/A190918.html" itemprop="url">Android Gradle 学习</a></h1>
         
 
         <div class="post-meta">
@@ -1744,7 +1191,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-22T22:52:42+08:00">2019-10-22</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-18T20:00:00+08:00">2019-09-18</time>
             
 
             
@@ -1766,13 +1213,6 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/控件/" itemprop="url" rel="index"><span itemprop="name">控件</span></a></span>
 
                 
                 
@@ -1807,11 +1247,464 @@
 
       
         
-          <h1 id="Android-ViewPager的无限循环与自动滚动实现"><a href="#Android-ViewPager的无限循环与自动滚动实现" class="headerlink" title="Android ViewPager的无限循环与自动滚动实现"></a>Android ViewPager的无限循环与自动滚动实现</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>关于ViewPager时Android开发时经常要用到的控件，但系统提供的ViewPager往往总有一些功能限制，如不能无限循环，不能自动滚动，今天就介绍ViewPager无限循环和自动滚动的不同实现。</p>
-<h2 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h2><p>实现方式有很多种，具体如下，后面会分析各种实现方式的优缺点。</p>
+          <h1 id="Android-Gradle-学习"><a href="#Android-Gradle-学习" class="headerlink" title="Android Gradle 学习"></a>Android Gradle 学习</h1><p>这里对于gradle的安装以及环境变量的配置不做赘述，假定gradle环境已经设置好。</p>
+<p>首先运行如下命令：</p>
+<blockquote>
+<p>gradle –help</p>
+</blockquote>
+<p>该命令用户查看帮助，会有如下输出：</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/posts/a819618e.html#more" rel="contents">
+            <a class="btn" href="/posts/A190918.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A190917.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Randy Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/A190917.html" itemprop="url">Android Gradle配置问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-17T10:30:22+08:00">2019-09-17</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/配置/" itemprop="url" rel="index"><span itemprop="name">配置</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="Android-Gradle配置问题"><a href="#Android-Gradle配置问题" class="headerlink" title="Android Gradle配置问题"></a>Android Gradle配置问题</h2><p>实际项目开发过程中，可能遇到以下问题：</p>
+<ol>
+<li>应用存在多套环境（测试、运维、正式）；</li>
+<li>应用需要在多个渠道上发布；</li>
+<li>不同环境的apk可以安装在同一个手机上（方便测试同学测试）；</li>
+<li>不同环境的apk可以拥有不同的应用名称（方便测试同学测试）；</li>
+<li>不同渠道的apk可以拥有不同的资源文件（如某些渠道的启动页不同）；</li>
+<li>不同环境引用不同的常量；</li>
+</ol>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/A190917.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A190514.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Randy Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/A190514.html" itemprop="url">结合KaDa故事谈谈Android 性能优化</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-14T00:00:00+08:00">2019-05-14</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/性能优化/" itemprop="url" rel="index"><span itemprop="name">性能优化</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="结合KaDa故事谈谈Android-性能优化"><a href="#结合KaDa故事谈谈Android-性能优化" class="headerlink" title="结合KaDa故事谈谈Android 性能优化"></a>结合KaDa故事谈谈Android 性能优化</h1><h2 id="稳，运行要稳"><a href="#稳，运行要稳" class="headerlink" title="稳，运行要稳"></a>稳，运行要稳</h2><blockquote>
+<p>我们的目标，不是没有蛀牙，而是无泄漏，低crash</p>
+</blockquote>
+<h3 id="内存泄漏与溢出"><a href="#内存泄漏与溢出" class="headerlink" title="内存泄漏与溢出"></a>内存泄漏与溢出</h3><ul>
+<li>属性动画导致的内存泄漏（归根结底是匿名类持有外部类引用导致的）</li>
+<li>第三方支付导致的内存泄漏（几个PayController采用了静态的HashMap做缓存）</li>
+<li>WebView导致的内存泄漏</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/A190514.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A1208.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Randy Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/A1208.html" itemprop="url">Android RxJava深入理解篇</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-08T00:00:00+08:00">2018-12-08</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/A1208.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
