@@ -99,17 +99,17 @@
 
 
 
-  <meta name="description" content="摘要">
+  <meta name="description" content="摘要主要根据谷歌官方提供的demo，来了解ExoPlayer的基本使用。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android ExoPlayer使用与分析">
 <meta property="og:url" content="http://yoursite.com/posts/A191101.html">
 <meta property="og:site_name" content="荏苒追寻个人博客">
-<meta property="og:description" content="摘要">
+<meta property="og:description" content="摘要主要根据谷歌官方提供的demo，来了解ExoPlayer的基本使用。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-22T15:45:18.125Z">
+<meta property="og:updated_time" content="2019-10-23T14:49:25.574Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android ExoPlayer使用与分析">
-<meta name="twitter:description" content="摘要">
+<meta name="twitter:description" content="摘要主要根据谷歌官方提供的demo，来了解ExoPlayer的基本使用。">
 
 
 
@@ -402,9 +402,45 @@
       
 
       
-        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><a id="more"></a>
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>主要根据谷歌官方提供的demo，来了解ExoPlayer的基本使用。</p>
+<a id="more"></a>
 <p>[toc]</p>
-<h2 id="基本使用流程"><a href="#基本使用流程" class="headerlink" title="基本使用流程"></a>基本使用流程</h2><h2 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h2><h2 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h2><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>流媒体通信协议</p>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>在介绍ExoPlayer之前，先介绍几个基本概念：</p>
+<ul>
+<li><a href="https://baike.baidu.com/item/DASH/3510902#viewPageContent" target="_blank" rel="noopener">DASH</a>，Dynamic Adaptive Streaming over HTTP的缩写，即基于HTTP的动态自适应流，国际标准组MPEG制定的技术标准；</li>
+<li><a href="https://baike.baidu.com/item/HLS" target="_blank" rel="noopener">HLS</a>，HTTP Live Streaming的缩写，即动态码率自适应技术；</li>
+</ul>
+<h2 id="基本使用流程"><a href="#基本使用流程" class="headerlink" title="基本使用流程"></a>基本使用流程</h2><ol>
+<li>添加ExoPlayer依赖，或者clone ExoPlayer到本地然后倒入module作为依赖；</li>
+</ol>
+<ul>
+<li><p>在项目根目录下的<code>build.gradle</code>中添加如下repositories:</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">repositories &#123;</span><br><span class="line">    google()</span><br><span class="line">    jcenter()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在项目的主module（app）的<code>build.gradle</code>文件中添加ExoPlayer依赖：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 添加全部依赖</span><br><span class="line">implementation <span class="string">'com.google.android.exoplayer:exoplayer:2.X.X'</span></span><br><span class="line"># 添加部分依赖</span><br><span class="line">implementation <span class="string">'com.google.android.exoplayer:exoplayer-core:2.X.X'</span></span><br><span class="line">implementation <span class="string">'com.google.android.exoplayer:exoplayer-dash:2.X.X'</span></span><br><span class="line">implementation <span class="string">'com.google.android.exoplayer:exoplayer-ui:2.X.X'</span></span><br></pre></td></tr></table></figure>
+<p>可以添加的依赖如下：</p>
+<ul>
+<li><code>exoplayer-core</code>： ExoPlayer的核心库，必须添加；</li>
+<li><code>exoplayer-dash</code>： DASH内容支持；</li>
+<li><code>exoplayer-hls</code>： HLS内容支持；</li>
+<li><code>exoplayer-smoothstreaming</code>： SmoothStreaming内容支持；</li>
+<li><code>exoplayer-ui</code>： ExoPlayer提供的UI组件；</li>
+</ul>
+</li>
+<li>在依赖ExoPlayer的Moudle都添加Java 8支持，在build.gradle的android闭包中添加：<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">compileOptions &#123;</span><br><span class="line">  targetCompatibility JavaVersion.VERSION_1_8</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol>
+<li>创建Player实例</li>
+<li>与PlayerView绑定</li>
+<li>准备播放源</li>
+<li>播放控制</li>
+<li>资源释放</li>
+</ol>
+<h3 id="播放本地文件"><a href="#播放本地文件" class="headerlink" title="播放本地文件"></a>播放本地文件</h3><h3 id="播放网络文件"><a href="#播放网络文件" class="headerlink" title="播放网络文件"></a>播放网络文件</h3><h3 id="基本的播放控制"><a href="#基本的播放控制" class="headerlink" title="基本的播放控制"></a>基本的播放控制</h3><h2 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h2><p>先看核心库的目录结构</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── analytics     # 分析模块，里面的AnalyticsCollector实现了ExoPlayer的各种listener</span><br><span class="line">├── audio         # 音频处理模块</span><br><span class="line">├── decoder       # 解码模块</span><br><span class="line">├── drm           # 数字版权管理模块</span><br><span class="line">├── extractor     # 内容提取模块，支持amr、flv、mkv、mp3、mp4、ogg、rawcc、ts和wav</span><br><span class="line">│   ├── amr</span><br><span class="line">│   ├── flv</span><br><span class="line">│   ├── mkv</span><br><span class="line">│   ├── mp3</span><br><span class="line">│   ├── mp4</span><br><span class="line">│   ├── ogg</span><br><span class="line">│   ├── rawcc</span><br><span class="line">│   ├── ts        # MPEG-2 TS</span><br><span class="line">│   └── wav</span><br><span class="line">├── mediacodec    # 多媒体编解码模块</span><br><span class="line">├── metadata      # 元数据处理模块</span><br><span class="line">│   ├── emsg      # Event Message处理</span><br><span class="line">│   ├── id3       </span><br><span class="line">│   └── scte35</span><br><span class="line">├── offline       # 离线播放支持模块（主要包含下载功能的封装）</span><br><span class="line">├── scheduler     # 服务调度模块</span><br><span class="line">├── source        # 多媒体源处理模块</span><br><span class="line">│   ├── ads</span><br><span class="line">│   └── chunk</span><br><span class="line">├── text          # 字幕模块，支持的字母格式：cea、dvb、pgs、ssa等</span><br><span class="line">│   ├── cea</span><br><span class="line">│   ├── dvb</span><br><span class="line">│   ├── pgs</span><br><span class="line">│   ├── ssa</span><br><span class="line">│   ├── subrip</span><br><span class="line">│   ├── ttml</span><br><span class="line">│   ├── tx3g</span><br><span class="line">│   └── webvtt</span><br><span class="line">├── trackselection #  轨道选择模块</span><br><span class="line">├── upstream      # 数据流</span><br><span class="line">│   ├── cache     # 缓存</span><br><span class="line">│   └── crypto    # 加密处理</span><br><span class="line">├── util          # 辅助模块（包括工具类、辅助数据结构）</span><br><span class="line">└── video         # 视频模块</span><br><span class="line">    └── spherical</span><br></pre></td></tr></table></figure>
+<h2 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h2><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>流媒体通信协议</p>
 <ul>
 <li>HLS</li>
 <li>DASH</li>
@@ -418,7 +454,9 @@
 <p>ExoPlayer core</p>
 <ul>
 <li><code>Player</code>，</li>
-<li></li>
+<li><h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2></li>
+<li><a href="https://github.com/google/ExoPlayer.git" target="_blank" rel="noopener">谷歌官方ExoPlayer Demo</a></li>
+<li><a href="https://www.cnblogs.com/roger-yu/p/5635494.html" target="_blank" rel="noopener">Android 多媒体——MediaCodec中文API文档</a></li>
 </ul>
 
       
@@ -706,7 +744,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本使用流程"><span class="nav-number">2.</span> <span class="nav-text">基本使用流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本结构"><span class="nav-number">3.</span> <span class="nav-text">基本结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对比"><span class="nav-number">4.</span> <span class="nav-text">对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">5.</span> <span class="nav-text">小结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">2.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本使用流程"><span class="nav-number">3.</span> <span class="nav-text">基本使用流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#播放本地文件"><span class="nav-number">3.1.</span> <span class="nav-text">播放本地文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#播放网络文件"><span class="nav-number">3.2.</span> <span class="nav-text">播放网络文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本的播放控制"><span class="nav-number">3.3.</span> <span class="nav-text">基本的播放控制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本结构"><span class="nav-number">4.</span> <span class="nav-text">基本结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对比"><span class="nav-number">5.</span> <span class="nav-text">对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">6.</span> <span class="nav-text">小结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">8.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
             
 
           </div>
