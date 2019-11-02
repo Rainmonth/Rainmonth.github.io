@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="荏苒追寻个人博客">
 <meta property="og:description" content="摘要主要根据谷歌官方提供的demo，来了解ExoPlayer的基本使用。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-02T06:26:25.658Z">
+<meta property="og:updated_time" content="2019-11-02T06:37:10.854Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android ExoPlayer使用与分析">
 <meta name="twitter:description" content="摘要主要根据谷歌官方提供的demo，来了解ExoPlayer的基本使用。">
@@ -410,8 +410,11 @@
 <li>流媒体通信协议<ul>
 <li><a href="https://baike.baidu.com/item/DASH/3510902#viewPageContent" target="_blank" rel="noopener">DASH</a>，Dynamic Adaptive Streaming over HTTP的缩写，即基于HTTP的动态自适应流，国际标准组MPEG制定的技术标准；</li>
 <li><a href="https://baike.baidu.com/item/HLS" target="_blank" rel="noopener">HLS</a>，HTTP Live Streaming的缩写，即动态码率自适应技术；</li>
-<li><a href="">Timeline</a>，</li>
-<li>[MediaPeriod]，</li>
+</ul>
+</li>
+<li>ExoPlayer中自交重要的概念<ul>
+<li>Timeline，用来指代媒体数据的灵活数据结构，本质上是一种数据的描述，由媒体片段（Period）和Window（由一个或多个Period组成）组成；</li>
+<li>MediaPeriod，用来加载与Timeline.Period对应的Media，并是这段Media可读；</li>
 </ul>
 </li>
 </ul>
