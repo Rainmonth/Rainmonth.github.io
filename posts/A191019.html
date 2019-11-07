@@ -106,12 +106,12 @@
 <meta property="og:site_name" content="荏苒追寻个人博客">
 <meta property="og:description" content="Android系统的启动先看启动相关进程的关系图">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/posts/A191019/Android系统进程关系图.png">
-<meta property="og:updated_time" content="2019-11-02T08:03:27.463Z">
+<meta property="og:image" content="http://yoursite.com/images/A191019/Android系统进程关系图.png">
+<meta property="og:updated_time" content="2019-11-06T15:17:20.967Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android系统的启动">
 <meta name="twitter:description" content="Android系统的启动先看启动相关进程的关系图">
-<meta name="twitter:image" content="http://yoursite.com/posts/A191019/Android系统进程关系图.png">
+<meta name="twitter:image" content="http://yoursite.com/images/A191019/Android系统进程关系图.png">
 
 
 
@@ -398,7 +398,7 @@
 
       
         <h1 id="Android系统的启动"><a href="#Android系统的启动" class="headerlink" title="Android系统的启动"></a>Android系统的启动</h1><p>先看启动相关进程的关系图</p>
-<p><img src="/posts/./A191019/Android系统进程关系图.png" alt="Android系统进程关系图"></p>
+<p><img src="/posts/./../images/A191019/Android系统进程关系图.png" alt="Android系统进程关系图"></p>
 <a id="more"></a>
 <p>[toc]</p>
 <p>相关的文件</p>
@@ -506,17 +506,66 @@
 </ul>
 <p>SystemServer的主线程在经过上面几个步骤后，主线程启动总算完毕，在<code>Looper.loop()</code>后开始等待其他线程通过Handler发送消息再处理</p>
 <h2 id="普通app进程"><a href="#普通app进程" class="headerlink" title="普通app进程"></a>普通app进程</h2><p>普通app的进程和system_server进程启动的流程类似，只是最后调用的main方法不同，普通app进程最后调用的是<code>ActivityThread.main</code>方法，而system_server调用的<code>是SystemServer.main</code></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
-<li><p>核心进程及其对应的main方法</p>
-<p>| 进程名           | 对应的main方法        |<br>| —————- | ——————— |<br>| init进程         | init.main()           |<br>| zygote进程       | ZygoteInit.main()     |<br>| app_process进程  | RuntimeInit.main()    |<br>| SystemServer进程 | SystemServer.main()   |<br>| app进程          | ActivityThread.main() |</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这里对系统启动时的一些进程做个总结性描述。</p>
+<h3 id="核心进程及其对应的main方法"><a href="#核心进程及其对应的main方法" class="headerlink" title="核心进程及其对应的main方法"></a>核心进程及其对应的main方法</h3><table>
+<thead>
+<tr>
+<th>进程名</th>
+<th>对应的main方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>init进程</td>
+<td>init.main()</td>
+</tr>
+<tr>
+<td>zygote进程</td>
+<td>ZygoteInit.main()</td>
+</tr>
+<tr>
+<td>app_process进程</td>
+<td>RuntimeInit.main()</td>
+</tr>
+<tr>
+<td>SystemServer进程</td>
+<td>SystemServer.main()</td>
+</tr>
+<tr>
+<td>app进程</td>
+<td>ActivityThread.main()</td>
+</tr>
+</tbody>
+</table>
 <blockquote>
 <p>注意app_process进程是指通过/system/bin/app_process启动的进程，且后面跟的参数不带–zygote，即并非启动zygote进程。 比如常见的有通过adb shell方式来执行am,pm等命令，便是这种方式。</p>
 </blockquote>
-</li>
-<li><p>进程重启导致的关联性</p>
-<p>| 重启的进程     | 关联重启的进程                                         |<br>| ————– | —————————————————— |<br>| zygote         | 触发media、netd以及zygote的子进程（system_server）重启 |<br>| system_server  | 触发zygote重启                                         |<br>| surfaceflinger | 触发zygote重启                                         |<br>| servicemanager | 触发zygote、healthd、media、surfaceflinger、drm重启    |</p>
-</li>
-</ol>
+<h3 id="进程重启导致的关联性"><a href="#进程重启导致的关联性" class="headerlink" title="进程重启导致的关联性"></a>进程重启导致的关联性</h3><table>
+<thead>
+<tr>
+<th>重启的进程</th>
+<th>关联重启的进程</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>zygote</td>
+<td>触发media、netd以及zygote的子进程（system_server）重启</td>
+</tr>
+<tr>
+<td>system_server</td>
+<td>触发zygote重启</td>
+</tr>
+<tr>
+<td>surfaceflinger</td>
+<td>触发zygote重启</td>
+</tr>
+<tr>
+<td>servicemanager</td>
+<td>触发zygote、healthd、media、surfaceflinger、drm重启</td>
+</tr>
+</tbody>
+</table>
 
       
     </div>
@@ -630,7 +679,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">59</span>
+                    <span class="site-state-item-count">60</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -681,7 +730,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">19</span>
+                      
+                    
+                    <span class="site-state-item-count">20</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -807,7 +858,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Android系统的启动"><span class="nav-number">1.</span> <span class="nav-text">Android系统的启动</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#init进程"><span class="nav-number">1.1.</span> <span class="nav-text">init进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Zygote进程"><span class="nav-number">1.2.</span> <span class="nav-text">Zygote进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#system-server"><span class="nav-number">1.3.</span> <span class="nav-text">system_server</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RuntimeInit-zygoteInit"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">RuntimeInit.zygoteInit</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SystemServer"><span class="nav-number">1.3.1.</span> <span class="nav-text">SystemServer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#普通app进程"><span class="nav-number">1.4.</span> <span class="nav-text">普通app进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.5.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Android系统的启动"><span class="nav-number">1.</span> <span class="nav-text">Android系统的启动</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#init进程"><span class="nav-number">1.1.</span> <span class="nav-text">init进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Zygote进程"><span class="nav-number">1.2.</span> <span class="nav-text">Zygote进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#system-server"><span class="nav-number">1.3.</span> <span class="nav-text">system_server</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RuntimeInit-zygoteInit"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">RuntimeInit.zygoteInit</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SystemServer"><span class="nav-number">1.3.1.</span> <span class="nav-text">SystemServer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#普通app进程"><span class="nav-number">1.4.</span> <span class="nav-text">普通app进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.5.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#核心进程及其对应的main方法"><span class="nav-number">1.5.1.</span> <span class="nav-text">核心进程及其对应的main方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程重启导致的关联性"><span class="nav-number">1.5.2.</span> <span class="nav-text">进程重启导致的关联性</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

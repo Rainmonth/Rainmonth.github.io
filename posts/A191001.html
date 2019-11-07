@@ -99,18 +99,18 @@
 
 
 
-  <meta name="description" content="Android WebView 独立进程启动速度优化约定，本文中WebView所在的Activity为WebViewActivity 问题分析 采用独立进程后，发现首次启动时，WebView所在的Activity启动速度比较慢，如果每次退出这个Activity的时候都杀掉其所在的独立进程，则每次进入WebView所在的Activity速度都比较慢。因此可以看到导致启动速度慢的根本原因就是fork进">
+  <meta name="description" content="约定，本文中WebView所在的Activity为WebViewActivity 问题分析 采用独立进程后，发现首次启动时，WebView所在的Activity启动速度比较慢，如果每次退出这个Activity的时候都杀掉其所在的独立进程，则每次进入WebView所在的Activity速度都比较慢。因此可以看到导致启动速度慢的根本原因就是fork进程所花费的额外时间。 解决方案：  WebViewA">
 <meta name="keywords" content="Android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android WebView 独立进程启动速度优化">
+<meta property="og:title" content="Android WebView独立进程的使用及优化">
 <meta property="og:url" content="http://yoursite.com/posts/A191001.html">
 <meta property="og:site_name" content="荏苒追寻个人博客">
-<meta property="og:description" content="Android WebView 独立进程启动速度优化约定，本文中WebView所在的Activity为WebViewActivity 问题分析 采用独立进程后，发现首次启动时，WebView所在的Activity启动速度比较慢，如果每次退出这个Activity的时候都杀掉其所在的独立进程，则每次进入WebView所在的Activity速度都比较慢。因此可以看到导致启动速度慢的根本原因就是fork进">
+<meta property="og:description" content="约定，本文中WebView所在的Activity为WebViewActivity 问题分析 采用独立进程后，发现首次启动时，WebView所在的Activity启动速度比较慢，如果每次退出这个Activity的时候都杀掉其所在的独立进程，则每次进入WebView所在的Activity速度都比较慢。因此可以看到导致启动速度慢的根本原因就是fork进程所花费的额外时间。 解决方案：  WebViewA">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-22T15:51:39.063Z">
+<meta property="og:updated_time" content="2019-11-06T15:17:20.965Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android WebView 独立进程启动速度优化">
-<meta name="twitter:description" content="Android WebView 独立进程启动速度优化约定，本文中WebView所在的Activity为WebViewActivity 问题分析 采用独立进程后，发现首次启动时，WebView所在的Activity启动速度比较慢，如果每次退出这个Activity的时候都杀掉其所在的独立进程，则每次进入WebView所在的Activity速度都比较慢。因此可以看到导致启动速度慢的根本原因就是fork进">
+<meta name="twitter:title" content="Android WebView独立进程的使用及优化">
+<meta name="twitter:description" content="约定，本文中WebView所在的Activity为WebViewActivity 问题分析 采用独立进程后，发现首次启动时，WebView所在的Activity启动速度比较慢，如果每次退出这个Activity的时候都杀掉其所在的独立进程，则每次进入WebView所在的Activity速度都比较慢。因此可以看到导致启动速度慢的根本原因就是fork进程所花费的额外时间。 解决方案：  WebViewA">
 
 
 
@@ -127,7 +127,7 @@
   };
 </script>
 
-  <title>Android WebView 独立进程启动速度优化 | 荏苒追寻个人博客</title>
+  <title>Android WebView独立进程的使用及优化 | 荏苒追寻个人博客</title>
   
 
 
@@ -329,7 +329,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Android WebView 独立进程启动速度优化</h1>
+          <h1 class="post-title" itemprop="name headline">Android WebView独立进程的使用及优化</h1>
         
 
         <div class="post-meta">
@@ -403,7 +403,7 @@
       
 
       
-        <h1 id="Android-WebView-独立进程启动速度优化"><a href="#Android-WebView-独立进程启动速度优化" class="headerlink" title="Android WebView 独立进程启动速度优化"></a>Android WebView 独立进程启动速度优化</h1><p>约定，本文中WebView所在的Activity为<code>WebViewActivity</code></p>
+        <p>约定，本文中WebView所在的Activity为<code>WebViewActivity</code></p>
 <p>问题分析</p>
 <p>采用独立进程后，发现首次启动时，WebView所在的Activity启动速度比较慢，如果每次退出这个Activity的时候都杀掉其所在的独立进程，则每次进入WebView所在的Activity速度都比较慢。因此可以看到导致启动速度慢的根本原因就是fork进程所花费的额外时间。</p>
 <p>解决方案：</p>
@@ -505,17 +505,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -530,7 +521,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">59</span>
+                    <span class="site-state-item-count">60</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -581,7 +572,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">19</span>
+                      
+                    
+                    <span class="site-state-item-count">20</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -697,22 +690,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Android-WebView-独立进程启动速度优化"><span class="nav-number">1.</span> <span class="nav-text">Android WebView 独立进程启动速度优化</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
