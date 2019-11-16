@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="荏苒追寻个人博客">
 <meta property="og:description" content="摘要 本文先谈了下布局优化的必要性，然后阐述不好的布局会引发哪些问题，在针对这些情况提出具体的布局优化方案，同时介绍一些常用布局优化工具的使用。  参考文章：  Android UI性能优化实战 识别绘制中的性能问题 Android性能优化：布局优化 详细解析（含\、\、\讲解 ）  必要性为了避免手机资源的浪费（CPU资源和GPU资源），减少卡顿的发生，必须对App的布局进行优化。优化可以从下三">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-22T15:39:24.653Z">
+<meta property="og:updated_time" content="2019-11-11T15:24:04.210Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 性能优化之布局优化">
 <meta name="twitter:description" content="摘要 本文先谈了下布局优化的必要性，然后阐述不好的布局会引发哪些问题，在针对这些情况提出具体的布局优化方案，同时介绍一些常用布局优化工具的使用。  参考文章：  Android UI性能优化实战 识别绘制中的性能问题 Android性能优化：布局优化 详细解析（含\、\、\讲解 ）  必要性为了避免手机资源的浪费（CPU资源和GPU资源），减少卡顿的发生，必须对App的布局进行优化。优化可以从下三">
@@ -414,12 +414,13 @@
 <h2 id="必要性"><a href="#必要性" class="headerlink" title="必要性"></a>必要性</h2><p>为了避免手机资源的浪费（CPU资源和GPU资源），减少卡顿的发生，必须对App的布局进行优化。优化可以从下三方面着手：</p>
 <ul>
 <li>无必要的layout</li>
-<li>过于频繁的invitations</li>
+<li>过于频繁的invidations</li>
 <li>Overdraw</li>
 </ul>
 <a id="more"></a>
 <h2 id="检测工具"><a href="#检测工具" class="headerlink" title="检测工具"></a>检测工具</h2><ul>
 <li>Android Device Monitor ——Hierarchy View，查看布局层级，看看有没有不必要的嵌套</li>
+<li>Android Studio-&gt;Tools-&gt;Layout Inspector</li>
 <li>开发者选项——Show GPU Overdraw，查看视图的绘制情况</li>
 </ul>
 <h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="Overdraw的检测"><a href="#Overdraw的检测" class="headerlink" title="Overdraw的检测"></a>Overdraw的检测</h3><p>打开上面的Show GPU Overdraw后，App上会有不同的颜色显示当前的Overdraw情况：</p>
@@ -436,9 +437,16 @@
 <li><p>DecorView也存在一层背景的，如果我们自己设置了跟布局的背景，我们可以将DecorView的背景置空：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getWindow().setBackgroundDrawable(<span class="keyword">null</span>)</span><br></pre></td></tr></table></figure>
 </li>
+<li><p>在设置背景是，要慎用layer-list。为什么呢？因为layer-list 本身就存在多层绘制。</p>
+</li>
 </ul>
-<h4 id="解决方案二：在绘制的时候采用ClipRect"><a href="#解决方案二：在绘制的时候采用ClipRect" class="headerlink" title="解决方案二：在绘制的时候采用ClipRect"></a>解决方案二：在绘制的时候采用ClipRect</h4><p>自定义控件的时候，如果涉及到矩形绘制，可以采用ClickRect，它可以很好的处理绘图区域的重叠部分</p>
-<h3 id="HierarchyView使用"><a href="#HierarchyView使用" class="headerlink" title="HierarchyView使用"></a>HierarchyView使用</h3><p>使用HierarchyView可以查看布局的层级，并针对某个布局来查看其measure、layout、draw的速度，从而检测问题可能发生的地方。</p>
+<h4 id="解决方案二：在绘制的时候采用ClipRect"><a href="#解决方案二：在绘制的时候采用ClipRect" class="headerlink" title="解决方案二：在绘制的时候采用ClipRect"></a>解决方案二：在绘制的时候采用ClipRect</h4><p>自定义控件的时候，如果涉及到矩形绘制，可以采用ClipRect，它可以很好的处理绘图区域的重叠部分</p>
+<h4 id="解决方案三：降低View的层级"><a href="#解决方案三：降低View的层级" class="headerlink" title="解决方案三：降低View的层级"></a>解决方案三：降低View的层级</h4><p>如果View的层级过深，那么overdraw的概率就会加大，所以降低View的嵌套层级是解决Overdraw的最基本途径。减少View的层级，可以从以下几个方面入手：</p>
+<ul>
+<li>选择合理的根布局，推荐使用ConstraintLayout（Android Studio 3.x以上的版本新建Activity默认的根布局就是采用ConstraintLayout），他结合了LinearLayout和RelativeLayout的特性，比提供了几个非常有用的辅助布局工具，如ViewGroup、GuidLine等。</li>
+<li>merge标签的使用，比如一个View继承自FrameLayout，而它inflate的layout文件的根布局也是FrameLayout，这样就可以采用merge标签来代替根布局中的FrameLayout标签，通过很简单的方式就减少了一层嵌套。<h3 id="HierarchyView使用"><a href="#HierarchyView使用" class="headerlink" title="HierarchyView使用"></a>HierarchyView使用</h3></li>
+</ul>
+<p>使用HierarchyView可以查看布局的层级，并针对某个布局来查看其measure、layout、draw的速度，从而检测问题可能发生的地方。</p>
 <p>一般，在布局的时候，要注意一下几点：</p>
 <ul>
 <li>避免RelativeLayout嵌套</li>
@@ -567,7 +575,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">61</span>
+                    <span class="site-state-item-count">66</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -620,7 +628,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">20</span>
+                      
+                    
+                    <span class="site-state-item-count">21</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -701,7 +711,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">34</span>
+                      
+                    
+                    <span class="site-state-item-count">35</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -746,7 +758,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#必要性"><span class="nav-number">2.</span> <span class="nav-text">必要性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检测工具"><span class="nav-number">3.</span> <span class="nav-text">检测工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方案"><span class="nav-number">4.</span> <span class="nav-text">解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Overdraw的检测"><span class="nav-number">4.1.</span> <span class="nav-text">Overdraw的检测</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解决方案一：移除非必要的background"><span class="nav-number">4.1.1.</span> <span class="nav-text">解决方案一：移除非必要的background</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决方案二：在绘制的时候采用ClipRect"><span class="nav-number">4.1.2.</span> <span class="nav-text">解决方案二：在绘制的时候采用ClipRect</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HierarchyView使用"><span class="nav-number">4.2.</span> <span class="nav-text">HierarchyView使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#必要性"><span class="nav-number">2.</span> <span class="nav-text">必要性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检测工具"><span class="nav-number">3.</span> <span class="nav-text">检测工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方案"><span class="nav-number">4.</span> <span class="nav-text">解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Overdraw的检测"><span class="nav-number">4.1.</span> <span class="nav-text">Overdraw的检测</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解决方案一：移除非必要的background"><span class="nav-number">4.1.1.</span> <span class="nav-text">解决方案一：移除非必要的background</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决方案二：在绘制的时候采用ClipRect"><span class="nav-number">4.1.2.</span> <span class="nav-text">解决方案二：在绘制的时候采用ClipRect</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决方案三：降低View的层级"><span class="nav-number">4.1.3.</span> <span class="nav-text">解决方案三：降低View的层级</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HierarchyView使用"><span class="nav-number">4.2.</span> <span class="nav-text">HierarchyView使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
