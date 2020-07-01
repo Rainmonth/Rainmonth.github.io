@@ -1261,6 +1261,7 @@
 <ol>
 <li><code>WebViewActivity</code>所属的独立进程启动后，在退出Activity时不杀掉其所属进程。</li>
 <li>在AndroidManifest.xml文件中声名一个Service，该Service运行在独立进程中，需要启动WebView是，发送消息给该Service，让该Service来启动<code>WebViewActivity</code>。</li>
+<li>由于Web View运行于独立进程，那么自然而然的就会涉及到进程间的通信问题，Android进程间的通信，最常见的就是通过AIDL来实现。</li>
 </ol>
 
           
@@ -1819,7 +1820,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">73</span>
+                    <span class="site-state-item-count">74</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
