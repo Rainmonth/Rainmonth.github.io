@@ -99,18 +99,18 @@
 
 
 
-  <meta name="description" content="摘要Dagger是一个编译时依赖注入框架。实现原理是在编译的时候根据注解生成相应的Java源代码，然后在利用这些源代码进行程序的处理，所以并不会降低程序运行时的性能。 Dagger解决了什么问题呢？就是对象之间的耦合。将直接的组合方式造成的耦合，改为间接的依赖关系，从而降低耦合。 既然是实现原理是基于Java编译时注解，所以需要先掌握一点Java编译时注解的知识，可以参考Java注解。Dagger">
+  <meta name="description" content="摘要Dagger是一个编译时依赖注入框架。实现原理是在编译的时候根据注解生成相应的Java源代码，然后在利用这些源代码进行程序的处理，所以并不会降低程序运行时的性能。 Dagger解决了什么问题呢？就是对象之间的耦合。将直接的组合方式造成的耦合，改为间接的依赖关系，从而降低耦合。">
 <meta name="keywords" content="Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android之Dagger2简介">
 <meta property="og:url" content="http://yoursite.com/posts/A200701.html">
 <meta property="og:site_name" content="荏苒追寻个人博客">
-<meta property="og:description" content="摘要Dagger是一个编译时依赖注入框架。实现原理是在编译的时候根据注解生成相应的Java源代码，然后在利用这些源代码进行程序的处理，所以并不会降低程序运行时的性能。 Dagger解决了什么问题呢？就是对象之间的耦合。将直接的组合方式造成的耦合，改为间接的依赖关系，从而降低耦合。 既然是实现原理是基于Java编译时注解，所以需要先掌握一点Java编译时注解的知识，可以参考Java注解。Dagger">
+<meta property="og:description" content="摘要Dagger是一个编译时依赖注入框架。实现原理是在编译的时候根据注解生成相应的Java源代码，然后在利用这些源代码进行程序的处理，所以并不会降低程序运行时的性能。 Dagger解决了什么问题呢？就是对象之间的耦合。将直接的组合方式造成的耦合，改为间接的依赖关系，从而降低耦合。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-07-01T23:15:24.129Z">
+<meta property="og:updated_time" content="2020-07-02T01:33:26.067Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android之Dagger2简介">
-<meta name="twitter:description" content="摘要Dagger是一个编译时依赖注入框架。实现原理是在编译的时候根据注解生成相应的Java源代码，然后在利用这些源代码进行程序的处理，所以并不会降低程序运行时的性能。 Dagger解决了什么问题呢？就是对象之间的耦合。将直接的组合方式造成的耦合，改为间接的依赖关系，从而降低耦合。 既然是实现原理是基于Java编译时注解，所以需要先掌握一点Java编译时注解的知识，可以参考Java注解。Dagger">
+<meta name="twitter:description" content="摘要Dagger是一个编译时依赖注入框架。实现原理是在编译的时候根据注解生成相应的Java源代码，然后在利用这些源代码进行程序的处理，所以并不会降低程序运行时的性能。 Dagger解决了什么问题呢？就是对象之间的耦合。将直接的组合方式造成的耦合，改为间接的依赖关系，从而降低耦合。">
 
 
 
@@ -398,12 +398,13 @@
       
         <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p><a href="https://dagger.dev/" target="_blank" rel="noopener">Dagger</a>是一个编译时依赖注入框架。实现原理是在编译的时候根据注解生成相应的Java源代码，然后在利用这些源代码进行程序的处理，所以并不会降低程序运行时的性能。</p>
 <p>Dagger解决了什么问题呢？就是对象之间的耦合。将直接的组合方式造成的耦合，改为间接的依赖关系，从而降低耦合。</p>
+<a id="more"></a>
 <p>既然是实现原理是基于Java编译时注解，所以需要先掌握一点Java编译时注解的知识，可以参考<a href="https://rainmonth.github.io/posts/J191115.html" target="_blank" rel="noopener">Java注解</a>。Dagger用到的注解主要有以下几个：</p>
 <ul>
 <li>@Inject，具体使用的地方，添加该注解的就可以通过Dagger来获取到相应的对象，不用自己实例化；</li>
 <li>@Provides，在@Module中使用，用来表示该方法可以向外部提供一个其注解方法返回的对象；</li>
 <li>@Module，用来定义一个模块，这个模块中可以使用@Providers注解来想外部提供相应的对象供外部调用，主要是为了解决依赖第三方库时不能修改其源码导致无法直接注入的问题；</li>
-<li>@Component，</li>
+<li>@Component，连接依赖需求方和依赖对象提供方的桥梁，<strong>依赖需求方</strong>指的就是实例对象最终要被注入的地方（在Android开发场景下一般有Activity、Fragment等，无特殊要求）；<strong>依赖提供方</strong>可以是采用@Module注解的类或采用@Inject注解的实例类的构造函数，可以提供需要注入的对象的实例。@Component注解的modules参数代表的就是<strong>依赖提供方</strong>，而其注解的类里面定义的inject方法的参数代表的就是<strong>依赖需求方</strong>；</li>
 </ul>
 <h2 id="知识准备"><a href="#知识准备" class="headerlink" title="知识准备"></a>知识准备</h2><ol>
 <li>Java注解的基础知识；</li>
@@ -432,7 +433,8 @@
 <li>@Qualifier，<strong>依赖需求方 创建数据的时候使用哪个依赖提供方</strong>。</li>
 <li>@Scope，标记一个注解实例的使用范围，是一个元注解，利用他可以定义@ActivityScope、@FragmentScope等；</li>
 <li>@Singleton，标记该类只能被创建一次，不能被继承；</li>
-<li>Provider，用来提供某个类型实例的接口，通常有</li>
+<li>Provider，用来提供某个类型实例的接口，每次get方法调用都会生成一个新的实例化对象；</li>
+<li>Lazy，用来提供某个实例的接口，但采用懒加载实现，在单一范围内注解的对象实例化后，再次调用，采用的仍是第一次实例化后的对象；</li>
 </ul>
 <h2 id="基本使用方式"><a href="#基本使用方式" class="headerlink" title="基本使用方式"></a>基本使用方式</h2><h3 id="先引入官方库"><a href="#先引入官方库" class="headerlink" title="先引入官方库"></a>先引入官方库</h3><p>在项目主module的build.gradle的dependencies中，采用以下代码引入Dagger2，具体的版本自行选择（我选择的是2.14.1）：</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">compile <span class="string">'com.google.dagger:dagger:2.14.1'</span></span><br><span class="line">annotationProcessor <span class="string">'com.google.dagger:dagger-compiler:2.14.1'</span></span><br></pre></td></tr></table></figure>
