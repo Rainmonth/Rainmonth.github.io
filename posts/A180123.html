@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="荏苒追寻个人博客">
 <meta property="og:description" content="#Android 零散知识点（持续更新） [TOC]  Q：为什么Android的更新试图操作必须在主线程中进行？  这是因为Android系统中的视图组件并不是线程安全的。通常应该让主线程负责创建、显示和更新UI，启动子线程，停止子线程。让子线程完成计算并向主线程发出更新UI的消息，让主线程来更新UI。这就促使Android中产生了Handler机制。     Q：如何更改Android Stu">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-06-30T06:27:54.874Z">
+<meta property="og:updated_time" content="2020-10-10T06:21:12.111Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 零散知识点（持续更新）">
 <meta name="twitter:description" content="#Android 零散知识点（持续更新） [TOC]  Q：为什么Android的更新试图操作必须在主线程中进行？  这是因为Android系统中的视图组件并不是线程安全的。通常应该让主线程负责创建、显示和更新UI，启动子线程，停止子线程。让子线程完成计算并向主线程发出更新UI的消息，让主线程来更新UI。这就促使Android中产生了Handler机制。     Q：如何更改Android Stu">
@@ -436,6 +436,16 @@
 <li><p>Group控件设置可见性的时候，存在设置不生效的问题</p>
 <blockquote>
 <p>解决方法，调用设置可见性之后，调用其提供的<code>updatePreLayout</code>来更新其关联View的可见性。</p>
+</blockquote>
+</li>
+<li><p>ViewPager（应用PagerTransformer效果）的一页中的子View动画超出边界被裁的问题</p>
+<blockquote>
+<p>采用在PagerTransformer的transfromPage方法中找到该View，对该View进行动画</p>
+</blockquote>
+</li>
+<li><p>clipChildren和clipPadding属性的作用</p>
+<blockquote>
+<p>允许子View超过父View的边界，但有的情况下会失效（比如ViewPager应用了PagerTransformer效果后</p>
 </blockquote>
 </li>
 <li><p>EditText 的光标为何不显示？</p>
@@ -893,7 +903,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">74</span>
+                    <span class="site-state-item-count">77</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -962,6 +972,8 @@
                 <div class="site-state-item site-state-tags">
                   <a href="/tags/index.html">
                     
+                    
+                      
                     
                       
                     
