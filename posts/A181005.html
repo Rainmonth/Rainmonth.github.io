@@ -102,14 +102,14 @@
   <meta name="description" content="Android ViewPager的无限循环与自动滚动实现前言关于ViewPager时Android开发时经常要用到的控件，但系统提供的ViewPager往往总有一些功能限制，如不能无限循环，不能自动滚动，今天就介绍ViewPager无限循环和自动滚动的不同实现。 实现思路实现方式有很多种，具体如下，后面会分析各种实现方式的优缺点。">
 <meta name="keywords" content="ViewPager">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android ViewPager的无限循环与自动滚动实现">
+<meta property="og:title" content="Android 控件——ViewPager的无限循环与自动滚动实现">
 <meta property="og:url" content="http://yoursite.com/posts/A181005.html">
 <meta property="og:site_name" content="荏苒追寻个人博客">
 <meta property="og:description" content="Android ViewPager的无限循环与自动滚动实现前言关于ViewPager时Android开发时经常要用到的控件，但系统提供的ViewPager往往总有一些功能限制，如不能无限循环，不能自动滚动，今天就介绍ViewPager无限循环和自动滚动的不同实现。 实现思路实现方式有很多种，具体如下，后面会分析各种实现方式的优缺点。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-22T15:51:10.729Z">
+<meta property="og:updated_time" content="2021-02-19T14:13:45.798Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android ViewPager的无限循环与自动滚动实现">
+<meta name="twitter:title" content="Android 控件——ViewPager的无限循环与自动滚动实现">
 <meta name="twitter:description" content="Android ViewPager的无限循环与自动滚动实现前言关于ViewPager时Android开发时经常要用到的控件，但系统提供的ViewPager往往总有一些功能限制，如不能无限循环，不能自动滚动，今天就介绍ViewPager无限循环和自动滚动的不同实现。 实现思路实现方式有很多种，具体如下，后面会分析各种实现方式的优缺点。">
 
 
@@ -127,7 +127,7 @@
   };
 </script>
 
-  <title>Android ViewPager的无限循环与自动滚动实现 | 荏苒追寻个人博客</title>
+  <title>Android 控件——ViewPager的无限循环与自动滚动实现 | 荏苒追寻个人博客</title>
   
 
 
@@ -329,7 +329,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Android ViewPager的无限循环与自动滚动实现</h1>
+          <h1 class="post-title" itemprop="name headline">Android 控件——ViewPager的无限循环与自动滚动实现</h1>
         
 
         <div class="post-meta">
@@ -439,8 +439,9 @@
 <li><p>利用Handler来实现自动滚动</p>
 <p>代码实现如下（核心代码如下）：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 要自动滚动的ViewPager</span></span><br><span class="line"><span class="keyword">private</span> ViewPager viewPager;</span><br><span class="line"><span class="comment">// 定义是否开启自动滚动，默认开启</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">boolean</span> isAutoPlay = <span class="keyword">true</span>;</span><br><span class="line"><span class="comment">// 默认自动滚动任务延时两秒执行</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> delayTime = <span class="number">2000</span>;</span><br><span class="line"><span class="comment">// 定义处理自动滚动的handler</span></span><br><span class="line"><span class="keyword">private</span> Handler handler = <span class="keyword">new</span> Handler();</span><br><span class="line"><span class="comment">// 当前ViewPager展示页</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> currentItem;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *	开启自动滚动的方法</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">startAutoPlay</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	isAutoPlay = <span class="keyword">true</span>;</span><br><span class="line">	handler.removeCallbacks(task);</span><br><span class="line">	handler.postDelayed(task, delayTime)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 暂停自动滚动</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">pauseAutoPlay</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    isAutoPlay = <span class="keyword">false</span>;</span><br><span class="line">	handler.removeCallbacks(task);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 自动滚动核心代码</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Runnable task = <span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">  	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    	<span class="keyword">if</span> (isAutoPlay) &#123;</span><br><span class="line">          <span class="comment">// 自动滚动逻辑处理</span></span><br><span class="line">			currentItem = viewPager.getCurrentItem();</span><br><span class="line">          	currentItem++;</span><br><span class="line">            <span class="keyword">if</span>(currentItem == randyPagerAdapter.getCount() -<span class="number">1</span>) &#123;</span><br><span class="line">            	currentItem = <span class="number">0</span>;</span><br><span class="line">	            viewPager.setCurrentItem(currentItem);</span><br><span class="line">           		handler.postDelayed(<span class="keyword">this</span>, delayTime);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                viewPager.setCurrentItem(currentItem);</span><br><span class="line">                handler.postDelayed(<span class="keyword">this</span>, delayTime);	</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            handler.postDelayed(<span class="keyword">this</span>, delayTime);</span><br><span class="line">        &#125;</span><br><span class="line">  	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>​</p>
 </li>
+</ol>
+<ol>
 <li><p>利用定时任务（Timer和TimerTask)来实现</p>
 <p>代码实现（核心代码如下）：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DISPLAY_TIME = <span class="number">3000</span>;</span><br><span class="line"><span class="keyword">private</span> Handler hander = <span class="keyword">new</span> Handler();</span><br><span class="line"><span class="keyword">private</span> Timer timer = <span class="keyword">new</span> Timer();</span><br><span class="line"><span class="keyword">private</span> TimerTask timerTask;</span><br><span class="line"><span class="keyword">private</span> ViewPager mViewPager;</span><br><span class="line"><span class="keyword">private</span> Runnable runable = <span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//true表示平滑滚动</span></span><br><span class="line">        mViewPager.setCurrentItem(mViewPager.getCurrentItem() + <span class="number">1</span>, <span class="keyword">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">startScroll</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    timerTask = <span class="keyword">new</span> TimerTask() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            hander.post(runable);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    timer.schedule(timerTask, DISPLAY_TIME, DISPLAY_TIME);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">stopScroll</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    timerTask.cancel();</span><br><span class="line">    timerTask = <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -448,8 +449,6 @@
 <li>在处理无限循环时，核心思路就是对临界值的处理，当然也可以通过方法1来绕过这种处理，但要注意一点就是怎么设置getCount的返回值以达到最优的性能；</li>
 <li>在处理自动滚动时，无非就是通过handler的postDelayed方法的特性以及Android定义的定时器进行处理。</li>
 </ul>
-<p>​</p>
-<p>​</p>
 </li>
 </ol>
 
@@ -485,8 +484,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/A181003.html" rel="next" title="Android Studio 升级到3.0运行项目指北">
-                <i class="fa fa-chevron-left"></i> Android Studio 升级到3.0运行项目指北
+              <a href="/posts/A181003.html" rel="next" title="Android 杂谈——Android Studio 升级到3.0运行项目指北">
+                <i class="fa fa-chevron-left"></i> Android 杂谈——Android Studio 升级到3.0运行项目指北
               </a>
             
           </div>
@@ -495,8 +494,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/posts/A181025.html" rel="prev" title="Android中MVP模式、MVC模式">
-                Android中MVP模式、MVC模式 <i class="fa fa-chevron-right"></i>
+              <a href="/posts/A181025.html" rel="prev" title="Android 系统架构——MVP模式、MVC模式">
+                Android 系统架构——MVP模式、MVC模式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -571,7 +570,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">81</span>
+                    <span class="site-state-item-count">125</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -630,7 +629,27 @@
                     
                       
                     
-                    <span class="site-state-item-count">22</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -723,7 +742,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">39</span>
+                      
+                    
+                    <span class="site-state-item-count">41</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

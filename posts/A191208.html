@@ -101,15 +101,15 @@
 
   <meta name="description" content="摘要最近在研究Android多媒体开发，于是就看了下官方关于多媒体的一些开发指南，本文对指南的主要内容做一些记录，以便实际开发时参考。参考文章：  点击查看MediaPlayer的API介绍 点击查看官方多媒体开发指南 打造基于MediaSessionCompat的音乐播放器  MediaPlayer介绍状态机音视频文件（或流）的播放控制是通过下图所示的状态机来管理的，图例说明：  椭圆代表的是播">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android官方关于多媒体的说明介绍">
+<meta property="og:title" content="Android 音视频基础——官方关于多媒体的说明介绍">
 <meta property="og:url" content="http://yoursite.com/posts/A191208.html">
 <meta property="og:site_name" content="荏苒追寻个人博客">
 <meta property="og:description" content="摘要最近在研究Android多媒体开发，于是就看了下官方关于多媒体的一些开发指南，本文对指南的主要内容做一些记录，以便实际开发时参考。参考文章：  点击查看MediaPlayer的API介绍 点击查看官方多媒体开发指南 打造基于MediaSessionCompat的音乐播放器  MediaPlayer介绍状态机音视频文件（或流）的播放控制是通过下图所示的状态机来管理的，图例说明：  椭圆代表的是播">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://developer.android.google.cn/images/mediaplayer_state_diagram.gif">
-<meta property="og:updated_time" content="2020-02-12T06:26:49.648Z">
+<meta property="og:updated_time" content="2021-02-19T14:13:45.813Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android官方关于多媒体的说明介绍">
+<meta name="twitter:title" content="Android 音视频基础——官方关于多媒体的说明介绍">
 <meta name="twitter:description" content="摘要最近在研究Android多媒体开发，于是就看了下官方关于多媒体的一些开发指南，本文对指南的主要内容做一些记录，以便实际开发时参考。参考文章：  点击查看MediaPlayer的API介绍 点击查看官方多媒体开发指南 打造基于MediaSessionCompat的音乐播放器  MediaPlayer介绍状态机音视频文件（或流）的播放控制是通过下图所示的状态机来管理的，图例说明：  椭圆代表的是播">
 <meta name="twitter:image" content="https://developer.android.google.cn/images/mediaplayer_state_diagram.gif">
 
@@ -128,7 +128,7 @@
   };
 </script>
 
-  <title>Android官方关于多媒体的说明介绍 | 荏苒追寻个人博客</title>
+  <title>Android 音视频基础——官方关于多媒体的说明介绍 | 荏苒追寻个人博客</title>
   
 
 
@@ -330,7 +330,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Android官方关于多媒体的说明介绍</h1>
+          <h1 class="post-title" itemprop="name headline">Android 音视频基础——官方关于多媒体的说明介绍</h1>
         
 
         <div class="post-meta">
@@ -370,7 +370,7 @@
                   ， 
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Android/多媒体/" itemprop="url" rel="index"><span itemprop="name">多媒体</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Android/音视频基础/" itemprop="url" rel="index"><span itemprop="name">音视频基础</span></a></span>
 
                 
                 
@@ -459,7 +459,7 @@
 </ul>
 </li>
 <li>可以通过<code>seekTo</code>来调整播放位置：<ul>
-<li>虽然异步调用<code>seekTo</code>能很快的返回，但实际的seek操作会话费一定时间，尤其是在线的音视频流情况下。当seek真正完成时，注册的OnSeekComplete.onSeekComplete()会被调用；</li>
+<li>虽然异步调用<code>seekTo</code>能很快的返回，但实际的seek操作会花费一定时间，尤其是在线的音视频流情况下。当seek真正完成时，注册的OnSeekComplete.onSeekComplete()会被调用；</li>
 <li>Prepared、Paused和PlaybackCompleted状态下也可以调用<code>seekTo</code>方法；</li>
 <li>可以通过<code>getCurrentPosition</code>来获取当前播放的位置；</li>
 </ul>
@@ -555,8 +555,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/A191206.html" rel="next" title="Android之IjkPlayer简介">
-                <i class="fa fa-chevron-left"></i> Android之IjkPlayer简介
+              <a href="/posts/J1911171.html" rel="next" title="Java 并发——死锁">
+                <i class="fa fa-chevron-left"></i> Java 并发——死锁
               </a>
             
           </div>
@@ -565,8 +565,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/posts/J191218.html" rel="prev" title="Java基本概念的解释">
-                Java基本概念的解释 <i class="fa fa-chevron-right"></i>
+              <a href="/posts/J191218.html" rel="prev" title="Java 杂谈——基本概念的解释">
+                Java 杂谈——基本概念的解释 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -641,7 +641,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">81</span>
+                    <span class="site-state-item-count">125</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -700,7 +700,27 @@
                     
                       
                     
-                    <span class="site-state-item-count">22</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -793,7 +813,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">39</span>
+                      
+                    
+                    <span class="site-state-item-count">41</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

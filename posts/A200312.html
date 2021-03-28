@@ -99,18 +99,18 @@
 
 
 
-  <meta name="description" content="摘要最近播放器项目需要实现全局悬浮弹窗，如是就有了这篇文章。期待实现的功能：  支持应用内所有页面悬浮； 支持应用外全局悬浮； 可跟随手指移动，支持配置吸附效果； 支持设置悬浮View动效； 悬浮窗权限适配问题 显示黑名单与白名单 支持数据绑定（采用泛型实现） 多悬浮窗管理  几个核心的问题：  权限适配的问题（能不请求权限就不请求权限）API &amp;gt;=19时无需请求 悬浮View的管理问题">
-<meta name="keywords" content="Android">
+  <meta name="description" content="摘要最近播放器项目需要实现全局悬浮弹窗，如是就有了这篇文章。期待实现的功能：   支持应用内所有页面悬浮；  支持应用外全局悬浮；  可跟随手指移动，支持配置吸附效果；  支持设置悬浮View动效；  悬浮窗权限适配问题  显示黑名单与白名单  支持数据绑定（采用泛型实现）  多悬浮窗管理  支持自定义视图  几个核心的问题：  权限适配的问题（能不请求权限就不请求权限）API &amp;lt; 23时无">
+<meta name="keywords" content="悬浮窗">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android全局悬浮窗的实现">
+<meta property="og:title" content="Android 适配——全局悬浮窗的实现">
 <meta property="og:url" content="http://yoursite.com/posts/A200312.html">
 <meta property="og:site_name" content="荏苒追寻个人博客">
-<meta property="og:description" content="摘要最近播放器项目需要实现全局悬浮弹窗，如是就有了这篇文章。期待实现的功能：  支持应用内所有页面悬浮； 支持应用外全局悬浮； 可跟随手指移动，支持配置吸附效果； 支持设置悬浮View动效； 悬浮窗权限适配问题 显示黑名单与白名单 支持数据绑定（采用泛型实现） 多悬浮窗管理  几个核心的问题：  权限适配的问题（能不请求权限就不请求权限）API &amp;gt;=19时无需请求 悬浮View的管理问题">
+<meta property="og:description" content="摘要最近播放器项目需要实现全局悬浮弹窗，如是就有了这篇文章。期待实现的功能：   支持应用内所有页面悬浮；  支持应用外全局悬浮；  可跟随手指移动，支持配置吸附效果；  支持设置悬浮View动效；  悬浮窗权限适配问题  显示黑名单与白名单  支持数据绑定（采用泛型实现）  多悬浮窗管理  支持自定义视图  几个核心的问题：  权限适配的问题（能不请求权限就不请求权限）API &amp;lt; 23时无">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-03-12T03:35:31.679Z">
+<meta property="og:updated_time" content="2021-03-28T07:02:27.389Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android全局悬浮窗的实现">
-<meta name="twitter:description" content="摘要最近播放器项目需要实现全局悬浮弹窗，如是就有了这篇文章。期待实现的功能：  支持应用内所有页面悬浮； 支持应用外全局悬浮； 可跟随手指移动，支持配置吸附效果； 支持设置悬浮View动效； 悬浮窗权限适配问题 显示黑名单与白名单 支持数据绑定（采用泛型实现） 多悬浮窗管理  几个核心的问题：  权限适配的问题（能不请求权限就不请求权限）API &amp;gt;=19时无需请求 悬浮View的管理问题">
+<meta name="twitter:title" content="Android 适配——全局悬浮窗的实现">
+<meta name="twitter:description" content="摘要最近播放器项目需要实现全局悬浮弹窗，如是就有了这篇文章。期待实现的功能：   支持应用内所有页面悬浮；  支持应用外全局悬浮；  可跟随手指移动，支持配置吸附效果；  支持设置悬浮View动效；  悬浮窗权限适配问题  显示黑名单与白名单  支持数据绑定（采用泛型实现）  多悬浮窗管理  支持自定义视图  几个核心的问题：  权限适配的问题（能不请求权限就不请求权限）API &amp;lt; 23时无">
 
 
 
@@ -127,7 +127,7 @@
   };
 </script>
 
-  <title>Android全局悬浮窗的实现 | 荏苒追寻个人博客</title>
+  <title>Android 适配——全局悬浮窗的实现 | 荏苒追寻个人博客</title>
   
 
 
@@ -329,7 +329,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Android全局悬浮窗的实现</h1>
+          <h1 class="post-title" itemprop="name headline">Android 适配——全局悬浮窗的实现</h1>
         
 
         <div class="post-meta">
@@ -366,6 +366,13 @@
 
                 
                 
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Android/适配/" itemprop="url" rel="index"><span itemprop="name">适配</span></a></span>
+
+                
+                
               
             </span>
           
@@ -398,23 +405,53 @@
       
         <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>最近播放器项目需要实现全局悬浮弹窗，如是就有了这篇文章。期待实现的功能：</p>
 <ul>
-<li>支持应用内所有页面悬浮；</li>
-<li>支持应用外全局悬浮；</li>
-<li>可跟随手指移动，支持配置吸附效果；</li>
-<li>支持设置悬浮View动效；</li>
-<li>悬浮窗权限适配问题</li>
-<li>显示黑名单与白名单</li>
-<li>支持数据绑定（采用泛型实现）</li>
-<li>多悬浮窗管理</li>
+<li style="list-style: none"><input type="checkbox" checked> 支持应用内所有页面悬浮；</li>
+<li style="list-style: none"><input type="checkbox" checked> 支持应用外全局悬浮；</li>
+<li style="list-style: none"><input type="checkbox"> 可跟随手指移动，支持配置吸附效果；</li>
+<li style="list-style: none"><input type="checkbox"> 支持设置悬浮View动效；</li>
+<li style="list-style: none"><input type="checkbox" checked> 悬浮窗权限适配问题</li>
+<li style="list-style: none"><input type="checkbox"> 显示黑名单与白名单</li>
+<li style="list-style: none"><input type="checkbox"> 支持数据绑定（采用泛型实现）</li>
+<li style="list-style: none"><input type="checkbox" checked> 多悬浮窗管理</li>
+<li style="list-style: none"><input type="checkbox"> 支持自定义视图</li>
 </ul>
 <p>几个核心的问题：</p>
 <ul>
-<li>权限适配的问题（能不请求权限就不请求权限）API &gt;=19时无需请求</li>
+<li>权限适配的问题（能不请求权限就不请求权限）API &lt; 23时无需请求</li>
 <li>悬浮View的管理问题</li>
+<li>降级处理（在权限未获取到的情况下如何处理）</li>
 </ul>
-<p>应用内全局悬浮</p>
-<p>应用外全局悬浮</p>
-<p>需要申请<code>android.permission.SYSTEM_ALERT_WINDOW</code>权限</p>
+<h2 id="权限请求"><a href="#权限请求" class="headerlink" title="权限请求"></a>权限请求</h2><p>Android 6.0后系统对某些敏感权限要求动态请求，仅仅在AndroidManifest.xml中声明是远远不够的，而这种动态请求权限中又有两个权限的请求方式比较特殊：</p>
+<h2 id="应用内全局悬浮"><a href="#应用内全局悬浮" class="headerlink" title="应用内全局悬浮"></a>应用内全局悬浮</h2><h3 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h3><p>通过动态的向Activity根布局添加或移除View来实现悬浮窗；</p>
+<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><ul>
+<li>优点，无需申请权限，所有版本完美运行；</li>
+<li>缺点，不能做到应用外悬浮（即应用推到后台后不能悬浮），由于是动态的添加和移除View，在切面切换时会出现闪烁的现象（需要在旧的页面移除，然后在新的页面添加，5.0之后可以共享元素来进行避免。</li>
+</ul>
+<h2 id="应用外全局悬浮"><a href="#应用外全局悬浮" class="headerlink" title="应用外全局悬浮"></a>应用外全局悬浮</h2><h3 id="实现方式-1"><a href="#实现方式-1" class="headerlink" title="实现方式"></a>实现方式</h3><p>动态请求权限，然后通过<code>WindowManager</code>进行悬浮窗的添加</p>
+<ul>
+<li>优点，可以实现应用外悬浮，并且和应用之间独立，可以无缝切换</li>
+<li>缺点，在API &gt;= 23时，需要动态申请<code>android.permission.SYSTEM_ALERT_WINDOW</code>权限；</li>
+</ul>
+<p>悬浮View的配置</p>
+<p>悬浮View的配置交给<code>FloatViewConfig</code>类来实现</p>
+<h2 id="悬浮View的设计"><a href="#悬浮View的设计" class="headerlink" title="悬浮View的设计"></a>悬浮View的设计</h2><h2 id="Android-悬浮窗相关文章"><a href="#Android-悬浮窗相关文章" class="headerlink" title="Android 悬浮窗相关文章"></a>Android 悬浮窗相关文章</h2><ul>
+<li><a href="https://www.jianshu.com/p/c0d4c23089cd" target="_blank" rel="noopener">Android应用内悬浮窗的实现方案</a></li>
+<li><a href="https://www.jianshu.com/p/98eb2f70e3a5" target="_blank" rel="noopener">Android应用内悬浮窗从入门到放弃/妥协</a></li>
+<li><a href="https://www.jianshu.com/p/18cbc862ba7b" target="_blank" rel="noopener">Andorid 应用内悬浮控件实践方案总结</a></li>
+<li><a href="https://www.jianshu.com/p/18cbc862ba7b" target="_blank" rel="noopener">Andorid 应用内悬浮控件实践方案总结</a></li>
+<li><a href="[https://juejin.im/search?query=%E5%BA%94%E7%94%A8%E5%86%85%E6%82%AC%E6%B5%AE%E7%AA%97&amp;type=all](https://juejin.im/search?query=应用内悬浮窗&amp;type=all">应用内悬浮窗（不请求权限）</a>)</li>
+<li><a href="https://www.jianshu.com/p/167fd5f47d5c" target="_blank" rel="noopener">Android无需权限显示悬浮窗, 兼谈逆向分析app</a></li>
+</ul>
+<h2 id="问题记录"><a href="#问题记录" class="headerlink" title="问题记录"></a>问题记录</h2><ol>
+<li><p>调用<code>requestPermission</code>方法获取<code>SYSTEM_ALERT_WINDOW</code>权限一直失败，失败的原因就是这个权限不能通过<code>requestPermission</code>来申请，需要先在<code>AndroidManifest.xml</code>文件中声明，然后通过隐式<code>Intent</code>来请求权限，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Intent intent = <span class="keyword">new</span> Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);</span><br><span class="line">intent.setData(Uri.parse(<span class="string">"package:"</span> + Utils.getApp().getPackageName()));</span><br><span class="line"><span class="keyword">if</span> (!UtilsBridge.isIntentAvailable(intent)) &#123;</span><br><span class="line">  launchAppDetailsSettings();</span><br><span class="line">  <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line">activity.startActivityForResult(intent, requestCode);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>悬浮窗显示出来后，除了悬浮窗显示的View及物理按键，其他区域都无法响应事件，问题原因是因为WindowManager.LayoutParams中的flags参数设置有问题，需要添加如下设置：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">layoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>应用销毁了，但悬浮窗仍然存在</p>
+</li>
+</ol>
 
       
     </div>
@@ -435,7 +472,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Android/" rel="tag"># Android</a>
+            <a href="/tags/悬浮窗/" rel="tag"># 悬浮窗</a>
           
         </div>
       
@@ -448,8 +485,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/J191218.html" rel="next" title="Java基本概念的解释">
-                <i class="fa fa-chevron-left"></i> Java基本概念的解释
+              <a href="/posts/J191218.html" rel="next" title="Java 杂谈——基本概念的解释">
+                <i class="fa fa-chevron-left"></i> Java 杂谈——基本概念的解释
               </a>
             
           </div>
@@ -458,8 +495,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/posts/200424.html" rel="prev" title="Mac 常见问题及解决方案">
-                Mac 常见问题及解决方案 <i class="fa fa-chevron-right"></i>
+              <a href="/posts/A200325.html" rel="prev" title="Andorid 工具命令Repo 命令简介">
+                Andorid 工具命令Repo 命令简介 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -534,7 +571,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">81</span>
+                    <span class="site-state-item-count">125</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -593,7 +630,27 @@
                     
                       
                     
-                    <span class="site-state-item-count">22</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -686,7 +743,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">39</span>
+                      
+                    
+                    <span class="site-state-item-count">41</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -731,7 +790,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#权限请求"><span class="nav-number">2.</span> <span class="nav-text">权限请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用内全局悬浮"><span class="nav-number">3.</span> <span class="nav-text">应用内全局悬浮</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现方式"><span class="nav-number">3.1.</span> <span class="nav-text">实现方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优缺点"><span class="nav-number">3.2.</span> <span class="nav-text">优缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用外全局悬浮"><span class="nav-number">4.</span> <span class="nav-text">应用外全局悬浮</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现方式-1"><span class="nav-number">4.1.</span> <span class="nav-text">实现方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#悬浮View的设计"><span class="nav-number">5.</span> <span class="nav-text">悬浮View的设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-悬浮窗相关文章"><span class="nav-number">6.</span> <span class="nav-text">Android 悬浮窗相关文章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题记录"><span class="nav-number">7.</span> <span class="nav-text">问题记录</span></a></li></ol></div>
             
 
           </div>

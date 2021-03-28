@@ -100,16 +100,15 @@
 
 
   <meta name="description" content="Activity与Fragment的通信方式 Fragment访问Activity的内容 Activity访问Fragment的内容 Fragment与Activity共享事件  Fragment访问Activity的内容​    Fragment通过getActivity()这种方式获取Activity实例后，可以访问Activity中定义的public成员。">
-<meta name="keywords" content="Android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Activity与Fragment的通信方式">
+<meta property="og:title" content="Android 四大组件——Activity与Fragment的通信方式">
 <meta property="og:url" content="http://yoursite.com/posts/A180507.html">
 <meta property="og:site_name" content="荏苒追寻个人博客">
 <meta property="og:description" content="Activity与Fragment的通信方式 Fragment访问Activity的内容 Activity访问Fragment的内容 Fragment与Activity共享事件  Fragment访问Activity的内容​    Fragment通过getActivity()这种方式获取Activity实例后，可以访问Activity中定义的public成员。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-01-21T05:26:58.819Z">
+<meta property="og:updated_time" content="2021-02-19T14:13:45.790Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Activity与Fragment的通信方式">
+<meta name="twitter:title" content="Android 四大组件——Activity与Fragment的通信方式">
 <meta name="twitter:description" content="Activity与Fragment的通信方式 Fragment访问Activity的内容 Activity访问Fragment的内容 Fragment与Activity共享事件  Fragment访问Activity的内容​    Fragment通过getActivity()这种方式获取Activity实例后，可以访问Activity中定义的public成员。">
 
 
@@ -127,7 +126,7 @@
   };
 </script>
 
-  <title>Activity与Fragment的通信方式 | 荏苒追寻个人博客</title>
+  <title>Android 四大组件——Activity与Fragment的通信方式 | 荏苒追寻个人博客</title>
   
 
 
@@ -329,7 +328,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Activity与Fragment的通信方式</h1>
+          <h1 class="post-title" itemprop="name headline">Android 四大组件——Activity与Fragment的通信方式</h1>
         
 
         <div class="post-meta">
@@ -363,6 +362,13 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Android/四大组件/" itemprop="url" rel="index"><span itemprop="name">四大组件</span></a></span>
 
                 
                 
@@ -421,8 +427,6 @@
 <li><p>在TestFragment中接受已经实现OnAnswerSelectedListener接口的Activity，如：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestFragment</span> <span class="keyword">extends</span> <span class="title">Fragment</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> OnAnswerSelectedListener listener;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">OnAnswerSelectedListener</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onAnswerSelected</span><span class="params">()</span></span>;</span><br><span class="line">  &#125;</span><br><span class="line">   	</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onAttach</span><span class="params">(Activity activity)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onAttach(activity);</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="comment">// 强转要防止异常</span></span><br><span class="line">      listener = (OnAnswerSelectedListener)activity;</span><br><span class="line">    &#125; <span class="keyword">catch</span>(ClassCastException e) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> ClassCastException(activity.toString() + </span><br><span class="line">                                   <span class="string">" must implement 	OnAnswerSelectedListener"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-</ol>
-<ol>
 <li><p>接下来TestFragment就可以和TestActivity共享事件了，如：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestFragment</span> <span class="keyword">extends</span> <span class="title">Fragment</span> <span class="keyword">implements</span> </span></span><br><span class="line"><span class="class">  <span class="title">ListView</span>.<span class="title">OnListItemClickListener</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> OnAnswerSelectedListener listener;</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">OnAnswerSelectedListener</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onAnswerSelected</span><span class="params">()</span></span>;</span><br><span class="line">  &#125;</span><br><span class="line">          </span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onAttach</span><span class="params">(Activity activity)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onAttach(activity);</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="comment">// 强转要防止异常</span></span><br><span class="line">      listener = (OnAnswerSelectedListener)activity;</span><br><span class="line">    &#125; <span class="keyword">catch</span>(ClassCastException e) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> ClassCastException(activity.toString() + </span><br><span class="line">                                   <span class="string">" must implement OnAnswerSelectedListener"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onListItemClick</span><span class="params">(ListView l,View v,<span class="keyword">int</span> position,<span class="keyword">long</span> id)</span></span>&#123;  </span><br><span class="line">    <span class="comment">// 生成参数</span></span><br><span class="line">    Uri noteUri =ContentUris.withAppendedId(ArticleColumns</span><br><span class="line">                                            .CONTENT_URI,id);</span><br><span class="line">    <span class="comment">// 将事件和参数传递给所属的Activity </span></span><br><span class="line">    listener.onArticleSelected(noteUri); <span class="comment">// TestActivity 中处理该事件</span></span><br><span class="line">  &#125;</span><br><span class="line">｝</span><br></pre></td></tr></table></figure>
 </li>
@@ -445,12 +449,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Android/" rel="tag"># Android</a>
-          
-        </div>
-      
 
       
       
@@ -470,8 +468,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/posts/A180508.html" rel="prev" title="Android KLog源码分析">
-                Android KLog源码分析 <i class="fa fa-chevron-right"></i>
+              <a href="/posts/A180508.html" rel="prev" title="Android 开源库分析——KLog源码分析">
+                Android 开源库分析——KLog源码分析 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -546,7 +544,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">81</span>
+                    <span class="site-state-item-count">125</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -605,7 +603,27 @@
                     
                       
                     
-                    <span class="site-state-item-count">22</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -698,7 +716,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">39</span>
+                      
+                    
+                    <span class="site-state-item-count">41</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
