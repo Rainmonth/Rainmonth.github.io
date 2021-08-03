@@ -101,15 +101,15 @@
 
   <meta name="description" content="模式定义装饰器模式允许向一个现有对象添加新的功能，同时又不改变其结构。装饰者可以在所委托被装饰者的行为之前或之后加上自己的行为，以达到自己的目的。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java 设计模式——装饰器模式">
+<meta property="og:title" content="Java 设计模式09——装饰器模式">
 <meta property="og:url" content="http://yoursite.com/posts/J180326.html">
 <meta property="og:site_name" content="荏苒追寻个人博客">
 <meta property="og:description" content="模式定义装饰器模式允许向一个现有对象添加新的功能，同时又不改变其结构。装饰者可以在所委托被装饰者的行为之前或之后加上自己的行为，以达到自己的目的。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/J180326/装饰器模式UML.png">
-<meta property="og:updated_time" content="2021-03-28T07:02:01.740Z">
+<meta property="og:updated_time" content="2021-08-02T23:07:56.640Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java 设计模式——装饰器模式">
+<meta name="twitter:title" content="Java 设计模式09——装饰器模式">
 <meta name="twitter:description" content="模式定义装饰器模式允许向一个现有对象添加新的功能，同时又不改变其结构。装饰者可以在所委托被装饰者的行为之前或之后加上自己的行为，以达到自己的目的。">
 <meta name="twitter:image" content="http://yoursite.com/images/J180326/装饰器模式UML.png">
 
@@ -128,7 +128,7 @@
   };
 </script>
 
-  <title>Java 设计模式——装饰器模式 | 荏苒追寻个人博客</title>
+  <title>Java 设计模式09——装饰器模式 | 荏苒追寻个人博客</title>
   
 
 
@@ -330,7 +330,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java 设计模式——装饰器模式</h1>
+          <h1 class="post-title" itemprop="name headline">Java 设计模式09——装饰器模式</h1>
         
 
         <div class="post-meta">
@@ -433,8 +433,8 @@
 <li>记录客人点的是什么；</li>
 <li>计算客人该付多少钱</li>
 </ol>
-<p>抽象去一个接口Burger</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.rainmonth.pattern.structural.decorator;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Burger</span> </span>&#123;</span><br><span class="line">  	<span class="comment">// 获取食物描述</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getDescription</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="comment">// 获取食物话费</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">float</span> <span class="title">cost</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>抽象出一个接口Burger</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.rainmonth.pattern.structural.decorator;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Burger</span> </span>&#123;</span><br><span class="line">  	<span class="comment">// 获取食物描述</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getDescription</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="comment">// 获取食物花费</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">float</span> <span class="title">cost</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="具体构件角色"><a href="#具体构件角色" class="headerlink" title="具体构件角色"></a>具体构件角色</h4><p>大汉堡</p>
 <p><em>WhopperBurger.java</em></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.rainmonth.pattern.structural.decorator;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WhopperBurger</span> <span class="keyword">implements</span> <span class="title">Burger</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getDescription</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"whopper burger"</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">float</span> <span class="title">cost</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1.0f</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -447,7 +447,7 @@
 <h4 id="抽象装饰器角色"><a href="#抽象装饰器角色" class="headerlink" title="抽象装饰器角色"></a>抽象装饰器角色</h4><p>调味品类（装饰器基类）</p>
 <p><em>CondimentDecorator.java</em></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.rainmonth.pattern.structural.decorator;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">CondimentDecorator</span> <span class="keyword">implements</span> <span class="title">Burger</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">protected</span> Burger burger;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">CondimentDecorator</span><span class="params">(Burger burger)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.burger = burger;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="具体装饰器角色"><a href="#具体装饰器角色" class="headerlink" title="具体装饰器角色"></a>具体装饰器角色</h4><p>熏猪肉，<em>Bacon.java</em></p>
+<h4 id="具体装饰器角色"><a href="#具体装饰器角色" class="headerlink" title="具体装饰器角色"></a>具体装饰器角色</h4><p>培根，<em>Bacon.java</em></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.rainmonth.pattern.structural.decorator;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Bacon</span> <span class="keyword">extends</span> <span class="title">CondimentDecorator</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">Bacon</span><span class="params">(Burger burger)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">super</span>(burger);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">getDescription</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> burger.getDescription() + <span class="string">", Bacon"</span>;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">float</span> <span class="title">cost</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> burger.cost() + <span class="number">1.5f</span>;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>牛肉，<em>Beef.java</em></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.rainmonth.pattern.structural.decorator;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Beef</span> <span class="keyword">extends</span> <span class="title">CondimentDecorator</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">Beef</span><span class="params">(Burger burger)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">super</span>(burger);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">getDescription</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> burger.getDescription() + <span class="string">", Beef"</span>;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">float</span> <span class="title">cost</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> burger.cost() + <span class="number">1.6f</span>;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -463,7 +463,8 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">submarine sandwich, Beef</span><br><span class="line">2.7</span><br><span class="line"></span><br><span class="line">sandwich, Cheese</span><br><span class="line">1.8</span><br><span class="line"></span><br><span class="line">whopper, Chicken, Lettuce</span><br><span class="line">3.6000001</span><br><span class="line"></span><br><span class="line">whopper, Cheese, Bacon</span><br><span class="line">3.4</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Process finished with exit code 0</span><br></pre></td></tr></table></figure>
 <h2 id="UML图"><a href="#UML图" class="headerlink" title="UML图"></a>UML图</h2><p>上面例子的UML图如下：</p>
 <p><img src="../images/J180326/装饰器模式UML.png" alt="装饰器模式UML"></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>从上面的例子及UML图，可以看出装饰器模式有如下优缺点：</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>上面的例子中，Burger是抽象构件，WhopperBurger、SubmarineSandwich、Sandwich是具体构件（可以被装饰角色装饰的），CondimentDecorator是抽象的装饰器，所有具体的装饰器都要继承或实现CondimentDecorator，具体的构建以及抽象的装饰器都要实现Burger接口。这样就可以在不改变代码的情况下用具体的装饰角色任意装饰具体构建。</p>
+<p>从上面的例子及UML图，可以看出装饰器模式有如下优缺点：</p>
 <h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ol>
 <li>可以很好的扩展功能，具体表现就是可以随意的为一款主食（大汉堡、潜艇三明治、三明治）添加调味品（Bacon、Beef等）</li>
 <li>ConfidentDecorator和具体的Bacon、Beef等没有发生耦合</li>
@@ -472,7 +473,7 @@
 <li>很明显，我要加多个调味品的话，就要新建多个对象（多个new），在一定程度上增加了对象使用的复杂性</li>
 </ol>
 <h2 id="典型应用"><a href="#典型应用" class="headerlink" title="典型应用"></a>典型应用</h2><ul>
-<li>Android的ContextWrapper</li>
+<li>Java IO 中的InputStream和OutputStream</li>
 </ul>
 
       
@@ -587,7 +588,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">125</span>
+                    <span class="site-state-item-count">145</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -761,7 +762,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">41</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">43</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

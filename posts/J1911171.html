@@ -99,18 +99,18 @@
 
 
 
-  <meta name="description" content="Java死锁 死锁发生的条件 手写一个死锁揭开死锁死锁发生条件">
+  <meta name="description" content="Java死锁 多个线程同时被阻塞，它们中的一个或者全部都在等待某个资源被释放。由于线程被无限期地阻塞，因此程序不可能正常终止。 死锁发生的条件 手写一个死锁 线程池死锁 揭开死锁 死锁发生条件 参考原因：  Java 死锁产生的原因及如何避免 Java面试必问-死锁终极篇">
 <meta name="keywords" content="死锁">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java 并发——死锁">
 <meta property="og:url" content="http://yoursite.com/posts/J1911171.html">
 <meta property="og:site_name" content="荏苒追寻个人博客">
-<meta property="og:description" content="Java死锁 死锁发生的条件 手写一个死锁揭开死锁死锁发生条件">
+<meta property="og:description" content="Java死锁 多个线程同时被阻塞，它们中的一个或者全部都在等待某个资源被释放。由于线程被无限期地阻塞，因此程序不可能正常终止。 死锁发生的条件 手写一个死锁 线程池死锁 揭开死锁 死锁发生条件 参考原因：  Java 死锁产生的原因及如何避免 Java面试必问-死锁终极篇">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-02-19T14:13:45.814Z">
+<meta property="og:updated_time" content="2021-08-02T23:07:56.637Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 并发——死锁">
-<meta name="twitter:description" content="Java死锁 死锁发生的条件 手写一个死锁揭开死锁死锁发生条件">
+<meta name="twitter:description" content="Java死锁 多个线程同时被阻塞，它们中的一个或者全部都在等待某个资源被释放。由于线程被无限期地阻塞，因此程序不可能正常终止。 死锁发生的条件 手写一个死锁 线程池死锁 揭开死锁 死锁发生条件 参考原因：  Java 死锁产生的原因及如何避免 Java面试必问-死锁终极篇">
 
 
 
@@ -404,8 +404,18 @@
 
       
         <p>Java死锁</p>
+<p>多个线程同时被阻塞，它们中的一个或者全部都在等待某个资源被释放。由于线程被无限期地阻塞，因此程序不可能正常终止。</p>
 <p>死锁发生的条件</p>
-<h2 id="手写一个死锁"><a href="#手写一个死锁" class="headerlink" title="手写一个死锁"></a>手写一个死锁</h2><h2 id="揭开死锁"><a href="#揭开死锁" class="headerlink" title="揭开死锁"></a>揭开死锁</h2><h2 id="死锁发生条件"><a href="#死锁发生条件" class="headerlink" title="死锁发生条件"></a>死锁发生条件</h2>
+<p>手写一个死锁</p>
+<p>线程池死锁</p>
+<p>揭开死锁</p>
+<p>死锁发生条件</p>
+<p>参考原因：</p>
+<ul>
+<li><a href="https://blog.csdn.net/m0_38126177/article/details/78587845" target="_blank" rel="noopener">Java 死锁产生的原因及如何避免</a></li>
+<li><a href="https://blog.csdn.net/weixin_34277853/article/details/88126236?utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-4.baidujs&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-4.baidujs" target="_blank" rel="noopener">Java面试必问-死锁终极篇</a></li>
+</ul>
+
       
     </div>
 
@@ -499,17 +509,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -524,7 +525,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">125</span>
+                    <span class="site-state-item-count">145</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -698,7 +699,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">41</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">43</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -733,22 +738,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#手写一个死锁"><span class="nav-number">1.</span> <span class="nav-text">手写一个死锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#揭开死锁"><span class="nav-number">2.</span> <span class="nav-text">揭开死锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#死锁发生条件"><span class="nav-number">3.</span> <span class="nav-text">死锁发生条件</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       

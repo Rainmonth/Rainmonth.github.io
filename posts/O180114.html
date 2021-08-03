@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="荏苒追寻个人博客">
 <meta property="og:description" content="官方文档参考点击Hexo官方文档  制作主题介绍文章参考2017年最新基于hexo搭建个人免费博客——自定义页面样式一 Hexo主题制作指南 hexo个性化配置(修改的时next主题)   Hexo 文章分类在文章开头的yaml属性配置中添加如下内容： 123categories: - 一级分类- 二级分类 yaml支持以下属性：  layout，采用的布局可以是post，page，draft；">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-20T16:00:00.000Z">
+<meta property="og:updated_time" content="2021-07-22T02:51:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="通用功能——Hexo搭建个人博客">
 <meta name="twitter:description" content="官方文档参考点击Hexo官方文档  制作主题介绍文章参考2017年最新基于hexo搭建个人免费博客——自定义页面样式一 Hexo主题制作指南 hexo个性化配置(修改的时next主题)   Hexo 文章分类在文章开头的yaml属性配置中添加如下内容： 123categories: - 一级分类- 二级分类 yaml支持以下属性：  layout，采用的布局可以是post，page，draft；">
@@ -452,6 +452,24 @@
 </blockquote>
 <h2 id="草稿文章处理"><a href="#草稿文章处理" class="headerlink" title="草稿文章处理"></a>草稿文章处理</h2><h3 id="预览草稿"><a href="#预览草稿" class="headerlink" title="预览草稿"></a>预览草稿</h3><p>只想下面的命令，可以本机预览草稿：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s --draft</span><br></pre></td></tr></table></figure></p>
 <h3 id="发布草稿"><a href="#发布草稿" class="headerlink" title="发布草稿"></a>发布草稿</h3><p>执行下面代码，可以发布本机草稿：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo p &lt;filename&gt; #filename为不带.md后缀的草稿文件名称</span><br></pre></td></tr></table></figure></p>
+<h2 id="Hexo文章置顶"><a href="#Hexo文章置顶" class="headerlink" title="Hexo文章置顶"></a>Hexo文章置顶</h2><p>文章多了，发现置顶就成了一个很必要的功能了，这里在晚上搜索了下相关的方法。</p>
+<ul>
+<li><p>修改hexo源码，具体参考<a href="https://www.jianshu.com/p/42a4efcdf8d7" target="_blank" rel="noopener">解决Hexo文章置顶问题</a>；</p>
+</li>
+<li><p>安装相应的指定插件</p>
+<ol>
+<li><p>删除原来的文章生成插件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall hexo-generator-index --save</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装支持指定的文章生成插件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-index-pin-top --save</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在需要置顶的文章的<code>Front-matter</code>中加上<code>top: true</code>即可，比如如果想置顶这篇文章，就可以修改器<code>Front-matter</code>为一下格式：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">title:</span> <span class="string">通用功能——Hexo搭建个人博客</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">通用</span></span><br><span class="line"><span class="attr">tags:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">环境配置</span></span><br><span class="line"><span class="attr">abbrlink:</span> <span class="string">'O180114'</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2018</span><span class="bullet">-01</span><span class="bullet">-14</span> <span class="number">10</span><span class="string">:30:22</span></span><br><span class="line"><span class="attr">updated:</span> <span class="number">2019</span><span class="bullet">-10</span><span class="bullet">-21</span> <span class="number">00</span><span class="string">:00:00</span></span><br><span class="line"><span class="attr">top:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ul>
 <h2 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h2><ol>
 <li>hexo里面表格失效？<br>解决：表格开头加两个空行。</li>
 </ol>
@@ -574,7 +592,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">125</span>
+                    <span class="site-state-item-count">145</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -748,7 +766,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">41</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">43</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -793,7 +815,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-文章分类"><span class="nav-number">1.</span> <span class="nav-text">Hexo 文章分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-更换主题"><span class="nav-number">2.</span> <span class="nav-text">Hexo 更换主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo博文配图方法"><span class="nav-number">3.</span> <span class="nav-text">Hexo博文配图方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-draft的使用"><span class="nav-number">4.</span> <span class="nav-text">Hexo draft的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改永久链接的默认格式"><span class="nav-number">5.</span> <span class="nav-text">修改永久链接的默认格式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装插件"><span class="nav-number">5.1.</span> <span class="nav-text">安装插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改站点配置文件"><span class="nav-number">5.2.</span> <span class="nav-text">修改站点配置文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#草稿文章处理"><span class="nav-number">6.</span> <span class="nav-text">草稿文章处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#预览草稿"><span class="nav-number">6.1.</span> <span class="nav-text">预览草稿</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发布草稿"><span class="nav-number">6.2.</span> <span class="nav-text">发布草稿</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题解决"><span class="nav-number">7.</span> <span class="nav-text">问题解决</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-文章分类"><span class="nav-number">1.</span> <span class="nav-text">Hexo 文章分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-更换主题"><span class="nav-number">2.</span> <span class="nav-text">Hexo 更换主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo博文配图方法"><span class="nav-number">3.</span> <span class="nav-text">Hexo博文配图方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-draft的使用"><span class="nav-number">4.</span> <span class="nav-text">Hexo draft的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改永久链接的默认格式"><span class="nav-number">5.</span> <span class="nav-text">修改永久链接的默认格式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装插件"><span class="nav-number">5.1.</span> <span class="nav-text">安装插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改站点配置文件"><span class="nav-number">5.2.</span> <span class="nav-text">修改站点配置文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#草稿文章处理"><span class="nav-number">6.</span> <span class="nav-text">草稿文章处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#预览草稿"><span class="nav-number">6.1.</span> <span class="nav-text">预览草稿</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发布草稿"><span class="nav-number">6.2.</span> <span class="nav-text">发布草稿</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo文章置顶"><span class="nav-number">7.</span> <span class="nav-text">Hexo文章置顶</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题解决"><span class="nav-number">8.</span> <span class="nav-text">问题解决</span></a></li></ol></div>
             
 
           </div>

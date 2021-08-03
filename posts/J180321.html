@@ -101,14 +101,14 @@
 
   <meta name="description" content="模式定义策略模式，行为模式的一种，针对一组算法，将每一个算法封装到具有共同接口（也可能是共同的抽象类）的独立类，从而使它们可以相互替换。 关键词 一组算法，对象的某个属性针对不同操作可能有不同的赋值方式（如下例中图书价格的计算方式因会员等级而异） 共同接口（共同抽象类），不同算法能够相互替换的保障">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java 设计模式——策略模式">
+<meta property="og:title" content="Java 设计模式16——策略模式">
 <meta property="og:url" content="http://yoursite.com/posts/J180321.html">
 <meta property="og:site_name" content="荏苒追寻个人博客">
 <meta property="og:description" content="模式定义策略模式，行为模式的一种，针对一组算法，将每一个算法封装到具有共同接口（也可能是共同的抽象类）的独立类，从而使它们可以相互替换。 关键词 一组算法，对象的某个属性针对不同操作可能有不同的赋值方式（如下例中图书价格的计算方式因会员等级而异） 共同接口（共同抽象类），不同算法能够相互替换的保障">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-02-19T14:13:45.817Z">
+<meta property="og:updated_time" content="2021-06-08T14:26:52.544Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java 设计模式——策略模式">
+<meta name="twitter:title" content="Java 设计模式16——策略模式">
 <meta name="twitter:description" content="模式定义策略模式，行为模式的一种，针对一组算法，将每一个算法封装到具有共同接口（也可能是共同的抽象类）的独立类，从而使它们可以相互替换。 关键词 一组算法，对象的某个属性针对不同操作可能有不同的赋值方式（如下例中图书价格的计算方式因会员等级而异） 共同接口（共同抽象类），不同算法能够相互替换的保障">
 
 
@@ -126,7 +126,7 @@
   };
 </script>
 
-  <title>Java 设计模式——策略模式 | 荏苒追寻个人博客</title>
+  <title>Java 设计模式16——策略模式 | 荏苒追寻个人博客</title>
   
 
 
@@ -328,7 +328,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java 设计模式——策略模式</h1>
+          <h1 class="post-title" itemprop="name headline">Java 设计模式16——策略模式</h1>
         
 
         <div class="post-meta">
@@ -420,12 +420,12 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.rainmonth.pattern.behavioral.strategy.book;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 会员计价策略接口</span></span><br><span class="line"><span class="comment"> * Created by RandyZhang on 2017/10/19.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MemberStrategy</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 计算书籍实际销售价格</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> bookSalePrice 书籍销售价格</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 实际售价</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">calculateActualSalePrice</span><span class="params">(<span class="keyword">double</span> bookSalePrice)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>初级会员计价策略</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.rainmonth.pattern.behavioral.strategy.book;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 初级会员销售策略</span></span><br><span class="line"><span class="comment"> * Created by RandyZhang on 2017/10/19.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PrimaryMemberStrategy</span> <span class="keyword">implements</span> <span class="title">MemberStrategy</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">calculateActualSalePrice</span><span class="params">(<span class="keyword">double</span> bookSalePrice)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"初级会员没有折扣"</span>);</span><br><span class="line">        <span class="keyword">return</span> bookSalePrice;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>中级会员计价策略<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.rainmonth.pattern.behavioral.strategy.book;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 中级会员销售策略</span></span><br><span class="line"><span class="comment"> * Created by RandyZhang on 2017/10/19.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IntermediateMemberStrategy</span> <span class="keyword">implements</span> <span class="title">MemberStrategy</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">calculateActualSalePrice</span><span class="params">(<span class="keyword">double</span> bookSalePrice)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"中级会员打九折"</span>);</span><br><span class="line">        <span class="keyword">return</span> bookSalePrice * <span class="number">0.9</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>中级会员计价策略<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.rainmonth.pattern.behavioral.strategy.book;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 中级会员销售策略</span></span><br><span class="line"><span class="comment"> * Created by RandyZhang on 2017/10/19.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IntermediateMemberStrategy</span> <span class="keyword">implements</span> <span class="title">MemberStrategy</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">calculateActualSalePrice</span><span class="params">(<span class="keyword">double</span> bookSalePrice)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"中级会员打九折"</span>);</span><br><span class="line">        <span class="keyword">return</span> bookSalePrice * <span class="number">0.8</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>高级会员计价策略<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.rainmonth.pattern.behavioral.strategy.book;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 高级会员销售策略</span></span><br><span class="line"><span class="comment"> * Created by RandyZhang on 2017/10/19.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AdvanceMemberStrategy</span> <span class="keyword">implements</span> <span class="title">MemberStrategy</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">calculateActualSalePrice</span><span class="params">(<span class="keyword">double</span> bookSalePrice)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"高级会员打八折"</span>);</span><br><span class="line">        <span class="keyword">return</span> bookSalePrice * <span class="number">0.9</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>销售终端（实际调用）</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.rainmonth.pattern.behavioral.strategy.book;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 销售终端</span></span><br><span class="line"><span class="comment"> * Created by RandyZhang on 2017/10/19.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SaleClient</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 知道当前顾客是高级会员</span></span><br><span class="line">        MemberStrategy advanceStrategy = <span class="keyword">new</span> AdvanceMemberStrategy();</span><br><span class="line">        <span class="comment">// 获取他要购买的书</span></span><br><span class="line">        BookEntity bookEntity = <span class="keyword">new</span> BookEntity(advanceStrategy);</span><br><span class="line">        <span class="comment">// 获取卖给该会员的实际价格</span></span><br><span class="line">        <span class="keyword">double</span> actualSalePrice = bookEntity.getBookActualSalePrice(<span class="number">50</span>);</span><br><span class="line">        System.out.println(<span class="string">"actualSalePrice="</span> + actualSalePrice);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>最终输出</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">高级会员打八折</span><br><span class="line">actualSalePrice=45.0</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">高级会员打八折</span><br><span class="line">actualSalePrice=40.0</span><br></pre></td></tr></table></figure>
 <h2 id="模式深入"><a href="#模式深入" class="headerlink" title="模式深入"></a>模式深入</h2><h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><p>根据上面的例子，可以总结出策略模式的优缺点。</p>
 <h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ul>
 <li>不同等级的计算策略容易管理。（我们可以很容易的新增或改变计算策略）</li>
@@ -468,8 +468,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/J180320.html" rel="next" title="Java集合Ha——shMap">
-                <i class="fa fa-chevron-left"></i> Java集合Ha——shMap
+              <a href="/posts/J210320.html" rel="next" title="Java 设计模式——开篇">
+                <i class="fa fa-chevron-left"></i> Java 设计模式——开篇
               </a>
             
           </div>
@@ -478,8 +478,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/posts/J180322.html" rel="prev" title="Java 设计模式——单例模式">
-                Java 设计模式——单例模式 <i class="fa fa-chevron-right"></i>
+              <a href="/posts/J180322.html" rel="prev" title="Java 设计模式01——单例模式">
+                Java 设计模式01——单例模式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -554,7 +554,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">125</span>
+                    <span class="site-state-item-count">145</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -728,7 +728,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">41</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">43</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

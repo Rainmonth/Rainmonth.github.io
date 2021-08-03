@@ -99,17 +99,17 @@
 
 
 
-  <meta name="description" content="Android 系统启动之init进程篇摘要init进程是Linux系统中用户空间的第一个进程，进程号(pid)固定为1。在Linux内核启动后，会在用户控件启动init进程，并调用init中的main方法。init进程主要做了以下工作：  解析并运行相关的.rc文件(包括init.rc以及init.rc中导入的.rc文件)；">
+  <meta name="description" content="Android 系统启动之init进程篇摘要init进程是Linux系统中用户空间的第一个进程，进程号(pid)固定为1。在Linux内核启动后，会在用户控件启动init进程，并调用init中的main方法。init进程主要做了以下工作：  负责创建系统中的几个关键进程，如Android世界的zygote进程； 属性服务的创建初始化和启动；  Android 关心的比较核心的问题：  zygote">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 系统启动之init进程篇">
 <meta property="og:url" content="http://yoursite.com/posts/42f2ba4c.html">
 <meta property="og:site_name" content="荏苒追寻个人博客">
-<meta property="og:description" content="Android 系统启动之init进程篇摘要init进程是Linux系统中用户空间的第一个进程，进程号(pid)固定为1。在Linux内核启动后，会在用户控件启动init进程，并调用init中的main方法。init进程主要做了以下工作：  解析并运行相关的.rc文件(包括init.rc以及init.rc中导入的.rc文件)；">
+<meta property="og:description" content="Android 系统启动之init进程篇摘要init进程是Linux系统中用户空间的第一个进程，进程号(pid)固定为1。在Linux内核启动后，会在用户控件启动init进程，并调用init中的main方法。init进程主要做了以下工作：  负责创建系统中的几个关键进程，如Android世界的zygote进程； 属性服务的创建初始化和启动；  Android 关心的比较核心的问题：  zygote">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-02-19T14:13:45.808Z">
+<meta property="og:updated_time" content="2021-06-08T14:26:52.539Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 系统启动之init进程篇">
-<meta name="twitter:description" content="Android 系统启动之init进程篇摘要init进程是Linux系统中用户空间的第一个进程，进程号(pid)固定为1。在Linux内核启动后，会在用户控件启动init进程，并调用init中的main方法。init进程主要做了以下工作：  解析并运行相关的.rc文件(包括init.rc以及init.rc中导入的.rc文件)；">
+<meta name="twitter:description" content="Android 系统启动之init进程篇摘要init进程是Linux系统中用户空间的第一个进程，进程号(pid)固定为1。在Linux内核启动后，会在用户控件启动init进程，并调用init中的main方法。init进程主要做了以下工作：  负责创建系统中的几个关键进程，如Android世界的zygote进程； 属性服务的创建初始化和启动；  Android 关心的比较核心的问题：  zygote">
 
 
 
@@ -397,10 +397,28 @@
       
         <h1 id="Android-系统启动之init进程篇"><a href="#Android-系统启动之init进程篇" class="headerlink" title="Android 系统启动之init进程篇"></a>Android 系统启动之init进程篇</h1><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>init进程是Linux系统中用户空间的第一个进程，进程号(pid)固定为1。在Linux内核启动后，会在用户控件启动init进程，并调用init中的main方法。init进程主要做了以下工作：</p>
 <ul>
-<li>解析并运行相关的.rc文件(包括init.rc以及init.rc中导入的.rc文件)；</li>
+<li>负责创建系统中的几个关键进程，如Android世界的zygote进程；</li>
+<li>属性服务的创建初始化和启动；</li>
+</ul>
+<p>Android 关心的比较核心的问题：</p>
+<ul>
+<li>zygote进程如何被创建的；</li>
+<li>init 进程的属性服务这块具体是如何工作的；</li>
 </ul>
 <a id="more"></a>
-
+<h2 id="init-分析"><a href="#init-分析" class="headerlink" title="init 分析"></a>init 分析</h2><h3 id="解析配置文件"><a href="#解析配置文件" class="headerlink" title="解析配置文件"></a>解析配置文件</h3><h4 id="什么配置文件"><a href="#什么配置文件" class="headerlink" title="什么配置文件"></a>什么配置文件</h4><p>init进程要解析的配置文件有两个：</p>
+<ul>
+<li>init.rc</li>
+<li>init.%s.rc，%s表示的是机器的hardware名</li>
+</ul>
+<h4 id="为什么要解析配置文件"><a href="#为什么要解析配置文件" class="headerlink" title="为什么要解析配置文件"></a>为什么要解析配置文件</h4><p>init的工作是大体上市按配置文件定义的流程步骤来完成的，解析完配置文件会得到一些列的Action，这些Action最终会交给<code>action_for_each_trigger</code>函数处理。Action的执行时间大致分为以下几个阶段：</p>
+<ul>
+<li>early-init</li>
+<li>init</li>
+<li>early-boot</li>
+<li>boot</li>
+</ul>
+<h4 id="如何解析配置文件"><a href="#如何解析配置文件" class="headerlink" title="如何解析配置文件"></a>如何解析配置文件</h4><h3 id="解析service"><a href="#解析service" class="headerlink" title="解析service"></a>解析service</h3><h3 id="init控制service"><a href="#init控制service" class="headerlink" title="init控制service"></a>init控制service</h3><h3 id="属性服务"><a href="#属性服务" class="headerlink" title="属性服务"></a>属性服务</h3><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2>
       
     </div>
 
@@ -513,7 +531,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">125</span>
+                    <span class="site-state-item-count">145</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -687,7 +705,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">41</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">43</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -732,7 +754,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Android-系统启动之init进程篇"><span class="nav-number">1.</span> <span class="nav-text">Android 系统启动之init进程篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要"><span class="nav-number">1.1.</span> <span class="nav-text">摘要</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Android-系统启动之init进程篇"><span class="nav-number">1.</span> <span class="nav-text">Android 系统启动之init进程篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要"><span class="nav-number">1.1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#init-分析"><span class="nav-number">1.2.</span> <span class="nav-text">init 分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解析配置文件"><span class="nav-number">1.2.1.</span> <span class="nav-text">解析配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么配置文件"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">什么配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么要解析配置文件"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">为什么要解析配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何解析配置文件"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">如何解析配置文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解析service"><span class="nav-number">1.2.2.</span> <span class="nav-text">解析service</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#init控制service"><span class="nav-number">1.2.3.</span> <span class="nav-text">init控制service</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性服务"><span class="nav-number">1.2.4.</span> <span class="nav-text">属性服务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">1.3.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></div>
             
 
           </div>

@@ -99,18 +99,18 @@
 
 
 
-  <meta name="description" content="Service的销毁 调用startService() 和 bindService()后，要销毁service必须同时调用stopService()和unbindService()方法才可以，因为：  点击Stop Service按钮只会让Service停止； 点击Unbind Service按钮只会让Service和Activity解除关联；   一个Service必须要在既没有和任何Activ">
+  <meta name="description" content="Service基本概念Android 四大组件之一，运行于主线程之中。 Service启动分析startService与bindService分析Service的销毁 调用startService() 和 bindService()后，要销毁service必须同时调用stopService()和unbindService()方法才可以，因为：  点击Stop Service按钮只会让Service">
 <meta name="keywords" content="Service">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 四大组件——Service详解">
 <meta property="og:url" content="http://yoursite.com/posts/A191025.html">
 <meta property="og:site_name" content="荏苒追寻个人博客">
-<meta property="og:description" content="Service的销毁 调用startService() 和 bindService()后，要销毁service必须同时调用stopService()和unbindService()方法才可以，因为：  点击Stop Service按钮只会让Service停止； 点击Unbind Service按钮只会让Service和Activity解除关联；   一个Service必须要在既没有和任何Activ">
+<meta property="og:description" content="Service基本概念Android 四大组件之一，运行于主线程之中。 Service启动分析startService与bindService分析Service的销毁 调用startService() 和 bindService()后，要销毁service必须同时调用stopService()和unbindService()方法才可以，因为：  点击Stop Service按钮只会让Service">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-02-19T14:13:45.791Z">
+<meta property="og:updated_time" content="2021-06-08T14:26:52.536Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 四大组件——Service详解">
-<meta name="twitter:description" content="Service的销毁 调用startService() 和 bindService()后，要销毁service必须同时调用stopService()和unbindService()方法才可以，因为：  点击Stop Service按钮只会让Service停止； 点击Unbind Service按钮只会让Service和Activity解除关联；   一个Service必须要在既没有和任何Activ">
+<meta name="twitter:description" content="Service基本概念Android 四大组件之一，运行于主线程之中。 Service启动分析startService与bindService分析Service的销毁 调用startService() 和 bindService()后，要销毁service必须同时调用stopService()和unbindService()方法才可以，因为：  点击Stop Service按钮只会让Service">
 
 
 
@@ -403,7 +403,8 @@
       
 
       
-        <h2 id="Service的销毁"><a href="#Service的销毁" class="headerlink" title="Service的销毁"></a>Service的销毁</h2><blockquote>
+        <h2 id="Service基本概念"><a href="#Service基本概念" class="headerlink" title="Service基本概念"></a>Service基本概念</h2><p>Android 四大组件之一，运行于主线程之中。</p>
+<h2 id="Service启动分析"><a href="#Service启动分析" class="headerlink" title="Service启动分析"></a>Service启动分析</h2><h3 id="startService与bindService分析"><a href="#startService与bindService分析" class="headerlink" title="startService与bindService分析"></a>startService与bindService分析</h3><h2 id="Service的销毁"><a href="#Service的销毁" class="headerlink" title="Service的销毁"></a>Service的销毁</h2><blockquote>
 <p>调用startService() 和 bindService()后，要销毁service必须<strong><em>同时调用</em></strong>stopService()和unbindService()方法才可以，因为：</p>
 <ul>
 <li>点击Stop Service按钮只会让Service停止；</li>
@@ -423,36 +424,34 @@
 <p>###为什么不在Activity中直接使用线程而采用Service？</p>
 <p><strong><em>关键在可控制性</em></strong>        </p>
 <ul>
-<li>Activity可以对Service进行很好的控制，所有的Activity都可以于Service进行关联，并且可以很好的操作Service中的方法，即使Activity被销毁了，只要重新创建就可以重新建立于Service的连接；</li>
+<li>Activity可以对Service进行很好的控制，所有的Activity都可以与Service进行关联，并且可以很好的操作Service中的方法，即使Activity被销毁了，只要重新创建就可以重新建立于Service的连接；</li>
 <li>Activity对线程则是十分无奈的，当Activity被销毁之后，就没有其它方法再去获得之前创建的子线程的示例，而且一个Activity创建的子线程，另一个Activity是无法对其进行操作的。</li>
 </ul>
-<p>###RemoteService</p>
-<p>虽然是单独开了一个进程（即和当前应用程序不再同一个进程中）且进行耗时操作也不会出现ANR（但只是不在界面上进行展示，即不会出现ANR弹出框）程序似乎不会继续向下运行。还有RemoteService是有弊端的，由于他和开启它的Activity不再同一个进程当中，就不能采用之前NormalService那样的方式进行bind操作了，这样会导致程序崩溃。</p>
-<p>###RemoteService供外部调用注意事项<br>在供给其它应用程序调用的时候，其在AndroidManifest.xml文件中定义时应设置属性：</p>
+<h3 id="RemoteService"><a href="#RemoteService" class="headerlink" title="RemoteService"></a>RemoteService</h3><p>虽然是单独开了一个进程（即和当前应用程序不再同一个进程中）且进行耗时操作也不会出现ANR（但只是不在界面上进行展示，即不会出现ANR弹出框）程序似乎不会继续向下运行。还有RemoteService是有弊端的，由于他和开启它的Activity不再同一个进程当中，就不能采用之前NormalService那样的方式进行bind操作了，这样会导致程序崩溃。</p>
+<h3 id="RemoteService供外部调用注意事项"><a href="#RemoteService供外部调用注意事项" class="headerlink" title="RemoteService供外部调用注意事项"></a>RemoteService供外部调用注意事项</h3><p>在供给其它应用程序调用的时候，其在AndroidManifest.xml文件中定义时应设置属性：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android:exported=true</span><br></pre></td></tr></table></figure>
 <p>表示可以供外部访问；如果该RemoteService在声明的时候进行了权限保护，即使用了以下属性：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">permission</span></span></span><br><span class="line"><span class="tag">	    <span class="attr">android:name</span>=<span class="string">"com.rainmonth.permission.AIDL_SERVICE"</span></span></span><br><span class="line"><span class="tag">	    <span class="attr">android:protectionLevel</span>=<span class="string">"normal"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 <p>那么调用该Service的外部应用使用该Service的时候必须先声明使用该Service自定义的权限，即：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> 	     	   </span></span><br><span class="line"><span class="tag">	<span class="attr">android:name</span>=<span class="string">"com.rainmonth.permission.AIDL_SERVICE"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 <p>否则提示<code>not allowed to bind to service intent</code>。<strong>注意，在其他应用调用该AIDL中定义的方法时，要保持包名及类名的一致；</strong></p>
-<p>###Android 5.0以后的Service使用<br>Android 5.0以后要求声明使用Service的Intent必须是显式调用，如：</p>
+<h3 id="Android-5-0以后的Service使用"><a href="#Android-5-0以后的Service使用" class="headerlink" title="Android 5.0以后的Service使用"></a>Android 5.0以后的Service使用</h3><p>Android 5.0以后要求声明使用Service的Intent必须是显式调用，如：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Intent intent = <span class="keyword">new</span> Intent(context, XxxService.class);</span><br></pre></td></tr></table></figure>
 <p>而不能采用隐式调用，如：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Intent intent = <span class="keyword">new</span> Intent(<span class="string">"ActionString);</span></span><br></pre></td></tr></table></figure>
-<p>###Android Studio中编写AIDL文件注意问题</p>
-<p>编写完成后记得要先将项目<strong><em>build</em></strong>一下，否则在使用时会找不到AIDL中定义的方法；</p>
-<p>###IntentService的使用</p>
-<p>具体的逻辑处理主要发生在IntentService的回调方法onHandleIntent中，其实用可参见文章末尾的Demo，根据提供的示例可以发现IntentService应该是批量下载的绝佳实现方式了；</p>
-<p>###Service的开机启动</p>
-<ol>
+<h3 id="Android-Studio中编写AIDL文件注意问题"><a href="#Android-Studio中编写AIDL文件注意问题" class="headerlink" title="Android Studio中编写AIDL文件注意问题"></a>Android Studio中编写AIDL文件注意问题</h3><p>编写完成后记得要先将项目<strong><em>build</em></strong>一下，否则在使用时会找不到AIDL中定义的方法；</p>
+<h3 id="IntentService的使用"><a href="#IntentService的使用" class="headerlink" title="IntentService的使用"></a>IntentService的使用</h3><p>具体的逻辑处理主要发生在IntentService的回调方法onHandleIntent中，其实用可参见文章末尾的Demo，根据提供的示例可以发现IntentService应该是批量下载的绝佳实现方式了；</p>
+<h3 id="Service的开机启动"><a href="#Service的开机启动" class="headerlink" title="Service的开机启动"></a>Service的开机启动</h3><ol>
 <li><p>AndroidManifest.xml文件中获取开机启动的权限；</p>
 </li>
 <li><p>定义一个BroadcastReceiver来监听boot_completed这个Action，如：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.BOOT_COMPLETED"</span>/&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>这样当手机启动后，就会出发该广播了；</p>
 </li>
-<li><p>在定义的BroadcastReceiver的onReceiver()方法中调用startService()方法即可；<br>###Service在被杀死后重新启动</p>
+<li><p>在定义的BroadcastReceiver的onReceiver()方法中调用startService()方法即可；</p>
 </li>
+</ol>
+<h3 id="Service在被杀死后重新启动"><a href="#Service在被杀死后重新启动" class="headerlink" title="Service在被杀死后重新启动"></a>Service在被杀死后重新启动</h3><ol>
 <li>在Service的onDestroy()方法中进行重新启动该Service（简单的调用startService()方法）即可（前提是Service被杀死后会走onDestroy())这个生命周期函数；</li>
 <li>在Service的onDestroy()方法中发送广播重新开启自己，然后自己接受这个广播；</li>
 <li>开启两个服务A和B，A监听B的广播来启动B，B监听A的广播来启动A；</li>
@@ -462,12 +461,11 @@
 </ul>
 </li>
 </ol>
-<p>###降低服务因系统资源紧张而被杀死的方法：</p>
-<ul>
+<h3 id="降低服务因系统资源紧张而被杀死的方法："><a href="#降低服务因系统资源紧张而被杀死的方法：" class="headerlink" title="降低服务因系统资源紧张而被杀死的方法："></a>降低服务因系统资源紧张而被杀死的方法：</h3><ul>
 <li>提高优先级（修改onStartCommand()方法的返回值）；</li>
 <li>设置为前台Service（本质还是提高优先级）；</li>
 </ul>
-<p><strong><em><a href="https://github.com/Rainmonth/Service" target="_blank" rel="noopener">Service Demo</a></em></strong></p>
+<h2 id="IntentService"><a href="#IntentService" class="headerlink" title="IntentService"></a>IntentService</h2><h2 id="Service-ANR相关"><a href="#Service-ANR相关" class="headerlink" title="Service ANR相关"></a>Service ANR相关</h2><h2 id="Service和AIDL"><a href="#Service和AIDL" class="headerlink" title="Service和AIDL"></a>Service和AIDL</h2><p><strong><em><a href="https://github.com/Rainmonth/Service" target="_blank" rel="noopener">Service Demo</a></em></strong></p>
 
       
     </div>
@@ -587,7 +585,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">125</span>
+                    <span class="site-state-item-count">145</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -761,7 +759,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">41</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">43</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -806,7 +808,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Service的销毁"><span class="nav-number">1.</span> <span class="nav-text">Service的销毁</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Service基本概念"><span class="nav-number">1.</span> <span class="nav-text">Service基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Service启动分析"><span class="nav-number">2.</span> <span class="nav-text">Service启动分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#startService与bindService分析"><span class="nav-number">2.1.</span> <span class="nav-text">startService与bindService分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Service的销毁"><span class="nav-number">3.</span> <span class="nav-text">Service的销毁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RemoteService"><span class="nav-number">3.1.</span> <span class="nav-text">RemoteService</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RemoteService供外部调用注意事项"><span class="nav-number">3.2.</span> <span class="nav-text">RemoteService供外部调用注意事项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Android-5-0以后的Service使用"><span class="nav-number">3.3.</span> <span class="nav-text">Android 5.0以后的Service使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Android-Studio中编写AIDL文件注意问题"><span class="nav-number">3.4.</span> <span class="nav-text">Android Studio中编写AIDL文件注意问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IntentService的使用"><span class="nav-number">3.5.</span> <span class="nav-text">IntentService的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Service的开机启动"><span class="nav-number">3.6.</span> <span class="nav-text">Service的开机启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Service在被杀死后重新启动"><span class="nav-number">3.7.</span> <span class="nav-text">Service在被杀死后重新启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#降低服务因系统资源紧张而被杀死的方法："><span class="nav-number">3.8.</span> <span class="nav-text">降低服务因系统资源紧张而被杀死的方法：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IntentService"><span class="nav-number">4.</span> <span class="nav-text">IntentService</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Service-ANR相关"><span class="nav-number">5.</span> <span class="nav-text">Service ANR相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Service和AIDL"><span class="nav-number">6.</span> <span class="nav-text">Service和AIDL</span></a></li></ol></div>
             
 
           </div>

@@ -99,17 +99,17 @@
 
 
 
-  <meta name="description" content="集合相关接口Iterator和IterableIterator功能说明Iterator表示对Collection进行迭代的迭代器，功能比之前使用的Enumeration更加完善，取代了Enumeration，与其不同的地方有以下两点：  允许调用者利用定义良好的语义在迭代期间从迭代器所指向的collection中删除元素； 方法的名称得到了改进（见名知义）；">
+  <meta name="description" content="集合相关接口Java 集合可以分为Collection和Map两种体系，两种体系的类关系图如下： Collection体系：  Map体系：   Collection接口：单列数据，定义了存取一组对象方法的集合； 子接口List，元素有序，可重复的集合； 子接口Set，元素无序，不可重复的集合； 子接口Queue，    Collection和MapCollection和Map虽都是与集合处理有关">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java 集合——简介">
 <meta property="og:url" content="http://yoursite.com/posts/J180319.html">
 <meta property="og:site_name" content="荏苒追寻个人博客">
-<meta property="og:description" content="集合相关接口Iterator和IterableIterator功能说明Iterator表示对Collection进行迭代的迭代器，功能比之前使用的Enumeration更加完善，取代了Enumeration，与其不同的地方有以下两点：  允许调用者利用定义良好的语义在迭代期间从迭代器所指向的collection中删除元素； 方法的名称得到了改进（见名知义）；">
+<meta property="og:description" content="集合相关接口Java 集合可以分为Collection和Map两种体系，两种体系的类关系图如下： Collection体系：  Map体系：   Collection接口：单列数据，定义了存取一组对象方法的集合； 子接口List，元素有序，可重复的集合； 子接口Set，元素无序，不可重复的集合； 子接口Queue，    Collection和MapCollection和Map虽都是与集合处理有关">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-02-19T14:13:45.818Z">
+<meta property="og:updated_time" content="2021-06-08T14:27:00.583Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 集合——简介">
-<meta name="twitter:description" content="集合相关接口Iterator和IterableIterator功能说明Iterator表示对Collection进行迭代的迭代器，功能比之前使用的Enumeration更加完善，取代了Enumeration，与其不同的地方有以下两点：  允许调用者利用定义良好的语义在迭代期间从迭代器所指向的collection中删除元素； 方法的名称得到了改进（见名知义）；">
+<meta name="twitter:description" content="集合相关接口Java 集合可以分为Collection和Map两种体系，两种体系的类关系图如下： Collection体系：  Map体系：   Collection接口：单列数据，定义了存取一组对象方法的集合； 子接口List，元素有序，可重复的集合； 子接口Set，元素无序，不可重复的集合； 子接口Queue，    Collection和MapCollection和Map虽都是与集合处理有关">
 
 
 
@@ -402,45 +402,19 @@
       
 
       
-        <h2 id="集合相关接口"><a href="#集合相关接口" class="headerlink" title="集合相关接口"></a>集合相关接口</h2><h3 id="Iterator和Iterable"><a href="#Iterator和Iterable" class="headerlink" title="Iterator和Iterable"></a>Iterator<t>和Iterable<t></t></t></h3><h4 id="Iterator"><a href="#Iterator" class="headerlink" title="Iterator"></a>Iterator<t></t></h4><h5 id="功能说明"><a href="#功能说明" class="headerlink" title="功能说明"></a>功能说明</h5><p>Iterator表示<strong><em>对Collection进行迭代的迭代器</em></strong>，功能比之前使用的Enumeration更加完善，取代了Enumeration，与其不同的地方有以下两点：</p>
+        <h2 id="集合相关接口"><a href="#集合相关接口" class="headerlink" title="集合相关接口"></a>集合相关接口</h2><p>Java 集合可以分为<code>Collection</code>和<code>Map</code>两种体系，两种体系的类关系图如下：</p>
+<p><code>Collection</code>体系：</p>
+<p><img src="" alt="Collection体系类图"></p>
+<p><code>Map</code>体系：</p>
+<p><img src="" alt="Map体系类图"></p>
 <ul>
-<li>允许调用者利用定义良好的语义在迭代期间从迭代器所指向的collection中删除元素；</li>
-<li>方法的名称得到了改进（见名知义）；</li>
+<li><code>Collection</code>接口：单列数据，定义了存取一组对象<strong>方法的集合</strong>；<ul>
+<li>子接口<code>List</code>，元素有序，可重复的集合；</li>
+<li>子接口<code>Set</code>，元素无序，不可重复的集合；</li>
+<li>子接口<code>Queue</code>，</li>
 </ul>
-<a id="more"></a>
-<h5 id="方法说明"><a href="#方法说明" class="headerlink" title="方法说明"></a>方法说明</h5><p><code>boolean hasNext()</code></p>
-<blockquote>
-<p>如果仍有元素可以迭代，则返回 <code>true</code>。</p>
-</blockquote>
-<p><code>T next()</code></p>
-<blockquote>
-<p>返回迭代的下一个元素。</p>
-</blockquote>
-<p>void remove()</p>
-<blockquote>
-<p>从迭代器指向的集合中移除迭代器返回的最后一个元素。</p>
-</blockquote>
-<p>forEachRemaining()</p>
-<blockquote>
-<p>Java 1.8之后新增：未被迭代器迭代处理的元素仍保留自己的一些Action操作</p>
-</blockquote>
-<h4 id="Iterable"><a href="#Iterable" class="headerlink" title="Iterable"></a>Iterable<t></t></h4><h5 id="功能说明-1"><a href="#功能说明-1" class="headerlink" title="功能说明"></a>功能说明</h5><p>一个类实现了Iterable<t>接口后，就可以对它的对象实例进行for-each遍历。</t></p>
-<blockquote>
-<p>实际上，类似于Xxxable<t>这类的接口，通常都是使其实现类具有某种本来没有的功能，如</t></p>
-<p>实现Comparable<t>就可以于T类对象进行比较；</t></p>
-<p>实现Serializable就可以进行序列化等；</p>
-</blockquote>
-<h5 id="方法说明-1"><a href="#方法说明-1" class="headerlink" title="方法说明"></a>方法说明</h5><p><code>Iterator&lt;T&gt; iterator()</code></p>
-<blockquote>
-<p>获取一个迭代器</p>
-</blockquote>
-<p><code>void forEach(Consumer&lt;? super T&gt; action)</code></p>
-<p>在未被迭代器处理之前，仍可进行起已有的action（也就是说在未被迭代处理之前，集合中的元素仍然是独立的，可以进行自身已经定义好的各种action操作），默认实现如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">default</span> <span class="keyword">void</span> <span class="title">forEach</span><span class="params">(Consumer&lt;? <span class="keyword">super</span> T&gt; action)</span> </span>&#123;</span><br><span class="line">    Objects.requireNonNull(action);</span><br><span class="line">    <span class="keyword">for</span> (T t : <span class="keyword">this</span>) &#123;</span><br><span class="line">        action.accept(t);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>Spliterator&lt;T&gt; spliterator()</code></p>
-<p>在当前Iterable<t>描述的元素基础之上创建一个Spliterator<t>对象，默认实现如下：</t></t></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">default</span> Spliterator&lt;T&gt; <span class="title">spliterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> Spliterators.spliteratorUnknownSize(iterator(), <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>那么何为Spliterator<t>呢，其实就是Iterator的split版本，可以讲需要进行的迭代的集合拆分成多个Iterator来处理，来更好的适应高并发，该接口时java 1.8之后新加的。</t></p>
+</li>
+</ul>
 <h3 id="Collection和Map"><a href="#Collection和Map" class="headerlink" title="Collection和Map"></a>Collection和Map</h3><p><strong><em>Collection和Map虽都是与集合处理有关的接口，但二者之间并没有直接联系。</em></strong></p>
 <h4 id="Collection（接口）"><a href="#Collection（接口）" class="headerlink" title="Collection（接口）"></a>Collection（接口）</h4><p>Collection是集合类的根接口，java中无该接口的直接实现类。但有两个接口继承于Collection，分别是<code>Set</code>和<code>List</code>。</p>
 <h6 id="AbstractCollection"><a href="#AbstractCollection" class="headerlink" title="AbstractCollection"></a>AbstractCollection</h6><p>Collection接口的部分实现</p>
@@ -479,6 +453,45 @@
 <h5 id="Entry（Map内部接口）"><a href="#Entry（Map内部接口）" class="headerlink" title="Entry（Map内部接口）"></a>Entry<k,v>（Map内部接口）</k,v></h5><p>表示K和V之间的映射关系。获得映射关系对象引用的<strong><em>唯一方法是通过Set&lt;Map.Entry<k, v="">&gt;的迭代器来实现</k,></em></strong>。</p>
 <h5 id="SortedMap（接口）"><a href="#SortedMap（接口）" class="headerlink" title="SortedMap（接口）"></a>SortedMap（接口）</h5><p>进一步提供关于键的总体排序 的 Map。该映射是根据其键的自然顺序进行排序的，或者根据通常在创建有序映射时提供的 Comparator 进行排序。对有序映射的 collection 视图（由 entrySet、keySet 和 values 方法返回）进行迭代时，此顺序就会反映出来。</p>
 <p>内容比较多，看来一个晚上写不完，未完待续。。。。。。</p>
+<h3 id="Iterator和Iterable"><a href="#Iterator和Iterable" class="headerlink" title="Iterator和Iterable"></a>Iterator<t>和Iterable<t></t></t></h3><h4 id="Iterator"><a href="#Iterator" class="headerlink" title="Iterator"></a>Iterator<t></t></h4><h5 id="功能说明"><a href="#功能说明" class="headerlink" title="功能说明"></a>功能说明</h5><p>Iterator表示<strong><em>对Collection进行迭代的迭代器</em></strong>，功能比之前使用的Enumeration更加完善，取代了Enumeration，与其不同的地方有以下两点：</p>
+<ul>
+<li>允许调用者利用定义良好的语义在迭代期间从迭代器所指向的collection中删除元素；</li>
+<li>方法的名称得到了改进（见名知义）；</li>
+</ul>
+<a id="more"></a>
+<h5 id="方法说明"><a href="#方法说明" class="headerlink" title="方法说明"></a>方法说明</h5><p><code>boolean hasNext()</code></p>
+<blockquote>
+<p>如果仍有元素可以迭代，则返回 <code>true</code>。</p>
+</blockquote>
+<p><code>T next()</code></p>
+<blockquote>
+<p>返回迭代的下一个元素。</p>
+</blockquote>
+<p>void remove()</p>
+<blockquote>
+<p>从迭代器指向的集合中移除迭代器返回的最后一个元素。</p>
+</blockquote>
+<p>forEachRemaining()</p>
+<blockquote>
+<p>Java 1.8之后新增：未被迭代器迭代处理的元素仍保留自己的一些Action操作</p>
+</blockquote>
+<h4 id="Iterable"><a href="#Iterable" class="headerlink" title="Iterable"></a>Iterable<t></t></h4><h5 id="功能说明-1"><a href="#功能说明-1" class="headerlink" title="功能说明"></a>功能说明</h5><p>一个类实现了Iterable<t>接口后，就可以对它的对象实例进行for-each遍历。</t></p>
+<blockquote>
+<p>实际上，类似于Xxxable<t>这类的接口，通常都是使其实现类具有某种本来没有的功能，如</t></p>
+<p>实现Comparable<t>就可以于T类对象进行比较；</t></p>
+<p>实现Serializable就可以进行序列化等；</p>
+</blockquote>
+<h5 id="方法说明-1"><a href="#方法说明-1" class="headerlink" title="方法说明"></a>方法说明</h5><p><code>Iterator&lt;T&gt; iterator()</code></p>
+<blockquote>
+<p>获取一个迭代器</p>
+</blockquote>
+<p><code>void forEach(Consumer&lt;? super T&gt; action)</code></p>
+<p>在未被迭代器处理之前，仍可进行起已有的action（也就是说在未被迭代处理之前，集合中的元素仍然是独立的，可以进行自身已经定义好的各种action操作），默认实现如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">default</span> <span class="keyword">void</span> <span class="title">forEach</span><span class="params">(Consumer&lt;? <span class="keyword">super</span> T&gt; action)</span> </span>&#123;</span><br><span class="line">    Objects.requireNonNull(action);</span><br><span class="line">    <span class="keyword">for</span> (T t : <span class="keyword">this</span>) &#123;</span><br><span class="line">        action.accept(t);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>Spliterator&lt;T&gt; spliterator()</code></p>
+<p>在当前Iterable<t>描述的元素基础之上创建一个Spliterator<t>对象，默认实现如下：</t></t></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">default</span> Spliterator&lt;T&gt; <span class="title">spliterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> Spliterators.spliteratorUnknownSize(iterator(), <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>那么何为Spliterator<t>呢，其实就是Iterator的split版本，可以讲需要进行的迭代的集合拆分成多个Iterator来处理，来更好的适应高并发，该接口时java 1.8之后新加的。</t></p>
 
       
     </div>
@@ -516,8 +529,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/posts/J210320.html" rel="prev" title="Java 设计模式——开篇">
-                Java 设计模式——开篇 <i class="fa fa-chevron-right"></i>
+              <a href="/posts/J180320.html" rel="prev" title="Java集合HashMap">
+                Java集合HashMap <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -592,7 +605,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">125</span>
+                    <span class="site-state-item-count">145</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -766,7 +779,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">41</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">43</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -811,7 +828,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#集合相关接口"><span class="nav-number">1.</span> <span class="nav-text">集合相关接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Iterator和Iterable"><span class="nav-number">1.1.</span> <span class="nav-text">Iterator和Iterable</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Iterator"><span class="nav-number">1.1.1.</span> <span class="nav-text">Iterator</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#功能说明"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">功能说明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#方法说明"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">方法说明</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Iterable"><span class="nav-number">1.1.2.</span> <span class="nav-text">Iterable</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#功能说明-1"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">功能说明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#方法说明-1"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">方法说明</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Collection和Map"><span class="nav-number">1.2.</span> <span class="nav-text">Collection和Map</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Collection（接口）"><span class="nav-number">1.2.1.</span> <span class="nav-text">Collection（接口）</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#AbstractCollection"><span class="nav-number">1.2.1.0.1.</span> <span class="nav-text">AbstractCollection</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Set（接口）"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">Set（接口）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SortedSet（接口）"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">SortedSet（接口）</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#AbstractSet（抽象类）"><span class="nav-number">1.2.1.2.1.</span> <span class="nav-text">AbstractSet（抽象类）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#HashSet（实现类）"><span class="nav-number">1.2.1.2.2.</span> <span class="nav-text">HashSet（实现类）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#TreeSet（实现类）"><span class="nav-number">1.2.1.2.3.</span> <span class="nav-text">TreeSet（实现类）</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#List"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">List</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#AbstractList"><span class="nav-number">1.2.1.3.1.</span> <span class="nav-text">AbstractList</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#AbstractSequentialList"><span class="nav-number">1.2.1.3.2.</span> <span class="nav-text">AbstractSequentialList</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#ArrayList（实现类）"><span class="nav-number">1.2.1.3.3.</span> <span class="nav-text">ArrayList（实现类）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Vector（实现类）"><span class="nav-number">1.2.1.3.4.</span> <span class="nav-text">Vector（实现类）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#LinkedList（实现类）"><span class="nav-number">1.2.1.3.5.</span> <span class="nav-text">LinkedList（实现类）</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Queue（接口）"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">Queue（接口）</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#BlockingQueue"><span class="nav-number">1.2.1.4.1.</span> <span class="nav-text">BlockingQueue</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Deque（接口）"><span class="nav-number">1.2.1.4.2.</span> <span class="nav-text">Deque（接口）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#BlockingDeque"><span class="nav-number">1.2.1.4.3.</span> <span class="nav-text">BlockingDeque</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Map（接口）"><span class="nav-number">1.2.2.</span> <span class="nav-text">Map（接口）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Entry（Map内部接口）"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">Entry（Map内部接口）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SortedMap（接口）"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">SortedMap（接口）</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#集合相关接口"><span class="nav-number">1.</span> <span class="nav-text">集合相关接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Collection和Map"><span class="nav-number">1.1.</span> <span class="nav-text">Collection和Map</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Collection（接口）"><span class="nav-number">1.1.1.</span> <span class="nav-text">Collection（接口）</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#AbstractCollection"><span class="nav-number">1.1.1.0.1.</span> <span class="nav-text">AbstractCollection</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Set（接口）"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">Set（接口）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SortedSet（接口）"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">SortedSet（接口）</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#AbstractSet（抽象类）"><span class="nav-number">1.1.1.2.1.</span> <span class="nav-text">AbstractSet（抽象类）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#HashSet（实现类）"><span class="nav-number">1.1.1.2.2.</span> <span class="nav-text">HashSet（实现类）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#TreeSet（实现类）"><span class="nav-number">1.1.1.2.3.</span> <span class="nav-text">TreeSet（实现类）</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#List"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">List</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#AbstractList"><span class="nav-number">1.1.1.3.1.</span> <span class="nav-text">AbstractList</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#AbstractSequentialList"><span class="nav-number">1.1.1.3.2.</span> <span class="nav-text">AbstractSequentialList</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#ArrayList（实现类）"><span class="nav-number">1.1.1.3.3.</span> <span class="nav-text">ArrayList（实现类）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Vector（实现类）"><span class="nav-number">1.1.1.3.4.</span> <span class="nav-text">Vector（实现类）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#LinkedList（实现类）"><span class="nav-number">1.1.1.3.5.</span> <span class="nav-text">LinkedList（实现类）</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Queue（接口）"><span class="nav-number">1.1.1.4.</span> <span class="nav-text">Queue（接口）</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#BlockingQueue"><span class="nav-number">1.1.1.4.1.</span> <span class="nav-text">BlockingQueue</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Deque（接口）"><span class="nav-number">1.1.1.4.2.</span> <span class="nav-text">Deque（接口）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#BlockingDeque"><span class="nav-number">1.1.1.4.3.</span> <span class="nav-text">BlockingDeque</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Map（接口）"><span class="nav-number">1.1.2.</span> <span class="nav-text">Map（接口）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Entry（Map内部接口）"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">Entry（Map内部接口）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SortedMap（接口）"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">SortedMap（接口）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Iterator和Iterable"><span class="nav-number">1.2.</span> <span class="nav-text">Iterator和Iterable</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Iterator"><span class="nav-number">1.2.1.</span> <span class="nav-text">Iterator</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#功能说明"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">功能说明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#方法说明"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">方法说明</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Iterable"><span class="nav-number">1.2.2.</span> <span class="nav-text">Iterable</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#功能说明-1"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">功能说明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#方法说明-1"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">方法说明</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
