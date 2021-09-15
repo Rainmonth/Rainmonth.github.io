@@ -106,12 +106,12 @@
 <meta property="og:site_name" content="荏苒追寻个人博客">
 <meta property="og:description" content="摘要说实话，本人在平常工作中关于Java并发的使用还是比较少的，为了提升下自己，就打算看看Java中对并发的支持，本文主要介绍一下java.util.concurrent包下并发相关的内容。该包下的内容大多数是java.util包下对应集合类的并发实现，可以通过比较来看看并发的妙处。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/images/J191115/关系图.png">
-<meta property="og:updated_time" content="2021-02-19T14:13:45.814Z">
+<meta property="og:image" content="http://yoursite.com/images/J191117/关系图.png">
+<meta property="og:updated_time" content="2021-08-30T09:34:57.964Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 并发——基础">
 <meta name="twitter:description" content="摘要说实话，本人在平常工作中关于Java并发的使用还是比较少的，为了提升下自己，就打算看看Java中对并发的支持，本文主要介绍一下java.util.concurrent包下并发相关的内容。该包下的内容大多数是java.util包下对应集合类的并发实现，可以通过比较来看看并发的妙处。">
-<meta name="twitter:image" content="http://yoursite.com/images/J191115/关系图.png">
+<meta name="twitter:image" content="http://yoursite.com/images/J191117/关系图.png">
 
 
 
@@ -407,7 +407,7 @@
         <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>说实话，本人在平常工作中关于Java并发的使用还是比较少的，为了提升下自己，就打算看看Java中对并发的支持，本文主要介绍一下java.util.concurrent包下并发相关的内容。该包下的内容大多数是java.util包下对应集合类的并发实现，可以通过比较来看看并发的妙处。</p>
 <a id="more"></a>
 <h2 id="总览"><a href="#总览" class="headerlink" title="总览"></a>总览</h2><p>利用Idea编辑器强大的diagram功能，将java 1.8.45版本下java.util.concurrent包下的内容的简单关系生成了如下一张图，能很清晰的看到这个包中各个类的关系。</p>
-<p><img src="./../images/J191115/关系图.png" alt="concurrent包类关系图"></p>
+<p><img src="./../images/J191117/关系图.png" alt="concurrent包类关系图"></p>
 <p>下满根据上面的关系图，来分模块以此分析。</p>
 <h3 id="线程池相关"><a href="#线程池相关" class="headerlink" title="线程池相关"></a>线程池相关</h3><h4 id="Executor"><a href="#Executor" class="headerlink" title="Executor"></a>Executor</h4><h4 id="ExecutorService"><a href="#ExecutorService" class="headerlink" title="ExecutorService"></a>ExecutorService</h4><p>继承自Executor接口，在它基础之上提供了以下接口定义方法：</p>
 <ul>
@@ -470,8 +470,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/J1911171.html" rel="next" title="Java 并发——死锁">
-                <i class="fa fa-chevron-left"></i> Java 并发——死锁
+              <a href="/posts/J1911173.html" rel="next" title="Java 并发——Semaphore">
+                <i class="fa fa-chevron-left"></i> Java 并发——Semaphore
               </a>
             
           </div>
@@ -480,8 +480,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/posts/J1911173.html" rel="prev" title="Java 并发——Semaphore">
-                Java 并发——Semaphore <i class="fa fa-chevron-right"></i>
+              <a href="/posts/J1911174.html" rel="prev" title="Java 并发——Atomic相关类">
+                Java 并发——Atomic相关类 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -556,7 +556,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">145</span>
+                    <span class="site-state-item-count">150</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -635,7 +635,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">33</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">36</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
