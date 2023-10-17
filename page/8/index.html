@@ -1,23 +1,2741 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
 
-{% block title %}{{ config.title }}{% if theme.index_with_subtitle and config.subtitle %} - {{config.subtitle }}{% endif %}{% endblock %}
 
-{% block page_class %}
-  {% if is_home() %}page-home{% endif -%}
-{% endblock %}
 
-{% block content %}
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.1.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.1.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '6.1.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="记录学习Android、前端开发以及Python的点点滴滴">
+<meta property="og:type" content="website">
+<meta property="og:title" content="荏苒追寻个人博客">
+<meta property="og:url" content="http://yoursite.com/page/8/index.html">
+<meta property="og:site_name" content="荏苒追寻个人博客">
+<meta property="og:description" content="记录学习Android、前端开发以及Python的点点滴滴">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Randy Zhang">
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/page/8/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>荏苒追寻个人博客</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> 
+
+<div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">荏苒追寻个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">做一个有追求的青年</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+          
+  <li class="menu-item menu-item-home">
+    <a href="/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-about">
+    <a href="/about/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-tags">
+    <a href="/tags/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-categories">
+    <a href="/categories/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-archives">
+    <a href="/archives/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-schedule">
+    <a href="/schedule/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
+</li>
+
+      
+
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
   <section id="posts" class="posts-expand">
-    {% for post in page.posts %}
-      {{ post_template.render(post, true) }}
-    {% endfor %}
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/c1f07320.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/c1f07320.html" itemprop="url">小白学理财——可转债</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-08-12T00:00:00+08:00">2021-08-12</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/%E7%90%86%E8%B4%A2/" itemprop="url" rel="index"><span itemprop="name">理财</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/%E7%90%86%E8%B4%A2/%E5%8F%AF%E8%BD%AC%E5%80%BA/" itemprop="url" rel="index"><span itemprop="name">可转债</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/c1f07320.html">https://rainmonth.github.io/posts/c1f07320.html</a></p>
+</blockquote>
+<p>可转债定义</p>
+<p>　　可转换公司债券（简称可转换债券）是指发行人依照法定程序发行，在一定期限内依据约定的条件可以转换为股份的公司债券。这种债券兼具债权和认股权双重属性。</p>
+<p>可转债每个交易日9:15开始交易。</p>
+<p>　　债券现货采用竞价交易方式，交易时间为：</p>
+<p>　　每个交易日9:15-9:25为开盘集合竞价时间;9:30-11:30，13:00-14:57为连续竞价时间;14:57-15:00为收盘集合竞价时间。</p>
+<p>内盘与外盘</p>
+<ul>
+<li>内盘是指主动卖出成交的数量，即卖方主动以低于或等于当前买一、买二、买三等价格下单卖出股票时成交的数量，用绿色显示。</li>
+<li>外盘是指以主动买入成交的数量，即买方主动以高于或等于当前卖一、卖二、卖三等价格下单买入股票时成交的数量，用红色显示。</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/D210807.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/D210807.html" itemprop="url">博客导航——Android篇</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-08-07T00:00:00+08:00">2021-08-07</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>本文链接：<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/D210807.html">https://rainmonth.github.io/posts/D210807.html</a></p>
+</blockquote>
+<h2 id="Android部分，就在下面罗列"><a href="#Android部分，就在下面罗列" class="headerlink" title="Android部分，就在下面罗列"></a><a href>Android部分</a>，就在下面罗列</h2><h3 id="Android基础"><a href="#Android基础" class="headerlink" title="Android基础"></a>Android基础</h3><ul>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210219.html">Android 基础——View 知识点</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A220131.html">Android 基础——Canvas</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180116.html">Android 基础——Kotlin基础语法</a></li>
+</ul>
+<h3 id="Android工具命令网站"><a href="#Android工具命令网站" class="headerlink" title="Android工具命令网站"></a>Android工具命令网站</h3><ul>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/151868c0.html">Android 工具命令——常用的网站</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A201230.html">Android 工具命令——发布项目到JitPack</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A201231.html">Android 工具命令——发布项目到Maven</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180302.html">Android 工具命令——使用Android快速制作.9</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191020.html">Android 工具命令——adb学习</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A190918.html">Android 工具命令——Gradle学习</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A190917.html">Android 工具命令——Gradle配置问题</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A200325.html">Android 工具命令——Repo命令简介</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A181003.html">Android 工具命令——Android Studio 升级到3.0运行项目指北</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191994.html">Android 工具命令——Gradle学习day1基本的gradle命令</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191106.html">Android 工具命令——Gradle学习day2 Android项目里面的gradle配置解析</a></li>
+</ul>
+<h3 id="Android-进程保活"><a href="#Android-进程保活" class="headerlink" title="Android 进程保活"></a>Android 进程保活</h3><ul>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A2102200.html">Android 进程保活——守护进程</a></li>
+</ul>
+<h3 id="Android开源项目分析系列"><a href="#Android开源项目分析系列" class="headerlink" title="Android开源项目分析系列"></a>Android开源项目分析系列</h3><p>主要罗列开源库的文章，分析的进度</p>
+<ul>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191224.html">Android开源库分析——基于ExoPlayer封装的音视频播放器</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191130.html">Andorid开源库分析——理解EXOPlayer的Timeline</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180205.html">Android开源库分析——浅谈Retrofit封装</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A211010.html">Android开源库分析——图片加载库的比较与封装</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191110.html">Andorid开源库分析——ARouter使用及源码分析</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A200701.html">Andorid开源库分析——Dagger2 简介</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191101.html">Andorid开源库分析——ExoPlayer使用与分析</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A211027.html">Andorid开源库分析——greenDAO使用</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191206.html">Andorid开源库分析——IjkPlayer简介</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180508.html">Andorid开源库分析——KLog源码分析</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A200811.html">Andorid开源库分析——LeakCanary分析</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210402.html">Android开源库分析——OkHttp3</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A181204.html">Andorid开源库分析——Retrofit源码分析</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A181208.html">Andorid开源库分析——RxJava深入理解篇</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A181206.html">Andorid开源库分析——RxJava源码分析</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A220317.html">Android开源库分析——Fresco</a></li>
+</ul>
+<h3 id="Android控件"><a href="#Android控件" class="headerlink" title="Android控件"></a>Android控件</h3><ul>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180510.html">Android控件——动画的深入分析</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210823.html">Android 控件——放大镜实现</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180208.html">Android 时间选择相关系统控件</a></li>
+<li><input checked disabled type="checkbox"> <a href="htpps://rainmonth.github.io/posts/A180305.html">Android 是时候了解一波MD库控件了</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180414.html">Android 控件——自定义键盘</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191103.html">Android SurfaceView详解</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180504.html">Android 控件——View的事件体系</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A181005.html">Android 控件——ViewPager的无限循环与自动滚动实现</a></li>
+</ul>
+<h3 id="Android适配"><a href="#Android适配" class="headerlink" title="Android适配"></a>Android适配</h3><ul>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180427.html">Android 适配——动态权限管理</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A18042702.html">Android 适配——屏幕适配方案研究</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A200312.html">Android 适配——全局悬浮窗的实现</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180415.html">Android 适配——原生与H5交互</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180503.html">Android 适配——状态栏攻略</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210906.html">Android 适配——Notification适配指南</a></li>
+</ul>
+<h3 id="Android四大组件"><a href="#Android四大组件" class="headerlink" title="Android四大组件"></a>Android四大组件</h3><ul>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180505.html">Android Activity启动模式详解</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180507.html">Android 四大组件——Activity与Fragment的通信方式</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210109.html">Android 四大组件——ActivityRecord分析</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180420.html">Android 四大组件——Android开发艺术探索读书笔记</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210110.html">Android 四大组件之BroadcastRecord</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210111.html">Android 四大组件之ContentProviderRecord</a>)</li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180419.html">Android 四大组件——Fragment详解</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191025.html">Android 四大组件——Service详解</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210112.html">Android 四大组件之ServiceRecord</a></li>
+</ul>
+<h3 id="Android通用功能封装"><a href="#Android通用功能封装" class="headerlink" title="Android通用功能封装"></a>Android通用功能封装</h3><ul>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="http://rainmonth.github.io/posts/A210201.html">Android通用功能封装0——开篇</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="http://rainmonth.github.io/posts/A210202.html">Android通用功能封装1——通用工具类封装</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="http://rainmonth.github.io/posts/A210203.html">Android 通用功能封装2——图片加载</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="http://rainmonth.github.io/posts/A21020r.html">Android 通用功能封装3——文件选择</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="http://rainmonth.github.io/posts/A210205.html">Android 通用功能封装4——文件下载</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="http://rainmonth.github.io/posts/A210206.html">Android 通用功能封装5——网络库封装</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="http://rainmonth.github.io/posts/A210207.html">Android 通用功能封装6——数据库封装</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="http://rainmonth.github.io/posts/A210208.html">Android 通用功能封装7——广播管理</a></li>
+</ul>
+<h3 id="Android系统功能"><a href="#Android系统功能" class="headerlink" title="Android系统功能"></a>Android系统功能</h3><ul>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180501.html">Android 系统功能——震动相关实现</a></li>
+</ul>
+<h3 id="Android系统架构"><a href="#Android系统架构" class="headerlink" title="Android系统架构"></a>Android系统架构</h3><ul>
+<li><input disabled type="checkbox"> <a href>Android 系统架构——Android系统架说明</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191027.html">Android 系统架构——组件化开发实践</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A200725.html">Andorid 系统架构——Jetpack实践</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180509.html">Android 系统架构——JVM、Dalvik和ART</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A181025.html">Android 系统架构——MVP模式、MVC模式和MVVM模式</a></li>
+</ul>
+<h3 id="Android系统源码分析"><a href="#Android系统源码分析" class="headerlink" title="Android系统源码分析"></a>Android系统源码分析</h3><ul>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191012.html">Android 系统源码分析——MacOs下的源码下载及编译</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191017.html">Android 系统源码分析——Android Studio导入Android8.0源码</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191023.html">Android 系统源码分析——进程的创建过程</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191019.html">Android 系统源码分析——系统的启动</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191023.html">Android 系统源码分析——Binder线程池工作过程</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/42f2ba4c.html">Android 系统源码分析——init进程</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180427.html">Android 系统源码分析——IPC机制</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180425.html">Android 系统源码分析——Handler机制</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180702.html">Android 系统源码分析——Launcher3分析开篇</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180702.html">Android 系统源码分析——Launcher3分析之LauncherModel</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180705.html">Android 系统源码分析——Launcher3分析之Workspace</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191018.html">Android 系统源码分析——AMS分析</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A1910110.html">Android 系统源码分析——WMS分析</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191019.html">Android 系统源码分析——MotionEvent</a></li>
+</ul>
+<h3 id="Android性能优化系列"><a href="#Android性能优化系列" class="headerlink" title="Android性能优化系列"></a>Android性能优化系列</h3><ul>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180418.html">Android 性能优化——布局优化</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180413.html">Android 性能优化——内存优化</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180420.html">Android 性能优化——启动优化</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A190514.html">Android 性能优化——结合KaDa故事谈谈Android性能优化</a></li>
+</ul>
+<h3 id="Android学不过来系列"><a href="#Android学不过来系列" class="headerlink" title="Android学不过来系列"></a><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210907.html">Android学不过来系列</a></h3><h3 id="Android音视频基础"><a href="#Android音视频基础" class="headerlink" title="Android音视频基础"></a>Android音视频基础</h3><ul>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210101.html">音视频基础0——目录</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210102.html">音视频基础1——AudioTrack、AudioRecorder、MediaRecorder音频数据采集播放处理</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210103.html">音视频基础2——Android Camera API及Camera2 API的使用</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210104.html">音视频基础3——Android Camera API及Camera2 采集视频数据</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210105.html">音视频基础4——Android MediaCodec API学习</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210306.html">音视频基础5——Android 实现rtmp推流</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210307.html">音视频基础6——交叉编译动态库</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210308.html">音视频基础7——MacOs下编译FFMpeg4.2.2</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210109.html">音视频基础8——音频焦点管理</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191208.html">Android 音视频基础——官方关于多媒体的说明介绍</a></li>
+</ul>
+<h3 id="Android音视频进阶"><a href="#Android音视频进阶" class="headerlink" title="Android音视频进阶"></a>Android音视频进阶</h3><ul>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210122.html">Android 音视频进阶——OpenGL基础</a></li>
+</ul>
+<h3 id="Android-NDK开发"><a href="#Android-NDK开发" class="headerlink" title="Android NDK开发"></a>Android NDK开发</h3><ul>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191021.html">Android之NDK与JNI简单介绍及NDK开发demo实现</a></li>
+</ul>
+<h3 id="Android杂谈"><a href="#Android杂谈" class="headerlink" title="Android杂谈"></a>Android杂谈</h3><ul>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180417.html">Android 杂谈——从一个简单的弹窗说起</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180123.html">Android 杂谈零散知识点（持续更新）</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A181001.html">Android 杂谈——SdkVersion那些事儿</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A220222.html">Android 杂谈——Interview Prepare</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A220330.html">Android 杂谈——Activity与Fragment恢复的那些事儿</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/D210806.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/D210806.html" itemprop="url">博客导航——Java篇</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-08-06T00:00:00+08:00">2021-08-06</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>本文链接：<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/D210806.html">https://rainmonth.github.io/posts/D210806.html</a></p>
+</blockquote>
+<h2 id="Java部分"><a href="#Java部分" class="headerlink" title="Java部分"></a><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/D210206.html">Java部分</a></h2><h3 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h3><ul>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J210320.html">Java 设计模式00——开篇</a></li>
+</ul>
+<h4 id="创建型（5种）"><a href="#创建型（5种）" class="headerlink" title="创建型（5种）"></a>创建型（5种）</h4><ul>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J180322.html">Java 设计模式01——单例模式</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J210605.html">Java 设计模式02——工厂方法模式</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J210606.html">Java 设计模式03——抽象工厂模式</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J180323.html">Java 设计模式04——建造者模式</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J210607.html">Java 设计模式05——原型模式</a></li>
+</ul>
+<h4 id="结构型（7种）"><a href="#结构型（7种）" class="headerlink" title="结构型（7种）"></a>结构型（7种）</h4><ul>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J210608.html">Java 设计模式06——适配器模式</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J210609.html">Java 设计模式07——桥接模式</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J210610.html">Java 设计模式08——组合模式</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J180326.html">Java 设计模式09——装饰器模式</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J210604.html">Java 设计模式10——外观模式</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J210611.html">Java 设计模式11——享元模式</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J210531.html">Java 设计模式12——代理模式</a></li>
+</ul>
+<h4 id="行为型（11种）"><a href="#行为型（11种）" class="headerlink" title="行为型（11种）"></a>行为型（11种）</h4><ul>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J210613.html">Java 设计模式13——模板方法模式</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J210614.html">Java 设计模式14——命令模式</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J180324.html">Java 设计模式15——责任链模式</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J180321.html">Java 设计模式16——策略模式</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J180325.html">Java 设计模式17——中介者模式</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J210618.html">Java 设计模式18——观察者模式</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J210619.html">Java 设计模式19——备忘录模式</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J210620.html">Java 设计模式20——访问者模式</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J210622.html">Java 设计模式21——状态模式</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J210622.html">Java 设计模式22——解释器模式</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J210623.html">Java 设计模式23——迭代器模式</a></li>
+</ul>
+<h3 id="Java并发"><a href="#Java并发" class="headerlink" title="Java并发"></a>Java并发</h3><ul>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J191117.html">Java 并发——基础</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J1911171.html">Java 并发——死锁</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J19111701.html">Java 并发——线程池</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J1911174.html">Java 并发——Atomic相关类</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J1911172.html">Java 并发——CountDownLatch</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J20210722">Java 并发——Future详解</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J1911173.html">Java 并发——Semaphore</a></li>
+</ul>
+<h3 id="Java反射"><a href="#Java反射" class="headerlink" title="Java反射"></a><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J210903.html">Java反射</a></h3><h3 id="Java集合"><a href="#Java集合" class="headerlink" title="Java集合"></a>Java集合</h3><ul>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J180319.html">Java 集合——简介</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J180320.html">Java集合HashMap</a></li>
+</ul>
+<h3 id="Java注解"><a href="#Java注解" class="headerlink" title="Java注解"></a><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J191115.html">Java注解</a></h3><h3 id="Java杂谈"><a href="#Java杂谈" class="headerlink" title="Java杂谈"></a>Java杂谈</h3><ul>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J191110.html">Java杂谈——不同Java版本的特性比较说明</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J191108.html">Java 杂谈——取文件夹大小的几种方式</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J191203.html">Java 杂谈——AOP简介及简单使用</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/D210805.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/D210805.html" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-08-05T00:00:00+08:00">2021-08-05</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>本文链接：<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/D210805.html">https://rainmonth.github.io/posts/D210805.html</a></p>
+</blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/C170309">通用功能——git 攻略</a></li>
+<li><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/C180114">通用功能——Hexo搭建个人博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/C200424">通用功能——Mac 常见问题及解决方案</a></li>
+<li><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/C201010">通用功能——Mac 使用技巧</a></li>
+<li><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/C191017">通用功能——Mac 使用tree打印目录结构</a></li>
+<li><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/C210601">通用功能——UML 类图箭头和线条详解</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A1910110.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/A1910110.html" itemprop="url">博客导航</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-08-04T00:00:00+08:00">2021-08-04</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/%E7%B3%BB%E7%BB%9F%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">系统源码分析</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A1910110.html">https://rainmonth.github.io/posts/A1910110.html</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/J20210722.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/J20210722.html" itemprop="url">Java 并发——Future详解</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-07-22T00:00:00+08:00">2021-07-22</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/%E5%B9%B6%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">并发</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J20210722">https://rainmonth.github.io/posts/J20210722</a></p>
+</blockquote>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p><code>Future</code>接口，表示的是异步计算（异步耗时任务）的结果，该接口提供了检查异步计算是否完成、等待异步调用完成、检索异步调用结果的方法。异步调用的结果只能通过该接口的<code>get</code>及其重载方法来获取。但异步调用完成时，调用get可以获取到异步计算的结果，如果没有完成调用get就会<strong>阻塞直到异步调用完成</strong>，同时还提供了<code>cancel</code>方法来异步任务的调用，<code>isCanceled</code>和<code>isDone</code>来判断异步任务是否取消或是否完成。</p>
+<p><code>Future</code>接口设计出来的目的主要就是为了充分利用CPU，通过多线程，在一个线程执行耗时异步任务的同时，其他线程可以继续自己的工作，其他线程可以主动获取到耗时异步任务的执行结果。这里涉及到了Java多线程编程中的一个常用的多线程并行设计模式——Future模式。关于多线程并行设计模式，可以参考一下文章：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/liang1101/p/6476698.html">并行设计模式（一）—— Future模式</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.cnblogs.com/liang1101/p/6456070.html">并行设计模式（二）– Master-Worker模式</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/ghuil/article/details/41047999"> 并行设计模式（三）– Guarded Suspeionsion模式</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/ghuil/article/details/41047979">并行设计模式（四）– 不变模式</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/ghuil/article/details/41044257">并行设计模式（五）– 生产者-消费者模式</a></li>
+</ul>
+<h2 id="主要方法"><a href="#主要方法" class="headerlink" title="主要方法"></a>主要方法</h2><ul>
+<li><code>cancel(boolean mayInterruptIfRunning)</code>，取消异步任务的执行，<code>mayInterruptIfRunning</code>为true时表示会中断正在进行的任务，<code>mayInterruptIfRunning</code>表示不会中断正在执行的任务；</li>
+<li><code>isCancelled()</code>，任务是否取消；</li>
+<li><code>isDone()</code>，任务是否执行完成；</li>
+<li><code>get()</code>，获取任务的结果，如果任务尚未执行完，会阻塞直到任务执行完；</li>
+<li><code>get(long timeout, TimeUnit unit)</code>，带超时等待的获取任务执行结果，规定时间还没有获取到结果的话，会报<code>TimeoutException</code>异常。</li>
+</ul>
+<h2 id="类关系"><a href="#类关系" class="headerlink" title="类关系"></a>类关系</h2><p>FutureTask</p>
+<p>ForkJoinTask</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/J210623.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/J210623.html" itemprop="url">Java 设计模式——迭代器模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-06-23T00:00:00+08:00">2021-06-23</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index"><span itemprop="name">设计模式</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="模式定义"><a href="#模式定义" class="headerlink" title="模式定义"></a>模式定义</h2><p>迭代器模式（Iterator Pattern），属于行为型模式，是 Java非常常用的设计模式。这种模式用于顺序访问集合对象的元素，不需要知道集合对象的底层表示。迭代器在Java中有专门的<code>Iterator</code>接口，Java集合类一般都实现了该接口，也就是说都支持通过迭代器来进行顺序元素访问。</p>
+<h2 id="模式示例"><a href="#模式示例" class="headerlink" title="模式示例"></a>模式示例</h2><p>迭代器模式实现的关键就是迭代接口的定义了，一般需要定义以下方法：</p>
+<ul>
+<li>hashNext()，是否存在下一个元素；</li>
+<li>next()，获取下一个元素；</li>
+</ul>
+<p>下面通过示例来实现迭代器模式，需要定义聚合对象，迭代器。下例主要完成对一组姓名信息的迭代输出（只为演示使用）。</p>
+<p>定义迭代器接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Iterator</span> &#123;</span><br><span class="line">    <span class="type">boolean</span> <span class="title function_">hasNext</span><span class="params">()</span>;</span><br><span class="line">    Object <span class="title function_">next</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>定义Container接口，用于获取迭代器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Container</span> &#123;</span><br><span class="line">    Iterator <span class="title function_">getIterator</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>定义聚合对象，并实现迭代器接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">NameRepository</span> <span class="keyword">implements</span> <span class="title class_">Container</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> String names[] = &#123;<span class="string">&quot;Ethan&quot;</span>, <span class="string">&quot;Jason&quot;</span>, <span class="string">&quot;Karen&quot;</span>, <span class="string">&quot;Ascii&quot;</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Iterator <span class="title function_">getIterator</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">NameIterator</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">class</span> <span class="title class_">NameIterator</span> <span class="keyword">implements</span> <span class="title class_">Iterator</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> index;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">hasNext</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="keyword">if</span>(index &lt; names.length)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> Object <span class="title function_">next</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="keyword">if</span>(hasNext())&#123;</span><br><span class="line">                <span class="keyword">return</span> names[index++];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编写客户端进行迭代访问</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">IteratorPatternDemo</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">NameRepository</span> <span class="variable">namesRepository</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">NameRepository</span>();</span><br><span class="line"></span><br><span class="line">        <span class="type">Iterator</span> <span class="variable">iterator</span> <span class="operator">=</span> namesRepository.getIterator();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (iterator.hasNext()) &#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> (String)iterator.next();</span><br><span class="line">            System.out.println(<span class="string">&quot;Name : &quot;</span> + name);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果如下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Name : Ethan</span><br><span class="line">Name : Jason</span><br><span class="line">Name : Karen</span><br><span class="line">Name : Ascii</span><br></pre></td></tr></table></figure>
+
+<p>注意：在需要对集合遍历并删除指定元素时，用迭代器<strong>可以很好的避免边移除边遍历造成的问题</strong>。</p>
+<h2 id="模式总结"><a href="#模式总结" class="headerlink" title="模式总结"></a>模式总结</h2><p>从Java集合类大都实现了<code>Iterator</code>这一点可以看出，迭代器模式肯定会给设计者带来诸多好处。它主要解决对聚合对象的遍历问题，可以通过定义不同的迭代器来完成不同方式的遍历。</p>
+<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><ul>
+<li>优点<ol>
+<li>它支持以不同的方式遍历一个聚合对象;</li>
+<li>迭代器简化了聚合类；</li>
+<li>在同一个聚合上可以有多个遍历；</li>
+<li>在迭代器模式中，增加新的聚合类和迭代器类都很方便，无须修改原有代码。</li>
+</ol>
+</li>
+<li>缺点<ol>
+<li>由于迭代器模式将存储数据和遍历数据的职责分离，增加新的聚合类需要对应增加新的迭代器类，类的个数成对增加，这在一定程度上增加了系统的复杂性。</li>
+</ol>
+</li>
+</ul>
+<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><ol>
+<li>访问一个聚合对象的内容而无须暴露它的内部表示。 </li>
+<li>需要为聚合对象提供多种遍历方式。 </li>
+<li>为遍历不同的聚合结构提供一个统一的接口。</li>
+</ol>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>迭代器模式就是分离了集合对象的遍历行为，抽象出一个迭代器类来负责，这样既可以做到不暴露集合的内部结构，又可让外部代码透明地访问集合内部的数据。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/J210622.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/J210622.html" itemprop="url">Java 设计模式——解释器模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-06-22T00:00:00+08:00">2021-06-22</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index"><span itemprop="name">设计模式</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="模式定义"><a href="#模式定义" class="headerlink" title="模式定义"></a>模式定义</h2><p>解释器模式（Interpreter Pattern）提供了评估语言的语法或表达式的方式，它属于行为型模式。这种模式实现了一个表达式接口，该接口解释一个特定的上下文。这种模式被用在 SQL 解析、符号处理引擎等。</p>
+<h2 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h2><p>下面这个示例（简单计算器实现），对输入的一段文本（表达式），这里主要支持数字、变量和加法和乘法</p>
+<ol>
+<li>先根据定义的文本规则将其符号化，得到一个符号化列表，同时在最后面加上终止符号，然后返回符号化列表，</li>
+<li>然后根据规则取出token，将其组合解释成表达式。具体规则如下：<ol>
+<li>开头必须是变量或者数字；</li>
+<li>先处理乘法在处理加法</li>
+</ol>
+</li>
+<li>得到表达式后，对表达式进行解析处理，然后得到结果。</li>
+</ol>
+<p>具体代码如下：</p>
+<p>定义支持的类型（变量、数字、加、乘、空格、终止符）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 定义符号（空格、数字、加、乘、变量、终止符）</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Token</span> &#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">enum</span> <span class="title class_">TokenType</span> &#123;</span><br><span class="line">      SPACE,</span><br><span class="line">      NUMBER,</span><br><span class="line">      ADD,</span><br><span class="line">      MULTIPLY,</span><br><span class="line">      VARIABLE,</span><br><span class="line">      EPSILON, <span class="comment">// The end of the entire expression.</span></span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">final</span> TokenType type;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">final</span> String string;</span><br><span class="line">   </span><br><span class="line">   <span class="keyword">public</span> <span class="title function_">Token</span><span class="params">(TokenType type, String string)</span> &#123;</span><br><span class="line">      <span class="built_in">this</span>.type = type;</span><br><span class="line">      <span class="built_in">this</span>.string = string;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> String.format(<span class="string">&quot;(%s, \&quot;%s\&quot;)&quot;</span>, type, string);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> TokenType <span class="title function_">getType</span><span class="params">()</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> type;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> String <span class="title function_">getString</span><span class="params">()</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> string;</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   <span class="keyword">public</span> <span class="type">double</span> <span class="title function_">getAsNumber</span><span class="params">()</span> <span class="keyword">throws</span> InterpreterException &#123;</span><br><span class="line">      <span class="keyword">if</span> (type != TokenType.NUMBER) &#123;</span><br><span class="line">         <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">InterpreterException</span>(<span class="string">&quot;Incorrect token type. &quot;</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> Double.valueOf(string);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 将输入内容按规则解析成Token列表</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Tokenizer</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">TokenRule</span> &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">final</span> Pattern pattern;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">final</span> TokenType type;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="title function_">TokenRule</span><span class="params">(String pattern, TokenType type)</span> &#123;</span><br><span class="line">            <span class="built_in">this</span>.pattern = Pattern.compile(pattern);</span><br><span class="line">            <span class="built_in">this</span>.type = type;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> Pattern <span class="title function_">getPattern</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> pattern;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> TokenType <span class="title function_">getType</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> type;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> List&lt;TokenRule&gt; rules = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;TokenRule&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        rules.add(<span class="keyword">new</span> <span class="title class_">TokenRule</span>(<span class="string">&quot;^\\d+(\\.\\d+)?&quot;</span>, TokenType.NUMBER));</span><br><span class="line">        rules.add(<span class="keyword">new</span> <span class="title class_">TokenRule</span>(<span class="string">&quot;^[ \t\n\r]+&quot;</span>, TokenType.SPACE));</span><br><span class="line">        rules.add(<span class="keyword">new</span> <span class="title class_">TokenRule</span>(<span class="string">&quot;^\\+&quot;</span>, TokenType.ADD));</span><br><span class="line">        rules.add(<span class="keyword">new</span> <span class="title class_">TokenRule</span>(<span class="string">&quot;^\\*&quot;</span>, TokenType.MULTIPLY));</span><br><span class="line">        rules.add(<span class="keyword">new</span> <span class="title class_">TokenRule</span>(<span class="string">&quot;^[A-Za-z][A-Za-z0-9]*&quot;</span>, TokenType.VARIABLE));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> List&lt;Token&gt; <span class="title function_">tokenize</span><span class="params">(String exprStr)</span> <span class="keyword">throws</span> InterpreterException &#123;</span><br><span class="line">        <span class="type">Tokenizer</span> <span class="variable">tokenizer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Tokenizer</span>(exprStr);</span><br><span class="line">        <span class="keyword">return</span> tokenizer.tokenize();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String exprStr;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">Tokenizer</span><span class="params">(String exprStr)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.exprStr = exprStr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> List&lt;Token&gt; <span class="title function_">tokenize</span><span class="params">()</span> <span class="keyword">throws</span> InterpreterException &#123;</span><br><span class="line">        List&lt;Token&gt; tokens = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;Token&gt;();</span><br><span class="line">        <span class="type">int</span> <span class="variable">pos</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> exprStr.length();</span><br><span class="line">        <span class="keyword">while</span> (pos &lt; len) &#123;</span><br><span class="line">            <span class="type">CharSequence</span> <span class="variable">sequence</span> <span class="operator">=</span> exprStr.subSequence(pos, len);</span><br><span class="line">            <span class="type">boolean</span> <span class="variable">matched</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">for</span> (TokenRule rule : rules) &#123;</span><br><span class="line">                <span class="type">Matcher</span> <span class="variable">matcher</span> <span class="operator">=</span> rule.getPattern().matcher(sequence);</span><br><span class="line">                <span class="keyword">if</span> (!matcher.find()) &#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                matched = <span class="literal">true</span>;</span><br><span class="line">                pos += matcher.end();</span><br><span class="line">                <span class="type">TokenType</span> <span class="variable">type</span> <span class="operator">=</span> rule.getType();</span><br><span class="line">                <span class="keyword">if</span> (type != TokenType.SPACE) &#123;</span><br><span class="line">                    <span class="type">Token</span> <span class="variable">token</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Token</span>(type, matcher.group());</span><br><span class="line">                    tokens.add(token);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (!matched) &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">InterpreterException</span>(<span class="string">&quot;Tokenizer error at: \&quot;&quot;</span> + sequence + <span class="string">&quot;\&quot;&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        tokens.add(<span class="keyword">new</span> <span class="title class_">Token</span>(TokenType.EPSILON, <span class="string">&quot;&quot;</span>));</span><br><span class="line">        <span class="keyword">return</span> tokens;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 定义词法解析器，根据规则将输入的Tokens转化成待解释的表达式</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Parser</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> List&lt;Token&gt; tokens;</span><br><span class="line">    <span class="type">int</span> <span class="variable">next</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Expression <span class="title function_">parse</span><span class="params">(List&lt;Token&gt; tokens)</span> <span class="keyword">throws</span> InterpreterException &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Parser</span>(tokens).parse();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">Parser</span><span class="params">(List&lt;Token&gt; tokens)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.tokens = tokens;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Expression <span class="title function_">parse</span><span class="params">()</span> <span class="keyword">throws</span> InterpreterException &#123;</span><br><span class="line">        next = <span class="number">0</span>;</span><br><span class="line">        <span class="type">Expression</span> <span class="variable">expression</span> <span class="operator">=</span> expression();</span><br><span class="line">        except(TokenType.EPSILON);</span><br><span class="line">        <span class="keyword">return</span> expression;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Expression <span class="title function_">expression</span><span class="params">()</span> <span class="keyword">throws</span> InterpreterException &#123;</span><br><span class="line">        <span class="type">Expression</span> <span class="variable">expression</span> <span class="operator">=</span> term();<span class="comment">// 先乘法</span></span><br><span class="line">        <span class="keyword">while</span> (accept(TokenType.ADD)) &#123;<span class="comment">// 在加法</span></span><br><span class="line">            expression = <span class="keyword">new</span> <span class="title class_">AddExpression</span>(expression, term());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> expression;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Expression <span class="title function_">term</span><span class="params">()</span> <span class="keyword">throws</span> InterpreterException &#123;</span><br><span class="line">        <span class="type">Expression</span> <span class="variable">expression</span> <span class="operator">=</span> factor();</span><br><span class="line">        <span class="keyword">while</span> (accept(TokenType.MULTIPLY)) &#123;</span><br><span class="line">            expression = <span class="keyword">new</span> <span class="title class_">MultiplyExpression</span>(expression, term());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> expression;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取 常量或变量表达式</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 常量或变量表达式</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> InterpreterException 不是商量两种类型就抛异常</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> Expression <span class="title function_">factor</span><span class="params">()</span> <span class="keyword">throws</span> InterpreterException &#123;</span><br><span class="line">        <span class="keyword">if</span> (accept(TokenType.NUMBER)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">NumberExpression</span>(current().getAsNumber());</span><br><span class="line">        &#125;</span><br><span class="line">        except(TokenType.VARIABLE);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">VariableExpression</span>(current().getString());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取指定类型Token</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> tokenType 获取的token类型</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 如果是期待的类型，返回true，同时更新next指针；不是则返回false；</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">boolean</span> <span class="title function_">accept</span><span class="params">(TokenType tokenType)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (tokens.get(next).getType() == tokenType) &#123;</span><br><span class="line">            ++next;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 需要的类型</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> tokenType 期待的类型</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> InterpreterException 不是期待的token类型则抛出异常</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">except</span><span class="params">(TokenType tokenType)</span> <span class="keyword">throws</span> InterpreterException &#123;</span><br><span class="line">        <span class="keyword">if</span> (!accept(tokenType)) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">InterpreterException</span>(</span><br><span class="line">                    <span class="string">&quot;Parser error. Unexcepted token at: \&quot;&quot;</span></span><br><span class="line">                            + getRemainingString() + <span class="string">&quot;\&quot;&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 当前处理的token</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 当前处理的token</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> Token <span class="title function_">current</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> tokens.get(next - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String <span class="title function_">getRemainingString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">StringBuffer</span> <span class="variable">buffer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuffer</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> next; i &lt; tokens.size(); ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i != next)</span><br><span class="line">                buffer.append(<span class="string">&quot; &quot;</span>);</span><br><span class="line">            buffer.append(tokens.get(i).getString());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> buffer.toString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 解释器中心，客户端通过该类进行输入文本的解释，不需要关心具体解释器的实现（类似于中介者）</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Interpreter</span> &#123;</span><br><span class="line">   </span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">final</span> List&lt;Token&gt; tokens;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">final</span> Expression rootExpression;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="title function_">Interpreter</span><span class="params">(String expressionString)</span> <span class="keyword">throws</span> InterpreterException &#123;</span><br><span class="line">      tokens = Tokenizer.tokenize(expressionString);</span><br><span class="line">      rootExpression = Parser.parse(tokens);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> List&lt;Token&gt; <span class="title function_">getTokens</span><span class="params">()</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> tokens;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> Expression <span class="title function_">getRootExpression</span><span class="params">()</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> rootExpression;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>一下部分开始定义表达式</p>
+<p>先是接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 定义解释器（表达式）接口</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Expression</span> &#123;</span><br><span class="line">    <span class="type">double</span> <span class="title function_">interpret</span><span class="params">(Map&lt;String, Double&gt; context)</span> <span class="keyword">throws</span> InterpreterException;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后是四种类型的解释器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 加法解释器</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AddExpression</span> <span class="keyword">implements</span> <span class="title class_">Expression</span> &#123;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">final</span> Expression leftExpression; </span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">final</span> Expression rightExpression; </span><br><span class="line">   </span><br><span class="line">   <span class="keyword">public</span> <span class="title function_">AddExpression</span><span class="params">(Expression leftExpression, Expression rightExpression)</span> &#123;</span><br><span class="line">      <span class="built_in">this</span>.leftExpression = leftExpression;</span><br><span class="line">      <span class="built_in">this</span>.rightExpression = rightExpression;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> <span class="type">double</span> <span class="title function_">interpret</span><span class="params">(Map&lt;String, Double&gt; context)</span> <span class="keyword">throws</span> InterpreterException &#123;</span><br><span class="line">      <span class="keyword">return</span> leftExpression.interpret(context) + rightExpression.interpret(context);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> String.format(<span class="string">&quot;(%s + %s)&quot;</span>, leftExpression, rightExpression);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 乘法解释器实现</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MultiplyExpression</span> <span class="keyword">implements</span> <span class="title class_">Expression</span> &#123;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">final</span> Expression leftExpression; </span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">final</span> Expression rightExpression; </span><br><span class="line">   </span><br><span class="line">   <span class="keyword">public</span> <span class="title function_">MultiplyExpression</span><span class="params">(Expression leftExpression, Expression rightExpression)</span> &#123;</span><br><span class="line">      <span class="built_in">this</span>.leftExpression = leftExpression;</span><br><span class="line">      <span class="built_in">this</span>.rightExpression = rightExpression;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> <span class="type">double</span> <span class="title function_">interpret</span><span class="params">(Map&lt;String, Double&gt; context)</span> <span class="keyword">throws</span> InterpreterException &#123;</span><br><span class="line">      <span class="keyword">return</span> leftExpression.interpret(context) * rightExpression.interpret(context);</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> String.format(<span class="string">&quot;(%s * %s)&quot;</span>, leftExpression, rightExpression);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 数字解释器</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">NumberExpression</span> <span class="keyword">implements</span> <span class="title class_">Expression</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="type">double</span> value;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">NumberExpression</span><span class="params">(<span class="type">double</span> value)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.value = value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">double</span> <span class="title function_">interpret</span><span class="params">(Map&lt;String, Double&gt; context)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> String.valueOf(value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 变量解释器实现</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">VariableExpression</span> <span class="keyword">implements</span> <span class="title class_">Expression</span> &#123;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">final</span> String name;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="title function_">VariableExpression</span><span class="params">(String name)</span> &#123;</span><br><span class="line">      <span class="built_in">this</span>.name = name;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> <span class="type">double</span> <span class="title function_">interpret</span><span class="params">(Map&lt;String, Double&gt; context)</span> <span class="keyword">throws</span> InterpreterException &#123;</span><br><span class="line">      <span class="keyword">if</span> (context.containsKey(name)) &#123;</span><br><span class="line">         <span class="keyword">return</span> context.get(name);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">         <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">InterpreterException</span>(<span class="string">&quot;Variable not found: &quot;</span> + name);</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> name;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>由于可能会存在解释异常，所以定义了一个异常类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">InterpreterException</span> <span class="keyword">extends</span> <span class="title class_">Exception</span> &#123;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">long</span> <span class="variable">serialVersionUID</span> <span class="operator">=</span> <span class="number">8459803686326291973L</span>;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="title function_">InterpreterException</span><span class="params">(String message)</span> &#123;</span><br><span class="line">      <span class="built_in">super</span>(message);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编写客户端运行</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">boolean</span> <span class="variable">VERBOSE_PARSE</span> <span class="operator">=</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">boolean</span> <span class="variable">VERBOSE_DEBUG</span> <span class="operator">=</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">double</span> <span class="variable">EPS</span> <span class="operator">=</span> <span class="number">1e-7</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> Map&lt;String, Double&gt; context = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;String, Double&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        context.put(<span class="string">&quot;age&quot;</span>, <span class="number">18.0</span>);</span><br><span class="line">        context.put(<span class="string">&quot;height&quot;</span>, <span class="number">170.0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">execute</span><span class="params">(String expressionString, <span class="type">double</span> excepted)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Attempting to evaluate: &quot;</span> + expressionString);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="type">Interpreter</span> <span class="variable">interpreter</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Interpreter</span>(expressionString);</span><br><span class="line">            <span class="keyword">if</span> (VERBOSE_PARSE) &#123;</span><br><span class="line">                printTokens(interpreter.getTokens());</span><br><span class="line">                System.out.println(<span class="string">&quot;Parse tree: &quot;</span></span><br><span class="line">                        + interpreter.getRootExpression());</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="type">double</span> <span class="variable">value</span> <span class="operator">=</span> interpreter.getRootExpression().interpret(context);</span><br><span class="line">            <span class="type">boolean</span> <span class="variable">correct</span> <span class="operator">=</span> Math.abs(value - excepted) &lt; EPS;</span><br><span class="line">            System.out.println(String.format(</span><br><span class="line">                    <span class="string">&quot;* %s!! Excepted: %.4f, evaluated: %.4f&quot;</span>,</span><br><span class="line">                    correct ? <span class="string">&quot;Correct&quot;</span> : <span class="string">&quot;Incorrect&quot;</span>, excepted, value));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterpreterException e) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Error: &quot;</span> + e);</span><br><span class="line">            <span class="keyword">if</span> (VERBOSE_DEBUG) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">printTokens</span><span class="params">(List&lt;Token&gt; tokens)</span> &#123;</span><br><span class="line">        <span class="type">StringBuffer</span> <span class="variable">buffer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuffer</span>(<span class="string">&quot;Tokens: &quot;</span>);</span><br><span class="line">        <span class="keyword">for</span> (Token token : tokens) &#123;</span><br><span class="line">            buffer.append(token);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(buffer);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"><span class="comment">//    execute(&quot;1.5&quot;, 1.5);</span></span><br><span class="line"><span class="comment">//    execute(&quot;1 + 2 + 3 + 4 + 5&quot;, 1 + 2 + 3 + 4 + 5);</span></span><br><span class="line"><span class="comment">//    execute(&quot;2 * 3 + 5 * 7&quot;, 2 * 3 + 5 * 7);</span></span><br><span class="line">        execute(<span class="string">&quot;age * 10 + height * 1.5&quot;</span>, get(<span class="string">&quot;age&quot;</span>) * <span class="number">10</span> + get(<span class="string">&quot;height&quot;</span>) * <span class="number">1.5</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">double</span> <span class="title function_">get</span><span class="params">(String key)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> context.get(key);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>输出结果</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Attempting to evaluate: age * 10 + height * 1.5</span><br><span class="line">Tokens: (VARIABLE, &quot;age&quot;)(MULTIPLY, &quot;*&quot;)(NUMBER, &quot;10&quot;)(ADD, &quot;+&quot;)(VARIABLE, &quot;height&quot;)(MULTIPLY, &quot;*&quot;)(NUMBER, &quot;1.5&quot;)(EPSILON, &quot;&quot;)</span><br><span class="line">Parse tree: ((age * 10.0) + (height * 1.5))</span><br><span class="line">* Correct!! Excepted: 435.0000, evaluated: 435.0000</span><br></pre></td></tr></table></figure>
+
+<p>从代码量来看，这个示例还是比较复杂的，由此可见编译器实现的复杂程度。</p>
+<h2 id="模式总结"><a href="#模式总结" class="headerlink" title="模式总结"></a>模式总结</h2><p>对于一些固定文法构建一个解释句子的解释器。如果一种特定类型的问题发生的频率足够高，那么可能就值得将该问题的各个实例表述为一个简单语言中的句子。这样就可以构建一个解释器，该解释器通过解释这些句子来解决该问题。注意由于解释器模式实现方式通常会或多或少的存在<strong>使用迭代（或递归）的场景</strong>，所以一定要做好<strong>终止条件</strong>的判断。</p>
+<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><ul>
+<li><p>优点</p>
+<ol>
+<li>可扩展性比较好，灵活。</li>
+<li>增加了新的解释表达式的方式。</li>
+<li>易于实现简单文法。</li>
+</ol>
+</li>
+<li><p>缺点</p>
+<ol>
+<li>可利用场景比较少；</li>
+<li>对于复杂的文法比较难维护；</li>
+<li>解释器模式会引起类膨胀；</li>
+<li>解释器模式采用递归调用方法；</li>
+</ol>
+</li>
+</ul>
+<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p>通常使用<em>在编译器、运算表达式计算</em>中，另外Xml解析、Json解析都或多或少体现了解释器模式的应用。</p>
+<ol>
+<li>可以将一个需要解释执行的语言中的句子表示为一个抽象语法树。 </li>
+<li>一些重复出现的问题可以用一种简单的语言来进行表达。 </li>
+<li>一个简单语法需要解释的场景。</li>
+</ol>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ol>
+<li>需要注意<strong>构建语法树</strong>，<strong>定义终结符</strong>与<strong>非终结符</strong>的方式。</li>
+<li>可利用场景比较少，JAVA 中如果碰到可以用 expression4J 代替。</li>
+<li>构建环境类来描述解释器运行的所需的环境，包含解释器之外的一些全局信息，一般是 HashMap。</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/J210621.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/J210621.html" itemprop="url">Java 设计模式——状态模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-06-21T00:00:00+08:00">2021-06-21</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index"><span itemprop="name">设计模式</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="模式定义"><a href="#模式定义" class="headerlink" title="模式定义"></a>模式定义</h2><p>在状态模式（State Pattern）中，类的行为是基于它的状态改变的。这种类型的设计模式属于行为型模式。</p>
+<h2 id="模式示例"><a href="#模式示例" class="headerlink" title="模式示例"></a>模式示例</h2><p>状态模式需要定义表示各种状态的对象，同时还要有一个行为随着状态对象改变而改变的 <code>Context</code>对象，这个Context对象通常会关联一个状态，通过这个<code>Context</code>，可已调用某个状态对象具体的执行方法。下面通过电视机遥控器这个case来描述状态模式。</p>
+<p>电视机遥控器可以控制电视机的开（Start）和关（Stop）两种状态，我们需要知道遥控器需要切换到那个状态，这里用 <code>TvContext</code>，这个<code>TvContext</code>包含了一个状态对象和一个切换方法，这个方法实际上调用的这个状态对象来处理的。</p>
+<ul>
+<li>定义状态接口，<code>State</code>；</li>
+<li>实现状态接口，TvStartState，TvStopState；</li>
+<li>定义一个类表示当前的所处的环境，TvContext；</li>
+</ul>
+<p>定义状态接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 定义状态接口</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">State</span> &#123;</span><br><span class="line">   <span class="keyword">void</span> <span class="title function_">doAction</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>实现状态接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 开始状态</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TVStartState</span> <span class="keyword">implements</span> <span class="title class_">State</span> &#123;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">doAction</span><span class="params">()</span> &#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;TV is turned ON&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 暂停状态</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TVStopState</span> <span class="keyword">implements</span> <span class="title class_">State</span> &#123;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">doAction</span><span class="params">()</span> &#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;TV is turned OFF&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>实现上下文对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 持有状态引用的上下文环境</span></span><br><span class="line"><span class="comment"> * 通过它来响应不同状态的不同行为，实际上调用的时该状态所对应的行为</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TVContext</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> State state;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setState</span><span class="params">(State state)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.state = state;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">doAction</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.state.doAction();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编写控制终端</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 状态模式Client</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TVRemote</span> &#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"></span><br><span class="line">      <span class="type">TVContext</span> <span class="variable">context</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">TVContext</span>();</span><br><span class="line"></span><br><span class="line">      context.setState(<span class="keyword">new</span> <span class="title class_">TVStartState</span>());</span><br><span class="line">      context.doAction();</span><br><span class="line"></span><br><span class="line">      context.setState(<span class="keyword">new</span> <span class="title class_">TVStopState</span>());</span><br><span class="line">      context.doAction();</span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TV is turned ON</span><br><span class="line">TV is turned OFF</span><br></pre></td></tr></table></figure>
+
+<h2 id="模式总结"><a href="#模式总结" class="headerlink" title="模式总结"></a>模式总结</h2><p>状态模式通常应用在对象行为随状态改变的情形下，当然也可以用状态模式来消除<code>if...else</code>判断。状态模式和命令模式有很多相似之处：</p>
+<ol>
+<li>通常命令模式的接口中只有一个方法。而状态模式的接口中有一个或者多个方法。</li>
+<li>状态模式的实现类的方法，一般返回值，或者是改变实例变量的值。也就是说，状态模式一般和对象的状态有关。实现类的方法有不同的功能，覆盖接口中的方法。</li>
+<li>状态模式和命令模式一样，也可以用于消除 if…else 等条件选择语句。</li>
+</ol>
+<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><ul>
+<li>优点<ol>
+<li>封装了转换规则。</li>
+<li>枚举可能的状态，在枚举状态之前需要确定状态种类。</li>
+<li>将所有与某个状态有关的行为放到一个类中，并且可以方便地增加新的状态，只需要改变对象状态即可改变对象的行为。</li>
+<li>允许状态转换逻辑与状态对象合成一体，而不是某一个巨大的条件语句块。</li>
+<li>可以让多个环境对象共享一个状态对象，从而减少系统中对象的个数。</li>
+</ol>
+</li>
+<li>缺点<ol>
+<li>状态模式的使用必然会增加系统类和对象的个数。</li>
+<li>状态模式的结构与实现都较为复杂，如果使用不当将导致程序结构和代码的混乱。 </li>
+<li>状态模式对”开闭原则”的支持并不太好，对于可以切换状态的状态模式，增加新的状态类需要修改那些负责状态转换的源代码，否则无法切换到新增状态，而且修改某个状态类的行为也需修改对应类的源代码。</li>
+</ol>
+</li>
+</ul>
+<p>使用场景</p>
+<p>对象的行为依赖于它的状态（属性），并且可以根据它的状态改变而改变它的相关行为。所以当代码中含大量与对象状态有关的条件语句时可以考虑使用状态模式来实现。</p>
+<ol>
+<li>行为随状态改变而改变的场景。 </li>
+<li>条件、分支语句的代替者。</li>
+</ol>
+<p>注意事项</p>
+<p>在行为受状态约束的时候使用状态模式，而且状态不超过 5 个。</p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><strong>意图：</strong>允许对象在内部状态发生改变时改变它的行为，对象看起来好像修改了它的类。</p>
+<p><strong>主要解决：</strong>对象的行为依赖于它的状态（属性），并且可以根据它的状态改变而改变它的相关行为。</p>
+<p><strong>何时使用：</strong>代码中包含大量与对象状态有关的条件语句。</p>
+<p><strong>如何解决：</strong>将各种具体的状态类抽象出来。</p>
+<p><strong>关键代码：</strong>通常命令模式的接口中只有一个方法。而状态模式的接口中有一个或者多个方法。而且，状态模式的实现类的方法，一般返回值，或者是改变实例变量的值。也就是说，状态模式一般和对象的状态有关。实现类的方法有不同的功能，覆盖接口中的方法。状态模式和命令模式一样，也可以用于消除 if…else 等条件选择语句。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/J210620.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/J210620.html" itemprop="url">Java 设计模式——访问者模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-06-20T00:00:00+08:00">2021-06-20</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index"><span itemprop="name">设计模式</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="模式定义"><a href="#模式定义" class="headerlink" title="模式定义"></a>模式定义</h2><p>在访问者模式（Visitor Pattern）中，我们使用了一个访问者类，它改变了元素类的执行算法。通过这种方式，元素的执行算法可以随着访问者改变而改变。这种类型的设计模式属于行为型模式。根据模式，<strong>元素对象</strong>已接受<strong>访问者对象</strong>，这样访问者对象就可以处理元素对象上的操作。</p>
+<h2 id="模式示例"><a href="#模式示例" class="headerlink" title="模式示例"></a>模式示例</h2><p>下面以电脑启动时对各个组成部分的访问为例来说明访问者模式。主要以下几个步骤</p>
+<ol>
+<li>定义元素接口，被访问者需要实现这个接口；</li>
+<li>定义访问者接口，访问者需要实现该接口；</li>
+<li>具体实现被访问者类和访问者类</li>
+<li>编写客户端验证</li>
+</ol>
+<p>定义元素接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 定义元素接口</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">ComputerPart</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">accept</span><span class="params">(ComputerPartVisitor computerPartVisitor)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">accept</span><span class="params">(UserInputVisitor userInputVisitor)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>定义访问者接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 定义访问者接口</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">ComputerPartVisitor</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">visit</span><span class="params">(Computer computer)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">visit</span><span class="params">(Mouse mouse)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">visit</span><span class="params">(Keyboard keyboard)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">visit</span><span class="params">(Monitor monitor)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里给访问者传递的都是具体的类，如果被访问者新增元素，需要增加相应的方法，同时访问者类的实现者需要实现该方法，违反了迪米特原则。</p>
+<p>具体实现被访问者和访问者</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 电脑（结构固定的元素对象）</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Computer</span> <span class="keyword">implements</span> <span class="title class_">ComputerPart</span> &#123;</span><br><span class="line"></span><br><span class="line">    ComputerPart[] parts;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Computer</span><span class="params">()</span>&#123;</span><br><span class="line">        parts = <span class="keyword">new</span> <span class="title class_">ComputerPart</span>[] &#123;<span class="keyword">new</span> <span class="title class_">Mouse</span>(), <span class="keyword">new</span> <span class="title class_">Keyboard</span>(), <span class="keyword">new</span> <span class="title class_">Monitor</span>()&#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">accept</span><span class="params">(ComputerPartVisitor computerPartVisitor)</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; parts.length; i++) &#123;</span><br><span class="line">            parts[i].accept(computerPartVisitor);</span><br><span class="line">        &#125;</span><br><span class="line">        computerPartVisitor.visit(<span class="built_in">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">accept</span><span class="params">(UserInputVisitor userInputVisitor)</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; parts.length; i++) &#123;</span><br><span class="line">            parts[i].accept(userInputVisitor);</span><br><span class="line">        &#125;</span><br><span class="line">        userInputVisitor.visit(<span class="built_in">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这是元素对象，本身可被访问，同时其组成部分也可被访问。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 键盘</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Keyboard</span> <span class="keyword">implements</span> <span class="title class_">ComputerPart</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">accept</span><span class="params">(ComputerPartVisitor computerPartVisitor)</span> &#123;</span><br><span class="line">        computerPartVisitor.visit(<span class="built_in">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">accept</span><span class="params">(UserInputVisitor userInputVisitor)</span> &#123;</span><br><span class="line">        userInputVisitor.visit(<span class="built_in">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 显示器</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Monitor</span> <span class="keyword">implements</span> <span class="title class_">ComputerPart</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">accept</span><span class="params">(ComputerPartVisitor computerPartVisitor)</span> &#123;</span><br><span class="line">        computerPartVisitor.visit(<span class="built_in">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">accept</span><span class="params">(UserInputVisitor userInputVisitor)</span> &#123;</span><br><span class="line">        userInputVisitor.visit(<span class="built_in">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 鼠标</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Mouse</span> <span class="keyword">implements</span> <span class="title class_">ComputerPart</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">accept</span><span class="params">(ComputerPartVisitor computerPartVisitor)</span> &#123;</span><br><span class="line">        computerPartVisitor.visit(<span class="built_in">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">accept</span><span class="params">(UserInputVisitor userInputVisitor)</span> &#123;</span><br><span class="line">        userInputVisitor.visit(<span class="built_in">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>定义访问者，先看整体访问者</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 整体访问者</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ComputerPartDisplayVisitor</span> <span class="keyword">implements</span> <span class="title class_">ComputerPartVisitor</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">visit</span><span class="params">(Computer computer)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Displaying Computer.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">visit</span><span class="params">(Mouse mouse)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Displaying Mouse.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">visit</span><span class="params">(Keyboard keyboard)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Displaying Keyboard.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">visit</span><span class="params">(Monitor monitor)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Displaying Monitor.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输入设备访问者</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 输入设备访问者</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserInputVisitor</span> <span class="keyword">implements</span> <span class="title class_">ComputerPartVisitor</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">visit</span><span class="params">(Computer computer)</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">visit</span><span class="params">(Mouse mouse)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Displaying Mouse.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">visit</span><span class="params">(Keyboard keyboard)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Displaying Keyboard.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">visit</span><span class="params">(Monitor monitor)</span> &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>用来验证的客户端</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">VisitorPatternDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">ComputerPart</span> <span class="variable">computer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Computer</span>();</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;== Show all computer part: ==&quot;</span>);</span><br><span class="line">        computer.accept(<span class="keyword">new</span> <span class="title class_">ComputerPartDisplayVisitor</span>());</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;\n== Show user input part: ==&quot;</span>);</span><br><span class="line">        computer.accept(<span class="keyword">new</span> <span class="title class_">UserInputVisitor</span>());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">== Show all computer part: ==</span><br><span class="line">Displaying Mouse.</span><br><span class="line">Displaying Keyboard.</span><br><span class="line">Displaying Monitor.</span><br><span class="line">Displaying Computer.</span><br><span class="line"></span><br><span class="line">== Show user input part: ==</span><br><span class="line">Displaying Mouse.</span><br><span class="line">Displaying Keyboard.</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，访问者还是可能会有一些方法的冗余的，比如<code>UserInputVisitor</code>，不需要访问<code>Monitor</code>和<code>Computer</code>但却不得不实现访问者接口定义的方法（空实现）</p>
+<h2 id="模式总结"><a href="#模式总结" class="headerlink" title="模式总结"></a>模式总结</h2><p>使用访问者模式时，通常这个类（元素类）的结构（数据结构）比较固定，主要解决<strong>稳定的数据结构和易变的操作耦合问题。</strong></p>
+<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><ul>
+<li>优点<ol>
+<li>符合单一职责原则。 </li>
+<li>优秀的扩展性。</li>
+<li>灵活性。</li>
+</ol>
+</li>
+<li>缺点<ul>
+<li>具体元素对访问者公布细节，违反了迪米特原则（一个对象应该尽可能的减少对其他元素的了解）。 </li>
+<li>具体元素变更比较困难。 </li>
+<li>违反了依赖倒置原则，依赖了具体类，没有依赖抽象。</li>
+</ul>
+</li>
+</ul>
+<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p>对固定多部分组成对象元素进行不同的操作时可以用到该模式。如电脑的结构固定，我可以定义一个访问者只访问输入设备，也可以定义一个访问者访问显示设备。</p>
+<ol>
+<li>对象结构中对象对应的类很少改变，但经常需要在此对象结构上定义新的操作。</li>
+<li>需要对一个对象结构中的对象进行很多不同的并且不相关的操作，而需要避免让这些操作”污染”这些对象的类，也不希望在增加新操作时修改这些类。</li>
+</ol>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ol>
+<li>如果元素经常变动，结构不固定，就不适合使用访问者模式了，因为该模式增加新元素比较困难；</li>
+<li>访问者可以对功能进行统一，可以做报表、UI、拦截器与过滤器。</li>
+<li>在数据基础类里面有一个方法接受访问者，将<strong>自身引用</strong>传入访问者，已让访问者访问。</li>
+<li>在被访问的类里面加一个对外提供接待访问者的接口。</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
-  {% include '_partials/pagination.swig' %}
-{% endblock %}
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/7/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot; aria-label&#x3D;&quot;上一页&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/9/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot; aria-label&#x3D;&quot;下一页&quot;&gt;&lt;&#x2F;i&gt;</a>
+  </nav>
 
-{% block sidebar %}
-  {{ sidebar_template.render(false) }}
-{% endblock %}
+
+
+          </div>
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/%20%7C%7C%20archive">
+                
+                    <span class="site-state-item-count">199</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">42</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">43</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Rainmonth" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love" id="animate"> 
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Randy Zhang</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.1.0"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.1.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

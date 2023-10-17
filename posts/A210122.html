@@ -1,35 +1,1202 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.1.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.1.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '6.1.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A210122.html  概览Android通过Open Graphics Library（OpenGL®），特别是OpenGL ES API包括对高性能2D和3D图形的支持。OpenGL是一种跨平台的图形API，它为3D图形处理硬件指定了标准的软件接口。OpenGL ES是用于嵌入式设备的OpenGL规范的一种形式。Andr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android OpenGL基础——Shader的使用流程">
+<meta property="og:url" content="http://yoursite.com/posts/A210122.html">
+<meta property="og:site_name" content="荏苒追寻个人博客">
+<meta property="og:description" content="https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A210122.html  概览Android通过Open Graphics Library（OpenGL®），特别是OpenGL ES API包括对高性能2D和3D图形的支持。OpenGL是一种跨平台的图形API，它为3D图形处理硬件指定了标准的软件接口。OpenGL ES是用于嵌入式设备的OpenGL规范的一种形式。Andr">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/images/A210122/Shader%E7%9A%84%E4%BD%BF%E7%94%A8%E6%B5%81%E7%A8%8B.png">
+<meta property="article:published_time" content="2021-01-05T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-10-12T16:06:46.951Z">
+<meta property="article:author" content="Randy Zhang">
+<meta property="article:tag" content="OpenGL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/images/A210122/Shader%E7%9A%84%E4%BD%BF%E7%94%A8%E6%B5%81%E7%A8%8B.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/posts/A210122.html"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Android OpenGL基础——Shader的使用流程 | 荏苒追寻个人博客</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> 
+
+<div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">荏苒追寻个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">做一个有追求的青年</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+          
+  <li class="menu-item menu-item-home">
+    <a href="/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-about">
+    <a href="/about/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-tags">
+    <a href="/tags/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-categories">
+    <a href="/categories/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-archives">
+    <a href="/archives/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-schedule">
+    <a href="/schedule/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
+</li>
+
+      
+
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A210122.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android OpenGL基础——Shader的使用流程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-06T00:00:00+08:00">2021-01-06</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/%E9%9F%B3%E8%A7%86%E9%A2%91%E8%BF%9B%E9%98%B6/" itemprop="url" rel="index"><span itemprop="name">音视频进阶</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210122.html">https://rainmonth.github.io/posts/A210122.html</a></p>
+</blockquote>
+<h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><p>Android通过Open Graphics Library（OpenGL®），特别是OpenGL ES API包括对高性能2D和3D图形的支持。OpenGL是一种跨平台的图形API，它为3D图形处理硬件指定了标准的软件接口。OpenGL ES是用于嵌入式设备的OpenGL规范的一种形式。Android支持以下几种版本的OpenGL ES API：</p>
+<ul>
+<li>OpenGL ES 1.0 and 1.1，从1.0起就开始支持；</li>
+<li>OpenGL ES 2.0，从Android2.0（API Level 8）开始支持；</li>
+<li>OpenGL ES 3.0，从Android4.3（API Level 18）开始支持；</li>
+<li>OpenGL ES 3.1，从Android5.0（API Level 21）开始支持；</li>
+</ul>
+<p>也就是说目前主流Android 4.4以上的设备都可以使用OpenGL ES 3.0了。</p>
+<span id="more"></span>
+
+<p>系列文章</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A220802.html">Android OpenGL基础1——常用概念及方法解释</a></li>
+<li><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210122.html">Android OpenGL基础2——Shader的使用流程</a></li>
+<li><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A220805.html">Android OpenGL基础3——纹理的使用</a></li>
+<li><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A220810.html">Android OpenGL基础4——变换</a></li>
+<li><a href>Android OpenGL——Android Studio OpenGL开发的简单示例</a></li>
+</ul>
+<p>关于OpenGL一些概念的详细说明，参见下面文章：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/OpenGL/238984">OpenGL 百度百科</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/b92b39df57e5">Android OpenGL ES（一）开发入门</a></li>
+</ul>
+<p>注意：设备能支持OpenGL ES API的前提是设备制造商提供了相应管道的实现，不然一切免谈。</p>
+<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><p>Android中开发OpenGL的流程：</p>
+<ul>
+<li>OpenGL运行准备工作（也就是GLSurfaceView的设置工作）</li>
+<li>Shader源码的编写及编译及对象创建；</li>
+<li>Program的创建，Shader的挂在，Program的编译链接使用及销毁等；</li>
+<li>调试运行程序</li>
+</ul>
+<h3 id="GLSurfaceView"><a href="#GLSurfaceView" class="headerlink" title="GLSurfaceView"></a>GLSurfaceView</h3><p>GLSurfaceView是OpenGL在Android中的载体（因为OpenGL是一个图形库，但它没有实现自己的图形窗口话系统，需要依赖于当前环境来提供它渲染的载体，Android中这一工作就是通过GLSurfaceView来实现的。</p>
+<p>Android 中主要通过<code>GLSurfaceView</code>以及<code>GLSurfaceView.Rendereer</code>来使用OpenGL ES API</p>
+<ul>
+<li>GLSurfaceView，继承自SurfaceView，采用一个专门的Surface来展示OpenGL的渲染，有以下特性：<ol>
+<li>管理<code>Surface</code>，这是可以  合成到Android视图系统中的特殊内存空间；</li>
+<li>管理EGL显示，使OpenGL能够渲染到<code>Surface</code>中；</li>
+<li>接受用户提供的渲染对象，进行实际的渲染；</li>
+<li>在专用线程上进行渲染，以将渲染性能与UI线程分离；</li>
+<li>支持按需渲染和连续渲染；</li>
+<li>可选地包装，跟踪和&#x2F;或错误检查渲染器的OpenGL调用；</li>
+</ol>
+</li>
+</ul>
+<h2 id="OpenGL-ES-绘制图形"><a href="#OpenGL-ES-绘制图形" class="headerlink" title="OpenGL ES 绘制图形"></a>OpenGL ES 绘制图形</h2><p>OpenGL支持绘制的图形包括三种</p>
+<ol>
+<li>点</li>
+<li>线</li>
+<li>三角形</li>
+</ol>
+<p>其他复杂的图形都是通过上面三种基础图形来绘制的。</p>
+<h2 id="坐标系统"><a href="#坐标系统" class="headerlink" title="坐标系统"></a>坐标系统</h2><p>OpenGL坐标轴正方向定义：</p>
+<p><strong>朝右为X轴正方向，朝上为Y周正方向，朝外为Z轴正方向</strong></p>
+<p>OpenGL中，我们最终看到的坐标系统是展示在标准化设备坐标NDC（Normalized Device Coordinate）中。这个坐标系统中，所有的坐标值都在（-1，1）之间，坐标原点相当于是在正方体的中心。所以将OpenGL ES的坐标系映射到Android设备时，如果不进行矩阵变化，就会变形。这个变形就是一个3D-&gt;2D的过程；经历的坐标矩阵变化就是如下过程：</p>
+<ol>
+<li>物体在局部空间（Local Space）存在一个对应的局部坐标（Local Coordinate）；</li>
+<li>然后这个局部坐标（Local Coordinate）会转换成世界坐标（Word Coordinate）；</li>
+<li>然后世界坐标将转换成观察空间坐标（View Coordinate）（即每个坐标点都是相对于摄像机或观察者的）；</li>
+<li>得到观察控件坐标（View Coordinate）后，我们需要按实际情况通过<strong>投影矩阵（Projection Matrix）</strong>进行变换得到裁剪坐标（Clip Coordinate），这一步会确认那些点最终会出现在屏幕上；</li>
+<li>最后，裁剪坐标会被转换成屏幕坐标，通过<strong>视口变换（Viewport Transform）</strong>将位于-1.0到1.0范围的坐标变换到由glViewport函数所定义的坐标范围内。最后变换出来的坐标将会送到光栅器，将其转化为片段。</li>
+</ol>
+<p>所以，一个OpenGL物体需要经过四次矩阵变换才能最终显示在终端屏幕上。</p>
+<p>小结参考：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/115855624">OPENGL – 快速理解坐标转换系统</a></li>
+</ul>
+<h2 id="一般步骤"><a href="#一般步骤" class="headerlink" title="一般步骤"></a>一般步骤</h2><p>一般步骤见下图：</p>
+<p><img src="/../images/A210122/Shader%E7%9A%84%E4%BD%BF%E7%94%A8%E6%B5%81%E7%A8%8B.png" alt="Shader使用的一般步骤"></p>
+<ul>
+<li>Create Program，对应<code>glCreateProgram</code></li>
+<li>Load Shader，加载Shader，主要包括下满三步：<ul>
+<li>Create Shader，对应<code>glCreateShader(shaderType)</code>，创建shader对象，shaderType在源码中定义了两种，分别是：<ul>
+<li><code>GL_VERTEX_SHADER</code>，顶点Shader；</li>
+<li><code>GL_GEOMETRY_SHADER</code>，几何Shader，顶点到片段之间的过渡；</li>
+<li><code>GL_FRAGMENT_SHADER</code>，片段Shader；</li>
+</ul>
+</li>
+<li>Source Shader，对应<code>glShaderSource(GLuint shader, GLsizei count, const GLchar * const *string, const GLint *length)</code>，替换Shader对象中的Shader 源程序</li>
+<li>Compile Shader，对应<code>glCompileShader(shader)</code>，编译Shader源码</li>
+<li>获取Shader对象相关的信息，对应<code>glGetShaderiv</code>，查询Shader对象的参数信息，支持查询以下信息：<ul>
+<li><code>GL_SHADER_TYPE</code>， 获取Shader的类型；</li>
+<li><code>GL_DELETE_STATUS</code>，获取Shader是否已经删除；</li>
+<li><code>GL_COMPILE_STATUS</code>，获取Shader是否已经编译；</li>
+<li><code>GL_INFO_LOG_LENGTH</code>，获取Shader的日志信息；</li>
+<li><code>GL_SHADER_SOURCE_LENGTH</code>，获取Shader的源码长度；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Attach Shader，对应<code>glAttachShader</code>，将Shader和Program attach起来；</li>
+<li>Link Program，对应<code>glLinkProgram</code>，链接Program对象；</li>
+<li>获取Program对象的相关信息，对应<code>glGetProgramiv</code>，该方法和<code>glGetShaderiv</code>类似，具体支持的信息可以查看文档；</li>
+<li>Use Program，对应<code>glUseProgram</code>，开始渲染Program对象的内容了（Installs a program object as part of current rendering state）；</li>
+<li>Dettach Shader，对应<code>glDettachShader</code>，从Program中detach Shader；</li>
+<li>Delete Shader，对应<code>glDeleteShader</code>，删除 Shader对象；</li>
+<li>Delete Program，对应<code>glDeleteProgram</code>，删除Program对象；</li>
+</ul>
+<h2 id="Program"><a href="#Program" class="headerlink" title="Program"></a>Program</h2><p>调用<code>glCreateProgram</code>可以小创建一个<code>Program</code>，OpenGL中<strong>Program相当于当前渲染管线所使用的程序，是Shader的容器，可以挂载多个Shader</strong>。Program相关的函数有：</p>
+<ul>
+<li>glCreateProgram，创建Program对象；</li>
+<li>glAttachShader，将Program和Shader绑定；</li>
+<li>glLinkProgram，链接Program；</li>
+<li>glUseProgram，使用Program；</li>
+<li>glDeleteProgram，删除Program；</li>
+</ul>
+<p>辅助函数：</p>
+<ul>
+<li>glGetProgramiv，获取Program对象，然后从Program随想根据key-value形式来获取随想信息；</li>
+<li>glGetProgramInfoLog，获取Program对象的log信息</li>
+</ul>
+<h2 id="Shader"><a href="#Shader" class="headerlink" title="Shader"></a>Shader</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>Shader其实就是一段C程序，在按一定的语法编写好Shader源代码后，需要经过以下步骤得到Shader对象的句柄，然后通过该句柄将其与Program绑定后使用。</p>
+<ul>
+<li>glCreateShader，创建Shader对象；</li>
+<li>glShaderSource，替换Shader对象中的Shader源码；</li>
+<li>glCompileShader，编译Shader源码；</li>
+<li>glDettachShader，将Shader从Program解绑；</li>
+<li>glDeleteShader，删除Shader对象；</li>
+</ul>
+<h3 id="Shader基本信息"><a href="#Shader基本信息" class="headerlink" title="Shader基本信息"></a>Shader基本信息</h3><h4 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h4><p>主要分一下三类：</p>
+<ul>
+<li><code>GL_VERTEX_SHADER</code>，顶点Shader；</li>
+<li><code>GL_GEOMETRY_SHADER</code>，几何Shader，顶点到片段之间的过渡；</li>
+<li><code>GL_FRAGMENT_SHADER</code>，片段Shader；</li>
+</ul>
+<h4 id="属性变量与统一变量"><a href="#属性变量与统一变量" class="headerlink" title="属性变量与统一变量"></a>属性变量与统一变量</h4><p>在Shader中，<strong>属性变量</strong>和<strong>统一变量由</strong>应用程序设置，<em>Attribute属性变量用于传递顶点信息，而Uniform统一变量则用于传递用户自定义的变量</em>。这两种变量在Shader中会被定义为全局变量，在OpenGL中要设置这两种变量，就需要先获取它们的地址，然后调用OpenGL相关的设置接口为它们赋值。</p>
+<h5 id="属性变量设置"><a href="#属性变量设置" class="headerlink" title="属性变量设置"></a>属性变量设置</h5><p>获取属性变量地址</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param program 属性变量所在Shader关联的Program对象句柄</span></span><br><span class="line"><span class="comment"> * @param name    属性变量名称 </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function">GLint <span class="title">glGetAttribLocation</span><span class="params">(GLuint program, <span class="type">char</span> *name)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>通过上面的方法获取到变量的位置后，才能通过调用<code>glVertexAttribXx</code>系列方法来设置设个属性变量的值。</p>
+<p>设置属性变量</p>
+<p>第一步，假设属性变量的名字为：<code>attrA</code>，要设置这个值，先或去这个变量的位置 locationAttrA：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GLint locationAttrA = <span class="built_in">glGetAttribLocation</span>(program, <span class="string">&quot;attrA&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>第二步，在渲染开始前进行属性变量的赋值，这里有两种方式：</p>
+<ol>
+<li><p>第一种是在glBegin()和glEnd()中间，在使用glVertex系列函数生成顶点前。先调用glVertexAttrib系列函数进行赋值，接下来生成的顶点会绑定前面设置的属性变量。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">glBegin</span>(GL_TRIANGLE_STRIP);</span><br><span class="line">    <span class="built_in">glVertexAttrib1f</span>(locationAttrA, <span class="number">1.0f</span>);</span><br><span class="line">    <span class="built_in">glVertex2f</span>(<span class="number">0.0f</span>, <span class="number">0.0f</span>);</span><br><span class="line">    <span class="built_in">glVertexAttrib1f</span>(locationAttrA, <span class="number">2.0f</span>);</span><br><span class="line">    <span class="built_in">glVertex2f</span>(<span class="number">0.0f</span>, <span class="number">1.0f</span>);</span><br><span class="line">    <span class="built_in">glVertexAttrib1f</span>(locationAttrA, <span class="number">3.0f</span>);</span><br><span class="line">    <span class="built_in">glVertex2f</span>(<span class="number">1.0f</span>, <span class="number">1.0f</span>);</span><br><span class="line">    <span class="built_in">glVertexAttrib1f</span>(locationAttrA, <span class="number">4.0f</span>);</span><br><span class="line">    <span class="built_in">glVertex2f</span>(<span class="number">1.0f</span>, <span class="number">0.0f</span>);</span><br><span class="line"><span class="built_in">glEnd</span>();	</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>第二种<strong>是使用顶点数组渲染时，这个得先激活属性变量数组的功能</strong>，激活方法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">glEnableVertexAttribArray</span><span class="params">(GLint locationAttrA)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>开启这个功能后，需要调用<code>glVertexAttribPointer()</code>方法，将属性变量的值批量传入，属性变量的数组和顶点数组是一一对应的。先看看该方法的说明：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//参数local，属性变量的位置</span></span><br><span class="line"><span class="comment">//参数size，属性变量的分量数量，必须为1～4，如1为float、2～3为vec2~3</span></span><br><span class="line"><span class="comment">//参数type，属性类型，如GL_FLOAT</span></span><br><span class="line"><span class="comment">//参数normalized，是否对传入的值执行一次归一化操作</span></span><br><span class="line"><span class="comment">//参数stride，顶点数组中，两个顶点之间的步幅，0表连续的顶点</span></span><br><span class="line"><span class="comment">//参数pointer，属性变量列表指针，与顶点数组中的顶点一一对应</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">glVertexAttribPointer</span><span class="params">(GLint local, GLint size, GLenum type, GLboolean normalized, GLsizei stride, <span class="type">const</span> <span class="type">void</span> *pointer)</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>使用示例如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义4个顶点</span></span><br><span class="line"><span class="type">float</span> vertices[<span class="number">8</span>] = &#123;</span><br><span class="line">    <span class="number">0.0f</span>, <span class="number">0.0f</span>,</span><br><span class="line">    <span class="number">0.0f</span>, <span class="number">1.0f</span>,</span><br><span class="line">    <span class="number">1.0f</span>, <span class="number">1.0f</span>,</span><br><span class="line">    <span class="number">1.0f</span>, <span class="number">0.0f</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="type">float</span> myattributes[<span class="number">4</span>] = &#123;<span class="number">1.0f</span>, <span class="number">2.0f</span>, <span class="number">3.0f</span>, <span class="number">4.0f</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取一个已经成功链接的Program中的myattribute属性变量</span></span><br><span class="line">GLint local = <span class="built_in">glGetAttribLocation</span>(p, <span class="string">&quot;myattribute&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用顶点数组</span></span><br><span class="line"><span class="built_in">glEnableClientState</span>(GL_VERTEX_ARRAY);</span><br><span class="line"><span class="comment">//启用顶点属性变量数组</span></span><br><span class="line"><span class="built_in">glEnableVertexAttribArray</span>(local);</span><br><span class="line"><span class="comment">//设置顶点数组</span></span><br><span class="line"><span class="built_in">glVertexPointer</span>(<span class="number">2</span>, GL_FLOAT, <span class="number">0</span>, vertices);</span><br><span class="line"><span class="comment">//设置顶点属性数组</span></span><br><span class="line"><span class="built_in">glVertexAttribPointer</span>(local, <span class="number">1</span>, GL_FLOAT, GL_FALSE, <span class="number">0</span>, myattributes);</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h5 id="统一变量设置"><a href="#统一变量设置" class="headerlink" title="统一变量设置"></a>统一变量设置</h5><p>属性变量相当于每个顶点的私有只读变量，而Uniform统一变量则相当于整个Program的全局只读变量。统一变量和属性变量一样，都是先获取变量的位置，然后调用相关的接口进行设置的。不过统一变量在绘制时不能修改，所以必须在绘制前设置它的值。<br>至于设置接口和属性变量一致，只是将方法名中的Attrib或VertexAttrib替换成Uniform。统一变量的设置比属性变量要轻松得多，因为不需要想办法绑定到每个顶点上，只需要在渲染之前进行设置就可以了。</p>
+<h4 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h4><p>VertexShader示例说明</p>
+<figure class="highlight glsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 指定OpenGL ES的版本，没有写的话默认是2.0</span></span><br><span class="line"><span class="meta">#version es 300</span></span><br><span class="line"><span class="comment">// 定义一个统一变量矩阵</span></span><br><span class="line"><span class="keyword">uniform</span> <span class="type">mat4</span> u_matViewProj;</span><br><span class="line"><span class="comment">// 指定顶点属性索引为0的位置为四维向量</span></span><br><span class="line"><span class="keyword">layout</span>(<span class="keyword">location</span> = <span class="number">0</span>) <span class="keyword">in</span> <span class="type">vec4</span> a_position;</span><br><span class="line"><span class="comment">// 指定顶点属性索引为1的位置为三维向量</span></span><br><span class="line"><span class="keyword">layout</span>(<span class="keyword">location</span> = <span class="number">1</span>) <span class="keyword">in</span> <span class="type">vec3</span> a_color;</span><br><span class="line"><span class="comment">// 指定输出值为一个三维向量</span></span><br><span class="line"><span class="keyword">smooth</span> <span class="keyword">out</span> <span class="type">vec3</span> v_color;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> main() &#123;</span><br><span class="line">    <span class="comment">// 指定gl_Position的计算方式</span></span><br><span class="line">    <span class="built_in">gl_Position</span> = u_matViewProj * a_position;</span><br><span class="line">    <span class="comment">// 输出v_color，并制定插值限定符为smooth</span></span><br><span class="line">    v_color = a_color;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>说明：</p>
+<ul>
+<li><p>顶点着色器中，输入变量通常存储<strong>位置、法线、纹理坐标和颜色</strong>这样的数据，数据由<strong>应用程序加载</strong>；</p>
+</li>
+<li><p><code>gl_Position</code>，无需in、out、uniform等关键字的声明而直接使用，原来它是默认是归一化的<strong>裁剪空间坐标</strong>，xyz各个维度的范围为-1到1，仅能在顶点着色器中使用，<strong>既是输入也是输出</strong>。<code>gl_Position</code>赋值范围就是float的取值范围(32位)，只不过只有[-1,1]区间的片元被绘制。它是<strong>vec4类型</strong>的，不能重声明为dvec4等类型。</p>
+</li>
+<li><p>插值限定符，主要有三种，分别为：smooth、flat、centroid，说明如下：</p>
+<ul>
+<li><p>smooth，默认方式，平滑着色，顶点着色器的输出变量在图元中线性插值；</p>
+</li>
+<li><p>flat，平面着色，将一个顶点视为驱动顶点（取决于图元类型），该顶点的值用于图元中所有片段；</p>
+</li>
+<li><p>centroid，质心采样，使用多重采样渲染时，该限定符可用于强制插值发生在被渲染图元内部，否则图元边缘可能出现伪像；</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>FragmentShader示例说明</p>
+<figure class="highlight glsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 指定版本</span></span><br><span class="line"><span class="meta">#version es 300</span></span><br><span class="line"><span class="comment">// 指定精度</span></span><br><span class="line"><span class="keyword">precision</span> <span class="keyword">mediump</span> <span class="type">float</span>;</span><br><span class="line"><span class="comment">// 指定输入变量（通常来自顶点着色器中的输入变量</span></span><br><span class="line"><span class="keyword">in</span> <span class="type">vec3</span> v_color;</span><br><span class="line"><span class="comment">// 通过布局限定符指定输出一个颜色</span></span><br><span class="line"><span class="keyword">layout</span>(<span class="keyword">location</span> = <span class="number">0</span>) <span class="keyword">out</span> <span class="type">vec4</span> o_fragColor;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> main() &#123;</span><br><span class="line">    o_fragColor = <span class="type">vec4</span>(v_color, <span class="number">1.0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>说明：</p>
+<ul>
+<li>精度限定符，有lowp（低精度）、mediump（中精度）和highp（高精度）三种，较低的精度效率更高，较高的精度效果更高，通过<code>precision</code>来指定精度，通常：<ul>
+<li>顶点着色器中，如果没有指定默认的精度，则int和float默认都是highp；</li>
+<li>片段着色器中，浮点值没有默认的精度，<strong>必须由开发者指定；</strong></li>
+</ul>
+</li>
+<li>片段着色器的输入一般都是来自顶点着色器的输出；</li>
+<li>片段着色器通常会输出一个颜色（单目标渲染）或多个颜色（渲染多个目标MRT），具体的对应关系可以通过限定符<code>layout</code>来指定；</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/afei__/article/details/88922112">OpenGL ES 3.0 shader 着色语言基础语法</a></p>
+<p>小结参考：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/u010223072/article/details/80641050">OpenGL–使用Shader</a></li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>本人主要介绍了以下Android OpenGL 中Shader相关的基础知识，大多是参看上面的那位大佬的文章，然后结合者自己看看OpenGL的文档，这样就当结识了OpenGL的Shader了.</p>
+<h2 id="编译错误及常见问题"><a href="#编译错误及常见问题" class="headerlink" title="编译错误及常见问题"></a>编译错误及常见问题</h2><ol>
+<li><p>Expected token ‘{‘, found ‘identifier’？</p>
+<p>通常是GLSL语法错误，看看是不是GLSL内部类写错了；</p>
+</li>
+<li><p>在给Shader中的统一变量（Uniform）变量赋值时，需要先激活或使用Shader（即调用glUseProgram方法）；</p>
+</li>
+</ol>
+<p>参考文章：</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/150528739">Android OpenGL ES 从入门到精通系统性学习教程</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/byhook/opengles4android">Android 平台OpenGL ES3.0实践学习</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/column/c_1213149364098600960">OpenGL学习笔记</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/plokmju88/article/details/119901795">全网最全的 Android 音视频和 OpenGL ES 干货，都在这了</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/yinshipin007/article/details/124862667">FFmpeg 开发(07)：FFmpeg + OpenGLES 实现 3D 全景播放器</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/yinshipin007/article/details/125566593?spm=1001.2014.3001.5502">FFMpeg常用音频处理</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/XINCGer/Unity3DTraining">Unity3DTraining</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://yangshuohao.blog.csdn.net/article/details/120667613">独立游戏开发资源大全</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903556441456653">Unity学习资源</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://learnopengl.com/">Learn OpenGL</a></p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/OpenGL/" rel="tag"># OpenGL</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/A210106.html" rel="next" title="Android 音视频基础5——Android 实现rtmp推流">
+                <i class="fa fa-chevron-left"></i> Android 音视频基础5——Android 实现rtmp推流
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/A210107.html" rel="prev" title="Android 音视频基础6——交叉编译动态库">
+                Android 音视频基础6——交叉编译动态库 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          </div>
+          
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/%20%7C%7C%20archive">
+                
+                    <span class="site-state-item-count">199</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">42</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">43</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Rainmonth" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%A7%88"><span class="nav-number">1.</span> <span class="nav-text">概览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80"><span class="nav-number">2.</span> <span class="nav-text">基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GLSurfaceView"><span class="nav-number">2.1.</span> <span class="nav-text">GLSurfaceView</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OpenGL-ES-%E7%BB%98%E5%88%B6%E5%9B%BE%E5%BD%A2"><span class="nav-number">3.</span> <span class="nav-text">OpenGL ES 绘制图形</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9D%90%E6%A0%87%E7%B3%BB%E7%BB%9F"><span class="nav-number">4.</span> <span class="nav-text">坐标系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E8%88%AC%E6%AD%A5%E9%AA%A4"><span class="nav-number">5.</span> <span class="nav-text">一般步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Program"><span class="nav-number">6.</span> <span class="nav-text">Program</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shader"><span class="nav-number">7.</span> <span class="nav-text">Shader</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">7.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Shader%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="nav-number">7.2.</span> <span class="nav-text">Shader基本信息</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B"><span class="nav-number">7.2.1.</span> <span class="nav-text">类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B1%9E%E6%80%A7%E5%8F%98%E9%87%8F%E4%B8%8E%E7%BB%9F%E4%B8%80%E5%8F%98%E9%87%8F"><span class="nav-number">7.2.2.</span> <span class="nav-text">属性变量与统一变量</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B1%9E%E6%80%A7%E5%8F%98%E9%87%8F%E8%AE%BE%E7%BD%AE"><span class="nav-number">7.2.2.1.</span> <span class="nav-text">属性变量设置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BB%9F%E4%B8%80%E5%8F%98%E9%87%8F%E8%AE%BE%E7%BD%AE"><span class="nav-number">7.2.2.2.</span> <span class="nav-text">统一变量设置</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="nav-number">7.2.3.</span> <span class="nav-text">基本语法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-number">8.</span> <span class="nav-text">小结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E9%94%99%E8%AF%AF%E5%8F%8A%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="nav-number">9.</span> <span class="nav-text">编译错误及常见问题</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love" id="animate"> 
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Randy Zhang</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.1.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

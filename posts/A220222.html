@@ -1,35 +1,1359 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.1.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.1.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '6.1.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A220222.html  Android Daily Interview，备用地址 Java方面Java基础部分抽象类与接口的区别别  抽象类，采用 修饰符 + abstract class来定义，和普通类一样，可以定义常量、方法、抽象方法、一般方法和构造方法，是类共性的提取 接口, 采用 修饰符 + interface来定义">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 杂谈——Interview Prepare">
+<meta property="og:url" content="http://yoursite.com/posts/A220222.html">
+<meta property="og:site_name" content="荏苒追寻个人博客">
+<meta property="og:description" content="https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A220222.html  Android Daily Interview，备用地址 Java方面Java基础部分抽象类与接口的区别别  抽象类，采用 修饰符 + abstract class来定义，和普通类一样，可以定义常量、方法、抽象方法、一般方法和构造方法，是类共性的提取 接口, 采用 修饰符 + interface来定义">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-02-21T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-10-12T16:06:46.957Z">
+<meta property="article:author" content="Randy Zhang">
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/posts/A220222.html"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Android 杂谈——Interview Prepare | 荏苒追寻个人博客</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> 
+
+<div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">荏苒追寻个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">做一个有追求的青年</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+          
+  <li class="menu-item menu-item-home">
+    <a href="/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-about">
+    <a href="/about/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-tags">
+    <a href="/tags/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-categories">
+    <a href="/categories/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-archives">
+    <a href="/archives/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-schedule">
+    <a href="/schedule/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
+</li>
+
+      
+
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A220222.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android 杂谈——Interview Prepare</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-22T00:00:00+08:00">2022-02-22</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A220222.html">https://rainmonth.github.io/posts/A220222.html</a></p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/Moosphan/Android-Daily-Interview">Android Daily Interview</a>，<a target="_blank" rel="noopener" href="https://opensourcelibs.com/lib/android-daily-interview">备用地址</a></p>
+<h2 id="Java方面"><a href="#Java方面" class="headerlink" title="Java方面"></a>Java方面</h2><h3 id="Java基础部分"><a href="#Java基础部分" class="headerlink" title="Java基础部分"></a>Java基础部分</h3><h4 id="抽象类与接口的区别别"><a href="#抽象类与接口的区别别" class="headerlink" title="抽象类与接口的区别别"></a>抽象类与接口的区别别</h4><blockquote>
+<ul>
+<li>抽象类，采用 修饰符 + abstract class来定义，和普通类一样，可以定义常量、方法、抽象方法、一般方法和构造方法，是类共性的提取</li>
+<li>接口, 采用 修饰符 + interface来定义，可以定义常量(默认就是public static的），可以声明方法（java 8以后方法可以有默认实现，不过需要加上default关键字），是一种规范，实现接口的类必须提供接口中定义方法的实现。</li>
+<li>Java是单继承，多实现的</li>
+</ul>
+</blockquote>
+<span id="more"></span>
+
+<h4 id="分别讲讲final，static，-synchronized关键字可以修饰什么，以及修饰后的作用"><a href="#分别讲讲final，static，-synchronized关键字可以修饰什么，以及修饰后的作用" class="headerlink" title="分别讲讲final，static， synchronized关键字可以修饰什么，以及修饰后的作用"></a>分别讲讲final，static， synchronized关键字可以修饰什么，以及修饰后的作用</h4><h5 id="final"><a href="#final" class="headerlink" title="final"></a>final</h5><blockquote>
+<ul>
+<li>final修饰基本数据类型，表示数据不能改变；</li>
+<li>final修饰引用型数据（通常指对象），表示引用型数据的引用地址不变（但对象里面的属性还是可以改变的）</li>
+<li>final修饰方法，表示该方法不能被重载，不允许子类修改该方法的实现（private修饰的方法隐含为final方法）；</li>
+<li>final修饰类，表示该类不能被继承，该类的所有方法都是final的<br>采用final来修饰方法，1是为了安全，这样子类不能改变该方法的实现；2是为了效率(可以将方法转为内嵌调用而不是通过动态绑定来调用)</li>
+</ul>
+</blockquote>
+<h5 id="static"><a href="#static" class="headerlink" title="static"></a>static</h5><blockquote>
+<ul>
+<li>static可以修饰方法、变量、代码块、内部类。<ul>
+<li>静态方法，可以先于类实例的创建而直接通过类名访问，静态方法只能调用静态方法，访问静态变量；</li>
+<li>静态变量，用static修饰后，变量在其所属的类加载时就被赋值，该类的所有的对象共有这一个值；</li>
+<li>静态代码块，在其声明的类被加载时执行；<br>方法声明为static后，有如下限制：只能访问类其他静态方法，只能访问类的静态数据，方法内部不能使用this和super关键字。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>static方法可以被继承，但是不能被覆盖，知识被隐藏了（因为static变量是静态绑定的）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Father</span> &#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">print</span><span class="params">()</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;Father&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Son</span> <span class="keyword">extends</span> <span class="title class_">Father</span> &#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">print</span><span class="params">()</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;Son&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="type">Son</span> <span class="variable">son</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Son</span>();</span><br><span class="line">    son.print();<span class="comment">// 输出Son</span></span><br><span class="line"></span><br><span class="line">    <span class="type">Father</span> <span class="variable">son</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Son</span>();</span><br><span class="line">    son.print();<span class="comment">// 输出Father</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="synchronized"><a href="#synchronized" class="headerlink" title="synchronized"></a>synchronized</h5><p>synchronized 是java语言关键字，当它用来修饰一个方法或者一个代码块的时候，能够保证在同一时刻最多只有一个线程执行该段代码。synchronized 关键字，它包括两种用法：synchronized 方法和 synchronized 块。修饰代码块的时候，传递的可以是对象、也可以是类</p>
+<h4 id="简述下String、StringBuffer和StringBuilder的区别"><a href="#简述下String、StringBuffer和StringBuilder的区别" class="headerlink" title="简述下String、StringBuffer和StringBuilder的区别"></a>简述下String、StringBuffer和StringBuilder的区别</h4><blockquote>
+<ul>
+<li>String 是不可变的常量字符串，类采用final修饰，说明不能被继承，用来承载char字符的数据采用final修饰，说明在构造的创建的时候就已经确定了，任何String操作都是在新的String对象上产生的；</li>
+<li>StringBuffer和StringBuilder都继承自AbstractStringBuilder，都可以表示可变的字符串（表现就是用来承载char字符的数组没有用final修饰），但StringBuffer是线程安全的，而StringBuilder不是线程全的（表现就是StringBuffer相关的操作都加synchronized关键字（加锁了）</li>
+</ul>
+</blockquote>
+<h4 id="“equals”与”-”、”hashCode-”的区别"><a href="#“equals”与”-”、”hashCode-”的区别" class="headerlink" title="“equals”与”&#x3D;&#x3D;”、”hashCode()”的区别"></a>“equals”与”&#x3D;&#x3D;”、”hashCode()”的区别</h4><blockquote>
+<ul>
+<li>如果没有重写，equals方法和&#x3D;&#x3D;是相同的（equals内部调用的时&#x3D;&#x3D;）；</li>
+<li>关于hashCode，是一个散列值，Java有一个如下约定，如果两个对象相等，那么要求他的hashCode相等，但hashCode相等，equals方法却可以不等。</li>
+<li>hashCode表示的对象的散列值，通常在散列存储接口中更具hashCode来定位到存储位置，然后在配合equals方法类具体定位到对象的具体位置；</li>
+</ul>
+</blockquote>
+<h4 id="Java中深拷贝与浅拷贝的区别"><a href="#Java中深拷贝与浅拷贝的区别" class="headerlink" title="Java中深拷贝与浅拷贝的区别"></a>Java中深拷贝与浅拷贝的区别</h4><ul>
+<li>如果对象中都是基本类型，深拷贝与浅拷贝是一样的；</li>
+<li>如果对象中存在应用的成员变量，此时深拷贝和浅拷贝就有所不同：<ul>
+<li>浅拷贝只是拷贝该引用类型成员变量的地址，拷贝后的对象与原来的对象共用改引用成员；</li>
+<li>深拷贝则会在拷贝引用类型时会新建一个对象，并将原引用对象的值赋给新创建的对象。</li>
+</ul>
+</li>
+</ul>
+<p>深拷贝可以通过让对象实现Serializable接口然后序列化和反序列化实现，也可以通过Clonable接口，然后对对象的引用类型新建一个相同的对象然后为其赋值即可。</p>
+<h4 id="Error与Exception的区别"><a href="#Error与Exception的区别" class="headerlink" title="Error与Exception的区别"></a>Error与Exception的区别</h4><p>首先，二者都是Throwable的子类。Exception是异常，Java中可以预料的异常情况，可以进行捕获，并在捕获后做额外的处理（比如IO流读写是的IOException);Error是错误，是Java中不可预料的，发生后可能导致虚拟机不可处理或不可恢复，Java不建议捕获处理，比如Android中常见的OutOfMemoryError。关于Error这里说一下OutOfMerroryError:</p>
+<blockquote>
+<ol>
+<li>oom异常一般是java程序在做内存分配时，发现没有足够的剩余空间可用而抛出的异常；</li>
+<li>此时的分配空间可能是出于代码的new操作（用户主动），可能是出于内存的复制操作（语言自动），也可能是出于内存数据的重振操作（语言自动），可能是出jvm检测到外部信号（jvm自动）；</li>
+<li>oom只是被建议为不要捕获的异常，因为通常你对这种情况是无能为力的！但你如果实在要捕获，why not ？</li>
+<li>oom一般只会影响当前线程，而jvm中只要存在一个非daemon线程在运行，jvm就不会退出；</li>
+<li>如果是线程池运行环境，一般需要一个统一管理oom的程序，否则不能及时统一处理oom；</li>
+</ol>
+</blockquote>
+<h4 id="什么是反射机制，反射机制的应用场景"><a href="#什么是反射机制，反射机制的应用场景" class="headerlink" title="什么是反射机制，反射机制的应用场景"></a>什么是反射机制，反射机制的应用场景</h4><blockquote>
+<p>在运行时状态中，对于任意一个类，都能知道这个类的所有属性和方法，对于任意一个对象，都能调用它的任意一个方法和属性，这种动态获取类信息及动态调用对象方法的能力称为Java的反射机制。反射机制通常和Java注解一起，用来动态的生产类代码，动态调用类方法，常见的应用有：</p>
+</blockquote>
+<ol>
+<li>逆向代码，如反编译；</li>
+<li>与注解结合的框架，如Retrofit；</li>
+<li>EventBus、Gson等；</li>
+</ol>
+<h4 id="谈谈如何重写equals-方法，以及为什么要重写hashCode-方法"><a href="#谈谈如何重写equals-方法，以及为什么要重写hashCode-方法" class="headerlink" title="谈谈如何重写equals()方法，以及为什么要重写hashCode()方法"></a>谈谈如何重写equals()方法，以及为什么要重写hashCode()方法</h4><p>重写equals方法：先比价地址，然后比较类型，在比较需要比较的字段值。<br>直接重写Object类的equals()方法即可，没有重写则equals()相当于”&#x3D;&#x3D;”，具体重写可以参照IDE的模板生成（可以过滤掉不使用的字段）。之所以重写equals还要重写hashCode()，是因为在散列存储数据结构中（HashMap、Hashtable、HashSet等），他们先通过hashCode来定位元素插入未知的。如果两个对象equals相等，但没有重写hashCode方法，就会导致两个对象都被存进了集合</p>
+<h4 id="Java中IO流分为几种？BIO、NIO、AIO有什么区别"><a href="#Java中IO流分为几种？BIO、NIO、AIO有什么区别" class="headerlink" title="Java中IO流分为几种？BIO、NIO、AIO有什么区别"></a>Java中IO流分为几种？BIO、NIO、AIO有什么区别</h4><blockquote>
+<p>参考说明：<a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_38109046/article/details/89449305">https://blog.csdn.net/m0_38109046/article/details/89449305</a><br>Java中的IO流主要包括三种BIO（传统的Block）NIO</p>
+</blockquote>
+<h4 id="谈谈对Java中泛型擦除的理解，并说说其局限性"><a href="#谈谈对Java中泛型擦除的理解，并说说其局限性" class="headerlink" title="谈谈对Java中泛型擦除的理解，并说说其局限性"></a>谈谈对Java中泛型擦除的理解，并说说其局限性</h4><p>泛型擦除讲的就是定义的泛型类型变量在被编译器编译成字节码后，最终都会被替换成实实在在的数据类型的过程。</p>
+<h4 id="String为什么要设计成不可变的"><a href="#String为什么要设计成不可变的" class="headerlink" title="String为什么要设计成不可变的"></a>String为什么要设计成不可变的</h4><blockquote>
+<p>首先明确，String类时final修饰的，且起真正承载字符的数据也是final的，这就保证String对象在创建完成后就不可变。那么为什么这样设计呢？</p>
+<ol>
+<li>字符串常量池，其存在就是为了性能优化，发现要创建的字符串常量已经存在，就无需再次分配内存了，而是直接引用已经存在于常量池中的字符串对象，提高了效率；<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s1 = <span class="string">&quot;abc&quot;</span>;</span><br><span class="line">s2 = <span class="string">&quot;abc&quot;</span>;<span class="comment">// 此时只是把对重字符串常量池中的abc对应的地址赋值给s2，并没有再额外开劈内存空间</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>hashCode,String对象重写了hashCode方法，并且缓存了hashCode，String不可变就可以报纸String对象创建后hashCode就不可变且不需要重新计算，使得String和适合作为HashMap的key</li>
+<li>线程安全</li>
+</ol>
+</blockquote>
+<h4 id="对Java注解的理解"><a href="#对Java注解的理解" class="headerlink" title="对Java注解的理解"></a>对Java注解的理解</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J191115.html">Java注解</a></li>
+</ul>
+<h4 id="Java成员变量、局部变量和静态变量的创建和回收时机"><a href="#Java成员变量、局部变量和静态变量的创建和回收时机" class="headerlink" title="Java成员变量、局部变量和静态变量的创建和回收时机"></a>Java成员变量、局部变量和静态变量的创建和回收时机</h4><ul>
+<li>成员变量，对象被创建时创建，当对象不在被引用时，在下一次GC被回收；</li>
+<li>局突变量，方法执行时创建，方法只想完成后被回收；</li>
+<li>静态变量，在类被加载时创建，当类不在使用时被回收；</li>
+</ul>
+<h4 id="Java中String-length-的运作原理"><a href="#Java中String-length-的运作原理" class="headerlink" title="Java中String.length()的运作原理"></a>Java中String.length()的运作原理</h4><h3 id="Java集合"><a href="#Java集合" class="headerlink" title="Java集合"></a>Java集合</h3><h4 id="谈谈List、Set、Map的区别"><a href="#谈谈List、Set、Map的区别" class="headerlink" title="谈谈List、Set、Map的区别"></a>谈谈List、Set、Map的区别</h4><ul>
+<li>List 逻辑上有序，可以有重复的元素，可以有多个null元素；</li>
+<li>Set 无序，不能有重复元素，至多能有一个null元素；</li>
+<li>Map 键值对集合，无序，最多允许一个null键，可以多个空值；</li>
+</ul>
+<h4 id="谈谈ArrayList和LinkedList的区别"><a href="#谈谈ArrayList和LinkedList的区别" class="headerlink" title="谈谈ArrayList和LinkedList的区别"></a>谈谈ArrayList和LinkedList的区别</h4><ul>
+<li>ArrayList，基于数组，读的效率高；</li>
+<li>LinkedList，基于链表，插入效率高；</li>
+</ul>
+<h4 id="HashMap和HashTable的区别"><a href="#HashMap和HashTable的区别" class="headerlink" title="HashMap和HashTable的区别"></a>HashMap和HashTable的区别</h4><p>HashMap和Hashtable都实现了Map接口，但决定用哪一个之前先要弄清楚它们之间的分别。下面多HashMap和Hashtable做一些说明：</p>
+<ul>
+<li><p><strong>继承的父类不同</strong>：HashMap和Hashtable不仅作者不同，而且连父类也是不一样的。HashMap是继承自AbstractMap类，而HashTable是继承自Dictionary类。不过它们都实现了同时实现了map、Cloneable（可复制）、Serializable（可序列化）这三个接口</p>
+</li>
+<li><p><strong>迭代器区别</strong>：HashMap的迭代器(Iterator)是fail-fast迭代器，而Hashtable的enumerator迭代器不是fail-fast的。所以当有其它线程改变了HashMap的结构（增加或者移除元素），将会抛出ConcurrentModificationException，但迭代器本身的remove()方法移除元素则不会抛出ConcurrentModificationException异常。但这并不是一个一定发生的行为，要看JVM。这条同样也是Enumeration和Iterator的区别。</p>
+</li>
+<li><p>内部实现与操作上的区别</p>
+<ul>
+<li>HashTable<ol>
+<li>底层数组+链表实现，无论key还是value都不能为null，线程安全，实现线程安全的方式是在修改数据时锁住整个HashTable，效率低，ConcurrentHashMap做了相关优化</li>
+<li>初始size为11，扩容：newsize &#x3D; olesize*2+1</li>
+<li>计算index的方法：index &#x3D; (hash &amp; 0x7FFFFFFF) % tab.length</li>
+</ol>
+</li>
+<li>HashMap<ol>
+<li>底层数组+链表实现，可以存储null键和null值，线程不安全</li>
+<li>初始size为16，扩容：newsize &#x3D; oldsize*2，size一定为2的n次幂</li>
+<li>扩容针对整个Map，每次扩容时，原来数组中的元素依次重新计算存放位置，并重新插入</li>
+<li>插入元素后才判断该不该扩容，有可能无效扩容（插入后如果扩容，如果没有再次插入，就会产生无效扩容）</li>
+<li>当Map中元素总数超过Entry数组的75%，触发扩容操作，为了减少链表长度，元素分配更均匀</li>
+<li>计算index方法：index &#x3D; hash &amp; (tab.length – 1)</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<p>HashMap加载因子额外考虑</p>
+<ol>
+<li><p>一些常用概念<br> 谈到Hash类的集合，一般都会有如下几个概念：</p>
+<ul>
+<li><strong>哈希冲突</strong>：若干Key的哈希值按数组大小取模后，如果落在同一个数组下标上，将组成一条Entry链，对Key的查找需要遍历Entry链上的每个元素执行equals()比较。</li>
+<li><strong>加载因子</strong>：为了降低哈希冲突的概率，默认当HashMap中的键值对达到数组大小的75%时，即会触发扩容。因此，如果预估容量是100，即需要设定100&#x2F;0.75＝134的数组大小。</li>
+<li><strong>空间换时间</strong>：如果希望加快Key查找的时间，还可以进一步降低加载因子，加大初始大小，以降低哈希冲突的概率。</li>
+</ul>
+</li>
+<li><p>Hash表的属性</p>
+<p> HashMap和HashTable都是用hash算法来决定其元素的存储，因此HashMap和Hashtable的hash表包含如下属性：</p>
+<ul>
+<li>容量（capacity）：hash表中桶的数量</li>
+<li>初始化容量（initial capacity）：创建hash表时桶的数量，HashMap允许在构造器中指定初始化容量</li>
+<li>尺寸（size）：当前hash表中记录的数量</li>
+<li>负载因子（load factor）：负载因子等于“size&#x2F;capacity”。负载因子为0，表示空的hash表，0.5表示半满的散列表，依此类推。轻负载的散列表具有冲突少、适宜插入与查询的特点（但是使用Iterator迭代元素时比较慢）</li>
+</ul>
+</li>
+<li><p>负载因子说明</p>
+</li>
+</ol>
+<p>  hash表里还有一个“负载极限”，“负载极限”是一个0～1的数值，“负载极限”决定了hash表的最大填满程度。当hash表中的负载因子达到指定的“负载极限”时，hash表会自动成倍地增加容量（桶的数量），并将原有的对象重新分配，放入新的桶内，这称为rehashing。<br>  HashMap和Hashtable的构造器允许指定一个负载极限，HashMap和Hashtable默认的“负载极限”为0.75，这表明当该hash表的3&#x2F;4已经被填满时，hash表会发生rehashing。</p>
+<blockquote>
+<p>“负载极限”的默认值（0.75）是时间和空间成本上的一种折中：</p>
+<ul>
+<li>较高的“负载极限”可以降低hash表所占用的内存空间，但会增加查询数据的时间开销，而查&gt; 询是最频繁的操作（HashMap的get()与put()方法都要用到查询）</li>
+<li>较低的“负载极限”会提高查询数据的性能，但会增加hash表所占用的内存开销程序猿可以根&gt; 据实际情况来调整“负载极限”值。</li>
+</ul>
+</blockquote>
+<h4 id="ArrayList的扩容机制"><a href="#ArrayList的扩容机制" class="headerlink" title="ArrayList的扩容机制"></a>ArrayList的扩容机制</h4><p>ArrayList默认的容量是10：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">DEFAULT_CAPACITY</span> <span class="operator">=</span> <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+
+<p>扩容的代码在<code>grow(int minCapacity)</code>方法中：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">grow</span><span class="params">(<span class="type">int</span> minCapacity)</span> &#123;</span><br><span class="line">  <span class="comment">// overflow-conscious code</span></span><br><span class="line">  <span class="type">int</span> <span class="variable">oldCapacity</span> <span class="operator">=</span> elementData.length;</span><br><span class="line">  <span class="type">int</span> <span class="variable">newCapacity</span> <span class="operator">=</span> oldCapacity + (oldCapacity &gt;&gt; <span class="number">1</span>); <span class="comment">// 计算新的容量值：为老的的1.5倍</span></span><br><span class="line">  <span class="keyword">if</span> (newCapacity - minCapacity &lt; <span class="number">0</span>)<span class="comment">// 新的值不符合预期（不能满足minCapacity，就扩容为minCapacity的容量</span></span><br><span class="line">      newCapacity = minCapacity;</span><br><span class="line">  <span class="keyword">if</span> (newCapacity - MAX_ARRAY_SIZE &gt; <span class="number">0</span>) <span class="comment">// 新的值太大，通过hugeCapacity来进行判断</span></span><br><span class="line">      newCapacity = hugeCapacity(minCapacity);</span><br><span class="line">      <span class="comment">// minCapacity is usually close to size, so this is a win:</span></span><br><span class="line">  elementData = Arrays.copyOf(elementData, newCapacity);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>方法的参数<code>minCapacity</code>，表示的时期望分配的最小容量</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">hugeCapacity</span><span class="params">(<span class="type">int</span> minCapacity)</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (minCapacity &lt; <span class="number">0</span>) <span class="comment">// overflow</span></span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">OutOfMemoryError</span>();</span><br><span class="line">  <span class="keyword">return</span> (minCapacity &gt; MAX_ARRAY_SIZE) ?</span><br><span class="line">      Integer.MAX_VALUE :</span><br><span class="line">      MAX_ARRAY_SIZE;<span class="comment">// 返回最大值</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="HashMap的实现原理"><a href="#HashMap的实现原理" class="headerlink" title="HashMap的实现原理"></a>HashMap的实现原理</h4><p>参考文章：<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J180320.html">Java集合HashMap</a></p>
+<h4 id="请简述LinkedHashMap的工作原理和使用方式"><a href="#请简述LinkedHashMap的工作原理和使用方式" class="headerlink" title="请简述LinkedHashMap的工作原理和使用方式"></a>请简述LinkedHashMap的工作原理和使用方式</h4><p>LinkedHashMap 继承自HashMap，并实现了Map接口，也就是说HashMap有的一些方法，LinkedHashMap都有，通过维护一个双向链表来保证Map数据的有序输出。</p>
+<h4 id="谈谈对于ConcurrentHashMap的理解"><a href="#谈谈对于ConcurrentHashMap的理解" class="headerlink" title="谈谈对于ConcurrentHashMap的理解"></a>谈谈对于ConcurrentHashMap的理解</h4><p>分段锁，线程安全，效率高</p>
+<h3 id="Java多线程"><a href="#Java多线程" class="headerlink" title="Java多线程"></a>Java多线程</h3><h4 id="谈谈happens-before"><a href="#谈谈happens-before" class="headerlink" title="谈谈happens-before"></a>谈谈happens-before</h4><p>在Java内存模型中，happens-before 应该翻译成：前一个操作的结果可以被后续的操作获取。讲白点就是前面一个操作把变量a赋值为1，那后面一个操作肯定能知道a已经变成了1。</p>
+<ul>
+<li>程序次序规则：在一个线程内一段代码的执行结果是有序的。就是还会指令重排，但是随便它怎么排，结果是按照我们代码的顺序生成的不会变！</li>
+<li>管程锁定规则：就是无论是在单线程环境还是多线程环境，对于同一个锁来说，一个线程对这个锁解锁之后，另一个线程获取了这个锁都能看到前一个线程的操作结果！(管程是一种通用的同步原语，synchronized就是管程的实现）</li>
+<li>volatile变量规则：就是如果一个线程先去写一个volatile变量，然后一个线程去读这个变量，那么这个写操作的结果一定对读的这个线程可见。</li>
+<li>线程启动规则：在主线程A执行过程中，启动子线程B，那么线程A在启动子线程B之前对共享变量的修改结果对线程B可见。</li>
+<li>线程终止规则：在主线程A执行过程中，子线程B终止，那么线程B在终止之前对共享变量的修改结果在线程A中可见。</li>
+<li>线程中断规则：对线程interrupt()方法的调用先行发生于被中断线程代码检测到中断事件的发生，可以通过Thread.interrupted()检测到是否发生中断。</li>
+<li>传递规则：这个简单的，就是happens-before原则具有传递性，即A happens-before B ， B happens-before C，那么A happens-before C。</li>
+<li>对象终结规则：这个也简单的，就是一个对象的初始化的完成，也就是构造函数执行的结束一定 happens-before它的finalize()方法。</li>
+</ul>
+<h4 id="3-1-Java-中使用多线程的方式有哪些？"><a href="#3-1-Java-中使用多线程的方式有哪些？" class="headerlink" title="3.1 Java 中使用多线程的方式有哪些？"></a>3.1 Java 中使用多线程的方式有哪些？</h4><ul>
+<li>使用Thread或继承Thread类；</li>
+<li>实现Runnable的类（Thread本身也是实现Runnable接口的）；</li>
+<li>实现Callable接口的类</li>
+<li>采用线程池</li>
+</ul>
+<h4 id="3-2-说一下线程的几种状态？"><a href="#3-2-说一下线程的几种状态？" class="headerlink" title="3.2 说一下线程的几种状态？"></a>3.2 说一下线程的几种状态？</h4><ul>
+<li><p>new,线程创建了，但尚未调用其start方法；</p>
+</li>
+<li><p>runnable，运行状态（包含就绪状态和运行状态，start，线程创建了，调用start方法了，但线程调度程序尚未执行这个线程，这个状态持续的时间会很短）</p>
+</li>
+<li><p>blocked，阻塞状态，等待其他线程释放锁时进入该状态（即等待monitor lock进入同步块或同步方法或者调用wait后等待重新进入同步块或同步方法</p>
+</li>
+<li><p>waiting，等待状态，调用wait方法进入等待状态，需要等待notify</p>
+</li>
+<li><p>timed_waiting，限时等待（调用sleep、Object.wait(long)、Thread.join(long)、LockSupport.parkNanos()、LockSupport.parkUntil()</p>
+</li>
+<li><p>terminated，终止状态</p>
+</li>
+<li><p>Thread.yield() : 当前线程，不释放锁资源，由运行状态变为就绪状态，让OS再次选择线程。作用：让相同优先级的线程轮流执行，但并不保证一定会轮流执行。实际中无法保证yield()达到让步目的，因为让步的线程还有可能被线程调度程序再次选中。不会导致阻塞。该方法与sleep()类似，只是不能由用户指定暂停多长时间。</p>
+</li>
+<li><p>Thread.sleep(millis)： 当前线程，当前线程进入TIMED_WAITING状态，但不释放对象锁，millis后线程自动苏醒进入就绪状态。作用：给其它线程执行机会的最佳方式</p>
+</li>
+<li><p>Thread.join()。当前线程调用其他线程t的join方法，当前线程进入WAITTING&#x2F;TIMED_WAITTING 状态。不释放已持有的对象锁。等待线程t执行完成或者时间结束。可能会进入 Blocked状态。基于wait实现</p>
+</li>
+<li><p>Object.wait()：当前线程调用对象的wait方法，当前线程进入等待队列。释放当前对象锁。</p>
+</li>
+<li><p>Object.notify(): 唤醒等待队列中的任意一个线程。jdk 1.8 唤醒的是头节点（等待时间最长的那个）</p>
+</li>
+<li><p>Object.notifyAll(): 唤醒等待队列中的全部线程。</p>
+</li>
+</ul>
+<h4 id="3-3-如何实现多线程中的同步？"><a href="#3-3-如何实现多线程中的同步？" class="headerlink" title="3.3 如何实现多线程中的同步？"></a>3.3 如何实现多线程中的同步？</h4><p>线程间的同步实质是保证线程中共享变量的数据同步</p>
+<ul>
+<li>volatile关键字，在get和set的场景下是可以的，由于get和set的时候都加了读写内存屏障，在数据可见性上保证数据同步。但是对于++这种非原子性操作，数据会出现不同步</li>
+<li>synchronized对代码块或方法加锁，结合wait，notify调度保证数据同步</li>
+<li>reentrantLock加锁结合Condition条件设置，在线程调度上保障数据同步</li>
+<li>CountDownLatch简化版的条件锁，在线程调度上保障数据同步</li>
+<li>cas&#x3D;compare and swap(set), 在保证操作原子性上，确保数据同步</li>
+<li>参照UI线程更新UI的思路，使用handler把多线程的数据更新都集中在一个线程上，避免多线程出现脏读</li>
+</ul>
+<h4 id="3-4-谈谈线程死锁，如何有效的避免线程死锁？"><a href="#3-4-谈谈线程死锁，如何有效的避免线程死锁？" class="headerlink" title="3.4 谈谈线程死锁，如何有效的避免线程死锁？"></a>3.4 谈谈线程死锁，如何有效的避免线程死锁？</h4><p>定义：</p>
+<blockquote>
+<p>所谓死锁是指多个线程因竞争资源而造成的一种僵局（互相等待），若无外力作用，这些线程都将无法向前推进。</p>
+</blockquote>
+<p>产生死锁必须同时满足以下四个条件，只要其中任一条件不成立，死锁就不会发生。</p>
+<ul>
+<li>互斥条件：进程要求对所分配的资源（如打印机）进行排他性控制，即在一段时间内某资源仅为一个进程所占有。此时若有其他进程请求该资源，则请求进程只能等待。</li>
+<li>不剥夺条件：进程所获得的资源在未使用完毕之前，不能被其他进程强行夺走，即只能由获得该资源的进程自己来释放（只能是主动释放)。</li>
+<li>请求和保持条件：进程已经保持了至少一个资源，但又提出了新的资源请求，而该资源已被其他进程占有，此时请求进程被阻塞，但对自己已获得的资源保持不放。</li>
+<li>循环等待条件：存在一种进程资源的循环等待链，链中每一个进程已获得的资源同时被链中下一个进程所请求。</li>
+</ul>
+<p>死锁示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment">* 一个简单的死锁类 </span></span><br><span class="line"><span class="comment">* 当DeadLock类的对象flag==1时（td1），先锁定o1,睡眠500毫秒 </span></span><br><span class="line"><span class="comment">* 而td1在睡眠的时候另一个flag==0的对象（td2）线程启动，先锁定o2,睡眠500毫秒 </span></span><br><span class="line"><span class="comment">* td1睡眠结束后需要锁定o2才能继续执行，而此时o2已被td2锁定； </span></span><br><span class="line"><span class="comment">* td2睡眠结束后需要锁定o1才能继续执行，而此时o1已被td1锁定； </span></span><br><span class="line"><span class="comment">* td1、td2相互等待，都需要得到对方锁定的资源才能继续执行，从而死锁。 </span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DeadLock</span> <span class="keyword">implements</span> <span class="title class_">Runnable</span> &#123; </span><br><span class="line">  <span class="keyword">public</span> <span class="type">int</span> <span class="variable">flag</span> <span class="operator">=</span> <span class="number">1</span>; </span><br><span class="line">  <span class="comment">//静态对象是类的所有对象共享的 </span></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">Object</span> <span class="variable">o1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Object</span>(), o2 = <span class="keyword">new</span> <span class="title class_">Object</span>(); </span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123; </span><br><span class="line">    System.out.println(<span class="string">&quot;flag=&quot;</span> + flag); </span><br><span class="line">    <span class="keyword">if</span> (flag == <span class="number">1</span>) &#123; </span><br><span class="line">      <span class="keyword">synchronized</span> (o1) &#123; </span><br><span class="line">        <span class="keyword">try</span> &#123; </span><br><span class="line">          Thread.sleep(<span class="number">500</span>); </span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123; </span><br><span class="line">          e.printStackTrace(); </span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">synchronized</span> (o2) &#123; </span><br><span class="line">          System.out.println(<span class="string">&quot;1&quot;</span>); </span><br><span class="line">        &#125; </span><br><span class="line">      &#125; </span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">if</span> (flag == <span class="number">0</span>) &#123; </span><br><span class="line">      <span class="keyword">synchronized</span> (o2) &#123; </span><br><span class="line">        <span class="keyword">try</span> &#123; </span><br><span class="line">          Thread.sleep(<span class="number">500</span>); </span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123; </span><br><span class="line">          e.printStackTrace(); </span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">synchronized</span> (o1) &#123; </span><br><span class="line">          System.out.println(<span class="string">&quot;0&quot;</span>); </span><br><span class="line">        &#125; </span><br><span class="line">      &#125; </span><br><span class="line">    &#125; </span><br><span class="line">  &#125; </span><br><span class="line">  </span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123; </span><br><span class="line">      </span><br><span class="line">    <span class="type">DeadLock</span> <span class="variable">td1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DeadLock</span>(); </span><br><span class="line">    <span class="type">DeadLock</span> <span class="variable">td2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DeadLock</span>(); </span><br><span class="line">    td1.flag = <span class="number">1</span>; </span><br><span class="line">    td2.flag = <span class="number">0</span>; </span><br><span class="line">    <span class="comment">//td1,td2都处于可执行状态，但JVM线程调度先执行哪个线程是不确定的。 </span></span><br><span class="line">    <span class="comment">//td2的run()可能在td1的run()之前运行 </span></span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">Thread</span>(td1).start(); </span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">Thread</span>(td2).start(); </span><br><span class="line">  </span><br><span class="line">  &#125; </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<p>避免线程死锁，只要破会以上四个条件中的一个就可以了</p>
+<ul>
+<li>保证枷锁顺序，相当于给获取下一个锁增加限制条件，只有获取到前一个锁才有可能获取到下一个</li>
+<li>加锁实现，当线程获取一个锁时，给它一个获取锁的时限，超过这个时间还没获取到，就采取一定措施了，不在等待了，不去请求该所，并释放自己已经获取到的锁；</li>
+<li>死锁检测，利用map、图等数据结构将线程和其获取到的锁进行记录，然后在线程请求锁失败时遍历存储的数据结构（通常是图）来看看是否有死锁发生，如果有，则让线程释放自己的锁，并放弃其他锁的请求，在一定时间后进行重试；</li>
+</ul>
+<h4 id="3-5-谈谈线程阻塞的原因？"><a href="#3-5-谈谈线程阻塞的原因？" class="headerlink" title="3.5 谈谈线程阻塞的原因？"></a>3.5 谈谈线程阻塞的原因？</h4><p>主要分三种：</p>
+<ul>
+<li>等待阻塞；调用Object.wait，是线程放弃了cpu的使用权，并且释放对象锁，线程就被加入等待队列了，等地啊Object.notify()（或者Object.notifyAll()）来唤醒</li>
+<li>同步阻塞；synchronized关键字同步锁、或者其他形式的锁造成的线程进入等待池（锁的等待池）</li>
+<li>其他阻塞（I&#x2F;O、网络阻塞）<ul>
+<li>I&#x2F;O 操作</li>
+<li>网络连接；</li>
+<li>socket连接</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>竞争锁需要等待，此时就阻塞了；</li>
+<li>线程自己调用sleep方法、</li>
+<li>线程调用对象的wait方法阻塞；</li>
+<li>线程中发起了I&#x2F;O操作（System.in.read())或者进行了远程通信，如发送同步的网络请求，在I&#x2F;O输入之前或网络请求结果返回之前，是阻塞的</li>
+<li>请求与服务器建立连接时，即当线程执行Socket带参构造函数，或者执行Socket的connect方法，会进入阻塞，直到连接成功才从socket的构造方法或connect方法返回；</li>
+<li>线程从Socket的输入流读取数据时，如果没有足够的数据，就会进入阻塞状态，直到读到了足够的数据，或者到达输入流的末尾，或者出现了异常，才从输入流的read()方法返回或异常中断。输入流中有多少数据才算足够呢?这要看线程执行的read()方法的类型。</li>
+</ol>
+<ul>
+<li>int read(); 只要输入流中有一个字节，就算足够。</li>
+<li>int read(byte[] buff); 只要输入流中的字节数目与参数buff数组的长度相同，就算足够。</li>
+<li>String readLine(); 只要输入流中有一行字符串，就算足够。值得注意的是，InputStream类并没有readLine方法，在过滤流BufferedReader类中才有此方法。</li>
+</ul>
+<ol start="7">
+<li>线程向Socket的输出流写一批数据时，可能会进入阻塞状态，等到输出了所有的数据，或者出现异常，才从输出流的write()方法返回或异常中断。</li>
+<li>调用Socket的setSoLinger()方法设置了关闭Socket的延迟时间，那么当线程执行Socket的close方法时，会进入阻塞状态，直到底层Socket发送完所有剩余数据，或者超过了setSoLinger()方法设置的延迟时间，才从close()方法返回。</li>
+</ol>
+<h4 id="3-6-请谈谈-Thread-中-run-与-start-方法的区别？"><a href="#3-6-请谈谈-Thread-中-run-与-start-方法的区别？" class="headerlink" title="3.6 请谈谈 Thread 中 run() 与 start() 方法的区别？"></a>3.6 请谈谈 Thread 中 run() 与 start() 方法的区别？</h4><p>run()方法其实是Runnable接口定意思的方法，其实就是一个普通的接口调用；<br>start()方法时线程真正开始的地方，调用start方法后，线程在获取到CPU时间片后，就开始真正的运行了；</p>
+<p>start()方法时同步的，有synchronized关键字修饰，内部调用start0这个native方法，主要用来通知JVM创建线程，设置线程组用的。</p>
+<p>如果没有调用start，而直接调用run，此时run方法就是一次简单的对象方法调用。</p>
+<h4 id="3-7-说一下-synchronized-和-volatile-关键字的区别？"><a href="#3-7-说一下-synchronized-和-volatile-关键字的区别？" class="headerlink" title="3.7 说一下 synchronized 和 volatile 关键字的区别？"></a>3.7 说一下 synchronized 和 volatile 关键字的区别？</h4><ol>
+<li>volatile本质是在告诉jvm当前变量在寄存器（工作内存）中的值是不确定的，需要从主存中读取； synchronized则是锁定当前变量，只有当前线程可以访问该变量，其他线程被阻塞住。</li>
+<li>volatile仅能使用在变量级别；synchronized则可以使用在变量、方法、和类级别的</li>
+<li>volatile仅能实现变量的修改可见性，不能保证原子性；而synchronized则可以保证变量的修改可见性和原子性</li>
+<li>volatile不会造成线程的阻塞；synchronized可能会造成线程的阻塞。</li>
+<li>volatile标记的变量不会被编译器优化；synchronized标记的变量可以被编译器优化</li>
+</ol>
+<h4 id="3-8-如何保证线程安全？"><a href="#3-8-如何保证线程安全？" class="headerlink" title="3.8 如何保证线程安全？"></a>3.8 如何保证线程安全？</h4><p>首先要理解什么是线程安全，在多个线程访问共同资源时,在某一个线程对资源进行写操作中途(写入已经开始,还没结束),其他线程对这个写了一般资源进行了读操作,或者基于这个写了一半操作进行写操作,导致数据问题。（多个线程的情况下发生还没写完就读，还没读完就写，导致程序运行的结果不如预期）</p>
+<p>要保证线程安全<br>前提： 需要遵循happens-before原则，即前一个操作的结果能被后面一个操作获取，例如一个线程将一个变量a赋值为1了，另一个线程知道这个结果。</p>
+<ol>
+<li>采用同步机制synchronized关键字、或者CountDownLatch、ReentrantLock、CyclicBarrier等；</li>
+<li>采用volatile关键字（注意他只能保证可见性，不能保证原子性，能用来保存线程安全的场景有限，通常是单写多度）</li>
+<li>采用Atomic包（本质上是乐观锁）</li>
+<li>采用ThreadLocal进行线程隔离</li>
+</ol>
+<p>保证线程安全需要保证：</p>
+<ol>
+<li>原子性：一个操作或者多个操作，要么全部执行并且执行的过程不会被任何因素打断，要么就都不执行</li>
+<li>可见性，一个线程对值做出更改，其他线程需要能看到这个值以及被改变</li>
+<li>有序性，程序的执行要和代码的顺序一致。</li>
+</ol>
+<h4 id="3-9-谈谈-ThreadLocal-用法和原理？"><a href="#3-9-谈谈-ThreadLocal-用法和原理？" class="headerlink" title="3.9 谈谈 ThreadLocal 用法和原理？"></a>3.9 谈谈 ThreadLocal 用法和原理？</h4><p>用法示例：两个线程，共享一个变量 ThreadLocal a，线程t1将a赋值为0到5并顺序打印；线程t2将a赋值为6到10并顺序打印。<br>气质这个a中，存储了多个指定变量的副本，放在了ThreadLocalMap的value中，见下面代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">set</span><span class="params">(T value)</span> &#123;</span><br><span class="line">    <span class="type">Thread</span> <span class="variable">t</span> <span class="operator">=</span> Thread.currentThread();</span><br><span class="line">    <span class="type">ThreadLocalMap</span> <span class="variable">map</span> <span class="operator">=</span> getMap(t);</span><br><span class="line">    <span class="keyword">if</span> (map != <span class="literal">null</span>)</span><br><span class="line">        map.set(<span class="built_in">this</span>, value);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        createMap(t, value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">createMap</span><span class="params">(Thread t, T firstValue)</span> &#123;</span><br><span class="line">    t.threadLocals = <span class="keyword">new</span> <span class="title class_">ThreadLocalMap</span>(<span class="built_in">this</span>, firstValue);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ThreadLocalMap的key是ThreadLocal对象，它是根据线程获取到的。</p>
+<p>ThreadLocal用完要及时remove，否则也是会造成内存泄漏的，虽然ThreadLocal中的ThreadLocalMap的Value是个弱引用，但是它的key，不是，如果一个外层资源运行完毕，触发了GC，但此时他还被作为key的Thread所引用，就会导致外层资源不能被回收。</p>
+<h4 id="3-10-谈谈-Java-线程中-notify-和-notifyAll-方法有什么区别？"><a href="#3-10-谈谈-Java-线程中-notify-和-notifyAll-方法有什么区别？" class="headerlink" title="3.10 谈谈 Java 线程中 notify 和 notifyAll 方法有什么区别？"></a>3.10 谈谈 Java 线程中 notify 和 notifyAll 方法有什么区别？</h4><p>都是对象Object类的方法，前者通知等待该对象锁队列中的一个（JDK1.8是最久的一个即第一个），后者是通知等待该对象锁队列的所有</p>
+<h4 id="3-11-什么是线程池？如何创建一个线程池？"><a href="#3-11-什么是线程池？如何创建一个线程池？" class="headerlink" title="3.11 什么是线程池？如何创建一个线程池？"></a>3.11 什么是线程池？如何创建一个线程池？</h4><p>在会打之前，先要想想使用线程的方式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Thread</span> <span class="variable">t</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(<span class="keyword">new</span> <span class="title class_">Runnable</span>() &#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">// do somthing</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">t.start();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>线程池，就是一组线程的集合。可以用来进行线程复用。</p>
+<p>线程池可以通过 Executors方法创建 一些android为我们提供的线程池。比如 Executors.newFixedThreadPool(int)</p>
+<p>但最好是还要舒心线程池创建的参数<br>线程池不允许使用Executors去创建，而是通过ThreadPoolExecutor的方式，这样的处理方式让写的同学更加明确线程池的运行规则，规避资源耗尽的风险。<br>说明：Executors返回的线程池对象的弊端如下：<br>1）FixedThreadPool和SingleThreadPool:<br>   允许的请求队列长度为Integer.MAX_VALUE，可能会堆积大量的请求，从而导致OOM。<br>2）CachedThreadPool:<br>  允许的创建线程数量为Integer.MAX_VALUE，可能会创建大量的线程，从而导致OOM。</p>
+<p>让我们用这种方法创建自己的线程池</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">ThreadPoolExecutor</span>(</span><br><span class="line">  <span class="type">int</span> corePoolSize, <span class="comment">//核心线程数</span></span><br><span class="line">  <span class="type">int</span> maximumPoolSize, <span class="comment">// 最大线程数</span></span><br><span class="line">  <span class="type">long</span> keepAliveTime, <span class="comment">//保活时间</span></span><br><span class="line">  TimeUnit unit, <span class="comment">//时间单位</span></span><br><span class="line">  BlockingQueue workQueue, <span class="comment">//任务队列</span></span><br><span class="line">  RejectedExecutionHandler handler) <span class="comment">//最后一个参数， 当前线程数超过。 任务队列数+最大线程数时的具体操作。比如抛出异常或者丢掉线程任务等等。</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>再有就是其他具体细节问题了。比如shutdown(),和shutdownNow()区别啦。看名字应该都懂，一个等待 队列里 没完事的继续执行再关，另一个直接关取消任务。</p>
+<p>再有就是ScheduledThreadPool这种用于执行周期性任务的。scheduleAtFixedRate方法和scheduleWithFixedDelay方法区别啦？</p>
+<p>  任务耗时  小于   线程周期时间  scheduleAtFixedRate（勤快） 在周期时间到达时，开始新一轮任务。 scheduleWithFixedDelay（懒惰）在任务结束后，才开始计算周期时间，周期时间结束后，再开始新的任务。 </p>
+<p>任务耗时  大于  线程周期时间   scheduleAtFixedRate（勤快） 任务结束后，马上开始新一轮任务。但是由于 任务耗时 &gt; 线程周期时间%% 实际上这个周期时间已经被耗时时间影响到了。<br>scheduleWithFixedDelay （懒惰）任务结束后，开始计算周期时间，然后开始执行新一轮任务。</p>
+<p>ps：就好比耗时的任务是每天上班。 线程周期24h（每天11点来git答题）。<br>scheduleAtFixedRate（勤快，下班了，马上答题。提前下班。11点答题。加班超过11点，下班了立刻答题）<br>scheduleWithFixedDelay（懒惰，必须休息。即下班了，必须休息固定的时间，在去答题。无论早下班还是晚下班。）</p>
+<h4 id="3-12-谈一谈-Java-中几种常见锁以及它们的使用场景？"><a href="#3-12-谈一谈-Java-中几种常见锁以及它们的使用场景？" class="headerlink" title="3.12 谈一谈 Java 中几种常见锁以及它们的使用场景？"></a>3.12 谈一谈 Java 中几种常见锁以及它们的使用场景？</h4><ol>
+<li>synchronized</li>
+<li>ReentrantLock</li>
+<li>Semaphore</li>
+<li>AtomicInteger（内部利用CAS）</li>
+</ol>
+<p>悲观锁与乐观锁<br>悲观锁：不管怎样都枷锁，即使其他线程根本没有对共享数据进行修改，实现通常synchronized关键字、ReentrantLock等<br>乐观锁：认为其他线程没有修改数据，不加锁，但是在更新共享数据的时候，回去判断有没有人修改这个数据。实现方式有版本号控制、CAS算法</p>
+<p>公平锁与偏向锁</p>
+<h4 id="3-13-谈一谈线程-sleep-和-wait-方法的区别？"><a href="#3-13-谈一谈线程-sleep-和-wait-方法的区别？" class="headerlink" title="3.13 谈一谈线程 sleep() 和 wait() 方法的区别？"></a>3.13 谈一谈线程 sleep() 和 wait() 方法的区别？</h4><p>sleep是Thread的方法，调用sleep后，线程进入time_wating状态，<strong>但不释放锁</strong>，等待时间结束后再获取到cpu时间片后又会重新运行<br>而wait是对象的方法，调用线程内调用对象的wait方法，当前线程进入阻塞状态，需要等待</p>
+<h4 id="3-14-什么是悲观锁和乐观锁？"><a href="#3-14-什么是悲观锁和乐观锁？" class="headerlink" title="3.14 什么是悲观锁和乐观锁？"></a>3.14 什么是悲观锁和乐观锁？</h4><h4 id="3-15-什么是-BlockingQueue？请分析一下其内部原理并谈谈它的使用场景？"><a href="#3-15-什么是-BlockingQueue？请分析一下其内部原理并谈谈它的使用场景？" class="headerlink" title="3.15 什么是 BlockingQueue？请分析一下其内部原理并谈谈它的使用场景？"></a>3.15 什么是 BlockingQueue？请分析一下其内部原理并谈谈它的使用场景？</h4><h4 id="3-16-谈一谈-Java-线程安全的集合有哪些？各有什么特点？"><a href="#3-16-谈一谈-Java-线程安全的集合有哪些？各有什么特点？" class="headerlink" title="3.16 谈一谈 Java 线程安全的集合有哪些？各有什么特点？"></a>3.16 谈一谈 Java 线程安全的集合有哪些？各有什么特点？</h4><p>Hashtable，数组+链表结构<br>Vector实现List接口，现行接口<br>ConcurrentHashMap HashMap的线程安全版本，较Hashtable在多线程的情况下性能更高</p>
+<h4 id="3-17-Java-中为什么会出现-Atomic-类？试分析它的原理和缺点？"><a href="#3-17-Java-中为什么会出现-Atomic-类？试分析它的原理和缺点？" class="headerlink" title="3.17 Java 中为什么会出现 Atomic 类？试分析它的原理和缺点？"></a>3.17 Java 中为什么会出现 Atomic 类？试分析它的原理和缺点？</h4><p>Atomic类采用的自旋锁</p>
+<h4 id="3-18-说说-ThreadLocal-的使用场景？与-Synchronized-相比有什么特性？"><a href="#3-18-说说-ThreadLocal-的使用场景？与-Synchronized-相比有什么特性？" class="headerlink" title="3.18 说说 ThreadLocal 的使用场景？与 Synchronized 相比有什么特性？"></a>3.18 说说 ThreadLocal 的使用场景？与 Synchronized 相比有什么特性？</h4><p>ThreadLocal是通过线程隔离来保证多线程下使用安全，而Synchronized是通过线程同步来保证线程安全。</p>
+<h3 id="Java虚拟机"><a href="#Java虚拟机" class="headerlink" title="Java虚拟机"></a>Java虚拟机</h3><h4 id="4-1-请简要谈一谈-Java-中的垃圾回收机制？"><a href="#4-1-请简要谈一谈-Java-中的垃圾回收机制？" class="headerlink" title="4.1 请简要谈一谈 Java 中的垃圾回收机制？"></a>4.1 请简要谈一谈 Java 中的垃圾回收机制？</h4><p>JVM维护的一套内存回收机制，将那些不在被引用的对象占用内存回收在利用的机制；内存一般都是分代回收的。所以Java中内存分为以下三代：</p>
+<ul>
+<li>新生代</li>
+<li>老年代，新生代尽力多次Minor GC后就进入了老年代，一些大的对象也会直接在老年代分配；</li>
+<li>永久代，<br>回收算法</li>
+<li>标记清除算法，先找到要清除的对象，然后进行清除，效率低，容易产生内存碎片</li>
+<li>复制算法，将内存划分两个区域，将还在使用的对象复制到新的区域，然后直接回收原来区域；</li>
+<li>标记整理算法，标记起来，然后将要清楚和不要清楚的飞凯，然后将要清除的清除（有点放舱医院的感觉）</li>
+</ul>
+<h4 id="4-2-回答一下什么是强、软、弱、虚引用以及它们之间的区别？"><a href="#4-2-回答一下什么是强、软、弱、虚引用以及它们之间的区别？" class="headerlink" title="4.2 回答一下什么是强、软、弱、虚引用以及它们之间的区别？"></a>4.2 回答一下什么是强、软、弱、虚引用以及它们之间的区别？</h4><p>强：最普遍的引用，如通过new创建的对象，只要引用连没断开，就不会被回收，而且如果申请时内存不足，会直接OOM<br>软：内存不足时，下一次GC会被回收；<br>弱：GC时被回收；<br>虚：不会决定对象的生命周期，任何时候都可能被回收，通常和ReferenceQueue配合使用，用来判断对象是否要被回收了。</p>
+<h4 id="4-3-简述-JVM-中类的加载机制与加载过程？"><a href="#4-3-简述-JVM-中类的加载机制与加载过程？" class="headerlink" title="4.3 简述 JVM 中类的加载机制与加载过程？"></a>4.3 简述 JVM 中类的加载机制与加载过程？</h4><p>JVM将class文件加载到内存，并对数据进行校验、转换解析和初始化，最终生成可以被虚拟机识别的Class 对象的过程，这既是类加载机制</p>
+<p>过程：加载-&gt;链接（校验文件、准备内存、解析文件）-&gt; 初始化-&gt; 使用</p>
+<h4 id="4-4-JVM、Dalvik、ART-三者的原理和区别？"><a href="#4-4-JVM、Dalvik、ART-三者的原理和区别？" class="headerlink" title="4.4 JVM、Dalvik、ART 三者的原理和区别？"></a>4.4 JVM、Dalvik、ART 三者的原理和区别？</h4><h4 id="4-5-请谈谈-Java-的内存回收机制？"><a href="#4-5-请谈谈-Java-的内存回收机制？" class="headerlink" title="4.5 请谈谈 Java 的内存回收机制？"></a>4.5 请谈谈 Java 的内存回收机制？</h4><h4 id="4-6-什么是-JMM？它存在哪些问题？该如何解决？"><a href="#4-6-什么是-JMM？它存在哪些问题？该如何解决？" class="headerlink" title="4.6 什么是 JMM？它存在哪些问题？该如何解决？"></a>4.6 什么是 JMM？它存在哪些问题？该如何解决？</h4><p>Java内存模型：定义了共享内存系统中多线程程序读写操作行为的规范，Java内存模型也就是为了解决这个并发编程问题而存在的<br>怎么解决：内存模型解决并发问题主要采取两种方式，分别是限制处理器优化，另一种是使用了内存屏障。<br>而对于这两种方式，Java底层其实已经封装好了一些关键字，我们这边只需要用起来就可以了。<br>关于解决并发编程中的原子性问题，Java底层封装了Synchronized的方式，来保证方法和代码块内的操作都是原子性的；<br>而至于可见性问题，Java底层则封装了Volatile的方式，将被修饰的变量在修改后立即同步到主内存中。<br>至于有序性问题，其实也就是我们所说的重排序问题，Volatile关键字也会禁止指令的重排序，而Synchroinzed关键字由于保证了同一时刻只允许一条线程操作，自然也就保证了有序性。</p>
+<h2 id="Android方面"><a href="#Android方面" class="headerlink" title="Android方面"></a>Android方面</h2><h3 id="Android-四大组件相关"><a href="#Android-四大组件相关" class="headerlink" title="Android 四大组件相关"></a>Android 四大组件相关</h3><h4 id="Activity-与-Fragment-之间常见的几种通信方式？"><a href="#Activity-与-Fragment-之间常见的几种通信方式？" class="headerlink" title="Activity 与 Fragment 之间常见的几种通信方式？"></a>Activity 与 Fragment 之间常见的几种通信方式？</h4><ol>
+<li>对象建的简单调用；</li>
+<li>通过接口来进行；</li>
+<li>通过广播；</li>
+<li>通过EventBus；</li>
+</ol>
+<h4 id="谈谈-Android-中几种-LaunchMode-的特点和应用场景？"><a href="#谈谈-Android-中几种-LaunchMode-的特点和应用场景？" class="headerlink" title="谈谈 Android 中几种 LaunchMode 的特点和应用场景？"></a>谈谈 Android 中几种 LaunchMode 的特点和应用场景？</h4><p>四种<br>标准<br>singleTop，栈顶复用，在栈顶的话直接onNewIntent，不在栈顶，则新建一个<br>singleTask，同一个应用一个栈只能有一个，如果不在栈顶，会将位于其上的finish，让其至于栈顶；不是同一个易用，则会新建一个栈；<br>singleIntance 一个栈，一个实例并且只能有一个；</p>
+<h4 id="BroadcastReceiver-与-LocalBroadcastReceiver-有什么区别？"><a href="#BroadcastReceiver-与-LocalBroadcastReceiver-有什么区别？" class="headerlink" title="BroadcastReceiver 与 LocalBroadcastReceiver 有什么区别？"></a>BroadcastReceiver 与 LocalBroadcastReceiver 有什么区别？</h4><p>前者是全局广播，8.0之前可以静态注册页可以动态注册，8.0后只能动态注册了；后者只能动态注册，是应用内广播</p>
+<h4 id="对于-Context，你了解多少"><a href="#对于-Context，你了解多少" class="headerlink" title="对于 Context，你了解多少?"></a>对于 Context，你了解多少?</h4><h4 id="IntentFilter-是什么？有哪些使用场景？匹配机制是怎样的？"><a href="#IntentFilter-是什么？有哪些使用场景？匹配机制是怎样的？" class="headerlink" title="IntentFilter 是什么？有哪些使用场景？匹配机制是怎样的？"></a>IntentFilter 是什么？有哪些使用场景？匹配机制是怎样的？</h4><h4 id="谈一谈-startService-和-bindService-方法的区别，生命周期以及使用场景？"><a href="#谈一谈-startService-和-bindService-方法的区别，生命周期以及使用场景？" class="headerlink" title="谈一谈 startService 和 bindService 方法的区别，生命周期以及使用场景？"></a>谈一谈 startService 和 bindService 方法的区别，生命周期以及使用场景？</h4><p>startService启动<br>使用：</p>
+<ol>
+<li>定义Service；</li>
+<li>AndroidManifest.xml中配置Service</li>
+<li>调用Context.startService 启动（可以通过Intent来传递参数）</li>
+<li>不在使用时调用stopService来停止该服务；<br>生命周期(生命周期和Activity不同，Activity结束了Service不一定结束)<br>onCreate-&gt;onStartCommand-&gt;onDestroy</li>
+</ol>
+<p>bindService启动</p>
+<ol>
+<li>定义Service</li>
+<li>AndroidManifest.xml中配置Service</li>
+<li>调用Context.bindService 启动（可以通过Intent来传递参数）</li>
+<li>不再使用时调用unbindServie解除绑定</li>
+</ol>
+<p>生命周期(生命周期和Activity相同，Activity结束Service就结束了)<br>onCreate-&gt;onBind-&gt;onUnbind-&gt;onDestroy</p>
+<p>Activity和Service的通信方式</p>
+<ol>
+<li>Intent</li>
+<li>通过广播、通过EventBus；</li>
+<li>bind方式启动时，可以通过实现ServiceConnection完成二者交互</li>
+</ol>
+<h4 id="Service-如何进行保活？"><a href="#Service-如何进行保活？" class="headerlink" title="Service 如何进行保活？"></a>Service 如何进行保活？</h4><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904069425790984">Service 保活方案</a></p>
+<ol>
+<li>不再白名单的进入后台运行的Service，Android 8.0以上，将在在1分钟后被秒；</li>
+<li>Android 8.0后不允许后台运行的Service在调用startService了</li>
+</ol>
+<p>所以需要通过提高Service优先级来提交Service的存活了<br>前台进程-&gt;可见进程-&gt;服务进程-&gt;后台进程-&gt;空进程</p>
+<p>所以常见多发应该是通过startForground配合Notification的形式来保活，比如音乐播放器</p>
+<ol>
+<li>提高Server进程所在优先级；</li>
+<li>类似双进程守护；</li>
+<li>引导用户将其加入到系统或厂商加入白名单</li>
+</ol>
+<h4 id="简单介绍下-ContentProvider-是如何实现数据共享的？"><a href="#简单介绍下-ContentProvider-是如何实现数据共享的？" class="headerlink" title="简单介绍下 ContentProvider 是如何实现数据共享的？"></a>简单介绍下 ContentProvider 是如何实现数据共享的？</h4><h4 id="说下切换横竖屏时-Activity-的生命周期变化？"><a href="#说下切换横竖屏时-Activity-的生命周期变化？" class="headerlink" title="说下切换横竖屏时 Activity 的生命周期变化？"></a>说下切换横竖屏时 Activity 的生命周期变化？</h4><h4 id="Activity-中-onNewIntent-方法的调用时机和使用场景？"><a href="#Activity-中-onNewIntent-方法的调用时机和使用场景？" class="headerlink" title="Activity 中 onNewIntent 方法的调用时机和使用场景？"></a>Activity 中 onNewIntent 方法的调用时机和使用场景？</h4><h4 id="Intent-传输数据的大小有限制吗？如何解决？"><a href="#Intent-传输数据的大小有限制吗？如何解决？" class="headerlink" title="Intent 传输数据的大小有限制吗？如何解决？"></a>Intent 传输数据的大小有限制吗？如何解决？</h4><blockquote>
+<p>#define BINDER_VM_SIZE ((1<em>1024</em>1024) - (4096 *2))，通过共享内存的形式来进行传值</p>
+</blockquote>
+<h4 id="说说-ContentProvider、ContentResolver、ContentObserver-之间的关系？"><a href="#说说-ContentProvider、ContentResolver、ContentObserver-之间的关系？" class="headerlink" title="说说 ContentProvider、ContentResolver、ContentObserver 之间的关系？"></a>说说 ContentProvider、ContentResolver、ContentObserver 之间的关系？</h4><h4 id="说说-Activity-加载的流程？"><a href="#说说-Activity-加载的流程？" class="headerlink" title="说说 Activity 加载的流程？"></a>说说 Activity 加载的流程？</h4><h4 id="Android-异步任务和消息机制"><a href="#Android-异步任务和消息机制" class="headerlink" title="Android 异步任务和消息机制"></a>Android 异步任务和消息机制</h4><h4 id="HandlerThread-的使用场景和实现原理？"><a href="#HandlerThread-的使用场景和实现原理？" class="headerlink" title="HandlerThread 的使用场景和实现原理？"></a>HandlerThread 的使用场景和实现原理？</h4><h4 id="IntentService-的应用场景和内部实现原理？"><a href="#IntentService-的应用场景和内部实现原理？" class="headerlink" title="IntentService 的应用场景和内部实现原理？"></a>IntentService 的应用场景和内部实现原理？</h4><h4 id="AsyncTask-的优点和缺点？内部实现原理是怎样的？"><a href="#AsyncTask-的优点和缺点？内部实现原理是怎样的？" class="headerlink" title="AsyncTask 的优点和缺点？内部实现原理是怎样的？"></a>AsyncTask 的优点和缺点？内部实现原理是怎样的？</h4><p>内部是Handler+线程池<br>几个回调的调用线程</p>
+<h4 id="谈谈你对-Activity-runOnUiThread-的理解？"><a href="#谈谈你对-Activity-runOnUiThread-的理解？" class="headerlink" title="谈谈你对 Activity.runOnUiThread 的理解？"></a>谈谈你对 Activity.runOnUiThread 的理解？</h4><p>如果当前在UI线程，则Runnable立即运行；如果非UI线程，则提交到UI线程的消息队列，等待执行的时机；</p>
+<h4 id="Android-的子线程能否做到更新-UI？"><a href="#Android-的子线程能否做到更新-UI？" class="headerlink" title="Android 的子线程能否做到更新 UI？"></a>Android 的子线程能否做到更新 UI？</h4><h4 id="谈谈-Android-中消息机制和原理？"><a href="#谈谈-Android-中消息机制和原理？" class="headerlink" title="谈谈 Android 中消息机制和原理？"></a>谈谈 Android 中消息机制和原理？</h4><h4 id="为什么在子线程中创建-Handler-会抛异常？"><a href="#为什么在子线程中创建-Handler-会抛异常？" class="headerlink" title="为什么在子线程中创建 Handler 会抛异常？"></a>为什么在子线程中创建 Handler 会抛异常？</h4><h4 id="试从源码角度分析-Handler-的-post-和-sendMessage-方法的区别和应用场景？"><a href="#试从源码角度分析-Handler-的-post-和-sendMessage-方法的区别和应用场景？" class="headerlink" title="试从源码角度分析 Handler 的 post 和 sendMessage 方法的区别和应用场景？"></a>试从源码角度分析 Handler 的 post 和 sendMessage 方法的区别和应用场景？</h4><p>最终调用的都是<code>sendMessageAtTime</code></p>
+<h4 id="Handler-中有-Loop-死循环，为什么没有阻塞主线程，原理是什么？"><a href="#Handler-中有-Loop-死循环，为什么没有阻塞主线程，原理是什么？" class="headerlink" title="Handler 中有 Loop 死循环，为什么没有阻塞主线程，原理是什么？"></a>Handler 中有 Loop 死循环，为什么没有阻塞主线程，原理是什么？</h4><blockquote>
+<p>主线程的死循环一直运行是不是特别消耗CPU资源呢？ 其实不然，这里就涉及到Linux pipe&#x2F;epoll机制，简单说就是在主线程的MessageQueue没有消息时，便阻塞在loop的queue.next()中的nativePollOnce() 方法里，此时主线程会释放CPU资源进入休眠状态，直到下个消息到达或者有事务发生，通过往pipe管道写端写入数据来唤醒主线程工作。这里采用的epoll机制，是一种IO多路复用机制，可以同时监控多个描述符，当某个描述符就绪(读或写就绪)，则立刻通知相应程序进行读或写操作，本质同步I&#x2F;O，即读写是阻塞的。 所以说，主线程大多数时候都是处于休眠状态，并不会消耗大量CPU资源。 Gityuan–Handler(Native层)</p>
+</blockquote>
+<h3 id="Android-UI-绘制相关"><a href="#Android-UI-绘制相关" class="headerlink" title="Android UI 绘制相关"></a>Android UI 绘制相关</h3><p>此类主要涵盖 Android 的 View 绘制过程、常见 UI 组件、自定义 View、动画等。</p>
+<h4 id="Android-补间动画和属性动画的区别？"><a href="#Android-补间动画和属性动画的区别？" class="headerlink" title="Android 补间动画和属性动画的区别？"></a>Android 补间动画和属性动画的区别？</h4><h4 id="Window-和-DecorView-是什么？DecorView-又是如何和-Window-建立联系的"><a href="#Window-和-DecorView-是什么？DecorView-又是如何和-Window-建立联系的" class="headerlink" title="Window 和 DecorView 是什么？DecorView 又是如何和 Window 建立联系的?"></a>Window 和 DecorView 是什么？DecorView 又是如何和 Window 建立联系的?</h4><h4 id="简述一下-Android-中-UI-的刷新机制？"><a href="#简述一下-Android-中-UI-的刷新机制？" class="headerlink" title="简述一下 Android 中 UI 的刷新机制？"></a>简述一下 Android 中 UI 的刷新机制？</h4><h4 id="你认为-LinearLayout、FrameLayout-和-RelativeLayout-哪个效率高-为什么？"><a href="#你认为-LinearLayout、FrameLayout-和-RelativeLayout-哪个效率高-为什么？" class="headerlink" title="你认为 LinearLayout、FrameLayout 和 RelativeLayout 哪个效率高, 为什么？"></a>你认为 LinearLayout、FrameLayout 和 RelativeLayout 哪个效率高, 为什么？</h4><h4 id="说一下-Android-中的事件分发机制？"><a href="#说一下-Android-中的事件分发机制？" class="headerlink" title="说一下 Android 中的事件分发机制？"></a>说一下 Android 中的事件分发机制？</h4><h4 id="谈谈自定义-View-的流程？"><a href="#谈谈自定义-View-的流程？" class="headerlink" title="谈谈自定义 View 的流程？"></a>谈谈自定义 View 的流程？</h4><h4 id="有针对-RecyclerView-做过哪些优化？"><a href="#有针对-RecyclerView-做过哪些优化？" class="headerlink" title="有针对 RecyclerView 做过哪些优化？"></a>有针对 RecyclerView 做过哪些优化？</h4><h4 id="谈谈你是如何优化-ListView-的？"><a href="#谈谈你是如何优化-ListView-的？" class="headerlink" title="谈谈你是如何优化 ListView 的？"></a>谈谈你是如何优化 ListView 的？</h4><h4 id="谈一谈自定义-RecyclerView-LayoutManager-的流程？"><a href="#谈一谈自定义-RecyclerView-LayoutManager-的流程？" class="headerlink" title="谈一谈自定义 RecyclerView.LayoutManager 的流程？"></a>谈一谈自定义 RecyclerView.LayoutManager 的流程？</h4><h4 id="什么是-RemoteViews？使用场景有哪些？"><a href="#什么是-RemoteViews？使用场景有哪些？" class="headerlink" title="什么是 RemoteViews？使用场景有哪些？"></a>什么是 RemoteViews？使用场景有哪些？</h4><h4 id="谈一谈获取View宽高的几种方法？"><a href="#谈一谈获取View宽高的几种方法？" class="headerlink" title="谈一谈获取View宽高的几种方法？"></a>谈一谈获取View宽高的几种方法？</h4><h4 id="View-post-为什么可以获取到宽高信息？"><a href="#View-post-为什么可以获取到宽高信息？" class="headerlink" title="View.post() 为什么可以获取到宽高信息？"></a>View.post() 为什么可以获取到宽高信息？</h4><h4 id="谈一谈属性动画的插值器和估值器？"><a href="#谈一谈属性动画的插值器和估值器？" class="headerlink" title="谈一谈属性动画的插值器和估值器？"></a>谈一谈属性动画的插值器和估值器？</h4><h4 id="getDimension、getDimensionPixelOffset-和-getDimensionPixelSize-三者的区别？"><a href="#getDimension、getDimensionPixelOffset-和-getDimensionPixelSize-三者的区别？" class="headerlink" title="getDimension、getDimensionPixelOffset 和 getDimensionPixelSize 三者的区别？"></a>getDimension、getDimensionPixelOffset 和 getDimensionPixelSize 三者的区别？</h4><h4 id="请谈谈源码中-StaticLayout-的用法和应用场景？"><a href="#请谈谈源码中-StaticLayout-的用法和应用场景？" class="headerlink" title="请谈谈源码中 StaticLayout 的用法和应用场景？"></a>请谈谈源码中 StaticLayout 的用法和应用场景？</h4><h4 id="有用过ConstraintLayout吗？它有哪些特点？"><a href="#有用过ConstraintLayout吗？它有哪些特点？" class="headerlink" title="有用过ConstraintLayout吗？它有哪些特点？"></a>有用过ConstraintLayout吗？它有哪些特点？</h4><h4 id="关于LayoutInflater，它是如何通过-inflate-方法获取到具体View的？"><a href="#关于LayoutInflater，它是如何通过-inflate-方法获取到具体View的？" class="headerlink" title="关于LayoutInflater，它是如何通过 inflate 方法获取到具体View的？"></a>关于LayoutInflater，它是如何通过 inflate 方法获取到具体View的？</h4><h4 id="谈一谈如何实现-Fragment-懒加载？"><a href="#谈一谈如何实现-Fragment-懒加载？" class="headerlink" title="谈一谈如何实现 Fragment 懒加载？"></a>谈一谈如何实现 Fragment 懒加载？</h4><h4 id="谈谈-RecyclerView的缓存机制？"><a href="#谈谈-RecyclerView的缓存机制？" class="headerlink" title="谈谈 RecyclerView的缓存机制？"></a>谈谈 RecyclerView的缓存机制？</h4><h4 id="请说说-View-inflate-和-LayoutInflater-inflate-的区别？"><a href="#请说说-View-inflate-和-LayoutInflater-inflate-的区别？" class="headerlink" title="请说说 View.inflate 和 LayoutInflater.inflate 的区别？"></a>请说说 View.inflate 和 LayoutInflater.inflate 的区别？</h4><p>View.inflate</p>
+<h4 id="请谈谈-invalidate-和-postInvalidate-方法的区别和应用场景？"><a href="#请谈谈-invalidate-和-postInvalidate-方法的区别和应用场景？" class="headerlink" title="请谈谈 invalidate() 和 postInvalidate() 方法的区别和应用场景？"></a>请谈谈 invalidate() 和 postInvalidate() 方法的区别和应用场景？</h4><p>一个在UI线程中调用，另一个可以在非UI线程中调用</p>
+<h4 id="谈一谈自定义View和ViewGroup的流程以及区别？"><a href="#谈一谈自定义View和ViewGroup的流程以及区别？" class="headerlink" title="谈一谈自定义View和ViewGroup的流程以及区别？"></a>谈一谈自定义View和ViewGroup的流程以及区别？</h4><p>要做的事情不同</p>
+<h4 id="谈一谈-SurfaceView-与-TextureView-的使用场景和用法？"><a href="#谈一谈-SurfaceView-与-TextureView-的使用场景和用法？" class="headerlink" title="谈一谈 SurfaceView 与 TextureView 的使用场景和用法？"></a>谈一谈 SurfaceView 与 TextureView 的使用场景和用法？</h4><h4 id="谈一谈-RecyclerView-Adapter-的几种数据刷新方式有何不同？"><a href="#谈一谈-RecyclerView-Adapter-的几种数据刷新方式有何不同？" class="headerlink" title="谈一谈 RecyclerView.Adapter 的几种数据刷新方式有何不同？"></a>谈一谈 RecyclerView.Adapter 的几种数据刷新方式有何不同？</h4><h4 id="说说你对-Window-和-WindowManager-的理解？"><a href="#说说你对-Window-和-WindowManager-的理解？" class="headerlink" title="说说你对 Window 和 WindowManager 的理解？"></a>说说你对 Window 和 WindowManager 的理解？</h4><h4 id="谈一谈-Activity、View-和-Window-三者的关系？"><a href="#谈一谈-Activity、View-和-Window-三者的关系？" class="headerlink" title="谈一谈 Activity、View 和 Window 三者的关系？"></a>谈一谈 Activity、View 和 Window 三者的关系？</h4><h4 id="有了解过WindowInsets吗？它有哪些应用场景？"><a href="#有了解过WindowInsets吗？它有哪些应用场景？" class="headerlink" title="有了解过WindowInsets吗？它有哪些应用场景？"></a>有了解过WindowInsets吗？它有哪些应用场景？</h4><h4 id="Android-中-View-的几种位移方式的区别？"><a href="#Android-中-View-的几种位移方式的区别？" class="headerlink" title="Android 中 View 的几种位移方式的区别？"></a>Android 中 View 的几种位移方式的区别？</h4><h4 id="为什么-ViewPager-嵌套-ViewPager，内部的-ViewPager-滚动没有被拦截？"><a href="#为什么-ViewPager-嵌套-ViewPager，内部的-ViewPager-滚动没有被拦截？" class="headerlink" title="为什么 ViewPager 嵌套 ViewPager，内部的 ViewPager 滚动没有被拦截？"></a>为什么 ViewPager 嵌套 ViewPager，内部的 ViewPager 滚动没有被拦截？</h4><h4 id="请谈谈-Fragment-的生命周期？"><a href="#请谈谈-Fragment-的生命周期？" class="headerlink" title="请谈谈 Fragment 的生命周期？"></a>请谈谈 Fragment 的生命周期？</h4><h4 id="请谈谈什么是同步屏障？"><a href="#请谈谈什么是同步屏障？" class="headerlink" title="请谈谈什么是同步屏障？"></a>请谈谈什么是同步屏障？</h4><h4 id="有了解过-ViewDragHelper-的工作原理吗？"><a href="#有了解过-ViewDragHelper-的工作原理吗？" class="headerlink" title="有了解过 ViewDragHelper 的工作原理吗？"></a>有了解过 ViewDragHelper 的工作原理吗？</h4><h4 id="谈一谈Android的屏幕刷新机制？"><a href="#谈一谈Android的屏幕刷新机制？" class="headerlink" title="谈一谈Android的屏幕刷新机制？"></a>谈一谈Android的屏幕刷新机制？</h4><h3 id="Android-性能调优相关"><a href="#Android-性能调优相关" class="headerlink" title="Android 性能调优相关"></a>Android 性能调优相关</h3><h4 id="谈谈你对Android性能优化方面的了解？"><a href="#谈谈你对Android性能优化方面的了解？" class="headerlink" title="谈谈你对Android性能优化方面的了解？"></a>谈谈你对Android性能优化方面的了解？</h4><h4 id="一般什么情况下会导致内存泄漏问题？如何解决"><a href="#一般什么情况下会导致内存泄漏问题？如何解决" class="headerlink" title="一般什么情况下会导致内存泄漏问题？如何解决"></a>一般什么情况下会导致内存泄漏问题？如何解决</h4><h4 id="自定义-Handler-时如何有效地避免内存泄漏问题？"><a href="#自定义-Handler-时如何有效地避免内存泄漏问题？" class="headerlink" title="自定义 Handler 时如何有效地避免内存泄漏问题？"></a>自定义 Handler 时如何有效地避免内存泄漏问题？</h4><h4 id="哪些情况下会导致OOM问题？如何解决？"><a href="#哪些情况下会导致OOM问题？如何解决？" class="headerlink" title="哪些情况下会导致OOM问题？如何解决？"></a>哪些情况下会导致OOM问题？如何解决？</h4><h4 id="ANR-出现的场景以及解决方案？"><a href="#ANR-出现的场景以及解决方案？" class="headerlink" title="ANR 出现的场景以及解决方案？"></a>ANR 出现的场景以及解决方案？</h4><h4 id="谈谈-Android-中内存优化的方式？"><a href="#谈谈-Android-中内存优化的方式？" class="headerlink" title="谈谈 Android 中内存优化的方式？"></a>谈谈 Android 中内存优化的方式？</h4><h4 id="谈谈布局优化的技巧？"><a href="#谈谈布局优化的技巧？" class="headerlink" title="谈谈布局优化的技巧？"></a>谈谈布局优化的技巧？</h4><h4 id="对于-Android-中图片资源的优化方案你知道哪些？"><a href="#对于-Android-中图片资源的优化方案你知道哪些？" class="headerlink" title="对于 Android 中图片资源的优化方案你知道哪些？"></a>对于 Android 中图片资源的优化方案你知道哪些？</h4><h4 id="Android-Native-Crash-问题如何分析定位？"><a href="#Android-Native-Crash-问题如何分析定位？" class="headerlink" title="Android Native Crash 问题如何分析定位？"></a>Android Native Crash 问题如何分析定位？</h4><h4 id="该如何给-Apk-瘦身？"><a href="#该如何给-Apk-瘦身？" class="headerlink" title="该如何给 Apk 瘦身？"></a>该如何给 Apk 瘦身？</h4><h4 id="说一下你是如何优化-App-启动过程的？"><a href="#说一下你是如何优化-App-启动过程的？" class="headerlink" title="说一下你是如何优化 App 启动过程的？"></a>说一下你是如何优化 App 启动过程的？</h4><h4 id="谈谈代码混淆的步骤？"><a href="#谈谈代码混淆的步骤？" class="headerlink" title="谈谈代码混淆的步骤？"></a>谈谈代码混淆的步骤？</h4><h4 id="说说-App-的电量优化？"><a href="#说说-App-的电量优化？" class="headerlink" title="说说 App 的电量优化？"></a>说说 App 的电量优化？</h4><h4 id="谈谈如何对-WebView-进行优化？"><a href="#谈谈如何对-WebView-进行优化？" class="headerlink" title="谈谈如何对 WebView 进行优化？"></a>谈谈如何对 WebView 进行优化？</h4><h4 id="如何处理大图的加载？"><a href="#如何处理大图的加载？" class="headerlink" title="如何处理大图的加载？"></a>如何处理大图的加载？</h4><h4 id="谈谈如何对网络请求进行优化？"><a href="#谈谈如何对网络请求进行优化？" class="headerlink" title="谈谈如何对网络请求进行优化？"></a>谈谈如何对网络请求进行优化？</h4><h4 id="请谈谈如何加载Bitmap并防止内存溢出？"><a href="#请谈谈如何加载Bitmap并防止内存溢出？" class="headerlink" title="请谈谈如何加载Bitmap并防止内存溢出？"></a>请谈谈如何加载Bitmap并防止内存溢出？</h4><h3 id="Android-中的-IPC"><a href="#Android-中的-IPC" class="headerlink" title="Android 中的 IPC"></a>Android 中的 IPC</h3><h4 id="请回答一下-Android-中进程间通信有哪些方式？"><a href="#请回答一下-Android-中进程间通信有哪些方式？" class="headerlink" title="请回答一下 Android 中进程间通信有哪些方式？"></a>请回答一下 Android 中进程间通信有哪些方式？</h4><h4 id="请谈谈你对-Binder-机制的理解？"><a href="#请谈谈你对-Binder-机制的理解？" class="headerlink" title="请谈谈你对 Binder 机制的理解？"></a>请谈谈你对 Binder 机制的理解？</h4><p>根本上来说是一个CS结构。</p>
+<h4 id="什么是-AIDL？它的使用场景是什么？"><a href="#什么是-AIDL？它的使用场景是什么？" class="headerlink" title="什么是 AIDL？它的使用场景是什么？"></a>什么是 AIDL？它的使用场景是什么？</h4><h3 id="Android-系统-SDK-相关"><a href="#Android-系统-SDK-相关" class="headerlink" title="Android 系统 SDK 相关"></a>Android 系统 SDK 相关</h3><h4 id="请简要谈谈-Android-系统的架构组成？"><a href="#请简要谈谈-Android-系统的架构组成？" class="headerlink" title="请简要谈谈 Android 系统的架构组成？"></a>请简要谈谈 Android 系统的架构组成？</h4><h4 id="SharedPreferences-是线程安全的吗？它的-commit-和-apply-方法有什么区别？"><a href="#SharedPreferences-是线程安全的吗？它的-commit-和-apply-方法有什么区别？" class="headerlink" title="SharedPreferences 是线程安全的吗？它的 commit 和 apply 方法有什么区别？"></a>SharedPreferences 是线程安全的吗？它的 commit 和 apply 方法有什么区别？</h4><h4 id="Serializable-和-Parcelable-有哪些区别？"><a href="#Serializable-和-Parcelable-有哪些区别？" class="headerlink" title="Serializable 和 Parcelable 有哪些区别？"></a>Serializable 和 Parcelable 有哪些区别？</h4><h4 id="请说一下-Android-7-0-的新特性？"><a href="#请说一下-Android-7-0-的新特性？" class="headerlink" title="请说一下 Android 7.0 的新特性？"></a>请说一下 Android 7.0 的新特性？</h4><h4 id="谈谈-ArrayMap-和-HashMap-的区别？"><a href="#谈谈-ArrayMap-和-HashMap-的区别？" class="headerlink" title="谈谈 ArrayMap 和 HashMap 的区别？"></a>谈谈 ArrayMap 和 HashMap 的区别？</h4><h4 id="简要说说-LruCache-的原理？"><a href="#简要说说-LruCache-的原理？" class="headerlink" title="简要说说 LruCache 的原理？"></a>简要说说 LruCache 的原理？</h4><h4 id="Android-中为什么推荐用-SparseArray-代替-HashMap？"><a href="#Android-中为什么推荐用-SparseArray-代替-HashMap？" class="headerlink" title="Android 中为什么推荐用 SparseArray 代替 HashMap？"></a>Android 中为什么推荐用 SparseArray 代替 HashMap？</h4><h4 id="PathClassLoader-和-DexClassLoader-有何区别？"><a href="#PathClassLoader-和-DexClassLoader-有何区别？" class="headerlink" title="PathClassLoader 和 DexClassLoader 有何区别？"></a>PathClassLoader 和 DexClassLoader 有何区别？</h4><h4 id="说说-HttpClient-与-HttpUrlConnection-的区别？为何前者会被替代？"><a href="#说说-HttpClient-与-HttpUrlConnection-的区别？为何前者会被替代？" class="headerlink" title="说说 HttpClient 与 HttpUrlConnection 的区别？为何前者会被替代？"></a>说说 HttpClient 与 HttpUrlConnection 的区别？为何前者会被替代？</h4><h4 id="什么是Lifecycle？请分析其内部原理和使用场景？"><a href="#什么是Lifecycle？请分析其内部原理和使用场景？" class="headerlink" title="什么是Lifecycle？请分析其内部原理和使用场景？"></a>什么是Lifecycle？请分析其内部原理和使用场景？</h4><h4 id="谈一谈-Android-的签名机制？不同版本下的签名有什么不同？"><a href="#谈一谈-Android-的签名机制？不同版本下的签名有什么不同？" class="headerlink" title="谈一谈 Android 的签名机制？不同版本下的签名有什么不同？"></a>谈一谈 Android 的签名机制？不同版本下的签名有什么不同？</h4><h4 id="谈谈安卓-Apk-构建的流程？"><a href="#谈谈安卓-Apk-构建的流程？" class="headerlink" title="谈谈安卓 Apk 构建的流程？"></a>谈谈安卓 Apk 构建的流程？</h4><h4 id="简述一下-Android-8-0、9-0-分别增加了哪些新特性？"><a href="#简述一下-Android-8-0、9-0-分别增加了哪些新特性？" class="headerlink" title="简述一下 Android 8.0、9.0 分别增加了哪些新特性？"></a>简述一下 Android 8.0、9.0 分别增加了哪些新特性？</h4><h4 id="谈谈-Android-10-更新了哪些内容？如何进行适配"><a href="#谈谈-Android-10-更新了哪些内容？如何进行适配" class="headerlink" title="谈谈 Android 10 更新了哪些内容？如何进行适配?"></a>谈谈 Android 10 更新了哪些内容？如何进行适配?</h4><h4 id="请简述-Apk-的安装过程？"><a href="#请简述-Apk-的安装过程？" class="headerlink" title="请简述 Apk 的安装过程？"></a>请简述 Apk 的安装过程？</h4><h4 id="Java-与-JS-代码如何互调？有做过相关优化吗？"><a href="#Java-与-JS-代码如何互调？有做过相关优化吗？" class="headerlink" title="Java 与 JS 代码如何互调？有做过相关优化吗？"></a>Java 与 JS 代码如何互调？有做过相关优化吗？</h4><h4 id="什么是-JNI？具体说说如何实现-Java-与-C-的互调？"><a href="#什么是-JNI？具体说说如何实现-Java-与-C-的互调？" class="headerlink" title="什么是 JNI？具体说说如何实现 Java 与 C++ 的互调？"></a>什么是 JNI？具体说说如何实现 Java 与 C++ 的互调？</h4><h4 id="请谈谈-App-的启动流程？"><a href="#请谈谈-App-的启动流程？" class="headerlink" title="请谈谈 App 的启动流程？"></a>请谈谈 App 的启动流程？</h4><h3 id="第三方框架分析"><a href="#第三方框架分析" class="headerlink" title="第三方框架分析"></a>第三方框架分析</h3><h4 id="谈一谈-LeakCanray-的工作原理？"><a href="#谈一谈-LeakCanray-的工作原理？" class="headerlink" title="谈一谈 LeakCanray 的工作原理？"></a>谈一谈 LeakCanray 的工作原理？</h4><h4 id="说说-EventBus-的实现原理？"><a href="#说说-EventBus-的实现原理？" class="headerlink" title="说说 EventBus 的实现原理？"></a>说说 EventBus 的实现原理？</h4><h4 id="谈谈网络请求中的拦截器-Interceptor-的实现原理和使用场景？"><a href="#谈谈网络请求中的拦截器-Interceptor-的实现原理和使用场景？" class="headerlink" title="谈谈网络请求中的拦截器 - Interceptor 的实现原理和使用场景？"></a>谈谈网络请求中的拦截器 - Interceptor 的实现原理和使用场景？</h4><h4 id="谈一谈-Glide-中的缓存机制？"><a href="#谈一谈-Glide-中的缓存机制？" class="headerlink" title="谈一谈 Glide 中的缓存机制？"></a>谈一谈 Glide 中的缓存机制？</h4><h4 id="ViewModel-的出现是为了解决什么问题？并简要说说它的内部原理？"><a href="#ViewModel-的出现是为了解决什么问题？并简要说说它的内部原理？" class="headerlink" title="ViewModel 的出现是为了解决什么问题？并简要说说它的内部原理？"></a>ViewModel 的出现是为了解决什么问题？并简要说说它的内部原理？</h4><h4 id="请说说依赖注入框架-ButterKnife-的实现原理？"><a href="#请说说依赖注入框架-ButterKnife-的实现原理？" class="headerlink" title="请说说依赖注入框架 ButterKnife 的实现原理？"></a>请说说依赖注入框架 ButterKnife 的实现原理？</h4><h4 id="谈一谈-RxJava-背压原理？"><a href="#谈一谈-RxJava-背压原理？" class="headerlink" title="谈一谈 RxJava 背压原理？"></a>谈一谈 RxJava 背压原理？</h4><h3 id="综合技术"><a href="#综合技术" class="headerlink" title="综合技术"></a>综合技术</h3><h4 id="请谈谈你对-MVC-和-MVP-的理解？"><a href="#请谈谈你对-MVC-和-MVP-的理解？" class="headerlink" title="请谈谈你对 MVC 和 MVP 的理解？"></a>请谈谈你对 MVC 和 MVP 的理解？</h4><h4 id="分别介绍下你所知道的-Android-中几种存储方式？"><a href="#分别介绍下你所知道的-Android-中几种存储方式？" class="headerlink" title="分别介绍下你所知道的 Android 中几种存储方式？"></a>分别介绍下你所知道的 Android 中几种存储方式？</h4><h4 id="简述下热修复的原理？"><a href="#简述下热修复的原理？" class="headerlink" title="简述下热修复的原理？"></a>简述下热修复的原理？</h4><h4 id="谈谈你是如何适配更多机型的？"><a href="#谈谈你是如何适配更多机型的？" class="headerlink" title="谈谈你是如何适配更多机型的？"></a>谈谈你是如何适配更多机型的？</h4><h4 id="请谈谈你是如何进行多渠道打包的？"><a href="#请谈谈你是如何进行多渠道打包的？" class="headerlink" title="请谈谈你是如何进行多渠道打包的？"></a>请谈谈你是如何进行多渠道打包的？</h4><h4 id="MVP-中你是如何处理-Presenter-层以防止内存泄漏的？"><a href="#MVP-中你是如何处理-Presenter-层以防止内存泄漏的？" class="headerlink" title="MVP 中你是如何处理 Presenter 层以防止内存泄漏的？"></a>MVP 中你是如何处理 Presenter 层以防止内存泄漏的？</h4><h4 id="如何计算一张图片所占的内存空间大小？"><a href="#如何计算一张图片所占的内存空间大小？" class="headerlink" title="如何计算一张图片所占的内存空间大小？"></a>如何计算一张图片所占的内存空间大小？</h4><h4 id="有没有遇到-64k-问题，应该如何解决？"><a href="#有没有遇到-64k-问题，应该如何解决？" class="headerlink" title="有没有遇到 64k 问题，应该如何解决？"></a>有没有遇到 64k 问题，应该如何解决？</h4><h4 id="如何优化-Gradle-的构建速度？"><a href="#如何优化-Gradle-的构建速度？" class="headerlink" title="如何优化 Gradle 的构建速度？"></a>如何优化 Gradle 的构建速度？</h4><h4 id="如何获取-Android-设备唯一-ID？"><a href="#如何获取-Android-设备唯一-ID？" class="headerlink" title="如何获取 Android 设备唯一 ID？"></a>如何获取 Android 设备唯一 ID？</h4><h4 id="谈一谈-Android-P-禁用-HTTP-协议对我们开发有什么影响？"><a href="#谈一谈-Android-P-禁用-HTTP-协议对我们开发有什么影响？" class="headerlink" title="谈一谈 Android P 禁用 HTTP 协议对我们开发有什么影响？"></a>谈一谈 Android P 禁用 HTTP 协议对我们开发有什么影响？</h4><h4 id="什么是-AOP？在-Android-中它有哪些应用场景？"><a href="#什么是-AOP？在-Android-中它有哪些应用场景？" class="headerlink" title="什么是 AOP？在 Android 中它有哪些应用场景？"></a>什么是 AOP？在 Android 中它有哪些应用场景？</h4><h4 id="什么是-MVVM？你是如何将其应用于具体项目中的？"><a href="#什么是-MVVM？你是如何将其应用于具体项目中的？" class="headerlink" title="什么是 MVVM？你是如何将其应用于具体项目中的？"></a>什么是 MVVM？你是如何将其应用于具体项目中的？</h4><h4 id="请谈谈你会如何实现数据埋点？"><a href="#请谈谈你会如何实现数据埋点？" class="headerlink" title="请谈谈你会如何实现数据埋点？"></a>请谈谈你会如何实现数据埋点？</h4><h4 id="假如让你实现断点上传功能，你认为应该怎样去做？"><a href="#假如让你实现断点上传功能，你认为应该怎样去做？" class="headerlink" title="假如让你实现断点上传功能，你认为应该怎样去做？"></a>假如让你实现断点上传功能，你认为应该怎样去做？</h4><h4 id="webp-和-svg-格式的图片各自有什么特点？应该如何在-Android-中使用？"><a href="#webp-和-svg-格式的图片各自有什么特点？应该如何在-Android-中使用？" class="headerlink" title="webp 和 svg 格式的图片各自有什么特点？应该如何在 Android 中使用？"></a>webp 和 svg 格式的图片各自有什么特点？应该如何在 Android 中使用？</h4><h4 id="说说你是如何进行单元测试的？以及如何应用在-MVP-和-MVVM-中？"><a href="#说说你是如何进行单元测试的？以及如何应用在-MVP-和-MVVM-中？" class="headerlink" title="说说你是如何进行单元测试的？以及如何应用在 MVP 和 MVVM 中？"></a>说说你是如何进行单元测试的？以及如何应用在 MVP 和 MVVM 中？</h4><h4 id="如何绕过-Android-9-0-针对反射的限制？"><a href="#如何绕过-Android-9-0-针对反射的限制？" class="headerlink" title="如何绕过 Android 9.0 针对反射的限制？"></a>如何绕过 Android 9.0 针对反射的限制？</h4><h4 id="对于-GIF-格式的图片加载有什么思路和建议？"><a href="#对于-GIF-格式的图片加载有什么思路和建议？" class="headerlink" title="对于 GIF 格式的图片加载有什么思路和建议？"></a>对于 GIF 格式的图片加载有什么思路和建议？</h4><h4 id="为什么要将项目迁移到-AndroidX？如何进行迁移？"><a href="#为什么要将项目迁移到-AndroidX？如何进行迁移？" class="headerlink" title="为什么要将项目迁移到 AndroidX？如何进行迁移？"></a>为什么要将项目迁移到 AndroidX？如何进行迁移？</h4><h4 id="你了解过哪些Android屏幕适配方面的技巧？"><a href="#你了解过哪些Android屏幕适配方面的技巧？" class="headerlink" title="你了解过哪些Android屏幕适配方面的技巧？"></a>你了解过哪些Android屏幕适配方面的技巧？</h4><h3 id="数据结构方面"><a href="#数据结构方面" class="headerlink" title="数据结构方面"></a>数据结构方面</h3><h4 id="什么是冒泡排序？如何去优化？"><a href="#什么是冒泡排序？如何去优化？" class="headerlink" title="什么是冒泡排序？如何去优化？"></a>什么是冒泡排序？如何去优化？</h4><h4 id="请用-Java-实现一个简单的单链表？"><a href="#请用-Java-实现一个简单的单链表？" class="headerlink" title="请用 Java 实现一个简单的单链表？"></a>请用 Java 实现一个简单的单链表？</h4><h4 id="如何反转一个单链表？"><a href="#如何反转一个单链表？" class="headerlink" title="如何反转一个单链表？"></a>如何反转一个单链表？</h4><h4 id="谈谈你对时间复杂度和空间复杂度的理解？"><a href="#谈谈你对时间复杂度和空间复杂度的理解？" class="headerlink" title="谈谈你对时间复杂度和空间复杂度的理解？"></a>谈谈你对时间复杂度和空间复杂度的理解？</h4><h4 id="谈一谈如何判断一个链表有环？"><a href="#谈一谈如何判断一个链表有环？" class="headerlink" title="谈一谈如何判断一个链表有环？"></a>谈一谈如何判断一个链表有环？</h4><h4 id="手写二叉树结构？"><a href="#手写二叉树结构？" class="headerlink" title="手写二叉树结构？"></a>手写二叉树结构？</h4><h4 id="什么是红黑树？为什么要用红黑树？"><a href="#什么是红黑树？为什么要用红黑树？" class="headerlink" title="什么是红黑树？为什么要用红黑树？"></a>什么是红黑树？为什么要用红黑树？</h4><h4 id="什么是快速排序？如何优化？"><a href="#什么是快速排序？如何优化？" class="headerlink" title="什么是快速排序？如何优化？"></a>什么是快速排序？如何优化？</h4><h4 id="说说循环队列？它有哪些应用场景？"><a href="#说说循环队列？它有哪些应用场景？" class="headerlink" title="说说循环队列？它有哪些应用场景？"></a>说说循环队列？它有哪些应用场景？</h4><h4 id="如何判断单链表交叉？"><a href="#如何判断单链表交叉？" class="headerlink" title="如何判断单链表交叉？"></a>如何判断单链表交叉？</h4><h3 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h3><h4 id="请简要谈一谈单例模式？"><a href="#请简要谈一谈单例模式？" class="headerlink" title="请简要谈一谈单例模式？"></a>请简要谈一谈单例模式？</h4><h4 id="对于面向对象的六大基本原则了解多少？"><a href="#对于面向对象的六大基本原则了解多少？" class="headerlink" title="对于面向对象的六大基本原则了解多少？"></a>对于面向对象的六大基本原则了解多少？</h4><h4 id="请列出几种常见的工厂模式并说明它们的用法？"><a href="#请列出几种常见的工厂模式并说明它们的用法？" class="headerlink" title="请列出几种常见的工厂模式并说明它们的用法？"></a>请列出几种常见的工厂模式并说明它们的用法？</h4><h4 id="说说项目中用到的设计模式和使用场景？"><a href="#说说项目中用到的设计模式和使用场景？" class="headerlink" title="说说项目中用到的设计模式和使用场景？"></a>说说项目中用到的设计模式和使用场景？</h4><h4 id="什么是代理模式？如何使用？Android源码中的代理模式？"><a href="#什么是代理模式？如何使用？Android源码中的代理模式？" class="headerlink" title="什么是代理模式？如何使用？Android源码中的代理模式？"></a>什么是代理模式？如何使用？Android源码中的代理模式？</h4><h4 id="谈一谈单例模式，建造者模式，工厂模式的使用场景？如何合理选择？"><a href="#谈一谈单例模式，建造者模式，工厂模式的使用场景？如何合理选择？" class="headerlink" title="谈一谈单例模式，建造者模式，工厂模式的使用场景？如何合理选择？"></a>谈一谈单例模式，建造者模式，工厂模式的使用场景？如何合理选择？</h4><h4 id="谈谈你对原型模式的理解？"><a href="#谈谈你对原型模式的理解？" class="headerlink" title="谈谈你对原型模式的理解？"></a>谈谈你对原型模式的理解？</h4><h4 id="请谈谈策略模式原理及其应用场景？"><a href="#请谈谈策略模式原理及其应用场景？" class="headerlink" title="请谈谈策略模式原理及其应用场景？"></a>请谈谈策略模式原理及其应用场景？</h4><h4 id="静态代理和动态代理的区别，什么场景使用？"><a href="#静态代理和动态代理的区别，什么场景使用？" class="headerlink" title="静态代理和动态代理的区别，什么场景使用？"></a>静态代理和动态代理的区别，什么场景使用？</h4><h4 id="谈一谈责任链模式的使用场景？"><a href="#谈一谈责任链模式的使用场景？" class="headerlink" title="谈一谈责任链模式的使用场景？"></a>谈一谈责任链模式的使用场景？</h4><h3 id="计算机网络方面"><a href="#计算机网络方面" class="headerlink" title="计算机网络方面"></a>计算机网络方面</h3><h4 id="请简述-Http-与-Https-的区别？"><a href="#请简述-Http-与-Https-的区别？" class="headerlink" title="请简述 Http 与 Https 的区别？"></a>请简述 Http 与 Https 的区别？</h4><h4 id="说一说-HTTPS、UDP、Socket-之间的区别？"><a href="#说一说-HTTPS、UDP、Socket-之间的区别？" class="headerlink" title="说一说 HTTPS、UDP、Socket 之间的区别？"></a>说一说 HTTPS、UDP、Socket 之间的区别？</h4><h4 id="请简述一次-HTTP-网络请求的过程？"><a href="#请简述一次-HTTP-网络请求的过程？" class="headerlink" title="请简述一次 HTTP 网络请求的过程？"></a>请简述一次 HTTP 网络请求的过程？</h4><h4 id="谈一谈-TCP-IP-三次握手、四次挥手过程？"><a href="#谈一谈-TCP-IP-三次握手、四次挥手过程？" class="headerlink" title="谈一谈 TCP&#x2F;IP 三次握手、四次挥手过程？"></a>谈一谈 TCP&#x2F;IP 三次握手、四次挥手过程？</h4><h4 id="为什么说Http是可靠的数据传输协议？"><a href="#为什么说Http是可靠的数据传输协议？" class="headerlink" title="为什么说Http是可靠的数据传输协议？"></a>为什么说Http是可靠的数据传输协议？</h4><h4 id="TCP-IP-协议分为哪几层？TCP-和-HTTP-分别属于哪一层？"><a href="#TCP-IP-协议分为哪几层？TCP-和-HTTP-分别属于哪一层？" class="headerlink" title="TCP&#x2F;IP 协议分为哪几层？TCP 和 HTTP 分别属于哪一层？"></a>TCP&#x2F;IP 协议分为哪几层？TCP 和 HTTP 分别属于哪一层？</h4><h4 id="Post-中请求参数放在了哪个位置？"><a href="#Post-中请求参数放在了哪个位置？" class="headerlink" title="Post 中请求参数放在了哪个位置？"></a>Post 中请求参数放在了哪个位置？</h4><h3 id="Kotlin-方面"><a href="#Kotlin-方面" class="headerlink" title="Kotlin 方面"></a>Kotlin 方面</h3><h4 id="请简述一下什么是-Kotlin？它有哪些特性？"><a href="#请简述一下什么是-Kotlin？它有哪些特性？" class="headerlink" title="请简述一下什么是 Kotlin？它有哪些特性？"></a>请简述一下什么是 Kotlin？它有哪些特性？</h4><h4 id="Kotlin-中注解-JvmOverloads-的作用？"><a href="#Kotlin-中注解-JvmOverloads-的作用？" class="headerlink" title="Kotlin 中注解 @JvmOverloads 的作用？"></a>Kotlin 中注解 @JvmOverloads 的作用？</h4><h4 id="Kotlin-中-List-与-MutableList-的区别？"><a href="#Kotlin-中-List-与-MutableList-的区别？" class="headerlink" title="Kotlin 中 List 与 MutableList 的区别？"></a>Kotlin 中 List 与 MutableList 的区别？</h4><h4 id="Kotlin-中实现单例的几种常见方式？"><a href="#Kotlin-中实现单例的几种常见方式？" class="headerlink" title="Kotlin 中实现单例的几种常见方式？"></a>Kotlin 中实现单例的几种常见方式？</h4><h4 id="谈谈你对-Kotlin-中的-data-关键字的理解？相比于普通类有哪些特点？"><a href="#谈谈你对-Kotlin-中的-data-关键字的理解？相比于普通类有哪些特点？" class="headerlink" title="谈谈你对 Kotlin 中的 data 关键字的理解？相比于普通类有哪些特点？"></a>谈谈你对 Kotlin 中的 data 关键字的理解？相比于普通类有哪些特点？</h4><h4 id="什么是委托属性？请简要说说其使用场景和原理？"><a href="#什么是委托属性？请简要说说其使用场景和原理？" class="headerlink" title="什么是委托属性？请简要说说其使用场景和原理？"></a>什么是委托属性？请简要说说其使用场景和原理？</h4><h4 id="请举例说明-Kotlin-中-with-与-apply-函数的应用场景和区别？"><a href="#请举例说明-Kotlin-中-with-与-apply-函数的应用场景和区别？" class="headerlink" title="请举例说明 Kotlin 中 with 与 apply 函数的应用场景和区别？"></a>请举例说明 Kotlin 中 with 与 apply 函数的应用场景和区别？</h4><h4 id="Kotlin中-Unit-类型的作用以及与Java中-Void-的区别？"><a href="#Kotlin中-Unit-类型的作用以及与Java中-Void-的区别？" class="headerlink" title="Kotlin中 Unit 类型的作用以及与Java中 Void 的区别？"></a>Kotlin中 Unit 类型的作用以及与Java中 Void 的区别？</h4><h4 id="Kotlin-中-infix-关键字的原理和使用场景？"><a href="#Kotlin-中-infix-关键字的原理和使用场景？" class="headerlink" title="Kotlin 中 infix 关键字的原理和使用场景？"></a>Kotlin 中 infix 关键字的原理和使用场景？</h4><h4 id="Kotlin中的可见性修饰符有哪些？相比于-Java-有什么区别？"><a href="#Kotlin中的可见性修饰符有哪些？相比于-Java-有什么区别？" class="headerlink" title="Kotlin中的可见性修饰符有哪些？相比于 Java 有什么区别？"></a>Kotlin中的可见性修饰符有哪些？相比于 Java 有什么区别？</h4><h4 id="你觉得-Kotlin-与-Java-混合开发时需要注意哪些问题？"><a href="#你觉得-Kotlin-与-Java-混合开发时需要注意哪些问题？" class="headerlink" title="你觉得 Kotlin 与 Java 混合开发时需要注意哪些问题？"></a>你觉得 Kotlin 与 Java 混合开发时需要注意哪些问题？</h4><h4 id="在-Kotlin-中，何为解构？该如何使用？"><a href="#在-Kotlin-中，何为解构？该如何使用？" class="headerlink" title="在 Kotlin 中，何为解构？该如何使用？"></a>在 Kotlin 中，何为解构？该如何使用？</h4><h4 id="在-Kotlin-中，什么是内联函数？有什么作用？"><a href="#在-Kotlin-中，什么是内联函数？有什么作用？" class="headerlink" title="在 Kotlin 中，什么是内联函数？有什么作用？"></a>在 Kotlin 中，什么是内联函数？有什么作用？</h4><h4 id="谈谈Kotlin中的构造方法？有哪些注意事项？"><a href="#谈谈Kotlin中的构造方法？有哪些注意事项？" class="headerlink" title="谈谈Kotlin中的构造方法？有哪些注意事项？"></a>谈谈Kotlin中的构造方法？有哪些注意事项？</h4><h4 id="谈谈-Kotlin-中的-Sequence，为什么它处理集合操作更加高效？"><a href="#谈谈-Kotlin-中的-Sequence，为什么它处理集合操作更加高效？" class="headerlink" title="谈谈 Kotlin 中的 Sequence，为什么它处理集合操作更加高效？"></a>谈谈 Kotlin 中的 Sequence，为什么它处理集合操作更加高效？</h4><h4 id="请谈谈-Kotlin-中的-Coroutines，它与线程有什么区别？有哪些优点？"><a href="#请谈谈-Kotlin-中的-Coroutines，它与线程有什么区别？有哪些优点？" class="headerlink" title="请谈谈 Kotlin 中的 Coroutines，它与线程有什么区别？有哪些优点？"></a>请谈谈 Kotlin 中的 Coroutines，它与线程有什么区别？有哪些优点？</h4><h4 id="Kotlin中可见型修饰符有哪些？相比于Java有什么区别？"><a href="#Kotlin中可见型修饰符有哪些？相比于Java有什么区别？" class="headerlink" title="Kotlin中可见型修饰符有哪些？相比于Java有什么区别？"></a>Kotlin中可见型修饰符有哪些？相比于Java有什么区别？</h4><h4 id="谈谈Kotlin中的Unit？它和Java中的void有什么区别？z’x’l"><a href="#谈谈Kotlin中的Unit？它和Java中的void有什么区别？z’x’l" class="headerlink" title="谈谈Kotlin中的Unit？它和Java中的void有什么区别？z’x’l"></a>谈谈Kotlin中的Unit？它和Java中的void有什么区别？z’x’l</h4><h4 id="Kotlin中该如何安全地处理可空类型？"><a href="#Kotlin中该如何安全地处理可空类型？" class="headerlink" title="Kotlin中该如何安全地处理可空类型？"></a>Kotlin中该如何安全地处理可空类型？</h4><h4 id="说说-Kotlin中-的-Any-与Java中的-Object-有何异同？"><a href="#说说-Kotlin中-的-Any-与Java中的-Object-有何异同？" class="headerlink" title="说说 Kotlin中 的 Any 与Java中的 Object 有何异同？"></a>说说 Kotlin中 的 Any 与Java中的 Object 有何异同？</h4><h4 id="Kotlin中的数据类型有隐式转换吗？为什么？"><a href="#Kotlin中的数据类型有隐式转换吗？为什么？" class="headerlink" title="Kotlin中的数据类型有隐式转换吗？为什么？"></a>Kotlin中的数据类型有隐式转换吗？为什么？</h4><h4 id="分别通过对象表达式-object-和-lambda-表达式实现的函数式接口内部有何不同？"><a href="#分别通过对象表达式-object-和-lambda-表达式实现的函数式接口内部有何不同？" class="headerlink" title="分别通过对象表达式 object 和 lambda 表达式实现的函数式接口内部有何不同？"></a>分别通过对象表达式 object 和 lambda 表达式实现的函数式接口内部有何不同？</h4><h4 id="Kotlin-中集合遍历有哪几种方式？"><a href="#Kotlin-中集合遍历有哪几种方式？" class="headerlink" title="Kotlin 中集合遍历有哪几种方式？"></a>Kotlin 中集合遍历有哪几种方式？</h4><h4 id="为什么协程比线程要轻量？"><a href="#为什么协程比线程要轻量？" class="headerlink" title="为什么协程比线程要轻量？"></a>为什么协程比线程要轻量？</h4><h3 id="开放性问题"><a href="#开放性问题" class="headerlink" title="开放性问题"></a>开放性问题</h3><h4 id="你知道哪些提升开发效率的骚操作？"><a href="#你知道哪些提升开发效率的骚操作？" class="headerlink" title="你知道哪些提升开发效率的骚操作？"></a>你知道哪些提升开发效率的骚操作？</h4><h4 id="在开发过程中你遇到过的最大的难题是什么？如何解决的？"><a href="#在开发过程中你遇到过的最大的难题是什么？如何解决的？" class="headerlink" title="在开发过程中你遇到过的最大的难题是什么？如何解决的？"></a>在开发过程中你遇到过的最大的难题是什么？如何解决的？</h4><h4 id="说说你未来的职业规划是怎样的？"><a href="#说说你未来的职业规划是怎样的？" class="headerlink" title="说说你未来的职业规划是怎样的？"></a>说说你未来的职业规划是怎样的？</h4><h4 id="你是如何看待-Flutter，React-Native-与-Android-关系的？"><a href="#你是如何看待-Flutter，React-Native-与-Android-关系的？" class="headerlink" title="你是如何看待 Flutter，React Native 与 Android 关系的？"></a>你是如何看待 Flutter，React Native 与 Android 关系的？</h4>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/A220220.html" rel="next" title="Android 系统架构——Android系统架构说明">
+                <i class="fa fa-chevron-left"></i> Android 系统架构——Android系统架构说明
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/A220330.html" rel="prev" title="Android 杂谈——Activity与Fragment恢复的那些事儿">
+                Android 杂谈——Activity与Fragment恢复的那些事儿 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          </div>
+          
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/%20%7C%7C%20archive">
+                
+                    <span class="site-state-item-count">199</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">42</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">43</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Rainmonth" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java%E6%96%B9%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">Java方面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86"><span class="nav-number">1.1.</span> <span class="nav-text">Java基础部分</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E7%B1%BB%E4%B8%8E%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB%E5%88%AB"><span class="nav-number">1.1.1.</span> <span class="nav-text">抽象类与接口的区别别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E5%88%AB%E8%AE%B2%E8%AE%B2final%EF%BC%8Cstatic%EF%BC%8C-synchronized%E5%85%B3%E9%94%AE%E5%AD%97%E5%8F%AF%E4%BB%A5%E4%BF%AE%E9%A5%B0%E4%BB%80%E4%B9%88%EF%BC%8C%E4%BB%A5%E5%8F%8A%E4%BF%AE%E9%A5%B0%E5%90%8E%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">1.1.2.</span> <span class="nav-text">分别讲讲final，static， synchronized关键字可以修饰什么，以及修饰后的作用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#final"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">final</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#static"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">static</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#synchronized"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">synchronized</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%80%E8%BF%B0%E4%B8%8BString%E3%80%81StringBuffer%E5%92%8CStringBuilder%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.1.3.</span> <span class="nav-text">简述下String、StringBuffer和StringBuilder的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%80%9Cequals%E2%80%9D%E4%B8%8E%E2%80%9D-%E2%80%9D%E3%80%81%E2%80%9DhashCode-%E2%80%9D%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.1.4.</span> <span class="nav-text">“equals”与”&#x3D;&#x3D;”、”hashCode()”的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Java%E4%B8%AD%E6%B7%B1%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B5%85%E6%8B%B7%E8%B4%9D%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.1.5.</span> <span class="nav-text">Java中深拷贝与浅拷贝的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Error%E4%B8%8EException%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.1.6.</span> <span class="nav-text">Error与Exception的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6%EF%BC%8C%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">1.1.7.</span> <span class="nav-text">什么是反射机制，反射机制的应用场景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E8%B0%88%E5%A6%82%E4%BD%95%E9%87%8D%E5%86%99equals-%E6%96%B9%E6%B3%95%EF%BC%8C%E4%BB%A5%E5%8F%8A%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E9%87%8D%E5%86%99hashCode-%E6%96%B9%E6%B3%95"><span class="nav-number">1.1.8.</span> <span class="nav-text">谈谈如何重写equals()方法，以及为什么要重写hashCode()方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Java%E4%B8%ADIO%E6%B5%81%E5%88%86%E4%B8%BA%E5%87%A0%E7%A7%8D%EF%BC%9FBIO%E3%80%81NIO%E3%80%81AIO%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB"><span class="nav-number">1.1.9.</span> <span class="nav-text">Java中IO流分为几种？BIO、NIO、AIO有什么区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E8%B0%88%E5%AF%B9Java%E4%B8%AD%E6%B3%9B%E5%9E%8B%E6%93%A6%E9%99%A4%E7%9A%84%E7%90%86%E8%A7%A3%EF%BC%8C%E5%B9%B6%E8%AF%B4%E8%AF%B4%E5%85%B6%E5%B1%80%E9%99%90%E6%80%A7"><span class="nav-number">1.1.10.</span> <span class="nav-text">谈谈对Java中泛型擦除的理解，并说说其局限性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#String%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E8%AE%BE%E8%AE%A1%E6%88%90%E4%B8%8D%E5%8F%AF%E5%8F%98%E7%9A%84"><span class="nav-number">1.1.11.</span> <span class="nav-text">String为什么要设计成不可变的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9Java%E6%B3%A8%E8%A7%A3%E7%9A%84%E7%90%86%E8%A7%A3"><span class="nav-number">1.1.12.</span> <span class="nav-text">对Java注解的理解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Java%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E3%80%81%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E5%92%8C%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F%E7%9A%84%E5%88%9B%E5%BB%BA%E5%92%8C%E5%9B%9E%E6%94%B6%E6%97%B6%E6%9C%BA"><span class="nav-number">1.1.13.</span> <span class="nav-text">Java成员变量、局部变量和静态变量的创建和回收时机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Java%E4%B8%ADString-length-%E7%9A%84%E8%BF%90%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">1.1.14.</span> <span class="nav-text">Java中String.length()的运作原理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java%E9%9B%86%E5%90%88"><span class="nav-number">1.2.</span> <span class="nav-text">Java集合</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E8%B0%88List%E3%80%81Set%E3%80%81Map%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.2.1.</span> <span class="nav-text">谈谈List、Set、Map的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E8%B0%88ArrayList%E5%92%8CLinkedList%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.2.2.</span> <span class="nav-text">谈谈ArrayList和LinkedList的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HashMap%E5%92%8CHashTable%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.2.3.</span> <span class="nav-text">HashMap和HashTable的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ArrayList%E7%9A%84%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6"><span class="nav-number">1.2.4.</span> <span class="nav-text">ArrayList的扩容机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HashMap%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="nav-number">1.2.5.</span> <span class="nav-text">HashMap的实现原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B7%E7%AE%80%E8%BF%B0LinkedHashMap%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="nav-number">1.2.6.</span> <span class="nav-text">请简述LinkedHashMap的工作原理和使用方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E8%B0%88%E5%AF%B9%E4%BA%8EConcurrentHashMap%E7%9A%84%E7%90%86%E8%A7%A3"><span class="nav-number">1.2.7.</span> <span class="nav-text">谈谈对于ConcurrentHashMap的理解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="nav-number">1.3.</span> <span class="nav-text">Java多线程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E8%B0%88happens-before"><span class="nav-number">1.3.1.</span> <span class="nav-text">谈谈happens-before</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-Java-%E4%B8%AD%E4%BD%BF%E7%94%A8%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%96%B9%E5%BC%8F%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.1 Java 中使用多线程的方式有哪些？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-%E8%AF%B4%E4%B8%80%E4%B8%8B%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%87%A0%E7%A7%8D%E7%8A%B6%E6%80%81%EF%BC%9F"><span class="nav-number">1.3.3.</span> <span class="nav-text">3.2 说一下线程的几种状态？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%AD%E7%9A%84%E5%90%8C%E6%AD%A5%EF%BC%9F"><span class="nav-number">1.3.4.</span> <span class="nav-text">3.3 如何实现多线程中的同步？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-%E8%B0%88%E8%B0%88%E7%BA%BF%E7%A8%8B%E6%AD%BB%E9%94%81%EF%BC%8C%E5%A6%82%E4%BD%95%E6%9C%89%E6%95%88%E7%9A%84%E9%81%BF%E5%85%8D%E7%BA%BF%E7%A8%8B%E6%AD%BB%E9%94%81%EF%BC%9F"><span class="nav-number">1.3.5.</span> <span class="nav-text">3.4 谈谈线程死锁，如何有效的避免线程死锁？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5-%E8%B0%88%E8%B0%88%E7%BA%BF%E7%A8%8B%E9%98%BB%E5%A1%9E%E7%9A%84%E5%8E%9F%E5%9B%A0%EF%BC%9F"><span class="nav-number">1.3.6.</span> <span class="nav-text">3.5 谈谈线程阻塞的原因？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-6-%E8%AF%B7%E8%B0%88%E8%B0%88-Thread-%E4%B8%AD-run-%E4%B8%8E-start-%E6%96%B9%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">1.3.7.</span> <span class="nav-text">3.6 请谈谈 Thread 中 run() 与 start() 方法的区别？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-7-%E8%AF%B4%E4%B8%80%E4%B8%8B-synchronized-%E5%92%8C-volatile-%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">1.3.8.</span> <span class="nav-text">3.7 说一下 synchronized 和 volatile 关键字的区别？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-8-%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%EF%BC%9F"><span class="nav-number">1.3.9.</span> <span class="nav-text">3.8 如何保证线程安全？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-9-%E8%B0%88%E8%B0%88-ThreadLocal-%E7%94%A8%E6%B3%95%E5%92%8C%E5%8E%9F%E7%90%86%EF%BC%9F"><span class="nav-number">1.3.10.</span> <span class="nav-text">3.9 谈谈 ThreadLocal 用法和原理？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-10-%E8%B0%88%E8%B0%88-Java-%E7%BA%BF%E7%A8%8B%E4%B8%AD-notify-%E5%92%8C-notifyAll-%E6%96%B9%E6%B3%95%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">1.3.11.</span> <span class="nav-text">3.10 谈谈 Java 线程中 notify 和 notifyAll 方法有什么区别？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-11-%E4%BB%80%E4%B9%88%E6%98%AF%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%9F%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%9F"><span class="nav-number">1.3.12.</span> <span class="nav-text">3.11 什么是线程池？如何创建一个线程池？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-12-%E8%B0%88%E4%B8%80%E8%B0%88-Java-%E4%B8%AD%E5%87%A0%E7%A7%8D%E5%B8%B8%E8%A7%81%E9%94%81%E4%BB%A5%E5%8F%8A%E5%AE%83%E4%BB%AC%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9F"><span class="nav-number">1.3.13.</span> <span class="nav-text">3.12 谈一谈 Java 中几种常见锁以及它们的使用场景？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-13-%E8%B0%88%E4%B8%80%E8%B0%88%E7%BA%BF%E7%A8%8B-sleep-%E5%92%8C-wait-%E6%96%B9%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">1.3.14.</span> <span class="nav-text">3.13 谈一谈线程 sleep() 和 wait() 方法的区别？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-14-%E4%BB%80%E4%B9%88%E6%98%AF%E6%82%B2%E8%A7%82%E9%94%81%E5%92%8C%E4%B9%90%E8%A7%82%E9%94%81%EF%BC%9F"><span class="nav-number">1.3.15.</span> <span class="nav-text">3.14 什么是悲观锁和乐观锁？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-15-%E4%BB%80%E4%B9%88%E6%98%AF-BlockingQueue%EF%BC%9F%E8%AF%B7%E5%88%86%E6%9E%90%E4%B8%80%E4%B8%8B%E5%85%B6%E5%86%85%E9%83%A8%E5%8E%9F%E7%90%86%E5%B9%B6%E8%B0%88%E8%B0%88%E5%AE%83%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9F"><span class="nav-number">1.3.16.</span> <span class="nav-text">3.15 什么是 BlockingQueue？请分析一下其内部原理并谈谈它的使用场景？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-16-%E8%B0%88%E4%B8%80%E8%B0%88-Java-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E9%9B%86%E5%90%88%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F%E5%90%84%E6%9C%89%E4%BB%80%E4%B9%88%E7%89%B9%E7%82%B9%EF%BC%9F"><span class="nav-number">1.3.17.</span> <span class="nav-text">3.16 谈一谈 Java 线程安全的集合有哪些？各有什么特点？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-17-Java-%E4%B8%AD%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E5%87%BA%E7%8E%B0-Atomic-%E7%B1%BB%EF%BC%9F%E8%AF%95%E5%88%86%E6%9E%90%E5%AE%83%E7%9A%84%E5%8E%9F%E7%90%86%E5%92%8C%E7%BC%BA%E7%82%B9%EF%BC%9F"><span class="nav-number">1.3.18.</span> <span class="nav-text">3.17 Java 中为什么会出现 Atomic 类？试分析它的原理和缺点？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-18-%E8%AF%B4%E8%AF%B4-ThreadLocal-%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9F%E4%B8%8E-Synchronized-%E7%9B%B8%E6%AF%94%E6%9C%89%E4%BB%80%E4%B9%88%E7%89%B9%E6%80%A7%EF%BC%9F"><span class="nav-number">1.3.19.</span> <span class="nav-text">3.18 说说 ThreadLocal 的使用场景？与 Synchronized 相比有什么特性？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="nav-number">1.4.</span> <span class="nav-text">Java虚拟机</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-%E8%AF%B7%E7%AE%80%E8%A6%81%E8%B0%88%E4%B8%80%E8%B0%88-Java-%E4%B8%AD%E7%9A%84%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%EF%BC%9F"><span class="nav-number">1.4.1.</span> <span class="nav-text">4.1 请简要谈一谈 Java 中的垃圾回收机制？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-%E5%9B%9E%E7%AD%94%E4%B8%80%E4%B8%8B%E4%BB%80%E4%B9%88%E6%98%AF%E5%BC%BA%E3%80%81%E8%BD%AF%E3%80%81%E5%BC%B1%E3%80%81%E8%99%9A%E5%BC%95%E7%94%A8%E4%BB%A5%E5%8F%8A%E5%AE%83%E4%BB%AC%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">1.4.2.</span> <span class="nav-text">4.2 回答一下什么是强、软、弱、虚引用以及它们之间的区别？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-%E7%AE%80%E8%BF%B0-JVM-%E4%B8%AD%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6%E4%B8%8E%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B%EF%BC%9F"><span class="nav-number">1.4.3.</span> <span class="nav-text">4.3 简述 JVM 中类的加载机制与加载过程？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-JVM%E3%80%81Dalvik%E3%80%81ART-%E4%B8%89%E8%80%85%E7%9A%84%E5%8E%9F%E7%90%86%E5%92%8C%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">1.4.4.</span> <span class="nav-text">4.4 JVM、Dalvik、ART 三者的原理和区别？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-%E8%AF%B7%E8%B0%88%E8%B0%88-Java-%E7%9A%84%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%EF%BC%9F"><span class="nav-number">1.4.5.</span> <span class="nav-text">4.5 请谈谈 Java 的内存回收机制？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-6-%E4%BB%80%E4%B9%88%E6%98%AF-JMM%EF%BC%9F%E5%AE%83%E5%AD%98%E5%9C%A8%E5%93%AA%E4%BA%9B%E9%97%AE%E9%A2%98%EF%BC%9F%E8%AF%A5%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%EF%BC%9F"><span class="nav-number">1.4.6.</span> <span class="nav-text">4.6 什么是 JMM？它存在哪些问题？该如何解决？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android%E6%96%B9%E9%9D%A2"><span class="nav-number">2.</span> <span class="nav-text">Android方面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Android-%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6%E7%9B%B8%E5%85%B3"><span class="nav-number">2.1.</span> <span class="nav-text">Android 四大组件相关</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Activity-%E4%B8%8E-Fragment-%E4%B9%8B%E9%97%B4%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8D%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F%EF%BC%9F"><span class="nav-number">2.1.1.</span> <span class="nav-text">Activity 与 Fragment 之间常见的几种通信方式？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E8%B0%88-Android-%E4%B8%AD%E5%87%A0%E7%A7%8D-LaunchMode-%E7%9A%84%E7%89%B9%E7%82%B9%E5%92%8C%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9F"><span class="nav-number">2.1.2.</span> <span class="nav-text">谈谈 Android 中几种 LaunchMode 的特点和应用场景？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BroadcastReceiver-%E4%B8%8E-LocalBroadcastReceiver-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">2.1.3.</span> <span class="nav-text">BroadcastReceiver 与 LocalBroadcastReceiver 有什么区别？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E4%BA%8E-Context%EF%BC%8C%E4%BD%A0%E4%BA%86%E8%A7%A3%E5%A4%9A%E5%B0%91"><span class="nav-number">2.1.4.</span> <span class="nav-text">对于 Context，你了解多少?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IntentFilter-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E6%9C%89%E5%93%AA%E4%BA%9B%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9F%E5%8C%B9%E9%85%8D%E6%9C%BA%E5%88%B6%E6%98%AF%E6%80%8E%E6%A0%B7%E7%9A%84%EF%BC%9F"><span class="nav-number">2.1.5.</span> <span class="nav-text">IntentFilter 是什么？有哪些使用场景？匹配机制是怎样的？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E4%B8%80%E8%B0%88-startService-%E5%92%8C-bindService-%E6%96%B9%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%8C%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9F"><span class="nav-number">2.1.6.</span> <span class="nav-text">谈一谈 startService 和 bindService 方法的区别，生命周期以及使用场景？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Service-%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E4%BF%9D%E6%B4%BB%EF%BC%9F"><span class="nav-number">2.1.7.</span> <span class="nav-text">Service 如何进行保活？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D%E4%B8%8B-ContentProvider-%E6%98%AF%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E6%95%B0%E6%8D%AE%E5%85%B1%E4%BA%AB%E7%9A%84%EF%BC%9F"><span class="nav-number">2.1.8.</span> <span class="nav-text">简单介绍下 ContentProvider 是如何实现数据共享的？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B4%E4%B8%8B%E5%88%87%E6%8D%A2%E6%A8%AA%E7%AB%96%E5%B1%8F%E6%97%B6-Activity-%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%8F%98%E5%8C%96%EF%BC%9F"><span class="nav-number">2.1.9.</span> <span class="nav-text">说下切换横竖屏时 Activity 的生命周期变化？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Activity-%E4%B8%AD-onNewIntent-%E6%96%B9%E6%B3%95%E7%9A%84%E8%B0%83%E7%94%A8%E6%97%B6%E6%9C%BA%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9F"><span class="nav-number">2.1.10.</span> <span class="nav-text">Activity 中 onNewIntent 方法的调用时机和使用场景？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Intent-%E4%BC%A0%E8%BE%93%E6%95%B0%E6%8D%AE%E7%9A%84%E5%A4%A7%E5%B0%8F%E6%9C%89%E9%99%90%E5%88%B6%E5%90%97%EF%BC%9F%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%EF%BC%9F"><span class="nav-number">2.1.11.</span> <span class="nav-text">Intent 传输数据的大小有限制吗？如何解决？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B4%E8%AF%B4-ContentProvider%E3%80%81ContentResolver%E3%80%81ContentObserver-%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB%EF%BC%9F"><span class="nav-number">2.1.12.</span> <span class="nav-text">说说 ContentProvider、ContentResolver、ContentObserver 之间的关系？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B4%E8%AF%B4-Activity-%E5%8A%A0%E8%BD%BD%E7%9A%84%E6%B5%81%E7%A8%8B%EF%BC%9F"><span class="nav-number">2.1.13.</span> <span class="nav-text">说说 Activity 加载的流程？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Android-%E5%BC%82%E6%AD%A5%E4%BB%BB%E5%8A%A1%E5%92%8C%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6"><span class="nav-number">2.1.14.</span> <span class="nav-text">Android 异步任务和消息机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HandlerThread-%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%E5%92%8C%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%EF%BC%9F"><span class="nav-number">2.1.15.</span> <span class="nav-text">HandlerThread 的使用场景和实现原理？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IntentService-%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E5%92%8C%E5%86%85%E9%83%A8%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%EF%BC%9F"><span class="nav-number">2.1.16.</span> <span class="nav-text">IntentService 的应用场景和内部实现原理？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AsyncTask-%E7%9A%84%E4%BC%98%E7%82%B9%E5%92%8C%E7%BC%BA%E7%82%B9%EF%BC%9F%E5%86%85%E9%83%A8%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E6%98%AF%E6%80%8E%E6%A0%B7%E7%9A%84%EF%BC%9F"><span class="nav-number">2.1.17.</span> <span class="nav-text">AsyncTask 的优点和缺点？内部实现原理是怎样的？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E8%B0%88%E4%BD%A0%E5%AF%B9-Activity-runOnUiThread-%E7%9A%84%E7%90%86%E8%A7%A3%EF%BC%9F"><span class="nav-number">2.1.18.</span> <span class="nav-text">谈谈你对 Activity.runOnUiThread 的理解？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Android-%E7%9A%84%E5%AD%90%E7%BA%BF%E7%A8%8B%E8%83%BD%E5%90%A6%E5%81%9A%E5%88%B0%E6%9B%B4%E6%96%B0-UI%EF%BC%9F"><span class="nav-number">2.1.19.</span> <span class="nav-text">Android 的子线程能否做到更新 UI？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E8%B0%88-Android-%E4%B8%AD%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6%E5%92%8C%E5%8E%9F%E7%90%86%EF%BC%9F"><span class="nav-number">2.1.20.</span> <span class="nav-text">谈谈 Android 中消息机制和原理？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%9C%A8%E5%AD%90%E7%BA%BF%E7%A8%8B%E4%B8%AD%E5%88%9B%E5%BB%BA-Handler-%E4%BC%9A%E6%8A%9B%E5%BC%82%E5%B8%B8%EF%BC%9F"><span class="nav-number">2.1.21.</span> <span class="nav-text">为什么在子线程中创建 Handler 会抛异常？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%95%E4%BB%8E%E6%BA%90%E7%A0%81%E8%A7%92%E5%BA%A6%E5%88%86%E6%9E%90-Handler-%E7%9A%84-post-%E5%92%8C-sendMessage-%E6%96%B9%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9F"><span class="nav-number">2.1.22.</span> <span class="nav-text">试从源码角度分析 Handler 的 post 和 sendMessage 方法的区别和应用场景？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Handler-%E4%B8%AD%E6%9C%89-Loop-%E6%AD%BB%E5%BE%AA%E7%8E%AF%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E6%B2%A1%E6%9C%89%E9%98%BB%E5%A1%9E%E4%B8%BB%E7%BA%BF%E7%A8%8B%EF%BC%8C%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">2.1.23.</span> <span class="nav-text">Handler 中有 Loop 死循环，为什么没有阻塞主线程，原理是什么？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Android-UI-%E7%BB%98%E5%88%B6%E7%9B%B8%E5%85%B3"><span class="nav-number">2.2.</span> <span class="nav-text">Android UI 绘制相关</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Android-%E8%A1%A5%E9%97%B4%E5%8A%A8%E7%94%BB%E5%92%8C%E5%B1%9E%E6%80%A7%E5%8A%A8%E7%94%BB%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">2.2.1.</span> <span class="nav-text">Android 补间动画和属性动画的区别？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Window-%E5%92%8C-DecorView-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9FDecorView-%E5%8F%88%E6%98%AF%E5%A6%82%E4%BD%95%E5%92%8C-Window-%E5%BB%BA%E7%AB%8B%E8%81%94%E7%B3%BB%E7%9A%84"><span class="nav-number">2.2.2.</span> <span class="nav-text">Window 和 DecorView 是什么？DecorView 又是如何和 Window 建立联系的?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%80%E8%BF%B0%E4%B8%80%E4%B8%8B-Android-%E4%B8%AD-UI-%E7%9A%84%E5%88%B7%E6%96%B0%E6%9C%BA%E5%88%B6%EF%BC%9F"><span class="nav-number">2.2.3.</span> <span class="nav-text">简述一下 Android 中 UI 的刷新机制？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%A0%E8%AE%A4%E4%B8%BA-LinearLayout%E3%80%81FrameLayout-%E5%92%8C-RelativeLayout-%E5%93%AA%E4%B8%AA%E6%95%88%E7%8E%87%E9%AB%98-%E4%B8%BA%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">2.2.4.</span> <span class="nav-text">你认为 LinearLayout、FrameLayout 和 RelativeLayout 哪个效率高, 为什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B4%E4%B8%80%E4%B8%8B-Android-%E4%B8%AD%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%9C%BA%E5%88%B6%EF%BC%9F"><span class="nav-number">2.2.5.</span> <span class="nav-text">说一下 Android 中的事件分发机制？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E8%B0%88%E8%87%AA%E5%AE%9A%E4%B9%89-View-%E7%9A%84%E6%B5%81%E7%A8%8B%EF%BC%9F"><span class="nav-number">2.2.6.</span> <span class="nav-text">谈谈自定义 View 的流程？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%89%E9%92%88%E5%AF%B9-RecyclerView-%E5%81%9A%E8%BF%87%E5%93%AA%E4%BA%9B%E4%BC%98%E5%8C%96%EF%BC%9F"><span class="nav-number">2.2.7.</span> <span class="nav-text">有针对 RecyclerView 做过哪些优化？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E8%B0%88%E4%BD%A0%E6%98%AF%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96-ListView-%E7%9A%84%EF%BC%9F"><span class="nav-number">2.2.8.</span> <span class="nav-text">谈谈你是如何优化 ListView 的？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E4%B8%80%E8%B0%88%E8%87%AA%E5%AE%9A%E4%B9%89-RecyclerView-LayoutManager-%E7%9A%84%E6%B5%81%E7%A8%8B%EF%BC%9F"><span class="nav-number">2.2.9.</span> <span class="nav-text">谈一谈自定义 RecyclerView.LayoutManager 的流程？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-RemoteViews%EF%BC%9F%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="nav-number">2.2.10.</span> <span class="nav-text">什么是 RemoteViews？使用场景有哪些？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E4%B8%80%E8%B0%88%E8%8E%B7%E5%8F%96View%E5%AE%BD%E9%AB%98%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95%EF%BC%9F"><span class="nav-number">2.2.11.</span> <span class="nav-text">谈一谈获取View宽高的几种方法？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#View-post-%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AF%E4%BB%A5%E8%8E%B7%E5%8F%96%E5%88%B0%E5%AE%BD%E9%AB%98%E4%BF%A1%E6%81%AF%EF%BC%9F"><span class="nav-number">2.2.12.</span> <span class="nav-text">View.post() 为什么可以获取到宽高信息？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E4%B8%80%E8%B0%88%E5%B1%9E%E6%80%A7%E5%8A%A8%E7%94%BB%E7%9A%84%E6%8F%92%E5%80%BC%E5%99%A8%E5%92%8C%E4%BC%B0%E5%80%BC%E5%99%A8%EF%BC%9F"><span class="nav-number">2.2.13.</span> <span class="nav-text">谈一谈属性动画的插值器和估值器？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#getDimension%E3%80%81getDimensionPixelOffset-%E5%92%8C-getDimensionPixelSize-%E4%B8%89%E8%80%85%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">2.2.14.</span> <span class="nav-text">getDimension、getDimensionPixelOffset 和 getDimensionPixelSize 三者的区别？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B7%E8%B0%88%E8%B0%88%E6%BA%90%E7%A0%81%E4%B8%AD-StaticLayout-%E7%9A%84%E7%94%A8%E6%B3%95%E5%92%8C%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9F"><span class="nav-number">2.2.15.</span> <span class="nav-text">请谈谈源码中 StaticLayout 的用法和应用场景？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%89%E7%94%A8%E8%BF%87ConstraintLayout%E5%90%97%EF%BC%9F%E5%AE%83%E6%9C%89%E5%93%AA%E4%BA%9B%E7%89%B9%E7%82%B9%EF%BC%9F"><span class="nav-number">2.2.16.</span> <span class="nav-text">有用过ConstraintLayout吗？它有哪些特点？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E4%BA%8ELayoutInflater%EF%BC%8C%E5%AE%83%E6%98%AF%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87-inflate-%E6%96%B9%E6%B3%95%E8%8E%B7%E5%8F%96%E5%88%B0%E5%85%B7%E4%BD%93View%E7%9A%84%EF%BC%9F"><span class="nav-number">2.2.17.</span> <span class="nav-text">关于LayoutInflater，它是如何通过 inflate 方法获取到具体View的？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E4%B8%80%E8%B0%88%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0-Fragment-%E6%87%92%E5%8A%A0%E8%BD%BD%EF%BC%9F"><span class="nav-number">2.2.18.</span> <span class="nav-text">谈一谈如何实现 Fragment 懒加载？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E8%B0%88-RecyclerView%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6%EF%BC%9F"><span class="nav-number">2.2.19.</span> <span class="nav-text">谈谈 RecyclerView的缓存机制？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B7%E8%AF%B4%E8%AF%B4-View-inflate-%E5%92%8C-LayoutInflater-inflate-%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">2.2.20.</span> <span class="nav-text">请说说 View.inflate 和 LayoutInflater.inflate 的区别？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B7%E8%B0%88%E8%B0%88-invalidate-%E5%92%8C-postInvalidate-%E6%96%B9%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9F"><span class="nav-number">2.2.21.</span> <span class="nav-text">请谈谈 invalidate() 和 postInvalidate() 方法的区别和应用场景？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E4%B8%80%E8%B0%88%E8%87%AA%E5%AE%9A%E4%B9%89View%E5%92%8CViewGroup%E7%9A%84%E6%B5%81%E7%A8%8B%E4%BB%A5%E5%8F%8A%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">2.2.22.</span> <span class="nav-text">谈一谈自定义View和ViewGroup的流程以及区别？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E4%B8%80%E8%B0%88-SurfaceView-%E4%B8%8E-TextureView-%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%E5%92%8C%E7%94%A8%E6%B3%95%EF%BC%9F"><span class="nav-number">2.2.23.</span> <span class="nav-text">谈一谈 SurfaceView 与 TextureView 的使用场景和用法？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E4%B8%80%E8%B0%88-RecyclerView-Adapter-%E7%9A%84%E5%87%A0%E7%A7%8D%E6%95%B0%E6%8D%AE%E5%88%B7%E6%96%B0%E6%96%B9%E5%BC%8F%E6%9C%89%E4%BD%95%E4%B8%8D%E5%90%8C%EF%BC%9F"><span class="nav-number">2.2.24.</span> <span class="nav-text">谈一谈 RecyclerView.Adapter 的几种数据刷新方式有何不同？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B4%E8%AF%B4%E4%BD%A0%E5%AF%B9-Window-%E5%92%8C-WindowManager-%E7%9A%84%E7%90%86%E8%A7%A3%EF%BC%9F"><span class="nav-number">2.2.25.</span> <span class="nav-text">说说你对 Window 和 WindowManager 的理解？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E4%B8%80%E8%B0%88-Activity%E3%80%81View-%E5%92%8C-Window-%E4%B8%89%E8%80%85%E7%9A%84%E5%85%B3%E7%B3%BB%EF%BC%9F"><span class="nav-number">2.2.26.</span> <span class="nav-text">谈一谈 Activity、View 和 Window 三者的关系？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%89%E4%BA%86%E8%A7%A3%E8%BF%87WindowInsets%E5%90%97%EF%BC%9F%E5%AE%83%E6%9C%89%E5%93%AA%E4%BA%9B%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9F"><span class="nav-number">2.2.27.</span> <span class="nav-text">有了解过WindowInsets吗？它有哪些应用场景？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Android-%E4%B8%AD-View-%E7%9A%84%E5%87%A0%E7%A7%8D%E4%BD%8D%E7%A7%BB%E6%96%B9%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">2.2.28.</span> <span class="nav-text">Android 中 View 的几种位移方式的区别？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-ViewPager-%E5%B5%8C%E5%A5%97-ViewPager%EF%BC%8C%E5%86%85%E9%83%A8%E7%9A%84-ViewPager-%E6%BB%9A%E5%8A%A8%E6%B2%A1%E6%9C%89%E8%A2%AB%E6%8B%A6%E6%88%AA%EF%BC%9F"><span class="nav-number">2.2.29.</span> <span class="nav-text">为什么 ViewPager 嵌套 ViewPager，内部的 ViewPager 滚动没有被拦截？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B7%E8%B0%88%E8%B0%88-Fragment-%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%EF%BC%9F"><span class="nav-number">2.2.30.</span> <span class="nav-text">请谈谈 Fragment 的生命周期？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B7%E8%B0%88%E8%B0%88%E4%BB%80%E4%B9%88%E6%98%AF%E5%90%8C%E6%AD%A5%E5%B1%8F%E9%9A%9C%EF%BC%9F"><span class="nav-number">2.2.31.</span> <span class="nav-text">请谈谈什么是同步屏障？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%89%E4%BA%86%E8%A7%A3%E8%BF%87-ViewDragHelper-%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%90%97%EF%BC%9F"><span class="nav-number">2.2.32.</span> <span class="nav-text">有了解过 ViewDragHelper 的工作原理吗？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E4%B8%80%E8%B0%88Android%E7%9A%84%E5%B1%8F%E5%B9%95%E5%88%B7%E6%96%B0%E6%9C%BA%E5%88%B6%EF%BC%9F"><span class="nav-number">2.2.33.</span> <span class="nav-text">谈一谈Android的屏幕刷新机制？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Android-%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98%E7%9B%B8%E5%85%B3"><span class="nav-number">2.3.</span> <span class="nav-text">Android 性能调优相关</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E8%B0%88%E4%BD%A0%E5%AF%B9Android%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%96%B9%E9%9D%A2%E7%9A%84%E4%BA%86%E8%A7%A3%EF%BC%9F"><span class="nav-number">2.3.1.</span> <span class="nav-text">谈谈你对Android性能优化方面的了解？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E8%88%AC%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E5%AF%BC%E8%87%B4%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E9%97%AE%E9%A2%98%EF%BC%9F%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3"><span class="nav-number">2.3.2.</span> <span class="nav-text">一般什么情况下会导致内存泄漏问题？如何解决</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89-Handler-%E6%97%B6%E5%A6%82%E4%BD%95%E6%9C%89%E6%95%88%E5%9C%B0%E9%81%BF%E5%85%8D%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E9%97%AE%E9%A2%98%EF%BC%9F"><span class="nav-number">2.3.3.</span> <span class="nav-text">自定义 Handler 时如何有效地避免内存泄漏问题？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%93%AA%E4%BA%9B%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E5%AF%BC%E8%87%B4OOM%E9%97%AE%E9%A2%98%EF%BC%9F%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%EF%BC%9F"><span class="nav-number">2.3.4.</span> <span class="nav-text">哪些情况下会导致OOM问题？如何解决？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ANR-%E5%87%BA%E7%8E%B0%E7%9A%84%E5%9C%BA%E6%99%AF%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%9F"><span class="nav-number">2.3.5.</span> <span class="nav-text">ANR 出现的场景以及解决方案？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E8%B0%88-Android-%E4%B8%AD%E5%86%85%E5%AD%98%E4%BC%98%E5%8C%96%E7%9A%84%E6%96%B9%E5%BC%8F%EF%BC%9F"><span class="nav-number">2.3.6.</span> <span class="nav-text">谈谈 Android 中内存优化的方式？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E8%B0%88%E5%B8%83%E5%B1%80%E4%BC%98%E5%8C%96%E7%9A%84%E6%8A%80%E5%B7%A7%EF%BC%9F"><span class="nav-number">2.3.7.</span> <span class="nav-text">谈谈布局优化的技巧？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E4%BA%8E-Android-%E4%B8%AD%E5%9B%BE%E7%89%87%E8%B5%84%E6%BA%90%E7%9A%84%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88%E4%BD%A0%E7%9F%A5%E9%81%93%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="nav-number">2.3.8.</span> <span class="nav-text">对于 Android 中图片资源的优化方案你知道哪些？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Android-Native-Crash-%E9%97%AE%E9%A2%98%E5%A6%82%E4%BD%95%E5%88%86%E6%9E%90%E5%AE%9A%E4%BD%8D%EF%BC%9F"><span class="nav-number">2.3.9.</span> <span class="nav-text">Android Native Crash 问题如何分析定位？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%A5%E5%A6%82%E4%BD%95%E7%BB%99-Apk-%E7%98%A6%E8%BA%AB%EF%BC%9F"><span class="nav-number">2.3.10.</span> <span class="nav-text">该如何给 Apk 瘦身？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B4%E4%B8%80%E4%B8%8B%E4%BD%A0%E6%98%AF%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96-App-%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B%E7%9A%84%EF%BC%9F"><span class="nav-number">2.3.11.</span> <span class="nav-text">说一下你是如何优化 App 启动过程的？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E8%B0%88%E4%BB%A3%E7%A0%81%E6%B7%B7%E6%B7%86%E7%9A%84%E6%AD%A5%E9%AA%A4%EF%BC%9F"><span class="nav-number">2.3.12.</span> <span class="nav-text">谈谈代码混淆的步骤？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B4%E8%AF%B4-App-%E7%9A%84%E7%94%B5%E9%87%8F%E4%BC%98%E5%8C%96%EF%BC%9F"><span class="nav-number">2.3.13.</span> <span class="nav-text">说说 App 的电量优化？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E8%B0%88%E5%A6%82%E4%BD%95%E5%AF%B9-WebView-%E8%BF%9B%E8%A1%8C%E4%BC%98%E5%8C%96%EF%BC%9F"><span class="nav-number">2.3.14.</span> <span class="nav-text">谈谈如何对 WebView 进行优化？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E5%A4%A7%E5%9B%BE%E7%9A%84%E5%8A%A0%E8%BD%BD%EF%BC%9F"><span class="nav-number">2.3.15.</span> <span class="nav-text">如何处理大图的加载？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E8%B0%88%E5%A6%82%E4%BD%95%E5%AF%B9%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E8%BF%9B%E8%A1%8C%E4%BC%98%E5%8C%96%EF%BC%9F"><span class="nav-number">2.3.16.</span> <span class="nav-text">谈谈如何对网络请求进行优化？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B7%E8%B0%88%E8%B0%88%E5%A6%82%E4%BD%95%E5%8A%A0%E8%BD%BDBitmap%E5%B9%B6%E9%98%B2%E6%AD%A2%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%EF%BC%9F"><span class="nav-number">2.3.17.</span> <span class="nav-text">请谈谈如何加载Bitmap并防止内存溢出？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Android-%E4%B8%AD%E7%9A%84-IPC"><span class="nav-number">2.4.</span> <span class="nav-text">Android 中的 IPC</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B7%E5%9B%9E%E7%AD%94%E4%B8%80%E4%B8%8B-Android-%E4%B8%AD%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B9%E5%BC%8F%EF%BC%9F"><span class="nav-number">2.4.1.</span> <span class="nav-text">请回答一下 Android 中进程间通信有哪些方式？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B7%E8%B0%88%E8%B0%88%E4%BD%A0%E5%AF%B9-Binder-%E6%9C%BA%E5%88%B6%E7%9A%84%E7%90%86%E8%A7%A3%EF%BC%9F"><span class="nav-number">2.4.2.</span> <span class="nav-text">请谈谈你对 Binder 机制的理解？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-AIDL%EF%BC%9F%E5%AE%83%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">2.4.3.</span> <span class="nav-text">什么是 AIDL？它的使用场景是什么？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Android-%E7%B3%BB%E7%BB%9F-SDK-%E7%9B%B8%E5%85%B3"><span class="nav-number">2.5.</span> <span class="nav-text">Android 系统 SDK 相关</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B7%E7%AE%80%E8%A6%81%E8%B0%88%E8%B0%88-Android-%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%9E%B6%E6%9E%84%E7%BB%84%E6%88%90%EF%BC%9F"><span class="nav-number">2.5.1.</span> <span class="nav-text">请简要谈谈 Android 系统的架构组成？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SharedPreferences-%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%90%97%EF%BC%9F%E5%AE%83%E7%9A%84-commit-%E5%92%8C-apply-%E6%96%B9%E6%B3%95%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">2.5.2.</span> <span class="nav-text">SharedPreferences 是线程安全的吗？它的 commit 和 apply 方法有什么区别？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Serializable-%E5%92%8C-Parcelable-%E6%9C%89%E5%93%AA%E4%BA%9B%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">2.5.3.</span> <span class="nav-text">Serializable 和 Parcelable 有哪些区别？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B7%E8%AF%B4%E4%B8%80%E4%B8%8B-Android-7-0-%E7%9A%84%E6%96%B0%E7%89%B9%E6%80%A7%EF%BC%9F"><span class="nav-number">2.5.4.</span> <span class="nav-text">请说一下 Android 7.0 的新特性？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E8%B0%88-ArrayMap-%E5%92%8C-HashMap-%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">2.5.5.</span> <span class="nav-text">谈谈 ArrayMap 和 HashMap 的区别？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%80%E8%A6%81%E8%AF%B4%E8%AF%B4-LruCache-%E7%9A%84%E5%8E%9F%E7%90%86%EF%BC%9F"><span class="nav-number">2.5.6.</span> <span class="nav-text">简要说说 LruCache 的原理？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Android-%E4%B8%AD%E4%B8%BA%E4%BB%80%E4%B9%88%E6%8E%A8%E8%8D%90%E7%94%A8-SparseArray-%E4%BB%A3%E6%9B%BF-HashMap%EF%BC%9F"><span class="nav-number">2.5.7.</span> <span class="nav-text">Android 中为什么推荐用 SparseArray 代替 HashMap？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PathClassLoader-%E5%92%8C-DexClassLoader-%E6%9C%89%E4%BD%95%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">2.5.8.</span> <span class="nav-text">PathClassLoader 和 DexClassLoader 有何区别？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B4%E8%AF%B4-HttpClient-%E4%B8%8E-HttpUrlConnection-%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F%E4%B8%BA%E4%BD%95%E5%89%8D%E8%80%85%E4%BC%9A%E8%A2%AB%E6%9B%BF%E4%BB%A3%EF%BC%9F"><span class="nav-number">2.5.9.</span> <span class="nav-text">说说 HttpClient 与 HttpUrlConnection 的区别？为何前者会被替代？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFLifecycle%EF%BC%9F%E8%AF%B7%E5%88%86%E6%9E%90%E5%85%B6%E5%86%85%E9%83%A8%E5%8E%9F%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9F"><span class="nav-number">2.5.10.</span> <span class="nav-text">什么是Lifecycle？请分析其内部原理和使用场景？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E4%B8%80%E8%B0%88-Android-%E7%9A%84%E7%AD%BE%E5%90%8D%E6%9C%BA%E5%88%B6%EF%BC%9F%E4%B8%8D%E5%90%8C%E7%89%88%E6%9C%AC%E4%B8%8B%E7%9A%84%E7%AD%BE%E5%90%8D%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%EF%BC%9F"><span class="nav-number">2.5.11.</span> <span class="nav-text">谈一谈 Android 的签名机制？不同版本下的签名有什么不同？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E8%B0%88%E5%AE%89%E5%8D%93-Apk-%E6%9E%84%E5%BB%BA%E7%9A%84%E6%B5%81%E7%A8%8B%EF%BC%9F"><span class="nav-number">2.5.12.</span> <span class="nav-text">谈谈安卓 Apk 构建的流程？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%80%E8%BF%B0%E4%B8%80%E4%B8%8B-Android-8-0%E3%80%819-0-%E5%88%86%E5%88%AB%E5%A2%9E%E5%8A%A0%E4%BA%86%E5%93%AA%E4%BA%9B%E6%96%B0%E7%89%B9%E6%80%A7%EF%BC%9F"><span class="nav-number">2.5.13.</span> <span class="nav-text">简述一下 Android 8.0、9.0 分别增加了哪些新特性？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E8%B0%88-Android-10-%E6%9B%B4%E6%96%B0%E4%BA%86%E5%93%AA%E4%BA%9B%E5%86%85%E5%AE%B9%EF%BC%9F%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E9%80%82%E9%85%8D"><span class="nav-number">2.5.14.</span> <span class="nav-text">谈谈 Android 10 更新了哪些内容？如何进行适配?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B7%E7%AE%80%E8%BF%B0-Apk-%E7%9A%84%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%EF%BC%9F"><span class="nav-number">2.5.15.</span> <span class="nav-text">请简述 Apk 的安装过程？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Java-%E4%B8%8E-JS-%E4%BB%A3%E7%A0%81%E5%A6%82%E4%BD%95%E4%BA%92%E8%B0%83%EF%BC%9F%E6%9C%89%E5%81%9A%E8%BF%87%E7%9B%B8%E5%85%B3%E4%BC%98%E5%8C%96%E5%90%97%EF%BC%9F"><span class="nav-number">2.5.16.</span> <span class="nav-text">Java 与 JS 代码如何互调？有做过相关优化吗？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-JNI%EF%BC%9F%E5%85%B7%E4%BD%93%E8%AF%B4%E8%AF%B4%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0-Java-%E4%B8%8E-C-%E7%9A%84%E4%BA%92%E8%B0%83%EF%BC%9F"><span class="nav-number">2.5.17.</span> <span class="nav-text">什么是 JNI？具体说说如何实现 Java 与 C++ 的互调？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B7%E8%B0%88%E8%B0%88-App-%E7%9A%84%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B%EF%BC%9F"><span class="nav-number">2.5.18.</span> <span class="nav-text">请谈谈 App 的启动流程？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90"><span class="nav-number">2.6.</span> <span class="nav-text">第三方框架分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E4%B8%80%E8%B0%88-LeakCanray-%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%9F"><span class="nav-number">2.6.1.</span> <span class="nav-text">谈一谈 LeakCanray 的工作原理？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B4%E8%AF%B4-EventBus-%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%EF%BC%9F"><span class="nav-number">2.6.2.</span> <span class="nav-text">说说 EventBus 的实现原理？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E8%B0%88%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E4%B8%AD%E7%9A%84%E6%8B%A6%E6%88%AA%E5%99%A8-Interceptor-%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9F"><span class="nav-number">2.6.3.</span> <span class="nav-text">谈谈网络请求中的拦截器 - Interceptor 的实现原理和使用场景？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E4%B8%80%E8%B0%88-Glide-%E4%B8%AD%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6%EF%BC%9F"><span class="nav-number">2.6.4.</span> <span class="nav-text">谈一谈 Glide 中的缓存机制？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ViewModel-%E7%9A%84%E5%87%BA%E7%8E%B0%E6%98%AF%E4%B8%BA%E4%BA%86%E8%A7%A3%E5%86%B3%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%EF%BC%9F%E5%B9%B6%E7%AE%80%E8%A6%81%E8%AF%B4%E8%AF%B4%E5%AE%83%E7%9A%84%E5%86%85%E9%83%A8%E5%8E%9F%E7%90%86%EF%BC%9F"><span class="nav-number">2.6.5.</span> <span class="nav-text">ViewModel 的出现是为了解决什么问题？并简要说说它的内部原理？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B7%E8%AF%B4%E8%AF%B4%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E6%A1%86%E6%9E%B6-ButterKnife-%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%EF%BC%9F"><span class="nav-number">2.6.6.</span> <span class="nav-text">请说说依赖注入框架 ButterKnife 的实现原理？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E4%B8%80%E8%B0%88-RxJava-%E8%83%8C%E5%8E%8B%E5%8E%9F%E7%90%86%EF%BC%9F"><span class="nav-number">2.6.7.</span> <span class="nav-text">谈一谈 RxJava 背压原理？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%BC%E5%90%88%E6%8A%80%E6%9C%AF"><span class="nav-number">2.7.</span> <span class="nav-text">综合技术</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B7%E8%B0%88%E8%B0%88%E4%BD%A0%E5%AF%B9-MVC-%E5%92%8C-MVP-%E7%9A%84%E7%90%86%E8%A7%A3%EF%BC%9F"><span class="nav-number">2.7.1.</span> <span class="nav-text">请谈谈你对 MVC 和 MVP 的理解？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E5%88%AB%E4%BB%8B%E7%BB%8D%E4%B8%8B%E4%BD%A0%E6%89%80%E7%9F%A5%E9%81%93%E7%9A%84-Android-%E4%B8%AD%E5%87%A0%E7%A7%8D%E5%AD%98%E5%82%A8%E6%96%B9%E5%BC%8F%EF%BC%9F"><span class="nav-number">2.7.2.</span> <span class="nav-text">分别介绍下你所知道的 Android 中几种存储方式？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%80%E8%BF%B0%E4%B8%8B%E7%83%AD%E4%BF%AE%E5%A4%8D%E7%9A%84%E5%8E%9F%E7%90%86%EF%BC%9F"><span class="nav-number">2.7.3.</span> <span class="nav-text">简述下热修复的原理？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E8%B0%88%E4%BD%A0%E6%98%AF%E5%A6%82%E4%BD%95%E9%80%82%E9%85%8D%E6%9B%B4%E5%A4%9A%E6%9C%BA%E5%9E%8B%E7%9A%84%EF%BC%9F"><span class="nav-number">2.7.4.</span> <span class="nav-text">谈谈你是如何适配更多机型的？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B7%E8%B0%88%E8%B0%88%E4%BD%A0%E6%98%AF%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E5%A4%9A%E6%B8%A0%E9%81%93%E6%89%93%E5%8C%85%E7%9A%84%EF%BC%9F"><span class="nav-number">2.7.5.</span> <span class="nav-text">请谈谈你是如何进行多渠道打包的？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MVP-%E4%B8%AD%E4%BD%A0%E6%98%AF%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86-Presenter-%E5%B1%82%E4%BB%A5%E9%98%B2%E6%AD%A2%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E7%9A%84%EF%BC%9F"><span class="nav-number">2.7.6.</span> <span class="nav-text">MVP 中你是如何处理 Presenter 层以防止内存泄漏的？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E4%B8%80%E5%BC%A0%E5%9B%BE%E7%89%87%E6%89%80%E5%8D%A0%E7%9A%84%E5%86%85%E5%AD%98%E7%A9%BA%E9%97%B4%E5%A4%A7%E5%B0%8F%EF%BC%9F"><span class="nav-number">2.7.7.</span> <span class="nav-text">如何计算一张图片所占的内存空间大小？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%89%E6%B2%A1%E6%9C%89%E9%81%87%E5%88%B0-64k-%E9%97%AE%E9%A2%98%EF%BC%8C%E5%BA%94%E8%AF%A5%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%EF%BC%9F"><span class="nav-number">2.7.8.</span> <span class="nav-text">有没有遇到 64k 问题，应该如何解决？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96-Gradle-%E7%9A%84%E6%9E%84%E5%BB%BA%E9%80%9F%E5%BA%A6%EF%BC%9F"><span class="nav-number">2.7.9.</span> <span class="nav-text">如何优化 Gradle 的构建速度？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96-Android-%E8%AE%BE%E5%A4%87%E5%94%AF%E4%B8%80-ID%EF%BC%9F"><span class="nav-number">2.7.10.</span> <span class="nav-text">如何获取 Android 设备唯一 ID？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E4%B8%80%E8%B0%88-Android-P-%E7%A6%81%E7%94%A8-HTTP-%E5%8D%8F%E8%AE%AE%E5%AF%B9%E6%88%91%E4%BB%AC%E5%BC%80%E5%8F%91%E6%9C%89%E4%BB%80%E4%B9%88%E5%BD%B1%E5%93%8D%EF%BC%9F"><span class="nav-number">2.7.11.</span> <span class="nav-text">谈一谈 Android P 禁用 HTTP 协议对我们开发有什么影响？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-AOP%EF%BC%9F%E5%9C%A8-Android-%E4%B8%AD%E5%AE%83%E6%9C%89%E5%93%AA%E4%BA%9B%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9F"><span class="nav-number">2.7.12.</span> <span class="nav-text">什么是 AOP？在 Android 中它有哪些应用场景？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-MVVM%EF%BC%9F%E4%BD%A0%E6%98%AF%E5%A6%82%E4%BD%95%E5%B0%86%E5%85%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E5%85%B7%E4%BD%93%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84%EF%BC%9F"><span class="nav-number">2.7.13.</span> <span class="nav-text">什么是 MVVM？你是如何将其应用于具体项目中的？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B7%E8%B0%88%E8%B0%88%E4%BD%A0%E4%BC%9A%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E6%95%B0%E6%8D%AE%E5%9F%8B%E7%82%B9%EF%BC%9F"><span class="nav-number">2.7.14.</span> <span class="nav-text">请谈谈你会如何实现数据埋点？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%81%87%E5%A6%82%E8%AE%A9%E4%BD%A0%E5%AE%9E%E7%8E%B0%E6%96%AD%E7%82%B9%E4%B8%8A%E4%BC%A0%E5%8A%9F%E8%83%BD%EF%BC%8C%E4%BD%A0%E8%AE%A4%E4%B8%BA%E5%BA%94%E8%AF%A5%E6%80%8E%E6%A0%B7%E5%8E%BB%E5%81%9A%EF%BC%9F"><span class="nav-number">2.7.15.</span> <span class="nav-text">假如让你实现断点上传功能，你认为应该怎样去做？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#webp-%E5%92%8C-svg-%E6%A0%BC%E5%BC%8F%E7%9A%84%E5%9B%BE%E7%89%87%E5%90%84%E8%87%AA%E6%9C%89%E4%BB%80%E4%B9%88%E7%89%B9%E7%82%B9%EF%BC%9F%E5%BA%94%E8%AF%A5%E5%A6%82%E4%BD%95%E5%9C%A8-Android-%E4%B8%AD%E4%BD%BF%E7%94%A8%EF%BC%9F"><span class="nav-number">2.7.16.</span> <span class="nav-text">webp 和 svg 格式的图片各自有什么特点？应该如何在 Android 中使用？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B4%E8%AF%B4%E4%BD%A0%E6%98%AF%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E7%9A%84%EF%BC%9F%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E5%BA%94%E7%94%A8%E5%9C%A8-MVP-%E5%92%8C-MVVM-%E4%B8%AD%EF%BC%9F"><span class="nav-number">2.7.17.</span> <span class="nav-text">说说你是如何进行单元测试的？以及如何应用在 MVP 和 MVVM 中？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E7%BB%95%E8%BF%87-Android-9-0-%E9%92%88%E5%AF%B9%E5%8F%8D%E5%B0%84%E7%9A%84%E9%99%90%E5%88%B6%EF%BC%9F"><span class="nav-number">2.7.18.</span> <span class="nav-text">如何绕过 Android 9.0 针对反射的限制？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E4%BA%8E-GIF-%E6%A0%BC%E5%BC%8F%E7%9A%84%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD%E6%9C%89%E4%BB%80%E4%B9%88%E6%80%9D%E8%B7%AF%E5%92%8C%E5%BB%BA%E8%AE%AE%EF%BC%9F"><span class="nav-number">2.7.19.</span> <span class="nav-text">对于 GIF 格式的图片加载有什么思路和建议？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%B0%86%E9%A1%B9%E7%9B%AE%E8%BF%81%E7%A7%BB%E5%88%B0-AndroidX%EF%BC%9F%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E8%BF%81%E7%A7%BB%EF%BC%9F"><span class="nav-number">2.7.20.</span> <span class="nav-text">为什么要将项目迁移到 AndroidX？如何进行迁移？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%A0%E4%BA%86%E8%A7%A3%E8%BF%87%E5%93%AA%E4%BA%9BAndroid%E5%B1%8F%E5%B9%95%E9%80%82%E9%85%8D%E6%96%B9%E9%9D%A2%E7%9A%84%E6%8A%80%E5%B7%A7%EF%BC%9F"><span class="nav-number">2.7.21.</span> <span class="nav-text">你了解过哪些Android屏幕适配方面的技巧？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%96%B9%E9%9D%A2"><span class="nav-number">2.8.</span> <span class="nav-text">数据结构方面</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F%EF%BC%9F%E5%A6%82%E4%BD%95%E5%8E%BB%E4%BC%98%E5%8C%96%EF%BC%9F"><span class="nav-number">2.8.1.</span> <span class="nav-text">什么是冒泡排序？如何去优化？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B7%E7%94%A8-Java-%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%95%E9%93%BE%E8%A1%A8%EF%BC%9F"><span class="nav-number">2.8.2.</span> <span class="nav-text">请用 Java 实现一个简单的单链表？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%8F%8D%E8%BD%AC%E4%B8%80%E4%B8%AA%E5%8D%95%E9%93%BE%E8%A1%A8%EF%BC%9F"><span class="nav-number">2.8.3.</span> <span class="nav-text">如何反转一个单链表？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E8%B0%88%E4%BD%A0%E5%AF%B9%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%92%8C%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E7%9A%84%E7%90%86%E8%A7%A3%EF%BC%9F"><span class="nav-number">2.8.4.</span> <span class="nav-text">谈谈你对时间复杂度和空间复杂度的理解？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E4%B8%80%E8%B0%88%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E9%93%BE%E8%A1%A8%E6%9C%89%E7%8E%AF%EF%BC%9F"><span class="nav-number">2.8.5.</span> <span class="nav-text">谈一谈如何判断一个链表有环？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%8B%E5%86%99%E4%BA%8C%E5%8F%89%E6%A0%91%E7%BB%93%E6%9E%84%EF%BC%9F"><span class="nav-number">2.8.6.</span> <span class="nav-text">手写二叉树结构？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%BA%A2%E9%BB%91%E6%A0%91%EF%BC%9F%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E7%BA%A2%E9%BB%91%E6%A0%91%EF%BC%9F"><span class="nav-number">2.8.7.</span> <span class="nav-text">什么是红黑树？为什么要用红黑树？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%EF%BC%9F%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96%EF%BC%9F"><span class="nav-number">2.8.8.</span> <span class="nav-text">什么是快速排序？如何优化？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B4%E8%AF%B4%E5%BE%AA%E7%8E%AF%E9%98%9F%E5%88%97%EF%BC%9F%E5%AE%83%E6%9C%89%E5%93%AA%E4%BA%9B%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9F"><span class="nav-number">2.8.9.</span> <span class="nav-text">说说循环队列？它有哪些应用场景？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E5%8D%95%E9%93%BE%E8%A1%A8%E4%BA%A4%E5%8F%89%EF%BC%9F"><span class="nav-number">2.8.10.</span> <span class="nav-text">如何判断单链表交叉？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.9.</span> <span class="nav-text">设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B7%E7%AE%80%E8%A6%81%E8%B0%88%E4%B8%80%E8%B0%88%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%EF%BC%9F"><span class="nav-number">2.9.1.</span> <span class="nav-text">请简要谈一谈单例模式？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E4%BA%8E%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%85%AD%E5%A4%A7%E5%9F%BA%E6%9C%AC%E5%8E%9F%E5%88%99%E4%BA%86%E8%A7%A3%E5%A4%9A%E5%B0%91%EF%BC%9F"><span class="nav-number">2.9.2.</span> <span class="nav-text">对于面向对象的六大基本原则了解多少？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B7%E5%88%97%E5%87%BA%E5%87%A0%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%9A%84%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%E5%B9%B6%E8%AF%B4%E6%98%8E%E5%AE%83%E4%BB%AC%E7%9A%84%E7%94%A8%E6%B3%95%EF%BC%9F"><span class="nav-number">2.9.3.</span> <span class="nav-text">请列出几种常见的工厂模式并说明它们的用法？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B4%E8%AF%B4%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%94%A8%E5%88%B0%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9F"><span class="nav-number">2.9.4.</span> <span class="nav-text">说说项目中用到的设计模式和使用场景？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%EF%BC%9F%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%EF%BC%9FAndroid%E6%BA%90%E7%A0%81%E4%B8%AD%E7%9A%84%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%EF%BC%9F"><span class="nav-number">2.9.5.</span> <span class="nav-text">什么是代理模式？如何使用？Android源码中的代理模式？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E4%B8%80%E8%B0%88%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%EF%BC%8C%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F%EF%BC%8C%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9F%E5%A6%82%E4%BD%95%E5%90%88%E7%90%86%E9%80%89%E6%8B%A9%EF%BC%9F"><span class="nav-number">2.9.6.</span> <span class="nav-text">谈一谈单例模式，建造者模式，工厂模式的使用场景？如何合理选择？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E8%B0%88%E4%BD%A0%E5%AF%B9%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F%E7%9A%84%E7%90%86%E8%A7%A3%EF%BC%9F"><span class="nav-number">2.9.7.</span> <span class="nav-text">谈谈你对原型模式的理解？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B7%E8%B0%88%E8%B0%88%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E5%8E%9F%E7%90%86%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9F"><span class="nav-number">2.9.8.</span> <span class="nav-text">请谈谈策略模式原理及其应用场景？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%8C%E4%BB%80%E4%B9%88%E5%9C%BA%E6%99%AF%E4%BD%BF%E7%94%A8%EF%BC%9F"><span class="nav-number">2.9.9.</span> <span class="nav-text">静态代理和动态代理的区别，什么场景使用？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E4%B8%80%E8%B0%88%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9F"><span class="nav-number">2.9.10.</span> <span class="nav-text">谈一谈责任链模式的使用场景？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%96%B9%E9%9D%A2"><span class="nav-number">2.10.</span> <span class="nav-text">计算机网络方面</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B7%E7%AE%80%E8%BF%B0-Http-%E4%B8%8E-Https-%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">2.10.1.</span> <span class="nav-text">请简述 Http 与 Https 的区别？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B4%E4%B8%80%E8%AF%B4-HTTPS%E3%80%81UDP%E3%80%81Socket-%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">2.10.2.</span> <span class="nav-text">说一说 HTTPS、UDP、Socket 之间的区别？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B7%E7%AE%80%E8%BF%B0%E4%B8%80%E6%AC%A1-HTTP-%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E7%9A%84%E8%BF%87%E7%A8%8B%EF%BC%9F"><span class="nav-number">2.10.3.</span> <span class="nav-text">请简述一次 HTTP 网络请求的过程？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E4%B8%80%E8%B0%88-TCP-IP-%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E3%80%81%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%E8%BF%87%E7%A8%8B%EF%BC%9F"><span class="nav-number">2.10.4.</span> <span class="nav-text">谈一谈 TCP&#x2F;IP 三次握手、四次挥手过程？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B4Http%E6%98%AF%E5%8F%AF%E9%9D%A0%E7%9A%84%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE%EF%BC%9F"><span class="nav-number">2.10.5.</span> <span class="nav-text">为什么说Http是可靠的数据传输协议？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TCP-IP-%E5%8D%8F%E8%AE%AE%E5%88%86%E4%B8%BA%E5%93%AA%E5%87%A0%E5%B1%82%EF%BC%9FTCP-%E5%92%8C-HTTP-%E5%88%86%E5%88%AB%E5%B1%9E%E4%BA%8E%E5%93%AA%E4%B8%80%E5%B1%82%EF%BC%9F"><span class="nav-number">2.10.6.</span> <span class="nav-text">TCP&#x2F;IP 协议分为哪几层？TCP 和 HTTP 分别属于哪一层？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Post-%E4%B8%AD%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0%E6%94%BE%E5%9C%A8%E4%BA%86%E5%93%AA%E4%B8%AA%E4%BD%8D%E7%BD%AE%EF%BC%9F"><span class="nav-number">2.10.7.</span> <span class="nav-text">Post 中请求参数放在了哪个位置？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kotlin-%E6%96%B9%E9%9D%A2"><span class="nav-number">2.11.</span> <span class="nav-text">Kotlin 方面</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B7%E7%AE%80%E8%BF%B0%E4%B8%80%E4%B8%8B%E4%BB%80%E4%B9%88%E6%98%AF-Kotlin%EF%BC%9F%E5%AE%83%E6%9C%89%E5%93%AA%E4%BA%9B%E7%89%B9%E6%80%A7%EF%BC%9F"><span class="nav-number">2.11.1.</span> <span class="nav-text">请简述一下什么是 Kotlin？它有哪些特性？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Kotlin-%E4%B8%AD%E6%B3%A8%E8%A7%A3-JvmOverloads-%E7%9A%84%E4%BD%9C%E7%94%A8%EF%BC%9F"><span class="nav-number">2.11.2.</span> <span class="nav-text">Kotlin 中注解 @JvmOverloads 的作用？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Kotlin-%E4%B8%AD-List-%E4%B8%8E-MutableList-%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">2.11.3.</span> <span class="nav-text">Kotlin 中 List 与 MutableList 的区别？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Kotlin-%E4%B8%AD%E5%AE%9E%E7%8E%B0%E5%8D%95%E4%BE%8B%E7%9A%84%E5%87%A0%E7%A7%8D%E5%B8%B8%E8%A7%81%E6%96%B9%E5%BC%8F%EF%BC%9F"><span class="nav-number">2.11.4.</span> <span class="nav-text">Kotlin 中实现单例的几种常见方式？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E8%B0%88%E4%BD%A0%E5%AF%B9-Kotlin-%E4%B8%AD%E7%9A%84-data-%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E7%90%86%E8%A7%A3%EF%BC%9F%E7%9B%B8%E6%AF%94%E4%BA%8E%E6%99%AE%E9%80%9A%E7%B1%BB%E6%9C%89%E5%93%AA%E4%BA%9B%E7%89%B9%E7%82%B9%EF%BC%9F"><span class="nav-number">2.11.5.</span> <span class="nav-text">谈谈你对 Kotlin 中的 data 关键字的理解？相比于普通类有哪些特点？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%A7%94%E6%89%98%E5%B1%9E%E6%80%A7%EF%BC%9F%E8%AF%B7%E7%AE%80%E8%A6%81%E8%AF%B4%E8%AF%B4%E5%85%B6%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%E5%92%8C%E5%8E%9F%E7%90%86%EF%BC%9F"><span class="nav-number">2.11.6.</span> <span class="nav-text">什么是委托属性？请简要说说其使用场景和原理？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B7%E4%B8%BE%E4%BE%8B%E8%AF%B4%E6%98%8E-Kotlin-%E4%B8%AD-with-%E4%B8%8E-apply-%E5%87%BD%E6%95%B0%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E5%92%8C%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">2.11.7.</span> <span class="nav-text">请举例说明 Kotlin 中 with 与 apply 函数的应用场景和区别？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Kotlin%E4%B8%AD-Unit-%E7%B1%BB%E5%9E%8B%E7%9A%84%E4%BD%9C%E7%94%A8%E4%BB%A5%E5%8F%8A%E4%B8%8EJava%E4%B8%AD-Void-%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">2.11.8.</span> <span class="nav-text">Kotlin中 Unit 类型的作用以及与Java中 Void 的区别？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Kotlin-%E4%B8%AD-infix-%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E5%8E%9F%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9F"><span class="nav-number">2.11.9.</span> <span class="nav-text">Kotlin 中 infix 关键字的原理和使用场景？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Kotlin%E4%B8%AD%E7%9A%84%E5%8F%AF%E8%A7%81%E6%80%A7%E4%BF%AE%E9%A5%B0%E7%AC%A6%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F%E7%9B%B8%E6%AF%94%E4%BA%8E-Java-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">2.11.10.</span> <span class="nav-text">Kotlin中的可见性修饰符有哪些？相比于 Java 有什么区别？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%A0%E8%A7%89%E5%BE%97-Kotlin-%E4%B8%8E-Java-%E6%B7%B7%E5%90%88%E5%BC%80%E5%8F%91%E6%97%B6%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E5%93%AA%E4%BA%9B%E9%97%AE%E9%A2%98%EF%BC%9F"><span class="nav-number">2.11.11.</span> <span class="nav-text">你觉得 Kotlin 与 Java 混合开发时需要注意哪些问题？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%A8-Kotlin-%E4%B8%AD%EF%BC%8C%E4%BD%95%E4%B8%BA%E8%A7%A3%E6%9E%84%EF%BC%9F%E8%AF%A5%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%EF%BC%9F"><span class="nav-number">2.11.12.</span> <span class="nav-text">在 Kotlin 中，何为解构？该如何使用？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%A8-Kotlin-%E4%B8%AD%EF%BC%8C%E4%BB%80%E4%B9%88%E6%98%AF%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0%EF%BC%9F%E6%9C%89%E4%BB%80%E4%B9%88%E4%BD%9C%E7%94%A8%EF%BC%9F"><span class="nav-number">2.11.13.</span> <span class="nav-text">在 Kotlin 中，什么是内联函数？有什么作用？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E8%B0%88Kotlin%E4%B8%AD%E7%9A%84%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95%EF%BC%9F%E6%9C%89%E5%93%AA%E4%BA%9B%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9%EF%BC%9F"><span class="nav-number">2.11.14.</span> <span class="nav-text">谈谈Kotlin中的构造方法？有哪些注意事项？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E8%B0%88-Kotlin-%E4%B8%AD%E7%9A%84-Sequence%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E5%AE%83%E5%A4%84%E7%90%86%E9%9B%86%E5%90%88%E6%93%8D%E4%BD%9C%E6%9B%B4%E5%8A%A0%E9%AB%98%E6%95%88%EF%BC%9F"><span class="nav-number">2.11.15.</span> <span class="nav-text">谈谈 Kotlin 中的 Sequence，为什么它处理集合操作更加高效？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B7%E8%B0%88%E8%B0%88-Kotlin-%E4%B8%AD%E7%9A%84-Coroutines%EF%BC%8C%E5%AE%83%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F%E6%9C%89%E5%93%AA%E4%BA%9B%E4%BC%98%E7%82%B9%EF%BC%9F"><span class="nav-number">2.11.16.</span> <span class="nav-text">请谈谈 Kotlin 中的 Coroutines，它与线程有什么区别？有哪些优点？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Kotlin%E4%B8%AD%E5%8F%AF%E8%A7%81%E5%9E%8B%E4%BF%AE%E9%A5%B0%E7%AC%A6%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F%E7%9B%B8%E6%AF%94%E4%BA%8EJava%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">2.11.17.</span> <span class="nav-text">Kotlin中可见型修饰符有哪些？相比于Java有什么区别？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%88%E8%B0%88Kotlin%E4%B8%AD%E7%9A%84Unit%EF%BC%9F%E5%AE%83%E5%92%8CJava%E4%B8%AD%E7%9A%84void%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9Fz%E2%80%99x%E2%80%99l"><span class="nav-number">2.11.18.</span> <span class="nav-text">谈谈Kotlin中的Unit？它和Java中的void有什么区别？z’x’l</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Kotlin%E4%B8%AD%E8%AF%A5%E5%A6%82%E4%BD%95%E5%AE%89%E5%85%A8%E5%9C%B0%E5%A4%84%E7%90%86%E5%8F%AF%E7%A9%BA%E7%B1%BB%E5%9E%8B%EF%BC%9F"><span class="nav-number">2.11.19.</span> <span class="nav-text">Kotlin中该如何安全地处理可空类型？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B4%E8%AF%B4-Kotlin%E4%B8%AD-%E7%9A%84-Any-%E4%B8%8EJava%E4%B8%AD%E7%9A%84-Object-%E6%9C%89%E4%BD%95%E5%BC%82%E5%90%8C%EF%BC%9F"><span class="nav-number">2.11.20.</span> <span class="nav-text">说说 Kotlin中 的 Any 与Java中的 Object 有何异同？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Kotlin%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E6%9C%89%E9%9A%90%E5%BC%8F%E8%BD%AC%E6%8D%A2%E5%90%97%EF%BC%9F%E4%B8%BA%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">2.11.21.</span> <span class="nav-text">Kotlin中的数据类型有隐式转换吗？为什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E5%88%AB%E9%80%9A%E8%BF%87%E5%AF%B9%E8%B1%A1%E8%A1%A8%E8%BE%BE%E5%BC%8F-object-%E5%92%8C-lambda-%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3%E5%86%85%E9%83%A8%E6%9C%89%E4%BD%95%E4%B8%8D%E5%90%8C%EF%BC%9F"><span class="nav-number">2.11.22.</span> <span class="nav-text">分别通过对象表达式 object 和 lambda 表达式实现的函数式接口内部有何不同？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Kotlin-%E4%B8%AD%E9%9B%86%E5%90%88%E9%81%8D%E5%8E%86%E6%9C%89%E5%93%AA%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F%EF%BC%9F"><span class="nav-number">2.11.23.</span> <span class="nav-text">Kotlin 中集合遍历有哪几种方式？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8D%8F%E7%A8%8B%E6%AF%94%E7%BA%BF%E7%A8%8B%E8%A6%81%E8%BD%BB%E9%87%8F%EF%BC%9F"><span class="nav-number">2.11.24.</span> <span class="nav-text">为什么协程比线程要轻量？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E6%94%BE%E6%80%A7%E9%97%AE%E9%A2%98"><span class="nav-number">2.12.</span> <span class="nav-text">开放性问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%A0%E7%9F%A5%E9%81%93%E5%93%AA%E4%BA%9B%E6%8F%90%E5%8D%87%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87%E7%9A%84%E9%AA%9A%E6%93%8D%E4%BD%9C%EF%BC%9F"><span class="nav-number">2.12.1.</span> <span class="nav-text">你知道哪些提升开发效率的骚操作？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%A8%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B%E4%B8%AD%E4%BD%A0%E9%81%87%E5%88%B0%E8%BF%87%E7%9A%84%E6%9C%80%E5%A4%A7%E7%9A%84%E9%9A%BE%E9%A2%98%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E7%9A%84%EF%BC%9F"><span class="nav-number">2.12.2.</span> <span class="nav-text">在开发过程中你遇到过的最大的难题是什么？如何解决的？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B4%E8%AF%B4%E4%BD%A0%E6%9C%AA%E6%9D%A5%E7%9A%84%E8%81%8C%E4%B8%9A%E8%A7%84%E5%88%92%E6%98%AF%E6%80%8E%E6%A0%B7%E7%9A%84%EF%BC%9F"><span class="nav-number">2.12.3.</span> <span class="nav-text">说说你未来的职业规划是怎样的？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%A0%E6%98%AF%E5%A6%82%E4%BD%95%E7%9C%8B%E5%BE%85-Flutter%EF%BC%8CReact-Native-%E4%B8%8E-Android-%E5%85%B3%E7%B3%BB%E7%9A%84%EF%BC%9F"><span class="nav-number">2.12.4.</span> <span class="nav-text">你是如何看待 Flutter，React Native 与 Android 关系的？</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love" id="animate"> 
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Randy Zhang</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.1.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

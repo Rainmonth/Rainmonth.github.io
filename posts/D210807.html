@@ -1,35 +1,1103 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.1.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.1.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '6.1.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="本文链接：https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;D210807.html  Android部分，就在下面罗列Android基础  Android 基础——View 知识点  Android 基础——Canvas  Android 基础——Kotlin基础语法  Android工具命令网站  Android 工具命令——常用的网站  Android 工具命令——发布项">
+<meta property="og:type" content="article">
+<meta property="og:title" content="博客导航——Android篇">
+<meta property="og:url" content="http://yoursite.com/posts/D210807.html">
+<meta property="og:site_name" content="荏苒追寻个人博客">
+<meta property="og:description" content="本文链接：https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;D210807.html  Android部分，就在下面罗列Android基础  Android 基础——View 知识点  Android 基础——Canvas  Android 基础——Kotlin基础语法  Android工具命令网站  Android 工具命令——常用的网站  Android 工具命令——发布项">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-08-06T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-10-12T16:06:46.968Z">
+<meta property="article:author" content="Randy Zhang">
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/posts/D210807.html"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>博客导航——Android篇 | 荏苒追寻个人博客</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> 
+
+<div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">荏苒追寻个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">做一个有追求的青年</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+          
+  <li class="menu-item menu-item-home">
+    <a href="/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-about">
+    <a href="/about/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-tags">
+    <a href="/tags/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-categories">
+    <a href="/categories/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-archives">
+    <a href="/archives/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-schedule">
+    <a href="/schedule/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
+</li>
+
+      
+
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/D210807.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">博客导航——Android篇</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-08-07T00:00:00+08:00">2021-08-07</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>本文链接：<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/D210807.html">https://rainmonth.github.io/posts/D210807.html</a></p>
+</blockquote>
+<h2 id="Android部分，就在下面罗列"><a href="#Android部分，就在下面罗列" class="headerlink" title="Android部分，就在下面罗列"></a><a href>Android部分</a>，就在下面罗列</h2><h3 id="Android基础"><a href="#Android基础" class="headerlink" title="Android基础"></a>Android基础</h3><ul>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210219.html">Android 基础——View 知识点</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A220131.html">Android 基础——Canvas</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180116.html">Android 基础——Kotlin基础语法</a></li>
+</ul>
+<h3 id="Android工具命令网站"><a href="#Android工具命令网站" class="headerlink" title="Android工具命令网站"></a>Android工具命令网站</h3><ul>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/151868c0.html">Android 工具命令——常用的网站</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A201230.html">Android 工具命令——发布项目到JitPack</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A201231.html">Android 工具命令——发布项目到Maven</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180302.html">Android 工具命令——使用Android快速制作.9</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191020.html">Android 工具命令——adb学习</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A190918.html">Android 工具命令——Gradle学习</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A190917.html">Android 工具命令——Gradle配置问题</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A200325.html">Android 工具命令——Repo命令简介</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A181003.html">Android 工具命令——Android Studio 升级到3.0运行项目指北</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191994.html">Android 工具命令——Gradle学习day1基本的gradle命令</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191106.html">Android 工具命令——Gradle学习day2 Android项目里面的gradle配置解析</a></li>
+</ul>
+<h3 id="Android-进程保活"><a href="#Android-进程保活" class="headerlink" title="Android 进程保活"></a>Android 进程保活</h3><ul>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A2102200.html">Android 进程保活——守护进程</a></li>
+</ul>
+<h3 id="Android开源项目分析系列"><a href="#Android开源项目分析系列" class="headerlink" title="Android开源项目分析系列"></a>Android开源项目分析系列</h3><p>主要罗列开源库的文章，分析的进度</p>
+<ul>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191224.html">Android开源库分析——基于ExoPlayer封装的音视频播放器</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191130.html">Andorid开源库分析——理解EXOPlayer的Timeline</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180205.html">Android开源库分析——浅谈Retrofit封装</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A211010.html">Android开源库分析——图片加载库的比较与封装</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191110.html">Andorid开源库分析——ARouter使用及源码分析</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A200701.html">Andorid开源库分析——Dagger2 简介</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191101.html">Andorid开源库分析——ExoPlayer使用与分析</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A211027.html">Andorid开源库分析——greenDAO使用</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191206.html">Andorid开源库分析——IjkPlayer简介</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180508.html">Andorid开源库分析——KLog源码分析</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A200811.html">Andorid开源库分析——LeakCanary分析</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210402.html">Android开源库分析——OkHttp3</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A181204.html">Andorid开源库分析——Retrofit源码分析</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A181208.html">Andorid开源库分析——RxJava深入理解篇</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A181206.html">Andorid开源库分析——RxJava源码分析</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A220317.html">Android开源库分析——Fresco</a></li>
+</ul>
+<h3 id="Android控件"><a href="#Android控件" class="headerlink" title="Android控件"></a>Android控件</h3><ul>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180510.html">Android控件——动画的深入分析</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210823.html">Android 控件——放大镜实现</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180208.html">Android 时间选择相关系统控件</a></li>
+<li><input checked disabled type="checkbox"> <a href="htpps://rainmonth.github.io/posts/A180305.html">Android 是时候了解一波MD库控件了</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180414.html">Android 控件——自定义键盘</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191103.html">Android SurfaceView详解</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180504.html">Android 控件——View的事件体系</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A181005.html">Android 控件——ViewPager的无限循环与自动滚动实现</a></li>
+</ul>
+<h3 id="Android适配"><a href="#Android适配" class="headerlink" title="Android适配"></a>Android适配</h3><ul>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180427.html">Android 适配——动态权限管理</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A18042702.html">Android 适配——屏幕适配方案研究</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A200312.html">Android 适配——全局悬浮窗的实现</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180415.html">Android 适配——原生与H5交互</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180503.html">Android 适配——状态栏攻略</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210906.html">Android 适配——Notification适配指南</a></li>
+</ul>
+<h3 id="Android四大组件"><a href="#Android四大组件" class="headerlink" title="Android四大组件"></a>Android四大组件</h3><ul>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180505.html">Android Activity启动模式详解</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180507.html">Android 四大组件——Activity与Fragment的通信方式</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210109.html">Android 四大组件——ActivityRecord分析</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180420.html">Android 四大组件——Android开发艺术探索读书笔记</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210110.html">Android 四大组件之BroadcastRecord</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210111.html">Android 四大组件之ContentProviderRecord</a>)</li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180419.html">Android 四大组件——Fragment详解</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191025.html">Android 四大组件——Service详解</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210112.html">Android 四大组件之ServiceRecord</a></li>
+</ul>
+<h3 id="Android通用功能封装"><a href="#Android通用功能封装" class="headerlink" title="Android通用功能封装"></a>Android通用功能封装</h3><ul>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="http://rainmonth.github.io/posts/A210201.html">Android通用功能封装0——开篇</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="http://rainmonth.github.io/posts/A210202.html">Android通用功能封装1——通用工具类封装</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="http://rainmonth.github.io/posts/A210203.html">Android 通用功能封装2——图片加载</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="http://rainmonth.github.io/posts/A21020r.html">Android 通用功能封装3——文件选择</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="http://rainmonth.github.io/posts/A210205.html">Android 通用功能封装4——文件下载</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="http://rainmonth.github.io/posts/A210206.html">Android 通用功能封装5——网络库封装</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="http://rainmonth.github.io/posts/A210207.html">Android 通用功能封装6——数据库封装</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="http://rainmonth.github.io/posts/A210208.html">Android 通用功能封装7——广播管理</a></li>
+</ul>
+<h3 id="Android系统功能"><a href="#Android系统功能" class="headerlink" title="Android系统功能"></a>Android系统功能</h3><ul>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180501.html">Android 系统功能——震动相关实现</a></li>
+</ul>
+<h3 id="Android系统架构"><a href="#Android系统架构" class="headerlink" title="Android系统架构"></a>Android系统架构</h3><ul>
+<li><input disabled type="checkbox"> <a href>Android 系统架构——Android系统架说明</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191027.html">Android 系统架构——组件化开发实践</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A200725.html">Andorid 系统架构——Jetpack实践</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180509.html">Android 系统架构——JVM、Dalvik和ART</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A181025.html">Android 系统架构——MVP模式、MVC模式和MVVM模式</a></li>
+</ul>
+<h3 id="Android系统源码分析"><a href="#Android系统源码分析" class="headerlink" title="Android系统源码分析"></a>Android系统源码分析</h3><ul>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191012.html">Android 系统源码分析——MacOs下的源码下载及编译</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191017.html">Android 系统源码分析——Android Studio导入Android8.0源码</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191023.html">Android 系统源码分析——进程的创建过程</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191019.html">Android 系统源码分析——系统的启动</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191023.html">Android 系统源码分析——Binder线程池工作过程</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/42f2ba4c.html">Android 系统源码分析——init进程</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180427.html">Android 系统源码分析——IPC机制</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180425.html">Android 系统源码分析——Handler机制</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180702.html">Android 系统源码分析——Launcher3分析开篇</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180702.html">Android 系统源码分析——Launcher3分析之LauncherModel</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180705.html">Android 系统源码分析——Launcher3分析之Workspace</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191018.html">Android 系统源码分析——AMS分析</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A1910110.html">Android 系统源码分析——WMS分析</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191019.html">Android 系统源码分析——MotionEvent</a></li>
+</ul>
+<h3 id="Android性能优化系列"><a href="#Android性能优化系列" class="headerlink" title="Android性能优化系列"></a>Android性能优化系列</h3><ul>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180418.html">Android 性能优化——布局优化</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180413.html">Android 性能优化——内存优化</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180420.html">Android 性能优化——启动优化</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A190514.html">Android 性能优化——结合KaDa故事谈谈Android性能优化</a></li>
+</ul>
+<h3 id="Android学不过来系列"><a href="#Android学不过来系列" class="headerlink" title="Android学不过来系列"></a><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210907.html">Android学不过来系列</a></h3><h3 id="Android音视频基础"><a href="#Android音视频基础" class="headerlink" title="Android音视频基础"></a>Android音视频基础</h3><ul>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210101.html">音视频基础0——目录</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210102.html">音视频基础1——AudioTrack、AudioRecorder、MediaRecorder音频数据采集播放处理</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210103.html">音视频基础2——Android Camera API及Camera2 API的使用</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210104.html">音视频基础3——Android Camera API及Camera2 采集视频数据</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210105.html">音视频基础4——Android MediaCodec API学习</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210306.html">音视频基础5——Android 实现rtmp推流</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210307.html">音视频基础6——交叉编译动态库</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210308.html">音视频基础7——MacOs下编译FFMpeg4.2.2</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210109.html">音视频基础8——音频焦点管理</a></li>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191208.html">Android 音视频基础——官方关于多媒体的说明介绍</a></li>
+</ul>
+<h3 id="Android音视频进阶"><a href="#Android音视频进阶" class="headerlink" title="Android音视频进阶"></a>Android音视频进阶</h3><ul>
+<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210122.html">Android 音视频进阶——OpenGL基础</a></li>
+</ul>
+<h3 id="Android-NDK开发"><a href="#Android-NDK开发" class="headerlink" title="Android NDK开发"></a>Android NDK开发</h3><ul>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191021.html">Android之NDK与JNI简单介绍及NDK开发demo实现</a></li>
+</ul>
+<h3 id="Android杂谈"><a href="#Android杂谈" class="headerlink" title="Android杂谈"></a>Android杂谈</h3><ul>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180417.html">Android 杂谈——从一个简单的弹窗说起</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180123.html">Android 杂谈零散知识点（持续更新）</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A181001.html">Android 杂谈——SdkVersion那些事儿</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A220222.html">Android 杂谈——Interview Prepare</a></li>
+<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A220330.html">Android 杂谈——Activity与Fragment恢复的那些事儿</a></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/D210806.html" rel="next" title="博客导航——Java篇">
+                <i class="fa fa-chevron-left"></i> 博客导航——Java篇
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/c1f07320.html" rel="prev" title="小白学理财——可转债">
+                小白学理财——可转债 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          </div>
+          
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/%20%7C%7C%20archive">
+                
+                    <span class="site-state-item-count">199</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">42</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">43</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Rainmonth" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Android%E9%83%A8%E5%88%86%EF%BC%8C%E5%B0%B1%E5%9C%A8%E4%B8%8B%E9%9D%A2%E7%BD%97%E5%88%97"><span class="nav-number">1.</span> <span class="nav-text">Android部分，就在下面罗列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Android%E5%9F%BA%E7%A1%80"><span class="nav-number">1.1.</span> <span class="nav-text">Android基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Android%E5%B7%A5%E5%85%B7%E5%91%BD%E4%BB%A4%E7%BD%91%E7%AB%99"><span class="nav-number">1.2.</span> <span class="nav-text">Android工具命令网站</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Android-%E8%BF%9B%E7%A8%8B%E4%BF%9D%E6%B4%BB"><span class="nav-number">1.3.</span> <span class="nav-text">Android 进程保活</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Android%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E5%88%86%E6%9E%90%E7%B3%BB%E5%88%97"><span class="nav-number">1.4.</span> <span class="nav-text">Android开源项目分析系列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Android%E6%8E%A7%E4%BB%B6"><span class="nav-number">1.5.</span> <span class="nav-text">Android控件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Android%E9%80%82%E9%85%8D"><span class="nav-number">1.6.</span> <span class="nav-text">Android适配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Android%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6"><span class="nav-number">1.7.</span> <span class="nav-text">Android四大组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Android%E9%80%9A%E7%94%A8%E5%8A%9F%E8%83%BD%E5%B0%81%E8%A3%85"><span class="nav-number">1.8.</span> <span class="nav-text">Android通用功能封装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Android%E7%B3%BB%E7%BB%9F%E5%8A%9F%E8%83%BD"><span class="nav-number">1.9.</span> <span class="nav-text">Android系统功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Android%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84"><span class="nav-number">1.10.</span> <span class="nav-text">Android系统架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Android%E7%B3%BB%E7%BB%9F%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90"><span class="nav-number">1.11.</span> <span class="nav-text">Android系统源码分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Android%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%B3%BB%E5%88%97"><span class="nav-number">1.12.</span> <span class="nav-text">Android性能优化系列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Android%E5%AD%A6%E4%B8%8D%E8%BF%87%E6%9D%A5%E7%B3%BB%E5%88%97"><span class="nav-number">1.13.</span> <span class="nav-text">Android学不过来系列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Android%E9%9F%B3%E8%A7%86%E9%A2%91%E5%9F%BA%E7%A1%80"><span class="nav-number">1.14.</span> <span class="nav-text">Android音视频基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Android%E9%9F%B3%E8%A7%86%E9%A2%91%E8%BF%9B%E9%98%B6"><span class="nav-number">1.15.</span> <span class="nav-text">Android音视频进阶</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Android-NDK%E5%BC%80%E5%8F%91"><span class="nav-number">1.16.</span> <span class="nav-text">Android NDK开发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Android%E6%9D%82%E8%B0%88"><span class="nav-number">1.17.</span> <span class="nav-text">Android杂谈</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love" id="animate"> 
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Randy Zhang</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.1.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

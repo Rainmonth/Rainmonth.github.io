@@ -1,35 +1,1076 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.1.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.1.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '6.1.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="系列文章  Android OpenGL基础1——常用概念及方法解释 Android OpenGL基础2——Shader的使用流程 Android OpenGL基础3——纹理的使用 Android OpenGL基础4——变换 Android OpenGL——Android Studio OpenGL开发的简单示例  纹理概念纹理是一个2D图片（甚至也有1D和3D的纹理），它可以用来添加物体的细节。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android OpenGL基础3——纹理的使用">
+<meta property="og:url" content="http://yoursite.com/posts/A220805.html">
+<meta property="og:site_name" content="荏苒追寻个人博客">
+<meta property="og:description" content="系列文章  Android OpenGL基础1——常用概念及方法解释 Android OpenGL基础2——Shader的使用流程 Android OpenGL基础3——纹理的使用 Android OpenGL基础4——变换 Android OpenGL——Android Studio OpenGL开发的简单示例  纹理概念纹理是一个2D图片（甚至也有1D和3D的纹理），它可以用来添加物体的细节。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-08-04T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-10-12T16:06:46.951Z">
+<meta property="article:author" content="Randy Zhang">
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/posts/A220805.html"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Android OpenGL基础3——纹理的使用 | 荏苒追寻个人博客</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> 
+
+<div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">荏苒追寻个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">做一个有追求的青年</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+          
+  <li class="menu-item menu-item-home">
+    <a href="/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-about">
+    <a href="/about/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-tags">
+    <a href="/tags/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-categories">
+    <a href="/categories/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-archives">
+    <a href="/archives/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-schedule">
+    <a href="/schedule/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
+</li>
+
+      
+
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A220805.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android OpenGL基础3——纹理的使用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-08-05T00:00:00+08:00">2022-08-05</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/OpenGL/" itemprop="url" rel="index"><span itemprop="name">OpenGL</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>系列文章</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A220802.html">Android OpenGL基础1——常用概念及方法解释</a></li>
+<li><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210122.html">Android OpenGL基础2——Shader的使用流程</a></li>
+<li><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A220805.html">Android OpenGL基础3——纹理的使用</a></li>
+<li><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A220810.html">Android OpenGL基础4——变换</a></li>
+<li><a href>Android OpenGL——Android Studio OpenGL开发的简单示例</a></li>
+</ul>
+<h2 id="纹理概念"><a href="#纹理概念" class="headerlink" title="纹理概念"></a>纹理概念</h2><p>纹理是一个2D图片（甚至也有1D和3D的纹理），它可以用来添加物体的细节。为了能让纹理映射到物体（通常是物体某个面）上，我们需要指定这个面分别对应纹理的哪个部分，这样面的每个顶点就关联这一个<strong>纹理坐标</strong>，用来标明从纹理的那个部分采样（片段着色器采集片段颜色），然后在其他片段上惊醒片段插值。</p>
+<blockquote>
+<p><strong>纹理坐标</strong>在x和y轴上，范围为0到1之间（注意我们使用的是2D纹理图像）。使用纹理坐标获取纹理颜色叫做采样(Sampling)。纹理坐标起始于(0, 0)，也就是纹理图片的左下角，终始于(1, 1)，即纹理图片的右上角。</p>
+</blockquote>
+<span id="more"></span>
+
+<h2 id="纹理环绕方式"><a href="#纹理环绕方式" class="headerlink" title="纹理环绕方式"></a>纹理环绕方式</h2><p>一个纹理能用来渲染的的范围通常是从（0，0）到（1，1），当我们把纹理坐标设置在一个纹理可渲染的范围之外的时候（纹理不够大的时候），就涉及到文理的环绕方式（怎么填充）设置了。OpenGL默认采用的环绕方式是<code>GL_REPEAT</code>，其他环绕方式如下：</p>
+<ul>
+<li>GL_REPEAT，默认的环绕方式，重复纹理图像；</li>
+<li>GL_MIRROR_REPEAT，镜像重复纹理图像；</li>
+<li>GL_CLAMP_TO_EDGE，超出默认纹理坐标范围时，纹理边缘拉伸效果；</li>
+<li>GL_CLAMP_TO_BORDER，超出默认纹理坐标范围是，纹理边缘填充效果（填充色为制定填充色）；</li>
+</ul>
+<p>设置纹理环绕代码示例：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第一个参数，表示纹理目标，这里目标是2D纹理，第二个参数表示纹理坐标轴，2D纹理有S周和T周，3D的还有个R轴，第三个表示纹理的环绕模式，这里采用的时MIRROR_REPEAT</span></span><br><span class="line"><span class="built_in">glTxtParameteri</span>(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRROR_REPEAT);</span><br><span class="line"><span class="built_in">glTxtParameteri</span>(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRROR_REPEAT);</span><br><span class="line"><span class="comment">// 指定为 GL_CLAMP_TO_BORDER 这种环绕方式时，需要额外设置一个边框颜色属性</span></span><br><span class="line"><span class="comment">// 1. 先设置为GL_CLAMP_TO_BORDER</span></span><br><span class="line"><span class="built_in">glTxtParameteri</span>(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);</span><br><span class="line"><span class="comment">// 2. 设置一个额外的颜色</span></span><br><span class="line"><span class="type">float</span> borderColor[] = &#123;<span class="number">1.0f</span>, <span class="number">1.0f</span>, <span class="number">1.0f</span>, <span class="number">1.0f</span>&#125;;</span><br><span class="line"><span class="built_in">glTxtParameterfl</span>(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, borderColor);</span><br><span class="line">  </span><br></pre></td></tr></table></figure>
+
+<h2 id="纹理过滤"><a href="#纹理过滤" class="headerlink" title="纹理过滤"></a>纹理过滤</h2><p>纹理过滤解决了什么问题呢，由于纹理坐标不依赖于分辨率，它可以是任意的浮点值，所以OpenGL需要知道怎么将纹理像素映射到纹理坐标中，这种判断如何通过纹理坐标来获取纹理像素的过程，就是纹理过滤，纹理过滤有很多种，这里主要解释最常用的两种：</p>
+<ul>
+<li>GL_NEAREST，即邻近过滤（Nearest Neighbor Filtering），是OpenGL默认的纹理过滤方式，这种方式下，OpenGL会选出纹理像素中心点里纹理坐标点最近的一个作为样本颜色；</li>
+<li>GL_LINEAR，即线性过滤（(Bi)linear Filtering），这种方式下，会基于纹理坐标附近的纹理像素做一个插值运算，拿计算出来的结果作为样本颜色（这个纹理坐标附近纹理像素在样本颜色中的占比有其中心点据纹理坐标距离的远近决定的，越近占比月高）。</li>
+</ul>
+<p>当在一个很大的物体上应用一个很小的纹理时，此时采用上面两种过滤方式会有不同的结果表现：</p>
+<ul>
+<li>采用GL_NEAREST，会产生颗粒状图案，有点像素风；</li>
+<li>采用GL_LINEAR，会产生更平滑的图案。</li>
+</ul>
+<p>当我们有放大或缩小需求的时候，我们可以动态的设置纹理过滤选项，设置方式就是通过下面的函数调用：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">glTexParameteri</span>(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); <span class="comment">// 放大是采用GL_LINEAR</span></span><br><span class="line"><span class="built_in">glTexParameteri</span>(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);<span class="comment">// 缩小时采用GL_NEAREST</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="多级渐远纹理"><a href="#多级渐远纹理" class="headerlink" title="多级渐远纹理"></a>多级渐远纹理</h2><p>多级渐远纹理的出现我认为是为了让纹理的使用更贴近现实生活的一种产物，二者用了这种方式后，让纹理应用既符合实际，又提高了性能。具体来说，使用了多级渐远纹理后，<strong>距观察者的距离超过一定的阈值，OpenGL会使用不同的多级渐远纹理，即最适合物体的距离的那个。由于距离远，解析度不高也不会被用户注意到。</strong></p>
+<p>显然，使用多级渐远纹理也会碰到过度生硬、断层等不真实的问题，解决方式就是采用类似纹理过滤的那种方案，多级渐远纹理的纹理过滤选项有以下4（种：</p>
+<table>
+<thead>
+<tr>
+<th align="left">过滤方式</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">GL_NEAREST_MIPMAP_NEAREST</td>
+<td align="left">使用最邻近的多级渐远纹理来匹配像素大小，并使用邻近插值进行纹理采样</td>
+</tr>
+<tr>
+<td align="left">GL_LINEAR_MIPMAP_NEAREST</td>
+<td align="left">使用最邻近的多级渐远纹理级别，并使用线性插值进行采样</td>
+</tr>
+<tr>
+<td align="left">GL_NEAREST_MIPMAP_LINEAR</td>
+<td align="left">在两个最匹配像素大小的多级渐远纹理之间进行线性插值，使用邻近插值进行采样</td>
+</tr>
+<tr>
+<td align="left">GL_LINEAR_MIPMAP_LINEAR</td>
+<td align="left">在两个邻近的多级渐远纹理之间使用线性插值，并使用线性插值进行采样</td>
+</tr>
+</tbody></table>
+<h2 id="纹理生成"><a href="#纹理生成" class="headerlink" title="纹理生成"></a>纹理生成</h2><p>上面介绍了纹理的一些设置选项：纹理环绕、纹理过滤、多级渐远纹理等概念，现在说说纹理到底怎样应用的，一般纹理的使用需要包括以下几个过程：（纹理图片）加载、创建、绑定、配置、应用等。</p>
+<h3 id="纹理加载"><a href="#纹理加载" class="headerlink" title="纹理加载"></a>纹理加载</h3><p>纹理加载就是把要当成纹理的图片加载到OpenGL程序中使用的过程，说白了就是图片文件的解析与加载过程（从磁盘到内存）,最终要得到的时纹理图片的可用的二进制图片数据，这几假设为:data。</p>
+<h3 id="纹理创建与绑定"><a href="#纹理创建与绑定" class="headerlink" title="纹理创建与绑定"></a>纹理创建与绑定</h3><p>OpenGL创建对象的方式几乎都相同，先定一个地址，然后将该地址传递过去，纹理的创建也不例外：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">unsigned</span> <span class="type">int</span> texture;</span><br><span class="line"><span class="built_in">glGenTextures</span>(<span class="number">1</span>, &amp;texture);</span><br><span class="line"><span class="built_in">glBindTexture</span>(GL_TEXTURE_2D, texture);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 采用glTexImage2D函数来生成2D纹理</span></span><br><span class="line"><span class="built_in">glTexImage2D</span>(GL_TEXTURE_2D, <span class="number">0</span>, GL_RGB, width, height, <span class="number">0</span>, GL_RGB, GL_UNSIGNED_BYTE, data);</span><br><span class="line"><span class="comment">// 调用glGenerateMipmap来自动生成多级渐远纹理</span></span><br><span class="line"><span class="built_in">glGenerateMipmap</span>(GL_TEXTURE_2D);</span><br></pre></td></tr></table></figure>
+
+<p>函数解释：</p>
+<ul>
+<li>第一个参数指定了纹理目标(Target)。设置为GL_TEXTURE_2D意味着会生成与当前绑定的纹理对象在同一个目标上的纹理（任何绑定到GL_TEXTURE_1D和GL_TEXTURE_3D的纹理不会受到影响）。</li>
+<li>第二个参数为纹理指定多级渐远纹理的级别，如果你希望单独手动设置每个多级渐远纹理的级别的话。这里我们填0，也就是基本级别。</li>
+<li>第三个参数告诉OpenGL我们希望把纹理储存为何种格式。我们的图像只有<code>RGB</code>值，因此我们也把纹理储存为<code>RGB</code>值。</li>
+<li>第四个和第五个参数设置最终的纹理的宽度和高度。我们之前加载图像的时候储存了它们，所以我们使用对应的变量。</li>
+<li>下个参数应该总是被设为<code>0</code>（历史遗留的问题）。</li>
+<li>第七第八个参数定义了源图的格式和数据类型。我们使用RGB值加载这个图像，并把它们储存为<code>char</code>(byte)数组，我们将会传入对应值。</li>
+<li>最后一个参数是真正的图像数据。</li>
+</ul>
+<p>当调用glTexImage2D时，当前绑定的纹理对象就会被附加上纹理图像。然而，目前只有基本级别(Base-level)的纹理图像被加载了，如果要使用多级渐远纹理，我们必须手动设置所有不同的图像（不断递增第二个参数）。或者，直接在生成纹理之后调用glGenerateMipmap。这会为当前绑定的纹理自动生成所有需要的多级渐远纹理。</p>
+<h2 id="纹理应用"><a href="#纹理应用" class="headerlink" title="纹理应用"></a>纹理应用</h2><p>纹理图片加载好后，纹理对象创建和绑定后，最终要完成纹理的应用，纹理的应用离不开顶点坐标，所以我们需要在顶点属性指定的属性中增加纹理坐标的属性，然后通过顶点属性指针指定顶点属性的解析方式，最后将这些属性通过顶点着色器传递给片段着色器。</p>
+<p>得到顶点属性后，我们还需要片段着色器中能接受到前面创建的纹理对象，在片段着色其中如何接受这个纹理对象呢。GLSL中定义了一个采样器的概念。所以我们可以在片段着色器中定义统一变量形式的一个采用器，然后在把纹理对象赋值给这个采样器即可。</p>
+<p>最后在片段着色器中，利用GLSL内建的texture函数来采用颜色并作为片段颜色进行输出，代码如下：</p>
+<figure class="highlight glsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#version 300 es</span></span><br><span class="line"><span class="keyword">out</span> <span class="type">vec4</span> FragColor;</span><br><span class="line"></span><br><span class="line"><span class="keyword">in</span> <span class="type">vec3</span> ourColor;</span><br><span class="line"><span class="keyword">in</span> <span class="type">vec2</span> TexCoord;</span><br><span class="line"></span><br><span class="line"><span class="keyword">uniform</span> <span class="type">sampler2D</span> ourTexture;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> main()</span><br><span class="line">&#123;</span><br><span class="line">  	<span class="comment">// 第一个参数表示采用器，第二个参数表示纹理坐标，传递这两个参数后，通过texture得到混合后的颜色</span></span><br><span class="line">    FragColor = <span class="built_in">texture</span>(ourTexture, TexCoord);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="纹理单元"><a href="#纹理单元" class="headerlink" title="纹理单元"></a>纹理单元</h2><p>上面的片段着色器中，sampler2D是统一变量，但并没有类似的glUniform方法来设置这个值，而是通过glUniformi来设置，调用glUniformi方法后，可以给纹理采样器分配一个位置值，这样的位置值称为<strong>纹理单元</strong>，一个采样器中至多可以存在（0~15）共16个纹理单元；在绑定纹理之前，需要先激活纹理单元，有时候没有看到激活纹理单元，那是因为GL_TEXTURE0这个纹理单元默认是激活的，无需手动激活。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">glActiveTexture</span>(GL_TEXTURE0);<span class="comment">// 激活第一个纹理单元</span></span><br><span class="line"><span class="built_in">glBindTexture</span>(GL_TEXTURE_2D, texture);<span class="comment">// 绑定纹理对象</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="纹理混合"><a href="#纹理混合" class="headerlink" title="纹理混合"></a>纹理混合</h2><p>纹理混合指的是对两个纹理按一定的比例进行插值，并将最后结果作为输出的一种方式，通常利用GLSL内建的<code>mix(texture1, texture2)</code>来达到这个目的。既然是纹理混合，所以定需要多个纹理对象，所以片段着色器中相应的就要添加多个采样器。由于存在多个采样器，就需要指定不同纹理间混合的具体设置。这里介绍几个纹理相关的GLSL内建函数。</p>
+<ul>
+<li>fragColor &#x3D; texture(sampler2D, textureCoor)，通过采样器和纹理坐标来得到纹理贴图；</li>
+<li>fragColor &#x3D; texture(sampler2D, textureCoor) * vec4(colorValue, 1.0)，通过纹理贴图和顶点颜色来得到最终的贴图；</li>
+<li>mix(texture(ourTexture1, ourTexCoord),texture(ourTexture2, ourTexCoord), 0.2)，通过两个纹理混合得到最终的纹理贴图；</li>
+</ul>
+<p>在上面的说明中，两个纹理贴图最终的效果都是倒置的，这是因为OpenGL要求y轴<code>0.0</code>坐标是在图片的底部的，但是图片的y轴<code>0.0</code>坐标通常在顶部。也就是OpenGL的坐标系和图片坐标系不一致导致的，这就需要进行转换，具体可以有下面几种方式：</p>
+<ol>
+<li>加载图片的时候直接对纹理图片进行翻转；</li>
+<li>翻转顶点信息中的纹理坐标，即将顶点信息中的纹理坐标表示Y周的值都用1去减（纹理坐标的值都在0到1之间）；</li>
+<li>翻转Shader顶点信息中的纹理坐标（这样不用更改源输顶点信息），同样是用1去减原来的Y纹理坐标；</li>
+<li>反其道而行之，既然纹理反了，我们就把顶点坐标也反过来，这样就“反反得正”了，由于可见部分的顶点坐标都是在（-1,1)范围内，这里直接去顶点坐标信息中y轴值的相反数即可（<strong>区别2、3中的直接采用1去减</strong>）</li>
+</ol>
+<p>完整的程序代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">BasicTextureSample::Init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">LOGCATI</span>(<span class="string">&quot;BasicTextureSample::Init&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (m_ProgramObj != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">char</span> vShader[] =</span><br><span class="line">            <span class="string">&quot;#version 300 es\n&quot;</span></span><br><span class="line">            <span class="string">&quot;layout (location = 0) in vec3 aPos;\n&quot;</span></span><br><span class="line">            <span class="string">&quot;layout (location = 1) in vec3 aColor;\n&quot;</span></span><br><span class="line">            <span class="string">&quot;layout (location = 2) in vec2 aTexCoord;\n&quot;</span></span><br><span class="line">            <span class="string">&quot;out vec3 ourColor;\n&quot;</span></span><br><span class="line">            <span class="string">&quot;out vec2 ourTexCoord;\n&quot;</span></span><br><span class="line">            <span class="string">&quot;void main()\n&quot;</span></span><br><span class="line">            <span class="string">&quot;&#123;\n&quot;</span></span><br><span class="line">            <span class="string">&quot;   gl_Position=vec4(aPos.x, -aPos.y, aPos.z, 1.0f);\n&quot;</span></span><br><span class="line">            <span class="string">&quot;   ourColor=aColor;\n&quot;</span></span><br><span class="line">            <span class="string">&quot;   ourTexCoord=aTexCoord;\n&quot;</span></span><br><span class="line">            <span class="string">&quot;&#125;\n&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="type">char</span> fShader[] =</span><br><span class="line">            <span class="string">&quot;#version 300 es\n&quot;</span></span><br><span class="line">            <span class="string">&quot;precision mediump float;\n&quot;</span></span><br><span class="line">            <span class="string">&quot;out vec4 fragColor;\n&quot;</span></span><br><span class="line">            <span class="string">&quot;in vec3 ourColor;\n&quot;</span></span><br><span class="line">            <span class="string">&quot;in vec2 ourTexCoord;\n&quot;</span></span><br><span class="line">            <span class="string">&quot;// uniform sampler2D ourTexture;\n&quot;</span></span><br><span class="line">            <span class="string">&quot;uniform sampler2D ourTexture1;\n&quot;</span></span><br><span class="line">            <span class="string">&quot;uniform sampler2D ourTexture2;\n&quot;</span></span><br><span class="line">            <span class="string">&quot;void main()\n&quot;</span></span><br><span class="line">            <span class="string">&quot;&#123;\n&quot;</span></span><br><span class="line">            <span class="string">&quot;// 下面这个是一个纯纹理贴图\n&quot;</span></span><br><span class="line">            <span class="string">&quot;// fragColor = texture(ourTexture, ourTexCoord)\n&quot;</span></span><br><span class="line">            <span class="string">&quot;// 下满这个是纹理和顶点颜色混合贴图\n&quot;</span></span><br><span class="line">            <span class="string">&quot;// fragColor = texture(ourTexture, ourTexCoord) * vec4(ourColor, 1.0);\n&quot;</span></span><br><span class="line">            <span class="string">&quot;// 下面这个采用两个纹理混合得到片段颜色\n&quot;</span></span><br><span class="line">            <span class="string">&quot;   fragColor = mix(texture(ourTexture1, ourTexCoord),texture(ourTexture2, ourTexCoord), 0.2);\n&quot;</span></span><br><span class="line">            <span class="string">&quot;&#125;\n&quot;</span>;</span><br><span class="line">    m_ProgramObj = GLUtils::<span class="built_in">CreateProgram</span>(vShader, fShader, m_VertexShader, m_FragmentShader);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 定义顶点 及 属性数据</span></span><br><span class="line">    <span class="type">float</span> vertices[] = &#123;</span><br><span class="line">            <span class="comment">//---- 位置 ----   ---- 颜色 ----     - 纹理坐标 -</span></span><br><span class="line">            <span class="number">0.5f</span>, <span class="number">0.5f</span>, <span class="number">0.0f</span>, <span class="number">1.0f</span>, <span class="number">0.0f</span>, <span class="number">0.0f</span>, <span class="number">1.0f</span>, <span class="number">1.0f</span>,   <span class="comment">// 右上</span></span><br><span class="line">            <span class="number">0.5f</span>, <span class="number">-0.5f</span>, <span class="number">0.0f</span>, <span class="number">0.0f</span>, <span class="number">1.0f</span>, <span class="number">0.0f</span>, <span class="number">1.0f</span>, <span class="number">0.0f</span>,   <span class="comment">// 右下</span></span><br><span class="line">            <span class="number">-0.5f</span>, <span class="number">-0.5f</span>, <span class="number">0.0f</span>, <span class="number">0.0f</span>, <span class="number">0.0f</span>, <span class="number">1.0f</span>, <span class="number">0.0f</span>, <span class="number">0.0f</span>,   <span class="comment">// 左下</span></span><br><span class="line">            <span class="number">-0.5f</span>, <span class="number">0.5f</span>, <span class="number">0.0f</span>, <span class="number">1.0f</span>, <span class="number">1.0f</span>, <span class="number">0.0f</span>, <span class="number">0.0f</span>, <span class="number">1.0f</span>    <span class="comment">// 左上</span></span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> indices[] = &#123;</span><br><span class="line">            <span class="number">0</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="comment">// 第一个三角形</span></span><br><span class="line">            <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>  <span class="comment">// 第二个三角形</span></span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">glGenVertexArrays</span>(<span class="number">1</span>, &amp;VAO);</span><br><span class="line">    <span class="built_in">glGenBuffers</span>(<span class="number">1</span>, &amp;VBO);</span><br><span class="line">    <span class="built_in">glGenBuffers</span>(<span class="number">1</span>, &amp;EBO);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">glBindVertexArray</span>(VAO);</span><br><span class="line">    <span class="built_in">glBindBuffer</span>(GL_ARRAY_BUFFER, VBO);</span><br><span class="line">    <span class="built_in">glBufferData</span>(GL_ARRAY_BUFFER, <span class="built_in">sizeof</span>(vertices), vertices, GL_STATIC_DRAW);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">glBindBuffer</span>(GL_ELEMENT_ARRAY_BUFFER, EBO);</span><br><span class="line">    <span class="built_in">glBufferData</span>(GL_ELEMENT_ARRAY_BUFFER, <span class="built_in">sizeof</span>(indices), indices, GL_STATIC_DRAW);</span><br><span class="line">    <span class="comment">// 开始顶点属性指针的设置</span></span><br><span class="line">    <span class="comment">// position</span></span><br><span class="line">    <span class="built_in">glVertexAttribPointer</span>(<span class="number">0</span>, <span class="number">3</span>, GL_FLOAT, GL_FALSE, <span class="number">8</span> * <span class="built_in">sizeof</span>(<span class="type">float</span>),</span><br><span class="line">                          (<span class="type">void</span> *) <span class="number">0</span>);</span><br><span class="line">    <span class="built_in">glEnableVertexAttribArray</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="comment">// color</span></span><br><span class="line">    <span class="built_in">glVertexAttribPointer</span>(<span class="number">1</span>, <span class="number">3</span>, GL_FLOAT, GL_FALSE, <span class="number">8</span> * <span class="built_in">sizeof</span>(<span class="type">float</span>),</span><br><span class="line">                          (<span class="type">void</span> *) (<span class="number">3</span> * <span class="built_in">sizeof</span>(<span class="type">float</span>)));</span><br><span class="line">    <span class="built_in">glEnableVertexAttribArray</span>(<span class="number">1</span>);</span><br><span class="line">    <span class="comment">// texture</span></span><br><span class="line">    <span class="built_in">glVertexAttribPointer</span>(<span class="number">2</span>, <span class="number">2</span>, GL_FLOAT, GL_FALSE, <span class="number">8</span> * <span class="built_in">sizeof</span>(<span class="type">float</span>),</span><br><span class="line">                          (<span class="type">void</span> *) (<span class="number">6</span> * <span class="built_in">sizeof</span>(<span class="type">float</span>)));</span><br><span class="line">    <span class="built_in">glEnableVertexAttribArray</span>(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 生成纹理</span></span><br><span class="line">    <span class="built_in">glGenTextures</span>(<span class="number">1</span>, &amp;texture1);</span><br><span class="line">    <span class="comment">// 激活纹理</span></span><br><span class="line">    <span class="built_in">glActiveTexture</span>(texture1);</span><br><span class="line">    <span class="comment">// 绑定纹理</span></span><br><span class="line">    <span class="built_in">glBindTexture</span>(GL_TEXTURE_2D, texture1);</span><br><span class="line">    <span class="comment">// 为纹理设置环绕方式</span></span><br><span class="line">    <span class="built_in">glTexParameteri</span>(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);</span><br><span class="line">    <span class="built_in">glTexParameteri</span>(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);</span><br><span class="line">    <span class="built_in">glTexParameteri</span>(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);</span><br><span class="line">    <span class="built_in">glTexParameteri</span>(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">LOGCATI</span>(<span class="string">&quot;width:%d, height:%d, format:%d&quot;</span>, m_textureImg[<span class="number">0</span>].width, m_textureImg[<span class="number">0</span>].height,</span><br><span class="line">            m_textureImg[<span class="number">0</span>].format);</span><br><span class="line">    <span class="comment">// 这里官网示例采用的时 GL_RGB，但我如果采用GL_RGB会发现显示不了上面的效果。原因应该是图片的加载方式不同，在 MainActivity</span></span><br><span class="line">    <span class="comment">// 的 loadRgbaImage方法中，指定了图片的格式为 RGBA，如果如果采用GL_RGB，格式上就不匹配了，导致显示异常</span></span><br><span class="line">    <span class="built_in">glTexImage2D</span>(GL_TEXTURE_2D, <span class="number">0</span>, GL_RGBA, m_textureImg[<span class="number">0</span>].width, m_textureImg[<span class="number">0</span>].height,</span><br><span class="line">                 <span class="number">0</span>, GL_RGBA, GL_UNSIGNED_BYTE, m_textureImg[<span class="number">0</span>].ppPlane[<span class="number">0</span>]);</span><br><span class="line">    <span class="built_in">glGenerateMipmap</span>(GL_TEXTURE_2D);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 生成纹理</span></span><br><span class="line">    <span class="built_in">glGenTextures</span>(<span class="number">1</span>, &amp;texture2);</span><br><span class="line">    <span class="comment">// 激活纹理</span></span><br><span class="line">    <span class="built_in">glActiveTexture</span>(texture2);</span><br><span class="line">    <span class="comment">// 绑定纹理</span></span><br><span class="line">    <span class="built_in">glBindTexture</span>(GL_TEXTURE_2D, texture2);</span><br><span class="line">    <span class="comment">// 为纹理设置环绕方式</span></span><br><span class="line">    <span class="built_in">glTexParameteri</span>(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);</span><br><span class="line">    <span class="built_in">glTexParameteri</span>(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);</span><br><span class="line">    <span class="built_in">glTexParameteri</span>(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);</span><br><span class="line">    <span class="built_in">glTexParameteri</span>(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">LOGCATI</span>(<span class="string">&quot;width:%d, height:%d, format:%d&quot;</span>, m_textureImg[<span class="number">1</span>].width, m_textureImg[<span class="number">1</span>].height,</span><br><span class="line">            m_textureImg[<span class="number">1</span>].format);</span><br><span class="line">    <span class="comment">// 这里官网示例采用的时 GL_RGB，但我如果采用GL_RGB会发现显示不了上面的效果。原因应该是图片的加载方式不同，在</span></span><br><span class="line">    <span class="comment">// MainActivity的 loadRgbaImage方法中，指定了图片的格式为 RGBA，如果如果采用GL_RGB，格式上就不匹配了，</span></span><br><span class="line">    <span class="comment">// 导致显示异常</span></span><br><span class="line">    <span class="built_in">glTexImage2D</span>(GL_TEXTURE_2D, <span class="number">0</span>, GL_RGBA, m_textureImg[<span class="number">1</span>].width, m_textureImg[<span class="number">1</span>].height,</span><br><span class="line">                 <span class="number">0</span>, GL_RGBA, GL_UNSIGNED_BYTE, m_textureImg[<span class="number">1</span>].ppPlane[<span class="number">0</span>]);</span><br><span class="line">    <span class="built_in">glGenerateMipmap</span>(GL_TEXTURE_2D);</span><br><span class="line">    <span class="built_in">glUseProgram</span>(m_ProgramObj);</span><br><span class="line">    GLUtils::<span class="built_in">setInt</span>(m_ProgramObj, <span class="string">&quot;ourTexture1&quot;</span>, <span class="number">0</span>);</span><br><span class="line">    GLUtils::<span class="built_in">setInt</span>(m_ProgramObj, <span class="string">&quot;ourTexture2&quot;</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">BasicTextureSample::Draw</span><span class="params">(<span class="type">int</span> screenW, <span class="type">int</span> screenH)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">LOGCATI</span>(<span class="string">&quot;BasicTextureSample::Draw&quot;</span>);</span><br><span class="line">    <span class="built_in">glClearColor</span>(<span class="number">0.2f</span>, <span class="number">0.3f</span>, <span class="number">0.3f</span>, <span class="number">1.0f</span>);</span><br><span class="line">    <span class="built_in">glClear</span>(GL_COLOR_BUFFER_BIT);</span><br><span class="line">    <span class="built_in">glActiveTexture</span>(GL_TEXTURE0);</span><br><span class="line">    <span class="built_in">glBindTexture</span>(GL_TEXTURE_2D, texture1);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">glActiveTexture</span>(GL_TEXTURE1);</span><br><span class="line">    <span class="built_in">glBindTexture</span>(GL_TEXTURE_2D, texture2);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">glUseProgram</span>(m_ProgramObj);</span><br><span class="line">    <span class="built_in">glBindVertexArray</span>(VAO);</span><br><span class="line">    <span class="built_in">glDrawElements</span>(GL_TRIANGLES, <span class="number">6</span>, GL_UNSIGNED_INT, <span class="number">0</span>);</span><br><span class="line"><span class="comment">//    glDrawElements(GL_LINES, 6, GL_UNSIGNED_INT, 0); // 绘制线</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">BasicTextureSample::Destroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (m_ProgramObj) &#123;</span><br><span class="line">        <span class="built_in">glDeleteProgram</span>(m_ProgramObj);</span><br><span class="line">        <span class="built_in">glDeleteVertexArrays</span>(<span class="number">1</span>, &amp;VAO);</span><br><span class="line">        <span class="built_in">glDeleteBuffers</span>(<span class="number">1</span>, &amp;VBO);</span><br><span class="line">        <span class="built_in">glDeleteBuffers</span>(<span class="number">1</span>, &amp;EBO);</span><br><span class="line">        m_ProgramObj = GL_NONE;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">BasicTextureSample::LoadImage</span><span class="params">(NativeImage *pImage)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">LOGCATE</span>(<span class="string">&quot;BasicTextureSample::LoadImage pImage = %p&quot;</span>, pImage-&gt;ppPlane[<span class="number">0</span>]);</span><br><span class="line">    <span class="keyword">if</span> (pImage) &#123;</span><br><span class="line">        m_textImg.width = pImage-&gt;width;</span><br><span class="line">        m_textImg.height = pImage-&gt;height;</span><br><span class="line">        m_textImg.format = pImage-&gt;format;</span><br><span class="line">        NativeImageUtil::<span class="built_in">CopyNativeImage</span>(pImage, &amp;m_textImg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">BasicTextureSample::LoadMultiImageWithIndex</span><span class="params">(<span class="type">int</span> index, NativeImage *pImage)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (pImage) &#123;</span><br><span class="line">        <span class="keyword">if</span> (m_textureImg[index].ppPlane[<span class="number">0</span>]) &#123;</span><br><span class="line">            NativeImageUtil::<span class="built_in">FreeNativeImage</span>(&amp;m_textureImg[index]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        m_textureImg[index].width = pImage-&gt;width;</span><br><span class="line">        m_textureImg[index].height = pImage-&gt;height;</span><br><span class="line">        m_textureImg[index].format = pImage-&gt;format;</span><br><span class="line">        NativeImageUtil::<span class="built_in">CopyNativeImage</span>(pImage, &amp;m_textureImg[index]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/A220802.html" rel="next" title="Android OpenGL基础1——常用概念及方法解释">
+                <i class="fa fa-chevron-left"></i> Android OpenGL基础1——常用概念及方法解释
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/A220810.html" rel="prev" title="Android OpenGL基础4——变换">
+                Android OpenGL基础4——变换 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          </div>
+          
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/%20%7C%7C%20archive">
+                
+                    <span class="site-state-item-count">199</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">42</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">43</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Rainmonth" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%B9%E7%90%86%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">纹理概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%B9%E7%90%86%E7%8E%AF%E7%BB%95%E6%96%B9%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">纹理环绕方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%B9%E7%90%86%E8%BF%87%E6%BB%A4"><span class="nav-number">3.</span> <span class="nav-text">纹理过滤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E7%BA%A7%E6%B8%90%E8%BF%9C%E7%BA%B9%E7%90%86"><span class="nav-number">4.</span> <span class="nav-text">多级渐远纹理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%B9%E7%90%86%E7%94%9F%E6%88%90"><span class="nav-number">5.</span> <span class="nav-text">纹理生成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%B9%E7%90%86%E5%8A%A0%E8%BD%BD"><span class="nav-number">5.1.</span> <span class="nav-text">纹理加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%B9%E7%90%86%E5%88%9B%E5%BB%BA%E4%B8%8E%E7%BB%91%E5%AE%9A"><span class="nav-number">5.2.</span> <span class="nav-text">纹理创建与绑定</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%B9%E7%90%86%E5%BA%94%E7%94%A8"><span class="nav-number">6.</span> <span class="nav-text">纹理应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%B9%E7%90%86%E5%8D%95%E5%85%83"><span class="nav-number">7.</span> <span class="nav-text">纹理单元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%B9%E7%90%86%E6%B7%B7%E5%90%88"><span class="nav-number">8.</span> <span class="nav-text">纹理混合</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love" id="animate"> 
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Randy Zhang</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.1.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

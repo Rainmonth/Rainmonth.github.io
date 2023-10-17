@@ -1,35 +1,1387 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.1.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.1.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '6.1.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="本文链接：https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A220317.html 分析版本：Fresco 2.5   基本介绍包结构 drawee fbcore fresco imagepipeline，Fresco的核心模块 memory nativeimagefilters nativeimagetranscoder">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 开源库分析——Fresco源码分析">
+<meta property="og:url" content="http://yoursite.com/posts/A220317.html">
+<meta property="og:site_name" content="荏苒追寻个人博客">
+<meta property="og:description" content="本文链接：https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A220317.html 分析版本：Fresco 2.5   基本介绍包结构 drawee fbcore fresco imagepipeline，Fresco的核心模块 memory nativeimagefilters nativeimagetranscoder">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-03-16T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-10-12T16:06:46.954Z">
+<meta property="article:author" content="Randy Zhang">
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/posts/A220317.html"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Android 开源库分析——Fresco源码分析 | 荏苒追寻个人博客</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> 
+
+<div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">荏苒追寻个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">做一个有追求的青年</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+          
+  <li class="menu-item menu-item-home">
+    <a href="/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-about">
+    <a href="/about/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-tags">
+    <a href="/tags/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-categories">
+    <a href="/categories/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-archives">
+    <a href="/archives/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-schedule">
+    <a href="/schedule/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
+</li>
+
+      
+
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A220317.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android 开源库分析——Fresco源码分析</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-03-17T00:00:00+08:00">2023-03-17</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/%E5%BC%80%E6%BA%90%E5%BA%93%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">开源库分析</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<ul>
+<li>本文链接：<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A220317.html">https://rainmonth.github.io/posts/A220317.html</a></li>
+<li>分析版本：Fresco 2.5</li>
+</ul>
+</blockquote>
+<h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><h3 id="包结构"><a href="#包结构" class="headerlink" title="包结构"></a>包结构</h3><ul>
+<li>drawee</li>
+<li>fbcore</li>
+<li>fresco</li>
+<li>imagepipeline，Fresco的核心模块</li>
+<li>memory</li>
+<li>nativeimagefilters</li>
+<li>nativeimagetranscoder</li>
+</ul>
+<span id="more"></span>
+<h3 id="应用到的设计模式"><a href="#应用到的设计模式" class="headerlink" title="应用到的设计模式"></a>应用到的设计模式</h3><p>从设计模式的角度来看Fresco，主要运用了如下设计模式</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J180322.html">单例模式</a>，如<code>ImagePipelineFactory</code>;</li>
+<li><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J180323.html">Builder模式</a>；</li>
+<li><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J210605.html">工厂方法模式</a>；</li>
+<li><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J210531.html">代理模式（静态代理）</a></li>
+<li>Producer&#x2F;Consumer</li>
+<li><a href>适配器模式</a>，比如 AbstractProducerToDataSourceAdapter（让Producer对象可以当DataSource来使用）</li>
+</ul>
+<h3 id="接口设计"><a href="#接口设计" class="headerlink" title="接口设计"></a>接口设计</h3><ul>
+<li><p><code>Supplier&lt;T&gt;</code>,简单的单类型对象提供者，实现该类后，通过</p>
+</li>
+<li><p><code>DataSource</code></p>
+</li>
+<li><p><code>DataSubscriber</code></p>
+</li>
+<li><p><code>Producer</code></p>
+</li>
+<li><p><code>ProducerContext</code></p>
+</li>
+<li><p><code>Consumer</code></p>
+</li>
+</ul>
+<h2 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h2><p>使用很简单,第一步初始化Fresco：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Fresco.initialize(<span class="built_in">this</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="加载网络图片"><a href="#加载网络图片" class="headerlink" title="加载网络图片"></a>加载网络图片</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 加载网络图片：方法1</span></span><br><span class="line"><span class="comment">// 网络图片地址</span></span><br><span class="line"><span class="type">String</span> <span class="variable">imgUrl</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line"><span class="type">SimpleDraweeView</span> <span class="variable">simpleDraweeView</span> <span class="operator">=</span> findViewById(R.id.xx);</span><br><span class="line">simpleDraweeView.setImageURI(Uri.parse(url));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 加载网络图片：方法2</span></span><br><span class="line"><span class="type">String</span> <span class="variable">imgUrl</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line"><span class="type">SimpleDraweeView</span> <span class="variable">simpleDraweeView</span> <span class="operator">=</span> findViewById(R.id.xx);</span><br><span class="line"><span class="comment">// 获取ImageRequest</span></span><br><span class="line"><span class="type">ImageRequest</span> <span class="variable">request</span> <span class="operator">=</span>  ImageRequestBuilder.newBuilderWithSource(Uri.parse(uri);</span><br><span class="line"><span class="comment">// 获取Controller</span></span><br><span class="line"><span class="type">DraweeController</span> <span class="variable">draweeController</span> <span class="operator">=</span> Fresco.newDraweeControllerBuilder()</span><br><span class="line">                .setImageRequest(imageRequest)</span><br><span class="line">                .setOldController(draweeView.getController())</span><br><span class="line">                .setControllerListener(<span class="keyword">new</span> <span class="title class_">BaseControllerListener</span>&lt;ImageInfo&gt;())</span><br><span class="line">                .setAutoPlayAnimations(isSupportGif)</span><br><span class="line">                .build();</span><br><span class="line"><span class="comment">// 绑定Controller</span></span><br><span class="line">simpleDraweeView.setController(draweeController);</span><br><span class="line">                                                                 </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="加载Assets目录图片"><a href="#加载Assets目录图片" class="headerlink" title="加载Assets目录图片"></a>加载Assets目录图片</h3><p>不建议用Fresco加载本地图片，但它肯定是支持的（假设要加载的图片为assets目录下的a.png</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">SimpleDraweeView</span> <span class="variable">simpleDraweeView</span> <span class="operator">=</span> findViewById(R.id.xx);</span><br><span class="line"><span class="type">Uri</span> <span class="variable">uri</span> <span class="operator">=</span> Uri.parse(<span class="string">&quot;asset:///&quot;</span> + <span class="string">&quot;a.png&quot;</span>);</span><br><span class="line">simpleDraweeView.setImageURI(uri);</span><br></pre></td></tr></table></figure>
+
+<h3 id="加载Drawable图片"><a href="#加载Drawable图片" class="headerlink" title="加载Drawable图片"></a>加载Drawable图片</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">SimpleDraweeView</span> <span class="variable">simpleDraweeView</span> <span class="operator">=</span> findViewById(R.id.xx);</span><br><span class="line"><span class="type">Uri</span> <span class="variable">uri</span> <span class="operator">=</span> Uri.parse(<span class="string">&quot;res://&quot;</span> + packageName + drawableResId);</span><br><span class="line">simpleDraweeView.setImageURI(uri);</span><br></pre></td></tr></table></figure>
+
+<h3 id="加载本地文件中图片"><a href="#加载本地文件中图片" class="headerlink" title="加载本地文件中图片"></a>加载本地文件中图片</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">SimpleDraweeView</span> <span class="variable">simpleDraweeView</span> <span class="operator">=</span> findViewById(R.id.xx);</span><br><span class="line"><span class="type">Uri</span> <span class="variable">uri</span> <span class="operator">=</span> Uri.parse(<span class="string">&quot;file://&quot;</span> + filePath);</span><br><span class="line">simpleDraweeView.setImageURI(uri);</span><br></pre></td></tr></table></figure>
+
+<p>加载ContentProvider中图片</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">SimpleDraweeView</span> <span class="variable">simpleDraweeView</span> <span class="operator">=</span> findViewById(R.id.xx);</span><br><span class="line"><span class="type">Uri</span> <span class="variable">uri</span> <span class="operator">=</span> Uri.parse(<span class="string">&quot;content://&quot;</span> + filePath);</span><br><span class="line">simpleDraweeView.setImageURI(uri);</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="图片的加载流程"><a href="#图片的加载流程" class="headerlink" title="图片的加载流程"></a>图片的加载流程</h2><ol>
+<li>Fresco初始化；</li>
+<li>获取DataSource</li>
+<li>绑定Controller与Hierarchy</li>
+<li>从内存缓存&#x2F;磁盘缓存&#x2F;网络获取图片，并最终设置到对应的Drawable层；</li>
+</ol>
+<h3 id="1-Fresco初始化"><a href="#1-Fresco初始化" class="headerlink" title="1.Fresco初始化"></a>1.Fresco初始化</h3><p>在开始使用前，Fresco需要进行初始化设置，即调用Fresco的initialize(Context)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">initialize</span><span class="params">(Context context, <span class="meta">@Nullable</span> ImagePipelineConfig imagePipelineConfig, <span class="meta">@Nullable</span> DraweeConfig draweeConfig, <span class="type">boolean</span> useNativeCode)</span> &#123;</span><br><span class="line">  ...</span><br><span class="line">    <span class="comment">// 这里省略一些判断代码</span></span><br><span class="line">    NativeCodeSetup.setUseNativeCode(useNativeCode);</span><br><span class="line">  <span class="comment">// 这里省略一些 NativeCode 初始化代码</span></span><br><span class="line">  context = context.getApplicationContext();</span><br><span class="line">  <span class="keyword">if</span> (imagePipelineConfig == <span class="literal">null</span>) &#123;</span><br><span class="line">    ImagePipelineFactory.initialize(context);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    ImagePipelineFactory.initialize(imagePipelineConfig); <span class="comment">// 初始化 ImagePipelineFactory</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  initializeDrawee(context, draweeConfig);<span class="comment">// 初始化 Drawee </span></span><br><span class="line">  <span class="keyword">if</span> (FrescoSystrace.isTracing()) &#123;</span><br><span class="line">    FrescoSystrace.endSection();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">initializeDrawee</span><span class="params">(Context context, <span class="meta">@Nullable</span> DraweeConfig draweeConfig)</span> &#123;</span><br><span class="line">  ...</span><br><span class="line">  sDraweeControllerBuilderSupplier = <span class="keyword">new</span> <span class="title class_">PipelineDraweeControllerBuilderSupplier</span>(context, draweeConfig);</span><br><span class="line">  <span class="comment">// 传递一个DraweeControllerBuilder对象，然后通过该对象来获取DraweeController并设置到SimpleDraweeView中</span></span><br><span class="line">  SimpleDraweeView.initialize(sDraweeControllerBuilderSupplier);</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意，以Supplier结尾的类都实现了Supplier接口，表明会提供一个对象，对象就是Supplier前面的内容。</p>
+</blockquote>
+<p>上面的代码主要做了三件事：</p>
+<ol>
+<li>完成了NativeLoader的初始化；</li>
+<li>完成了ImagePipeline初始化；</li>
+<li>完成了Drawee的初始化；</li>
+</ol>
+<h4 id="NativeLoader初始化"><a href="#NativeLoader初始化" class="headerlink" title="NativeLoader初始化"></a>NativeLoader初始化</h4><p>主要加载一些so库，如gif支持、webp支持，这个暂不做详细分析。</p>
+<h4 id="ImagePipeline初始化"><a href="#ImagePipeline初始化" class="headerlink" title="ImagePipeline初始化"></a>ImagePipeline初始化</h4><p>ImagePipeline是通过ImagePipelineConfig来配置，通过ImagePipelineFactory的<code>createImagePipeline()</code>方法来创建的，ImagePipelineFactory中有三个静态成员，分别是：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="type">ImagePipelineFactory</span> <span class="variable">sInstance</span> <span class="operator">=</span> <span class="literal">null</span>;<span class="comment">// ImagePipelineFactory 静态实例</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="type">boolean</span> sForceSinglePipelineInstance;<span class="comment">// 控制是否强制使用一个ImagePipeline实例</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> ImagePipeline sImagePipeline; <span class="comment">// ImagePipeline 静态实例</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="ImagePipelineConfig"><a href="#ImagePipelineConfig" class="headerlink" title="ImagePipelineConfig"></a>ImagePipelineConfig</h5><p><code>ImagePipelineConfig</code>是<code>ImagePipelineConfigInterface</code>的具体实现类，ImagePipelineConfig 必须通过Builder模式来构造（构造方法是私有的），先看看接口都定义了那些方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">ImagePipelineConfigInterface</span> &#123;</span><br><span class="line">	<span class="comment">// 获取图片质量配置，默认ARGB_8888</span></span><br><span class="line">  Config <span class="title function_">getBitmapConfig</span><span class="params">()</span>;</span><br><span class="line">	<span class="comment">// 获取Bitmap 内存缓存参数提供者，默认配置见 DefaultBitmapMemoryCacheParamsSupplier</span></span><br><span class="line">  Supplier&lt;MemoryCacheParams&gt; <span class="title function_">getBitmapMemoryCacheParamsSupplier</span><span class="params">()</span>;</span><br><span class="line">	<span class="comment">// 获取Bitmap内存缓存的削减策略，即缓存大小达到了阈值以何种策略来处理缓存的更新，默认见 BitmapMemoryCacheTrimStrategy</span></span><br><span class="line">	CacheTrimStrategy <span class="title function_">getBitmapMemoryCacheTrimStrategy</span><span class="params">()</span>;</span><br><span class="line">  <span class="comment">// </span></span><br><span class="line">  <span class="meta">@Nullable</span></span><br><span class="line">  EntryStateObserver&lt;CacheKey&gt; <span class="title function_">getBitmapMemoryCacheEntryStateObserver</span><span class="params">()</span>;</span><br><span class="line">	<span class="comment">// CacheKey生成工厂</span></span><br><span class="line">  CacheKeyFactory <span class="title function_">getCacheKeyFactory</span><span class="params">()</span>;</span><br><span class="line">  <span class="comment">// Context</span></span><br><span class="line">  Context <span class="title function_">getContext</span><span class="params">()</span>;</span><br><span class="line">  <span class="comment">// 磁盘缓存创建工厂</span></span><br><span class="line">  FileCacheFactory <span class="title function_">getFileCacheFactory</span><span class="params">()</span>;</span><br><span class="line">  <span class="comment">// 是否开启向下采样</span></span><br><span class="line">  <span class="type">boolean</span> <span class="title function_">isDownsampleEnabled</span><span class="params">()</span>;</span><br><span class="line">  <span class="comment">// 是否开启磁盘缓存</span></span><br><span class="line">  <span class="type">boolean</span> <span class="title function_">isDiskCacheEnabled</span><span class="params">()</span>;</span><br><span class="line">  <span class="comment">// 获取未解码缓存参数提供者</span></span><br><span class="line">  Supplier&lt;MemoryCacheParams&gt; <span class="title function_">getEncodedMemoryCacheParamsSupplier</span><span class="params">()</span>;</span><br><span class="line">  <span class="comment">// 获取线程池提供者</span></span><br><span class="line">	ExecutorSupplier <span class="title function_">getExecutorSupplier</span><span class="params">()</span>;</span><br><span class="line">  <span class="meta">@Nullable</span></span><br><span class="line">  SerialExecutorService <span class="title function_">getExecutorServiceForAnimatedImages</span><span class="params">()</span>;</span><br><span class="line">	<span class="comment">// 图片缓存状态追踪器</span></span><br><span class="line">  ImageCacheStatsTracker <span class="title function_">getImageCacheStatsTracker</span><span class="params">()</span>;</span><br><span class="line">	<span class="comment">// 图片解码器</span></span><br><span class="line">  <span class="meta">@Nullable</span></span><br><span class="line">  ImageDecoder <span class="title function_">getImageDecoder</span><span class="params">()</span>;</span><br><span class="line">	<span class="comment">// 图像转码工厂</span></span><br><span class="line">  <span class="meta">@Nullable</span></span><br><span class="line">  ImageTranscoderFactory <span class="title function_">getImageTranscoderFactory</span><span class="params">()</span>;</span><br><span class="line">	<span class="comment">// 图像装吗类型</span></span><br><span class="line">  <span class="meta">@Nullable</span></span><br><span class="line">  Integer <span class="title function_">getImageTranscoderType</span><span class="params">()</span>;</span><br><span class="line">	<span class="comment">// 预加载是否开启配置提供者</span></span><br><span class="line">  Supplier&lt;Boolean&gt; <span class="title function_">getIsPrefetchEnabledSupplier</span><span class="params">()</span>;</span><br><span class="line">	<span class="comment">// 磁盘缓存配置</span></span><br><span class="line">  DiskCacheConfig <span class="title function_">getMainDiskCacheConfig</span><span class="params">()</span>;</span><br><span class="line">	<span class="comment">// 内存变化监听注册表</span></span><br><span class="line">  MemoryTrimmableRegistry <span class="title function_">getMemoryTrimmableRegistry</span><span class="params">()</span>;</span><br><span class="line">	</span><br><span class="line">  <span class="type">int</span> <span class="title function_">getMemoryChunkType</span><span class="params">()</span>;</span><br><span class="line">	<span class="comment">// 网络图片的下载方式，默认采用的是 HttpUrlConnectionNetworkFetcher</span></span><br><span class="line">  NetworkFetcher <span class="title function_">getNetworkFetcher</span><span class="params">()</span>;</span><br><span class="line">	<span class="comment">// 根据不同的 Android系统版本生成不同的Bitmap工厂，区别在于Bitmap分配在内存中的位置，Ashmem中，Android 5.0以上存在Java Heap中</span></span><br><span class="line">  <span class="meta">@Nullable</span></span><br><span class="line">  PlatformBitmapFactory <span class="title function_">getPlatformBitmapFactory</span><span class="params">()</span>;</span><br><span class="line">	<span class="comment">// 各种池的构建工厂（包括BitmapPool，MemoryChunkPool、ByteArrayPool等）</span></span><br><span class="line">  PoolFactory <span class="title function_">getPoolFactory</span><span class="params">()</span>;</span><br><span class="line">	<span class="comment">// Jpeg 渐进式显示配置</span></span><br><span class="line">  ProgressiveJpegConfig <span class="title function_">getProgressiveJpegConfig</span><span class="params">()</span>;</span><br><span class="line">	<span class="comment">// 网络请求监听</span></span><br><span class="line">  Set&lt;RequestListener&gt; <span class="title function_">getRequestListeners</span><span class="params">()</span>;</span><br><span class="line">	<span class="comment">// 网络请求监听2</span></span><br><span class="line">  Set&lt;RequestListener2&gt; <span class="title function_">getRequestListener2s</span><span class="params">()</span>;</span><br><span class="line">	<span class="comment">// 是否开启网络图片的resize和rotate</span></span><br><span class="line">  <span class="type">boolean</span> <span class="title function_">isResizeAndRotateEnabledForNetwork</span><span class="params">()</span>;</span><br><span class="line">	<span class="comment">// 小图磁盘缓存配置</span></span><br><span class="line">  DiskCacheConfig <span class="title function_">getSmallImageDiskCacheConfig</span><span class="params">()</span>;</span><br><span class="line">	<span class="comment">// 图像解码器配置</span></span><br><span class="line">  <span class="meta">@Nullable</span></span><br><span class="line">  ImageDecoderConfig <span class="title function_">getImageDecoderConfig</span><span class="params">()</span>;</span><br><span class="line">	<span class="comment">// 调用者上下文验证器</span></span><br><span class="line">  <span class="meta">@Nullable</span></span><br><span class="line">  CallerContextVerifier <span class="title function_">getCallerContextVerifier</span><span class="params">()</span>;</span><br><span class="line">	<span class="comment">// ImagePipeline的实验性配置内容</span></span><br><span class="line">  ImagePipelineExperiments <span class="title function_">getExperiments</span><span class="params">()</span>;</span><br><span class="line">	<span class="comment">//</span></span><br><span class="line">  CloseableReferenceLeakTracker <span class="title function_">getCloseableReferenceLeakTracker</span><span class="params">()</span>;</span><br><span class="line">	<span class="comment">//</span></span><br><span class="line">  <span class="meta">@Nullable</span></span><br><span class="line">  MemoryCache&lt;CacheKey, CloseableImage&gt; <span class="title function_">getBitmapCacheOverride</span><span class="params">()</span>;</span><br><span class="line">	<span class="comment">//</span></span><br><span class="line">  <span class="meta">@Nullable</span></span><br><span class="line">  MemoryCache&lt;CacheKey, PooledByteBuffer&gt; <span class="title function_">getEncodedMemoryCacheOverride</span><span class="params">()</span>;</span><br><span class="line">	<span class="comment">// </span></span><br><span class="line">  BitmapMemoryCacheFactory <span class="title function_">getBitmapMemoryCacheFactory</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>必要的配置选项Fresco都有默认的实现，如果需要定制，构造自己的ImagePipelineConfig传递进来即可。</p>
+<h5 id="ImagePipelineFactory"><a href="#ImagePipelineFactory" class="headerlink" title="ImagePipelineFactory"></a>ImagePipelineFactory</h5><p>这个类的核心任务是创建ImagePipeline，先看看ImagePipeline是如何构造的，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">ImagePipelineFactory</span><span class="params">(ImagePipelineConfigInterface config)</span> &#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="built_in">this</span>.mConfig = (ImagePipelineConfigInterface)Preconditions.checkNotNull(config); <span class="comment">// ImagePipelineConfig 配置对象</span></span><br><span class="line">  <span class="built_in">this</span>.mThreadHandoffProducerQueue = (ThreadHandoffProducerQueue)(<span class="built_in">this</span>.mConfig.getExperiments().isExperimentalThreadHandoffQueueEnabled() ? </span><br><span class="line"><span class="keyword">new</span> <span class="title class_">ExperimentalThreadHandoffProducerQueueImpl</span>(config.getExecutorSupplier().forLightweightBackgroundTasks()) : <span class="keyword">new</span> <span class="title class_">ThreadHandoffProducerQueueImpl</span>(config.getExecutorSupplier().forLightweightBackgroundTasks()));</span><br><span class="line">  	 CloseableReference.setDisableCloseableReferencesForBitmaps(config.getExperiments().getBitmapCloseableRefType());</span><br><span class="line">  <span class="built_in">this</span>.mCloseableReferenceFactory = <span class="keyword">new</span> <span class="title class_">CloseableReferenceFactory</span>(config.getCloseableReferenceLeakTracker());</span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>没啥，主要就是给几个变量赋值，包括<code>ImagePipelineConfig</code>、<code>ThreadHandoffProducerQueue</code>、<code>CloseableReferenceFactory</code>，构造函数虽然简单，但是通过构造出来的<code>ImagePipelineFactory</code>可以获取到的对象就多了去了，包括：</p>
+<ul>
+<li><code>DrawableFactory</code></li>
+<li><code>CountingMemoryCache</code>(即<code>mBitmapCountingMemoryCache</code>)，内存缓存</li>
+<li><code>InstrumentedMemoryCache</code>(即<code>mBitmapMemoryCache</code>)，内存缓存，提供缓存命中回调监听</li>
+<li><code>CountingMemoryCache</code>(即<code>mEncodedCountingMemoryCache</code>)，内存缓存</li>
+<li><code>InstrumentedMemoryCache</code>(即<code>mEncodedMemoryCache</code>)，内存缓存，提供缓存命中回调监听</li>
+<li><code>BufferedDiskCache</code>(即<code>mMainBufferedDiskCache</code>)，带缓存的磁盘缓存</li>
+<li><code>FileCache</code>(即<code>mMainFileCache</code>)，主文件缓存，磁盘文件缓存（这里主要是大文件）</li>
+<li><code>ImagePipeline</code>(即<code>sImagePipeline</code>)，构建ImagePipeline</li>
+<li><code>PlatformBitmapFactory</code>(即<code>mPlatformBitmapFactory</code>)，bitmap对象创建工程，主要提供不同平台版本下bitmap的创建方式</li>
+<li><code>PlatformDecoder</code>(即<code>mPlatformDecoder</code>)，解码器，不同的平台、不同的Android系统版本采用不同的 Decoder</li>
+<li><code>FileCache</code>(即<code>mSmallImageFileCache</code>)，小图文件缓存（可见小图的缓存和主文件缓存是分开的，避免共用缓存导致<strong>主文件缓存文件大侵占小文件缓存</strong>的情况</li>
+<li><code>CloseableReferenceFactory</code>(即<code>mCloseableReferenceFactory</code>)，<strong>这个是在构造函数中赋值的</strong></li>
+</ul>
+<h4 id="Drawee初始化"><a href="#Drawee初始化" class="headerlink" title="Drawee初始化"></a>Drawee初始化</h4><p>Drawee初始化的核心内容在<code>PipelineDraweeControllerBuilderSupplier</code>这个类上，从命名上看，该类会提供一个用来构建<code>PipelineDraweeController</code>的<code>PipelineDraweeControllerBuilder</code>对象，看其构造函数。</p>
+<h5 id="PipelineDraweeControllerBuilder"><a href="#PipelineDraweeControllerBuilder" class="headerlink" title="PipelineDraweeControllerBuilder"></a><code>PipelineDraweeControllerBuilder</code></h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">PipelineDraweeControllerBuilderSupplier</span><span class="params">(Context context, ImagePipelineFactory imagePipelineFactory, Set&lt;ControllerListener&gt; boundControllerListeners, Set&lt;ControllerListener2&gt; boundControllerListeners2, <span class="meta">@Nullable</span> DraweeConfig draweeConfig)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.mContext = context;<span class="comment">// 获取context</span></span><br><span class="line">        <span class="built_in">this</span>.mImagePipeline = imagePipelineFactory.getImagePipeline();<span class="comment">// 获取ImagePipeline</span></span><br><span class="line"></span><br><span class="line">  			<span class="comment">// 获取 PipelineDraweeControllerFactory</span></span><br><span class="line">        <span class="keyword">if</span> (draweeConfig != <span class="literal">null</span> &amp;&amp; draweeConfig.getPipelineDraweeControllerFactory() != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="built_in">this</span>.mPipelineDraweeControllerFactory = draweeConfig.getPipelineDraweeControllerFactory();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">this</span>.mPipelineDraweeControllerFactory = <span class="keyword">new</span> <span class="title class_">PipelineDraweeControllerFactory</span>();</span><br><span class="line">        &#125;</span><br><span class="line">				<span class="comment">// 调用 PipelineDraweeControllerFactory 初始化方法</span></span><br><span class="line">        <span class="built_in">this</span>.mPipelineDraweeControllerFactory.init(context.getResources(), DeferredReleaser.getInstance(), imagePipelineFactory.getAnimatedDrawableFactory(context), UiThreadImmediateExecutorService.getInstance(), <span class="built_in">this</span>.mImagePipeline.getBitmapMemoryCache(), draweeConfig != <span class="literal">null</span> ? draweeConfig.getCustomDrawableFactories() : <span class="literal">null</span>, draweeConfig != <span class="literal">null</span> ? draweeConfig.getDebugOverlayEnabledSupplier() : <span class="literal">null</span>);</span><br><span class="line">        <span class="built_in">this</span>.mBoundControllerListeners = boundControllerListeners;</span><br><span class="line">        <span class="built_in">this</span>.mBoundControllerListeners2 = boundControllerListeners2;</span><br><span class="line">        <span class="built_in">this</span>.mDefaultImagePerfDataListener = draweeConfig != <span class="literal">null</span> ? draweeConfig.getImagePerfDataListener() : <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>构造函数主要进行了以下两个动作：</p>
+<ol>
+<li>获取ImagePipeline；</li>
+<li>获取<code>PipelineDraweeControllerFactory</code>并初始化PipelineDraweeControllerFactory相关参数，主要包括：<ol>
+<li><code>Resources</code>对象；</li>
+<li><code>DeferredReleaser.getInstance()</code>，<strong>延迟释放资源，等主线程处理完消息后再进行回收。</strong></li>
+<li><code>mImagePipeline.getBitmapMemoryCache()</code>，已经解码的Bitmap缓存</li>
+</ol>
+</li>
+</ol>
+<p>至此，图片加载流程中的Fresco初始化环节就完成了。这个初始化过程一般只需要调用一次即可，一般会在Application的<code>onCreate</code>中进行调用。</p>
+<h3 id="2-获取DataSource"><a href="#2-获取DataSource" class="headerlink" title="2.获取DataSource"></a>2.获取DataSource</h3><h4 id="什么是DataSource"><a href="#什么是DataSource" class="headerlink" title="什么是DataSource"></a>什么是DataSource</h4><p>在初始化完成后，就要看如何根据Url获取到显示的数据了，Fresco中数据由<code>DataSource</code>接口表示。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">DataSource</span>&lt;T&gt; &#123;</span><br><span class="line">  	<span class="comment">// 数据源是否关闭</span></span><br><span class="line">    <span class="type">boolean</span> <span class="title function_">isClosed</span><span class="params">()</span>;</span><br><span class="line">		<span class="comment">// 请求的结果</span></span><br><span class="line">    <span class="meta">@Nullable</span></span><br><span class="line">    T <span class="title function_">getResult</span><span class="params">()</span>;</span><br><span class="line">		<span class="comment">// 是否有结果返回</span></span><br><span class="line">    <span class="type">boolean</span> <span class="title function_">hasResult</span><span class="params">()</span>;</span><br><span class="line">		<span class="comment">// 获取一些额外的字段K-V表示</span></span><br><span class="line">    <span class="meta">@Nullable</span></span><br><span class="line">    Map&lt;String, Object&gt; <span class="title function_">getExtras</span><span class="params">()</span>;</span><br><span class="line">		<span class="comment">// 是否有多个请求结果</span></span><br><span class="line">    <span class="type">boolean</span> <span class="title function_">hasMultipleResults</span><span class="params">()</span>;</span><br><span class="line">		<span class="comment">// 请求是否结束</span></span><br><span class="line">    <span class="type">boolean</span> <span class="title function_">isFinished</span><span class="params">()</span>;</span><br><span class="line">		<span class="comment">// 请求是否失败</span></span><br><span class="line">    <span class="type">boolean</span> <span class="title function_">hasFailed</span><span class="params">()</span>;</span><br><span class="line">		<span class="comment">// 获取请求失败的原因</span></span><br><span class="line">    <span class="meta">@Nullable</span></span><br><span class="line">    Throwable <span class="title function_">getFailureCause</span><span class="params">()</span>;</span><br><span class="line">		<span class="comment">// 请求的进度（0到1）</span></span><br><span class="line">    <span class="type">float</span> <span class="title function_">getProgress</span><span class="params">()</span>;</span><br><span class="line">		<span class="comment">// 结束请求，释放资源</span></span><br><span class="line">    <span class="type">boolean</span> <span class="title function_">close</span><span class="params">()</span>;</span><br><span class="line">		<span class="comment">// 发送并订阅请求，等待请求结果</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">subscribe</span><span class="params">(DataSubscriber&lt;T&gt; dataSubscriber, Executor executor)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>DataSource</code>有三种状态，采用枚举变量<code>DataSourceStatus</code>来表示，分别是<code>IN_PROCESS</code>，<code>SUCCESS</code>，<code>FAILURE</code>。基本实现类为<code>AbstractDataSource</code>，还有以下衍生类：</p>
+<ul>
+<li><p><code>AbstractProducerToDataSourceAdapter</code>，Producer到DataSource的适配（适配器模式）；</p>
+</li>
+<li><p><code>CloseableProducerToDataSourceAdapter</code>，实现了<code>AbstractDataSource</code>的<code>closeResult()</code>方法；</p>
+</li>
+<li><p><code>ProducerToDataSourceAdapter</code>，仅仅是<code>AbstractProducerToDataSourceAdapter</code>，无特殊方法实现；</p>
+</li>
+<li><p><code>FirstAvailableDataSource</code>，之所以是叫FirstAvailable，主要是因为该类是<code>FirstAvailableDataSourceSupplier</code>的内部类，而<code>FirstAvailableDataSourceSupplier</code>内部有一个<code>List&lt;Supplier&lt;DataSource&lt;T&gt;&gt;&gt; mDataSourceSuppliers</code>的成员变量，可见其可以提供多个DataSource，我们使用的时候只取第一个可用的DataSource即可；</p>
+</li>
+<li><p><code>IncreasingQualityDataSource</code>，内部维护一个CloseableProducerToDataSourceAdapter列表，按数据的<strong>清晰度从后往前递增</strong>，它为列表里的每个DataSourece绑定一个DataSubscriber，该类负责保证 每次获取清晰度更高的数据，获取数据的同时销毁清晰度更低的数据（HOW？）</p>
+<blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (supplier != <span class="literal">null</span> &amp;&amp; <span class="built_in">this</span>.mLowResImageRequest != <span class="literal">null</span>) &#123;</span><br><span class="line">      List&lt;Supplier&lt;DataSource&lt;IMAGE&gt;&gt;&gt; suppliers = <span class="keyword">new</span> <span class="title class_">ArrayList</span>(<span class="number">2</span>);</span><br><span class="line">      suppliers.add(supplier); <span class="comment">// index为0，正常质量</span></span><br><span class="line">      suppliers.add(<span class="built_in">this</span>.getDataSourceSupplierForRequest(controller, controllerId, <span class="built_in">this</span>.mLowResImageRequest));<span class="comment">// index为1，low质量</span></span><br><span class="line">      supplier = IncreasingQualityDataSourceSupplier.create(suppliers, <span class="literal">false</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</blockquote>
+</li>
+<li><p><code>FirstAvailableDataSource</code>：内部维护一个<code>CloseableProducerToDataSourceAdapter</code>列表，它会返回列表里最先获取数据的DataSource，它为列表里的每个DataSource绑定一个DataSubscriber，如果 数据加载成功，则将当前成功的DataSource指定为目标DataSource，否则跳转到下一个DataSource继续尝试。</p>
+</li>
+<li><p><code>SettableDataSource</code>&#x2F;<code>SimpleDataSource</code>：继承自<code>AbstractDataSource</code>，并将重写<code>settResult()</code>、<code>setFailure()</code>、<code>setProgress()</code>在内部调用父类的相应函数，但是修饰符变成了public（原来是protected）。即使 用SettableDataSource时可以在外部调用这三个函数设置DataSource状态。一般用于在获取DataSource失败时直接产生一个设置为Failure的DataSource。</p>
+</li>
+</ul>
+<h4 id="DataSource是怎么生成的"><a href="#DataSource是怎么生成的" class="headerlink" title="DataSource是怎么生成的"></a>DataSource是怎么生成的</h4><h5 id="SimpleDraweeView-setImageURI"><a href="#SimpleDraweeView-setImageURI" class="headerlink" title="SimpleDraweeView.setImageURI"></a>SimpleDraweeView.setImageURI</h5><p>基本使用中介绍了，初始化后调用<code>SimpleDraweeView</code>的<code>setImageUri(String url)</code>方法就可以实现图片的加载与现实，那么这个是怎么做到的呢？看下面的分析：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setImageURI</span><span class="params">(Uri uri, <span class="meta">@Nullable</span> Object callerContext)</span> &#123;</span><br><span class="line">        <span class="type">DraweeController</span> <span class="variable">controller</span> <span class="operator">=</span> <span class="built_in">this</span>.mControllerBuilder</span><br><span class="line">          .setCallerContext(callerContext)<span class="comment">// 设置调用的上下文对象</span></span><br><span class="line">          .setUri(uri)<span class="comment">// 设置请求Uri，用来进行构造ImageRequest的Url</span></span><br><span class="line">          .setOldController(<span class="built_in">this</span>.getController())<span class="comment">// 设置OldController，主要用来进行Controller的复用判断</span></span><br><span class="line">          .build();</span><br><span class="line">        <span class="built_in">this</span>.setController(controller);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>setImageURI</code>有多个重载，最终都会调用到上面这个方法。可以看到这里会用<code>mControllerBuilder</code>来构造一个DraweeController，然后设置给SimpleDraweeView。这个<code>mControllerBuilder</code>就是<code>PipelineDraweeControllerBuilderSupplier</code>.get()方法返回的<code>PipelineDraweeControllerBuilder</code>(继承自<code>AbstractDraweeControllerBuilder</code>，而该类实现了<code>SimpleDraweeControllerBuilder</code>接口)，看看<code>setUri(Uri uri)</code>的最终实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> PipelineDraweeControllerBuilder <span class="title function_">setUri</span><span class="params">(<span class="meta">@Nullable</span> Uri uri)</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (uri == <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (PipelineDraweeControllerBuilder)<span class="built_in">super</span>.setImageRequest((Object)<span class="literal">null</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="type">ImageRequest</span> <span class="variable">imageRequest</span> <span class="operator">=</span> ImageRequestBuilder</span><br><span class="line">      .newBuilderWithSource(uri)</span><br><span class="line">      .setRotationOptions(RotationOptions.autoRotateAtRenderTime())</span><br><span class="line">      .build();</span><br><span class="line">    <span class="keyword">return</span> (PipelineDraweeControllerBuilder)<span class="built_in">super</span>.setImageRequest(imageRequest);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong><code>setUri</code>完成了图片请求<code>ImageRequest</code>的构造</strong></p>
+</blockquote>
+<h5 id="PipelineDraweeControllerBuilder-obtainController"><a href="#PipelineDraweeControllerBuilder-obtainController" class="headerlink" title="PipelineDraweeControllerBuilder.obtainController()"></a>PipelineDraweeControllerBuilder.obtainController()</h5><p>再看看这个DraweeController是如何build的？build()方法最终会走到<code>AbstractDraweeController</code>的<code>buildController()</code>中：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> AbstractDraweeController <span class="title function_">buildController</span><span class="params">()</span> &#123;</span><br><span class="line">	...</span><br><span class="line">  <span class="type">AbstractDraweeController</span> <span class="variable">controller</span> <span class="operator">=</span> <span class="built_in">this</span>.obtainController();</span><br><span class="line">	...</span><br><span class="line">  <span class="keyword">return</span> controller;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>obtainController()</code>方法由<code>AbstractDraweeController</code>定义，由<code>PipelineDraweeController</code>实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> PipelineDraweeController <span class="title function_">obtainController</span><span class="params">()</span> &#123;</span><br><span class="line">  ...</span><br><span class="line">  PipelineDraweeController var4;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="type">DraweeController</span> <span class="variable">oldController</span> <span class="operator">=</span> <span class="built_in">this</span>.getOldController();</span><br><span class="line">    <span class="comment">// 获取到唯一的controllerId，一个静态自增的AtomicLong型： AtomicLong sIdCounter = new AtomicLong();</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">controllerId</span> <span class="operator">=</span> generateUniqueControllerId();</span><br><span class="line">    PipelineDraweeController controller;</span><br><span class="line">    <span class="comment">// controller 复用逻辑</span></span><br><span class="line">    <span class="keyword">if</span> (oldController <span class="keyword">instanceof</span> PipelineDraweeController) &#123;</span><br><span class="line">    	controller = (PipelineDraweeController)oldController;</span><br><span class="line">  	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  		controller = <span class="built_in">this</span>.mPipelineDraweeControllerFactory.newController();</span><br><span class="line">  	&#125;</span><br><span class="line">    <span class="comment">// 关键所在，调用初始化方法，第一个参数就是我们关心的DataSource获取了。</span></span><br><span class="line">		controller.initialize(<span class="built_in">this</span>.obtainDataSourceSupplier(controller, controllerId), controllerId, <span class="built_in">this</span>.getCacheKey(), <span class="built_in">this</span>.getCallerContext(), <span class="built_in">this</span>.mCustomDrawableFactories, <span class="built_in">this</span>.mImageOriginListener);</span><br><span class="line">    <span class="comment">// 注册Controller回调</span></span><br><span class="line">  	controller.initializePerformanceMonitoring(<span class="built_in">this</span>.mImagePerfDataListener, <span class="built_in">this</span>, Suppliers.BOOLEAN_FALSE);</span><br><span class="line">  	var4 = controller;</span><br><span class="line">  &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">  	...</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> var4;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个方法里，看到了DataSource相关的内容了，因为Fresco的命名规则很规范，以Supplier结尾的表示实现了Supplier接口，其get方法会提供其前面类名的实例，这里的<code>this.obtainDataSourceSupplier(...)</code>说明会获取到DataSource实例，看<code>controller.initialize(...)</code>代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">initialize</span><span class="params">(Supplier&lt;DataSource&lt;CloseableReference&lt;CloseableImage&gt;&gt;&gt; dataSourceSupplier, </span></span><br><span class="line"><span class="params">                       String id, CacheKey cacheKey, Object callerContext, </span></span><br><span class="line"><span class="params">                       <span class="meta">@Nullable</span> ImmutableList&lt;DrawableFactory&gt; customDrawableFactories, </span></span><br><span class="line"><span class="params">                       <span class="meta">@Nullable</span> ImageOriginListener imageOriginListener)</span> &#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="built_in">super</span>.initialize(id, callerContext);</span><br><span class="line">  <span class="built_in">this</span>.init(dataSourceSupplier);</span><br><span class="line">  <span class="built_in">this</span>.mCacheKey = cacheKey;</span><br><span class="line">  <span class="built_in">this</span>.setCustomDrawableFactories(customDrawableFactories);</span><br><span class="line">  <span class="built_in">this</span>.clearImageOriginListeners();</span><br><span class="line">  <span class="built_in">this</span>.maybeUpdateDebugOverlay((CloseableImage)<span class="literal">null</span>);</span><br><span class="line">  <span class="built_in">this</span>.addImageOriginListener(imageOriginListener);</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="PipelineDraweeControllerBuilder-obtainDataSourceSupplier"><a href="#PipelineDraweeControllerBuilder-obtainDataSourceSupplier" class="headerlink" title="PipelineDraweeControllerBuilder.obtainDataSourceSupplier"></a>PipelineDraweeControllerBuilder.obtainDataSourceSupplier</h5><p>第一个参数由&#96;&#96;this.obtainDataSourceSupplier(…)&#96;获取，看代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> Supplier&lt;DataSource&lt;IMAGE&gt;&gt; <span class="title function_">obtainDataSourceSupplier</span><span class="params">(<span class="keyword">final</span> DraweeController controller, </span></span><br><span class="line"><span class="params">                                                               <span class="keyword">final</span> String controllerId)</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">this</span>.mDataSourceSupplier != <span class="literal">null</span>) &#123; <span class="comment">// 不为空，直接复用，这个mDataSourceSupplier会在this.init(dataSourceSupplier)里面赋值</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.mDataSourceSupplier;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    Supplier&lt;DataSource&lt;IMAGE&gt;&gt; supplier = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">this</span>.mImageRequest != <span class="literal">null</span>) &#123; <span class="comment">// mImageRequest在调用PipelineDraweeControllerBuilder的setUri方法时赋值</span></span><br><span class="line">      supplier = <span class="built_in">this</span>.getDataSourceSupplierForRequest(controller, controllerId, <span class="built_in">this</span>.mImageRequest);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">this</span>.mMultiImageRequests != <span class="literal">null</span>) &#123;</span><br><span class="line">      supplier = <span class="built_in">this</span>.getFirstAvailableDataSourceSupplier(controller, controllerId, </span><br><span class="line">                                                          <span class="built_in">this</span>.mMultiImageRequests, <span class="built_in">this</span>.mTryCacheOnlyFirst);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (supplier != <span class="literal">null</span> &amp;&amp; <span class="built_in">this</span>.mLowResImageRequest != <span class="literal">null</span>) &#123;</span><br><span class="line">      List&lt;Supplier&lt;DataSource&lt;IMAGE&gt;&gt;&gt; suppliers = <span class="keyword">new</span> <span class="title class_">ArrayList</span>(<span class="number">2</span>);</span><br><span class="line">      suppliers.add(supplier);</span><br><span class="line">      suppliers.add(<span class="built_in">this</span>.getDataSourceSupplierForRequest(controller, controllerId, <span class="built_in">this</span>.mLowResImageRequest));</span><br><span class="line">      supplier = IncreasingQualityDataSourceSupplier.create(suppliers, <span class="literal">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (supplier == <span class="literal">null</span>) &#123;</span><br><span class="line">      supplier = DataSources.getFailedDataSourceSupplier(NO_REQUEST_EXCEPTION);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (Supplier)supplier;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里的<code>IMAGE</code>泛型指的是<code>CloseableReference&lt;CloseableImage&gt;</code>类型，后面会提及。具体代码分析见注释。上面获取Supplier的一系列getXX方法最终都会走到<code>PipelineDraweeControllerBuilder</code>的<code>getDataSourceForRequest</code>中，看看这个<code>getDataSourceForRequest</code>方法（由PipelineDraweeControllerBuilder实现）</p>
+<h5 id="PipelineDraweeControllerBuilder-getDataSourceForRequest"><a href="#PipelineDraweeControllerBuilder-getDataSourceForRequest" class="headerlink" title="PipelineDraweeControllerBuilder.getDataSourceForRequest"></a>PipelineDraweeControllerBuilder.getDataSourceForRequest</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> DataSource&lt;CloseableReference&lt;CloseableImage&gt;&gt; <span class="title function_">getDataSourceForRequest</span><span class="params">(DraweeController controller, String controllerId, ImageRequest imageRequest, Object callerContext, CacheLevel cacheLevel)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.mImagePipeline.fetchDecodedImage(imageRequest, callerContext, convertCacheLevelToRequestLevel(cacheLevel), <span class="built_in">this</span>.getRequestListener(controller), controllerId);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果就是调用<code>ImagePipeline</code>的<code>fetchDecodedImage</code>,mImagePipeline是通过ImagePipelineFactory来进行赋值的（在<code>PipelineDraweeControllerBuilderSupplier</code>构造的时候），那么这个<code>fetchDecodedImage</code>干了什么呢？</p>
+<h5 id="ImagePipeline-submitFetchRequest"><a href="#ImagePipeline-submitFetchRequest" class="headerlink" title="ImagePipeline.submitFetchRequest"></a>ImagePipeline.submitFetchRequest</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> DataSource&lt;CloseableReference&lt;CloseableImage&gt;&gt; <span class="title function_">fetchDecodedImage</span><span class="params">(ImageRequest imageRequest, Object callerContext, RequestLevel lowestPermittedRequestLevelOnSubmit, <span class="meta">@Nullable</span> RequestListener requestListener, <span class="meta">@Nullable</span> String uiComponentId)</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Producer&lt;CloseableReference&lt;CloseableImage&gt;&gt; producerSequence = <span class="built_in">this</span>.mProducerSequenceFactory.getDecodedImageProducerSequence(imageRequest);</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">this</span>.submitFetchRequest(producerSequence, imageRequest, lowestPermittedRequestLevelOnSubmit, callerContext, requestListener, uiComponentId);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception var7) &#123;</span><br><span class="line">            <span class="keyword">return</span> DataSources.immediateFailedDataSource(var7);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这个方法先获取**<code>Producer</code><strong>，然后调用</strong><code>submitFetchRequest</code><strong>方法来拉取图片请求，生成</strong><code>DataSource</code><strong>并最终返回，<u>所以</u></strong><code>DataSource</code><strong>最终是有</strong><code>ImagePipeline</code><strong>调用</strong>submitFetchRequest**方法生成的。</p>
+</blockquote>
+<p>看看这个最终生成**<code>DataSource</code>**的方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> &lt;T&gt; DataSource&lt;CloseableReference&lt;T&gt;&gt; <span class="title function_">submitFetchRequest</span><span class="params">(Producer&lt;CloseableReference&lt;T&gt;&gt; producerSequence, ImageRequest imageRequest, RequestLevel lowestPermittedRequestLevelOnSubmit, Object callerContext, <span class="meta">@Nullable</span> RequestListener requestListener, <span class="meta">@Nullable</span> String uiComponentId)</span> &#123;</span><br><span class="line">        ...</span><br><span class="line">        DataSource var9;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="type">RequestLevel</span> <span class="variable">lowestPermittedRequestLevel</span> <span class="operator">=</span> RequestLevel.getMax(imageRequest.getLowestPermittedRequestLevel(), lowestPermittedRequestLevelOnSubmit);</span><br><span class="line">            <span class="type">SettableProducerContext</span> <span class="variable">settableProducerContext</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SettableProducerContext</span>(imageRequest, <span class="built_in">this</span>.generateUniqueFutureId(), uiComponentId, requestListener2, callerContext, lowestPermittedRequestLevel, <span class="literal">false</span>, imageRequest.getProgressiveRenderingEnabled() || !UriUtil.isNetworkUri(imageRequest.getSourceUri()), imageRequest.getPriority(), <span class="built_in">this</span>.mConfig);</span><br><span class="line">            <span class="type">DataSource</span> <span class="variable">var10</span> <span class="operator">=</span> CloseableProducerToDataSourceAdapter.create(producerSequence, settableProducerContext, requestListener2);</span><br><span class="line">            <span class="keyword">return</span> var10;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception var14) &#123;</span><br><span class="line">            var9 = DataSources.immediateFailedDataSource(var14);</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            ...</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> var9;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>主要完成以下工作：</p>
+<ol>
+<li>获取<code>RequestLevel</code>，即请求的级别，分别有<code>FULL_FETCH(1)</code>，<code>DISK_CACHE(2)</code>，<code>ENCODED_MEMORY_CACHE(3)</code>，BITMAP_MEMORY_CACHE(4)，对应的时从网络或本地获取、从磁盘缓存获取、从未解码的内存缓存获取、从已解码的缓存获取。</li>
+<li>获取<code>SettableProducerContext</code>，获取Producer运行的上下文环境，通过ProducerContext可以控制Producer的内部状态。</li>
+<li>创建DataSource（CloseableProducerToDataSourceAdapter是DataSource的一种）并返回。</li>
+</ol>
+<p>DataSource的获取过程就到这了，它创建后就会被设置到PipelineDraweeController中。下面看看Controller和Hierarchy的绑定。</p>
+<h3 id="3-绑定Controller与Hierarchy"><a href="#3-绑定Controller与Hierarchy" class="headerlink" title="3.绑定Controller与Hierarchy"></a>3.绑定Controller与Hierarchy</h3><h4 id="DraweeHolder-setController"><a href="#DraweeHolder-setController" class="headerlink" title="DraweeHolder.setController()"></a>DraweeHolder.setController()</h4><p>上面说了，在调用SimpleDraweeView的setImageURI()方法时，创建了DraweeController（即PipelineDraweeControllerBuilder）,这个DraweeController完成了DataSource的获取，在该Controller获取后，SimpleDraweeView立马调用自身的setController方法来讲这个Controller设置进去，这个setController方法实际上调用的时DraweeHolder的setController方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SimpleDraweeView父类DraweeView的setController方法</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setController</span><span class="params">(<span class="meta">@Nullable</span> DraweeController draweeController)</span> &#123;</span><br><span class="line">  <span class="built_in">this</span>.mDraweeHolder.setController(draweeController);</span><br><span class="line">  <span class="built_in">super</span>.setImageDrawable(<span class="built_in">this</span>.mDraweeHolder.getTopLevelDrawable());</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// DraweeHolder的setController方法，mDraweeHolder是在DraweeView初始化时创建的</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setController</span><span class="params">(<span class="meta">@Nullable</span> DraweeController draweeController)</span> &#123;</span><br><span class="line">  <span class="type">boolean</span> <span class="variable">wasAttached</span> <span class="operator">=</span> <span class="built_in">this</span>.mIsControllerAttached;</span><br><span class="line">  <span class="keyword">if</span> (wasAttached) &#123; <span class="comment">// 如果绑定了，先解绑</span></span><br><span class="line">    <span class="built_in">this</span>.detachController();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">this</span>.isControllerValid()) &#123;<span class="comment">// 先将之前的置null</span></span><br><span class="line">    <span class="built_in">this</span>.mEventTracker.recordEvent(Event.ON_CLEAR_OLD_CONTROLLER);</span><br><span class="line">    <span class="built_in">this</span>.mController.setHierarchy((DraweeHierarchy)<span class="literal">null</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">this</span>.mController = draweeController;<span class="comment">// 重设Controller</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">this</span>.mController != <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="built_in">this</span>.mEventTracker.recordEvent(Event.ON_SET_CONTROLLER);</span><br><span class="line">    <span class="built_in">this</span>.mController.setHierarchy(<span class="built_in">this</span>.mHierarchy);<span class="comment">// 重设Hierarchy</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.mEventTracker.recordEvent(Event.ON_CLEAR_CONTROLLER);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (wasAttached) &#123;<span class="comment">// 重绑Controller</span></span><br><span class="line">    <span class="built_in">this</span>.attachController();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>如果Controller已经绑定了，先解绑；</li>
+<li>如果Hierarchy已经绑定到了Controller，先解绑；</li>
+<li>重设Hierarchy；</li>
+<li>重设Controller</li>
+</ol>
+<h4 id="PipelineDraweeController-setHierarchy"><a href="#PipelineDraweeController-setHierarchy" class="headerlink" title="PipelineDraweeController.setHierarchy()"></a>PipelineDraweeController.setHierarchy()</h4><p>关于<code>Hierarchy</code>和<code>Controller</code>的重设，<code>Hierarchy</code>的重设最终调用的是<code>PipelineDraweeController</code>的<code>setHierarchy</code>方法，参数<code>Hierarchy</code>是在<code>GenericDraweeView</code>的<code>inflateHierarchy</code>方法中赋值的，看<code>PipelineDraweeController</code>的<code>setHierarchy</code>方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setHierarchy</span><span class="params">(<span class="meta">@Nullable</span> DraweeHierarchy hierarchy)</span> &#123;</span><br><span class="line">	...</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">this</span>.mIsRequestSubmitted) &#123;</span><br><span class="line">    <span class="built_in">this</span>.mDeferredReleaser.cancelDeferredRelease(<span class="built_in">this</span>);</span><br><span class="line">    <span class="built_in">this</span>.release();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">this</span>.mSettableDraweeHierarchy != <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="built_in">this</span>.mSettableDraweeHierarchy.setControllerOverlay((Drawable)<span class="literal">null</span>);</span><br><span class="line">    <span class="built_in">this</span>.mSettableDraweeHierarchy = <span class="literal">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (hierarchy != <span class="literal">null</span>) &#123;</span><br><span class="line">    Preconditions.checkArgument(hierarchy <span class="keyword">instanceof</span> SettableDraweeHierarchy);</span><br><span class="line">    <span class="built_in">this</span>.mSettableDraweeHierarchy = (SettableDraweeHierarchy)hierarchy;</span><br><span class="line">    <span class="built_in">this</span>.mSettableDraweeHierarchy.setControllerOverlay(<span class="built_in">this</span>.mControllerOverlay);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">this</span>.mLoggingListener != <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="built_in">this</span>.setUpLoggingListener();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面方法主要完成三个动作：</p>
+<ol>
+<li>如果当前存在正在进行的请求，取消并释放掉；</li>
+<li>清空已经存在的Hierarchy；</li>
+<li>设置新的Hierarchy；</li>
+</ol>
+<p>同样的，setController中的attachController其实最终调用的AbstractDraweeController的onAttach方法，该方法中工作：取消重在进行的请求，打上attach标记，重新提交请求；</p>
+<p>这样Controller和Hierarchy的绑定工作就完成了，完成Controller和Hierarchy的绑定后，图片最终怎么显示出来呢？看下面。</p>
+<h3 id="4-获取图片并设置到对应的Drawable层"><a href="#4-获取图片并设置到对应的Drawable层" class="headerlink" title="4.获取图片并设置到对应的Drawable层"></a>4.获取图片并设置到对应的Drawable层</h3><p>SimpleDraweeView.setImageURI发起，然后构造DraweeController，由Controller来完成请求（ImageRequest）的构造、发起（submitRequest）与请求结果的处理（onNewResultInternal），并最调用GenericDraweeHierarch的setImage方法完成图片的显示。</p>
+<p>图片的最终设置，是调用GenericDraweeHierarchy的setImage方法来实现的，该方法是在AbstractDraweeController中submitRequest中调用的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setImage</span><span class="params">(Drawable drawable, <span class="type">float</span> progress, <span class="type">boolean</span> immediate)</span> &#123;</span><br><span class="line">    drawable = WrappingUtils.maybeApplyLeafRounding(drawable, <span class="built_in">this</span>.mRoundingParams, <span class="built_in">this</span>.mResources);</span><br><span class="line">    drawable.mutate();</span><br><span class="line">    <span class="built_in">this</span>.mActualImageWrapper.setDrawable(drawable);</span><br><span class="line">    <span class="built_in">this</span>.mFadeDrawable.beginBatchMode();</span><br><span class="line">    <span class="built_in">this</span>.fadeOutBranches();</span><br><span class="line">    <span class="built_in">this</span>.fadeInLayer(<span class="number">2</span>);</span><br><span class="line">    <span class="built_in">this</span>.setProgress(progress);</span><br><span class="line">    <span class="keyword">if</span> (immediate) &#123;</span><br><span class="line">        <span class="built_in">this</span>.mFadeDrawable.finishTransitionImmediately();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">this</span>.mFadeDrawable.endBatchMode();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>mActualImageWrapper就是实际加载图片的那个图层，此处要设置的SimpleDraweeView最终要显示的图片。这样SimpleDraweeView的图片加载流程就完成了，当然还有不少细节需要继续分析。</p>
+<h2 id="Producer与Consumer"><a href="#Producer与Consumer" class="headerlink" title="Producer与Consumer"></a>Producer与Consumer</h2><p>Fresco源码很好的利用了生产者和消费者模式，其中Producer负责从不同的来源（本地、网络等）获取图片数据，然后交由Consumer来消费处理，Producer的创建时机是在ImagePipeline调用<code>fetchEncodedImage</code>和<code>fetchDecodedImage</code>中，在调用<code>ImagePipeline</code>的<code>submitFetchRequest</code>之前，需要先构建好<code>Producer</code>，<code>Producer</code>是由<code>ProducerSequenceFactory</code>的来进行构建的。</p>
+<h3 id="Producer"><a href="#Producer" class="headerlink" title="Producer"></a>Producer</h3><p>Producer接口的实现类有多种，按加载资源的种类可以分为以下几种：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Producer</span>&lt;T&gt; &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">produceResults</span><span class="params">(Consumer&lt;T&gt; consumer, ProducerContext context)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="获取本地资源类Producer"><a href="#获取本地资源类Producer" class="headerlink" title="获取本地资源类Producer"></a>获取本地资源类Producer</h4><blockquote>
+<p>从本地资源中获取数据</p>
+</blockquote>
+<ul>
+<li>LocalFetchProducer，本地资源类Producer的基类；提供一个抽象方法供其子类实现，就是根据自己的实际情况获取EncodedImage对象：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="keyword">abstract</span> EncodedImage <span class="title function_">getEncodedImage</span><span class="params">(ImageRequest imageRequest)</span> <span class="keyword">throws</span> IOException;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>DataFetchProducer，这个虽然继承自LocalFetchProducer，但不是严格意义上的本地资源，可以是一个Base64加密的图片资源字符串或者其他形式的加密串；</li>
+<li>LocalAssetFetchProducer，继承自LocalFetchProducer，从Asset里面的图片资源获取</li>
+<li>LocalContentUriFetchProducer，继承自LocalFetchProducer，从ContentUri形式的图片资源获取</li>
+<li>LocalContentUriThumbnailFetchProducer，继承自LocalFetchProducer，从ContentUrlThumbnail 形式的图片资源获取LocalFileFetchProducer，继承自LocalFetchProducer，从本地文件中的图片资源获取</li>
+<li>LocalResourceFetchProducer，继承自LocalFetchProducer，从本地res文件夹下的图片资源</li>
+<li>QualifierResourceFetchProducer，继承自LocalFetchProducer，从ContentResolver获取本地图片资源</li>
+<li>LocalExifThumbnailProducer，没继承LocalFetchProducer，获取本地Exif格式的图片</li>
+<li>LocalVideoThumbnailProducer，没有继承LocalFetchProducer，获取本地视频的缩略图；</li>
+</ul>
+<h4 id="获取网络数据类Producer"><a href="#获取网络数据类Producer" class="headerlink" title="获取网络数据类Producer"></a>获取网络数据类Producer</h4><blockquote>
+<p>主要负责从网络层获取数据</p>
+</blockquote>
+<ul>
+<li>NetworkFetchProducer，实现Producer接口，从网络获取图片数据；</li>
+</ul>
+<h4 id="缓存类Producer"><a href="#缓存类Producer" class="headerlink" title="缓存类Producer"></a>缓存类Producer</h4><blockquote>
+<p>主要负责从缓存中获取数据</p>
+</blockquote>
+<ul>
+<li>BitmapMemoryCacheGetProducer 它是一个Immutable的Producer，仅用于包装后续Producer；</li>
+<li>BitmapMemoryCacheProducer 在已解码的内存缓存中获取数据；若未找到，则在nextProducer中获取数据，并在获取到数据的同时将其缓存；</li>
+<li>BitmapMemoryCacheKeyMultiplexProducer 是MultiplexProducer的子类，nextProducer为BitmapMemoryCacheProducer，将多个拥有相同已解码内存缓存键的ImageRequest进行“合并”，若缓存命中，它们都会获取到该数据；</li>
+<li>PostprocessedBitmapMemoryCacheProducer 在已解码的内存缓存中寻找PostProcessor处理过的图片。它的nextProducer都是PostProcessorProducer，因为如果没有获取到被PostProcess的缓存，就需要对获取的图片进行PostProcess。；若未找到，则在nextProducer中获取数据；</li>
+<li>EncodedMemoryCacheProducer 在未解码的内存缓存中寻找数据，如果找到则返回，使用结束后释放资源；若未找到，则在nextProducer中获取数据，并在获取到数据的同时将其缓存；</li>
+<li>EncodedCacheKeyMultiplexProducer 是MultiplexProducer的子类，nextProducer为EncodedMemoryCacheProducer，将多个拥有相同未解码内存缓存键的ImageRequest进行“合并”，若缓存命中，它们都会获取到该数据；</li>
+<li>DiskCacheProducer 在文件内存缓存中获取数据；若未找到，则在nextProducer中获取数据，并在获取到数据的同时将其缓存</li>
+</ul>
+<h4 id="功能类Producer"><a href="#功能类Producer" class="headerlink" title="功能类Producer"></a>功能类Producer</h4><blockquote>
+<p>该类Producer在构建的时候回传入一个inputProducer，然后改Producer会对inputProducer进行相应的处理</p>
+</blockquote>
+<ul>
+<li>MultiplexProducer 将多个拥有相同CacheKey的ImageRequest进行“合并”，让他们从都从inputProducer中获取数据；</li>
+<li>ThreadHandoffProducer 将inputProducer的produceResult方法放在后台线程中执行（线程池容量为1）；</li>
+<li>SwallowResultProducer 将inputProducer的获取的数据“吞”掉，会在Consumer的onNewResult中传入null值；</li>
+<li>ResizeAndRotateProducer 将inputProducer产生的EncodedImage根据EXIF的旋转、缩放属性进行变换（如果对象不是JPEG格式图像，则不会发生变换）；</li>
+<li>PostProcessorProducer 将inputProducer产生的EncodedImage根据PostProcessor进行修改，关于PostProcessor详见修改图片；</li>
+<li>DecodeProducer 将inputProducer产生的EncodedImage解码。解码在后台线程中执行，可以在ImagePipelineConfig中通过setExecutorSupplier来设置线程池数量，默认为最大可用的处理器数；</li>
+<li>WebpTranscodeProducer 若inputProducer产生的EncodedImage为WebP格式，则将其解码成DecodeProducer能够处理的EncodedImage。解码在后代进程中进行。</li>
+</ul>
+<h4 id="ProducerSequenceFactory"><a href="#ProducerSequenceFactory" class="headerlink" title="ProducerSequenceFactory"></a>ProducerSequenceFactory</h4><p>意为Producer 序列工厂，所以<code>ProducerSequenceFactory</code>用于获取Producer序列，这里序列指的是通过对Producer一层层的包装，从外到里一层层包装，最里层Producer处理后，交给外层处理，即Producer是由外向里一层层传递的。</p>
+<ul>
+<li>PostprocessedBitmapMemoryCacheProducer，非必须	，在Bitmap缓存中查找被PostProcess过的数据。</li>
+<li>PostprocessorProducer，非必须，对下层Producer传上来的数据进行PostProcess。</li>
+<li>BitmapMemoryCacheGetProducer，必须，使Producer序列只读。</li>
+<li>ThreadHandoffProducer，必须，使下层Producer工作在后台进程中执行。</li>
+<li>BitmapMemoryCacheKeyMultiplexProducer，必须，使多个相同已解码内存缓存键的ImageRequest都从相同Producer中获取数据。</li>
+<li>BitmapMemoryCacheProducer，必须，从已解码的内存缓存中获取数据。</li>
+<li>DecodeProducer，必须，将下层Producer产生的数据解码。</li>
+<li>ResizeAndRotateProducer，非必须，将下层Producer产生的数据变换。</li>
+<li>EncodedCacheKeyMultiplexProducer，必须，使多个相同未解码内存缓存键的ImageRequest都从相同Producer中获取数据。</li>
+<li>EncodedMemoryCacheProducer，必须，从未解码的内存缓存中获取数据。</li>
+<li>DiskCacheProducer，必须，从文件缓存中获取数据。</li>
+<li>WebpTranscodeProducer，非必须，将下层Producer产生的Webp（如果是的话）进行解码。</li>
+<li>NetworkFetchProducer，必须，从网络上获取数据。</li>
+</ul>
+<h3 id="Consumer"><a href="#Consumer" class="headerlink" title="Consumer"></a>Consumer</h3><p>Producer经过一些列的传递后，最终肯定会调用produceResult方法，然后在produceResult方法中调用Consumer来对产生的结果进行“消费”，那么Consumer是在什么时候创建的呢？</p>
+<p>在<code>AbstractProducerToDataSourceAdapter</code>的构造函数中，会调用createConsumer方法来创建Consumer，在请求经过Producer一层层由外到里传递后，到最里层最终会调用Consumer的<code>onNewResultImpl</code>来消费产生的结果，并回调给上层。</p>
+<h2 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h2><p>Fresco是三级缓存结构，包括二级内存缓存，一级磁盘缓存，其中两级内存缓存包括：</p>
+<ul>
+<li>已解码的内存缓存，由MemoryCache&lt;CacheKey, CloseableImage&gt; 类对象表示；</li>
+<li>未解码的内存缓存，由MemoryCache&lt;CacheKey, PooledByteBuffer&gt; 类对象表示；</li>
+</ul>
+<p>二者的区别：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>已解码内存缓存</th>
+<th>未解码内存缓存</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>缓存对象</td>
+<td>CloseableImage(CloseableBitmap、CloseableStaticBitmap)</td>
+<td>EncodedImage</td>
+</tr>
+<tr>
+<td>对应的Producer</td>
+<td>BitmapMemoryCacheProducer</td>
+<td>EncodedMemoryCacheProducer</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="解码内存缓存流程"><a href="#解码内存缓存流程" class="headerlink" title="解码内存缓存流程"></a>解码内存缓存流程</h3><p>解码内存缓存由<code>BitmapMemoryCacheProducer</code>实现，主要在produceResult方法中，有以下几步：</p>
+<ol>
+<li>从 MemoryCache 中 根据 CacheKey去取缓存；</li>
+<li>判断缓存是否符合条件，符合条件的话，调用Consumer消费，直接反回，这个图片请求结束；</li>
+<li>不符合条件，则将原始的consumer包装，得到一个wrapperConsumer，然后继续调用mInputProducer进行处理；</li>
+<li>在mInputProducer的produceResult方法中，会调用wrapperConsumer来消费，在wrapperConsumer的onNewResultImpl中按需将请求得到的newResult（CloseableReference<CloseableImage>对象）进行缓存；</CloseableImage></li>
+<li>得到包装之前的Consumer，调用onNewResult通知上层Producer图片请求的结果</li>
+</ol>
+<h3 id="未解码内存缓存流程"><a href="#未解码内存缓存流程" class="headerlink" title="未解码内存缓存流程"></a>未解码内存缓存流程</h3><p>未解码内存缓存由<code>EncodedMemoryCacheProducer</code>实现，主要流程和解码内存缓存相似，不在赘述。</p>
+<h3 id="内存缓存的实现"><a href="#内存缓存的实现" class="headerlink" title="内存缓存的实现"></a>内存缓存的实现</h3><p>有MemoryCache接口来实现，具体的实现类是LruCountingMemoryCache，里面有两个缓存集合：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LruCountingMemoryCache</span>&lt;K, V&gt;</span><br><span class="line">    <span class="keyword">implements</span> <span class="title class_">CountingMemoryCache</span>&lt;K, V&gt;, MemoryCache&lt;K, V&gt;, HasDebugData &#123;</span><br><span class="line">	...</span><br><span class="line">  <span class="keyword">final</span> CountingLruMap&lt;K, Entry&lt;K, V&gt;&gt; mExclusiveEntries;</span><br><span class="line">  <span class="keyword">final</span> CountingLruMap&lt;K, Entry&lt;K, V&gt;&gt; mCachedEntries;</span><br><span class="line">	...</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="title function_">LruCountingMemoryCache</span><span class="params">(</span></span><br><span class="line"><span class="params">      ValueDescriptor&lt;V&gt; valueDescriptor,</span></span><br><span class="line"><span class="params">      CacheTrimStrategy cacheTrimStrategy,</span></span><br><span class="line"><span class="params">      Supplier&lt;MemoryCacheParams&gt; memoryCacheParamsSupplier,</span></span><br><span class="line"><span class="params">      <span class="meta">@Nullable</span> EntryStateObserver&lt;K&gt; entryStateObserver)</span> &#123;</span><br><span class="line">		...</span><br><span class="line">    mExclusiveEntries = <span class="keyword">new</span> <span class="title class_">CountingLruMap</span>&lt;&gt;(wrapValueDescriptor(valueDescriptor));</span><br><span class="line">    mCachedEntries = <span class="keyword">new</span> <span class="title class_">CountingLruMap</span>&lt;&gt;(wrapValueDescriptor(valueDescriptor));</span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中：</p>
+<ul>
+<li>mCachedEntries，它是用来存放所有缓存对象的集合;</li>
+<li>mExclusiveEntries，它主要用来存放当前没有被引用的对象，在缓存控件不足时，发生trim会删除掉该集合中的对象来释放缓存空间；</li>
+</ul>
+<h4 id="加入缓存：cache"><a href="#加入缓存：cache" class="headerlink" title="加入缓存：cache()"></a>加入缓存：cache()</h4><p>具体的缓存方法时cache，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="meta">@Nullable</span> CloseableReference&lt;V&gt; <span class="title function_">cache</span><span class="params">(<span class="keyword">final</span> K key, <span class="keyword">final</span> CloseableReference&lt;V&gt; valueRef,</span></span><br><span class="line"><span class="params">      <span class="keyword">final</span> <span class="meta">@Nullable</span> EntryStateObserver&lt;K&gt; observer)</span> &#123;</span><br><span class="line">		...</span><br><span class="line">    Entry&lt;K, V&gt; oldExclusive;</span><br><span class="line">    CloseableReference&lt;V&gt; oldRefToClose = <span class="literal">null</span>;</span><br><span class="line">    CloseableReference&lt;V&gt; clientRef = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">synchronized</span> (<span class="built_in">this</span>) &#123;</span><br><span class="line">      <span class="comment">// remove the old item (if any) as it is stale now</span></span><br><span class="line">      oldExclusive = mExclusiveEntries.remove(key);<span class="comment">// 从未被引用的集合中移除，因为现在要被引用了</span></span><br><span class="line">      Entry&lt;K, V&gt; oldEntry = mCachedEntries.remove(key);<span class="comment">// 从已经缓存的集合中移除，因为现在更新key对应的缓存值了</span></span><br><span class="line">      <span class="keyword">if</span> (oldEntry != <span class="literal">null</span>) &#123;</span><br><span class="line">        makeOrphan(oldEntry);</span><br><span class="line">        oldRefToClose = referenceToClose(oldEntry); <span class="comment">// 得到待删除的oldEntry</span></span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (canCacheNewValue(valueRef.get())) &#123; <span class="comment">// 如果能进行缓存操作</span></span><br><span class="line">        Entry&lt;K, V&gt; newEntry = Entry.of(key, valueRef, observer);<span class="comment">// 构建新的Entry</span></span><br><span class="line">        mCachedEntries.put(key, newEntry);<span class="comment">// 加入缓存</span></span><br><span class="line">        clientRef = newClientReference(newEntry);<span class="comment">// 得到引用以便返回</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    CloseableReference.closeSafely(oldRefToClose);<span class="comment">// close掉之前缓存的救治</span></span><br><span class="line">    maybeNotifyExclusiveEntryRemoval(oldExclusive);<span class="comment">// 通知未引用集合可能改变</span></span><br><span class="line"></span><br><span class="line">    maybeEvictEntries();<span class="comment">// 通知缓存集合可能改变，需要调整大小</span></span><br><span class="line">    <span class="keyword">return</span> clientRef;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>cache的流程注释很清楚了，这里就不在一一说明了。</p>
+<h4 id="获取缓存：get"><a href="#获取缓存：get" class="headerlink" title="获取缓存：get()"></a>获取缓存：get()</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> CloseableReference&lt;V&gt; <span class="title function_">get</span><span class="params">(<span class="keyword">final</span> K key)</span> &#123;</span><br><span class="line">   Preconditions.checkNotNull(key);</span><br><span class="line">   Entry&lt;K, V&gt; oldExclusive;</span><br><span class="line">   CloseableReference&lt;V&gt; clientRef = <span class="literal">null</span>;</span><br><span class="line">   <span class="keyword">synchronized</span> (<span class="built_in">this</span>) &#123;</span><br><span class="line">     oldExclusive = mExclusiveEntries.remove(key);<span class="comment">// 从未被引用的集合中移除，因为现在要被引用了</span></span><br><span class="line">     Entry&lt;K, V&gt; entry = mCachedEntries.get(key);<span class="comment">// 根据key获取缓存的Entry</span></span><br><span class="line">     <span class="keyword">if</span> (entry != <span class="literal">null</span>) &#123;</span><br><span class="line">       clientRef = newClientReference(entry);<span class="comment">// 得到包装后的对象</span></span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   maybeNotifyExclusiveEntryRemoval(oldExclusive);</span><br><span class="line">   maybeUpdateCacheParams();<span class="comment">// 调整缓存参数设置</span></span><br><span class="line">   maybeEvictEntries();<span class="comment">// 通知缓存集合可能改变，需要调整大小</span></span><br><span class="line">   <span class="keyword">return</span> clientRef;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>缓存get的流程页比较简单。</p>
+<h3 id="磁盘缓存流程"><a href="#磁盘缓存流程" class="headerlink" title="磁盘缓存流程"></a>磁盘缓存流程</h3><p>磁盘缓存由于涉及到文件的读写，又包括以下几个过程：</p>
+<ul>
+<li>缓冲缓存层，由BufferedDiskCache实现，提供缓冲功能；</li>
+<li>文件缓存层，由DiskStorageCache实现，提供实际的缓存功能；</li>
+<li>文件存储层，有DefaultDiskStorage实现，提供磁盘文件读写功能；</li>
+</ul>
+<h4 id="磁盘缓存存的过程"><a href="#磁盘缓存存的过程" class="headerlink" title="磁盘缓存存的过程"></a>磁盘缓存存的过程</h4><h5 id="DiskCacheWriteProducer"><a href="#DiskCacheWriteProducer" class="headerlink" title="DiskCacheWriteProducer"></a>DiskCacheWriteProducer</h5><p>磁盘缓存主要是通过<code>DiskCacheWriteProducer</code>来完成的，缓存的具体实现是通过<code>BufferedDiskCache</code>来完成的，看下该Producer中定义的Consumer：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">DiskCacheWriteConsumer</span></span><br><span class="line">      <span class="keyword">extends</span> <span class="title class_">DelegatingConsumer</span>&lt;EncodedImage, EncodedImage&gt; &#123;</span><br><span class="line">  ...</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onNewResultImpl</span><span class="params">(<span class="meta">@Nullable</span> EncodedImage newResult, <span class="meta">@Status</span> <span class="type">int</span> status)</span> &#123;</span><br><span class="line">      mProducerContext.getProducerListener().onProducerStart(mProducerContext, PRODUCER_NAME);</span><br><span class="line">      <span class="comment">// intermediate, null or uncacheable results are not cached, so we just forward them</span></span><br><span class="line">      <span class="comment">// as well as the images with unknown format which could be html response from the server</span></span><br><span class="line">      <span class="keyword">if</span> (isNotLast(status)</span><br><span class="line">          || newResult == <span class="literal">null</span></span><br><span class="line">          || statusHasAnyFlag(status, DO_NOT_CACHE_ENCODED | IS_PARTIAL_RESULT)</span><br><span class="line">          || newResult.getImageFormat() == ImageFormat.UNKNOWN) &#123; <span class="comment">// 不符合缓存条件的，不予缓存</span></span><br><span class="line">        mProducerContext</span><br><span class="line">            .getProducerListener()</span><br><span class="line">            .onProducerFinishWithSuccess(mProducerContext, PRODUCER_NAME, <span class="literal">null</span>);</span><br><span class="line">        getConsumer().onNewResult(newResult, status);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">final</span> <span class="type">ImageRequest</span> <span class="variable">imageRequest</span> <span class="operator">=</span> mProducerContext.getImageRequest();<span class="comment">// 得到请求</span></span><br><span class="line">      <span class="keyword">final</span> <span class="type">CacheKey</span> <span class="variable">cacheKey</span> <span class="operator">=</span></span><br><span class="line">          mCacheKeyFactory.getEncodedCacheKey(imageRequest, mProducerContext.getCallerContext());<span class="comment">// 根据请求获取到CacheKey</span></span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (imageRequest.getCacheChoice() == ImageRequest.CacheChoice.SMALL) &#123;<span class="comment">// 按需缓存</span></span><br><span class="line">        mSmallImageBufferedDiskCache.put(cacheKey, newResult);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        mDefaultBufferedDiskCache.put(cacheKey, newResult);</span><br><span class="line">      &#125;</span><br><span class="line">      mProducerContext</span><br><span class="line">          .getProducerListener()</span><br><span class="line">          .onProducerFinishWithSuccess(mProducerContext, PRODUCER_NAME, <span class="literal">null</span>);<span class="comment">// 结果回调出去</span></span><br><span class="line"></span><br><span class="line">      getConsumer().onNewResult(newResult, status);<span class="comment">// 交给上层Consumer处理</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="BufferedDiskCache"><a href="#BufferedDiskCache" class="headerlink" title="BufferedDiskCache"></a>BufferedDiskCache</h5><p>该类是磁盘缓存的缓冲层，其成员包括用于文件存储的mFileCache，用于读写缓存的mReadExecutor和mWriteExecutor，用于保存当前正在进行缓存操作的mStagingArea。</p>
+<h5 id="BufferedDiskCache-put"><a href="#BufferedDiskCache-put" class="headerlink" title="BufferedDiskCache.put()"></a>BufferedDiskCache.put()</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">put</span><span class="params">(<span class="keyword">final</span> CacheKey key, EncodedImage encodedImage)</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">			...</span><br><span class="line">      <span class="comment">// 现将要缓存的内容加入到Staging区域</span></span><br><span class="line">      mStagingArea.put(key, encodedImage);</span><br><span class="line">      <span class="keyword">final</span> <span class="type">EncodedImage</span> <span class="variable">finalEncodedImage</span> <span class="operator">=</span> EncodedImage.cloneOrNull(encodedImage);</span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">final</span> <span class="type">Object</span> <span class="variable">token</span> <span class="operator">=</span> FrescoInstrumenter.onBeforeSubmitWork(<span class="string">&quot;BufferedDiskCache_putAsync&quot;</span>);</span><br><span class="line">        mWriteExecutor.execute(</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">Runnable</span>() &#123;</span><br><span class="line">              <span class="meta">@Override</span></span><br><span class="line">              <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">                <span class="keyword">final</span> <span class="type">Object</span> <span class="variable">currentToken</span> <span class="operator">=</span> FrescoInstrumenter.onBeginWork(token, <span class="literal">null</span>);</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                  writeToDiskCache(key, finalEncodedImage);<span class="comment">// 开启线程写入到DiskStorageCache中</span></span><br><span class="line">                &#125; <span class="keyword">catch</span> (Throwable th) &#123;</span><br><span class="line">                  FrescoInstrumenter.markFailure(token, th);</span><br><span class="line">                  <span class="keyword">throw</span> th;</span><br><span class="line">                &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                  mStagingArea.remove(key, finalEncodedImage);<span class="comment">// 从Staging区域移除</span></span><br><span class="line">                  EncodedImage.closeSafely(finalEncodedImage);<span class="comment">// 关闭资源</span></span><br><span class="line">                  FrescoInstrumenter.onEndWork(currentToken);</span><br><span class="line">                &#125;</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">      &#125; <span class="keyword">catch</span> (Exception exception) &#123;</span><br><span class="line">				...</span><br><span class="line">        mStagingArea.remove(key, encodedImage);<span class="comment">// 从Staging区域移除</span></span><br><span class="line">        EncodedImage.closeSafely(finalEncodedImage); <span class="comment">// 关闭资源</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">      ...</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="BufferedDiskCache-writeToDiskCache"><a href="#BufferedDiskCache-writeToDiskCache" class="headerlink" title="BufferedDiskCache.writeToDiskCache()"></a>BufferedDiskCache.writeToDiskCache()</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">writeToDiskCache</span><span class="params">(<span class="keyword">final</span> CacheKey key, <span class="keyword">final</span> EncodedImage encodedImage)</span> &#123;</span><br><span class="line">  ...</span><br><span class="line"> mFileCache.insert(</span><br><span class="line">          key,</span><br><span class="line">          <span class="keyword">new</span> <span class="title class_">WriterCallback</span>() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">write</span><span class="params">(OutputStream os)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">              <span class="type">InputStream</span> <span class="variable">inputStream</span> <span class="operator">=</span> encodedImage.getInputStream();</span><br><span class="line">              Preconditions.checkNotNull(inputStream);</span><br><span class="line">              mPooledByteStreams.copy(inputStream, os);</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;);</span><br><span class="line">      mImageCacheStatsTracker.onDiskCachePut(key); </span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>核心代码就是将要缓存的内容插入到mFileCache中，mFileCache为DiskStorageCache实例。</p>
+<h5 id="DiskStorageCache-insert"><a href="#DiskStorageCache-insert" class="headerlink" title="DiskStorageCache.insert()"></a>DiskStorageCache.insert()</h5><p>DiskStorageCache完成了文件实际缓存功能，而整个insert的过程代码比较多，主要包括以下几个步骤：</p>
+<ol>
+<li><p>根据缓存的CacheKey得到resourceId</p>
+<blockquote>
+<p><code>resourceId = CacheKeyUtil.getFirstResourceId(key);</code></p>
+</blockquote>
+</li>
+<li><p>调用DefaultDiskStorage的startInsert方法创建临时文件，并包装成DiskStorage.Inserter返回；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Inserter <span class="title function_">insert</span><span class="params">(String resourceId, Object debugInfo)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    <span class="comment">// ensure that the parent directory exists</span></span><br><span class="line">    <span class="type">FileInfo</span> <span class="variable">info</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInfo</span>(FileType.TEMP, resourceId);</span><br><span class="line">    <span class="type">File</span> <span class="variable">parent</span> <span class="operator">=</span> getSubdirectory(info.resourceId);</span><br><span class="line">    <span class="keyword">if</span> (!parent.exists()) &#123;</span><br><span class="line">      mkdirs(parent, <span class="string">&quot;insert&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="type">File</span> <span class="variable">file</span> <span class="operator">=</span> info.createTempFile(parent);</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">InserterImpl</span>(resourceId, file);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException ioe) &#123;</span><br><span class="line">      mCacheErrorLogger.logError(</span><br><span class="line">          CacheErrorLogger.CacheErrorCategory.WRITE_CREATE_TEMPFILE, TAG, <span class="string">&quot;insert&quot;</span>, ioe);</span><br><span class="line">      <span class="keyword">throw</span> ioe;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>调用DiskStorage.Inserter的writeData方法将图片内容写到临时文件中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">writeData</span><span class="params">(WriterCallback callback, Object debugInfo)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    <span class="type">FileOutputStream</span> <span class="variable">fileStream</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(mTemporaryFile);</span><br><span class="line">    ...</span><br><span class="line">    <span class="type">CountingOutputStream</span> <span class="variable">countingStream</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CountingOutputStream</span>(fileStream);</span><br><span class="line">    callback.write(countingStream);</span><br><span class="line">    countingStream.flush();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>调用DiskStorageCache的endInsert，方法内部会通过DiskStorage.Inserter的commit方法，将临时文件重命名为resourceId；</p>
+</li>
+<li><p>重命名成功后，会工薪缓存的修改时间；</p>
+</li>
+</ol>
+<p>这样整个图片缓存的insert就完成了。</p>
+<h4 id="磁盘缓存读的过程"><a href="#磁盘缓存读的过程" class="headerlink" title="磁盘缓存读的过程"></a>磁盘缓存读的过程</h4><p>磁盘缓存读的过程其实就是磁盘缓存写的过程的逆过程</p>
+<h5 id="DiskCacheReadProducer"><a href="#DiskCacheReadProducer" class="headerlink" title="DiskCacheReadProducer"></a>DiskCacheReadProducer</h5><p>DiskCacheReadProducer中利用的开源的bolts-tasks-1.4.0这个库，类似于RxJava，但是比RxJava更轻便，支持链式编程。produceResults方法中，根据请求获取缓存的CacheKey和缓存配置，然后就是缓存读取成功后的处理，核心代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="type">CacheKey</span> <span class="variable">cacheKey</span> <span class="operator">=</span></span><br><span class="line">        mCacheKeyFactory.getEncodedCacheKey(imageRequest, producerContext.getCallerContext());<span class="comment">// 获取cacheKey</span></span><br><span class="line">    <span class="keyword">final</span> <span class="type">boolean</span> <span class="variable">isSmallRequest</span> <span class="operator">=</span> (imageRequest.getCacheChoice() == CacheChoice.SMALL);<span class="comment">// 获取缓存类型</span></span><br><span class="line">    <span class="keyword">final</span> <span class="type">BufferedDiskCache</span> <span class="variable">preferredCache</span> <span class="operator">=</span></span><br><span class="line">        isSmallRequest ? mSmallImageBufferedDiskCache : mDefaultBufferedDiskCache;</span><br><span class="line">    <span class="keyword">final</span> <span class="type">AtomicBoolean</span> <span class="variable">isCancelled</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">AtomicBoolean</span>(<span class="literal">false</span>);</span><br><span class="line">    <span class="keyword">final</span> Task&lt;EncodedImage&gt; diskLookupTask = preferredCache.get(cacheKey, isCancelled);<span class="comment">// 开始一个task获取缓存</span></span><br><span class="line">    <span class="keyword">final</span> Continuation&lt;EncodedImage, Void&gt; continuation =</span><br><span class="line">        onFinishDiskReads(consumer, producerContext);<span class="comment">// 创建一个后续task，该task在diskLookupTask完成后调用</span></span><br><span class="line">    diskLookupTask.continueWith(continuation);</span><br><span class="line">    subscribeTaskForRequestCancellation(isCancelled, producerContext);</span><br></pre></td></tr></table></figure>
+
+
+
+<p>缓存的获取部分代码：</p>
+<p>BufferedDiskCache.get()</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Task&lt;EncodedImage&gt; <span class="title function_">get</span><span class="params">(CacheKey key, AtomicBoolean isCancelled)</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">		...</span><br><span class="line">      <span class="keyword">final</span> <span class="type">EncodedImage</span> <span class="variable">pinnedImage</span> <span class="operator">=</span> mStagingArea.get(key);<span class="comment">// 在StagingArea中找</span></span><br><span class="line">      <span class="keyword">if</span> (pinnedImage != <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> foundPinnedImage(key, pinnedImage);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> getAsync(key, isCancelled);<span class="comment">// StagingAream找不到就异步在磁盘中找</span></span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">      ...</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>BufferedDiskCache.getAsync()</p>
+<p>getSsync()步骤：</p>
+<ol>
+<li>同样是在StagingArea中找；</li>
+<li>找不到就调用readFromDiskCache从磁盘中找；</li>
+<li>readFromDiskCache最终调用DiskStorageCache.getResource(key)找到BinaryResource资源，然后通过BinaryResource来获取其二进制流返回；</li>
+</ol>
+<p>以上就是读取磁盘缓存的大概过程。</p>
+<h2 id="小知识"><a href="#小知识" class="headerlink" title="小知识"></a>小知识</h2><ol>
+<li><p>Fresco默认内存缓存的大小</p>
+<p>设置间下面代码：</p>
+<p>DefaultBitmapMemoryCacheParamsSupplier.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="type">int</span> <span class="title function_">getMaxCacheSize</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="type">int</span> <span class="variable">maxMemory</span> <span class="operator">=</span></span><br><span class="line">        Math.min(mActivityManager.getMemoryClass() * ByteConstants.MB, Integer.MAX_VALUE);</span><br><span class="line">    <span class="keyword">if</span> (maxMemory &lt; <span class="number">32</span> * ByteConstants.MB) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">4</span> * ByteConstants.MB;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (maxMemory &lt; <span class="number">64</span> * ByteConstants.MB) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">6</span> * ByteConstants.MB;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// We don&#x27;t want to use more ashmem on Gingerbread for now, since it doesn&#x27;t respond well to</span></span><br><span class="line">      <span class="comment">// native memory pressure (doesn&#x27;t throw exceptions, crashes app, crashes phone)</span></span><br><span class="line">      <span class="keyword">if</span> (Build.VERSION.SDK_INT &lt; Build.VERSION_CODES.HONEYCOMB) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">8</span> * ByteConstants.MB;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> maxMemory / <span class="number">4</span>;<span class="comment">// 现在绝大多数命中这个分支了</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用Fresco显示图片时SimpleDraweeView需要明确图片的显示尺寸，要么指定为MatchParent，要么指定宽和高；</p>
+</li>
+<li><p>Fresco自带的高斯模糊处理</p>
+<p>注意：这里的图片是非加密的图片，Fresco自带的高斯模糊处理有两种：</p>
+<ul>
+<li>BlurPostProcessor，纯Java实现；</li>
+<li>IterativeBoxBlurPostProcessor，采用C实现，省内存更高效，性能更好</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">showBlurImg</span><span class="params">(<span class="meta">@NonNull</span> DraweeView draweeView, String url, </span></span><br><span class="line"><span class="params">                               <span class="type">int</span> iterations, <span class="type">int</span> blurRadius)</span> &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">		<span class="type">Uri</span> <span class="variable">uri</span> <span class="operator">=</span> Uri.parse(url);</span><br><span class="line">    <span class="type">ImageRequest</span> <span class="variable">imageRequest</span> <span class="operator">=</span> ImageRequestBuilder.newBuilderWithSource(uri)</span><br><span class="line">      .setPostprocessor(<span class="keyword">new</span> <span class="title class_">IterativeBoxBlurPostProcessor</span>(iterations, blurRadius))</span><br><span class="line">      .build();</span><br><span class="line">    <span class="type">DraweeController</span> <span class="variable">controller</span> <span class="operator">=</span> Fresco.newDraweeControllerBuilder()</span><br><span class="line">												.setOldController(draweeView.getController())</span><br><span class="line">                        .setImageRequest(imageRequest)</span><br><span class="line">                        .build();</span><br><span class="line">    draweeView.setController(controller);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">    LogHelper.printStackTrace(e);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Fresco Bitmap对象的获取</p>
+<ol>
+<li>方法一：获取已经解密的Bitmap对象</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 加载图片成bitmap。</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> imageUrl 图片地址。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">loadToBitmap</span><span class="params">(String imageUrl, BaseBitmapDataSubscriber mDataSubscriber)</span> &#123;</span><br><span class="line">    <span class="type">ImageRequest</span> <span class="variable">imageRequest</span> <span class="operator">=</span> ImageRequestBuilder</span><br><span class="line">        .newBuilderWithSource(Uri.parse(imageUrl))</span><br><span class="line">        .setProgressiveRenderingEnabled(<span class="literal">true</span>)</span><br><span class="line">        .build();</span><br><span class="line"></span><br><span class="line">    <span class="type">ImagePipeline</span> <span class="variable">imagePipeline</span> <span class="operator">=</span> Fresco.getImagePipeline();</span><br><span class="line">    DataSource&lt;CloseableReference&lt;CloseableImage&gt;&gt; dataSource = imagePipeline.fetchDecodedImage</span><br><span class="line">        (imageRequest, App.get());</span><br><span class="line">    dataSource.subscribe(mDataSubscriber, CallerThreadExecutor.getInstance());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 然后这样调用这个方法</span></span><br><span class="line">loadToBitmap(imageUrl, <span class="keyword">new</span> <span class="title class_">BaseBitmapDataSubscriber</span>() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onNewResultImpl</span><span class="params">(<span class="meta">@Nullable</span> Bitmap bitmap)</span> &#123;</span><br><span class="line">        <span class="comment">// 读取成功。</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onFailureImpl</span><span class="params">(DataSource dataSource)</span> &#123;</span><br><span class="line">        <span class="comment">// 读取失败。</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>方法二，直接利用当前展示的Bitmap对象（这个一定是解密后的Bitmap）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ImageRequest</span> <span class="variable">imageRequest</span> <span class="operator">=</span> ImageRequestBuilder.newBuilderWithSource(uri)</span><br><span class="line">  .setImageDecodeOptions(imageDecodeOptions)</span><br><span class="line">  .setRotationOptions(RotationOptions.autoRotate())</span><br><span class="line">  .build();</span><br><span class="line"></span><br><span class="line"><span class="type">DraweeController</span> <span class="variable">controller</span> <span class="operator">=</span> Fresco.newDraweeControllerBuilder()</span><br><span class="line">  .setImageRequest(imageRequest)</span><br><span class="line">  .setOldController(draweeView.getController())</span><br><span class="line">  .setControllerListener(<span class="keyword">new</span> <span class="title class_">BaseControllerListener</span>&lt;Object&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onFinalImageSet</span><span class="params">(String id, <span class="meta">@Nullable</span> Object imageInfo,</span></span><br><span class="line"><span class="params">                                <span class="meta">@Nullable</span> Animatable animatable)</span> &#123;</span><br><span class="line">      <span class="built_in">super</span>.onFinalImageSet(id, imageInfo, animatable);</span><br><span class="line">			<span class="comment">// 这里的imageInfo就是解密之后的 CloseableStaticBitmap 对象，</span></span><br><span class="line">      <span class="keyword">if</span> (imageInfo <span class="keyword">instanceof</span> CloseableStaticBitmap) &#123;</span><br><span class="line">        <span class="type">CloseableStaticBitmap</span> <span class="variable">staticBitmap</span> <span class="operator">=</span> (CloseableStaticBitmap) imageInfo;</span><br><span class="line">        <span class="comment">// 获取到真正的bitmap</span></span><br><span class="line">        <span class="type">Bitmap</span> <span class="variable">bitmap</span> <span class="operator">=</span> staticBitmap.getUnderlyingBitmap();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  .build();</span><br><span class="line">draweeView.setController(controller);</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>Fresco 图片的下载</p>
+<p>主要就是调用prefetchToDiskCache将图片保存在磁盘缓存中，然后DataSubscriber去订阅即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">DataSource&lt;Boolean&gt; dataSource;</span><br><span class="line"><span class="type">ImageRequest</span> <span class="variable">imageRequest</span> <span class="operator">=</span> ImageRequest.fromUri(Uri.parse(url));</span><br><span class="line"><span class="type">ImagePipeline</span> <span class="variable">imagePipeline</span> <span class="operator">=</span> Fresco.getImagePipeline();</span><br><span class="line">dataSource = imagePipeline.isInDiskCache(imageRequest);</span><br><span class="line">DataSubscriber&lt;Boolean&gt; subscriber = <span class="keyword">new</span> <span class="title class_">BaseDataSubscriber</span>&lt;Boolean&gt;() &#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onNewResultImpl</span><span class="params">(DataSource&lt;Boolean&gt; dataSource)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!dataSource.isFinished()) &#123;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (listener != <span class="literal">null</span>) &#123;</span><br><span class="line">      listener.handleResult(dataSource.getResult());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// your code here</span></span><br><span class="line">    dataSource = <span class="literal">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onFailureImpl</span><span class="params">(DataSource&lt;Boolean&gt; dataSource)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (listener != <span class="literal">null</span>) &#123;</span><br><span class="line">      listener.handleResult(<span class="literal">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">dataSource.subscribe(subscriber, CallerThreadExecutor.getInstance());</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文简单的介绍了下Fresco的基本应用，并结合代码分析了期图片的加载流程，抛开框架本身强大的功能不谈，Fresco在代码设计的层面给人的启示就很深刻，大量的应用了设计模式，合理的进行了分层和解耦，是以后代码设计的一个很好的参考。</p>
+<p>PS：经过这么长的时间，这篇文章总算完成了，希望自己以后能更加高效一点，更有执行力一点。</p>
+<p>参考文章：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903559280984071">Android开源框架源码鉴赏：Fresco</a></li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/A230317.html" rel="next" title="Kotlin——基本概念">
+                <i class="fa fa-chevron-left"></i> Kotlin——基本概念
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/A230318.html" rel="prev" title="Kotlin——泛型">
+                Kotlin——泛型 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          </div>
+          
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/%20%7C%7C%20archive">
+                
+                    <span class="site-state-item-count">199</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">42</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">43</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Rainmonth" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">基本介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%85%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.</span> <span class="nav-text">包结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%88%B0%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.2.</span> <span class="nav-text">应用到的设计模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1"><span class="nav-number">1.3.</span> <span class="nav-text">接口设计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">基本使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E8%BD%BD%E7%BD%91%E7%BB%9C%E5%9B%BE%E7%89%87"><span class="nav-number">2.1.</span> <span class="nav-text">加载网络图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E8%BD%BDAssets%E7%9B%AE%E5%BD%95%E5%9B%BE%E7%89%87"><span class="nav-number">2.2.</span> <span class="nav-text">加载Assets目录图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E8%BD%BDDrawable%E5%9B%BE%E7%89%87"><span class="nav-number">2.3.</span> <span class="nav-text">加载Drawable图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E8%BD%BD%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E4%B8%AD%E5%9B%BE%E7%89%87"><span class="nav-number">2.4.</span> <span class="nav-text">加载本地文件中图片</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E7%89%87%E7%9A%84%E5%8A%A0%E8%BD%BD%E6%B5%81%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">图片的加载流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Fresco%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">3.1.</span> <span class="nav-text">1.Fresco初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#NativeLoader%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">3.1.1.</span> <span class="nav-text">NativeLoader初始化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ImagePipeline%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">3.1.2.</span> <span class="nav-text">ImagePipeline初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ImagePipelineConfig"><span class="nav-number">3.1.2.1.</span> <span class="nav-text">ImagePipelineConfig</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ImagePipelineFactory"><span class="nav-number">3.1.2.2.</span> <span class="nav-text">ImagePipelineFactory</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Drawee%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">3.1.3.</span> <span class="nav-text">Drawee初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#PipelineDraweeControllerBuilder"><span class="nav-number">3.1.3.1.</span> <span class="nav-text">PipelineDraweeControllerBuilder</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%8E%B7%E5%8F%96DataSource"><span class="nav-number">3.2.</span> <span class="nav-text">2.获取DataSource</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFDataSource"><span class="nav-number">3.2.1.</span> <span class="nav-text">什么是DataSource</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DataSource%E6%98%AF%E6%80%8E%E4%B9%88%E7%94%9F%E6%88%90%E7%9A%84"><span class="nav-number">3.2.2.</span> <span class="nav-text">DataSource是怎么生成的</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#SimpleDraweeView-setImageURI"><span class="nav-number">3.2.2.1.</span> <span class="nav-text">SimpleDraweeView.setImageURI</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#PipelineDraweeControllerBuilder-obtainController"><span class="nav-number">3.2.2.2.</span> <span class="nav-text">PipelineDraweeControllerBuilder.obtainController()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#PipelineDraweeControllerBuilder-obtainDataSourceSupplier"><span class="nav-number">3.2.2.3.</span> <span class="nav-text">PipelineDraweeControllerBuilder.obtainDataSourceSupplier</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#PipelineDraweeControllerBuilder-getDataSourceForRequest"><span class="nav-number">3.2.2.4.</span> <span class="nav-text">PipelineDraweeControllerBuilder.getDataSourceForRequest</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ImagePipeline-submitFetchRequest"><span class="nav-number">3.2.2.5.</span> <span class="nav-text">ImagePipeline.submitFetchRequest</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E7%BB%91%E5%AE%9AController%E4%B8%8EHierarchy"><span class="nav-number">3.3.</span> <span class="nav-text">3.绑定Controller与Hierarchy</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DraweeHolder-setController"><span class="nav-number">3.3.1.</span> <span class="nav-text">DraweeHolder.setController()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PipelineDraweeController-setHierarchy"><span class="nav-number">3.3.2.</span> <span class="nav-text">PipelineDraweeController.setHierarchy()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E8%8E%B7%E5%8F%96%E5%9B%BE%E7%89%87%E5%B9%B6%E8%AE%BE%E7%BD%AE%E5%88%B0%E5%AF%B9%E5%BA%94%E7%9A%84Drawable%E5%B1%82"><span class="nav-number">3.4.</span> <span class="nav-text">4.获取图片并设置到对应的Drawable层</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Producer%E4%B8%8EConsumer"><span class="nav-number">4.</span> <span class="nav-text">Producer与Consumer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Producer"><span class="nav-number">4.1.</span> <span class="nav-text">Producer</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E6%9C%AC%E5%9C%B0%E8%B5%84%E6%BA%90%E7%B1%BBProducer"><span class="nav-number">4.1.1.</span> <span class="nav-text">获取本地资源类Producer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E7%BD%91%E7%BB%9C%E6%95%B0%E6%8D%AE%E7%B1%BBProducer"><span class="nav-number">4.1.2.</span> <span class="nav-text">获取网络数据类Producer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%93%E5%AD%98%E7%B1%BBProducer"><span class="nav-number">4.1.3.</span> <span class="nav-text">缓存类Producer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD%E7%B1%BBProducer"><span class="nav-number">4.1.4.</span> <span class="nav-text">功能类Producer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ProducerSequenceFactory"><span class="nav-number">4.1.5.</span> <span class="nav-text">ProducerSequenceFactory</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Consumer"><span class="nav-number">4.2.</span> <span class="nav-text">Consumer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%93%E5%AD%98"><span class="nav-number">5.</span> <span class="nav-text">缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E7%A0%81%E5%86%85%E5%AD%98%E7%BC%93%E5%AD%98%E6%B5%81%E7%A8%8B"><span class="nav-number">5.1.</span> <span class="nav-text">解码内存缓存流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AA%E8%A7%A3%E7%A0%81%E5%86%85%E5%AD%98%E7%BC%93%E5%AD%98%E6%B5%81%E7%A8%8B"><span class="nav-number">5.2.</span> <span class="nav-text">未解码内存缓存流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E7%BC%93%E5%AD%98%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">5.3.</span> <span class="nav-text">内存缓存的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A0%E5%85%A5%E7%BC%93%E5%AD%98%EF%BC%9Acache"><span class="nav-number">5.3.1.</span> <span class="nav-text">加入缓存：cache()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E7%BC%93%E5%AD%98%EF%BC%9Aget"><span class="nav-number">5.3.2.</span> <span class="nav-text">获取缓存：get()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A3%81%E7%9B%98%E7%BC%93%E5%AD%98%E6%B5%81%E7%A8%8B"><span class="nav-number">5.4.</span> <span class="nav-text">磁盘缓存流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A3%81%E7%9B%98%E7%BC%93%E5%AD%98%E5%AD%98%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="nav-number">5.4.1.</span> <span class="nav-text">磁盘缓存存的过程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#DiskCacheWriteProducer"><span class="nav-number">5.4.1.1.</span> <span class="nav-text">DiskCacheWriteProducer</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#BufferedDiskCache"><span class="nav-number">5.4.1.2.</span> <span class="nav-text">BufferedDiskCache</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#BufferedDiskCache-put"><span class="nav-number">5.4.1.3.</span> <span class="nav-text">BufferedDiskCache.put()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#BufferedDiskCache-writeToDiskCache"><span class="nav-number">5.4.1.4.</span> <span class="nav-text">BufferedDiskCache.writeToDiskCache()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#DiskStorageCache-insert"><span class="nav-number">5.4.1.5.</span> <span class="nav-text">DiskStorageCache.insert()</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A3%81%E7%9B%98%E7%BC%93%E5%AD%98%E8%AF%BB%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="nav-number">5.4.2.</span> <span class="nav-text">磁盘缓存读的过程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#DiskCacheReadProducer"><span class="nav-number">5.4.2.1.</span> <span class="nav-text">DiskCacheReadProducer</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%9F%A5%E8%AF%86"><span class="nav-number">6.</span> <span class="nav-text">小知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love" id="animate"> 
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Randy Zhang</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.1.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

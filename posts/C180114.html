@@ -1,35 +1,1098 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.1.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.1.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '6.1.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="制作主题介绍文章参考2017年最新基于hexo搭建个人免费博客——自定义页面样式一 Hexo主题制作指南 hexo个性化配置(修改的时next主题)   Hexo 环境搭建Hexo官方提供了详细的Hexo使用文档Hexo官方文档，参考该文档安装相应的软件即可完成环境的搭建，涉及到的软件有：  Node.js Git Homebrew，可以使用Homebrew 来安装Node.js和Git；">
+<meta property="og:type" content="article">
+<meta property="og:title" content="通用功能——Hexo搭建个人博客">
+<meta property="og:url" content="http://yoursite.com/posts/C180114.html">
+<meta property="og:site_name" content="荏苒追寻个人博客">
+<meta property="og:description" content="制作主题介绍文章参考2017年最新基于hexo搭建个人免费博客——自定义页面样式一 Hexo主题制作指南 hexo个性化配置(修改的时next主题)   Hexo 环境搭建Hexo官方提供了详细的Hexo使用文档Hexo官方文档，参考该文档安装相应的软件即可完成环境的搭建，涉及到的软件有：  Node.js Git Homebrew，可以使用Homebrew 来安装Node.js和Git；">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-01-14T02:30:22.000Z">
+<meta property="article:modified_time" content="2021-07-22T02:51:00.000Z">
+<meta property="article:author" content="Randy Zhang">
+<meta property="article:tag" content="环境配置">
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/posts/C180114.html"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>通用功能——Hexo搭建个人博客 | 荏苒追寻个人博客</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> 
+
+<div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">荏苒追寻个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">做一个有追求的青年</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+          
+  <li class="menu-item menu-item-home">
+    <a href="/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-about">
+    <a href="/about/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-tags">
+    <a href="/tags/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-categories">
+    <a href="/categories/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-archives">
+    <a href="/archives/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-schedule">
+    <a href="/schedule/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
+</li>
+
+      
+
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/C180114.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">通用功能——Hexo搭建个人博客</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-14T10:30:22+08:00">2018-01-14</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/%E9%80%9A%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">通用</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<ul>
+<li>制作主题介绍文章参考<a target="_blank" rel="noopener" href="https://www.imooc.com/article/17220">2017年最新基于hexo搭建个人免费博客——自定义页面样式一</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.360doc.com/content/16/0913/16/33651124_590545274.shtml">Hexo主题制作指南</a></li>
+<li><a target="_blank" rel="noopener" href="http://shenzekun.cn/hexo%E7%9A%84next%E4%B8%BB%E9%A2%98%E4%B8%AA%E6%80%A7%E5%8C%96%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B.html">hexo个性化配置</a>(修改的时next主题)</li>
+</ul>
+</blockquote>
+<h2 id="Hexo-环境搭建"><a href="#Hexo-环境搭建" class="headerlink" title="Hexo 环境搭建"></a>Hexo 环境搭建</h2><p>Hexo官方提供了详细的Hexo使用文档<a target="_blank" rel="noopener" href="https://hexo.io/docs/">Hexo官方文档</a>，参考该文档安装相应的软件即可完成环境的搭建，涉及到的软件有：</p>
+<ol>
+<li>Node.js</li>
+<li>Git</li>
+<li>Homebrew，可以使用Homebrew 来安装Node.js和Git；</li>
+</ol>
+<p>在必要软件安装好后，利用<code>npm</code> （javascript package manager）来安装hexo：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<p>安装好hexo后，就可以开始建站了：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init &lt;site_folder&gt;		// 初始化网站目录</span><br><span class="line">cd &lt;site_folder&gt;					// 切换到网站目录</span><br><span class="line">npm install								// 安装网站以来的文件，执行完毕后，当前目录回生成一个															// node_modules文件夹</span><br></pre></td></tr></table></figure>
+
+<p>网站目录介绍</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">├── _config.yml						// 网站配置文件</span><br><span class="line">├── package.json					// 网站依赖文件</span><br><span class="line">├── scaffolds							// 模板文件夹</span><br><span class="line">├── node_modules					// 以来的node插件库</span><br><span class="line">├── source								// 可以成为网站的源文件夹</span><br><span class="line">|   ├── _drafts						// 文章草稿文件夹</span><br><span class="line">|   └── _posts						// 已发布的文章文件夹</span><br><span class="line">├── public								// 网站生成的静态文件放置在给文件夹</span><br><span class="line">└── themes								// 主题文件夹</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>上面就是hexo网站的基本结构了，接下来是具体的设置。</p>
+<h2 id="Hexo-文章分类"><a href="#Hexo-文章分类" class="headerlink" title="Hexo 文章分类"></a>Hexo 文章分类</h2><p>在文章开头的yaml属性配置中添加如下内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">categories: </span><br><span class="line">- 一级分类</span><br><span class="line">- 二级分类</span><br></pre></td></tr></table></figure>
+
+<p>yaml支持以下属性：</p>
+<ul>
+<li>layout，采用的布局可以是post，page，draft；</li>
+<li>title，文章的标题，含空格的时候要用引号括起来；</li>
+<li>date，日期，如2018-01-14</li>
+<li>updated，修改日期</li>
+<li>comments，是否开启评论</li>
+<li>tags，标签，多个采用Markdown的无序列表</li>
+<li>categories，分类，支持多级分类，采用Markdown无序列表，最上面代表一级分类</li>
+</ul>
+<h2 id="Hexo-更换主题"><a href="#Hexo-更换主题" class="headerlink" title="Hexo 更换主题"></a>Hexo 更换主题</h2><p>我采用的<code>next主题</code>，<a target="_blank" rel="noopener" href="https://blog.csdn.net/bsp_mpu6050/article/details/107886524">Hexo-Next实用主题优化</a></p>
+<ul>
+<li>下载好要更换的主题</li>
+<li>在Hexo根目录找到配置文件，搜索theme，讲主题名字替换为你下载好的主题</li>
+</ul>
+<p>2022&#x2F;02&#x2F;20补充<br>出现网站首页打开不了的情况，但是具体的某一篇链接却可以打开，然来是之前添加制定功能时安装了插件：<code>hexo-generator-index-pin-top</code>，在安装之前将默认的<code>hexo-generator-index</code>插件卸载了，导致无法生成主页的index文件</p>
+<p>常用主题配置说明：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://shenzekun.cn/hexo%E7%9A%84next%E4%B8%BB%E9%A2%98%E4%B8%AA%E6%80%A7%E5%8C%96%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B.html">hexo个性化配置</a>(修改的时next主题)</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/litten/hexo-theme-yilia">yilia主题配置说明</a></li>
+</ul>
+<span id="more"></span>
+
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_58068682/article/details/116611715">Hexo博客技巧：添加自定义html页面</a></p>
+<h2 id="Hexo博文配图方法"><a href="#Hexo博文配图方法" class="headerlink" title="Hexo博文配图方法"></a>Hexo博文配图方法</h2><p>参考链接：</p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/cf0628478a4e">Hexo发布博客引用自带图片的方法</a></p>
+<p>上面文章介绍了两种方法：一种是不使用插件（前提是hexo版本需要V3.0以上）（尚未验证通过，可能打开方式不对）；一种是使用插件（这种方法已经成功验证）。</p>
+<h2 id="Hexo-draft的使用"><a href="#Hexo-draft的使用" class="headerlink" title="Hexo draft的使用"></a>Hexo draft的使用</h2><ul>
+<li><p>使用hexo new draft “文章名”可以新建出来不发布到网上的文章</p>
+</li>
+<li><p>如果需要预览draft类文章，可以如下操作：</p>
+<ul>
+<li>更改配置文件，<code>render_draft: true</code></li>
+<li>启动server，<code>hexo server —draft</code></li>
+</ul>
+</li>
+<li><p>如果要发布已经写好的draft文章，可以使用<code>hexo publish [layout] draft_file_name</code>，其中Layout可以为page或post。</p>
+</li>
+</ul>
+<h2 id="修改永久链接的默认格式"><a href="#修改永久链接的默认格式" class="headerlink" title="修改永久链接的默认格式"></a>修改永久链接的默认格式</h2><p>hexo默认的永久链接格式是<code>:year/:month/:day/:title</code>，如果文章标题是中文的，会出现各种问题。这里介绍下修改永久链接默认格式的方法。</p>
+<h3 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h3><p>在站点的根目录安装如下插件：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-abbrlink --save</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改站点配置文件"><a href="#修改站点配置文件" class="headerlink" title="修改站点配置文件"></a>修改站点配置文件</h3><p>打开根目录下的<code>_config.yml</code>，修改如下配置：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#permalink: :year/:month/:day/:title/</span></span><br><span class="line"><span class="comment">#permalink_defaults:</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">posts/:abbrlink.html</span></span><br><span class="line"><span class="attr">abbrlink:</span> </span><br><span class="line">  <span class="attr">alg:</span> <span class="string">crc32</span>  <span class="comment"># 算法：crc16(default) and crc32</span></span><br><span class="line">  <span class="attr">rep:</span> <span class="string">hex</span>    <span class="comment"># 进制：dec(default) and hex</span></span><br></pre></td></tr></table></figure>
+
+<p>然后执行hexo 操作三连：<code>hexo clean</code>、<code>hexo g</code>、<code>hexo d</code>，即可看到默认的链接样式改成了如下样式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BLOG_HOST/posts/0.html # BLOG_HOST为博客域名，“0”为自己指定（或abbrlink生成的）链接名</span><br></pre></td></tr></table></figure>
+
+<p>注意，我们可以自己指定链接名（不要重复就行了），在文章开头添加：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">abbrlink:</span> <span class="string">&#x27;自定义链接&#x27;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：我在应用abbrlink插件时，添加的图片无法显示下来，搜索了好久，没有解决，然后就在source中添加一个images，将文章的图片添加到images中，然后再md中采用相对链接的方式来引用图片，然后解决了问题。<br>之前没有使用abbrlink时单独使用hexo-asset-image插件图片时可以显示的，现在不能显示很可能是前者对后者产生了影响，可以尝试修改插件源码来解决问题。</p>
+</blockquote>
+<h2 id="草稿文章处理"><a href="#草稿文章处理" class="headerlink" title="草稿文章处理"></a>草稿文章处理</h2><h3 id="预览草稿"><a href="#预览草稿" class="headerlink" title="预览草稿"></a>预览草稿</h3><p>只想下面的命令，可以本机预览草稿：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s --draft</span><br></pre></td></tr></table></figure>
+<h3 id="发布草稿"><a href="#发布草稿" class="headerlink" title="发布草稿"></a>发布草稿</h3><p>执行下面代码，可以发布本机草稿：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo p &lt;filename&gt; #filename为不带.md后缀的草稿文件名称</span><br></pre></td></tr></table></figure>
+<h2 id="Hexo文章置顶"><a href="#Hexo文章置顶" class="headerlink" title="Hexo文章置顶"></a>Hexo文章置顶</h2><p>文章多了，发现置顶就成了一个很必要的功能了，这里在晚上搜索了下相关的方法。</p>
+<ul>
+<li><p>修改hexo源码，具体参考<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/42a4efcdf8d7">解决Hexo文章置顶问题</a>；</p>
+</li>
+<li><p>安装相应的指定插件</p>
+<ol>
+<li><p>删除原来的文章生成插件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall hexo-generator-index --save</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装支持指定的文章生成插件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-index-pin-top --save</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在需要置顶的文章的<code>Front-matter</code>中加上<code>top: true</code>即可，比如如果想置顶这篇文章，就可以修改器<code>Front-matter</code>为一下格式：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">title:</span> <span class="string">通用功能——Hexo搭建个人博客</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">通用</span></span><br><span class="line"><span class="attr">tags:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">环境配置</span></span><br><span class="line"><span class="attr">abbrlink:</span> <span class="string">&#x27;O180114&#x27;</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2018-01-14 10:30:22</span></span><br><span class="line"><span class="attr">updated:</span> <span class="number">2019-10-21 00:00:00</span></span><br><span class="line"><span class="attr">top:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ul>
+<h2 id="Hexo升级相关"><a href="#Hexo升级相关" class="headerlink" title="Hexo升级相关"></a>Hexo升级相关</h2><ol>
+<li><p>安装 软件更新检查插件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install npm-check-updates -g</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装完成后，运行<code>ncu</code>命令，检查有哪些需要更新</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">ncu</span><br><span class="line">Checking /Users/randy/Documents/RandyBlog/package.json</span><br><span class="line">[====================] 13/13 100%</span><br><span class="line"></span><br><span class="line"> hexo                         ^3.8.0  →  ^6.3.0</span><br><span class="line"> hexo-abbrlink                ^2.0.5  →  ^2.2.1</span><br><span class="line"> hexo-deployer-git            ^0.3.1  →  ^4.0.0</span><br><span class="line"> hexo-generator-archive       ^0.1.4  →  ^2.0.0</span><br><span class="line"> hexo-generator-category      ^0.1.3  →  ^2.0.0</span><br><span class="line"> hexo-generator-json-content  ^3.0.1  →  ^4.2.3</span><br><span class="line"> hexo-generator-tag           ^0.2.0  →  ^2.0.0</span><br><span class="line"> hexo-renderer-ejs            ^0.3.0  →  ^2.0.0</span><br><span class="line"> hexo-renderer-marked         ^0.3.0  →  ^6.1.1</span><br><span class="line"> hexo-renderer-stylus         ^0.3.1  →  ^3.0.0</span><br><span class="line"> hexo-server                  ^0.2.0  →  ^3.0.0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行<code>ncu-u</code> 来更新<code>package.json</code>文件</p>
+</li>
+<li><p>删除老的node_moudles，重新安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rm -rf node_modules </span><br><span class="line">npm install --save</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h2><ol>
+<li><p>hexo里面表格失效？<br>解决：表格开头加两个空行。</p>
+</li>
+<li><p>目录及文件名中的中文提示 乱码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config core.quotepath false</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>博客迁移时提示 plugin load failed</p>
+<ol>
+<li>先查看node_modules文件夹中对应的插件完不完整，如果不完整，直接删除，利用<code>npm install 插件名 --save</code>重新安装；</li>
+</ol>
+</li>
+<li><p>hexo更新后，生成部署成功后，博客无法打开；</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" rel="tag"># 环境配置</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/C170309.html" rel="next" title="通用功能——git 攻略">
+                <i class="fa fa-chevron-left"></i> 通用功能——git 攻略
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/A180116.html" rel="prev" title="Kotlin——基础语法">
+                Kotlin——基础语法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          </div>
+          
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/%20%7C%7C%20archive">
+                
+                    <span class="site-state-item-count">199</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">42</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">43</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Rainmonth" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="nav-number">1.</span> <span class="nav-text">Hexo 环境搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-%E6%96%87%E7%AB%A0%E5%88%86%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">Hexo 文章分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-%E6%9B%B4%E6%8D%A2%E4%B8%BB%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">Hexo 更换主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo%E5%8D%9A%E6%96%87%E9%85%8D%E5%9B%BE%E6%96%B9%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">Hexo博文配图方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-draft%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">5.</span> <span class="nav-text">Hexo draft的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E6%B0%B8%E4%B9%85%E9%93%BE%E6%8E%A5%E7%9A%84%E9%BB%98%E8%AE%A4%E6%A0%BC%E5%BC%8F"><span class="nav-number">6.</span> <span class="nav-text">修改永久链接的默认格式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6"><span class="nav-number">6.1.</span> <span class="nav-text">安装插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E7%AB%99%E7%82%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">6.2.</span> <span class="nav-text">修改站点配置文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8D%89%E7%A8%BF%E6%96%87%E7%AB%A0%E5%A4%84%E7%90%86"><span class="nav-number">7.</span> <span class="nav-text">草稿文章处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E8%A7%88%E8%8D%89%E7%A8%BF"><span class="nav-number">7.1.</span> <span class="nav-text">预览草稿</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%91%E5%B8%83%E8%8D%89%E7%A8%BF"><span class="nav-number">7.2.</span> <span class="nav-text">发布草稿</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo%E6%96%87%E7%AB%A0%E7%BD%AE%E9%A1%B6"><span class="nav-number">8.</span> <span class="nav-text">Hexo文章置顶</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo%E5%8D%87%E7%BA%A7%E7%9B%B8%E5%85%B3"><span class="nav-number">9.</span> <span class="nav-text">Hexo升级相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3"><span class="nav-number">10.</span> <span class="nav-text">问题解决</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love" id="animate"> 
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Randy Zhang</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.1.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

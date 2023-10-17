@@ -1,35 +1,1068 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.1.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.1.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '6.1.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="htpps:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A180305.html  摘要 本文主要介绍android.support.design.widget包下的一些Material Design控件，很多市场上绚丽的App的实现都是基于这些库的，Android本身为我们封装出来的效果就足够平常使用了，下面我讲分别详细介绍各个MD控件，同时">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 是时候了解一波MD库控件了">
+<meta property="og:url" content="http://yoursite.com/posts/A180305.html">
+<meta property="og:site_name" content="荏苒追寻个人博客">
+<meta property="og:description" content="htpps:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A180305.html  摘要 本文主要介绍android.support.design.widget包下的一些Material Design控件，很多市场上绚丽的App的实现都是基于这些库的，Android本身为我们封装出来的效果就足够平常使用了，下面我讲分别详细介绍各个MD控件，同时">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-03-04T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-10-12T16:06:46.957Z">
+<meta property="article:author" content="Randy Zhang">
+<meta property="article:tag" content="Material Design">
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/posts/A180305.html"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Android 是时候了解一波MD库控件了 | 荏苒追寻个人博客</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> 
+
+<div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">荏苒追寻个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">做一个有追求的青年</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+          
+  <li class="menu-item menu-item-home">
+    <a href="/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-about">
+    <a href="/about/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-tags">
+    <a href="/tags/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-categories">
+    <a href="/categories/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-archives">
+    <a href="/archives/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-schedule">
+    <a href="/schedule/%20" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
+</li>
+
+      
+
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A180305.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android 是时候了解一波MD库控件了</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-05T00:00:00+08:00">2018-03-05</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/%E6%8E%A7%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">控件</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>htpps:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A180305.html</p>
+</blockquote>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><blockquote>
+<p>本文主要介绍android.support.design.widget包下的一些Material Design控件，很多市场上绚丽的App的实现都是基于这些库的，Android本身为我们封装出来的效果就足够平常使用了，下面我讲分别详细介绍各个MD控件，同时自己会做一些扩展，本文先大体介绍一下各个控件，然后详细介绍CoordinatorLayout控件。</p>
+</blockquote>
+<p>系列文章参考：</p>
+<ul>
+<li><a href>CoordinatorLayout</a></li>
+<li><a href>AppBarLayout介绍</a></li>
+<li><a href>SwipeRefreshLayout</a></li>
+<li><a href>CardView</a></li>
+<li><a href>CollapsingToolbarLayout</a></li>
+<li><a href>FloatingActionButton</a></li>
+</ul>
+<span id="more"></span>
+
+<p>[toc]</p>
+<h2 id="CoordinatorLayout"><a href="#CoordinatorLayout" class="headerlink" title="CoordinatorLayout"></a>CoordinatorLayout</h2><blockquote>
+<p>使用场景</p>
+<ul>
+<li>作为顶层容器；</li>
+<li>作为协调子View交互的容器；</li>
+</ul>
+</blockquote>
+<p>注意事项</p>
+<ul>
+<li>通过为子View指定Behavior，CoordinatorLayout可以让在同一个父容器的子View之间有许多不同种类的交互（子View之间、子View和父View之间），CoordinatorLayout的子View可以指定默认的Behavior</li>
+<li>Behavior可以用来实现不同的交互和附加的布局改动效果；</li>
+<li>可以通过设置<code>CoordinatorLayout.LayoutParams#setAnchorId(int)</code>来实现浮动相关效果；</li>
+<li>可以通过设置&#96;&#96;CoordinatorLayout.LayoutParams#insetEdge&#96;参数来控制子View插入CoordinatorLayout的方式</li>
+</ul>
+<h2 id="AppBarLayout"><a href="#AppBarLayout" class="headerlink" title="AppBarLayout"></a>AppBarLayout</h2><p><code>AppBarLayout</code>继承自LinearLayout，但他实现了很多Material Design中App Bar概念中的功能，其中的代表就是手势滑动。</p>
+<ul>
+<li>AppBarLayout的子View必需声明其滚动的行为（通过<code>setScrollFlags(int)</code>方法或’app:layout_scrollFlags’属性）；</li>
+<li>AppBarLayout通常是配合CoordinatorLayout来使用的，并且是其直接子View，如果其父类不是CoordinatorLayout，那么其很多特性就发挥不出来；</li>
+<li>AppBarLayout通常还需要一个同级的滚动控件（即兄弟控件），这样就能知道AppBarLayout需要在什么时机配合滚动了。</li>
+</ul>
+<h3 id="layout-scrollFlags属性解释"><a href="#layout-scrollFlags属性解释" class="headerlink" title="layout_scrollFlags属性解释"></a>layout_scrollFlags属性解释</h3><p>上面说了，AppBarLayout的子View必须设置<code>layout_scrollFlags</code>属性，否则其很多特性就不能发挥作用了，那么这个属性到底有什么作用呢。这个属性共有以下5种值：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SCROLL_FLAG_SCROLL,</span><br><span class="line">SCROLL_FLAG_EXIT_UNTIL_COLLAPSED,</span><br><span class="line">SCROLL_FLAG_ENTER_ALWAYS,</span><br><span class="line">SCROLL_FLAG_ENTER_ALWAYS_COLLAPSED,</span><br><span class="line">SCROLL_FLAG_SNAP</span><br></pre></td></tr></table></figure>
+
+<p>下面分别对这五种属性作说明：</p>
+<ul>
+<li><p><code>SCROLL_FLAG_SCROLL</code>，对应于属性<code>scroll</code>，表示伴随着滚动事件滚出或滚进屏幕；</p>
+<blockquote>
+<ol>
+<li>该值是其他四种值生效的前提，及其他四个值如果要生效，必须设置这个值；</li>
+<li>如果设置了该属性的子View前面有没有设置该属性的统计View，那么AppBarLayout其他设置了改属性的子View都无效</li>
+</ol>
+</blockquote>
+</li>
+<li><p><code>SCROLL_FLAG_ENTER_ALWAYS</code>，对应于属性<code>enterAlways</code>，在和<code>scroll</code>一起使用时，当发生向下滚动事件时，设置了该属性的子View会优先于SrollView先进入屏幕；</p>
+</li>
+<li><p><code>SCROLL_FLAG_ENTER_ALWAYS_COLLAPSED</code>，对应于<code>enterAlwaysCollapsed</code>，是<code>enterAlways</code>的附加值。当子View设置的<code>layout_scrollFlags</code>属性值为<code>scroll|enterAlways|enterAlwaysCollapsed</code>时，如果子View设置了最小高度<code>minHeight</code>，那么当发生向下滚动的事件时，子View会先滚动，知道达到最小高度，达到后，ScrollView会滚动知道滚动完毕，然后子View在滚动剩余的高度。</p>
+</li>
+<li><p><code>SCROLL_FLAG_EXIT_UNTIL_COLLAPSED</code>，对应于<code>exitUntilCollapsed</code>，同样和最小高度有关，当向上滑动的事件发生时，设置该属性的子View会先向上滚动至最小高度，然后保持高度不变，然后ScrollView再开始滚动。</p>
+</li>
+<li><p><code>SCROLL_FLAG_SNAP</code>，对应于<code>snap</code>属性，即ChildView的滚动吸附效果，设置了该值后，ChildView不会存在局部显示的情况，要么全部滚进屏幕，要么全部滚出屏幕。</p>
+</li>
+</ul>
+<p>总结下：<code>scroll</code>就是子View后滚，<code>enterAlways</code>就是子View先滚，<code>enterAlwaysCollapsed</code>就是子View先滚到折叠状态然后ScrollView再滚，完成后子View在滚，<code>exitUntilCollapsed</code>，子View滚到到折叠态后就不在滚了，开始管ScrollView，<code>snap</code>指的是吸附滚动，要么全部显示，要么全部隐藏。</p>
+<h3 id="最终保留的高度"><a href="#最终保留的高度" class="headerlink" title="最终保留的高度"></a>最终保留的高度</h3><p>这个最终保留高度其实是针对<code>layout_scrollFlags</code>为<code>exitUntilCollapsed</code>和<code>enterAlwaysCollapsed</code>的，当<code>layout_scrollFlags</code>设置成了上面两个值时，前者在子View滑动达到最小高度后子View就不在滚动，这个就是<code>最终保留高度</code>。</p>
+<h2 id="android-support-v7-Toolbar"><a href="#android-support-v7-Toolbar" class="headerlink" title="android.support.v7.Toolbar"></a>android.support.v7.Toolbar</h2><p>Toolbar为我们顶部导航栏的开发带来了许多便利，但如果使用不注意也会有很多坑。</p>
+<h3 id="便利"><a href="#便利" class="headerlink" title="便利"></a>便利</h3><ul>
+<li><p>可以只将Toolbar当做一个容器，它本身就是继承自ViewGroup的，然后在里面定义自己的顶部导航栏布局</p>
+</li>
+<li><p>在没有ActionBar的AppCompatActivity中，可以通过setSupportActionBar(Toolbar)来设置ActionBar，然后使用ActionBar的一些功能。</p>
+<blockquote>
+<p>注意：这里必须是没有ActionBar的AppCompatActivity，否则会报如下错误：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Caused by: java.lang.IllegalStateException: This Activity already has an action bar supplied by the window decor. Do not request Window.FEATURE_SUPPORT_ACTION_BAR and set windowActionBar to false in your theme to use a Toolbar instead.</span><br></pre></td></tr></table></figure></blockquote>
+</li>
+</ul>
+<h3 id="坑"><a href="#坑" class="headerlink" title="坑"></a>坑</h3><h4 id="Toolbar元素间距调整麻烦"><a href="#Toolbar元素间距调整麻烦" class="headerlink" title="Toolbar元素间距调整麻烦"></a>Toolbar元素间距调整麻烦</h4><p>直接使用Toolbar或由它初始化的ActionBar时，UI上的定制性比较差，Toolbar主要包含以下几个元素（按从左到右的顺序）：</p>
+<ol>
+<li>NavigationIcon，导航图标，默认为向左箭头，可以自己设置；</li>
+<li>Logo，当前页面对应的Logo，国内很少使用这个属性；</li>
+<li>标题，有两种标题<ol>
+<li>Title，页面标题，常用；</li>
+<li>SubTitle，页面子标题，较常用；</li>
+</ol>
+</li>
+<li>Menu，页面右边对应的菜单；</li>
+</ol>
+<p>说UI的定制，主要就是前面1、2、3三个元素之间的间距调整，在V22之前，由于不存在<code>contentInsetStartWithNavigation</code>属性，1和3的间距还可以接受，但V22之后，添加了这个属性，会发现1和3的间距太大了，解决方法就是设置给属性的值为0dp，设置完成后发现NavigationIcon与Title的距离还是太大了，这是因为NavigationIcon是存在padding值得，那么如何搞定这个padding值呢，我们可以通过AppTheme的如下属性来设置：</p>
+<p><code>&lt;item name=&quot;toolbarNavigationButtonStyle&quot;&gt;@style/myToolbarNavigationButtonStyle&lt;/item&gt;</code></p>
+<p>其中<code>myToolbarNavigationButtonStyle</code>定义如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">&quot;myToolbarNavigationButtonStyle&quot;</span> <span class="attr">parent</span>=<span class="string">&quot;@style/Widget.AppCompat.Toolbar.Button.Navigation&quot;</span>&gt;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;android:minWidth&quot;</span>&gt;</span>32dp<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;android:padding&quot;</span>&gt;</span>0dp<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;android:scaleType&quot;</span>&gt;</span>centerInside<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>通过上面的padding可以实现NavigationIcon相关的属性定制。</p>
+<h4 id="ActionBar方法调用存在限制"><a href="#ActionBar方法调用存在限制" class="headerlink" title="ActionBar方法调用存在限制"></a>ActionBar方法调用存在限制</h4><p>一定要先调用<code>setSupportActionBar</code>这个方法之后然后在调用ActionBar的相关方法</p>
+<h2 id="CardView"><a href="#CardView" class="headerlink" title="CardView"></a>CardView</h2>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Material-Design/" rel="tag"># Material Design</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/A180302.html" rel="next" title="Android 工具命令——使用Android Stuido 快速制作.9.png图">
+                <i class="fa fa-chevron-left"></i> Android 工具命令——使用Android Stuido 快速制作.9.png图
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/J180319.html" rel="prev" title="Java 集合——简介">
+                Java 集合——简介 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          </div>
+          
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/%20%7C%7C%20archive">
+                
+                    <span class="site-state-item-count">199</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">42</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">43</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Rainmonth" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CoordinatorLayout"><span class="nav-number">2.</span> <span class="nav-text">CoordinatorLayout</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AppBarLayout"><span class="nav-number">3.</span> <span class="nav-text">AppBarLayout</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#layout-scrollFlags%E5%B1%9E%E6%80%A7%E8%A7%A3%E9%87%8A"><span class="nav-number">3.1.</span> <span class="nav-text">layout_scrollFlags属性解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E4%BF%9D%E7%95%99%E7%9A%84%E9%AB%98%E5%BA%A6"><span class="nav-number">3.2.</span> <span class="nav-text">最终保留的高度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#android-support-v7-Toolbar"><span class="nav-number">4.</span> <span class="nav-text">android.support.v7.Toolbar</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%BF%E5%88%A9"><span class="nav-number">4.1.</span> <span class="nav-text">便利</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9D%91"><span class="nav-number">4.2.</span> <span class="nav-text">坑</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Toolbar%E5%85%83%E7%B4%A0%E9%97%B4%E8%B7%9D%E8%B0%83%E6%95%B4%E9%BA%BB%E7%83%A6"><span class="nav-number">4.2.1.</span> <span class="nav-text">Toolbar元素间距调整麻烦</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ActionBar%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8%E5%AD%98%E5%9C%A8%E9%99%90%E5%88%B6"><span class="nav-number">4.2.2.</span> <span class="nav-text">ActionBar方法调用存在限制</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CardView"><span class="nav-number">5.</span> <span class="nav-text">CardView</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love" id="animate"> 
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Randy Zhang</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.1.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
