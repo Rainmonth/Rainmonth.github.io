@@ -310,6 +310,232 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/U221111.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/U221111.html" itemprop="url">Unity基础——摄像机</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-11-11T00:00:00+08:00">2022-11-11</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Unity/" itemprop="url" rel="index"><span itemprop="name">Unity</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/current/Manual/class-Camera.html">摄像机</a></p>
+<p>Unity通过摄像机来实现将三维游戏对象捕获并将其平面化显示到二维屏幕这一过程。主要通过Camera Component来实现这一功能，所以Unity中摄像机的创建都是通过Camera Component来实现的。</p>
+<p>Camera组件</p>
+<p>先看看摄像机组件在Inspector中支持的属性设置。Unity Camera Inspector会根据当前项目使用的渲染管线（Render-Pipeline）来显示不同的属性。</p>
+<ul>
+<li><p>使用通用渲染管线（URP）</p>
+</li>
+<li><p>使用高清渲染管线（HDRP）</p>
+</li>
+<li><p>使用内置渲染管线，Unity会显示以下属性：</p>
+<ul>
+<li><p>ClearFlag，确定将清除屏幕的哪些部分。（在使用多摄像机来绘制不同元素时会非常方便）</p>
+</li>
+<li><p>Background，在绘制视图中的所有元素之后但没有天空盒的情况下，应用于剩余屏幕部分的颜色。</p>
+</li>
+<li><p>Culling Mask，剔除蒙版，包含或忽略要由摄像机渲染的对象层。在检视面板中将层分配到对象。</p>
+</li>
+<li><p>Projection，模拟透视功能，不同的视图会有不同的设置选项，具体如下：</p>
+<ul>
+<li><p>Perspective，透视视图，摄像机将按透视角度渲染对象，有近大远小的特点；</p>
+<ul>
+<li>FOV Axis，摄像机视野轴，有以下两个值：<ul>
+<li>Horizontal，摄像机使用水平视野轴；</li>
+<li>Vertical，摄像机使用垂直视野轴；</li>
+</ul>
+</li>
+<li>Field of View，摄像机视角（沿视野轴的的度数）</li>
+<li>Physical Camera，物理相机，勾选后可为摄像机启用该属性，该属性支持模拟真实物理相机的属性，具体有：<ul>
+<li>Focus Length，设置摄像机传感器和摄像机镜头之间的距离（以毫米为单位）。较小的值产生更宽的 <strong>Field of View</strong>，反之亦然。更改此值时，Unity 会相应自动更新 <strong>Field of View</strong> 属性。</li>
+<li><em>Sensor Type</em>，设置模拟物理相机传感器的类型，更新后，下面的Sensor size的x、y值会自动更新</li>
+<li><code>Sensor Size</code>,模拟传感器的大小，有x和y两个值，可以自己设定，淡然选定Sensor Type后这个会自动更新到合适的值；</li>
+<li>Length Shift，略；</li>
+<li>Gate Fit，略；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Orthographic，正交视图，摄像机将均匀选软对象，无透视感。正交模式下不支持延时渲染，始终是向前渲染；</p>
+<ul>
+<li><p>Size，正交视图事业的大小（仅正交模式下游这个属性）</p>
+<blockquote>
+<p>注意：摄像机高度，Game视图的显示比例决定宽度；</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Clipping Planes，直译为裁剪的平面，其实指的就是摄像机渲染的范围，有一个最近值Near（相对摄像机最近绘制点）和最远值Far（相对摄像机最远绘制点）</p>
+</li>
+<li><p>Viewport Rect，视口范围，显然是一个方位，由x、y、width、height决定；</p>
+</li>
+<li><p>Depth，摄像机在绘制顺序中的位置。具有更大值的摄像机将绘制在具有更小值的摄像机之上。</p>
+</li>
+<li><p><strong>Rendering Path</strong>，定义摄像机将使用的渲染方法的选项。</p>
+<ul>
+<li><p><em>Use Player Settings</em>，使用 Player Settings 中设置的任何渲染路径 (Rendering Path)；</p>
+</li>
+<li><p><em>Vertex Lit</em>，所有对象都将渲染为顶点光照对象。</p>
+</li>
+<li><p><em>Forward</em>， 每种材质采用一个通道渲染所有对象。</p>
+</li>
+<li><p><em>Deferred Lighting</em>，将在没有光照的情况下一次性绘制所有对象，然后在渲染队列末尾一起渲染所有对象的光照。</p>
+<blockquote>
+<p><strong>注意：</strong>如果摄像机的投影模式设置为 Orthographic，则会覆盖该值，并且摄像机将始终使用前向渲染。*</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>Target Texture，将摄像机视图渲染内容输出到指定的<a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/current/Manual/class-RenderTexture.html">渲染纹理</a>。设置此引用将禁用此摄像机的渲染到屏幕功能。</p>
+</li>
+<li><p><strong>Occlusion Culling</strong>，为此摄像机启用遮挡剔除 (Occlusion Culling)。遮挡剔除意味着隐藏在其他对象后面的对象不会被渲染，例如，如果对象在墙后面。请参阅<a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/current/Manual/OcclusionCulling.html">遮挡剔除 (Occlusion Culling)</a> 以了解详细信息。</p>
+</li>
+<li><p><strong>Allow HDR</strong>，用高动态范围渲染。</p>
+</li>
+<li><p><strong>Allow MSAA</strong>，启用多重采样抗锯齿。</p>
+</li>
+<li><p><strong>Allow Dynamic Resolution</strong>，启用动态分辨率渲染；</p>
+</li>
+<li><p><strong>Target Display</strong>，定义要渲染到的外部设备。值为 1 到 8 之间。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>摄像机组件，</p>
+<h2 id="常见游戏的主Camera位置设置"><a href="#常见游戏的主Camera位置设置" class="headerlink" title="常见游戏的主Camera位置设置"></a>常见游戏的主Camera位置设置</h2>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/U221013.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1865,156 +2091,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/U220906.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/U220906.html" itemprop="url">Unity官方教程5——Creator Kit Beginner Code学习记录</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-09-06T00:00:00+08:00">2022-09-06</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Unity/" itemprop="url" rel="index"><span itemprop="name">Unity</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>文章链接</p>
-<ul>
-<li><a href>Unity官方教程0——系列内容汇总</a></li>
-<li><a href>Unity官方教程1——Playground学习记录</a></li>
-<li><a href>Unity官方教程2——Creator Kit Puzzle学习记录</a></li>
-<li><a href>Unity官方教程3——Creator Kit FPS学习记录</a></li>
-<li><a href>Unity官方教程4——Creator Kit RPG学习记录</a></li>
-<li><a href>Unity官方教程5——Creator Kit Beginner Code学习记录</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2062,7 +2138,7 @@
                 
                   <a href="/archives/%20%7C%7C%20archive">
                 
-                    <span class="site-state-item-count">199</span>
+                    <span class="site-state-item-count">200</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
