@@ -767,6 +767,933 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A240229.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/A240229.html" itemprop="url">通用功能——Markdown常用格式说明</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-02-28T11:32:24+08:00">2024-02-28</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/%E9%80%9A%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">通用</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>写技术总结的时候，发现自己要用Markdown语法表示一下常用的数学公式，于是便总结了一下一些常用的数学方面的内容（如矩阵、方程、极限等）在Markdown语法上的实现，当然，文章不断在不断完善与整理中…</p>
+<p>Markdown表示数学公式，行内数学公式在”$…$“之间输入内容即可，数学公式块在”$$…$$“</p>
+<p>之间输入内容即可</p>
+<blockquote>
+<p>$公式内容$</p>
+</blockquote>
+<p>行间数学公式</p>
+<blockquote>
+<p>$$公式内容$$</p>
+</blockquote>
+<h2 id="拉丁字母表示"><a href="#拉丁字母表示" class="headerlink" title="拉丁字母表示"></a>拉丁字母表示</h2><p>表示方法：$ + \ + 拉丁字幕读音$</p>
+<table>
+<thead>
+<tr>
+<th>$\alpha$</th>
+<th>$\gamma$</th>
+<th>$\delta$</th>
+<th>$\pi$</th>
+<th>$\theta$</th>
+<th>$\Omega$</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$\beta$</td>
+<td>$\lambda$</td>
+<td>$\Delta$</td>
+<td>$\Pi$</td>
+<td>$\Sigma$</td>
+<td>$\omega$</td>
+</tr>
+</tbody></table>
+<h2 id="上标、下标等"><a href="#上标、下标等" class="headerlink" title="上标、下标等"></a>上标、下标等</h2><p>上标用<code>^</code>表示，下表用<code>_</code>表示，示例如下：</p>
+<ul>
+<li><p>$x^2$，$y^2$</p>
+</li>
+<li><p>$x_1$，$y_1$</p>
+</li>
+</ul>
+<p>特殊的上下表：</p>
+<p>三角函数</p>
+<p>$$<br>\sin^2(\theta) + \cos^2(\theta) &#x3D; 1<br>$$</p>
+<p>求和公式</p>
+<p>$$<br>\sum_{n&#x3D;1}^\infty k<br>$$</p>
+<p>积分</p>
+<p>$\int$、$\oint$、$\iint$、$\sum$</p>
+<p>$$<br>\int_a^bf(x),dx<br>$$</p>
+<p>极限</p>
+<p>$$<br>\lim\limits_{x\to\infty}\exp(-x)&#x3D;0<br>$$</p>
+<h2 id="矩阵的表示"><a href="#矩阵的表示" class="headerlink" title="矩阵的表示"></a>矩阵的表示</h2><h3 id="常规矩阵"><a href="#常规矩阵" class="headerlink" title="常规矩阵"></a>常规矩阵</h3><blockquote>
+<p>$$</p>
+<p>\begin{matrix}<br>0&amp;1&amp;1<br>1&amp;1&amp;0<br>1&amp;0&amp;1<br>\end{matrix}</p>
+<p>$$</p>
+</blockquote>
+<p>$$<br>\begin{matrix}<br>0&amp;1&amp;1\<br>1&amp;1&amp;0\<br>1&amp;0&amp;1\<br>\end{matrix}<br>$$</p>
+<h3 id="带边框矩阵"><a href="#带边框矩阵" class="headerlink" title="带边框矩阵"></a>带边框矩阵</h3><p>在起始和结束位置，将matrix替换成一下内容：</p>
+<ul>
+<li><p>pmatrix，小括号边框</p>
+</li>
+<li><p>bmatrix，中括号边框</p>
+</li>
+<li><p>Bmatrix，大括号边框</p>
+</li>
+<li><p>vmatrix，单竖线边框</p>
+</li>
+<li><p>Vmatrix，双竖线边框</p>
+</li>
+</ul>
+<p>示例分别如下：</p>
+<p>小括号边框</p>
+<p>$$<br>\begin{pmatrix}<br>0&amp;1&amp;1\<br>1&amp;1&amp;0\<br>1&amp;0&amp;1\<br>\end{pmatrix}<br>$$</p>
+<p>中括号</p>
+<p>$$<br>\begin{bmatrix}<br>0&amp;1&amp;1\<br>1&amp;1&amp;0\<br>1&amp;0&amp;1\<br>\end{bmatrix}<br>$$</p>
+<p>打括号</p>
+<p>$$<br>\begin{Bmatrix}<br>0&amp;1&amp;1\<br>1&amp;1&amp;0\<br>1&amp;0&amp;1\<br>\end{Bmatrix}<br>$$</p>
+<p>单竖线</p>
+<p>$$<br>\begin{vmatrix}<br>0&amp;1&amp;1\<br>1&amp;1&amp;0\<br>1&amp;0&amp;1\<br>\end{vmatrix}<br>$$</p>
+<p>双竖线</p>
+<p>$$<br>\begin{Vmatrix}<br>0&amp;1&amp;1\<br>1&amp;1&amp;0\<br>1&amp;0&amp;1\<br>\end{Vmatrix}<br>$$</p>
+<h3 id="带省略号矩阵"><a href="#带省略号矩阵" class="headerlink" title="带省略号矩阵"></a>带省略号矩阵</h3><p>通常在列举矩阵时，由于元素太多，会用省略号来代替，常见省略号如下：</p>
+<ul>
+<li><p>横省略号，用<code>\cdots</code>表示</p>
+</li>
+<li><p>竖省略号，用<code>\vdots</code>表示</p>
+</li>
+<li><p>斜省略号，用<code>\ddots</code>表示</p>
+</li>
+</ul>
+<p>$$<br>\begin{bmatrix}<br>{a_{11}}&amp;{a_{12}}&amp;{\cdots}&amp;{a_{1n}}\<br>{a_{21}}&amp;{a_{22}}&amp;{\cdots}&amp;{a_{2n}}\<br>{\vdots}&amp;{\vdots}&amp;{\ddots}&amp;{a_{1n}}\<br>{a_{m1}}&amp;{a_{m2}}&amp;{\cdots}&amp;{a_{mn}}\<br>\end{bmatrix}<br>$$</p>
+<h2 id="方程（组）表示"><a href="#方程（组）表示" class="headerlink" title="方程（组）表示"></a>方程（组）表示</h2><p>方程表示，如下简单的表示一元二次方程：</p>
+<p>$$<br>ax^2 + bx + c &#x3D; 0<br>$$</p>
+<p>方程组</p>
+<p>$$<br>\begin{cases}<br>a_1x+b_1y+c_1z &#x3D; d_1\<br>a_2x+b_2y+c_2z &#x3D; d_2\ \tag1<br>a_3x+b_3y+c_3z &#x3D; d_3\<br>\end{cases}<br>$$</p>
+<h2 id="函数表示"><a href="#函数表示" class="headerlink" title="函数表示"></a>函数表示</h2><ol>
+<li>一元二次函数：</li>
+</ol>
+<p>$$<br>f(x) &#x3D; ax^2 + bx + c<br>$$</p>
+<p>一元一次函数：</p>
+<p>$$<br>f(x) &#x3D; kx + b<br>$$</p>
+<p>分段函数：</p>
+<p>$$<br>f(x)&#x3D;<br>\begin{cases}<br>2x, ,,x&gt;0\<br>3x, ,, x\le0\<br>\end{cases}<br>$$</p>
+<p>$$<br>f(x) &#x3D;<br>\begin{cases}<br>2x,,, x&gt;0 \<br>ax^2 + bx + c,,, x\le0<br>\end{cases}<br>$$</p>
+<h2 id="分式根式表示"><a href="#分式根式表示" class="headerlink" title="分式根式表示"></a>分式根式表示</h2><ul>
+<li><p>$\frac{abc}{xyz}$</p>
+</li>
+<li><p>$\frac{1}{a}$</p>
+</li>
+<li><p>$\sqrt[3]{\frac{x^3+y^3}{2}}$</p>
+</li>
+</ul>
+<p>当然还有其他的内容，未完待续…</p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a target="_blank" rel="noopener" href="http://www.uinio.com/Math/LaTex/">通用 LaTeX 数学公式语法手册</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A240228.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/A240228.html" itemprop="url">通用功能——矩阵的操作</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-02-28T11:32:04+08:00">2024-02-28</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/%E9%80%9A%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">通用</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/0.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/0.html" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-02-05T11:11:18+08:00">2024-02-05</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">title:</span> <span class="string">通用功能——Mac</span> <span class="string">使用tree打印目录结构</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2024</span><span class="string">/02/05</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">通用</span></span><br><span class="line"><span class="attr">tags:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">工具使用</span></span><br><span class="line"><span class="attr">abbrlink:</span> <span class="string">C240205</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>移动项目开发工作中总是有一些固定的工作流程，比如：</p>
+<ol>
+<li><p>本地分支正在工作中，需要拉去远程分支的代码；</p>
+</li>
+<li><p>本地分支正在工作中，需要将之前提交而未push的代码推送到远程分支；</p>
+</li>
+<li><p>想快速启动App；</p>
+</li>
+<li><p>…</p>
+</li>
+</ol>
+<p>这些都是很常用的操作，作为一个coder，这些固定的流程肯定有程序化的解决思路，如是就想着用shell脚本来完成这个自动化操作的过程。</p>
+<p>这个功能之前自己在另一台Mac上实现过，但是换电脑后，自己想重新实现一下结果鼓捣了好久，好在最后还是搞出来了，这里姑且记录下，免得日后忘记了自己有得在网上找了。</p>
+<h2 id="shell脚本的编写"><a href="#shell脚本的编写" class="headerlink" title="shell脚本的编写"></a>shell脚本的编写</h2><p>这里就贴一个自己写的很简单的脚本，文件名：common.sh</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">safePush() &#123;</span><br><span class="line">    echo &quot;切换到项目工作目录：&quot;</span><br><span class="line">    cd ~/StudioProjects/RandyWorks/KadaForAndroid</span><br><span class="line">    git stash</span><br><span class="line">    git pull --rebase</span><br><span class="line">    git stash pop</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">safePull() &#123;</span><br><span class="line">    echo &quot;切换到项目工作目录：&quot;</span><br><span class="line">    cd ~/StudioProjects/RandyWorks/KadaForAndroid</span><br><span class="line">    git status</span><br><span class="line">    git stash</span><br><span class="line">    git pull --rebase</span><br><span class="line">    git stash pop</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">startApp() &#123;</span><br><span class="line">    echo &quot;请输入要启动的 App的包名：&quot;</span><br><span class="line">    read package_name</span><br><span class="line">    echo &quot;请输入要启动的 Activity路径&quot;</span><br><span class="line">    read launch_activity_path</span><br><span class="line">    if [ -z &quot;$launch_activity_path&quot; ]</span><br><span class="line">    then</span><br><span class="line">      launch_activity_path=&quot;.main.ui.activity.LaunchActivity&quot;</span><br><span class="line">    else</span><br><span class="line">      echo &quot;启动的activity：$launch_activity_path&quot;</span><br><span class="line">    fi</span><br><span class="line">    adb shell am start &quot;$package_name/.main.ui.activity.LaunchActivity&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>脚本的内容很简单，就不做详述了，接下来才是重点，怎没做到脚本文件的全局运行</p>
+<h2 id="全局运行脚本文件"><a href="#全局运行脚本文件" class="headerlink" title="全局运行脚本文件"></a>全局运行脚本文件</h2><p>这里肯定有很多的方案，我只说我自己的方案，我电脑上撞了<code> oh-my-zsh</code>，个人感觉挺好用的，有一天在修改 <code>.zshrc</code>文件时发现 这个文件里面有如下内容</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">...</span></span><br><span class="line">source $ZSH/oh-my-zsh.sh</span><br><span class="line">source ~/.bash_profile</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">...</span></span><br></pre></td></tr></table></figure>
+
+<p>我稍微查阅了一下，这个是在该文件中一用 <code>oh-my-zsh.sh</code> 这个文件的写法，如是我就把自定义的脚本的文件也写在这里了，这个<code>.zshrc</code>文件就变成了下面这样：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">...</span></span><br><span class="line">source $ZSH/oh-my-zsh.sh</span><br><span class="line">source &quot;自定义脚本的路径&quot;</span><br><span class="line">source ~/.bash_profile</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">...</span></span><br></pre></td></tr></table></figure>
+
+<p>加上后，重启一下终端，直接输入自定义脚本中定义的函数名就可以运行函数了，非常简单！</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>这里可能会碰到几个问题</p>
+<ol>
+<li><p>提示自定义shell脚本没有运行权限，直接更改权限即可：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x 自定义脚本路径</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>提示函数找不到，原因肯能是：</p>
+<ol>
+<li><p>脚本没有保存；</p>
+</li>
+<li><p>改动脚本后没有让其生效（这个我试过了，如果是在.zshrc文件中按上面修改，只要保持就会生效的；</p>
+</li>
+<li><p>提示函数找不到，先检查一下拼写，确认无误后，在重启下终端即可。</p>
+</li>
+</ol>
+</li>
+</ol>
+<p>好了，这篇文章就写完了，也算是一个小小的收获吧，多少能提高一下工作的效率！</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/P231213.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/P231213.html" itemprop="url">Python 小工具——二维码生成</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-12-13T00:00:00+08:00">2023-12-13</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>工作中经常需要用到生成二维码，然后通过扫码解析码中的内容做Schema协议跳转，刚好正在学习python，就用python高了一个二维码生成的工具，十分简单，也十分有趣，目前只有功过代码运行生成并展示二维码，后期学习Python GUI时尝试做一个带界面的，想想就舒服。</p>
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>要生成二维码，我就搜了下需要使用哪些包，发现还挺多的，其中 <code>pyqrcode</code>感觉挺不错的，官网介绍如下地址如下：<a target="_blank" rel="noopener" href="https://pythonhosted.org/PyQRCode/moddoc.html">PyQrCode 介绍</a>。使用文档有介绍，展示二维码只需要两行代码。</p>
+<p>先安装需要的包：pyqrcode</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pyqrcode</span><br></pre></td></tr></table></figure>
+
+<p>由于后面需要转换成png图片显示出来，这里还需要安装一个包，即 <code>pypng</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install git+https://gitlab.com/drj11/pypng@pypng-0.20220715.0</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pyqrcode</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">code = pyqrcode.create(<span class="string">&#x27;要生成二维码的文本&#x27;</span>)</span><br><span class="line">code.show()<span class="comment"># 展示二维码</span></span><br></pre></td></tr></table></figure>
+
+<p>上面的<code>create</code>方法定义如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">create</span>(<span class="params">content, error=<span class="string">&#x27;H&#x27;</span>, version=<span class="literal">None</span>, mode=<span class="literal">None</span>, encoding=<span class="literal">None</span></span>):</span><br><span class="line">    <span class="keyword">return</span> QRCode(content, error, version, mode, encoding)</span><br></pre></td></tr></table></figure>
+
+<p>调用的时候只需要传递 content内容即可了，方法会放回一个<code>QRCode</code>对象。QRCode对象对外暴露的方法有：</p>
+<ul>
+<li><p>show()，展示生成的二维码对象；</p>
+</li>
+<li><p>get_png_size()，获取png文件的大小；</p>
+</li>
+<li><p>png()，将二维码保存为png文件；</p>
+</li>
+<li><p>png_as_base64_str()，将二维码生成的png图片转换成base64 字符串；</p>
+</li>
+<li><p>xbm()，将二维码转换成 X Bitmap，作为bitmap对象方便在Tinker中使用；</p>
+</li>
+<li><p>svg()，将二维码转换成 svg图片；</p>
+</li>
+<li><p>eps()，将二维码转换成<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/EPS%E6%A0%BC%E5%BC%8F/1133517">eps</a>文档格式；</p>
+</li>
+<li><p>terminal()，返回一个ASCII码转义过的字符串，如果终端支持，将在终端中直接打印出二维码；</p>
+</li>
+<li><p>text()，返回代表二维码的文本（用0和1表示）；</p>
+</li>
+</ul>
+<blockquote>
+<p>注意：这里用了代理模式，上面的方法都是通过QRBuilder类来实现的。</p>
+</blockquote>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>用Python做一些小工具还是比较方便快捷的，毕竟“人生苦短，我用Python”不是吹的。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/P231212.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/P231212.html" itemprop="url">Python 基础记录</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-12-12T10:55:59+08:00">2023-12-12</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>本文主要记录零碎python学习中遇到的一些知识点</p>
+<h2 id="pip基础"><a href="#pip基础" class="headerlink" title="pip基础"></a>pip基础</h2><p>pip基础命令如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">install                     Install packages.</span><br><span class="line">download                    Download packages.</span><br><span class="line">uninstall                   Uninstall packages.</span><br><span class="line">freeze                      Output installed packages in requirements format.</span><br><span class="line">inspect                     Inspect the python environment.</span><br><span class="line">list                        List installed packages.</span><br><span class="line">show                        Show information about installed packages.</span><br><span class="line">check                       Verify installed packages have compatible dependencies.</span><br><span class="line">config                      Manage local and global configuration.</span><br><span class="line">search                      Search PyPI for packages.</span><br><span class="line">cache                       Inspect and manage pip&#x27;s wheel cache.</span><br><span class="line">index                       Inspect information available from package indexes.</span><br><span class="line">wheel                       Build wheels from your requirements.</span><br><span class="line">hash                        Compute hashes of package archives.</span><br><span class="line">completion                  A helper command used for command completion.</span><br><span class="line">debug                       Show information useful for debugging.</span><br><span class="line">help                        Show help for commands.</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>总之，对于<code>pip</code>命令有不了解的地方，建议通过运行<code>pip help</code>来查看。</p>
+</blockquote>
+<p>可以通过pip install 批量安装package，命令如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure>
+
+<p>requirements.txt文件格式：<code>package_name==package_version</code>，示例如下：</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">astroid==2.0.4</span><br><span class="line">atomicwrites==1.1.5</span><br><span class="line">attrs==18.1.0</span><br><span class="line">flake8==3.5.0</span><br><span class="line">isort==4.3.4</span><br><span class="line">lazy-object-proxy==1.3.1</span><br><span class="line">mccabe==0.6.1</span><br><span class="line">more-itertools==4.3.0</span><br><span class="line">pluggy==0.7.1</span><br><span class="line">py==1.5.4</span><br><span class="line">pycodestyle==2.3.1</span><br><span class="line">pyflakes==1.6.0</span><br><span class="line">pylint==2.1.1</span><br><span class="line">pytest==3.7.2</span><br><span class="line">six==1.11.0</span><br><span class="line">wrapt==1.10.11</span><br></pre></td></tr></table></figure>
+
+<h2 id="Python错误"><a href="#Python错误" class="headerlink" title="Python错误"></a>Python错误</h2><h3 id="TypeError-‘module’-object-is-not-callable"><a href="#TypeError-‘module’-object-is-not-callable" class="headerlink" title="TypeError: ‘module’ object is not callable"></a>TypeError: ‘module’ object is not callable</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Pepole.py</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Pepole</span>:</span><br><span class="line">    name = <span class="string">&#x27;Randy&#x27;</span></span><br><span class="line">    age = <span class="number">18</span></span><br><span class="line">    gender = <span class="string">&#x27;boy&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init</span>(<span class="params">self, name, age, gender</span>):</span><br><span class="line">        self.name = name</span><br><span class="line">        self.age = age</span><br><span class="line">        self.gender = gender</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">info</span>():</span><br><span class="line">        <span class="built_in">print</span>(self.name)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下面的代码尝试从别的文件中使用Pepole.py</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> Pepole</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    peple = Pepole(<span class="string">&#x27;Lucy&#x27;</span>, <span class="number">18</span>, <span class="string">&#x27;Girl&#x27;</span>)</span><br><span class="line">    peple.info()</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码运行时就会报<code>TypeError: &#39;module&#39; object is not callable</code>错误，原因是，通过<code>import People</code>这种方式引入报，在调用内容是，需要加上相应module的前缀，即上面代码改成如下就可以正常运行了：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Pepole</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    peple = People.Pepole(<span class="string">&#x27;Lucy&#x27;</span>, <span class="number">18</span>, <span class="string">&#x27;Girl&#x27;</span>)</span><br><span class="line">    peple.info()</span><br></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> People <span class="keyword">import</span> Pepole</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    peple = Pepole(<span class="string">&#x27;Lucy&#x27;</span>, <span class="number">18</span>, <span class="string">&#x27;Girl&#x27;</span>)</span><br><span class="line">    peple.info()</span><br></pre></td></tr></table></figure>
+
+<p>这设计到Python 两种 module 导入方式：</p>
+<ul>
+<li><p>import module，调用时需要加上module限定</p>
+</li>
+<li><p>from module import，调用时不需要加module限定</p>
+</li>
+</ul>
+<h3 id="OSError-Errno-9-Bad-file-descriptor"><a href="#OSError-Errno-9-Bad-file-descriptor" class="headerlink" title="OSError: [Errno 9] Bad file descriptor"></a>OSError: [Errno 9] Bad file descriptor</h3><p> 遇到这种错误的原因可能是多样的，在使用socket时，如果在调用socket.close</p>
+<h2 id="PyCharm编辑器相关"><a href="#PyCharm编辑器相关" class="headerlink" title="PyCharm编辑器相关"></a>PyCharm编辑器相关</h2><p>注意：当前使用的是<strong>PyCharm 2023.2.2 (Professional Edition)</strong></p>
+<h4 id="Live-Template"><a href="#Live-Template" class="headerlink" title="Live Template"></a>Live Template</h4><ul>
+<li><p>代码模版使用，快捷键，<code>cmd+,</code>，然后搜索 <code>Live Template</code>，即可设置动态代码提示，如 输入main，就可以直接选择live template后就可以直接输出如下内容了：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="Python-packages"><a href="#Python-packages" class="headerlink" title="Python packages"></a>Python packages</h4><p>查看当前项目所用到的外部依赖包，具体图片如下：</p>
+<p><img src="/Users/randy/Documents/RandyBlog/source/images/P231212/Python%20Packages.png" alt="Python packages"></p>
+<p>窗口包含如下信息：</p>
+<ul>
+<li><p>当前项目已经安装的包；</p>
+</li>
+<li><p>点击具体的包，可以看到升级信息，以及包对应的文档</p>
+</li>
+<li><p>上方的输入框可以关键字搜索PyPI 上已经存在的可用的包，十分方便；</p>
+</li>
+</ul>
+<h4 id="编辑器显示空白"><a href="#编辑器显示空白" class="headerlink" title="编辑器显示空白"></a>编辑器显示空白</h4><p>有时候需要查看文件中的空白（包括空格、空行、制表符等），这个时候可以通过<code>Settings-&gt;Apperance-&gt;Show whitespaces</code>，勾选即可显示</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A231026.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1088,756 +2015,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/U230804.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/U230804.html" itemprop="url">未命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-10-13T00:06:46+08:00">2023-10-13</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Unity/" itemprop="url" rel="index"><span itemprop="name">Unity</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/0.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/0.html" itemprop="url">未命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-10-13T00:06:46+08:00">2023-10-13</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>参考文章：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://linxinfa.blog.csdn.net/article/details/121329143">发哥的第一人称视角游戏</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/U2023/08/03.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/U2023/08/03.html" itemprop="url">Unity杂项记录</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-10-13T00:06:46+08:00">2023-10-13</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Unity/" itemprop="url" rel="index"><span itemprop="name">Unity</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Unity-Editor-Basic"><a href="#Unity-Editor-Basic" class="headerlink" title="Unity Editor Basic"></a>Unity Editor Basic</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://docs.unity3d.com/Manual/SceneViewNavigation.html">Unity 界面导航</a></li>
-</ul>
-<p>官方Game Kit类型的资源学习感受</p>
-<ol>
-<li>不跟着教程一步步操作的话，自己去摸索是浪费时间；</li>
-<li>通过Game Kit来了解资源包中的具体资源的使用，包括prefab、camera、material、script的使用，使用过程中根据效果看看具体的实现（点击具体的GameObject，通过Inspector 来查看该GameObject上使用的具体 组件的实现，了解组件都有哪些属性；</li>
-<li>熟练使用组件定制的菜单，来完成自己的关卡设计，从易到难，逐步加大场景的复杂度。</li>
-</ol>
-<h2 id="捕鱼达人"><a href="#捕鱼达人" class="headerlink" title="捕鱼达人"></a>捕鱼达人</h2><ol>
-<li>捕鱼达人各种实现<ol>
-<li>鱼群生成算法；</li>
-<li>鱼的生成、按路径游动、鱼的转向；</li>
-<li>武器、等级、装备变化实现；</li>
-<li>捕鱼概率及伤害实现；</li>
-</ol>
-</li>
-</ol>
-<h2 id="跑酷游戏"><a href="#跑酷游戏" class="headerlink" title="跑酷游戏"></a>跑酷游戏</h2><ol>
-<li>背景的移动；</li>
-<li>障碍物的生成；</li>
-<li>角色的控制<ol>
-<li>跳跃及二级跳；</li>
-<li>滑行</li>
-<li>冲刺实现</li>
-</ol>
-</li>
-<li>道具奖励</li>
-</ol>
-<p>跑酷游戏二级跳</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">bool</span> isOnGround = <span class="literal">true</span>;</span><br><span class="line"><span class="built_in">int</span> jumpCount = <span class="number">0</span>;</span><br><span class="line"><span class="built_in">int</span> jumpMaxCount = <span class="number">2</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Update</span>()</span> </span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">if</span> (Input.GetKeyDown(KeyCode.Space) &amp;&amp; (isOnGround || jumpCount &lt; jumpMaxCount)) </span><br><span class="line">  &#123;</span><br><span class="line">    jumpCount++;</span><br><span class="line">    playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnCollisionEnter</span>(<span class="params">Collision collision</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">if</span> (collision.gameObject.CompareTag(<span class="string">&quot;Ground&quot;</span>))</span><br><span class="line">  &#123;</span><br><span class="line">    dirtParticle.Play();</span><br><span class="line">    isOnGround = <span class="literal">true</span>;</span><br><span class="line">    jumpCount = <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="二级跳问题"><a href="#二级跳问题" class="headerlink" title="二级跳问题"></a>二级跳问题</h3><ol>
-<li>第一次跳跃下降时进行二级跳无法跳高</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/P200202.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/P200202.html" itemprop="url">Python 资料收录</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-10-13T00:06:46+08:00">2023-10-13</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>本文链接：<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/c455eeb0.html">https://rainmonth.github.io/posts/c455eeb0.html</a></p>
-</blockquote>
-<p>这里主要收集Python相关的项目、文章。文章通常来源于微信公众号、掘金社区等。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/6be31a91.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/6be31a91.html" itemprop="url">Python 爬虫——爬虫基础问题解决</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-10-13T00:06:46+08:00">2023-10-13</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/%E7%88%AC%E8%99%AB/" itemprop="url" rel="index"><span itemprop="name">爬虫</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/6be31a91.html">https://rainmonth.github.io/posts/6be31a91.html</a></p>
-</blockquote>
-<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>本文主要介绍爬虫学习所要掌握的基础知识，主要包括Web开发相关基础知识（Html、Css等）、Python相关基础知识、几个简单的Python库的使用等。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/6be31a91.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/2/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot; aria-label&#x3D;&quot;下一页&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/2/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot; aria-label&#x3D;&quot;下一页&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -1880,7 +2062,7 @@
                 
                   <a href="/archives/%20%7C%7C%20archive">
                 
-                    <span class="site-state-item-count">200</span>
+                    <span class="site-state-item-count">205</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2125,7 +2307,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
   <span class="with-love" id="animate"> 
     <i class="fa fa-user"></i>
   </span>

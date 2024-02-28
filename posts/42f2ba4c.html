@@ -107,7 +107,7 @@
 <meta property="og:description" content="https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;42f2ba4c.html  Android 系统启动之init进程篇摘要init进程是Linux系统中用户空间的第一个进程，进程号(pid)固定为1。在Linux内核启动后，会在用户控件启动init进程，并调用init中的main方法。init进程主要做了以下工作：  负责创建系统中的几个关键进程，如Android世界的zyg">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-10-08T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-10-12T16:06:46.960Z">
+<meta property="article:modified_time" content="2023-12-11T06:55:20.437Z">
 <meta property="article:author" content="Randy Zhang">
 <meta name="twitter:card" content="summary">
 
@@ -429,8 +429,6 @@
 <h3 id="解析配置文件"><a href="#解析配置文件" class="headerlink" title="解析配置文件"></a>解析配置文件</h3><h4 id="什么配置文件"><a href="#什么配置文件" class="headerlink" title="什么配置文件"></a>什么配置文件</h4><p>这个配置文件就是<code>init.rc</code>,位于<code>/system/core/rootdir/init.rc</code>，这个文件的内容比较多，先节选部分来进行分析</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import /init.environ.rc</span><br><span class="line">import /init.usb.rc</span><br><span class="line">import /init.$&#123;ro.hardware&#125;.rc</span><br><span class="line">import /init.$&#123;ro.zygote&#125;.rc</span><br><span class="line">import /init.trace.rc</span><br></pre></td></tr></table></figure>
 
-
-
 <p>init进程要解析的配置文件有两个：</p>
 <ul>
 <li>init.rc</li>
@@ -443,9 +441,7 @@
 <li>early-boot</li>
 <li>boot</li>
 </ul>
-<h4 id="如何解析配置文件"><a href="#如何解析配置文件" class="headerlink" title="如何解析配置文件"></a>如何解析配置文件</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">init.cpp-&gt;main</span><br><span class="line">init_parser.cpp-&gt;init_parse_config_file(&quot;/init.rc&quot;)</span><br><span class="line">init_parser.cpp-&gt;parse_config</span><br><span class="line">init_parser.cpp-&gt;parse_new_section</span><br><span class="line"></span><br><span class="line">//init.rc文件中有三个关键字对应为section，分别是service、on、import，所以</span><br><span class="line">//parse_new_section中会根据关键字区分</span><br><span class="line">init_parser.cpp-&gt;parse_service</span><br><span class="line">							 -&gt;parse_line_service</span><br><span class="line">init_parser.cpp-&gt;parse_action</span><br><span class="line">   					   -&gt;parse_line_action</span><br><span class="line">init_parser.cpp-&gt;parse_import</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
+<h4 id="如何解析配置文件"><a href="#如何解析配置文件" class="headerlink" title="如何解析配置文件"></a>如何解析配置文件</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">init.cpp-&gt;main</span><br><span class="line">init_parser.cpp-&gt;init_parse_config_file(&quot;/init.rc&quot;)</span><br><span class="line">init_parser.cpp-&gt;parse_config</span><br><span class="line">init_parser.cpp-&gt;parse_new_section</span><br><span class="line"></span><br><span class="line">//init.rc文件中有三个关键字对应为section，分别是service、on、import，所以</span><br><span class="line">//parse_new_section中会根据关键字区分</span><br><span class="line">init_parser.cpp-&gt;parse_service</span><br><span class="line">                             -&gt;parse_line_service</span><br><span class="line">init_parser.cpp-&gt;parse_action</span><br><span class="line">                          -&gt;parse_line_action</span><br><span class="line">init_parser.cpp-&gt;parse_import</span><br></pre></td></tr></table></figure>
 
 <h3 id="解析service"><a href="#解析service" class="headerlink" title="解析service"></a>解析service</h3><h3 id="init控制service"><a href="#init控制service" class="headerlink" title="init控制service"></a>init控制service</h3><h3 id="属性服务"><a href="#属性服务" class="headerlink" title="属性服务"></a>属性服务</h3><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2>
       
@@ -560,7 +556,7 @@
                 
                   <a href="/archives/%20%7C%7C%20archive">
                 
-                    <span class="site-state-item-count">200</span>
+                    <span class="site-state-item-count">205</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -821,7 +817,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
   <span class="with-love" id="animate"> 
     <i class="fa fa-user"></i>
   </span>

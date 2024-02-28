@@ -107,7 +107,7 @@
 <meta property="og:description" content="https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A220131.html   Canvas drawText() 文本居中  自定义View永远逃不了一个话题，就时View的绘制，而View的绘制就逃不了要同今天的主角——Canvas来打交道。 Canvas控制着view绘制相关的所有调用，也就是说，view上显示的元素都需要通过Canvas调用形影的drawXX方法来绘制出">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-10-12T16:06:46.952Z">
-<meta property="article:modified_time" content="2023-10-12T16:06:46.952Z">
+<meta property="article:modified_time" content="2024-02-28T09:01:52.711Z">
 <meta property="article:author" content="Randy Zhang">
 <meta name="twitter:card" content="summary">
 
@@ -409,9 +409,7 @@
 <li>一个基础的绘制元素（比如Rect、text、Path、Bitmap等）；</li>
 <li>用来进行绘制的画笔Paint；</li>
 </ol>
-<p>基本概念</p>
-<p>绘制操作</p>
-<p>Canvas可以通过一系列的<code>drawXXX</code>方法来进行基本元素的绘制，下面进行简单说明：</p>
+<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><h3 id="绘制操作"><a href="#绘制操作" class="headerlink" title="绘制操作"></a>绘制操作</h3><p>Canvas可以通过一系列的<code>drawXXX</code>方法来进行基本元素的绘制，下面进行简单说明：</p>
 <ul>
 <li>drawArc，画弧；</li>
 <li>drawARGB，将Canvas内部维护的multable Bitmap涂色；</li>
@@ -425,15 +423,36 @@
 <li>drawPath，绘制路径，非常重要；</li>
 <li>drawPoint(s)，绘制一个或多个点；</li>
 </ul>
-<p>变换操作</p>
-<p>Canvas的变化操作主要包括：平移、缩放、旋转、错切，分别对应一下方法：</p>
+<h3 id="变换操作"><a href="#变换操作" class="headerlink" title="变换操作"></a>变换操作</h3><p>Canvas的变化操作主要包括：平移、缩放、旋转、错切，分别对应一下方法：</p>
 <ul>
-<li>translate</li>
-<li>scale</li>
-<li>rotate</li>
-<li>skew</li>
+<li><code>translate(float dx, float dy)</code>，canvas上的对象X、Y分别都平移 dx 和 dy；</li>
+<li><code>scale(float sx, float sy)</code>，canvas上的对象X、Y分别都乘以 sx 和 sy；</li>
+<li><code>rotate(float degrees, float px, float py)</code></li>
+<li><code>skew(float x, float y)</code></li>
+<li><code>concat(Matrix matrix)</code>，将matrix 矩阵变换应用到 canvas的所有对象上；</li>
 </ul>
-<p>状态栈管理操作</p>
+<h3 id="这里顺便说下Matrix"><a href="#这里顺便说下Matrix" class="headerlink" title="这里顺便说下Matrix"></a>这里顺便说下Matrix</h3><p><code>Matrix</code>是一个3*3的矩阵（<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/269245898">如何在Markdown中表示矩阵</a>），</p>
+<p>$$<br>\begin{Bmatrix}<br>scaleX&amp;skewX&amp;transX\<br>scaleY&amp;skewY&amp;transY\<br>persp0&amp;persp1&amp;persp2\<br>\end{Bmatrix}<br>$$</p>
+<p>矩阵各个值的含义：</p>
+<ul>
+<li><p>scaleX(Y)、skewX(Y)、transX(Y)，分别代表X、Y轴上相应的 scale（缩放）、skew（错切）、translate（平移）操作；</p>
+</li>
+<li><p>persp0、persp1、persp2 这三个值和透视有关，一般很少用到；</p>
+</li>
+</ul>
+<p>注意：</p>
+<ol>
+<li><p>如果需要 通过矩阵 进行旋转造作，需要同时修改scaleX、skewX、scaleY、skewY。</p>
+</li>
+<li><p><code>pre</code>开头的表示要进行 矩阵的 <strong>左乘</strong>， <code>post</code>开头的表示要进行 矩阵的 <strong>右乘</strong></p>
+</li>
+</ol>
+<h3 id="状态栈管理操作"><a href="#状态栈管理操作" class="headerlink" title="状态栈管理操作"></a>状态栈管理操作</h3><h3 id="clip操作"><a href="#clip操作" class="headerlink" title="clip操作"></a>clip操作</h3><h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ol>
+<li><p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A240228.html">通用功能——矩阵的操作</a>（todo）；</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A240229.html">通用功能——Markdown常用格式说明</a>；</p>
+</li>
+</ol>
 
       
     </div>
@@ -522,8 +541,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -538,7 +566,7 @@
                 
                   <a href="/archives/%20%7C%7C%20archive">
                 
-                    <span class="site-state-item-count">200</span>
+                    <span class="site-state-item-count">205</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -770,6 +798,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%98%E5%88%B6%E6%93%8D%E4%BD%9C"><span class="nav-number">2.</span> <span class="nav-text">绘制操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%98%E6%8D%A2%E6%93%8D%E4%BD%9C"><span class="nav-number">3.</span> <span class="nav-text">变换操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%99%E9%87%8C%E9%A1%BA%E4%BE%BF%E8%AF%B4%E4%B8%8BMatrix"><span class="nav-number">4.</span> <span class="nav-text">这里顺便说下Matrix</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E6%A0%88%E7%AE%A1%E7%90%86%E6%93%8D%E4%BD%9C"><span class="nav-number">5.</span> <span class="nav-text">状态栈管理操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#clip%E6%93%8D%E4%BD%9C"><span class="nav-number">6.</span> <span class="nav-text">clip操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="nav-number"></span> <span class="nav-text">参考文章</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -783,7 +827,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
   <span class="with-love" id="animate"> 
     <i class="fa fa-user"></i>
   </span>

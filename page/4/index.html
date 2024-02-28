@@ -310,6 +310,878 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A191130.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/A191130.html" itemprop="url">Android 开源库分析——ExoPlayer的Timeline</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-10-13T00:06:46+08:00">2023-10-13</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/%E5%BC%80%E6%BA%90%E5%BA%93%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">开源库分析</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>本文链接：<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191130.html">https://rainmonth.github.io/posts/A191130.html</a></p>
+</blockquote>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>刚开始分析ExoPlayer源码时，对于Timeline的概念不是很理解，这几天重新看了下，这里对Timeline及其相关概念做个简单分析</p>
+<h2 id="Timeline"><a href="#Timeline" class="headerlink" title="Timeline"></a>Timeline</h2><p>Timeline是一种数据结构，可以灵活的代表各种媒体的结构，Timeline的实例不可修改，对于直播流媒体，Timeline提供的是当前状态的快照。</p>
+<p>Timeline由Timeline.Period和Timeline.Window组成。Period是Media逻辑上的代表（可以是单个的媒体文件、也可以是包含掺入广告的播放信息的插入广告的媒体文件）。Window可以横跨多个Period，定义了默认的播放开始位置，所在Period可以播放的范围。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/A191130.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A191224.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/A191224.html" itemprop="url">Android 开源库分析——ExoPlayer封装的音视频播放器</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-10-13T00:06:46+08:00">2023-10-13</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/%E5%BC%80%E6%BA%90%E5%BA%93%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">开源库分析</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>本文链接：<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191224.html">https://rainmonth.github.io/posts/A191224.html</a></p>
+</blockquote>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><p>需要有以下功能</p>
+<ul>
+<li>要有良好的可移植性</li>
+<li>基本的播放控制（播放、暂停、拖动、播放状态判断、播放模式选择）</li>
+<li>支持列表播放</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A191206.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/A191206.html" itemprop="url">Android 开源库分析——IjkPlayer简介</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-10-13T00:06:46+08:00">2023-10-13</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>本文链接：<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191206.html">https://rainmonth.github.io/posts/A191206.html</a></p>
+</blockquote>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>结合源码，分析下ijkplayer的初始化流程，并对这个过程中的一些关键点（如消息循环、线程创建C层和Java层的通信几个方面来）做了一个详细分析。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/A191206.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A220131.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/A220131.html" itemprop="url">Android 基础——Canvas</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-10-13T00:06:46+08:00">2023-10-13</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A220131.html">https://rainmonth.github.io/posts/A220131.html</a></p>
+</blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yongdaimi/p/13711119.html">Canvas drawText() 文本居中</a></li>
+</ul>
+<p>自定义View永远逃不了一个话题，就时View的绘制，而View的绘制就逃不了要同今天的主角——Canvas来打交道。</p>
+<p>Canvas控制着view绘制相关的所有调用，也就是说，view上显示的元素都需要通过Canvas调用形影的drawXX方法来绘制出来，当然要想完成View的绘制，需要一下四要素：</p>
+<ol>
+<li>一个Bitmap来存储绘制的像素对象；</li>
+<li>一个Canvas来控制draw相关方法调用（将内容像素绘制到1中的Bitmap中去）；</li>
+<li>一个基础的绘制元素（比如Rect、text、Path、Bitmap等）；</li>
+<li>用来进行绘制的画笔Paint；</li>
+</ol>
+<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><h3 id="绘制操作"><a href="#绘制操作" class="headerlink" title="绘制操作"></a>绘制操作</h3><p>Canvas可以通过一系列的<code>drawXXX</code>方法来进行基本元素的绘制，下面进行简单说明：</p>
+<ul>
+<li>drawArc，画弧；</li>
+<li>drawARGB，将Canvas内部维护的multable Bitmap涂色；</li>
+<li>drawBitmap,  绘制Bitmap；</li>
+<li>drawCircle，绘制圆形；</li>
+<li>drawColor，以指定的混合模式为Canvas涂色（默认<code>SRC_OVER</code>混合模式)；</li>
+<li>drawline(s)，绘制线段或者线段组；</li>
+<li>drawOval，绘制椭圆；</li>
+<li>drawPaint，用指定的画笔填充 Canvas内部的Bitmap，等同于用画笔绘制一个Canvas大小的矩形，但是drawPaint效率更高；</li>
+<li>drawPatch，绘制.9图片；</li>
+<li>drawPath，绘制路径，非常重要；</li>
+<li>drawPoint(s)，绘制一个或多个点；</li>
+</ul>
+<h3 id="变换操作"><a href="#变换操作" class="headerlink" title="变换操作"></a>变换操作</h3><p>Canvas的变化操作主要包括：平移、缩放、旋转、错切，分别对应一下方法：</p>
+<ul>
+<li><code>translate(float dx, float dy)</code>，canvas上的对象X、Y分别都平移 dx 和 dy；</li>
+<li><code>scale(float sx, float sy)</code>，canvas上的对象X、Y分别都乘以 sx 和 sy；</li>
+<li><code>rotate(float degrees, float px, float py)</code></li>
+<li><code>skew(float x, float y)</code></li>
+<li><code>concat(Matrix matrix)</code>，将matrix 矩阵变换应用到 canvas的所有对象上；</li>
+</ul>
+<h3 id="这里顺便说下Matrix"><a href="#这里顺便说下Matrix" class="headerlink" title="这里顺便说下Matrix"></a>这里顺便说下Matrix</h3><p><code>Matrix</code>是一个3*3的矩阵（<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/269245898">如何在Markdown中表示矩阵</a>），</p>
+<p>$$<br>\begin{Bmatrix}<br>scaleX&amp;skewX&amp;transX\<br>scaleY&amp;skewY&amp;transY\<br>persp0&amp;persp1&amp;persp2\<br>\end{Bmatrix}<br>$$</p>
+<p>矩阵各个值的含义：</p>
+<ul>
+<li><p>scaleX(Y)、skewX(Y)、transX(Y)，分别代表X、Y轴上相应的 scale（缩放）、skew（错切）、translate（平移）操作；</p>
+</li>
+<li><p>persp0、persp1、persp2 这三个值和透视有关，一般很少用到；</p>
+</li>
+</ul>
+<p>注意：</p>
+<ol>
+<li><p>如果需要 通过矩阵 进行旋转造作，需要同时修改scaleX、skewX、scaleY、skewY。</p>
+</li>
+<li><p><code>pre</code>开头的表示要进行 矩阵的 <strong>左乘</strong>， <code>post</code>开头的表示要进行 矩阵的 <strong>右乘</strong></p>
+</li>
+</ol>
+<h3 id="状态栈管理操作"><a href="#状态栈管理操作" class="headerlink" title="状态栈管理操作"></a>状态栈管理操作</h3><h3 id="clip操作"><a href="#clip操作" class="headerlink" title="clip操作"></a>clip操作</h3><h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ol>
+<li><p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A240228.html">通用功能——矩阵的操作</a>（todo）；</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A240229.html">通用功能——Markdown常用格式说明</a>；</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A210219.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/A210219.html" itemprop="url">Android基础——View 知识点</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-10-13T00:06:46+08:00">2023-10-13</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/%E6%9D%82%E8%B0%88/" itemprop="url" rel="index"><span itemprop="name">杂谈</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210219.html">https://rainmonth.github.io/posts/A210219.html</a></p>
+</blockquote>
+<h2 id="View-大小相关"><a href="#View-大小相关" class="headerlink" title="View 大小相关"></a>View 大小相关</h2><h3 id="getWidth-与getMeasuredWidth-的区别"><a href="#getWidth-与getMeasuredWidth-的区别" class="headerlink" title="getWidth()与getMeasuredWidth()的区别"></a><code>getWidth()</code>与<code>getMeasuredWidth()</code>的区别</h3><blockquote>
+<p>View 的<code>width</code>和<code>height</code>、<code>measuredWidth</code>和<code>measuredHeight</code>的意义，分别的使用场景和赋值时机？</p>
+</blockquote>
+<p><code>getWidth()</code>代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="type">int</span> <span class="title function_">getWidth</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> mRight - mLeft;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>getMeasuredWidth()代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="type">int</span> <span class="title function_">getMeasuredWidth</span><span class="params">()</span> &#123;</span><br><span class="line">  <span class="comment">// mMeasuredWidth在onMeasure调用过程中赋值</span></span><br><span class="line">    <span class="keyword">return</span> mMeasuredWidth &amp; MEASURED_SIZE_MASK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>getWidth()</code>的值在<code>layout(int l, int t, int r, int b)</code>执行完成后真正确定;</li>
+<li><code>getMeasureWidth()</code>的值是在<code>onMeasure(int widthMeasureSpec, int heightMeasureSpec)</code>中的<code>setMeasuredDimension(int measureWidth, int measrueHeight)</code>执行完成后确定的，<code>mMeasureWidth</code>本身是包含测量模式和测量的具体值的，但在调用<code>getMeasureWidth()</code>后，进行了掩码操作，将高两位移除了；</li>
+</ul>
+<p>结论：<strong>子View最终的位置是在onLayout 中确定的，但子View的宽高是在onMeasure中确定的</strong></p>
+<h2 id="MeasureSpec相关"><a href="#MeasureSpec相关" class="headerlink" title="MeasureSpec相关"></a><code>MeasureSpec</code>相关</h2><blockquote>
+<p>到底是个啥？各种值的含义？mode和size分别代表什么意思？</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/cecd0de7ec27">MeasureSpec详解</a></p>
+<p><code>MeasureSpec</code>表示的是View的测量结果，用一个int值表示（int值四个字节）其中高两位用来表示mode（测量模式），低30位用来表示size（测量的值），测量模式有三种：</p>
+<ul>
+<li><code>UNSPECIFIED</code>：不对View大小做限制，如：<code>ListView</code>，<code>ScrollView</code></li>
+<li><code>EXACTLY</code>：确切的大小，如：100dp或者<code>march_parent</code></li>
+<li><code>AT_MOST</code>：大小不可超过某数值，如：<code>wrap_content</code></li>
+</ul>
+<p>着重看一下ViewGroup的<code>getChildMeasureSpec(int spec, int padding, int childDimension)</code>方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> spec The requirements for this view</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> padding padding</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> childDimension How big the child wants to be in the current</span></span><br><span class="line"><span class="comment"> *        dimension</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">getChildMeasureSpec</span><span class="params">(<span class="type">int</span> spec, <span class="type">int</span> padding, <span class="type">int</span> childDimension)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">specMode</span> <span class="operator">=</span> MeasureSpec.getMode(spec);</span><br><span class="line">    <span class="type">int</span> <span class="variable">specSize</span> <span class="operator">=</span> MeasureSpec.getSize(spec);</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> <span class="variable">size</span> <span class="operator">=</span> Math.max(<span class="number">0</span>, specSize - padding);</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> <span class="variable">resultSize</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">resultMode</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">switch</span> (specMode) &#123;</span><br><span class="line">    <span class="comment">// Parent has imposed an exact size on us</span></span><br><span class="line">    <span class="keyword">case</span> MeasureSpec.EXACTLY:</span><br><span class="line">        <span class="keyword">if</span> (childDimension &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            resultSize = childDimension;</span><br><span class="line">            resultMode = MeasureSpec.EXACTLY;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (childDimension == LayoutParams.MATCH_PARENT) &#123;</span><br><span class="line">            <span class="comment">// Child wants to be our size. So be it.</span></span><br><span class="line">            resultSize = size;</span><br><span class="line">            resultMode = MeasureSpec.EXACTLY;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (childDimension == LayoutParams.WRAP_CONTENT) &#123;</span><br><span class="line">            <span class="comment">// Child wants to determine its own size. It can&#x27;t be</span></span><br><span class="line">            <span class="comment">// bigger than us.</span></span><br><span class="line">            resultSize = size;</span><br><span class="line">            resultMode = MeasureSpec.AT_MOST;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Parent has imposed a maximum size on us</span></span><br><span class="line">    <span class="keyword">case</span> MeasureSpec.AT_MOST:</span><br><span class="line">        <span class="keyword">if</span> (childDimension &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment">// Child wants a specific size... so be it</span></span><br><span class="line">            resultSize = childDimension;</span><br><span class="line">            resultMode = MeasureSpec.EXACTLY;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (childDimension == LayoutParams.MATCH_PARENT) &#123;</span><br><span class="line">            <span class="comment">// Child wants to be our size, but our size is not fixed.</span></span><br><span class="line">            <span class="comment">// Constrain child to not be bigger than us.</span></span><br><span class="line">            resultSize = size;</span><br><span class="line">            resultMode = MeasureSpec.AT_MOST;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (childDimension == LayoutParams.WRAP_CONTENT) &#123;</span><br><span class="line">            <span class="comment">// Child wants to determine its own size. It can&#x27;t be</span></span><br><span class="line">            <span class="comment">// bigger than us.</span></span><br><span class="line">            resultSize = size;</span><br><span class="line">            resultMode = MeasureSpec.AT_MOST;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Parent asked to see how big we want to be</span></span><br><span class="line">    <span class="keyword">case</span> MeasureSpec.UNSPECIFIED:</span><br><span class="line">        <span class="keyword">if</span> (childDimension &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment">// Child wants a specific size... let him have it</span></span><br><span class="line">            resultSize = childDimension;</span><br><span class="line">            resultMode = MeasureSpec.EXACTLY;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (childDimension == LayoutParams.MATCH_PARENT) &#123;</span><br><span class="line">            <span class="comment">// Child wants to be our size... find out how big it should</span></span><br><span class="line">            <span class="comment">// be</span></span><br><span class="line">            resultSize = View.sUseZeroUnspecifiedMeasureSpec ? <span class="number">0</span> : size;</span><br><span class="line">            resultMode = MeasureSpec.UNSPECIFIED;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (childDimension == LayoutParams.WRAP_CONTENT) &#123;</span><br><span class="line">            <span class="comment">// Child wants to determine its own size.... find out how</span></span><br><span class="line">            <span class="comment">// big it should be</span></span><br><span class="line">            resultSize = View.sUseZeroUnspecifiedMeasureSpec ? <span class="number">0</span> : size;</span><br><span class="line">            resultMode = MeasureSpec.UNSPECIFIED;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//noinspection ResourceType</span></span><br><span class="line">    <span class="keyword">return</span> MeasureSpec.makeMeasureSpec(resultSize, resultMode);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>针对以上ViewGroup的getChildMeasureSpec代码做个小结：</p>
+<ol>
+<li><p>不管父View是何模式，若子View有<strong>确切数值</strong>，则子View大小就是其本身大小，且mode是<code>EXACTLY</code></p>
+</li>
+<li><p>若子View是<code>match_parent</code>，则模式与父View相同，且大小同父View（若父View是<code>UNSPECIFIED</code>，则子View大小为0）</p>
+</li>
+<li><p>若子View是<code>wrap_content</code>，则模式是AT_MOST，大小同父View，表示不可超过父View大小（若父View是<code>UNSPECIFIED</code>，则子View大小为0）</p>
+</li>
+<li><p>View的一般绘制流程是什么？</p>
+<blockquote>
+<p>measure-&gt;layout-&gt;draw</p>
+</blockquote>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/androidtalent/article/details/80465501">源码分析自定义ViewGroup onDraw方法无效</a></p>
+</li>
+</ol>
+<h2 id="事件分发"><a href="#事件分发" class="headerlink" title="事件分发"></a>事件分发</h2><p>事件分发机制（参考<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/238d1b753e64">一文读懂Android View事件分发机制</a>）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">dispatchTouchEvent</span><span class="params">(MotionEvent ev)</span> &#123;</span><br><span class="line">  <span class="type">boolean</span> <span class="variable">consume</span> <span class="operator">=</span> <span class="literal">false</span>;<span class="comment">//事件是否被消费</span></span><br><span class="line">  <span class="keyword">if</span> (onInterceptTouchEvent(ev))&#123;<span class="comment">//调用onInterceptTouchEvent判断是否拦截事件</span></span><br><span class="line">    consume = onTouchEvent(ev);<span class="comment">//如果拦截则调用自身的onTouchEvent方法</span></span><br><span class="line">  &#125; <span class="keyword">else</span>&#123;</span><br><span class="line">    consume = child.dispatchTouchEvent(ev);<span class="comment">//不拦截调用子View的dispatchTouchEvent方法</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> consume;<span class="comment">//返回值表示事件是否被消费，true事件终止，false调用父View的onTouchEvent方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>RecyclerView中嵌套横向的RecyclerView，外层RecyclerView竖直滑动时，内层的不能保持原来的位置</li>
+<li>RecyclerView的PagerSnapHelper的用法</li>
+<li>ViewPager直接调用setCurrentItem，不触发<code>ViewPager.OnPageChangeListener</code>的<code>onPageScrollStateChanged</code>，但触发<code>onPageSelected</code></li>
+<li>子View最终的位置是在onLayout 中确定的，但子View的宽高是在onMeasure中确定的</li>
+<li>ViewPager的PageTransform效果在调用Adapter的notifyDataChanged方法后会失效，需要重新setAdapter</li>
+<li>ViewPager中显示单独的View时，调用notifyDataChange时View里面的内容不会更，原因是ViewPager的Adapter被设计成在其显示的Item增加删除时起作用，即<code>instantiateItem</code>和<code>destroyItem</code>两个方法</li>
+</ol>
+<blockquote>
+<p>这个时候可以重写Adapter的getItemPostion方法，让其返回POSITION_NONE（该方法默认放回UNCHANGED，但这个时候需要自己解决显示View列表的缓存问题</p>
+<p>如果不解决，那么ViewPager中的View就会越来越多</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/U230807.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1042,959 +1914,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A230318.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/A230318.html" itemprop="url">Kotlin——泛型</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-03-18T00:00:00+08:00">2023-03-18</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/Kotlin/" itemprop="url" rel="index"><span itemprop="name">Kotlin</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><p>Kotlin 的泛型与 Java 一样，都是一种语法糖，即只在源代码中有泛型定义，到了class级别就被擦除了。 泛型（Generics）其实就是把类型参数化，真正的名字叫做类型参数，它的引入给强类型编程语言加入了更强的灵活性。</p>
-<h3 id="泛型的好处"><a href="#泛型的好处" class="headerlink" title="泛型的好处"></a>泛型的好处</h3><ol>
-<li>增强代码的通用性</li>
-<li>熟悉泛型有助于理解其他框架源码</li>
-<li>增加代码的健壮性，避免运行时类型转换异常；</li>
-</ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/A230318.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A220317.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/A220317.html" itemprop="url">Android 开源库分析——Fresco源码分析</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-03-17T00:00:00+08:00">2023-03-17</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/%E5%BC%80%E6%BA%90%E5%BA%93%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">开源库分析</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<ul>
-<li>本文链接：<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A220317.html">https://rainmonth.github.io/posts/A220317.html</a></li>
-<li>分析版本：Fresco 2.5</li>
-</ul>
-</blockquote>
-<h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><h3 id="包结构"><a href="#包结构" class="headerlink" title="包结构"></a>包结构</h3><ul>
-<li>drawee</li>
-<li>fbcore</li>
-<li>fresco</li>
-<li>imagepipeline，Fresco的核心模块</li>
-<li>memory</li>
-<li>nativeimagefilters</li>
-<li>nativeimagetranscoder</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/A220317.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A230317.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/A230317.html" itemprop="url">Kotlin——基本概念</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-03-17T00:00:00+08:00">2023-03-17</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/Kotlin/" itemprop="url" rel="index"><span itemprop="name">Kotlin</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="委托"><a href="#委托" class="headerlink" title="委托"></a>委托</h2><p>将自己的事情交给别人做，自己只要关注这件事情处理的记过就好了，这就是委托的过程。</p>
-<h3 id="委托属性"><a href="#委托属性" class="headerlink" title="委托属性"></a>委托属性</h3><p>属性委托通常是为了解决以下场景的问题</p>
-<ul>
-<li>延迟属性（lazy property），其值只在首次访问时计算（首次访问时分配内存）</li>
-<li>可观察属性（observable property），监听器或收到有关此属性变更的通知</li>
-<li>把多个属性存储在一个映射（map）中，而不是每个存在单独的字段中</li>
-</ul>
-<p>为了解决以上几种场景，Kotlin支持属性的委托，基本格式如下：</p>
-<blockquote>
-<p>val&#x2F;var 属性名：属性类型 by 表达式。在 <em>by</em> 后面的表达式是该 <em>委托</em>， 因为属性对应的 <code>get()</code>（与 <code>set()</code>）会被委托给它的 <code>getValue()</code> 与 <code>setValue()</code> 方法。 属性的委托不必实现任何的接口，但是需要提供一个 <code>getValue()</code> 函数（与 <code>setValue()</code>——对于 <em>var</em> 属性）。</p>
-</blockquote>
-<p>委托实现的例子</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> kotlin.reflect.KProperty</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Example</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> p: String <span class="keyword">by</span> Delegate()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Delegate</span>() &#123;</span><br><span class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">getValue</span><span class="params">(thisRef: <span class="type">Any</span>?, property: <span class="type">KProperty</span>&lt;*&gt;)</span></span>: String &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;<span class="variable">$thisRef</span>, thank you for delegating &#x27;<span class="subst">$&#123;property.name&#125;</span>&#x27; to me!&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">setValue</span><span class="params">(thisRef: <span class="type">Any</span>?, property: <span class="type">KProperty</span>&lt;*&gt;, value:<span class="type">String</span>)</span></span> &#123;</span><br><span class="line">        println(<span class="string">&quot;<span class="variable">$value</span> has been assigned to &#x27;<span class="subst">$&#123;property.name&#125;</span>&#x27; in <span class="variable">$thisRef</span>&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> e = Example()</span><br><span class="line">    println(e.p)</span><br><span class="line">    e.p = <span class="string">&quot;Randy&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>属性委托的要求：</p>
-<ol>
-<li><code>thisRef</code>类型必须与属性所有者类型相同（或者是其超类型）（对于扩展属性的委托，必须与扩展属性所在类类型相同，或者是其超类型）</li>
-<li>property类型必须是KProperty类型或其超类型</li>
-<li>value类型必须与属性类型相同或是其超类型</li>
-<li>getValue必须返回与属性类型的同的类型或其子类型</li>
-</ol>
-<blockquote>
-<p>注意：<em><strong>lambda表达式返回值总是返回函数体内部最后一行表达式的值</strong></em></p>
-</blockquote>
-<h4 id="延迟委托-lazy"><a href="#延迟委托-lazy" class="headerlink" title="延迟委托 lazy"></a>延迟委托 lazy</h4><p>使用示例：<code>var propertyName by lazy lambda</code></p>
-<p><code>lazy()</code> 是接受一个 lambda 并返回一个 <code>Lazy &lt;T&gt;</code> 实例的函数，返回的实例可以作为实现延迟属性的委托： 第一次调用 <code>get()</code> 会执行已传递给 <code>lazy()</code> 的 lambda 表达式并记录结果， 后续调用 <code>get()</code> 只是返回记录的结果。</p>
-<p>lateinit 和 by lazy比较 （结果由 chatGPT提供）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">lateinit 和 by lazy 都是延迟初始化属性的方式，但它们有以下区别：</span><br><span class="line"></span><br><span class="line">lateinit 只能用于 var 变量，而 by lazy 只能用于 val 变量。</span><br><span class="line"></span><br><span class="line">lateinit 只适用于可空类型，而 by lazy 可以适用于任何类型。</span><br><span class="line"></span><br><span class="line">lateinit 只是延迟初始化，而 by lazy 是惰性初始化，只有在第一次访问属性时才会初始化。</span><br><span class="line"></span><br><span class="line">lateinit 变量必须在使用前进行初始化，否则会抛出异常；而 by lazy 变量则只有在第一次访问时才会进行初始化，如果不访问就不会初始化。</span><br><span class="line"></span><br><span class="line">因此，如果您需要在声明时初始化变量，就应该使用 lateinit；如果您需要在第一次访问时初始化变量，就应该使用 by lazy。</span><br></pre></td></tr></table></figure>
-
-<h4 id="可观察属性-Observable"><a href="#可观察属性-Observable" class="headerlink" title="可观察属性 Observable"></a>可观察属性 Observable</h4><p>主要实现是在Delegates.observable()中，例如：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> test0: String <span class="keyword">by</span> Delegates.observable(<span class="string">&quot;Randy&quot;</span>) &#123; property, oldValue, newValue -&gt; println(<span class="string">&quot;<span class="subst">$&#123;property.name&#125;</span>:<span class="variable">$oldValue</span>-&gt;<span class="variable">$newValue</span>&quot;</span>) &#125;</span><br><span class="line">    test0 = <span class="string">&quot;Jack&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test0:Randy-&gt;Jack</span><br></pre></td></tr></table></figure>
-
-<p>还可以通过Delegate.vetoable来防止属性被更改，例如：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> test: String <span class="keyword">by</span> Delegates.vetoable(<span class="string">&quot;ss&quot;</span>) &#123; property: KProperty&lt;*&gt;, oldValue: String, newValue: String -&gt;</span><br><span class="line">        ss(</span><br><span class="line">            oldValue,</span><br><span class="line">            newValue</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">    println(test)</span><br><span class="line">    test = <span class="string">&quot;Jack&quot;</span></span><br><span class="line">    println(test)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">ss</span><span class="params">(oldValue: <span class="type">String</span>, newValue: <span class="type">String</span>)</span></span>: <span class="built_in">Boolean</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>当ss函数返回true是，表示允许修改test属性，反之则不允许修改</p>
-<h4 id="委托给另一个属性"><a href="#委托给另一个属性" class="headerlink" title="委托给另一个属性"></a>委托给另一个属性</h4><p>从1.4起，支持将一个属性的getter和setter方法委托给另一个属性处理，这种委托对顶层和类的属性（成员属性或扩展属性）都可用。通常这种委托方式在 <em><strong>向后兼容</strong></em> 处理是会非常有用。例如：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> topPro3: String = <span class="string">&quot;ss&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span>(<span class="keyword">var</span> pro1: String, anotherClass: AnotherClass) &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 将属性委托给自身的另一个属性</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">var</span> deprecatePro1: String <span class="keyword">by</span> <span class="keyword">this</span>::pro1</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 将deprecatePro3委托给灵位一个类 AnotherClass的aPro4属性</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">var</span> deprecatePro3: String <span class="keyword">by</span> anotherClass::aPro4</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">AnotherClass</span>(<span class="keyword">var</span> aPro4: String)</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 扩展属性委托给顶层属性</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> MyClass.deprecateTopPro3: String <span class="keyword">by</span> ::topPro3</span><br></pre></td></tr></table></figure>
-
-<h4 id="将属性存储在映射中"><a href="#将属性存储在映射中" class="headerlink" title="将属性存储在映射中"></a>将属性存储在映射中</h4><p>利用映射来存储 属性的值，非常适用于JSON解析这种场景</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TestUser</span>(<span class="keyword">var</span> map: Map&lt;String, Any?&gt;) &#123;</span><br><span class="line">    <span class="keyword">val</span> name: String <span class="keyword">by</span> map</span><br><span class="line">    <span class="keyword">val</span> age: <span class="built_in">Int</span> <span class="keyword">by</span> map</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TestUser2</span>(<span class="keyword">var</span> map: MutableMap&lt;String, Any?&gt;) &#123;</span><br><span class="line">    <span class="keyword">var</span> name: String <span class="keyword">by</span> map<span class="comment">// name 是读写的，所以使用的 map 必须支持 读写</span></span><br><span class="line">    <span class="keyword">var</span> age: <span class="built_in">Int</span> <span class="keyword">by</span> map<span class="comment">// age 是读写的 所以使用的 map 必须支持 读写</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="局部属性委托"><a href="#局部属性委托" class="headerlink" title="局部属性委托"></a>局部属性委托</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">example</span><span class="params">(computeFoo: () -&gt; <span class="type">Foo</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> memoizedFoo <span class="keyword">by</span> lazy(computeFoo)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (someCondition &amp;&amp; memoizedFoo.isValid()) &#123;</span><br><span class="line">        memoizedFoo.doSomething()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上面的代码将局部属性 memoizedFoo 委托给了 computeFoo这个 lambda表达式，这样做的好处是 如果 if 条件不满足，memoizeFoo 根本就不会初始化</p>
-<h3 id="委托实现"><a href="#委托实现" class="headerlink" title="委托实现"></a>委托实现</h3><p>委托实现就是通过使用组合的方式来代替通过继承的方式来进行一些业务逻辑的视线。</p>
-<blockquote>
-<p>为什么要这样做呢？继承的缺点：</p>
-<ol>
-<li>无法通过继承的方式，重用多个类的代码，（当然可以通过接口实现）</li>
-<li>通过继承，子类必须无条件就收父类的内容，没得选</li>
-<li>父类继承而来的实现是静态的，不能动态改变，虽然可以通过重写做一些改善，但还不够灵活</li>
-</ol>
-<p>所以，后面就提出用组合的方式来取代通过继承来实现代码的复用。</p>
-</blockquote>
-<p>闲话不多扯了，来看看Kotlin 中类委托实现：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">Base</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">print</span><span class="params">()</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">BaseImpl</span>(<span class="keyword">val</span> x: <span class="built_in">Int</span>) : Base &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">print</span><span class="params">()</span></span> &#123; print(x) &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Derived</span>(b: Base) : Base <span class="keyword">by</span> b</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> b = BaseImpl(<span class="number">10</span>)</span><br><span class="line">    Derived(b).print()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>同上上面这种写法，Kotlin编译后会自动生成 Base中定义的方法，同时对象b会存储在 Derived中，看看编译后 decompile来的Java代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Base</span> &#123;</span><br><span class="line">   <span class="keyword">void</span> <span class="title function_">print</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">class</span> <span class="title class_">BaseImpl</span> <span class="keyword">implements</span> <span class="title class_">Base</span> &#123;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">final</span> <span class="type">int</span> x;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">print</span><span class="params">()</span> &#123;</span><br><span class="line">      <span class="type">int</span> <span class="variable">var1</span> <span class="operator">=</span> <span class="built_in">this</span>.x;</span><br><span class="line">      <span class="type">boolean</span> <span class="variable">var2</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">      System.out.print(var1);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">final</span> <span class="type">int</span> <span class="title function_">getX</span><span class="params">()</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">this</span>.x;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="title function_">BaseImpl</span><span class="params">(<span class="type">int</span> x)</span> &#123;</span><br><span class="line">      <span class="built_in">this</span>.x = x;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">class</span> <span class="title class_">Derived</span> <span class="keyword">implements</span> <span class="title class_">Base</span> &#123;</span><br><span class="line">   <span class="comment">// $FF: synthetic field</span></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">final</span> Base $$delegate_0;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="title function_">Derived</span><span class="params">(<span class="meta">@NotNull</span> Base b)</span> &#123;</span><br><span class="line">      Intrinsics.checkNotNullParameter(b, <span class="string">&quot;b&quot;</span>);</span><br><span class="line">      <span class="built_in">super</span>();</span><br><span class="line">      <span class="built_in">this</span>.$$delegate_0 = b;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">print</span><span class="params">()</span> &#123;</span><br><span class="line">      <span class="built_in">this</span>.$$delegate_0.print();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以看到，Derived 中最终处理 print的都是 $$delegate_0这个属性，这个属性就是通过by 指定的由Kotlin自动生成的。</p>
-<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><h3 id="幕后字段"><a href="#幕后字段" class="headerlink" title="幕后字段"></a>幕后字段</h3><p>在Kotlin中, 如果属性至少一个访问器使用默认实现，那么Kotlin会自动提供幕后字段，用关键字<code>field</code>表示，幕后字段主要用于自定义getter和setter中，并且只能在getter 和setter中访问。</p>
-<h3 id="幕后属性"><a href="#幕后属性" class="headerlink" title="幕后属性"></a>幕后属性</h3><p><strong>对外表现为只读，对内表现为可读可写</strong>，我们将这个属性成为<strong>幕后属性</strong>。</p>
-<p>参考文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c1a4c04eb33c">什么是幕后字段和幕后属性</a></p>
-<h2 id="SAM接口"><a href="#SAM接口" class="headerlink" title="SAM接口"></a>SAM接口</h2><p>只有一个单一抽象方法（但可以有多个否抽象的方法）的接口，这种借口可以直接用lambda函数来实现，从而使代码简洁</p>
-<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><p>Kotlin 能够对一个类或接口扩展新功能而无需继承该类或者使用像<em>装饰者</em>这样的设计模式。 这通过叫做<em>扩展</em>的特殊声明完成。</p>
-<h3 id="扩展函数"><a href="#扩展函数" class="headerlink" title="扩展函数"></a>扩展函数</h3><p>声明一个扩展函数需用一个<em>接收者类型</em>也就是被扩展的类型来作为他的前缀。 下面代码为 <code>MutableList&lt;Int&gt;</code> 添加一个<code>swap</code> 函数：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> MutableList<span class="type">&lt;Int&gt;</span>.<span class="title">swap</span><span class="params">(index1: <span class="type">Int</span>, index2: <span class="type">Int</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> tmp = <span class="keyword">this</span>[index1] <span class="comment">// “this”对应该列表</span></span><br><span class="line">    <span class="keyword">this</span>[index1] = <span class="keyword">this</span>[index2]</span><br><span class="line">    <span class="keyword">this</span>[index2] = tmp</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="扩展是静态的解析的"><a href="#扩展是静态的解析的" class="headerlink" title="扩展是静态的解析的"></a>扩展是静态的解析的</h3><p>扩展不能真正的修改他们所扩展的类。通过定义一个扩展，并没有在一个类中插入新成员， 只不过是可以通过该类型的变量用点表达式去调用这个新函数。</p>
-<p>扩展函数是<em>静态</em>分发的，即他们不是根据接收者类型的虚方法。 调用的扩展函数是由函数调用所在的表达式的类型来决定的， 而不是由表达式运行时求值结果决定的。例如</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 这个例子说明扩展式静态的，s 传入的是Rectangle类型，但定义时用的时Shape类型，所以调用扩展方法时会采用Shape类型的扩展方法</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main2</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">open</span> <span class="keyword">class</span> <span class="title class_">Shape</span></span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">Rectangle</span> : <span class="type">Shape</span>()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> Shape.<span class="title">getName</span><span class="params">()</span></span> = <span class="string">&quot;Shape&quot;</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> Rectangle.<span class="title">getName</span><span class="params">()</span></span> = <span class="string">&quot;Rectangle&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">printClassName</span><span class="params">(s: <span class="type">Shape</span>)</span></span> &#123;</span><br><span class="line">        println(s.getName())</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    printClassName(Rectangle())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="可空接收者"><a href="#可空接收者" class="headerlink" title="可空接收者"></a>可空接收者</h3><p>可以为可空的接收者定义扩展，这样的扩展可以在对象变量上调用（即使为空也可以调用），例如：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main3</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> name:String? = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line">    println(name.toString())</span><br><span class="line">    name = <span class="string">&quot;RandyZhang&quot;</span></span><br><span class="line">    </span><br><span class="line">    println(name.toString())</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> Any?.<span class="title">toString</span><span class="params">()</span></span> :String &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span> == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;null&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> toString()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>输出结果：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">null</span><br><span class="line">RandyZhang</span><br><span class="line"></span><br><span class="line">Process finished with exit code 0</span><br></pre></td></tr></table></figure>
-
-<h3 id="扩展属性"><a href="#扩展属性" class="headerlink" title="扩展属性"></a>扩展属性</h3><p>可以为List扩展一个 lastIndex 属性，用来表示最后一个元素的下标</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> &lt;T&gt; List&lt;T&gt;.lastIndex: <span class="built_in">Int</span></span><br><span class="line">    <span class="keyword">get</span>() = size - <span class="number">1</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main4</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> list = arrayListOf(<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>)</span><br><span class="line">    <span class="keyword">var</span> list1 = arrayListOf&lt;<span class="built_in">Int</span>&gt;()</span><br><span class="line"></span><br><span class="line">    println(<span class="string">&quot;lastIndexOf list: <span class="subst">$&#123;list.lastIndex&#125;</span>&quot;</span>)</span><br><span class="line">    println(<span class="string">&quot;lastIndexOf list1: <span class="subst">$&#123;list1.lastIndex&#125;</span>&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>注意：</p>
-<ol>
-<li>扩展属性不能有初始化器</li>
-<li>要注意扩展属性定义的位置（大多数情况下都直接定义在包里）</li>
-</ol>
-</blockquote>
-<h3 id="伴生对象的扩展"><a href="#伴生对象的扩展" class="headerlink" title="伴生对象的扩展"></a>伴生对象的扩展</h3><p>可以直接用伴生对象所在的类的类名访问伴生对象的扩展方法和扩展属性</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyCompanion</span> &#123;</span><br><span class="line">    <span class="keyword">companion</span> <span class="keyword">object</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> MyCompanion.Companion.<span class="title">printCompanion</span><span class="params">()</span></span> &#123;</span><br><span class="line">    println(<span class="string">&quot;companion&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main5</span><span class="params">()</span></span> &#123;</span><br><span class="line">    MyCompanion.printCompanion()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>扩展声明为成员</p>
-<p>这个好像比较复杂</p>
-</li>
-</ul>
-<h2 id="数据类"><a href="#数据类" class="headerlink" title="数据类"></a>数据类</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 数据类</span></span><br><span class="line"><span class="comment"> * 1. 主构造函数至少要有一个var或val修饰的属性</span></span><br><span class="line"><span class="comment"> * 2. 会利用主构造函数里面的属性 自动生成对应的 hashCode、equals、和toString方法</span></span><br><span class="line"><span class="comment"> * 3. 会按照中构造函数中声明的顺序，生成相应的considerN方法</span></span><br><span class="line"><span class="comment"> * 4. 支持通过copy来产生对象，并对对象进行修改</span></span><br><span class="line"><span class="comment"> * 5. 不能为considerN、copy提供显示的实现</span></span><br><span class="line"><span class="comment"> * 6. 数据类不能是抽象、开放、密封或内部的</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"> <span class="keyword">data</span> <span class="keyword">class</span> <span class="title class_">User</span>(<span class="keyword">var</span> id: <span class="built_in">Int</span>, <span class="keyword">var</span> name: String) &#123;</span><br><span class="line">    <span class="keyword">var</span> state: String? = <span class="literal">null</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>生成的.class文件如下：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">data</span> <span class="keyword">class</span> <span class="title class_">User</span> <span class="keyword">public</span> <span class="keyword">constructor</span>(id: kotlin.<span class="built_in">Int</span>, name: kotlin.String) &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">var</span> id: kotlin.<span class="built_in">Int</span> <span class="comment">/* compiled code */</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">var</span> name: kotlin.String <span class="comment">/* compiled code */</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">var</span> state: kotlin.String? <span class="comment">/* compiled code */</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">component1</span><span class="params">()</span></span>: kotlin.<span class="built_in">Int</span> &#123; <span class="comment">/* compiled code */</span> &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">component2</span><span class="params">()</span></span>: kotlin.String &#123; <span class="comment">/* compiled code */</span> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="密封类"><a href="#密封类" class="headerlink" title="密封类"></a>密封类</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">sealed</span> <span class="keyword">class</span> <span class="title class_">Error</span></span><br></pre></td></tr></table></figure>
-
-<p>密封类用来表示受限的类继承结构：当一个值为有限几种的类型、而不能有任何其他类型时。在某种意义上，他们是枚举类的扩展：枚举类型的值集也是受限的，但每个枚举常量只存在一个实例，而密封类的一个子类可以有可包含状态的多个实例。</p>
-<blockquote>
-<p>密封类作为when的判断条件时，是不需要再最后写else判断的，因为密封类的值集合是受限的</p>
-</blockquote>
-<h2 id="嵌套类"><a href="#嵌套类" class="headerlink" title="嵌套类"></a>嵌套类</h2><p>普通类中定义的一个无特殊修饰关键字的类就成为嵌套类、嵌套接口</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Outer</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> bar: <span class="built_in">Int</span> = <span class="number">1</span></span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">Nested</span> &#123;</span><br><span class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> = <span class="number">2</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> demo = Outer.Nested().foo() <span class="comment">// == 2</span></span><br></pre></td></tr></table></figure>
-
-<p>嵌套接口</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">OuterInterface</span> &#123;</span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">InnerClass</span></span><br><span class="line">    <span class="keyword">interface</span> <span class="title class_">InnerInterface</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">OuterClass</span> &#123;</span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">InnerClass</span></span><br><span class="line">    <span class="keyword">interface</span> <span class="title class_">InnerInterface</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h2><p>类内部定义一个用 inner关键字修饰的类，这个inner关键字修饰的类就成为内部类，同Java一样，内部类会持有外部类的引用</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Outer</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> bar: <span class="built_in">Int</span> = <span class="number">1</span></span><br><span class="line">    <span class="keyword">inner</span> <span class="keyword">class</span> <span class="title class_">Inner</span> &#123;</span><br><span class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> = bar</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> demo = Outer().Inner().foo() <span class="comment">// == 1</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="匿名内部类"><a href="#匿名内部类" class="headerlink" title="匿名内部类"></a>匿名内部类</h2><p>匿名内部类通常用对象表达式表示</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">window.addMouseListener(<span class="keyword">object</span> : MouseAdapter() &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">mouseClicked</span><span class="params">(e: <span class="type">MouseEvent</span>)</span></span> &#123; …… &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">mouseEntered</span><span class="params">(e: <span class="type">MouseEvent</span>)</span></span> &#123; …… &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h2 id="作用域函数"><a href="#作用域函数" class="headerlink" title="作用域函数"></a>作用域函数</h2><ul>
-<li>let，扩展函数，调用let中使用的函数参数，并将调用let的对象作为参数，然后返回函数参数的结果</li>
-<li>with，非扩展函数，将上下文对象作为参数传递到lambda表达式中，在lambda表达式中可以同伙<code>this</code>来访问这个上下文对象</li>
-<li>run（非扩展形式的），就是开辟一个临时作用域来运行一段代码，并将运行代码的结果返回</li>
-<li>run（扩展形式的），将上下文对象传递到lambda表达式中，在lambda表达式中可以通过<code>this</code>来访问这个对象，同时将lambda的结果返回</li>
-<li>apply，扩展函数，对上下文对象应用一些列操作，并将对象本身返回</li>
-<li>also，扩展函数，可以理解为在做某个操作时顺带做下某事，上下文对象会作为参数用（it）表示，传递到lambda中，并最终在lambda执行后返回上下文对象本身</li>
-</ul>
-<p><code>takeIf</code>和<code>takeUnless</code></p>
-<p>作为作用域函数的补充，这两个函数配合作用域函数使得可以作用域函数调用链中进行值的检查与筛选</p>
-<ul>
-<li><p>takeIf，如果满足给定的条件，就返回对象本身，否则返回null</p>
-</li>
-<li><p>takeUnless，和takeIf相反，如果不满足，就返回对象本身，否则返回null</p>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A230105.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/A230105.html" itemprop="url">Android 软键盘相关知识点梳理</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-01-05T00:00:00+08:00">2023-01-05</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Android 软键盘相关知识点梳理</p>
-<p>先说说开发过程中遇到的几个常用的软键盘场景</p>
-<p>场景一</p>
-<p>屏幕存在多个输入框，点击输入框，软键盘不遮挡输入框</p>
-<blockquote>
-<p>使用adjustPan有效，使用adjustResize无效（找出无效的原因，搜索到的结果都是说改这个）</p>
-</blockquote>
-<p>场景二</p>
-<p>WebView界面存在输入框，点击输入框，软键盘不遮挡输入框</p>
-<p>场景三</p>
-<p>点击非输入框部分，隐藏软键盘</p>
-<blockquote>
-<p>分两步：</p>
-<ol>
-<li>判断touch的是不是输入框View对应的区域；</li>
-<li>重写Activity的dispatchTouchEvent方法，触摸的不是输入框对应View的时候，隐藏软键盘；</li>
-</ol>
-</blockquote>
-<p>场景四</p>
-<p>进入带输入框的页面，自动弹出软键盘</p>
-<h2 id="知识储备"><a href="#知识储备" class="headerlink" title="知识储备"></a>知识储备</h2><h3 id="软键盘控制"><a href="#软键盘控制" class="headerlink" title="软键盘控制"></a>软键盘控制</h3><p>Android 软键盘的控制主要通过在AndroidManifest.xml文件声明activity时添加 android:windowSoftInputMode属性或者在代码中在<code>Activity</code>的<code>onCreate</code>函数调用<code>setContentView</code>之前通过修改<code>Window</code>的<code>getWindow().setSoftInputMode(int mode)</code>方法来控制，代码示例如下：</p>
-<ol>
-<li><p>AndroidManifest.xml文件中</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">activity</span> <span class="attr">android:name</span>=<span class="string">&quot;.module.login.LoginActivity&quot;</span></span></span><br><span class="line"><span class="tag">		<span class="attr">...</span></span></span><br><span class="line"><span class="tag">		<span class="attr">...</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:windowSoftInputMode</span>=<span class="string">&quot;adjustPan&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>代码中</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onCreate</span><span class="params">(Bundle savedInstanceState)</span> &#123;</span><br><span class="line">	<span class="built_in">super</span>.onCreate(savedInstanceState);</span><br><span class="line">	getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-<p>注意：在<code>AndroidMainfest.xml</code>文件中在此Activity中写入 <code>android:windowSoftInputMode=&quot;adjustPan&quot;</code>  可以让界面不被弹出的键盘挤上去；</p>
-<p>不管是通过xml文件还是通过代码，效果都是一样的，这个属性控制着软键盘和Activity交互的两种状态：</p>
-<ol>
-<li>软键盘的状态——当活动(Activity)成为用户关注的焦点时软键盘是隐藏或显示，对应于<code>state</code>开头的属性值。</li>
-<li>活动的主窗口调整——窗口获取焦点后弹出软键盘时窗口讲如何调整（是否减少活动主窗口大小以便腾出空间放软键盘，是否直接让软键盘覆盖活动窗口，对应于<code>adjust</code>开头的属性值。</li>
-</ol>
-<p>参考文章：</p>
-<ol>
-<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1741756">5种方法完美解决android软键盘挡住输入框方法详解</a></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/U221112.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/U221112.html" itemprop="url">Unity基础——C#问题点记录</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-11-12T00:00:00+08:00">2022-11-12</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C#</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>如何定义C#特性，类似于Java的注解？</li>
-<li>如何实现C#泛型单例？</li>
-<li>C#协程的概念及C#协程的理解？</li>
-<li>Unity中可见的GameObject都有SortingLayer和OrderInLayer属性，两个属性决定了元素的渲染顺序<ol>
-<li>通过SortingLayer可以设置GameObject对应的层，通过这个层，可以统一控制这一层的GameObject，可以自己添加自定义的层，数字大的层显示在上面；</li>
-<li>OrderInLayer表示的时SortingLayer的内部排序；</li>
-</ol>
-</li>
-<li>CreateAssetMenu，Unity属性，对 ScriptableObject 派生类型进行标记，使其自动列在 Assets&#x2F;Create 子菜单中，以便能够轻松创建该类型的实例并将其作为“.asset”文件存储在项目中。</li>
-<li>ScriptObject， 如果需要创建无需附加到游戏对象的对象时，可从该类派生。它对仅用于存储数据的资源最有用。</li>
-<li>C# event的使用？</li>
-<li>拉入Unity的精灵尺寸和实际的不一致？</li>
-<li>过渡效果不一致</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot; aria-label&#x3D;&quot;上一页&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/5/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot; aria-label&#x3D;&quot;下一页&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/3/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot; aria-label&#x3D;&quot;上一页&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/5/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot; aria-label&#x3D;&quot;下一页&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -2037,7 +1961,7 @@
                 
                   <a href="/archives/%20%7C%7C%20archive">
                 
-                    <span class="site-state-item-count">200</span>
+                    <span class="site-state-item-count">205</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2282,7 +2206,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
   <span class="with-love" id="animate"> 
     <i class="fa fa-user"></i>
   </span>

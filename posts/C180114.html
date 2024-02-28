@@ -414,10 +414,10 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
 
 <p>安装好hexo后，就可以开始建站了：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init &lt;site_folder&gt;		// 初始化网站目录</span><br><span class="line">cd &lt;site_folder&gt;					// 切换到网站目录</span><br><span class="line">npm install								// 安装网站以来的文件，执行完毕后，当前目录回生成一个															// node_modules文件夹</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init &lt;site_folder&gt;        // 初始化网站目录</span><br><span class="line">cd &lt;site_folder&gt;                    // 切换到网站目录</span><br><span class="line">npm install                                // 安装网站以来的文件，执行完毕后，当前目录回生成一个                                                            // node_modules文件夹</span><br></pre></td></tr></table></figure>
 
 <p>网站目录介绍</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">├── _config.yml						// 网站配置文件</span><br><span class="line">├── package.json					// 网站依赖文件</span><br><span class="line">├── scaffolds							// 模板文件夹</span><br><span class="line">├── node_modules					// 以来的node插件库</span><br><span class="line">├── source								// 可以成为网站的源文件夹</span><br><span class="line">|   ├── _drafts						// 文章草稿文件夹</span><br><span class="line">|   └── _posts						// 已发布的文章文件夹</span><br><span class="line">├── public								// 网站生成的静态文件放置在给文件夹</span><br><span class="line">└── themes								// 主题文件夹</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">├── _config.yml                        // 网站配置文件</span><br><span class="line">├── package.json                    // 网站依赖文件</span><br><span class="line">├── scaffolds                            // 模板文件夹</span><br><span class="line">├── node_modules                    // 以来的node插件库</span><br><span class="line">├── source                                // 可以成为网站的源文件夹</span><br><span class="line">|   ├── _drafts                        // 文章草稿文件夹</span><br><span class="line">|   └── _posts                        // 已发布的文章文件夹</span><br><span class="line">├── public                                // 网站生成的静态文件放置在给文件夹</span><br><span class="line">└── themes                                // 主题文件夹</span><br></pre></td></tr></table></figure>
 
 <p>上面就是hexo网站的基本结构了，接下来是具体的设置。</p>
 <h2 id="Hexo-文章分类"><a href="#Hexo-文章分类" class="headerlink" title="Hexo 文章分类"></a>Hexo 文章分类</h2><p>在文章开头的yaml属性配置中添加如下内容：</p>
@@ -474,13 +474,16 @@
 
 <p>注意，我们可以自己指定链接名（不要重复就行了），在文章开头添加：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">abbrlink:</span> <span class="string">&#x27;自定义链接&#x27;</span></span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>注意：我在应用abbrlink插件时，添加的图片无法显示下来，搜索了好久，没有解决，然后就在source中添加一个images，将文章的图片添加到images中，然后再md中采用相对链接的方式来引用图片，然后解决了问题。<br>之前没有使用abbrlink时单独使用hexo-asset-image插件图片时可以显示的，现在不能显示很可能是前者对后者产生了影响，可以尝试修改插件源码来解决问题。</p>
 </blockquote>
 <h2 id="草稿文章处理"><a href="#草稿文章处理" class="headerlink" title="草稿文章处理"></a>草稿文章处理</h2><h3 id="预览草稿"><a href="#预览草稿" class="headerlink" title="预览草稿"></a>预览草稿</h3><p>只想下面的命令，可以本机预览草稿：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s --draft</span><br></pre></td></tr></table></figure>
+
 <h3 id="发布草稿"><a href="#发布草稿" class="headerlink" title="发布草稿"></a>发布草稿</h3><p>执行下面代码，可以发布本机草稿：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo p &lt;filename&gt; #filename为不带.md后缀的草稿文件名称</span><br></pre></td></tr></table></figure>
+
 <h2 id="Hexo文章置顶"><a href="#Hexo文章置顶" class="headerlink" title="Hexo文章置顶"></a>Hexo文章置顶</h2><p>文章多了，发现置顶就成了一个很必要的功能了，这里在晚上搜索了下相关的方法。</p>
 <ul>
 <li><p>修改hexo源码，具体参考<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/42a4efcdf8d7">解决Hexo文章置顶问题</a>；</p>
@@ -503,7 +506,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install npm-check-updates -g</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>安装完成后，运行<code>ncu</code>命令，检查有哪些需要更新</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">ncu</span><br><span class="line">Checking /Users/randy/Documents/RandyBlog/package.json</span><br><span class="line">[====================] 13/13 100%</span><br><span class="line"></span><br><span class="line"> hexo                         ^3.8.0  →  ^6.3.0</span><br><span class="line"> hexo-abbrlink                ^2.0.5  →  ^2.2.1</span><br><span class="line"> hexo-deployer-git            ^0.3.1  →  ^4.0.0</span><br><span class="line"> hexo-generator-archive       ^0.1.4  →  ^2.0.0</span><br><span class="line"> hexo-generator-category      ^0.1.3  →  ^2.0.0</span><br><span class="line"> hexo-generator-json-content  ^3.0.1  →  ^4.2.3</span><br><span class="line"> hexo-generator-tag           ^0.2.0  →  ^2.0.0</span><br><span class="line"> hexo-renderer-ejs            ^0.3.0  →  ^2.0.0</span><br><span class="line"> hexo-renderer-marked         ^0.3.0  →  ^6.1.1</span><br><span class="line"> hexo-renderer-stylus         ^0.3.1  →  ^3.0.0</span><br><span class="line"> hexo-server                  ^0.2.0  →  ^3.0.0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">ncu</span><br><span class="line">Checking /Users/randy/Documents/RandyBlog/package.json</span><br><span class="line">[====================] 13/13 100%</span><br><span class="line"></span><br><span class="line"> hexo                         ^3.8.0  →  ^6.3.0</span><br><span class="line"> hexo-abbrlink                ^2.0.5  →  ^2.2.1</span><br><span class="line"> hexo-deployer-git            ^0.3.1  →  ^4.0.0</span><br><span class="line"> hexo-generator-archive       ^0.1.4  →  ^2.0.0</span><br><span class="line"> hexo-generator-category      ^0.1.3  →  ^2.0.0</span><br><span class="line"> hexo-generator-json-content  ^3.0.1  →  ^4.2.3</span><br><span class="line"> hexo-generator-tag           ^0.2.0  →  ^2.0.0</span><br><span class="line"> hexo-renderer-ejs            ^0.3.0  →  ^2.0.0</span><br><span class="line"> hexo-renderer-marked         ^0.3.0  →  ^6.1.1</span><br><span class="line"> hexo-renderer-stylus         ^0.3.1  →  ^3.0.0</span><br><span class="line"> hexo-server                  ^0.2.0  →  ^3.0.0</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>运行<code>ncu-u</code> 来更新<code>package.json</code>文件</p>
 </li>
@@ -524,9 +527,10 @@
 <li><p>hexo更新后，生成部署成功后，博客无法打开，看了下生成的静态文件，出现如下代码</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% extends ‘_layout.swig‘ %&#125; &#123;% import ‘_macro/post.swig‘ as post_template %&#125;</span><br></pre></td></tr></table></figure>
 
-<p>原因是</p>
-</li>
+<p>原因是hexo在5.0之后把swig给删除了需要自己手动安装，通过如下方式解决：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-renderer-swig</span><br></pre></td></tr></table></figure></li>
 </ol>
+<p>        即重新安装该插件。</p>
 
       
     </div>
@@ -646,7 +650,7 @@
                 
                   <a href="/archives/%20%7C%7C%20archive">
                 
-                    <span class="site-state-item-count">200</span>
+                    <span class="site-state-item-count">205</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -907,7 +911,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
   <span class="with-love" id="animate"> 
     <i class="fa fa-user"></i>
   </span>
