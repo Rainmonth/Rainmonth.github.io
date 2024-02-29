@@ -99,16 +99,17 @@
 
 
 
-  <meta name="description" content="文章链接  Unity官方教程0——系列内容汇总 Unity官方教程1——Playground学习记录 Unity官方教程2——Creator Kit Puzzle学习记录 Unity官方教程3——Creator Kit FPS学习记录 Unity官方教程4——Creator Kit RPG学习记录 Unity官方教程5——Creator Kit Beginner Code学习记录">
+  <meta name="description" content="摘要移动项目开发工作中总是有一些固定的工作流程，比如：  本地分支正在工作中，需要拉去远程分支的代码；  本地分支正在工作中，需要将之前提交而未push的代码推送到远程分支；  想快速启动App；  …   这些都是很常用的操作，作为一个coder，这些固定的流程肯定有程序化的解决思路，如是就想着用shell脚本来完成这个自动化操作的过程。 这个功能之前自己在另一台Mac上实现过，但是换电脑后，自">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Unity官方教程2——Creator Kit Puzzle学习记录">
-<meta property="og:url" content="http://yoursite.com/posts/U220903.html">
+<meta property="og:title" content="通用功能——Mac 使用tree打印目录结构">
+<meta property="og:url" content="http://yoursite.com/posts/C240205.html">
 <meta property="og:site_name" content="荏苒追寻个人博客">
-<meta property="og:description" content="文章链接  Unity官方教程0——系列内容汇总 Unity官方教程1——Playground学习记录 Unity官方教程2——Creator Kit Puzzle学习记录 Unity官方教程3——Creator Kit FPS学习记录 Unity官方教程4——Creator Kit RPG学习记录 Unity官方教程5——Creator Kit Beginner Code学习记录">
+<meta property="og:description" content="摘要移动项目开发工作中总是有一些固定的工作流程，比如：  本地分支正在工作中，需要拉去远程分支的代码；  本地分支正在工作中，需要将之前提交而未push的代码推送到远程分支；  想快速启动App；  …   这些都是很常用的操作，作为一个coder，这些固定的流程肯定有程序化的解决思路，如是就想着用shell脚本来完成这个自动化操作的过程。 这个功能之前自己在另一台Mac上实现过，但是换电脑后，自">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-09-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-12-20T10:41:11.572Z">
+<meta property="article:published_time" content="2024-02-04T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-02-28T09:49:33.996Z">
 <meta property="article:author" content="Randy Zhang">
+<meta property="article:tag" content="工具使用">
 <meta name="twitter:card" content="summary">
 
 
@@ -116,7 +117,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/posts/U220903.html"/>
+  <link rel="canonical" href="http://yoursite.com/posts/C240205.html"/>
 
 
 
@@ -126,7 +127,7 @@
   };
 </script>
 
-  <title>Unity官方教程2——Creator Kit Puzzle学习记录 | 荏苒追寻个人博客</title>
+  <title>通用功能——Mac 使用tree打印目录结构 | 荏苒追寻个人博客</title>
   
 
 
@@ -311,7 +312,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/U220903.html">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/C240205.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -328,7 +329,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Unity官方教程2——Creator Kit Puzzle学习记录</h1>
+          <h1 class="post-title" itemprop="name headline">通用功能——Mac 使用tree打印目录结构</h1>
         
 
         <div class="post-meta">
@@ -340,7 +341,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-09-03T00:00:00+08:00">2022-09-03</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-02-05T00:00:00+08:00">2024-02-05</time>
             
 
             
@@ -361,7 +362,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Unity/" itemprop="url" rel="index"><span itemprop="name">Unity</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/%E9%80%9A%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">通用</span></a></span>
 
                 
                 
@@ -395,15 +396,44 @@
       
 
       
-        <p>文章链接</p>
-<ul>
-<li><a href>Unity官方教程0——系列内容汇总</a></li>
-<li><a href>Unity官方教程1——Playground学习记录</a></li>
-<li><a href>Unity官方教程2——Creator Kit Puzzle学习记录</a></li>
-<li><a href>Unity官方教程3——Creator Kit FPS学习记录</a></li>
-<li><a href>Unity官方教程4——Creator Kit RPG学习记录</a></li>
-<li><a href>Unity官方教程5——Creator Kit Beginner Code学习记录</a></li>
-</ul>
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>移动项目开发工作中总是有一些固定的工作流程，比如：</p>
+<ol>
+<li><p>本地分支正在工作中，需要拉去远程分支的代码；</p>
+</li>
+<li><p>本地分支正在工作中，需要将之前提交而未push的代码推送到远程分支；</p>
+</li>
+<li><p>想快速启动App；</p>
+</li>
+<li><p>…</p>
+</li>
+</ol>
+<p>这些都是很常用的操作，作为一个coder，这些固定的流程肯定有程序化的解决思路，如是就想着用shell脚本来完成这个自动化操作的过程。</p>
+<p>这个功能之前自己在另一台Mac上实现过，但是换电脑后，自己想重新实现一下结果鼓捣了好久，好在最后还是搞出来了，这里姑且记录下，免得日后忘记了自己有得在网上找了。</p>
+<h2 id="shell脚本的编写"><a href="#shell脚本的编写" class="headerlink" title="shell脚本的编写"></a>shell脚本的编写</h2><p>这里就贴一个自己写的很简单的脚本，文件名：common.sh</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">safePush() &#123;</span><br><span class="line">    echo &quot;切换到项目工作目录：&quot;</span><br><span class="line">    cd ~/StudioProjects/RandyWorks/KadaForAndroid</span><br><span class="line">    git stash</span><br><span class="line">    git pull --rebase</span><br><span class="line">    git stash pop</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">safePull() &#123;</span><br><span class="line">    echo &quot;切换到项目工作目录：&quot;</span><br><span class="line">    cd ~/StudioProjects/RandyWorks/KadaForAndroid</span><br><span class="line">    git status</span><br><span class="line">    git stash</span><br><span class="line">    git pull --rebase</span><br><span class="line">    git stash pop</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">startApp() &#123;</span><br><span class="line">    echo &quot;请输入要启动的 App的包名：&quot;</span><br><span class="line">    read package_name</span><br><span class="line">    echo &quot;请输入要启动的 Activity路径&quot;</span><br><span class="line">    read launch_activity_path</span><br><span class="line">    if [ -z &quot;$launch_activity_path&quot; ]</span><br><span class="line">    then</span><br><span class="line">      launch_activity_path=&quot;.main.ui.activity.LaunchActivity&quot;</span><br><span class="line">    else</span><br><span class="line">      echo &quot;启动的activity：$launch_activity_path&quot;</span><br><span class="line">    fi</span><br><span class="line">    adb shell am start &quot;$package_name/.main.ui.activity.LaunchActivity&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>脚本的内容很简单，就不做详述了，接下来才是重点，怎没做到脚本文件的全局运行</p>
+<h2 id="全局运行脚本文件"><a href="#全局运行脚本文件" class="headerlink" title="全局运行脚本文件"></a>全局运行脚本文件</h2><p>这里肯定有很多的方案，我只说我自己的方案，我电脑上撞了<code>oh-my-zsh</code>，个人感觉挺好用的，有一天在修改 <code>.zshrc</code>文件时发现 这个文件里面有如下内容</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">...</span></span><br><span class="line">source $ZSH/oh-my-zsh.sh</span><br><span class="line">source ~/.bash_profile</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">...</span></span><br></pre></td></tr></table></figure>
+<p>我稍微查阅了一下，这个是在该文件中一用 <code>oh-my-zsh.sh</code> 这个文件的写法，如是我就把自定义的脚本的文件也写在这里了，这个<code>.zshrc</code>文件就变成了下面这样：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">...</span></span><br><span class="line">source $ZSH/oh-my-zsh.sh</span><br><span class="line">source &quot;自定义脚本的路径&quot;</span><br><span class="line">source ~/.bash_profile</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">...</span></span><br></pre></td></tr></table></figure>
+<p>加上后，重启一下终端，直接输入自定义脚本中定义的函数名就可以运行函数了，非常简单！</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>这里可能会碰到几个问题</p>
+<ol>
+<li><p>提示自定义shell脚本没有运行权限，直接更改权限即可：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x 自定义脚本路径</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>提示函数找不到，原因肯能是：</p>
+<ol>
+<li><p>脚本没有保存；</p>
+</li>
+<li><p>改动脚本后没有让其生效（这个我试过了，如果是在.zshrc文件中按上面修改，只要保持就会生效的；</p>
+</li>
+<li><p>提示函数找不到，先检查一下拼写，确认无误后，在重启下终端即可。</p>
+</li>
+</ol>
+</li>
+</ol>
+<p>好了，这篇文章就写完了，也算是一个小小的收获吧，多少能提高一下工作的效率！</p>
 
       
     </div>
@@ -422,6 +452,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" rel="tag"># 工具使用</a>
+          
+        </div>
+      
 
       
       
@@ -431,8 +467,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/U220902.html" rel="next" title="Unity官方教程1——Playground学习记录">
-                <i class="fa fa-chevron-left"></i> Unity官方教程1——Playground学习记录
+              <a href="/posts/P231213.html" rel="next" title="Python 小工具——二维码生成">
+                <i class="fa fa-chevron-left"></i> Python 小工具——二维码生成
               </a>
             
           </div>
@@ -441,8 +477,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/posts/U220904.html" rel="prev" title="Unity官方教程3——Creator Kit FPS学习记录">
-                Unity官方教程3——Creator Kit FPS学习记录 <i class="fa fa-chevron-right"></i>
+              <a href="/posts/A240228.html" rel="prev" title="通用功能——矩阵的操作">
+                通用功能——矩阵的操作 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -492,8 +528,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -739,6 +784,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shell%E8%84%9A%E6%9C%AC%E7%9A%84%E7%BC%96%E5%86%99"><span class="nav-number">2.</span> <span class="nav-text">shell脚本的编写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E5%B1%80%E8%BF%90%E8%A1%8C%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">全局运行脚本文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">4.</span> <span class="nav-text">问题</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

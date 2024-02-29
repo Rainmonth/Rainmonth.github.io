@@ -99,12 +99,12 @@
 
 
 
-  <meta name="description" content="本文链接：https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A200325.html  Android Repo 命令简介 通用讲解参见官方文档 常用格式如下 1repo command option  help查看帮助，使用如下： 123456# 查看所有帮助repo help# 查看init命令的帮助repo help init# 查看init命令支持哪些选项repo in">
+  <meta name="description" content="本文链接：https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A200325.html  Android Repo 命令简介 通用讲解参见官方文档 常用格式如下 1repo command option help查看帮助，使用如下： 123456# 查看所有帮助repo help# 查看init命令的帮助repo help init# 查看init命令支持哪些选项repo ini">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Andorid 工具命令Repo 命令简介">
 <meta property="og:url" content="http://yoursite.com/posts/A200325.html">
 <meta property="og:site_name" content="荏苒追寻个人博客">
-<meta property="og:description" content="本文链接：https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A200325.html  Android Repo 命令简介 通用讲解参见官方文档 常用格式如下 1repo command option  help查看帮助，使用如下： 123456# 查看所有帮助repo help# 查看init命令的帮助repo help init# 查看init命令支持哪些选项repo in">
+<meta property="og:description" content="本文链接：https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A200325.html  Android Repo 命令简介 通用讲解参见官方文档 常用格式如下 1repo command option help查看帮助，使用如下： 123456# 查看所有帮助repo help# 查看init命令的帮助repo help init# 查看init命令支持哪些选项repo ini">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-03-24T16:00:00.000Z">
 <meta property="article:modified_time" content="2023-10-12T16:06:46.953Z">
@@ -214,7 +214,7 @@
         
           
   <li class="menu-item menu-item-home">
-    <a href="/%20" rel="section">
+    <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
 </li>
 
@@ -223,7 +223,7 @@
         
           
   <li class="menu-item menu-item-about">
-    <a href="/about/%20" rel="section">
+    <a href="/about/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
 </li>
 
@@ -232,7 +232,7 @@
         
           
   <li class="menu-item menu-item-tags">
-    <a href="/tags/%20" rel="section">
+    <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
 </li>
 
@@ -241,7 +241,7 @@
         
           
   <li class="menu-item menu-item-categories">
-    <a href="/categories/%20" rel="section">
+    <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
 </li>
 
@@ -250,7 +250,7 @@
         
           
   <li class="menu-item menu-item-archives">
-    <a href="/archives/%20" rel="section">
+    <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
 </li>
 
@@ -259,7 +259,7 @@
         
           
   <li class="menu-item menu-item-schedule">
-    <a href="/schedule/%20" rel="section">
+    <a href="/schedule/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
 </li>
 
@@ -409,10 +409,8 @@
 <p>通用讲解参见<a target="_blank" rel="noopener" href="https://source.android.google.cn/setup/develop/repo">官方文档</a></p>
 <p>常用格式如下</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">repo command option</span><br></pre></td></tr></table></figure>
-
 <h2 id="help"><a href="#help" class="headerlink" title="help"></a>help</h2><p>查看帮助，使用如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 查看所有帮助</span><br><span class="line">repo help</span><br><span class="line"># 查看init命令的帮助</span><br><span class="line">repo help init</span><br><span class="line"># 查看init命令支持哪些选项</span><br><span class="line">repo init --help</span><br></pre></td></tr></table></figure>
-
 <h2 id="init"><a href="#init" class="headerlink" title="init"></a>init</h2><p>类似于git的<code>init</code>，该命令在当前目录创建一个<code>.repo</code>文件夹，常用options：</p>
 <ul>
 <li>-u， 指定要更新manifest 仓库的位置，可见这是一个manifest的地址</li>
@@ -424,26 +422,23 @@
 <li>在aosp（源码根目录）下，执行如下命令即可查看可切换的分支</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd .repo/manifests</span><br><span class="line">git branch -a | cut -d / -f 3</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
+<ol>
 <li>切换分支(以android-7.0.0_r1为例)，这里的地址记得换成自己的镜像源</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">repo init -u https://android.googlesource.com/platform/manifest -b android-7.0.0_r1</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
+<ol>
 <li>同步代码</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">repo sync</span><br></pre></td></tr></table></figure>
-
 <h2 id="sync"><a href="#sync" class="headerlink" title="sync"></a>sync</h2><p>常用方式</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">repo sync [project_list]</span><br></pre></td></tr></table></figure>
-
 <p>从remote端下载新近更改并更新本地工作目录，相当于对所有git项目运行<code>git fetch</code>命令。如果没指定参数，同步所有项目。直接运行<code>repo sync</code>，可能会发生如下结果：</p>
 <ul>
 <li><p>若从未同步过项目，<code>repo sync</code>等同于<code>git clone</code>，remote上的所有分支都将下载到本地；</p>
 </li>
 <li><p>若同步过，<code>repo sync</code>等同于以下命令的组合：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">  </span><br></pre></td></tr></table></figure></li>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">  </span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 
       
@@ -556,7 +551,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/%20%7C%7C%20archive">
+                  <a href="/archives/%7C%7C%20archive">
                 
                     <span class="site-state-item-count">205</span>
                     <span class="site-state-item-name">日志</span>

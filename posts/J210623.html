@@ -214,7 +214,7 @@
         
           
   <li class="menu-item menu-item-home">
-    <a href="/%20" rel="section">
+    <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
 </li>
 
@@ -223,7 +223,7 @@
         
           
   <li class="menu-item menu-item-about">
-    <a href="/about/%20" rel="section">
+    <a href="/about/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
 </li>
 
@@ -232,7 +232,7 @@
         
           
   <li class="menu-item menu-item-tags">
-    <a href="/tags/%20" rel="section">
+    <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
 </li>
 
@@ -241,7 +241,7 @@
         
           
   <li class="menu-item menu-item-categories">
-    <a href="/categories/%20" rel="section">
+    <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
 </li>
 
@@ -250,7 +250,7 @@
         
           
   <li class="menu-item menu-item-archives">
-    <a href="/archives/%20" rel="section">
+    <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
 </li>
 
@@ -259,7 +259,7 @@
         
           
   <li class="menu-item menu-item-schedule">
-    <a href="/schedule/%20" rel="section">
+    <a href="/schedule/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
 </li>
 
@@ -411,19 +411,14 @@
 <p>下面通过示例来实现迭代器模式，需要定义聚合对象，迭代器。下例主要完成对一组姓名信息的迭代输出（只为演示使用）。</p>
 <p>定义迭代器接口</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Iterator</span> &#123;</span><br><span class="line">    <span class="type">boolean</span> <span class="title function_">hasNext</span><span class="params">()</span>;</span><br><span class="line">    Object <span class="title function_">next</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>定义Container接口，用于获取迭代器</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Container</span> &#123;</span><br><span class="line">    Iterator <span class="title function_">getIterator</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>定义聚合对象，并实现迭代器接口</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">NameRepository</span> <span class="keyword">implements</span> <span class="title class_">Container</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> String names[] = &#123;<span class="string">&quot;Ethan&quot;</span>, <span class="string">&quot;Jason&quot;</span>, <span class="string">&quot;Karen&quot;</span>, <span class="string">&quot;Ascii&quot;</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Iterator <span class="title function_">getIterator</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">NameIterator</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">class</span> <span class="title class_">NameIterator</span> <span class="keyword">implements</span> <span class="title class_">Iterator</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> index;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">hasNext</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="keyword">if</span>(index &lt; names.length)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> Object <span class="title function_">next</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="keyword">if</span>(hasNext())&#123;</span><br><span class="line">                <span class="keyword">return</span> names[index++];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>编写客户端进行迭代访问</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">IteratorPatternDemo</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">NameRepository</span> <span class="variable">namesRepository</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">NameRepository</span>();</span><br><span class="line"></span><br><span class="line">        <span class="type">Iterator</span> <span class="variable">iterator</span> <span class="operator">=</span> namesRepository.getIterator();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (iterator.hasNext()) &#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> (String)iterator.next();</span><br><span class="line">            System.out.println(<span class="string">&quot;Name : &quot;</span> + name);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>输出结果如下</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Name : Ethan</span><br><span class="line">Name : Jason</span><br><span class="line">Name : Karen</span><br><span class="line">Name : Ascii</span><br></pre></td></tr></table></figure>
-
 <p>注意：在需要对集合遍历并删除指定元素时，用迭代器<strong>可以很好的避免边移除边遍历造成的问题</strong>。</p>
 <h2 id="模式总结"><a href="#模式总结" class="headerlink" title="模式总结"></a>模式总结</h2><p>从Java集合类大都实现了<code>Iterator</code>这一点可以看出，迭代器模式肯定会给设计者带来诸多好处。它主要解决对聚合对象的遍历问题，可以通过定义不同的迭代器来完成不同方式的遍历。</p>
 <h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><ul>
@@ -556,7 +551,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/%20%7C%7C%20archive">
+                  <a href="/archives/%7C%7C%20archive">
                 
                     <span class="site-state-item-count">205</span>
                     <span class="site-state-item-name">日志</span>

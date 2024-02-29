@@ -214,7 +214,7 @@
         
           
   <li class="menu-item menu-item-home">
-    <a href="/%20" rel="section">
+    <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
 </li>
 
@@ -223,7 +223,7 @@
         
           
   <li class="menu-item menu-item-about">
-    <a href="/about/%20" rel="section">
+    <a href="/about/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
 </li>
 
@@ -232,7 +232,7 @@
         
           
   <li class="menu-item menu-item-tags">
-    <a href="/tags/%20" rel="section">
+    <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
 </li>
 
@@ -241,7 +241,7 @@
         
           
   <li class="menu-item menu-item-categories">
-    <a href="/categories/%20" rel="section">
+    <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
 </li>
 
@@ -250,7 +250,7 @@
         
           
   <li class="menu-item menu-item-archives">
-    <a href="/archives/%20" rel="section">
+    <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
 </li>
 
@@ -259,7 +259,7 @@
         
           
   <li class="menu-item menu-item-schedule">
-    <a href="/schedule/%20" rel="section">
+    <a href="/schedule/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
 </li>
 
@@ -399,15 +399,11 @@
 <h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>要生成二维码，我就搜了下需要使用哪些包，发现还挺多的，其中 <code>pyqrcode</code>感觉挺不错的，官网介绍如下地址如下：<a target="_blank" rel="noopener" href="https://pythonhosted.org/PyQRCode/moddoc.html">PyQrCode 介绍</a>。使用文档有介绍，展示二维码只需要两行代码。</p>
 <p>先安装需要的包：pyqrcode</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pyqrcode</span><br></pre></td></tr></table></figure>
-
 <p>由于后面需要转换成png图片显示出来，这里还需要安装一个包，即 <code>pypng</code></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install git+https://gitlab.com/drj11/pypng@pypng-0.20220715.0</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pyqrcode</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">code = pyqrcode.create(<span class="string">&#x27;要生成二维码的文本&#x27;</span>)</span><br><span class="line">code.show()<span class="comment"># 展示二维码</span></span><br></pre></td></tr></table></figure>
-
 <p>上面的<code>create</code>方法定义如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">create</span>(<span class="params">content, error=<span class="string">&#x27;H&#x27;</span>, version=<span class="literal">None</span>, mode=<span class="literal">None</span>, encoding=<span class="literal">None</span></span>):</span><br><span class="line">    <span class="keyword">return</span> QRCode(content, error, version, mode, encoding)</span><br></pre></td></tr></table></figure>
-
 <p>调用的时候只需要传递 content内容即可了，方法会放回一个<code>QRCode</code>对象。QRCode对象对外暴露的方法有：</p>
 <ul>
 <li><p>show()，展示生成的二维码对象；</p>
@@ -470,8 +466,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/posts/0.html" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/posts/C240205.html" rel="prev" title="通用功能——Mac 使用tree打印目录结构">
+                通用功能——Mac 使用tree打印目录结构 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -544,7 +540,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/%20%7C%7C%20archive">
+                  <a href="/archives/%7C%7C%20archive">
                 
                     <span class="site-state-item-count">205</span>
                     <span class="site-state-item-name">日志</span>

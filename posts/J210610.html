@@ -214,7 +214,7 @@
         
           
   <li class="menu-item menu-item-home">
-    <a href="/%20" rel="section">
+    <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
 </li>
 
@@ -223,7 +223,7 @@
         
           
   <li class="menu-item menu-item-about">
-    <a href="/about/%20" rel="section">
+    <a href="/about/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
 </li>
 
@@ -232,7 +232,7 @@
         
           
   <li class="menu-item menu-item-tags">
-    <a href="/tags/%20" rel="section">
+    <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
 </li>
 
@@ -241,7 +241,7 @@
         
           
   <li class="menu-item menu-item-categories">
-    <a href="/categories/%20" rel="section">
+    <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
 </li>
 
@@ -250,7 +250,7 @@
         
           
   <li class="menu-item menu-item-archives">
-    <a href="/archives/%20" rel="section">
+    <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
 </li>
 
@@ -259,7 +259,7 @@
         
           
   <li class="menu-item menu-item-schedule">
-    <a href="/schedule/%20" rel="section">
+    <a href="/schedule/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
 </li>
 
@@ -406,14 +406,11 @@
 <p>这种模式创建了一个包含自己对象组的类。该类提供了修改相同对象组的方式。</p>
 <p>从上面的定义可以提取到以下关键词：部分与整体、树形结构。</p>
 <span id="more"></span>
-
 <h2 id="模式示例"><a href="#模式示例" class="headerlink" title="模式示例"></a>模式示例</h2><p>利用组合模式来打印出一个公司员工的树形结构。定义一个员工类Employee，该类被用作组合的模型类，所有其他角色员工都继承该类。角色包括CEO、销售经理、销售、市场经理、市场专员。CEO下有销售经理、市场专员；销售经理下有销售；市场经理下面有市场专员。</p>
 <p>定义<code>Employee</code></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Employee</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">    <span class="keyword">public</span> String dept;</span><br><span class="line">    <span class="keyword">public</span> List&lt;Employee&gt; subEmployees;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Employee</span><span class="params">(String name, String dept)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">        <span class="built_in">this</span>.dept = dept;</span><br><span class="line">        subEmployees = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addEmployee</span><span class="params">(Employee employee)</span> &#123;</span><br><span class="line">        subEmployees.add(employee);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">removeEmployee</span><span class="params">(Employee employee)</span> &#123;</span><br><span class="line">        subEmployees.remove(employee);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Employee&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, dept=&#x27;&quot;</span> + dept + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p><code>Client</code></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Client</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Employee</span> <span class="variable">ceo</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Employee</span>(<span class="string">&quot;Randy&quot;</span>, <span class="string">&quot;CEO&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="type">Employee</span> <span class="variable">saleMgr</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Employee</span>(<span class="string">&quot;Randy1&quot;</span>, <span class="string">&quot;Sales&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="type">Employee</span> <span class="variable">marketMgr</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Employee</span>(<span class="string">&quot;Randy2&quot;</span>, <span class="string">&quot;Markets&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="type">Employee</span> <span class="variable">saleOne</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Employee</span>(<span class="string">&quot;Randy3&quot;</span>, <span class="string">&quot;Sales&quot;</span>);</span><br><span class="line">        <span class="type">Employee</span> <span class="variable">saleTwo</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Employee</span>(<span class="string">&quot;Randy4&quot;</span>, <span class="string">&quot;Sales&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="type">Employee</span> <span class="variable">marketOne</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Employee</span>(<span class="string">&quot;Randy5&quot;</span>, <span class="string">&quot;Market&quot;</span>);</span><br><span class="line">        <span class="type">Employee</span> <span class="variable">marketTwo</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Employee</span>(<span class="string">&quot;Randy6&quot;</span>, <span class="string">&quot;Market&quot;</span>);</span><br><span class="line"></span><br><span class="line">        ceo.addEmployee(saleMgr);</span><br><span class="line">        ceo.addEmployee(marketMgr);</span><br><span class="line"></span><br><span class="line">        saleMgr.addEmployee(saleOne);</span><br><span class="line">        saleMgr.addEmployee(saleTwo);</span><br><span class="line"></span><br><span class="line">        marketMgr.addEmployee(marketOne);</span><br><span class="line">        marketMgr.addEmployee(marketTwo);</span><br><span class="line"></span><br><span class="line">        System.out.println(ceo);</span><br><span class="line">        <span class="keyword">for</span> (Employee employee : ceo.subEmployees) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;    &quot;</span> + employee);</span><br><span class="line">            <span class="keyword">for</span> (Employee employee1 : employee.subEmployees) &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;        &quot;</span> +employee1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 输出结果</span></span><br><span class="line">Employee&#123;name=<span class="string">&#x27;Randy&#x27;</span>, dept=<span class="string">&#x27;CEO&#x27;</span>&#125;</span><br><span class="line">    Employee&#123;name=<span class="string">&#x27;Randy1&#x27;</span>, dept=<span class="string">&#x27;Sales&#x27;</span>&#125;</span><br><span class="line">        Employee&#123;name=<span class="string">&#x27;Randy3&#x27;</span>, dept=<span class="string">&#x27;Sales&#x27;</span>&#125;</span><br><span class="line">        Employee&#123;name=<span class="string">&#x27;Randy4&#x27;</span>, dept=<span class="string">&#x27;Sales&#x27;</span>&#125;</span><br><span class="line">    Employee&#123;name=<span class="string">&#x27;Randy2&#x27;</span>, dept=<span class="string">&#x27;Markets&#x27;</span>&#125;</span><br><span class="line">        Employee&#123;name=<span class="string">&#x27;Randy5&#x27;</span>, dept=<span class="string">&#x27;Market&#x27;</span>&#125;</span><br><span class="line">        Employee&#123;name=<span class="string">&#x27;Randy6&#x27;</span>, dept=<span class="string">&#x27;Market&#x27;</span>&#125;</span><br></pre></td></tr></table></figure>
-
 <p>只要定义一个类，然后通过在<code>Client</code>中进行组合就可以实现组织架构的打印了，很简单。</p>
 <h2 id="模式总结"><a href="#模式总结" class="headerlink" title="模式总结"></a>模式总结</h2><h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><ul>
 <li>优点<ul>
@@ -542,7 +539,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/%20%7C%7C%20archive">
+                  <a href="/archives/%7C%7C%20archive">
                 
                     <span class="site-state-item-count">205</span>
                     <span class="site-state-item-name">日志</span>

@@ -107,7 +107,7 @@
 <meta property="og:description" content="https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A191994.html  摘要 通过本文，记录下gradle最基本的命令讲解。如创建gradle项目的方法、gradle基本命令以及gradle里面的基本概念等。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-10-03T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-10-12T16:06:46.952Z">
+<meta property="article:modified_time" content="2024-02-28T09:49:45.166Z">
 <meta property="article:author" content="Randy Zhang">
 <meta name="twitter:card" content="summary">
 
@@ -214,7 +214,7 @@
         
           
   <li class="menu-item menu-item-home">
-    <a href="/%20" rel="section">
+    <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
 </li>
 
@@ -223,7 +223,7 @@
         
           
   <li class="menu-item menu-item-about">
-    <a href="/about/%20" rel="section">
+    <a href="/about/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
 </li>
 
@@ -232,7 +232,7 @@
         
           
   <li class="menu-item menu-item-tags">
-    <a href="/tags/%20" rel="section">
+    <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
 </li>
 
@@ -241,7 +241,7 @@
         
           
   <li class="menu-item menu-item-categories">
-    <a href="/categories/%20" rel="section">
+    <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
 </li>
 
@@ -250,7 +250,7 @@
         
           
   <li class="menu-item menu-item-archives">
-    <a href="/archives/%20" rel="section">
+    <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
 </li>
 
@@ -259,7 +259,7 @@
         
           
   <li class="menu-item menu-item-schedule">
-    <a href="/schedule/%20" rel="section">
+    <a href="/schedule/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
 </li>
 
@@ -409,38 +409,33 @@
 <p>通过本文，记录下gradle最基本的命令讲解。如创建gradle项目的方法、gradle基本命令以及gradle里面的基本概念等。</p>
 </blockquote>
 <span id="more"></span>
-<p>[toc]</p>
+<p>[TOC]</p>
 <h2 id="创建一个gradle项目"><a href="#创建一个gradle项目" class="headerlink" title="创建一个gradle项目"></a>创建一个gradle项目</h2><p>通过<code>gradle init</code> 命令</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /Documents</span><br><span class="line"><span class="built_in">mkdir</span> gradle-demo1</span><br><span class="line"><span class="built_in">cd</span> gradle-demo1</span><br><span class="line"><span class="comment"># 工作目录准备完毕</span></span><br><span class="line"><span class="comment"># 输入gradle init</span></span><br><span class="line">gradle init</span><br><span class="line"><span class="comment"># 会有如下输出：</span></span><br><span class="line">Select <span class="built_in">type</span> of project to generate:</span><br><span class="line">  1: basic</span><br><span class="line">  2: groovy-application</span><br><span class="line">  3: groovy-library</span><br><span class="line">  4: java-application</span><br><span class="line">  5: java-library</span><br><span class="line">  6: kotlin-application</span><br><span class="line">  7: kotlin-library</span><br><span class="line">  8: scala-library</span><br><span class="line">Enter selection (default: basic) [1..8]</span><br><span class="line"></span><br><span class="line">Select build script DSL:</span><br><span class="line">  1: groovy</span><br><span class="line">  2: kotlin</span><br><span class="line">Enter selection (default: groovy) [1..2]</span><br><span class="line"></span><br><span class="line">Project name (default: gradle-demo):</span><br><span class="line">BUILD SUCCESSFUL <span class="keyword">in</span> 1m 0s</span><br><span class="line">2 actionable tasks: 2 executed</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>上面输出提示已经很清楚了，如果不想选择直接按enter</p>
 </blockquote>
 <p>这样一个名为gradle-demo的项目就新建完成了，项目结构如下：</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">├── build.gradle  </span><br><span class="line">├── gradle</span><br><span class="line">│   └── wrapper</span><br><span class="line">│       ├── gradle-wrapper.jar  </span><br><span class="line">│       └── gradle-wrapper.properties  </span><br><span class="line">├── gradlew  </span><br><span class="line">├── gradlew.bat  </span><br><span class="line">└── settings.gradle  </span><br></pre></td></tr></table></figure>
-
 <h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><ul>
 <li>通过<code>./gradlew tasks</code>来查看Task，</li>
 <li>通过<code>./gradlew properties</code>来查看项目的基础属性</li>
 <li>通过<code>./gradlew 具体Task名 --scan</code> 可以在gradle提供调试网站上查看task运行的具体信息</li>
 </ul>
-<h2 id="常用option"><a href="#常用option" class="headerlink" title="常用option"></a>常用option</h2><p>首先，gradle有众多的option，可以输入gradle –help查看具体帮助，而且都有详细的解释说明</p>
+<h2 id="常用option"><a href="#常用option" class="headerlink" title="常用option"></a>常用option</h2><p>首先，gradle有众多的option，可以输入gradle —help查看具体帮助，而且都有详细的解释说明</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">USAGE: gradle [option...] [task...]</span><br><span class="line"></span><br><span class="line">-?, -h, --help            Shows this help message.</span><br><span class="line">-a, --no-rebuild          Do not rebuild project dependencies.</span><br><span class="line">-b, --build-file          Specify the build file.</span><br><span class="line">--build-cache             Enables the Gradle build cache. Gradle will try to reuse outputs from previous builds.</span><br><span class="line">-c, --settings-file       Specify the settings file.</span><br><span class="line">--configure-on-demand     Configure necessary projects only. Gradle will attempt to reduce configuration time for large multi-project builds. [incubating]</span><br><span class="line">--console                 Specifies which type of console output to generate. Values are &#x27;plain&#x27;, &#x27;auto&#x27; (default), &#x27;rich&#x27; or &#x27;verbose&#x27;.</span><br><span class="line">--continue                Continue task execution after a task failure.</span><br><span class="line">-D, --system-prop         Set system property of the JVM (e.g. -Dmyprop=myvalue).</span><br><span class="line">-d, --debug               Log in debug mode (includes normal stacktrace).</span><br><span class="line">--daemon                  Uses the Gradle Daemon to run the build. Starts the Daemon if not running.</span><br><span class="line">--foreground              Starts the Gradle Daemon in the foreground.</span><br><span class="line">-g, --gradle-user-home    Specifies the gradle user home directory.</span><br><span class="line">-I, --init-script         Specify an initialization script.</span><br><span class="line">-i, --info                Set log level to info.</span><br><span class="line">--include-build           Include the specified build in the composite.</span><br><span class="line">-m, --dry-run             Run the builds with all task actions disabled.</span><br><span class="line">--max-workers             Configure the number of concurrent workers Gradle is allowed to use.</span><br><span class="line">--no-build-cache          Disables the Gradle build cache.</span><br><span class="line">--no-configure-on-demand  Disables the use of configuration on demand. [incubating]</span><br><span class="line">--no-daemon               Do not use the Gradle daemon to run the build. Useful occasionally if you have configured Gradle to always run with the daemon by default.</span><br><span class="line">--no-parallel             Disables parallel execution to build projects.</span><br><span class="line">--no-scan                 Disables the creation of a build scan. For more information about build scans, please visit https://gradle.com/build-scans.</span><br><span class="line">--offline                 Execute the build without accessing network resources.</span><br><span class="line">-P, --project-prop        Set project property for the build script (e.g. -Pmyprop=myvalue).</span><br><span class="line">-p, --project-dir         Specifies the start directory for Gradle. Defaults to current directory.</span><br><span class="line">--parallel                Build projects in parallel. Gradle will attempt to determine the optimal number of executor threads to use.</span><br><span class="line">--priority                Specifies the scheduling priority for the Gradle daemon and all processes launched by it. Values are &#x27;normal&#x27; (default) or &#x27;low&#x27; [incubating]</span><br><span class="line">--profile                 Profile build execution time and generates a report in the &lt;build_dir&gt;/reports/profile directory.</span><br><span class="line">--project-cache-dir       Specify the project-specific cache directory. Defaults to .gradle in the root project directory.</span><br><span class="line">-q, --quiet               Log errors only.</span><br><span class="line">--refresh-dependencies    Refresh the state of dependencies.</span><br><span class="line">--rerun-tasks             Ignore previously cached task results.</span><br><span class="line">-S, --full-stacktrace     Print out the full (very verbose) stacktrace for all exceptions.</span><br><span class="line">-s, --stacktrace          Print out the stacktrace for all exceptions.</span><br><span class="line">--scan                    Creates a build scan. Gradle will emit a warning if the build scan plugin has not been applied. (https://gradle.com/build-scans)</span><br><span class="line">--status                  Shows status of running and recently stopped Gradle Daemon(s).</span><br><span class="line">--stop                    Stops the Gradle Daemon if it is running.</span><br><span class="line">-t, --continuous          Enables continuous build. Gradle does not exit and will re-execute tasks when task file inputs change.</span><br><span class="line">--update-locks            Perform a partial update of the dependency lock, letting passed in module notations change version. [incubating]</span><br><span class="line">-v, --version             Print version info.</span><br><span class="line">-w, --warn                Set log level to warn.</span><br><span class="line">--warning-mode            Specifies which mode of warnings to generate. Values are &#x27;all&#x27;, &#x27;summary&#x27;(default) or &#x27;none&#x27;</span><br><span class="line">--write-locks             Persists dependency resolution for locked configurations, ignoring existing locking information if it exists [incubating]</span><br><span class="line">-x, --exclude-task        Specify a task to be excluded from execution.</span><br></pre></td></tr></table></figure>
-
 <h2 id="Task相关"><a href="#Task相关" class="headerlink" title="Task相关"></a>Task相关</h2><h3 id="task的特点"><a href="#task的特点" class="headerlink" title="task的特点"></a>task的特点</h3><p>其实gradle中Task相关的定义都在AbstractTask.java这个类中有定义，如常见的：</p>
 <p>doFirst、doLast、dependsOn等</p>
 <p>几点说明：</p>
 <ul>
 <li><p>lazy dependsOn，即被依赖的task无需提前声明</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">task taskA &#123;</span><br><span class="line">  dependsOn <span class="string">&#x27;taskB&#x27;</span></span><br><span class="line">  doLast &#123;</span><br><span class="line">    println <span class="string">&#x27;taskA&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">task taskB &#123;</span><br><span class="line">  doLast &#123;</span><br><span class="line">    println <span class="string">&#x27;taskB&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>上面演示的就是taskA依赖于taskB，但taskB的声明在taskA之后</p>
 </blockquote>
 </li>
 <li><p>dynamic Tasks，即可以动态的添加Tasks</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">task dynamicTasks &#123;</span><br><span class="line">    <span class="number">4.</span>times &#123; counter -&gt;</span><br><span class="line">        task <span class="string">&quot;task$counter&quot;</span> &#123;</span><br><span class="line">            doLast &#123;</span><br><span class="line">                println <span class="string">&quot;I&#x27;m task number $counter&quot;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>上面的dynamicTasks运行后，会生成4个task，分别是task0、task1、task2、task3，且都可以单独运行</p>
 </blockquote>
@@ -448,47 +443,40 @@
 </ul>
 <h3 id="task的定义与创建"><a href="#task的定义与创建" class="headerlink" title="task的定义与创建"></a>task的定义与创建</h3><p>task有如下可以用如下几种方式定义与创建</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"># 方式<span class="number">1</span></span><br><span class="line">task taskName &#123;</span><br><span class="line">  doLast &#123;</span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">#方式<span class="number">2</span></span><br><span class="line">task(<span class="string">&#x27;taskname&#x27;</span>) &#123;</span><br><span class="line">  doLast &#123;</span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">#方式<span class="number">3</span></span><br><span class="line">task(<span class="string">&#x27;copy&#x27;</span>, <span class="attr">type:</span> Copy) &#123;</span><br><span class="line">  from(file(<span class="string">&#x27;srcDir&#x27;</span>))</span><br><span class="line">  into(buildDir)</span><br><span class="line">&#125;</span><br><span class="line">#方法<span class="number">4</span> 采用task 容器</span><br><span class="line">tasks.create(<span class="string">&#x27;hello&#x27;</span>) &#123;</span><br><span class="line">  doLast &#123;</span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">tasks.create(<span class="string">&#x27;copy&#x27;</span>, Copy) &#123;</span><br><span class="line">  doLast &#123;</span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h3 id="task的访问与获取"><a href="#task的访问与获取" class="headerlink" title="task的访问与获取"></a>task的访问与获取</h3><p>可以采用以下方法访问task</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">#方式<span class="number">1</span> 通过Project的属性来访问</span><br><span class="line">task hello </span><br><span class="line">task copy(<span class="attr">type:</span> Copy)</span><br><span class="line"></span><br><span class="line">println hello.name(or println project.hello.name)</span><br><span class="line">println copy.destinationDir(or println project.copy.destinationDir)</span><br><span class="line"></span><br><span class="line">#方式<span class="number">2</span> 通过task container</span><br><span class="line"></span><br><span class="line">println tasks.hello.name</span><br><span class="line">println tasks.named(<span class="string">&#x27;hello&#x27;</span>).get().name</span><br><span class="line"></span><br><span class="line">println tasks.copy.destinationDir</span><br><span class="line">pringln tasks.named(<span class="string">&#x27;copy&#x27;</span>).get().destinationDir</span><br><span class="line"></span><br><span class="line">#方式<span class="number">3</span> 通过task container的getByPath(param)方法 param 可以穿task的名称、task的相对路径或者task的绝对路径</span><br><span class="line">project(<span class="string">&#x27;:projectA&#x27;</span>) &#123;</span><br><span class="line">  task hello</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">task hello</span><br><span class="line"></span><br><span class="line">println tasks.getByPath(<span class="string">&#x27;hello&#x27;</span>).path</span><br><span class="line">println tasks.getByPath(<span class="string">&#x27;:hello&#x27;</span>).path</span><br><span class="line">println tasks.getByPath(<span class="string">&#x27;projectA:hello&#x27;</span>).path</span><br><span class="line">println tasks.getByPath(<span class="string">&#x27;:projectA:hello&#x27;</span>).path</span><br></pre></td></tr></table></figure>
-
 <h3 id="task的配置"><a href="#task的配置" class="headerlink" title="task的配置"></a>task的配置</h3><p>先创建一个没有默认行为的copy task</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">task myCopy(<span class="attr">type:</span> Copy)</span><br></pre></td></tr></table></figure>
-
 <ol>
 <li><p>使用gradle提供的Api配置</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Copy myCopy = tasks.getByName(<span class="string">&quot;myCopy&quot;</span>)</span><br><span class="line">myCopy.from <span class="string">&#x27;resources&#x27;</span></span><br><span class="line">myCopy.info <span class="string">&#x27;target&#x27;</span></span><br><span class="line">myCopy.include(<span class="string">&#x27;**/*.txt&#x27;</span>, <span class="string">&#x27;**/*.xml&#x27;</span>, <span class="string">&#x27;**/*.properties&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
 <p>将resources目录下面所有以.txt、.xml、.properties结尾的文件拷贝到target目录</p>
 </li>
 <li><p>使用DSL规范语法来配置</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">myCopy &#123;</span><br><span class="line">  from <span class="string">&#x27;resources&#x27;</span></span><br><span class="line">  into <span class="string">&#x27;target&#x27;</span></span><br><span class="line">  # 直接添加到这里也可以</span><br><span class="line">#  include(<span class="string">&#x27;**/*.txt&#x27;</span>, <span class="string">&#x27;**/*.xml&#x27;</span>, <span class="string">&#x27;**/*.properties&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line">myCopy.include(<span class="string">&#x27;**/*.txt&#x27;</span>, <span class="string">&#x27;**/*.xml&#x27;</span>, <span class="string">&#x27;**/*.properties&#x27;</span>)</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">myCopy &#123;</span><br><span class="line">  from <span class="string">&#x27;resources&#x27;</span></span><br><span class="line">  into <span class="string">&#x27;target&#x27;</span></span><br><span class="line">  # 直接添加到这里也可以</span><br><span class="line">#  include(<span class="string">&#x27;**/*.txt&#x27;</span>, <span class="string">&#x27;**/*.xml&#x27;</span>, <span class="string">&#x27;**/*.properties&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line">myCopy.include(<span class="string">&#x27;**/*.txt&#x27;</span>, <span class="string">&#x27;**/*.xml&#x27;</span>, <span class="string">&#x27;**/*.properties&#x27;</span>)</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
 <h3 id="向task的构造函数中传参"><a href="#向task的构造函数中传参" class="headerlink" title="向task的构造函数中传参"></a>向task的构造函数中传参</h3><p>这里遇到了点问题，直接在demo中添加@Inject注解时找不到</p>
 <h3 id="task的操作"><a href="#task的操作" class="headerlink" title="task的操作"></a>task的操作</h3><p>这里的操作主要是指task的提供的一些API操作</p>
 <p><strong>动态添加依赖</strong></p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">4.</span>times &#123; counter -&gt;</span><br><span class="line">	task <span class="string">&quot;task$counter&quot;</span> &#123;</span><br><span class="line">  	doLast &#123;</span><br><span class="line">    	println <span class="string">&quot;I&#x27;m task number $counter&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"># task <span class="number">0</span> 依赖于task2和task3的运行</span><br><span class="line">task0.dependsOn task2, task3</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">4.</span>times &#123; counter -&gt;</span><br><span class="line">    task <span class="string">&quot;task$counter&quot;</span> &#123;</span><br><span class="line">      doLast &#123;</span><br><span class="line">        println <span class="string">&quot;I&#x27;m task number $counter&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"># task <span class="number">0</span> 依赖于task2和task3的运行</span><br><span class="line">task0.dependsOn task2, task3</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>此时运行task0，会先运行task2和task3，在运行task0</p>
 </blockquote>
 <p><strong>动态添加某些行为</strong></p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">task hello &#123;</span><br><span class="line">  doLast &#123;</span><br><span class="line">    println <span class="string">&#x27;Hello doLast&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">hello.doFirst &#123;</span><br><span class="line">  println <span class="string">&#x27;Hello doFirst&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">hello.configure &#123;</span><br><span class="line">  doLast &#123;</span><br><span class="line">    println <span class="string">&quot;Hello doLast by configure first time&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">hello.configure &#123;</span><br><span class="line">  doLast &#123;</span><br><span class="line">    println <span class="string">&#x27;Hello doLast by configure second time&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>注意doFirst执行在doLast之前，多个doLast执行循序按其在加入Action列表的循序执行</p>
 </blockquote>
 <p><strong>快捷的获取task的属性</strong></p>
 <p>在一个task中可以很方便的获取另一个已经定义好的task的属性</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">task anotherHello &#123;</span><br><span class="line">  doLast &#123;</span><br><span class="line">    println <span class="string">&quot;another hello got hello task&#x27;s name, is $hello.name&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>注意这里要用<strong>双引号</strong></p>
 </blockquote>
 <p><strong>为task添加属性</strong></p>
 <p>可以为一个task添加自定义属性</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">task myTask &#123;</span><br><span class="line">  ext.myProperty = <span class="string">&quot;myValue&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">task printTaskProperties &#123;</span><br><span class="line">  doLast &#123;</span><br><span class="line">    println myTask.myProperty</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>task的额外属性的添加是没有限制的，只要你想，你可以添加任意多的自定义属性</p>
 </blockquote>
@@ -603,7 +591,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/%20%7C%7C%20archive">
+                  <a href="/archives/%7C%7C%20archive">
                 
                     <span class="site-state-item-count">205</span>
                     <span class="site-state-item-name">日志</span>

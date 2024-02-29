@@ -214,7 +214,7 @@
         
           
   <li class="menu-item menu-item-home">
-    <a href="/%20" rel="section">
+    <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
 </li>
 
@@ -223,7 +223,7 @@
         
           
   <li class="menu-item menu-item-about">
-    <a href="/about/%20" rel="section">
+    <a href="/about/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
 </li>
 
@@ -232,7 +232,7 @@
         
           
   <li class="menu-item menu-item-tags">
-    <a href="/tags/%20" rel="section">
+    <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
 </li>
 
@@ -241,7 +241,7 @@
         
           
   <li class="menu-item menu-item-categories">
-    <a href="/categories/%20" rel="section">
+    <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
 </li>
 
@@ -250,7 +250,7 @@
         
           
   <li class="menu-item menu-item-archives">
-    <a href="/archives/%20" rel="section">
+    <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
 </li>
 
@@ -259,7 +259,7 @@
         
           
   <li class="menu-item menu-item-schedule">
-    <a href="/schedule/%20" rel="section">
+    <a href="/schedule/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
 </li>
 
@@ -419,7 +419,6 @@
 <li>通知常用的一些操作；</li>
 </ul>
 <span id="more"></span>
-
 <h3 id="通知的使用"><a href="#通知的使用" class="headerlink" title="通知的使用"></a>通知的使用</h3><h4 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h4><p>通知五常用要素</p>
 <ol>
 <li>通知小图标，通过<code>setSmallIcon</code>设置；</li>
@@ -443,8 +442,8 @@
 <h3 id="通知适配要注意的问题"><a href="#通知适配要注意的问题" class="headerlink" title="通知适配要注意的问题"></a>通知适配要注意的问题</h3><p>通知适配时需要注意一下问题。</p>
 <ol>
 <li>在Api&lt;16版本中，可以直接通过<code>new</code>来实例化一个通知对象，然后配置其属性；</li>
-<li>在Api&gt;&#x3D;16版本中，则需要通过NotificationCompat.Builder来配置并实例化通知对象，这里的NotificationCompat.Builder最好采用最新的support库（28.0.0）或者直接用androidX库，因为它做好了各个版本间的兼容处理；如果没有采用支持库，则需要自己代码中根据版本判断来判断采用哪个版本的Builder来创建Notification对象。</li>
-<li>Android 8.0 以上（Api&gt;&#x3D; 26）通知使用时必须采用NotificationChannel形式来进行，同时原来通过Builder来配置的一些通知属性改为通过NotificationChannel来设置，如呼吸灯、是否震动、通知音效等。</li>
+<li>在Api&gt;=16版本中，则需要通过NotificationCompat.Builder来配置并实例化通知对象，这里的NotificationCompat.Builder最好采用最新的support库（28.0.0）或者直接用androidX库，因为它做好了各个版本间的兼容处理；如果没有采用支持库，则需要自己代码中根据版本判断来判断采用哪个版本的Builder来创建Notification对象。</li>
+<li>Android 8.0 以上（Api&gt;= 26）通知使用时必须采用NotificationChannel形式来进行，同时原来通过Builder来配置的一些通知属性改为通过NotificationChannel来设置，如呼吸灯、是否震动、通知音效等。</li>
 <li>通知的部分配置，如addAction()、setStyle()等，在不同系统上表现不同，在Android 6.0以下添加额外的Action和Style无效。</li>
 </ol>
 <h3 id="通知系统其它组件结合使用"><a href="#通知系统其它组件结合使用" class="headerlink" title="通知系统其它组件结合使用"></a>通知系统其它组件结合使用</h3><ol>
@@ -455,7 +454,7 @@
 <li>通过 startService启动的Service，调用startForground可以使Service运行于前台；默认启动的Service都是运行于background的；</li>
 <li>利用通知来展示带进度的更新内容时，需要知道最初的notifyId，同时还要设置好相应的PendingIntent的Flag值</li>
 </ol>
-<h3 id="自定义通知栏的实现"><a href="#自定义通知栏的实现" class="headerlink" title="自定义通知栏的实现"></a>自定义通知栏的实现</h3><p>大多数音乐播放器后台播放音乐时，都有一个自定义的通知栏，这个通知栏通常包括上一首、播放&#x2F;暂停、下一首等功能，这些可以通过自定义通知栏来实现。</p>
+<h3 id="自定义通知栏的实现"><a href="#自定义通知栏的实现" class="headerlink" title="自定义通知栏的实现"></a>自定义通知栏的实现</h3><p>大多数音乐播放器后台播放音乐时，都有一个自定义的通知栏，这个通知栏通常包括上一首、播放/暂停、下一首等功能，这些可以通过自定义通知栏来实现。</p>
 <h4 id="自定义通知栏遇到的问题"><a href="#自定义通知栏遇到的问题" class="headerlink" title="自定义通知栏遇到的问题"></a>自定义通知栏遇到的问题</h4><ol>
 <li>快速切换通知栏的上一首下一首，由于远程调用，可能存在界面更新不及时的问题；</li>
 <li>不同系统版本的通知栏需要有不同的布局，因为不是所有版本都支持大通知栏样式；</li>
@@ -579,7 +578,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/%20%7C%7C%20archive">
+                  <a href="/archives/%7C%7C%20archive">
                 
                     <span class="site-state-item-count">205</span>
                     <span class="site-state-item-name">日志</span>

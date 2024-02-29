@@ -215,7 +215,7 @@
         
           
   <li class="menu-item menu-item-home">
-    <a href="/%20" rel="section">
+    <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
 </li>
 
@@ -224,7 +224,7 @@
         
           
   <li class="menu-item menu-item-about">
-    <a href="/about/%20" rel="section">
+    <a href="/about/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
 </li>
 
@@ -233,7 +233,7 @@
         
           
   <li class="menu-item menu-item-tags">
-    <a href="/tags/%20" rel="section">
+    <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
 </li>
 
@@ -242,7 +242,7 @@
         
           
   <li class="menu-item menu-item-categories">
-    <a href="/categories/%20" rel="section">
+    <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
 </li>
 
@@ -251,7 +251,7 @@
         
           
   <li class="menu-item menu-item-archives">
-    <a href="/archives/%20" rel="section">
+    <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
 </li>
 
@@ -260,7 +260,7 @@
         
           
   <li class="menu-item menu-item-schedule">
-    <a href="/schedule/%20" rel="section">
+    <a href="/schedule/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
 </li>
 
@@ -412,17 +412,13 @@
 </ol>
 <p>在必要软件安装好后，利用<code>npm</code> （javascript package manager）来安装hexo：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-
 <p>安装好hexo后，就可以开始建站了：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init &lt;site_folder&gt;        // 初始化网站目录</span><br><span class="line">cd &lt;site_folder&gt;                    // 切换到网站目录</span><br><span class="line">npm install                                // 安装网站以来的文件，执行完毕后，当前目录回生成一个                                                            // node_modules文件夹</span><br></pre></td></tr></table></figure>
-
 <p>网站目录介绍</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">├── _config.yml                        // 网站配置文件</span><br><span class="line">├── package.json                    // 网站依赖文件</span><br><span class="line">├── scaffolds                            // 模板文件夹</span><br><span class="line">├── node_modules                    // 以来的node插件库</span><br><span class="line">├── source                                // 可以成为网站的源文件夹</span><br><span class="line">|   ├── _drafts                        // 文章草稿文件夹</span><br><span class="line">|   └── _posts                        // 已发布的文章文件夹</span><br><span class="line">├── public                                // 网站生成的静态文件放置在给文件夹</span><br><span class="line">└── themes                                // 主题文件夹</span><br></pre></td></tr></table></figure>
-
 <p>上面就是hexo网站的基本结构了，接下来是具体的设置。</p>
 <h2 id="Hexo-文章分类"><a href="#Hexo-文章分类" class="headerlink" title="Hexo 文章分类"></a>Hexo 文章分类</h2><p>在文章开头的yaml属性配置中添加如下内容：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">categories: </span><br><span class="line">- 一级分类</span><br><span class="line">- 二级分类</span><br></pre></td></tr></table></figure>
-
 <p>yaml支持以下属性：</p>
 <ul>
 <li>layout，采用的布局可以是post，page，draft；</li>
@@ -438,14 +434,13 @@
 <li>下载好要更换的主题</li>
 <li>在Hexo根目录找到配置文件，搜索theme，讲主题名字替换为你下载好的主题</li>
 </ul>
-<p>2022&#x2F;02&#x2F;20补充<br>出现网站首页打开不了的情况，但是具体的某一篇链接却可以打开，然来是之前添加制定功能时安装了插件：<code>hexo-generator-index-pin-top</code>，在安装之前将默认的<code>hexo-generator-index</code>插件卸载了，导致无法生成主页的index文件</p>
+<p>2022/02/20补充<br>出现网站首页打开不了的情况，但是具体的某一篇链接却可以打开，然来是之前添加制定功能时安装了插件：<code>hexo-generator-index-pin-top</code>，在安装之前将默认的<code>hexo-generator-index</code>插件卸载了，导致无法生成主页的index文件</p>
 <p>常用主题配置说明：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="http://shenzekun.cn/hexo%E7%9A%84next%E4%B8%BB%E9%A2%98%E4%B8%AA%E6%80%A7%E5%8C%96%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B.html">hexo个性化配置</a>(修改的时next主题)</li>
 <li><a target="_blank" rel="noopener" href="https://github.com/litten/hexo-theme-yilia">yilia主题配置说明</a></li>
 </ul>
 <span id="more"></span>
-
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_58068682/article/details/116611715">Hexo博客技巧：添加自定义html页面</a></p>
 <h2 id="Hexo博文配图方法"><a href="#Hexo博文配图方法" class="headerlink" title="Hexo博文配图方法"></a>Hexo博文配图方法</h2><p>参考链接：</p>
 <p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/cf0628478a4e">Hexo发布博客引用自带图片的方法</a></p>
@@ -465,25 +460,19 @@
 <h2 id="修改永久链接的默认格式"><a href="#修改永久链接的默认格式" class="headerlink" title="修改永久链接的默认格式"></a>修改永久链接的默认格式</h2><p>hexo默认的永久链接格式是<code>:year/:month/:day/:title</code>，如果文章标题是中文的，会出现各种问题。这里介绍下修改永久链接默认格式的方法。</p>
 <h3 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h3><p>在站点的根目录安装如下插件：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-abbrlink --save</span><br></pre></td></tr></table></figure>
-
 <h3 id="修改站点配置文件"><a href="#修改站点配置文件" class="headerlink" title="修改站点配置文件"></a>修改站点配置文件</h3><p>打开根目录下的<code>_config.yml</code>，修改如下配置：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#permalink: :year/:month/:day/:title/</span></span><br><span class="line"><span class="comment">#permalink_defaults:</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">posts/:abbrlink.html</span></span><br><span class="line"><span class="attr">abbrlink:</span> </span><br><span class="line">  <span class="attr">alg:</span> <span class="string">crc32</span>  <span class="comment"># 算法：crc16(default) and crc32</span></span><br><span class="line">  <span class="attr">rep:</span> <span class="string">hex</span>    <span class="comment"># 进制：dec(default) and hex</span></span><br></pre></td></tr></table></figure>
-
 <p>然后执行hexo 操作三连：<code>hexo clean</code>、<code>hexo g</code>、<code>hexo d</code>，即可看到默认的链接样式改成了如下样式：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BLOG_HOST/posts/0.html # BLOG_HOST为博客域名，“0”为自己指定（或abbrlink生成的）链接名</span><br></pre></td></tr></table></figure>
-
 <p>注意，我们可以自己指定链接名（不要重复就行了），在文章开头添加：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">abbrlink:</span> <span class="string">&#x27;自定义链接&#x27;</span></span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>注意：我在应用abbrlink插件时，添加的图片无法显示下来，搜索了好久，没有解决，然后就在source中添加一个images，将文章的图片添加到images中，然后再md中采用相对链接的方式来引用图片，然后解决了问题。<br>之前没有使用abbrlink时单独使用hexo-asset-image插件图片时可以显示的，现在不能显示很可能是前者对后者产生了影响，可以尝试修改插件源码来解决问题。</p>
 </blockquote>
 <h2 id="草稿文章处理"><a href="#草稿文章处理" class="headerlink" title="草稿文章处理"></a>草稿文章处理</h2><h3 id="预览草稿"><a href="#预览草稿" class="headerlink" title="预览草稿"></a>预览草稿</h3><p>只想下面的命令，可以本机预览草稿：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s --draft</span><br></pre></td></tr></table></figure>
-
 <h3 id="发布草稿"><a href="#发布草稿" class="headerlink" title="发布草稿"></a>发布草稿</h3><p>执行下面代码，可以发布本机草稿：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo p &lt;filename&gt; #filename为不带.md后缀的草稿文件名称</span><br></pre></td></tr></table></figure>
-
 <h2 id="Hexo文章置顶"><a href="#Hexo文章置顶" class="headerlink" title="Hexo文章置顶"></a>Hexo文章置顶</h2><p>文章多了，发现置顶就成了一个很必要的功能了，这里在晚上搜索了下相关的方法。</p>
 <ul>
 <li><p>修改hexo源码，具体参考<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/42a4efcdf8d7">解决Hexo文章置顶问题</a>；</p>
@@ -497,10 +486,36 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-index-pin-top --save</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>在需要置顶的文章的<code>Front-matter</code>中加上<code>top: true</code>即可，比如如果想置顶这篇文章，就可以修改器<code>Front-matter</code>为一下格式：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">title:</span> <span class="string">通用功能——Hexo搭建个人博客</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">通用</span></span><br><span class="line"><span class="attr">tags:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">环境配置</span></span><br><span class="line"><span class="attr">abbrlink:</span> <span class="string">&#x27;O180114&#x27;</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2018-01-14 10:30:22</span></span><br><span class="line"><span class="attr">updated:</span> <span class="number">2019-10-21 00:00:00</span></span><br><span class="line"><span class="attr">top:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">title:</span> <span class="string">通用功能——Hexo搭建个人博客</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">通用</span></span><br><span class="line"><span class="attr">tags:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">环境配置</span></span><br><span class="line"><span class="attr">abbrlink:</span> <span class="string">&#x27;O180114&#x27;</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2018-01-14 10:30:22</span></span><br><span class="line"><span class="attr">updated:</span> <span class="number">2019-10-21 00:00:00</span></span><br><span class="line"><span class="attr">top:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+</li>
 </ol>
 </li>
 </ul>
+<h2 id="Hexo数学公式显示"><a href="#Hexo数学公式显示" class="headerlink" title="Hexo数学公式显示"></a>Hexo数学公式显示</h2><h4 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h4><p>Hexo默认使用 hexo-renderer-marked 引擎渲染网页，该引擎会把一些特殊的 markdown 符号转换为相应的 html 标签，比如在 markdown 语法中，下划线<code>_</code>代表斜体，会被渲染引擎处理为<code>&lt;em&gt;</code>标签。</p>
+<p>因为类 Latex 格式书写的数学公式下划线<code>_</code>表示下标，有特殊的含义，如果被强制转换为<code>&lt;em&gt;</code>标签，那么 MathJax 引擎在渲染数学公式的时候就会出错。</p>
+<p>类似的语义冲突的符号还包括<code>*</code>, <code>&#123;</code>, <code>&#125;</code>, <code>\\</code>等。</p>
+<h4 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h4><p>第一步，更换 Hexo 的 markdown 渲染引擎，hexo-renderer-kramed 引擎是在默认的渲染引擎 hexo-renderer-marked 的基础上修改了一些 bug ，两者比较接近，也比较轻量级。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall hexo-renderer-marked --save</span><br><span class="line">npm install hexo-renderer-kramed --save</span><br></pre></td></tr></table></figure>
+<p>第二步，经过上面修改后，块数学公式可以在第三步第四步完成后可以正常显示了，但是行内数学公式不行，因为 <code>hexo-renderer-kramed</code> 引擎也有语义冲突的问题。接下来到博客根目录下，找到<code>node_modules\kramed\lib\rules\inline.js</code>，找到对应的内容并作相应修改</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//escape: /^\\([\\`*&#123;&#125;\[\]()#$+\-.!_&gt;])/,</span></span><br><span class="line">  <span class="attr">escape</span>: <span class="regexp">/^\\([`*\[\]()#$+\-.!_&gt;])/</span>,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//em: /^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,</span></span><br><span class="line">  <span class="attr">em</span>: <span class="regexp">/^\*((?:\*\*|[\s\S])+?)\*(?!\*)/</span>,</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>说明：</p>
+<ol>
+<li>escape的修改 <strong>是在原基础上取消了对\,{,}的转义</strong></li>
+</ol>
+</blockquote>
+<p>第三步，一般经过上面两部然后重启hexo，就可以解决问题了，如果还没有解决的话，需要做一下检查：</p>
+<ol>
+<li><p>使用的主题中 Math渲染开关是否打开，打开方法如下：</p>
+<p>找到使用主题的根目录（我用的是next主题），打开<code>_config.yml</code>配置文件，找到math配置项，进行如下修改：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Math Equations Render Support</span></span><br><span class="line"><span class="attr">math:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Default(true) will load mathjax/katex script on demand</span></span><br><span class="line">  <span class="comment"># That is it only render those page who has &#x27;mathjax: true&#x27; in Front Matter.</span></span><br><span class="line">  <span class="comment"># If you set it to false, it will load mathjax/katex srcipt EVERY PAGE.</span></span><br><span class="line">  <span class="attr">per_page:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">engine:</span> <span class="string">mathjax</span></span><br><span class="line">  <span class="comment">#engine: katex</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>文章头部是否设置了 Math渲染支持，如果没有添加支持，添加上即可，添加方法如下：</p>
+<p>在文章的Front-matter里打开mathjax开关，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">title: 通用功能——Markdown常用格式说明</span><br><span class="line">categories:</span><br><span class="line">- 通用</span><br><span class="line">abbrlink: &#x27;A240229&#x27;</span><br><span class="line">mathjax: true</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这样就解决了Hexo 博客 Math公式渲染的问题了，开心。</p>
 <h2 id="Hexo升级相关"><a href="#Hexo升级相关" class="headerlink" title="Hexo升级相关"></a>Hexo升级相关</h2><ol>
 <li><p>安装 软件更新检查插件</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install npm-check-updates -g</span><br></pre></td></tr></table></figure>
@@ -511,9 +526,10 @@
 <li><p>运行<code>ncu-u</code> 来更新<code>package.json</code>文件</p>
 </li>
 <li><p>删除老的node_moudles，重新安装</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rm -rf node_modules </span><br><span class="line">npm install --save</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rm -rf node_modules </span><br><span class="line">npm install --save</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
-<h2 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h2><ol>
+<h2 id="问题解决-1"><a href="#问题解决-1" class="headerlink" title="问题解决"></a>问题解决</h2><ol>
 <li><p>hexo里面表格失效？<br>解决：表格开头加两个空行。</p>
 </li>
 <li><p>目录及文件名中的中文提示 乱码</p>
@@ -526,11 +542,15 @@
 </li>
 <li><p>hexo更新后，生成部署成功后，博客无法打开，看了下生成的静态文件，出现如下代码</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% extends ‘_layout.swig‘ %&#125; &#123;% import ‘_macro/post.swig‘ as post_template %&#125;</span><br></pre></td></tr></table></figure>
-
 <p>原因是hexo在5.0之后把swig给删除了需要自己手动安装，通过如下方式解决：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-renderer-swig</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-renderer-swig</span><br></pre></td></tr></table></figure>
+<pre><code> 即重新安装该插件。
+</code></pre></li>
+<li><p>hexo 更新后，next主题的博客点击导航栏报错如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cannot GET / about/%20/</span><br></pre></td></tr></table></figure>
+<p>%20 是空格的意思，把next主题配置文件（<code>_comfig.xml</code>）里 ||之前所有的空格删掉即可。</p>
+</li>
 </ol>
-<p>        即重新安装该插件。</p>
 
       
     </div>
@@ -648,7 +668,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/%20%7C%7C%20archive">
+                  <a href="/archives/%7C%7C%20archive">
                 
                     <span class="site-state-item-count">205</span>
                     <span class="site-state-item-name">日志</span>
@@ -891,7 +911,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="nav-number">1.</span> <span class="nav-text">Hexo 环境搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-%E6%96%87%E7%AB%A0%E5%88%86%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">Hexo 文章分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-%E6%9B%B4%E6%8D%A2%E4%B8%BB%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">Hexo 更换主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo%E5%8D%9A%E6%96%87%E9%85%8D%E5%9B%BE%E6%96%B9%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">Hexo博文配图方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-draft%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">5.</span> <span class="nav-text">Hexo draft的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E6%B0%B8%E4%B9%85%E9%93%BE%E6%8E%A5%E7%9A%84%E9%BB%98%E8%AE%A4%E6%A0%BC%E5%BC%8F"><span class="nav-number">6.</span> <span class="nav-text">修改永久链接的默认格式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6"><span class="nav-number">6.1.</span> <span class="nav-text">安装插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E7%AB%99%E7%82%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">6.2.</span> <span class="nav-text">修改站点配置文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8D%89%E7%A8%BF%E6%96%87%E7%AB%A0%E5%A4%84%E7%90%86"><span class="nav-number">7.</span> <span class="nav-text">草稿文章处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E8%A7%88%E8%8D%89%E7%A8%BF"><span class="nav-number">7.1.</span> <span class="nav-text">预览草稿</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%91%E5%B8%83%E8%8D%89%E7%A8%BF"><span class="nav-number">7.2.</span> <span class="nav-text">发布草稿</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo%E6%96%87%E7%AB%A0%E7%BD%AE%E9%A1%B6"><span class="nav-number">8.</span> <span class="nav-text">Hexo文章置顶</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo%E5%8D%87%E7%BA%A7%E7%9B%B8%E5%85%B3"><span class="nav-number">9.</span> <span class="nav-text">Hexo升级相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3"><span class="nav-number">10.</span> <span class="nav-text">问题解决</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="nav-number">1.</span> <span class="nav-text">Hexo 环境搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-%E6%96%87%E7%AB%A0%E5%88%86%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">Hexo 文章分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-%E6%9B%B4%E6%8D%A2%E4%B8%BB%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">Hexo 更换主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo%E5%8D%9A%E6%96%87%E9%85%8D%E5%9B%BE%E6%96%B9%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">Hexo博文配图方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-draft%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">5.</span> <span class="nav-text">Hexo draft的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E6%B0%B8%E4%B9%85%E9%93%BE%E6%8E%A5%E7%9A%84%E9%BB%98%E8%AE%A4%E6%A0%BC%E5%BC%8F"><span class="nav-number">6.</span> <span class="nav-text">修改永久链接的默认格式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6"><span class="nav-number">6.1.</span> <span class="nav-text">安装插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E7%AB%99%E7%82%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">6.2.</span> <span class="nav-text">修改站点配置文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8D%89%E7%A8%BF%E6%96%87%E7%AB%A0%E5%A4%84%E7%90%86"><span class="nav-number">7.</span> <span class="nav-text">草稿文章处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E8%A7%88%E8%8D%89%E7%A8%BF"><span class="nav-number">7.1.</span> <span class="nav-text">预览草稿</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%91%E5%B8%83%E8%8D%89%E7%A8%BF"><span class="nav-number">7.2.</span> <span class="nav-text">发布草稿</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo%E6%96%87%E7%AB%A0%E7%BD%AE%E9%A1%B6"><span class="nav-number">8.</span> <span class="nav-text">Hexo文章置顶</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E6%98%BE%E7%A4%BA"><span class="nav-number">9.</span> <span class="nav-text">Hexo数学公式显示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%8E%9F%E5%9B%A0"><span class="nav-number">9.0.1.</span> <span class="nav-text">问题原因</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3"><span class="nav-number">9.0.2.</span> <span class="nav-text">问题解决</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo%E5%8D%87%E7%BA%A7%E7%9B%B8%E5%85%B3"><span class="nav-number">10.</span> <span class="nav-text">Hexo升级相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3-1"><span class="nav-number">11.</span> <span class="nav-text">问题解决</span></a></li></ol></div>
             
 
           </div>

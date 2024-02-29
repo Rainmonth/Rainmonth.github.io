@@ -214,7 +214,7 @@
         
           
   <li class="menu-item menu-item-home">
-    <a href="/%20" rel="section">
+    <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
 </li>
 
@@ -223,7 +223,7 @@
         
           
   <li class="menu-item menu-item-about">
-    <a href="/about/%20" rel="section">
+    <a href="/about/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
 </li>
 
@@ -232,7 +232,7 @@
         
           
   <li class="menu-item menu-item-tags">
-    <a href="/tags/%20" rel="section">
+    <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
 </li>
 
@@ -241,7 +241,7 @@
         
           
   <li class="menu-item menu-item-categories">
-    <a href="/categories/%20" rel="section">
+    <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
 </li>
 
@@ -250,7 +250,7 @@
         
           
   <li class="menu-item menu-item-archives">
-    <a href="/archives/%20" rel="section">
+    <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
 </li>
 
@@ -259,7 +259,7 @@
         
           
   <li class="menu-item menu-item-schedule">
-    <a href="/schedule/%20" rel="section">
+    <a href="/schedule/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
 </li>
 
@@ -397,21 +397,17 @@
       
         <p>最近项目测试同学反馈，App在进入二级页面后，然后退出到后台，过一段时间后，将App拉回到前台，会发现首页空白的情况。我们的App首页是ViewPager+Fragment的结构，所以怀疑肯定是长期在后台Activity和Fragment在被系统回收，在回到前台Activity和Fragment采用默认的恢复机制导致界面恢复逻辑异常导致的问题，如实就有了这篇文章，旨在记录解决问题的过程，同时研究一下系统自动恢复机制的原理。</p>
 <blockquote>
-<p>本文代码对应API版本为: API 30<br>本文链接：<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A220330.html">https://rainmonth.github.io/posts/A220330.html</a></p>
+<p>本文代码对应API版本为: API 30<br>本文链接：<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A220330.html">https://rainmonth.github.io/posts/A220330.html</a><br><span id="more"></span></p>
 </blockquote>
-<span id="more"></span>
-
 <h2 id="被系统回收的时机"><a href="#被系统回收的时机" class="headerlink" title="被系统回收的时机"></a>被系统回收的时机</h2><ol>
 <li>应用处于后台是， 手动点击 Android Studio Logcat 的 Terminated Application 按钮会触发Activity的回收；</li>
 <li>系统内存不足时，会回收处于后台的Activity；</li>
 </ol>
-<h2 id="系统保存状态的时机"><a href="#系统保存状态的时机" class="headerlink" title="系统保存状态的时机"></a>系统保存状态的时机</h2><h3 id="什么时候需要进行状态的保存"><a href="#什么时候需要进行状态的保存" class="headerlink" title="什么时候需要进行状态的保存"></a>什么时候需要进行状态的保存</h3><p>在调用Activity调用onStop时，不是一定会调用 onSaveInstance的，它是有条件的，条件如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="type">boolean</span> <span class="variable">shouldSaveState</span> <span class="operator">=</span> saveState &amp;&amp; !r.activity.mFinished &amp;&amp; r.state == <span class="literal">null</span>&amp;&amp; !r.isPreHoneycomb();</span><br></pre></td></tr></table></figure>
+<h2 id="系统保存状态的时机"><a href="#系统保存状态的时机" class="headerlink" title="系统保存状态的时机"></a>系统保存状态的时机</h2><h3 id="什么时候需要进行状态的保存"><a href="#什么时候需要进行状态的保存" class="headerlink" title="什么时候需要进行状态的保存"></a>什么时候需要进行状态的保存</h3><p>在调用Activity调用onStop时，不是一定会调用 onSaveInstance的，它是有条件的，条件如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="type">boolean</span> <span class="variable">shouldSaveState</span> <span class="operator">=</span> saveState &amp;&amp; !r.activity.mFinished &amp;&amp; r.state == <span class="literal">null</span>&amp;&amp; !r.isPreHoneycomb();</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>其中 saveState 是callActivityOnStop传递进来的参数，而callActivityOnStop只有在被<code>handleRelaunchActivityInner</code>方法调用时传递的这个值才为<strong>true</strong></p>
 </blockquote>
-<p>即<code>onSaveInstance(Bundle outState)</code>的调用时机，根据该方法的注释说明，Android P（API&gt;&#x3D; 28)以后，该方法在在onStop之后调用，在之前的版本中，可以确保该方法在onStop之前调用，但不能保证它是在onPause之前还是之后调用，主要通过ActivityThread的callActivityOnStop来保证。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">callActivityOnStop</span><span class="params">(ActivityClientRecord r, <span class="type">boolean</span> saveState, String reason)</span> &#123;</span><br><span class="line">    <span class="comment">// Before P onSaveInstanceState was called before onStop, starting with P it&#x27;s</span></span><br><span class="line">    <span class="comment">// called after. Before Honeycomb state was always saved before onPause.</span></span><br><span class="line">    <span class="keyword">final</span> <span class="type">boolean</span> <span class="variable">shouldSaveState</span> <span class="operator">=</span> saveState &amp;&amp; !r.activity.mFinished &amp;&amp; r.state == <span class="literal">null</span></span><br><span class="line">            &amp;&amp; !r.isPreHoneycomb();</span><br><span class="line">    <span class="keyword">final</span> <span class="type">boolean</span> <span class="variable">isPreP</span> <span class="operator">=</span> r.isPreP();</span><br><span class="line">    <span class="keyword">if</span> (shouldSaveState &amp;&amp; isPreP) &#123;<span class="comment">// 需要保持状态，并且是Android p 以前的设备，先调用 callActivityOnSaveInstanceState </span></span><br><span class="line">        callActivityOnSaveInstanceState(r);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        r.activity.performStop(r.mPreserveWindow, reason);<span class="comment">// 执行 onStop</span></span><br><span class="line">    &#125; <span class="keyword">catch</span> (SuperNotCalledException e) &#123;</span><br><span class="line">        <span class="keyword">throw</span> e;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!mInstrumentation.onException(r.activity, e)) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(</span><br><span class="line">                    <span class="string">&quot;Unable to stop activity &quot;</span></span><br><span class="line">                            + r.intent.getComponent().toShortString()</span><br><span class="line">                            + <span class="string">&quot;: &quot;</span> + e.toString(), e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    r.setState(ON_STOP);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (shouldSaveState &amp;&amp; !isPreP) &#123;<span class="comment">// Android P 以后的设备 ，在调用 onStop后调用 onSaveInstanceState</span></span><br><span class="line">        callActivityOnSaveInstanceState(r);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>即<code>onSaveInstance(Bundle outState)</code>的调用时机，根据该方法的注释说明，Android P（API&gt;= 28)以后，该方法在在onStop之后调用，在之前的版本中，可以确保该方法在onStop之前调用，但不能保证它是在onPause之前还是之后调用，主要通过ActivityThread的callActivityOnStop来保证。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">callActivityOnStop</span><span class="params">(ActivityClientRecord r, <span class="type">boolean</span> saveState, String reason)</span> &#123;</span><br><span class="line">    <span class="comment">// Before P onSaveInstanceState was called before onStop, starting with P it&#x27;s</span></span><br><span class="line">    <span class="comment">// called after. Before Honeycomb state was always saved before onPause.</span></span><br><span class="line">    <span class="keyword">final</span> <span class="type">boolean</span> <span class="variable">shouldSaveState</span> <span class="operator">=</span> saveState &amp;&amp; !r.activity.mFinished &amp;&amp; r.state == <span class="literal">null</span></span><br><span class="line">            &amp;&amp; !r.isPreHoneycomb();</span><br><span class="line">    <span class="keyword">final</span> <span class="type">boolean</span> <span class="variable">isPreP</span> <span class="operator">=</span> r.isPreP();</span><br><span class="line">    <span class="keyword">if</span> (shouldSaveState &amp;&amp; isPreP) &#123;<span class="comment">// 需要保持状态，并且是Android p 以前的设备，先调用 callActivityOnSaveInstanceState </span></span><br><span class="line">        callActivityOnSaveInstanceState(r);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        r.activity.performStop(r.mPreserveWindow, reason);<span class="comment">// 执行 onStop</span></span><br><span class="line">    &#125; <span class="keyword">catch</span> (SuperNotCalledException e) &#123;</span><br><span class="line">        <span class="keyword">throw</span> e;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!mInstrumentation.onException(r.activity, e)) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(</span><br><span class="line">                    <span class="string">&quot;Unable to stop activity &quot;</span></span><br><span class="line">                            + r.intent.getComponent().toShortString()</span><br><span class="line">                            + <span class="string">&quot;: &quot;</span> + e.toString(), e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    r.setState(ON_STOP);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (shouldSaveState &amp;&amp; !isPreP) &#123;<span class="comment">// Android P 以后的设备 ，在调用 onStop后调用 onSaveInstanceState</span></span><br><span class="line">        callActivityOnSaveInstanceState(r);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="都保存了什么"><a href="#都保存了什么" class="headerlink" title="都保存了什么"></a>都保存了什么</h3><h4 id="Activity-onSaveInstanceState"><a href="#Activity-onSaveInstanceState" class="headerlink" title="Activity#onSaveInstanceState"></a>Activity#onSaveInstanceState</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onSaveInstanceState</span><span class="params">(<span class="meta">@NonNull</span> Bundle outState)</span> &#123;</span><br><span class="line">    outState.putBundle(WINDOW_HIERARCHY_TAG, mWindow.saveHierarchyState());<span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line">    outState.putInt(LAST_AUTOFILL_ID, mLastAutofillId);</span><br><span class="line">    <span class="type">Parcelable</span> <span class="variable">p</span> <span class="operator">=</span> mFragments.saveAllState();<span class="comment">// 2</span></span><br><span class="line">    <span class="keyword">if</span> (p != <span class="literal">null</span>) &#123;</span><br><span class="line">        outState.putParcelable(FRAGMENTS_TAG, p);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (mAutoFillResetNeeded) &#123;</span><br><span class="line">        outState.putBoolean(AUTOFILL_RESET_NEEDED, <span class="literal">true</span>);</span><br><span class="line">        getAutofillManager().onSaveInstanceState(outState); <span class="comment">// 3</span></span><br><span class="line">    &#125;</span><br><span class="line">    dispatchActivitySaveInstanceState(outState);<span class="comment">// 4</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>主要做了以下几种操作：</p>
 <ol>
@@ -445,39 +441,30 @@
 <h2 id="ViewPager的Adapter"><a href="#ViewPager的Adapter" class="headerlink" title="ViewPager的Adapter"></a>ViewPager的Adapter</h2><p>ViewPager的Adapter通常有两种，分别是<code>FragmentPagerAdapter</code>和<code>FragmentStatePagerAdapter</code>，二者都是<code>PagerAdapter</code>的子类;</p>
 <h3 id="PagerAdapter"><a href="#PagerAdapter" class="headerlink" title="PagerAdapter"></a>PagerAdapter</h3><p>PagerAdapter是一个模板类，定义了几个模板方法，包括：<br>这四个方法子类必须自己重写</p>
 <ul>
-<li><p>public abstract int getCount()，ViewPager Item的个数;</p>
-</li>
-<li><p>public abstract boolean isViewFromObject(@NonNull View var1, @NonNull Object var2)，判断View 和 Object的关联关系;</p>
-</li>
-<li><p>public Object instantiateItem(@NonNull ViewGroup container, int position)，向container的position位置添加View;</p>
-</li>
+<li>public abstract int getCount()，ViewPager Item的个数;</li>
+<li>public abstract boolean isViewFromObject(@NonNull View var1, @NonNull Object var2)，判断View 和 Object的关联关系;</li>
+<li>public Object instantiateItem(@NonNull ViewGroup container, int position)，向container的position位置添加View;</li>
 <li><p>public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object)，从container的position位置移除;</p>
 </li>
 <li><p>public void setPrimaryItem(@NonNull ViewGroup container, int position, @NonNull Object object);</p>
 </li>
-<li><p>public void startUpdate(@NonNull ViewGroup container)，ViewPager数据改变会调用这个方法，这个方法一般不作任何处理，默认实现中也就检查了一下容器View是否设置了id;</p>
-</li>
-<li><p>public void finishUpdate(@NonNull ViewGroup container)，页面数据改变完成后调用这个方法，需要确保改变生效（例如如果是Fragment这里就要进行Fragment事物的提交）;</p>
-</li>
-<li><p>public Parcelable saveState()，负责ViewPager中具体Item的状态保存;</p>
-</li>
-<li><p>public void restoreState(@Nullable Parcelable state, @Nullable ClassLoader loader)， 负责ViewPager中具体Item的状态恢复;</p>
-</li>
+<li>public void startUpdate(@NonNull ViewGroup container)，ViewPager数据改变会调用这个方法，这个方法一般不作任何处理，默认实现中也就检查了一下容器View是否设置了id;</li>
+<li>public void finishUpdate(@NonNull ViewGroup container)，页面数据改变完成后调用这个方法，需要确保改变生效（例如如果是Fragment这里就要进行Fragment事物的提交）;</li>
+<li>public Parcelable saveState()，负责ViewPager中具体Item的状态保存;</li>
+<li>public void restoreState(@Nullable Parcelable state, @Nullable ClassLoader loader)， 负责ViewPager中具体Item的状态恢复;</li>
 </ul>
 <p>和我们要谈的状态保存与恢复密切相关的两个方法就是<code>saveState</code>和<code>restoreState</code>了。ViewPager中这两个方法的调用时机如下：</p>
 <ul>
 <li><code>saveState</code>，在触发View的onSaveInstance调用的时候，最终会走到ViewPager的onSaveInstance方法，这个方法里面会调用PagerAdapter的saveState方法；</li>
-<li><code>restoreState</code>，这个方法会在View的onRestoreInstanceState调用的时候调用，调用时如果PagerAdapter不为空，直接调用给方法，如果为空会在setAdapter时进行调用；</li>
+<li><code>restoreState</code>，这个方法会在View的onRestoreInstanceState调用的时候调用，调用时如果PagerAdapter不为空，直接调用给方法，如果为空会在setAdapter时进行调用；<h3 id="FragmentPagerAdapter"><a href="#FragmentPagerAdapter" class="headerlink" title="FragmentPagerAdapter"></a>FragmentPagerAdapter</h3>这个PagerAdapter实现中，上面提到的两个方法都是空实现，即没有进行状态的保存与恢复处理；<h3 id="FragmentStatePageAdapter"><a href="#FragmentStatePageAdapter" class="headerlink" title="FragmentStatePageAdapter"></a>FragmentStatePageAdapter</h3>这个PagerAdapter的实现中，上面两个方法都进行了重写；</li>
 </ul>
-<h3 id="FragmentPagerAdapter"><a href="#FragmentPagerAdapter" class="headerlink" title="FragmentPagerAdapter"></a>FragmentPagerAdapter</h3><p>这个PagerAdapter实现中，上面提到的两个方法都是空实现，即没有进行状态的保存与恢复处理；</p>
-<h3 id="FragmentStatePageAdapter"><a href="#FragmentStatePageAdapter" class="headerlink" title="FragmentStatePageAdapter"></a>FragmentStatePageAdapter</h3><p>这个PagerAdapter的实现中，上面两个方法都进行了重写；</p>
 <blockquote>
 <p>虽然说FragmentPagerAdapter没有重写saveState和restoreState方法，但这并不代表在被回收时其关联的ViewPager绑定的Fragment就不会恢复，实际上，Activity因内存不足被系统回收时，默认是会通过Fragment的构造函数来重新实例化Fragment的。要避免这个情况，我们可以在两个点进行处理（其实都是通过清除Bundle中的Fragment信息来达到目的）：</p>
-</blockquote>
 <ol>
 <li>在Activity的onSaveInstance中处理，系统保存后立即清除保存在Bundle中的Fragment(s)</li>
 <li>在Activity的onRestoreInstance中处理，系统恢复时先清除Bundle中的Fragment(s)在恢复；</li>
 </ol>
+</blockquote>
 <p>更好的解决方案还是从FragmentManager中渠道保存的Fragment信息来进行处理，然后进行恢复。可以看考<code>FragmentStatePagerAdapter</code>中<code>instantiateItem</code>方法的实现，即通过fragment TAG来构造、获取Fragment。</p>
 <p>恢复解决方案</p>
 <ol>
@@ -492,7 +479,7 @@
 </ol>
 <h2 id="参考文章："><a href="#参考文章：" class="headerlink" title="参考文章："></a>参考文章：</h2><ol>
 <li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903458256977928">Android Activity 和 Fragment 状态保存与恢复的最佳实践</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/enjoyinwind/article/details/83755195?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~Rate-1.pc_relevant_default&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~Rate-1.pc_relevant_default&utm_relevant_index=1">Activity和Fragment异常销毁处理</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/enjoyinwind/article/details/83755195?spm=1001.2101.3001.6661.1&amp;utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1.pc_relevant_default&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1.pc_relevant_default&amp;utm_relevant_index=1">Activity和Fragment异常销毁处理</a></li>
 </ol>
 
       
@@ -605,7 +592,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/%20%7C%7C%20archive">
+                  <a href="/archives/%7C%7C%20archive">
                 
                     <span class="site-state-item-count">205</span>
                     <span class="site-state-item-name">日志</span>

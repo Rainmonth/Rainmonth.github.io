@@ -213,7 +213,7 @@
         
           
   <li class="menu-item menu-item-home">
-    <a href="/%20" rel="section">
+    <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
 </li>
 
@@ -222,7 +222,7 @@
         
           
   <li class="menu-item menu-item-about">
-    <a href="/about/%20" rel="section">
+    <a href="/about/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
 </li>
 
@@ -231,7 +231,7 @@
         
           
   <li class="menu-item menu-item-tags">
-    <a href="/tags/%20" rel="section">
+    <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
 </li>
 
@@ -240,7 +240,7 @@
         
           
   <li class="menu-item menu-item-categories">
-    <a href="/categories/%20" rel="section">
+    <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
 </li>
 
@@ -249,7 +249,7 @@
         
           
   <li class="menu-item menu-item-archives">
-    <a href="/archives/%20" rel="section">
+    <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
 </li>
 
@@ -258,7 +258,7 @@
         
           
   <li class="menu-item menu-item-schedule">
-    <a href="/schedule/%20" rel="section">
+    <a href="/schedule/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
 </li>
 
@@ -562,16 +562,16 @@
         
           <blockquote>
 <p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191025.html">https://rainmonth.github.io/posts/A191025.html</a></p>
-</blockquote>
-<h2 id="Service基本概念"><a href="#Service基本概念" class="headerlink" title="Service基本概念"></a>Service基本概念</h2><p>Android 四大组件之一，运行于主线程之中。</p>
+<h2 id="Service基本概念"><a href="#Service基本概念" class="headerlink" title="Service基本概念"></a>Service基本概念</h2></blockquote>
+<p>Android 四大组件之一，运行于主线程之中。</p>
 <h2 id="Service启动分析"><a href="#Service启动分析" class="headerlink" title="Service启动分析"></a>Service启动分析</h2><h3 id="startService与bindService分析"><a href="#startService与bindService分析" class="headerlink" title="startService与bindService分析"></a>startService与bindService分析</h3><h2 id="Service的销毁"><a href="#Service的销毁" class="headerlink" title="Service的销毁"></a>Service的销毁</h2><blockquote>
-<p>调用startService() 和 bindService()后，要销毁service必须**<em>同时调用</em>**stopService()和unbindService()方法才可以，因为：</p>
+<p>调用startService() 和 bindService()后，要销毁service必须<strong>_同时调用_</strong>stopService()和unbindService()方法才可以，因为：</p>
 <ul>
 <li>点击Stop Service按钮只会让Service停止；</li>
 <li>点击Unbind Service按钮只会让Service和Activity解除关联；</li>
 </ul>
 </blockquote>
-<p><em><strong>一个Service必须要在既没有和任何Activity关联又处理停止状态的时候才会被销毁；</strong></em></p>
+<p><strong><em>一个Service必须要在既没有和任何Activity关联又处理停止状态的时候才会被销毁；</em></strong><br></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/posts/A191025.html#more" rel="contents">
@@ -723,7 +723,6 @@
 </blockquote>
 <p>要分析的源码文件</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">frameworks/base/cmds/app_process/app_main.cpp </span><br><span class="line">frameworks/native/libs/binder/ProcessState.cpp </span><br><span class="line">framework/native/libs/binder/IPCThreadState.cpp </span><br><span class="line">kernel/drivers/staging/android/binder.c</span><br></pre></td></tr></table></figure>
-
 <p>Binder系统中的Binder线程类型</p>
 <ul>
 <li>Binder主线程，进程创建的时候会调用startThreadPool()方法，该方法又会调用<code>spawnPooledThread(true)</code>方法，在这个方法中穿件Binder主线程，编号从1开始(即binder主线程名为<code>binder_1</code></li>
@@ -872,7 +871,6 @@
         
           
             <span id="more"></span>
-
 <blockquote>
 <p>本文链接：<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191023.html">https://rainmonth.github.io/posts/A191023.html</a></p>
 </blockquote>
@@ -1187,7 +1185,7 @@
 <p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191019.html">https://rainmonth.github.io/posts/A191019.html</a></p>
 </blockquote>
 <h1 id="Android系统的启动"><a href="#Android系统的启动" class="headerlink" title="Android系统的启动"></a>Android系统的启动</h1><p>先看启动相关进程的关系图</p>
-<p><img src="/./../images/A191019/Android%E7%B3%BB%E7%BB%9F%E8%BF%9B%E7%A8%8B%E5%85%B3%E7%B3%BB%E5%9B%BE.png" alt="Android系统进程关系图"></p>
+<p><img src="./../images/A191019/Android系统进程关系图.png" alt="Android系统进程关系图"></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/posts/A191019.html#more" rel="contents">
@@ -1342,15 +1340,14 @@
         
           <blockquote>
 <p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191020.html">https://rainmonth.github.io/posts/A191020.html</a></p>
-</blockquote>
-<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><blockquote>
-<p>adb，指的是Android Debug Bridge，即Android调试桥，顾名思义，和Android调试有莫大的关系。可以在命令通过输入命令来查看Android系统支持的服务的各种运行状态。</p>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>adb，指的是Android Debug Bridge，即Android调试桥，顾名思义，和Android调试有莫大的关系。可以在命令通过输入命令来查看Android系统支持的服务的各种运行状态。</p>
 </blockquote>
 <h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><ul>
 <li><p>首先要已经搭建好Android开发环境（具体请自行百度）</p>
 </li>
 <li><p>其次，为了避免频繁调用cd（切换目录命令，建议配置好环境变量，Mac下具体配置如下）</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=$&#123;PATH&#125;:/Users/RandyZhang/Library/Android/sdk/platform-tools</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=$&#123;PATH&#125;:/Users/RandyZhang/Library/Android/sdk/platform-tools</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
@@ -1499,9 +1496,7 @@
         
           <blockquote>
 <p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191018.html">https://rainmonth.github.io/posts/A191018.html</a></p>
-</blockquote>
-<blockquote>
-<p>在这里非常感谢<a target="_blank" rel="noopener" href="http://gityuan.com/">Gityuan</a>的博客，让人受益匪浅。</p>
+<p>在这里非常感谢<a target="_blank" rel="noopener" href="http://gityuan.com">Gityuan</a>的博客，让人受益匪浅。</p>
 </blockquote>
 <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>AMS，即ActivityManagerService，是Android系统的核心服务，负责四大组件的启动、切换、调度以及应用进程的调度和管理，其API并未对我们直接开放，在开放的ActivityManager中主要通过ActivityManagerNative来使用AMS提供的一些API，本文主要介绍AMS的启动过程。</p>
           <!--noindex-->
@@ -1695,7 +1690,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/C191017.html">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/C201010.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -1714,7 +1709,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/posts/C191017.html" itemprop="url">通用功能——Mac 使用tree打印目录结构</a></h1>
+                <a class="post-title-link" href="/posts/C201010.html" itemprop="url">通用功能——Mac 使用技巧</a></h1>
         
 
         <div class="post-meta">
@@ -1782,14 +1777,15 @@
 
       
         
-          <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>最近在研究源码，需要快速打印当前目录的结构，于是找到便有了这篇文章，这里简要介绍一下tree的使用（该命令其实就是<code>ls</code> 命令的加强版本）。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/C191017.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <blockquote>
+<p>本文链接：<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/C201010.html">https://rainmonth.github.io/posts/C201010.html</a></p>
+</blockquote>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/37365718">Mac录屏</a></li>
+</ol>
+
+          
         
       
     </div>
@@ -1871,7 +1867,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/%20%7C%7C%20archive">
+                  <a href="/archives/%7C%7C%20archive">
                 
                     <span class="site-state-item-count">205</span>
                     <span class="site-state-item-name">日志</span>

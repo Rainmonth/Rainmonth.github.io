@@ -215,7 +215,7 @@
         
           
   <li class="menu-item menu-item-home">
-    <a href="/%20" rel="section">
+    <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
 </li>
 
@@ -224,7 +224,7 @@
         
           
   <li class="menu-item menu-item-about">
-    <a href="/about/%20" rel="section">
+    <a href="/about/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
 </li>
 
@@ -233,7 +233,7 @@
         
           
   <li class="menu-item menu-item-tags">
-    <a href="/tags/%20" rel="section">
+    <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
 </li>
 
@@ -242,7 +242,7 @@
         
           
   <li class="menu-item menu-item-categories">
-    <a href="/categories/%20" rel="section">
+    <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
 </li>
 
@@ -251,7 +251,7 @@
         
           
   <li class="menu-item menu-item-archives">
-    <a href="/archives/%20" rel="section">
+    <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
 </li>
 
@@ -260,7 +260,7 @@
         
           
   <li class="menu-item menu-item-schedule">
-    <a href="/schedule/%20" rel="section">
+    <a href="/schedule/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
 </li>
 
@@ -407,17 +407,15 @@
 <p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180702.html">https://rainmonth.github.io/posts/A180702.html</a></p>
 </blockquote>
 <h1 id="Android-Launcher3分析——LauncherModel"><a href="#Android-Launcher3分析——LauncherModel" class="headerlink" title="Android Launcher3分析——LauncherModel"></a>Android Launcher3分析——LauncherModel</h1><p>接上篇<a target="_blank" rel="noopener" href="http://blog.csdn.net/rainmonth/article/details/78209539">Android Launcher3分析——开篇</a>，上篇提到LauncherModel是Launcher3处理数据的核心，这当然不是瞎掰的，我们用具体的代码分析来予以佐证。</p>
-<p>LauncherModel本身继承自<em><strong>BroadcastReceiver</strong></em>，实现了<strong>OnAppsChangedCallbackCompat接口</strong>，该接口在LauncherAppsCompat.java中定义，由LauncherModel中实现，并在LauncherAppsCompat子类的内部类PackageMonitor（<strong>API16以上</strong>）（继承BroadcastReceiver类型）或WrapperCallback（<strong>API15以下</strong>）调用，源码中关于LauncherModel的说明，大致含义如下：</p>
+<p>LauncherModel本身继承自<strong><em>BroadcastReceiver</em></strong>，实现了<strong>OnAppsChangedCallbackCompat接口</strong>，该接口在LauncherAppsCompat.java中定义，由LauncherModel中实现，并在LauncherAppsCompat子类的内部类PackageMonitor（<strong>API16以上</strong>）（继承BroadcastReceiver类型）或WrapperCallback（<strong>API15以下</strong>）调用，源码中关于LauncherModel的说明，大致含义如下：</p>
 <blockquote>
 <p><strong>保持Launcher的内存状态</strong>。在内存静态区应该只能有一个LauncherModel的实例，同时它还为Launcher提供了一系列的<strong>更新数据库的Api</strong>。</p>
 </blockquote>
 <span id="more"></span>
-
 <h2 id="内部类或接口"><a href="#内部类或接口" class="headerlink" title="内部类或接口"></a>内部类或接口</h2><h3 id="Callbacks（接口）"><a href="#Callbacks（接口）" class="headerlink" title="Callbacks（接口）"></a>Callbacks（接口）</h3><p>该接口定义了一些绑定数据时的具体方法，由Launcher实现，在LauncherModel中调用。</p>
 <h3 id="ItemInfoFilter（接口）"><a href="#ItemInfoFilter（接口）" class="headerlink" title="ItemInfoFilter（接口）"></a>ItemInfoFilter（接口）</h3><p>ItemInfo过滤器，过滤掉不符合条件的ItemInfo</p>
 <h3 id="LoaderTask（实现了Runnable接口）"><a href="#LoaderTask（实现了Runnable接口）" class="headerlink" title="LoaderTask（实现了Runnable接口）"></a>LoaderTask（实现了Runnable接口）</h3><p>核心内部类，主要任务负责加载数据（workspace、all apps）和绑定数据（workspace、all apps）</p>
 <h4 id="核心方法run"><a href="#核心方法run" class="headerlink" title="核心方法run"></a>核心方法run</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">  <span class="keyword">synchronized</span> (mLock) &#123;</span><br><span class="line">    <span class="keyword">if</span> (mStopped) &#123;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    mIsLoaderTaskRunning = <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// Optimize for end-user experience: if the Launcher is up and // running with the</span></span><br><span class="line">  <span class="comment">// All Apps interface in the foreground, load All Apps first. Otherwise, load the</span></span><br><span class="line">  <span class="comment">// workspace first (default).</span></span><br><span class="line">  keep_running:</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> (DEBUG_LOADERS) Log.d(TAG, <span class="string">&quot;step 1: loading workspace&quot;</span>);</span><br><span class="line">    loadAndBindWorkspace();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (mStopped) &#123;</span><br><span class="line">      <span class="keyword">break</span> keep_running;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    waitForIdle();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// second step</span></span><br><span class="line">    <span class="keyword">if</span> (DEBUG_LOADERS) Log.d(TAG, <span class="string">&quot;step 2: loading all apps&quot;</span>);</span><br><span class="line">    loadAndBindAllApps();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Clear out this reference, otherwise we end up holding it until all of the</span></span><br><span class="line">  <span class="comment">// callback runnables are done.</span></span><br><span class="line">  mContext = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">synchronized</span> (mLock) &#123;</span><br><span class="line">    <span class="comment">// If we are still the last one to be scheduled, remove ourselves.</span></span><br><span class="line">    <span class="keyword">if</span> (mLoaderTask == <span class="built_in">this</span>) &#123;</span><br><span class="line">      mLoaderTask = <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    mIsLoaderTaskRunning = <span class="literal">false</span>;</span><br><span class="line">    mHasLoaderCompletedOnce = <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>先加载并绑定workspace，然后调用waitForIdle方法等待资源锁的释放，从而开始加载并绑定All Apps。在手动置空mContext（不然的话LoaderTask将持有mContext直至所有的runnable对象都被执行完毕，容易引起内存泄漏），接着指控LoaderTask本身，更新相关标识位。那么两个run里面的两个load函数到底有什么功能呢？</p>
 <h3 id="PackageUpdatedTask（）"><a href="#PackageUpdatedTask（）" class="headerlink" title="PackageUpdatedTask（）"></a>PackageUpdatedTask（）</h3><p>核心内部类， 实现了Runnable接口，主要负责更新Package信息（如package的增删改查等）</p>
 <h3 id="AppsAvailabilityCheck"><a href="#AppsAvailabilityCheck" class="headerlink" title="AppsAvailabilityCheck"></a>AppsAvailabilityCheck</h3><p>BroadcastReceiver类型，根据包名检查对应app的有效性。</p>
@@ -598,7 +596,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/%20%7C%7C%20archive">
+                  <a href="/archives/%7C%7C%20archive">
                 
                     <span class="site-state-item-count">205</span>
                     <span class="site-state-item-name">日志</span>

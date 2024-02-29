@@ -213,7 +213,7 @@
         
           
   <li class="menu-item menu-item-home">
-    <a href="/%20" rel="section">
+    <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
 </li>
 
@@ -222,7 +222,7 @@
         
           
   <li class="menu-item menu-item-about">
-    <a href="/about/%20" rel="section">
+    <a href="/about/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
 </li>
 
@@ -231,7 +231,7 @@
         
           
   <li class="menu-item menu-item-tags">
-    <a href="/tags/%20" rel="section">
+    <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
 </li>
 
@@ -240,7 +240,7 @@
         
           
   <li class="menu-item menu-item-categories">
-    <a href="/categories/%20" rel="section">
+    <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
 </li>
 
@@ -249,7 +249,7 @@
         
           
   <li class="menu-item menu-item-archives">
-    <a href="/archives/%20" rel="section">
+    <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
 </li>
 
@@ -258,7 +258,7 @@
         
           
   <li class="menu-item menu-item-schedule">
-    <a href="/schedule/%20" rel="section">
+    <a href="/schedule/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
 </li>
 
@@ -310,7 +310,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A18042702.html">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A180427.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -329,7 +329,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/posts/A18042702.html" itemprop="url">Android 适配——屏幕适配方案研究</a></h1>
+                <a class="post-title-link" href="/posts/A180427.html" itemprop="url">Android 适配——动态权限管理</a></h1>
         
 
         <div class="post-meta">
@@ -404,22 +404,19 @@
 
       
         
-          
-            <blockquote>
-<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A18042702.html">https://rainmonth.github.io/posts/A18042702.html</a></p>
+          <blockquote>
+<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180427.html">https://rainmonth.github.io/posts/A180427.html</a></p>
 </blockquote>
-<p>适配问题汇总</p>
-<ul>
-<li>防止引用跟随系统自动设置深色模式<br>在 value-v29的文件夹下新增一个主题样式定义，其中添加<code>android:forceDarkAllowed</code> 属性并设置成false即可防止系统强制应用跟随系统设置进入深色模式</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">&quot;AppTheme&quot;</span> <span class="attr">parent</span>=<span class="string">&quot;Theme.AppCompat.Light.DarkActionBar&quot;</span>&gt;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">        <span class="comment">&lt;!-- Customize your theme here. --&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;colorPrimary&quot;</span>&gt;</span>@color/colorPrimary<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;colorPrimaryDark&quot;</span>&gt;</span>@color/colorPrimaryDark<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;colorAccent&quot;</span>&gt;</span>@color/colorAccent<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;toolbarNavigationButtonStyle&quot;</span>&gt;</span>@style/ToolbarNavButtonStyle<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;android:forceDarkAllowed&quot;</span>&gt;</span>false<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7000329806101348360">Android 最全面的屏幕适配方案</a></p>
-<p>屏幕适配相关的概念</p>
-<p>分辨率</p>
-<p>屏幕像素密度</p>
-
-          
+<h1 id="Android-动态权限管理"><a href="#Android-动态权限管理" class="headerlink" title="Android 动态权限管理"></a>Android 动态权限管理</h1><p>最新</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/honjane/article/details/94288585">Android Q分区存储权限变更及适配</a></p>
+<p>Android 6.0（Marshmallow， 软棉花糖，Api 23），权限分为普通权限和许可权限，许可权限分类归组，该组一个权限被许可后，其他的权限均可使用。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/A180427.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -571,7 +568,7 @@
 <h1 id="Android中的Handler机制"><a href="#Android中的Handler机制" class="headerlink" title="Android中的Handler机制"></a>Android中的Handler机制</h1><h2 id="Handler"><a href="#Handler" class="headerlink" title="Handler"></a>Handler</h2><h3 id="Handler初识"><a href="#Handler初识" class="headerlink" title="Handler初识"></a>Handler初识</h3><p>先看源码中关于handler的解释：</p>
 <blockquote>
 <ol>
-<li>Handler允许你发送和处理与<em><strong>线程消息队列相关联的</strong></em>Message和Runnable对象；</li>
+<li>Handler允许你发送和处理与<strong><em>线程消息队列相关联的</em></strong>Message和Runnable对象；</li>
 <li>每个Handler实例只与一个线程相关联，而一个线程只有一个消息队列，从而Handler只与一个消息队列相关联；</li>
 <li>当在一个线程中创建Handler对象时，创建的Handler对象就和创建它的线程的消息队列绑定了，之后它就开始工作了（调度消息）</li>
 </ol>
@@ -730,9 +727,7 @@
         
           <blockquote>
 <p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180420.html">https://rainmonth.github.io/posts/A180420.html</a></p>
-</blockquote>
-<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><blockquote>
-<p>从启动过程、运行状态、组件使用注意事项、组件的特点等方面来分析Android四大基本组件，并对组件的特性做一些详细说明。</p>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>从启动过程、运行状态、组件使用注意事项、组件的特点等方面来分析Android四大基本组件，并对组件的特性做一些详细说明。</p>
 </blockquote>
           <!--noindex-->
           <div class="post-button text-center">
@@ -1047,7 +1042,7 @@
 <p>参考文章：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/lmj623565791/article/details/45556391">Android UI性能优化实战 识别绘制中的性能问题</a></li>
-<li><a target="_blank" rel="noopener" href="https://juejin.im/entry/5ab05e13f265da238b7dd3ac?utm_source=gold_browser_extension">Android性能优化：布局优化 详细解析（含&lt;include&gt;、&lt;ViewStub&gt;、&lt;merge&gt;讲解 ）</a></li>
+<li><a target="_blank" rel="noopener" href="https://juejin.im/entry/5ab05e13f265da238b7dd3ac?utm_source=gold_browser_extension">Android性能优化：布局优化 详细解析（含\<include\>、\<ViewStub\>、\<merge\>讲解 ）</merge\></ViewStub\></include\></a></li>
 </ul>
 <h2 id="必要性"><a href="#必要性" class="headerlink" title="必要性"></a>必要性</h2><p>为了避免手机资源的浪费（CPU资源和GPU资源），减少卡顿的发生，必须对App的布局进行优化。优化可以从下三方面着手：</p>
 <ul>
@@ -1367,8 +1362,8 @@
         
           <blockquote>
 <p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180415.html">https://rainmonth.github.io/posts/A180415.html</a></p>
-</blockquote>
-<h1 id="Android-原生与H5交互"><a href="#Android-原生与H5交互" class="headerlink" title="Android 原生与H5交互"></a>Android 原生与H5交互</h1><p>[TOC]</p>
+<h1 id="Android-原生与H5交互"><a href="#Android-原生与H5交互" class="headerlink" title="Android 原生与H5交互"></a>Android 原生与H5交互</h1></blockquote>
+<p>[TOC]</p>
 <h2 id="JS中调用Android的函数方法"><a href="#JS中调用Android的函数方法" class="headerlink" title="JS中调用Android的函数方法"></a>JS中调用Android的函数方法</h2><h3 id="在Android程序中建立接口，并用建立的handler对象处理"><a href="#在Android程序中建立接口，并用建立的handler对象处理" class="headerlink" title="在Android程序中建立接口，并用建立的handler对象处理"></a>在Android程序中建立接口，并用建立的handler对象处理</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="type">Handler</span> <span class="variable">handler</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Handler</span>();</span><br><span class="line"><span class="keyword">final</span> <span class="keyword">class</span> <span class="title class_">InJavaScript</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">runOnAndroidJavaScript</span><span class="params">(<span class="keyword">final</span> String str)</span>&#123;</span><br><span class="line">		handler.post(<span class="keyword">new</span> <span class="title class_">Runnable</span>() &#123;</span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="comment">// todo 对传递过来的参数进行处理</span></span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
@@ -1524,8 +1519,8 @@
         
           <blockquote>
 <p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180414.html">https://rainmonth.github.io/posts/A180414.html</a></p>
-</blockquote>
-<h1 id="Android-自定义键盘"><a href="#Android-自定义键盘" class="headerlink" title="Android 自定义键盘"></a>Android 自定义键盘</h1><p>现在的App里面自定义键盘已经数见不鲜了，今天就来研究下自定义键盘的实现方式。个人觉得自定义键盘可以通过如下几个方面入手。</p>
+<h1 id="Android-自定义键盘"><a href="#Android-自定义键盘" class="headerlink" title="Android 自定义键盘"></a>Android 自定义键盘</h1></blockquote>
+<p>现在的App里面自定义键盘已经数见不鲜了，今天就来研究下自定义键盘的实现方式。个人觉得自定义键盘可以通过如下几个方面入手。</p>
 <ul>
 <li>通过布局堆叠的方式（小白用户）</li>
 <li>通过继承Android系统KeyboardView的方式</li>
@@ -1686,9 +1681,7 @@
         
           <blockquote>
 <p>本文链接：<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180413.html">https://rainmonth.github.io/posts/A180413.html</a></p>
-</blockquote>
-<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><blockquote>
-<p>虽说Android硬件水平在不断的提高在App开发过程中，性能优化似乎是一个经常性的话题，本文将从内存的角度来分析如何对Android App的性能进行优化。</p>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>虽说Android硬件水平在不断的提高在App开发过程中，性能优化似乎是一个经常性的话题，本文将从内存的角度来分析如何对Android App的性能进行优化。</p>
 </blockquote>
           <!--noindex-->
           <div class="post-button text-center">
@@ -1931,7 +1924,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/%20%7C%7C%20archive">
+                  <a href="/archives/%7C%7C%20archive">
                 
                     <span class="site-state-item-count">205</span>
                     <span class="site-state-item-name">日志</span>

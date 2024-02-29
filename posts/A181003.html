@@ -214,7 +214,7 @@
         
           
   <li class="menu-item menu-item-home">
-    <a href="/%20" rel="section">
+    <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
 </li>
 
@@ -223,7 +223,7 @@
         
           
   <li class="menu-item menu-item-about">
-    <a href="/about/%20" rel="section">
+    <a href="/about/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
 </li>
 
@@ -232,7 +232,7 @@
         
           
   <li class="menu-item menu-item-tags">
-    <a href="/tags/%20" rel="section">
+    <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
 </li>
 
@@ -241,7 +241,7 @@
         
           
   <li class="menu-item menu-item-categories">
-    <a href="/categories/%20" rel="section">
+    <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
 </li>
 
@@ -250,7 +250,7 @@
         
           
   <li class="menu-item menu-item-archives">
-    <a href="/archives/%20" rel="section">
+    <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
 </li>
 
@@ -259,7 +259,7 @@
         
           
   <li class="menu-item menu-item-schedule">
-    <a href="/schedule/%20" rel="section">
+    <a href="/schedule/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
 </li>
 
@@ -408,26 +408,23 @@
 <h1 id="Android-Studio-升级到3-0运行项目指北"><a href="#Android-Studio-升级到3-0运行项目指北" class="headerlink" title="Android Studio 升级到3.0运行项目指北"></a>Android Studio 升级到3.0运行项目指北</h1><p>最近Android Studio升级到了3.0，每一次升级都或多或少的会伴随一些问题，我编译项目就遇到了这些问题。</p>
 <h2 id="buildTool变化"><a href="#buildTool变化" class="headerlink" title="buildTool变化"></a>buildTool变化</h2><p>升级到Android Studio 3.0之后，项目主module（app module）和依赖module的buildToolVersion 都要升级到26.0.2（默认的就是这个值，可以直接删除掉buildToolVersion这个配置，不建议）</p>
 <span id="more"></span>
-
 <h2 id="注解引入的变化"><a href="#注解引入的变化" class="headerlink" title="注解引入的变化"></a>注解引入的变化</h2><p>升级之后，一些注解处理器（Annotation processors）必须被明确指定，对应的解决方法就是在主module（app module）的build.gradle的android节点添加如下代码:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">defaultConfig &#123;</span><br><span class="line">  javaCompileOptions &#123;</span><br><span class="line">    annotationProcessorOptions &#123;</span><br><span class="line">      includeCompileClasspath = true</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>大概就是在默认配置中的Java编译选型中配置注解处理选项：包含编译的类路径。</p>
-<h2 id="提示一些属性找不到"><a href="#提示一些属性找不到" class="headerlink" title="提示一些属性找不到"></a>提示一些属性找不到</h2><p>升级之后，编译项目会提示如***@android:attr&#x2F;windowEnterAnimation’not found***，这是因为3.0中使用了aapt2，而aapt2可能对低版本的Android系统不兼容，导致编译时找不到对应资源文件。解决方法如下</p>
+<h2 id="提示一些属性找不到"><a href="#提示一些属性找不到" class="headerlink" title="提示一些属性找不到"></a>提示一些属性找不到</h2><p>升级之后，编译项目会提示如<strong><em>@android:attr/windowEnterAnimation’not found</em></strong>，这是因为3.0中使用了aapt2，而aapt2可能对低版本的Android系统不兼容，导致编译时找不到对应资源文件。解决方法如下</p>
 <blockquote>
 <p>在项目的根目录中添加gradle.properties文件，文件内容如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.enableAapt2=false</span><br></pre></td></tr></table></figure>
-
 <p>即禁用aapt2</p>
 </blockquote>
 <h2 id="多渠道打包"><a href="#多渠道打包" class="headerlink" title="多渠道打包"></a>多渠道打包</h2><ul>
 <li><p>output的outputFile属性变为只读的了，所以如果想修改outputFile的文件名，不能通过原来的方法，即：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">output.outputFile = new File(apkDir, fileName)</span><br></pre></td></tr></table></figure>
-
 <p>而要通过如下方式：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">output.outputFileName = filename</span><br></pre></td></tr></table></figure>
-
 </li>
+</ul>
+<ul>
 <li><p>Error:All flavors must now belong to a named flavor dimension</p>
 <p>出现这个的原因是buildTools 3.0之后，对于多渠道包，要求所有多渠道包都属于同一个纬度，解决方法，在</p>
 </li>
@@ -543,7 +540,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/%20%7C%7C%20archive">
+                  <a href="/archives/%7C%7C%20archive">
                 
                     <span class="site-state-item-count">205</span>
                     <span class="site-state-item-name">日志</span>

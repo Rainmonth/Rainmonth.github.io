@@ -99,12 +99,12 @@
 
 
 
-  <meta name="description" content="https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A200312.html  摘要悬浮窗是App开发中比较常用的功能，本文就探究下Android中悬浮窗的实现方案。这里主要讨论以下两种方案：全局悬浮窗和应用内悬浮窗。两种实现方式各有优缺点（后面会有所比较），本文先对两种方案的实现思路分析，然后给出具体的编码实现，最后将二者封装完成，做成轮子可以按需使用。 要实现的功能封装后的悬">
+  <meta name="description" content="https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A200312.html 摘要 悬浮窗是App开发中比较常用的功能，本文就探究下Android中悬浮窗的实现方案。这里主要讨论以下两种方案：全局悬浮窗和应用内悬浮窗。两种实现方式各有优缺点（后面会有所比较），本文先对两种方案的实现思路分析，然后给出具体的编码实现，最后将二者封装完成，做成轮子可以按需使用。 要实现的功能封装后的悬">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 适配——全局悬浮窗的实现">
 <meta property="og:url" content="http://yoursite.com/posts/A200312.html">
 <meta property="og:site_name" content="荏苒追寻个人博客">
-<meta property="og:description" content="https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A200312.html  摘要悬浮窗是App开发中比较常用的功能，本文就探究下Android中悬浮窗的实现方案。这里主要讨论以下两种方案：全局悬浮窗和应用内悬浮窗。两种实现方式各有优缺点（后面会有所比较），本文先对两种方案的实现思路分析，然后给出具体的编码实现，最后将二者封装完成，做成轮子可以按需使用。 要实现的功能封装后的悬">
+<meta property="og:description" content="https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A200312.html 摘要 悬浮窗是App开发中比较常用的功能，本文就探究下Android中悬浮窗的实现方案。这里主要讨论以下两种方案：全局悬浮窗和应用内悬浮窗。两种实现方式各有优缺点（后面会有所比较），本文先对两种方案的实现思路分析，然后给出具体的编码实现，最后将二者封装完成，做成轮子可以按需使用。 要实现的功能封装后的悬">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-03-11T16:00:00.000Z">
 <meta property="article:modified_time" content="2023-10-12T16:06:46.960Z">
@@ -215,7 +215,7 @@
         
           
   <li class="menu-item menu-item-home">
-    <a href="/%20" rel="section">
+    <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
 </li>
 
@@ -224,7 +224,7 @@
         
           
   <li class="menu-item menu-item-about">
-    <a href="/about/%20" rel="section">
+    <a href="/about/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
 </li>
 
@@ -233,7 +233,7 @@
         
           
   <li class="menu-item menu-item-tags">
-    <a href="/tags/%20" rel="section">
+    <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
 </li>
 
@@ -242,7 +242,7 @@
         
           
   <li class="menu-item menu-item-categories">
-    <a href="/categories/%20" rel="section">
+    <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
 </li>
 
@@ -251,7 +251,7 @@
         
           
   <li class="menu-item menu-item-archives">
-    <a href="/archives/%20" rel="section">
+    <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
 </li>
 
@@ -260,7 +260,7 @@
         
           
   <li class="menu-item menu-item-schedule">
-    <a href="/schedule/%20" rel="section">
+    <a href="/schedule/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
 </li>
 
@@ -405,20 +405,20 @@
       
         <blockquote>
 <p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A200312.html">https://rainmonth.github.io/posts/A200312.html</a></p>
-</blockquote>
-<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>悬浮窗是App开发中比较常用的功能，本文就探究下Android中悬浮窗的实现方案。这里主要讨论以下两种方案：全局悬浮窗和应用内悬浮窗。两种实现方式各有优缺点（后面会有所比较），本文先对两种方案的实现思路分析，然后给出具体的编码实现，最后将二者封装完成，做成轮子可以按需使用。</p>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2></blockquote>
+<p>悬浮窗是App开发中比较常用的功能，本文就探究下Android中悬浮窗的实现方案。这里主要讨论以下两种方案：全局悬浮窗和应用内悬浮窗。两种实现方式各有优缺点（后面会有所比较），本文先对两种方案的实现思路分析，然后给出具体的编码实现，最后将二者封装完成，做成轮子可以按需使用。</p>
 <h2 id="要实现的功能"><a href="#要实现的功能" class="headerlink" title="要实现的功能"></a>要实现的功能</h2><p>封装后的悬浮窗需具备以下功能：</p>
 <ul>
-<li><input checked disabled type="checkbox"> 支持应用内所有页面悬浮；</li>
-<li><input checked disabled type="checkbox"> 支持应用外全局悬浮；</li>
-<li><input checked disabled type="checkbox"> 支持可跟随手指移动；</li>
-<li><input disabled type="checkbox"> 支持配置吸附效果；</li>
-<li><input checked disabled type="checkbox"> 支持设置悬浮View动效；</li>
-<li><input checked disabled type="checkbox"> 悬浮窗权限适配问题</li>
-<li><input disabled type="checkbox"> 显示黑名单与白名单</li>
-<li><input disabled type="checkbox"> 支持数据绑定（采用泛型实现）</li>
-<li><input checked disabled type="checkbox"> 同时支持多个悬浮窗，并且可以对他们进行管理</li>
-<li><input checked disabled type="checkbox"> 支持自定义视图</li>
+<li>[x] 支持应用内所有页面悬浮；</li>
+<li>[x] 支持应用外全局悬浮；</li>
+<li>[x] 支持可跟随手指移动；</li>
+<li>[ ] 支持配置吸附效果；</li>
+<li>[x] 支持设置悬浮View动效；</li>
+<li>[x] 悬浮窗权限适配问题</li>
+<li>[ ] 显示黑名单与白名单</li>
+<li>[ ] 支持数据绑定（采用泛型实现）</li>
+<li>[x] 同时支持多个悬浮窗，并且可以对他们进行管理</li>
+<li>[x] 支持自定义视图</li>
 </ul>
 <h2 id="需要解决的问题"><a href="#需要解决的问题" class="headerlink" title="需要解决的问题"></a>需要解决的问题</h2><p>要完成上述功能，需要解决以下几个问题</p>
 <ul>
@@ -434,7 +434,6 @@
 </li>
 <li><p>Android 6.0以上，除要声明上述权限外，还要再运行时动态申请权限，权限请求代码如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Intent</span> <span class="variable">intent</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Intent</span>(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);</span><br><span class="line">intent.setData(Uri.parse(<span class="string">&quot;package:&quot;</span> + Utils.getApp().getPackageName()));</span><br><span class="line"><span class="keyword">if</span> (!UtilsBridge.isIntentAvailable(intent)) &#123;</span><br><span class="line">  launchAppDetailsSettings();</span><br><span class="line">  <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line">activity.startActivityForResult(intent, requestCode);</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>注意：Android 6.0后系统对某些敏感权限要求动态请求，仅仅在AndroidManifest.xml中声明是远远不够的，需要运行时动态申请，而这种动态请求权限中又有两个权限的请求方式比较特殊，悬浮窗权限就是其中之一，不能通过Activity.requestPermissions方法来完成，而是需要通过Intent打开页面来进行设置</p>
 </blockquote>
@@ -495,10 +494,10 @@
 </ol>
 <h2 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c0d4c23089cd">Android应用内悬浮窗的实现方案</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/98eb2f70e3a5">Android应用内悬浮窗从入门到放弃&#x2F;妥协</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/98eb2f70e3a5">Android应用内悬浮窗从入门到放弃/妥协</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/18cbc862ba7b">Andorid 应用内悬浮控件实践方案总结</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/18cbc862ba7b">Andorid 应用内悬浮控件实践方案总结</a></li>
-<li><a href="%5Bhttps://juejin.im/search?query=%E5%BA%94%E7%94%A8%E5%86%85%E6%82%AC%E6%B5%AE%E7%AA%97&type=all%5D(https://juejin.im/search?query=%E5%BA%94%E7%94%A8%E5%86%85%E6%82%AC%E6%B5%AE%E7%AA%97&type=all)">应用内悬浮窗（不请求权限）</a></li>
+<li><a href="[https://juejin.im/search?query=%E5%BA%94%E7%94%A8%E5%86%85%E6%82%AC%E6%B5%AE%E7%AA%97&amp;type=all](https://juejin.im/search?query=应用内悬浮窗&amp;type=all">应用内悬浮窗（不请求权限）</a>)</li>
 <li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/167fd5f47d5c">Android无需权限显示悬浮窗, 兼谈逆向分析app</a></li>
 </ul>
 <h2 id="问题记录"><a href="#问题记录" class="headerlink" title="问题记录"></a>问题记录</h2><ol>
@@ -511,11 +510,11 @@
 <li><p>应用销毁了，但悬浮窗仍然存在</p>
 </li>
 <li><p><code>Android permission denied for window type 2002</code></p>
-</li>
-</ol>
 <blockquote>
 <p>Android M (6.0)全局悬浮窗（通过请求SYSTEM_ALERT_WINDWO权限）window的type不能设置为PHONE，可以设置成<code>APPLICATION_OVERLAY</code></p>
 </blockquote>
+</li>
+</ol>
 
       
     </div>
@@ -633,7 +632,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/%20%7C%7C%20archive">
+                  <a href="/archives/%7C%7C%20archive">
                 
                     <span class="site-state-item-count">205</span>
                     <span class="site-state-item-name">日志</span>

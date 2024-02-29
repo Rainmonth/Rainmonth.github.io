@@ -99,12 +99,12 @@
 
 
 
-  <meta name="description" content="https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A180420.html  摘要 从启动过程、运行状态、组件使用注意事项、组件的特点等方面来分析Android四大基本组件，并对组件的特性做一些详细说明。">
+  <meta name="description" content="https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A180420.html 摘要从启动过程、运行状态、组件使用注意事项、组件的特点等方面来分析Android四大基本组件，并对组件的特性做一些详细说明。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 四大组件——Android开发艺术探索读书笔记">
 <meta property="og:url" content="http://yoursite.com/posts/A180420.html">
 <meta property="og:site_name" content="荏苒追寻个人博客">
-<meta property="og:description" content="https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A180420.html  摘要 从启动过程、运行状态、组件使用注意事项、组件的特点等方面来分析Android四大基本组件，并对组件的特性做一些详细说明。">
+<meta property="og:description" content="https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A180420.html 摘要从启动过程、运行状态、组件使用注意事项、组件的特点等方面来分析Android四大基本组件，并对组件的特性做一些详细说明。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/images/A180420/Activity%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B.png">
 <meta property="og:image" content="http://yoursite.com/images/A180420/startService%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B%E5%9B%BE.png">
@@ -217,7 +217,7 @@
         
           
   <li class="menu-item menu-item-home">
-    <a href="/%20" rel="section">
+    <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
 </li>
 
@@ -226,7 +226,7 @@
         
           
   <li class="menu-item menu-item-about">
-    <a href="/about/%20" rel="section">
+    <a href="/about/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
 </li>
 
@@ -235,7 +235,7 @@
         
           
   <li class="menu-item menu-item-tags">
-    <a href="/tags/%20" rel="section">
+    <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
 </li>
 
@@ -244,7 +244,7 @@
         
           
   <li class="menu-item menu-item-categories">
-    <a href="/categories/%20" rel="section">
+    <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
 </li>
 
@@ -253,7 +253,7 @@
         
           
   <li class="menu-item menu-item-archives">
-    <a href="/archives/%20" rel="section">
+    <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
 </li>
 
@@ -262,7 +262,7 @@
         
           
   <li class="menu-item menu-item-schedule">
-    <a href="/schedule/%20" rel="section">
+    <a href="/schedule/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
 </li>
 
@@ -407,12 +407,9 @@
       
         <blockquote>
 <p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180420.html">https://rainmonth.github.io/posts/A180420.html</a></p>
-</blockquote>
-<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><blockquote>
-<p>从启动过程、运行状态、组件使用注意事项、组件的特点等方面来分析Android四大基本组件，并对组件的特性做一些详细说明。</p>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>从启动过程、运行状态、组件使用注意事项、组件的特点等方面来分析Android四大基本组件，并对组件的特性做一些详细说明。</p>
 </blockquote>
 <span id="more"></span>
-
 <p>注册方式上，Android的四大组件中除BroadcastReceiver以外，其他三种都必须在AndroidManifest中注册，对于BroadcastReceiver，它既可以在AndroidManifest中注册，也可以在代码中注册。</p>
 <p>调用方式上，Activity、Service、BroadcastReceiver需要借助Intent，而ContentProvider则无须借助Intent。</p>
 <h2 id="四大组件的运行状态"><a href="#四大组件的运行状态" class="headerlink" title="四大组件的运行状态"></a>四大组件的运行状态</h2><h3 id="Activity"><a href="#Activity" class="headerlink" title="Activity"></a>Activity</h3><p>Activity是一种展示型组件。有一种运行状态：启动状态。需要掌握的知识点：</p>
@@ -422,7 +419,7 @@
 <li>Activity的启动过程</li>
 </ul>
 <h4 id="Activity的启动过程"><a href="#Activity的启动过程" class="headerlink" title="Activity的启动过程"></a>Activity的启动过程</h4><p>具体启动过程如下图：</p>
-<p><img src="/./../images/A180420/Activity%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B.png" alt="Activity启动流程"></p>
+<p><img src="./../images/A180420/Activity启动流程.png" alt="Activity启动流程"></p>
 <p>上面的流程途中，<code>handleLaunchActivity</code>中调用的<code>performLaunchActivity</code>主要做以下几件事：</p>
 <ol>
 <li>从ActivityClientRecord中获取待启动的Activity的组件信息；</li>
@@ -438,7 +435,7 @@
 <li>Service的绑定过程</li>
 </ul>
 <h4 id="Service的启动过程（startService）"><a href="#Service的启动过程（startService）" class="headerlink" title="Service的启动过程（startService）"></a>Service的启动过程（startService）</h4><p>具体启动过程如下：</p>
-<p><img src="/./../images/A180420/startService%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B%E5%9B%BE.png" alt="startService启动过程图"></p>
+<p><img src="./../images/A180420/startService启动过程图.png" alt="startService启动过程图"></p>
 <p>handlerCreateService主要做以下工作：</p>
 <ul>
 <li>通过类加载器，创建Service的实例；</li>
@@ -564,7 +561,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/%20%7C%7C%20archive">
+                  <a href="/archives/%7C%7C%20archive">
                 
                     <span class="site-state-item-count">205</span>
                     <span class="site-state-item-name">日志</span>

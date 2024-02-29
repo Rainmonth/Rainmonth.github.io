@@ -214,7 +214,7 @@
         
           
   <li class="menu-item menu-item-home">
-    <a href="/%20" rel="section">
+    <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
 </li>
 
@@ -223,7 +223,7 @@
         
           
   <li class="menu-item menu-item-about">
-    <a href="/about/%20" rel="section">
+    <a href="/about/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
 </li>
 
@@ -232,7 +232,7 @@
         
           
   <li class="menu-item menu-item-tags">
-    <a href="/tags/%20" rel="section">
+    <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
 </li>
 
@@ -241,7 +241,7 @@
         
           
   <li class="menu-item menu-item-categories">
-    <a href="/categories/%20" rel="section">
+    <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
 </li>
 
@@ -250,7 +250,7 @@
         
           
   <li class="menu-item menu-item-archives">
-    <a href="/archives/%20" rel="section">
+    <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
 </li>
 
@@ -259,7 +259,7 @@
         
           
   <li class="menu-item menu-item-schedule">
-    <a href="/schedule/%20" rel="section">
+    <a href="/schedule/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
 </li>
 
@@ -385,7 +385,6 @@
 <p>最近在研究Android系统的启动过程，就想着应该有一套自己的Android源码，边把之前一直想做的编译Android源码这件事提上了日程，过程比较曲折，但好歹最终编译成功了，仅以此文记录之。</p>
 </blockquote>
 <span id="more"></span>
-
 <h2 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明"></a>环境说明</h2><ul>
 <li>要编译的目标Android版本：Android-8.1.0_r1</li>
 <li>操作系统版本：MacOS 10.14.6，256G</li>
@@ -395,7 +394,7 @@
 <ul>
 <li><p><a target="_blank" rel="noopener" href="https://source.android.google.cn/setup/build/downloading">官方下载指南</a> </p>
 </li>
-<li><p><a target="_blank" rel="noopener" href="https://www.linuxidc.com/Linux/2019-07/159303.htm">macOS Mojave 10.14.4 下 Android 8.1源码编译详解</a></p>
+<li><p><a target="_blank" rel="noopener" href="https://www.linuxidc.com/Linux/2019-07/159303.htm">macOS Mojave 10.14.4 下 Android 8.1源码编译详解</a> </p>
 </li>
 </ul>
 <h4 id="repo的安装"><a href="#repo的安装" class="headerlink" title="repo的安装"></a>repo的安装</h4><p>采用国内镜像安装，具体步骤：</p>
@@ -409,12 +408,12 @@
 <li><p>注意修改上述repo文件的<code>REPO_URL</code>值为<code>https://mirrors.tuna.tsinghua.edu.cn/git/git-repo</code></p>
 </li>
 <li><p>切换到你移动硬盘所在的分区（我的分区名字叫Learn)，创建源码目录，目录名为aosp，开始同步目录树，这之后就可以进行源码下载了。具体代码如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd /Volumes/Learn</span><br><span class="line">mkdir aosp</span><br><span class="line">cd aosp</span><br><span class="line">repo sync		// 同步Android Source tree</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd /Volumes/Learn</span><br><span class="line">mkdir aosp</span><br><span class="line">cd aosp</span><br><span class="line">repo sync		// 同步Android Source tree</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
 <h4 id="Android源码的下载"><a href="#Android源码的下载" class="headerlink" title="Android源码的下载"></a>Android源码的下载</h4><p>执行<code>repo sync -j4</code>就可以开4个线程进行源码同步了，为了防止同步异常，可采用如下shell 脚本来进行异常重试。</p>
 <ol>
-<li><p>在aosp 目录下新建一个sync.sh脚本文件，其内容如下：</p>
- <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">repo <span class="built_in">sync</span> -j4</span><br><span class="line"><span class="keyword">while</span> [ $? -ne 0 ]</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">repo <span class="built_in">sync</span> -j4</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure></li>
+<li>在aosp 目录下新建一个sync.sh脚本文件，其内容如下： <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">repo <span class="built_in">sync</span> -j4</span><br><span class="line"><span class="keyword">while</span> [ $? -ne 0 ]</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">repo <span class="built_in">sync</span> -j4</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure></li>
 <li><p>更改sync.sh文件的权限：<code>chmod a+x sync.sh</code></p>
 </li>
 <li><p>执行sync.sh文件：<code>./sync.sh</code></p>
@@ -422,27 +421,21 @@
 </ol>
 <h3 id="源码编译"><a href="#源码编译" class="headerlink" title="源码编译"></a>源码编译</h3><h4 id="1-切换到指定分支"><a href="#1-切换到指定分支" class="headerlink" title="1.切换到指定分支"></a>1.切换到指定分支</h4><p>在aosp工作目录，采用以下命令可以查看可以切换的分支：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -a | <span class="built_in">cut</span> -d / -f 3</span><br></pre></td></tr></table></figure>
-
 <p>输出结果如下：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">* default</span><br><span class="line">master -&gt; origin</span><br><span class="line">adt_23.0.3</span><br><span class="line">afw-test-harness-1.5</span><br><span class="line">afw-test-harness-2.1</span><br><span class="line">afw-test-harness-marshmallow-dev</span><br><span class="line">afw-test-harness-nougat-dev</span><br><span class="line">android-1.6_r1</span><br><span class="line">android-1.6_r1.1</span><br><span class="line">android-1.6_r1.2</span><br><span class="line">android-1.6_r1.3</span><br><span class="line">android-1.6_r1.4</span><br><span class="line">android-1.6_r1.5</span><br><span class="line">android-1.6_r2</span><br><span class="line">android-10.0.0_r1</span><br><span class="line">android-10.0.0_r2</span><br><span class="line">android-10.0.0_r3</span><br><span class="line">android-10.0.0_r4</span><br><span class="line">android-10.0.0_r5</span><br><span class="line">android-2.0.1_r1</span><br><span class="line">android-2.0_r1</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
 <h4 id="2-初始化指定分支代码-如android-6-0-0-r11"><a href="#2-初始化指定分支代码-如android-6-0-0-r11" class="headerlink" title="2.初始化指定分支代码(如android-6.0.0_r11)"></a>2.初始化指定分支代码(如android-6.0.0_r11)</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 切换到 android-6.0.0_r11 分支</span><br><span class="line">repo init -b android-6.0.0_r11</span><br><span class="line">// 同步该分支的代码</span><br><span class="line">repo <span class="built_in">sync</span></span><br><span class="line">// 全部切换到该分支</span><br><span class="line">repo start android-6.0.0_r11 --all</span><br><span class="line">// 查看当前分支</span><br><span class="line">repo branches</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-初始化环境"><a href="#3-初始化环境" class="headerlink" title="3.初始化环境"></a>3.初始化环境</h4><p>在aosp（源码根目录）下，执行.  &#x2F;build&#x2F;envsetup.sh（获取 source &#x2F;build&#x2F;envsetup.sh)</p>
+<h4 id="3-初始化环境"><a href="#3-初始化环境" class="headerlink" title="3.初始化环境"></a>3.初始化环境</h4><p>在aosp（源码根目录）下，执行.  /build/envsetup.sh（获取 source /build/envsetup.sh)</p>
 <blockquote>
 <p><strong>注意：</strong>这里的<code>.或source</code> 指的是bash的内部命令：source命令，而不是只源码的根路径，我编译源码的时候理解从根路径了，然后运行lunch一直提示找不到lunch命令。</p>
-</blockquote>
-<blockquote>
 <p> 补充：source命令讲解</p>
 <p>source命令也称为“点命令”，也就是一个点符号（.）,是bash的内部命令。<br>功能：使Shell读入指定的Shell程序文件并依次执行文件中的所有语句<br>source命令通常用于重新执行刚修改的初始化文件，使之立即生效，而不必注销并重新登录。<br>用法：<br>source filename 或 . filename<br>source命令(从 C Shell 而来)是bash shell的内置命令；点命令(.)，就是个点符号(从Bourne Shell而来)是source的另一名称。</p>
-<p>source filename 与 sh filename 及.&#x2F;filename执行脚本的区别在那里呢？<br>1.当shell脚本具有可执行权限时，用sh filename与.&#x2F;filename执行脚本是没有区别得。.&#x2F;filename是因为当前目录没有在PATH中，所有”.”是用来表示当前目录的。<br>2.sh filename 重新建立一个子shell，在子shell中执行脚本里面的语句，该子shell继承父shell的环境变量，但子shell新建的、改变的变量不会被带回父shell，除非使用export。<br>3.source filename：这个命令其实只是简单地读取脚本里面的语句依次在当前shell里面执行，没有建立新的子shell。那么脚本里面所有新建、改变变量的语句都会保存在当前shell里面。</p>
+<p>source filename 与 sh filename 及./filename执行脚本的区别在那里呢？<br>1.当shell脚本具有可执行权限时，用sh filename与./filename执行脚本是没有区别得。./filename是因为当前目录没有在PATH中，所有”.”是用来表示当前目录的。<br>2.sh filename 重新建立一个子shell，在子shell中执行脚本里面的语句，该子shell继承父shell的环境变量，但子shell新建的、改变的变量不会被带回父shell，除非使用export。<br>3.source filename：这个命令其实只是简单地读取脚本里面的语句依次在当前shell里面执行，没有建立新的子shell。那么脚本里面所有新建、改变变量的语句都会保存在当前shell里面。</p>
 </blockquote>
 <h4 id="4-运行lunch命令，选择要编译的版本"><a href="#4-运行lunch命令，选择要编译的版本" class="headerlink" title="4.运行lunch命令，选择要编译的版本"></a>4.运行<code>lunch</code>命令，选择要编译的版本</h4><h4 id="5-选择要编译的版本后，运行-make-j6，开始编译（-j6表示开启6个job编译）"><a href="#5-选择要编译的版本后，运行-make-j6，开始编译（-j6表示开启6个job编译）" class="headerlink" title="5.选择要编译的版本后，运行 make -j6，开始编译（-j6表示开启6个job编译）"></a>5.选择要编译的版本后，运行 <code>make -j6</code>，开始编译（-j6表示开启6个job编译）</h4><h4 id="6-看到如下的输出-文字是绿色的-："><a href="#6-看到如下的输出-文字是绿色的-：" class="headerlink" title="6.看到如下的输出(文字是绿色的)："></a>6.看到如下的输出(文字是绿色的)：</h4>   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#### build completed successfully (44:32(mm::ss)) ####</span><br></pre></td></tr></table></figure>
-
 <h4 id="7-运行emulator启动模拟器即可；"><a href="#7-运行emulator启动模拟器即可；" class="headerlink" title="7.运行emulator启动模拟器即可；"></a>7.运行<code>emulator</code>启动模拟器即可；</h4><h4 id="8-启动成功则Android源码编译打工告成。"><a href="#8-启动成功则Android源码编译打工告成。" class="headerlink" title="8.启动成功则Android源码编译打工告成。"></a>8.启动成功则Android源码编译打工告成。</h4><h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p>编译错误集锦</p>
 <ul>
 <li>某些环境变量已定义的问题（如NDK_ROOT)，参考<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/ask/199276/answer/310397">https://cloud.tencent.com/developer/ask/199276/answer/310397</a></li>
-<li>报错：.&#x2F;hardware&#x2F;qcom&#x2F;sdm845&#x2F;Android.mk: No such file or directory，进入该目录有发现有两个文件的快捷方式Android.mk和Android.bp，但找不到原身，直接删除，<a target="_blank" rel="noopener" href="http://android.2317887.n4.nabble.com/Encountering-error-while-building-td454548.html">参考链接</a></li>
+<li>报错：./hardware/qcom/sdm845/Android.mk: No such file or directory，进入该目录有发现有两个文件的快捷方式Android.mk和Android.bp，但找不到原身，直接删除，<a target="_blank" rel="noopener" href="http://android.2317887.n4.nabble.com/Encountering-error-while-building-td454548.html">参考链接</a></li>
 <li>bison问题：<a target="_blank" rel="noopener" href="https://blog.csdn.net/h649305597/article/details/80322488">Mac High Sierra 编译Android7.1，8.1源码填坑记录</a></li>
 <li>jack server 编译内存不够的问题，参考<a target="_blank" rel="noopener" href="https://www.linuxidc.com/Linux/2019-07/159303.htm">macOS Mojave 10.14.4 下 Android 8.1源码编译详解</a></li>
 </ul>
@@ -561,7 +554,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/%20%7C%7C%20archive">
+                  <a href="/archives/%7C%7C%20archive">
                 
                     <span class="site-state-item-count">205</span>
                     <span class="site-state-item-name">日志</span>

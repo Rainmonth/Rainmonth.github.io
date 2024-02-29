@@ -99,12 +99,12 @@
 
 
 
-  <meta name="description" content="https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A191020.html  摘要 adb，指的是Android Debug Bridge，即Android调试桥，顾名思义，和Android调试有莫大的关系。可以在命令通过输入命令来查看Android系统支持的服务的各种运行状态。  环境配置 首先要已经搭建好Android开发环境（具体请自行百度）  其次，为了避免频繁调用cd">
+  <meta name="description" content="https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A191020.html 摘要adb，指的是Android Debug Bridge，即Android调试桥，顾名思义，和Android调试有莫大的关系。可以在命令通过输入命令来查看Android系统支持的服务的各种运行状态。  环境配置 首先要已经搭建好Android开发环境（具体请自行百度）  其次，为了避免频繁调用cd（切">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 工具命令——adb学习">
 <meta property="og:url" content="http://yoursite.com/posts/A191020.html">
 <meta property="og:site_name" content="荏苒追寻个人博客">
-<meta property="og:description" content="https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A191020.html  摘要 adb，指的是Android Debug Bridge，即Android调试桥，顾名思义，和Android调试有莫大的关系。可以在命令通过输入命令来查看Android系统支持的服务的各种运行状态。  环境配置 首先要已经搭建好Android开发环境（具体请自行百度）  其次，为了避免频繁调用cd">
+<meta property="og:description" content="https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A191020.html 摘要adb，指的是Android Debug Bridge，即Android调试桥，顾名思义，和Android调试有莫大的关系。可以在命令通过输入命令来查看Android系统支持的服务的各种运行状态。  环境配置 首先要已经搭建好Android开发环境（具体请自行百度）  其次，为了避免频繁调用cd（切">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-10-20T02:17:00.000Z">
 <meta property="article:modified_time" content="2023-10-12T16:06:46.953Z">
@@ -215,7 +215,7 @@
         
           
   <li class="menu-item menu-item-home">
-    <a href="/%20" rel="section">
+    <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
 </li>
 
@@ -224,7 +224,7 @@
         
           
   <li class="menu-item menu-item-about">
-    <a href="/about/%20" rel="section">
+    <a href="/about/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
 </li>
 
@@ -233,7 +233,7 @@
         
           
   <li class="menu-item menu-item-tags">
-    <a href="/tags/%20" rel="section">
+    <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
 </li>
 
@@ -242,7 +242,7 @@
         
           
   <li class="menu-item menu-item-categories">
-    <a href="/categories/%20" rel="section">
+    <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
 </li>
 
@@ -251,7 +251,7 @@
         
           
   <li class="menu-item menu-item-archives">
-    <a href="/archives/%20" rel="section">
+    <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
 </li>
 
@@ -260,7 +260,7 @@
         
           
   <li class="menu-item menu-item-schedule">
-    <a href="/schedule/%20" rel="section">
+    <a href="/schedule/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
 </li>
 
@@ -405,38 +405,35 @@
       
         <blockquote>
 <p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191020.html">https://rainmonth.github.io/posts/A191020.html</a></p>
-</blockquote>
-<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><blockquote>
-<p>adb，指的是Android Debug Bridge，即Android调试桥，顾名思义，和Android调试有莫大的关系。可以在命令通过输入命令来查看Android系统支持的服务的各种运行状态。</p>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>adb，指的是Android Debug Bridge，即Android调试桥，顾名思义，和Android调试有莫大的关系。可以在命令通过输入命令来查看Android系统支持的服务的各种运行状态。</p>
 </blockquote>
 <h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><ul>
 <li><p>首先要已经搭建好Android开发环境（具体请自行百度）</p>
 </li>
 <li><p>其次，为了避免频繁调用cd（切换目录命令，建议配置好环境变量，Mac下具体配置如下）</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=$&#123;PATH&#125;:/Users/RandyZhang/Library/Android/sdk/platform-tools</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=$&#123;PATH&#125;:/Users/RandyZhang/Library/Android/sdk/platform-tools</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 <span id="more"></span>
-
 <h2 id="全局配置选项"><a href="#全局配置选项" class="headerlink" title="全局配置选项"></a>全局配置选项</h2><ul>
 <li><p>-a，使用该选项将监听所有的网络接口，而不仅仅是localhost；</p>
 </li>
 <li><p>-d，使用USB设备（即真机设备，当连有多个设备时将报错，因为不知道到底该用哪个）</p>
 </li>
-<li><p>-e，使用TCP&#x2F;IP设备（即模拟器设备，同上多个设备将报错）</p>
+<li><p>-e，使用TCP/IP设备（即模拟器设备，同上多个设备将报错）</p>
 </li>
 <li><p>-s SERIAL，使用使用给定的序列号设备（序列号唯一，多个设备不会报错，会覆盖$ANDROID_SERIAL环境变量），使用如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb -s SERIAL command</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>-p PRODUCT，指定输出apk的名字或输出路径（会覆盖$ANDROID_PRODUCT_OUT环境变量），使用如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb -p name(or path) command</span><br></pre></td></tr></table></figure>
-
-<p><em><strong>注意：这里是小写的p</strong></em></p>
+<p><strong><em>注意：这里是小写的p</em></strong></p>
 </li>
 <li><p>-H，adb server的名称，默认localhost；</p>
 </li>
 <li><p>-P，adb server的端口号，默认5037；</p>
 </li>
-<li><p>-L SOCKET，在指定的socket上监听adb server，默认tcp:&#x3D;localhost:5037;</p>
+<li><p>-L SOCKET，在指定的socket上监听adb server，默认tcp:=localhost:5037;</p>
 </li>
 </ul>
 <h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><ul>
@@ -470,14 +467,13 @@
 <li>adb shell pm，pm(package manager)</li>
 <li>adb shell pm list permissions  列出权限组</li>
 </ul>
-<h3 id="am"><a href="#am" class="headerlink" title="am"></a>am</h3><p><code>am</code>，其实就是<code>ActivityManagerService</code>的命令行表现形式而已，也就是说，通过<code>AMS</code>的几乎所有功能都可以使用am来实现。am支持很多子命令，可以在<em><strong>shell</strong></em>环境下输入<code>am</code>查看帮助说明，现列出几个重要的命令。</p>
+<h3 id="am"><a href="#am" class="headerlink" title="am"></a>am</h3><p><code>am</code>，其实就是<code>ActivityManagerService</code>的命令行表现形式而已，也就是说，通过<code>AMS</code>的几乎所有功能都可以使用am来实现。am支持很多子命令，可以在<strong><em>shell</em></strong>环境下输入<code>am</code>查看帮助说明，现列出几个重要的命令。</p>
 <h3 id="pm"><a href="#pm" class="headerlink" title="pm"></a>pm</h3><h3 id="dumpsys"><a href="#dumpsys" class="headerlink" title="dumpsys"></a>dumpsys</h3><p>Android系统源码com.android.server包下面定义了一系列的服务，如果对应的Java代码里面有dump方法，就支持使用<code>dumpsys</code>来打印信息</p>
 <p>连接Android设备，输入adb shell,进入到手机的shell交互界面</p>
 <ul>
 <li><code>dumpsys --help</code>, 查看dumpsys的帮助信息</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">usage: dumpsys</span><br><span class="line">         To dump all services.</span><br><span class="line">or:</span><br><span class="line">       dumpsys [-t TIMEOUT] [--help | -l | --skip SERVICES | SERVICE [ARGS]]</span><br><span class="line">         --help: shows this help</span><br><span class="line">         -l: only list services, do not dump them</span><br><span class="line">         -t TIMEOUT: TIMEOUT to use in seconds instead of default 10 seconds</span><br><span class="line">         --skip SERVICES: dumps all services but SERVICES (comma-separated list)</span><br><span class="line">         SERVICE [ARGS]: dumps only service SERVICE, optionally passing ARGS to it</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><code>dumpsys -l</code>，列出那些服务支持dump，但不进行dump</li>
 <li><code>dumpsys --skip SERVICES</code>，dump 除了指定SERVICES外的其他服务的信息</li>
@@ -498,9 +494,8 @@
 <h4 id="batterystats"><a href="#batterystats" class="headerlink" title="batterystats"></a>batterystats</h4><p>对应于<code>BatteryStatsService.java</code>，</p>
 <h4 id="package"><a href="#package" class="headerlink" title="package"></a>package</h4><p>对应于<code>PackageManagerService.java</code>，</p>
 <h4 id="memoinfo"><a href="#memoinfo" class="headerlink" title="memoinfo"></a>memoinfo</h4><p>dumpsys meminfo + 包名，查看特定的进程的内存信息</p>
-<p>查看对应包名内存信息，如输入<code>adb shell dumpsys memoinfo com.hhdd.kadahd </code>，会得到如下结果：</p>
+<p>查看对应包名内存信息，如输入<code>adb shell dumpsys memoinfo com.hhdd.kadahd</code>，会得到如下结果：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">Applications Memory Usage (kB):</span><br><span class="line">Uptime: 96605508 Realtime: 171616432</span><br><span class="line"></span><br><span class="line">** MEMINFO in pid 24404 [com.hhdd.kadahd] **</span><br><span class="line">                   Pss  Private  Private  Swapped     Heap     Heap     Heap</span><br><span class="line">                 Total    Dirty    Clean    Dirty     Size    Alloc     Free</span><br><span class="line">                ------   ------   ------   ------   ------   ------   ------</span><br><span class="line">  Native Heap       20       20        0        0    12080     8058     2797</span><br><span class="line">  Dalvik Heap     7031     6920        0        4    13452     7278     6174</span><br><span class="line"> Dalvik Other     5713     5636       12      380</span><br><span class="line">        Stack      360      360        0       12</span><br><span class="line">       Ashmem     1996     1996        0        0</span><br><span class="line">    Other dev    32413     4080    28268        0</span><br><span class="line">     .so mmap     2699      888     1240     2052</span><br><span class="line">    .apk mmap      377        0      140        0</span><br><span class="line">    .ttf mmap      189        0       68        0</span><br><span class="line">    .dex mmap    10819      724     9052       12</span><br><span class="line">   Other mmap       34        4       12        0</span><br><span class="line">      Unknown     8451     8440        0       28</span><br><span class="line">        TOTAL    70102    29068    38792     2488    25532    15336     8971</span><br><span class="line"></span><br><span class="line"> Objects</span><br><span class="line">               Views:      301         ViewRootImpl:        1</span><br><span class="line">         AppContexts:        3           Activities:        1</span><br><span class="line">              Assets:        2        AssetManagers:        2</span><br><span class="line">       Local Binders:       16        Proxy Binders:       22</span><br><span class="line">    Death Recipients:        1</span><br><span class="line">     OpenSSL Sockets:        3</span><br><span class="line"></span><br><span class="line"> SQL</span><br><span class="line">         MEMORY_USED:      399</span><br><span class="line">  PAGECACHE_OVERFLOW:      127          MALLOC_SIZE:       62</span><br><span class="line"></span><br><span class="line"> DATABASES</span><br><span class="line">      pgsz     dbsz   Lookaside(b)          cache  Dbname</span><br><span class="line">         4       84            125     234/171/14  /data/data/com.hhdd.kadahd/databases/kada_60008834</span><br><span class="line">         4       20             17         0/24/1  /data/data/com.hhdd.kadahd/databases/security</span><br><span class="line">         4       52            117       59/39/16  /data/data/com.hhdd.kadahd/databases/bugly_db_</span><br></pre></td></tr></table></figure>
-
 <p>各项指标的含义：</p>
 <p>VSS - Virtual Set Size 虚拟耗用内存（包含共享库占用的内存）<br>RSS - Resident Set Size 实际使用物理内存（包含共享库占用的内存）<br>PSS - Proportional Set Size 实际使用的物理内存（比例分配共享库占用的内存）<br>USS - Unique Set Size 进程独自占用的物理内存（不包含共享库占用的内存）</p>
 <h4 id="gfxinfo"><a href="#gfxinfo" class="headerlink" title="gfxinfo"></a>gfxinfo</h4><blockquote>
@@ -515,7 +510,7 @@
 <li>adb logcat，logcat相关配置</li>
 </ul>
 <h3 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h3><h3 id="脚本命令"><a href="#脚本命令" class="headerlink" title="脚本命令"></a>脚本命令</h3><h3 id="内部调试"><a href="#内部调试" class="headerlink" title="内部调试"></a>内部调试</h3><ul>
-<li>adb start-server	开启服务器</li>
+<li>adb start-server    开启服务器</li>
 <li>adb kill-server关闭服务器</li>
 <li>adb reconnect         服务器端的重连</li>
 <li>adb reconnect device 设备端的重连</li>
@@ -525,13 +520,13 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">10.1.30.114:5555        device</span><br><span class="line">10.1.30.50:5555 device</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>adb disconnect 要断开的设备号，即可断开链接。如：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb disconnect 10.1.30.50:5555</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb disconnect 10.1.30.50:5555</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
 <h2 id="相关环境变量"><a href="#相关环境变量" class="headerlink" title="相关环境变量"></a>相关环境变量</h2><pre><code>2、安装(-r 替换已存在的应用)
 adb -s 5LM7N16531010541 shell pm install -r &quot;/data/local/tmp/tinker.sample.android&quot;
-</code></pre>
-<p>adb push <local apk file path> <remote apk file path> 将本地apk文件推送到模拟器（或手机）上</remote></local></p>
-<p>例如：<br>​	1、推送<br>​	adb push &#x2F;Users&#x2F;RandyZhang&#x2F;AndroidStudioProjects&#x2F;tinker&#x2F;tinker-sample-android&#x2F;app&#x2F;build&#x2F;outputs&#x2F;apk&#x2F;app-debug.apk &#x2F;data&#x2F;local&#x2F;tmp&#x2F;tinker.sample.android<br>​	2、安装(-r 替换已存在的应用)<br>​	adb shell pm install -r “&#x2F;data&#x2F;local&#x2F;tmp&#x2F;tinker.sample.android”</p>
+</code></pre><p>adb push <local apk file path> <remote apk file path> 将本地apk文件推送到模拟器（或手机）上</remote></local></p>
+<p>例如：<br>​    1、推送<br>​    adb push /Users/RandyZhang/AndroidStudioProjects/tinker/tinker-sample-android/app/build/outputs/apk/app-debug.apk /data/local/tmp/tinker.sample.android<br>​    2、安装(-r 替换已存在的应用)<br>​    adb shell pm install -r “/data/local/tmp/tinker.sample.android”</p>
 
       
     </div>
@@ -649,7 +644,7 @@ adb -s 5LM7N16531010541 shell pm install -r &quot;/data/local/tmp/tinker.sample.
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/%20%7C%7C%20archive">
+                  <a href="/archives/%7C%7C%20archive">
                 
                     <span class="site-state-item-count">205</span>
                     <span class="site-state-item-name">日志</span>

@@ -217,7 +217,7 @@
         
           
   <li class="menu-item menu-item-home">
-    <a href="/%20" rel="section">
+    <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
 </li>
 
@@ -226,7 +226,7 @@
         
           
   <li class="menu-item menu-item-about">
-    <a href="/about/%20" rel="section">
+    <a href="/about/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
 </li>
 
@@ -235,7 +235,7 @@
         
           
   <li class="menu-item menu-item-tags">
-    <a href="/tags/%20" rel="section">
+    <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
 </li>
 
@@ -244,7 +244,7 @@
         
           
   <li class="menu-item menu-item-categories">
-    <a href="/categories/%20" rel="section">
+    <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
 </li>
 
@@ -253,7 +253,7 @@
         
           
   <li class="menu-item menu-item-archives">
-    <a href="/archives/%20" rel="section">
+    <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
 </li>
 
@@ -262,7 +262,7 @@
         
           
   <li class="menu-item menu-item-schedule">
-    <a href="/schedule/%20" rel="section">
+    <a href="/schedule/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
 </li>
 
@@ -400,17 +400,16 @@
       
         <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>本文主要记录Mac使用及开发过程中遇到的一些常见问题及解决方案</p>
 <span id="more"></span>
-
 <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="Mac-VPN链接上了，但是还是无法访问内网的问题"><a href="#Mac-VPN链接上了，但是还是无法访问内网的问题" class="headerlink" title="Mac VPN链接上了，但是还是无法访问内网的问题"></a>Mac VPN链接上了，但是还是无法访问内网的问题</h3><blockquote>
 <p>如果VPN的账号密码设置什么的都没问题的话，那就需要注意一个东西，那就是Mac的网络是存在服务顺序一说的，调整VPN服务顺序在wifi之上即可，这样VPN就可以使用了。</p>
 </blockquote>
-<p><img src="/../images/C200424/%E8%AE%BE%E7%BD%AE%E7%BD%91%E7%BB%9C%E6%9C%8D%E5%8A%A1%E9%A1%BA%E5%BA%8F.png" alt="image-20221223092504144"></p>
+<p><img src="../images/C200424/设置网络服务顺序.png" alt="image-20221223092504144"></p>
 <h3 id="终端执行git命令中文乱码"><a href="#终端执行git命令中文乱码" class="headerlink" title="终端执行git命令中文乱码"></a>终端执行git命令中文乱码</h3><ul>
-<li><p>没安装oh-my-zsh，直接执行&#96;git config –global core.quotepath false &#96;&#96;；</p>
+<li><p>没安装oh-my-zsh，直接执行`git config —global core.quotepath false ``；</p>
 </li>
-<li><p>安装过oh-my-zsh，运行上面的命令后，再修改<code>.zshrc </code>，将以下内容添加到该文件末尾：</p>
+<li><p>安装过oh-my-zsh，运行上面的命令后，再修改<code>.zshrc</code>，将以下内容添加到该文件末尾：</p>
 <blockquote>
-<p>export LC_ALL&#x3D;en_US.UTF-8<br>export LANG&#x3D;en_US.UTF-8</p>
+<p>export LC_ALL=en_US.UTF-8<br>export LANG=en_US.UTF-8</p>
 </blockquote>
 </li>
 </ul>
@@ -422,7 +421,8 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>Terminal 取消代理</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unset http_proxy| unset https_proxy</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unset http_proxy| unset https_proxy</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 
       
@@ -541,7 +541,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/%20%7C%7C%20archive">
+                  <a href="/archives/%7C%7C%20archive">
                 
                     <span class="site-state-item-count">205</span>
                     <span class="site-state-item-name">日志</span>

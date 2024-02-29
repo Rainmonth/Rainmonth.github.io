@@ -214,7 +214,7 @@
         
           
   <li class="menu-item menu-item-home">
-    <a href="/%20" rel="section">
+    <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
 </li>
 
@@ -223,7 +223,7 @@
         
           
   <li class="menu-item menu-item-about">
-    <a href="/about/%20" rel="section">
+    <a href="/about/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
 </li>
 
@@ -232,7 +232,7 @@
         
           
   <li class="menu-item menu-item-tags">
-    <a href="/tags/%20" rel="section">
+    <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
 </li>
 
@@ -241,7 +241,7 @@
         
           
   <li class="menu-item menu-item-categories">
-    <a href="/categories/%20" rel="section">
+    <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
 </li>
 
@@ -250,7 +250,7 @@
         
           
   <li class="menu-item menu-item-archives">
-    <a href="/archives/%20" rel="section">
+    <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
 </li>
 
@@ -259,7 +259,7 @@
         
           
   <li class="menu-item menu-item-schedule">
-    <a href="/schedule/%20" rel="section">
+    <a href="/schedule/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
 </li>
 
@@ -415,7 +415,6 @@
 <p><strong>纹理坐标</strong>在x和y轴上，范围为0到1之间（注意我们使用的是2D纹理图像）。使用纹理坐标获取纹理颜色叫做采样(Sampling)。纹理坐标起始于(0, 0)，也就是纹理图片的左下角，终始于(1, 1)，即纹理图片的右上角。</p>
 </blockquote>
 <span id="more"></span>
-
 <h2 id="纹理环绕方式"><a href="#纹理环绕方式" class="headerlink" title="纹理环绕方式"></a>纹理环绕方式</h2><p>一个纹理能用来渲染的的范围通常是从（0，0）到（1，1），当我们把纹理坐标设置在一个纹理可渲染的范围之外的时候（纹理不够大的时候），就涉及到文理的环绕方式（怎么填充）设置了。OpenGL默认采用的环绕方式是<code>GL_REPEAT</code>，其他环绕方式如下：</p>
 <ul>
 <li>GL_REPEAT，默认的环绕方式，重复纹理图像；</li>
@@ -425,7 +424,6 @@
 </ul>
 <p>设置纹理环绕代码示例：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第一个参数，表示纹理目标，这里目标是2D纹理，第二个参数表示纹理坐标轴，2D纹理有S周和T周，3D的还有个R轴，第三个表示纹理的环绕模式，这里采用的时MIRROR_REPEAT</span></span><br><span class="line"><span class="built_in">glTxtParameteri</span>(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRROR_REPEAT);</span><br><span class="line"><span class="built_in">glTxtParameteri</span>(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRROR_REPEAT);</span><br><span class="line"><span class="comment">// 指定为 GL_CLAMP_TO_BORDER 这种环绕方式时，需要额外设置一个边框颜色属性</span></span><br><span class="line"><span class="comment">// 1. 先设置为GL_CLAMP_TO_BORDER</span></span><br><span class="line"><span class="built_in">glTxtParameteri</span>(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);</span><br><span class="line"><span class="comment">// 2. 设置一个额外的颜色</span></span><br><span class="line"><span class="type">float</span> borderColor[] = &#123;<span class="number">1.0f</span>, <span class="number">1.0f</span>, <span class="number">1.0f</span>, <span class="number">1.0f</span>&#125;;</span><br><span class="line"><span class="built_in">glTxtParameterfl</span>(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, borderColor);</span><br><span class="line">  </span><br></pre></td></tr></table></figure>
-
 <h2 id="纹理过滤"><a href="#纹理过滤" class="headerlink" title="纹理过滤"></a>纹理过滤</h2><p>纹理过滤解决了什么问题呢，由于纹理坐标不依赖于分辨率，它可以是任意的浮点值，所以OpenGL需要知道怎么将纹理像素映射到纹理坐标中，这种判断如何通过纹理坐标来获取纹理像素的过程，就是纹理过滤，纹理过滤有很多种，这里主要解释最常用的两种：</p>
 <ul>
 <li>GL_NEAREST，即邻近过滤（Nearest Neighbor Filtering），是OpenGL默认的纹理过滤方式，这种方式下，OpenGL会选出纹理像素中心点里纹理坐标点最近的一个作为样本颜色；</li>
@@ -438,38 +436,40 @@
 </ul>
 <p>当我们有放大或缩小需求的时候，我们可以动态的设置纹理过滤选项，设置方式就是通过下面的函数调用：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">glTexParameteri</span>(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); <span class="comment">// 放大是采用GL_LINEAR</span></span><br><span class="line"><span class="built_in">glTexParameteri</span>(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);<span class="comment">// 缩小时采用GL_NEAREST</span></span><br></pre></td></tr></table></figure>
-
 <h2 id="多级渐远纹理"><a href="#多级渐远纹理" class="headerlink" title="多级渐远纹理"></a>多级渐远纹理</h2><p>多级渐远纹理的出现我认为是为了让纹理的使用更贴近现实生活的一种产物，二者用了这种方式后，让纹理应用既符合实际，又提高了性能。具体来说，使用了多级渐远纹理后，<strong>距观察者的距离超过一定的阈值，OpenGL会使用不同的多级渐远纹理，即最适合物体的距离的那个。由于距离远，解析度不高也不会被用户注意到。</strong></p>
 <p>显然，使用多级渐远纹理也会碰到过度生硬、断层等不真实的问题，解决方式就是采用类似纹理过滤的那种方案，多级渐远纹理的纹理过滤选项有以下4（种：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="left">过滤方式</th>
-<th align="left">描述</th>
+<th style="text-align:left">过滤方式</th>
+<th style="text-align:left">描述</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">GL_NEAREST_MIPMAP_NEAREST</td>
-<td align="left">使用最邻近的多级渐远纹理来匹配像素大小，并使用邻近插值进行纹理采样</td>
+<tbody>
+<tr>
+<td style="text-align:left">GL_NEAREST_MIPMAP_NEAREST</td>
+<td style="text-align:left">使用最邻近的多级渐远纹理来匹配像素大小，并使用邻近插值进行纹理采样</td>
 </tr>
 <tr>
-<td align="left">GL_LINEAR_MIPMAP_NEAREST</td>
-<td align="left">使用最邻近的多级渐远纹理级别，并使用线性插值进行采样</td>
+<td style="text-align:left">GL_LINEAR_MIPMAP_NEAREST</td>
+<td style="text-align:left">使用最邻近的多级渐远纹理级别，并使用线性插值进行采样</td>
 </tr>
 <tr>
-<td align="left">GL_NEAREST_MIPMAP_LINEAR</td>
-<td align="left">在两个最匹配像素大小的多级渐远纹理之间进行线性插值，使用邻近插值进行采样</td>
+<td style="text-align:left">GL_NEAREST_MIPMAP_LINEAR</td>
+<td style="text-align:left">在两个最匹配像素大小的多级渐远纹理之间进行线性插值，使用邻近插值进行采样</td>
 </tr>
 <tr>
-<td align="left">GL_LINEAR_MIPMAP_LINEAR</td>
-<td align="left">在两个邻近的多级渐远纹理之间使用线性插值，并使用线性插值进行采样</td>
+<td style="text-align:left">GL_LINEAR_MIPMAP_LINEAR</td>
+<td style="text-align:left">在两个邻近的多级渐远纹理之间使用线性插值，并使用线性插值进行采样</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h2 id="纹理生成"><a href="#纹理生成" class="headerlink" title="纹理生成"></a>纹理生成</h2><p>上面介绍了纹理的一些设置选项：纹理环绕、纹理过滤、多级渐远纹理等概念，现在说说纹理到底怎样应用的，一般纹理的使用需要包括以下几个过程：（纹理图片）加载、创建、绑定、配置、应用等。</p>
 <h3 id="纹理加载"><a href="#纹理加载" class="headerlink" title="纹理加载"></a>纹理加载</h3><p>纹理加载就是把要当成纹理的图片加载到OpenGL程序中使用的过程，说白了就是图片文件的解析与加载过程（从磁盘到内存）,最终要得到的时纹理图片的可用的二进制图片数据，这几假设为:data。</p>
 <h3 id="纹理创建与绑定"><a href="#纹理创建与绑定" class="headerlink" title="纹理创建与绑定"></a>纹理创建与绑定</h3><p>OpenGL创建对象的方式几乎都相同，先定一个地址，然后将该地址传递过去，纹理的创建也不例外：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">unsigned</span> <span class="type">int</span> texture;</span><br><span class="line"><span class="built_in">glGenTextures</span>(<span class="number">1</span>, &amp;texture);</span><br><span class="line"><span class="built_in">glBindTexture</span>(GL_TEXTURE_2D, texture);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 采用glTexImage2D函数来生成2D纹理</span></span><br><span class="line"><span class="built_in">glTexImage2D</span>(GL_TEXTURE_2D, <span class="number">0</span>, GL_RGB, width, height, <span class="number">0</span>, GL_RGB, GL_UNSIGNED_BYTE, data);</span><br><span class="line"><span class="comment">// 调用glGenerateMipmap来自动生成多级渐远纹理</span></span><br><span class="line"><span class="built_in">glGenerateMipmap</span>(GL_TEXTURE_2D);</span><br></pre></td></tr></table></figure>
-
 <p>函数解释：</p>
 <ul>
 <li>第一个参数指定了纹理目标(Target)。设置为GL_TEXTURE_2D意味着会生成与当前绑定的纹理对象在同一个目标上的纹理（任何绑定到GL_TEXTURE_1D和GL_TEXTURE_3D的纹理不会受到影响）。</li>
@@ -485,18 +485,12 @@
 <p>得到顶点属性后，我们还需要片段着色器中能接受到前面创建的纹理对象，在片段着色其中如何接受这个纹理对象呢。GLSL中定义了一个采样器的概念。所以我们可以在片段着色器中定义统一变量形式的一个采用器，然后在把纹理对象赋值给这个采样器即可。</p>
 <p>最后在片段着色器中，利用GLSL内建的texture函数来采用颜色并作为片段颜色进行输出，代码如下：</p>
 <figure class="highlight glsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#version 300 es</span></span><br><span class="line"><span class="keyword">out</span> <span class="type">vec4</span> FragColor;</span><br><span class="line"></span><br><span class="line"><span class="keyword">in</span> <span class="type">vec3</span> ourColor;</span><br><span class="line"><span class="keyword">in</span> <span class="type">vec2</span> TexCoord;</span><br><span class="line"></span><br><span class="line"><span class="keyword">uniform</span> <span class="type">sampler2D</span> ourTexture;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> main()</span><br><span class="line">&#123;</span><br><span class="line">  	<span class="comment">// 第一个参数表示采用器，第二个参数表示纹理坐标，传递这两个参数后，通过texture得到混合后的颜色</span></span><br><span class="line">    FragColor = <span class="built_in">texture</span>(ourTexture, TexCoord);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <h2 id="纹理单元"><a href="#纹理单元" class="headerlink" title="纹理单元"></a>纹理单元</h2><p>上面的片段着色器中，sampler2D是统一变量，但并没有类似的glUniform方法来设置这个值，而是通过glUniformi来设置，调用glUniformi方法后，可以给纹理采样器分配一个位置值，这样的位置值称为<strong>纹理单元</strong>，一个采样器中至多可以存在（0~15）共16个纹理单元；在绑定纹理之前，需要先激活纹理单元，有时候没有看到激活纹理单元，那是因为GL_TEXTURE0这个纹理单元默认是激活的，无需手动激活。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">glActiveTexture</span>(GL_TEXTURE0);<span class="comment">// 激活第一个纹理单元</span></span><br><span class="line"><span class="built_in">glBindTexture</span>(GL_TEXTURE_2D, texture);<span class="comment">// 绑定纹理对象</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h2 id="纹理混合"><a href="#纹理混合" class="headerlink" title="纹理混合"></a>纹理混合</h2><p>纹理混合指的是对两个纹理按一定的比例进行插值，并将最后结果作为输出的一种方式，通常利用GLSL内建的<code>mix(texture1, texture2)</code>来达到这个目的。既然是纹理混合，所以定需要多个纹理对象，所以片段着色器中相应的就要添加多个采样器。由于存在多个采样器，就需要指定不同纹理间混合的具体设置。这里介绍几个纹理相关的GLSL内建函数。</p>
 <ul>
-<li>fragColor &#x3D; texture(sampler2D, textureCoor)，通过采样器和纹理坐标来得到纹理贴图；</li>
-<li>fragColor &#x3D; texture(sampler2D, textureCoor) * vec4(colorValue, 1.0)，通过纹理贴图和顶点颜色来得到最终的贴图；</li>
+<li>fragColor = texture(sampler2D, textureCoor)，通过采样器和纹理坐标来得到纹理贴图；</li>
+<li>fragColor = texture(sampler2D, textureCoor) * vec4(colorValue, 1.0)，通过纹理贴图和顶点颜色来得到最终的贴图；</li>
 <li>mix(texture(ourTexture1, ourTexCoord),texture(ourTexture2, ourTexCoord), 0.2)，通过两个纹理混合得到最终的纹理贴图；</li>
 </ul>
 <p>在上面的说明中，两个纹理贴图最终的效果都是倒置的，这是因为OpenGL要求y轴<code>0.0</code>坐标是在图片的底部的，但是图片的y轴<code>0.0</code>坐标通常在顶部。也就是OpenGL的坐标系和图片坐标系不一致导致的，这就需要进行转换，具体可以有下面几种方式：</p>
@@ -618,7 +612,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/%20%7C%7C%20archive">
+                  <a href="/archives/%7C%7C%20archive">
                 
                     <span class="site-state-item-count">205</span>
                     <span class="site-state-item-name">日志</span>

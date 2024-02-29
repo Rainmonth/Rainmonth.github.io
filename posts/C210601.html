@@ -113,7 +113,7 @@
 <meta property="og:image" content="http://yoursite.com/images/C210601/%E8%81%9A%E5%90%88%E5%85%B3%E7%B3%BB.png">
 <meta property="og:image" content="http://yoursite.com/images/C210601/%E7%BB%84%E5%90%88%E5%85%B3%E7%B3%BB.png">
 <meta property="article:published_time" content="2021-05-31T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-10-12T16:06:46.969Z">
+<meta property="article:modified_time" content="2024-02-28T09:49:46.082Z">
 <meta property="article:author" content="Randy Zhang">
 <meta property="article:tag" content="UML">
 <meta name="twitter:card" content="summary">
@@ -222,7 +222,7 @@
         
           
   <li class="menu-item menu-item-home">
-    <a href="/%20" rel="section">
+    <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
 </li>
 
@@ -231,7 +231,7 @@
         
           
   <li class="menu-item menu-item-about">
-    <a href="/about/%20" rel="section">
+    <a href="/about/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
 </li>
 
@@ -240,7 +240,7 @@
         
           
   <li class="menu-item menu-item-tags">
-    <a href="/tags/%20" rel="section">
+    <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
 </li>
 
@@ -249,7 +249,7 @@
         
           
   <li class="menu-item menu-item-categories">
-    <a href="/categories/%20" rel="section">
+    <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
 </li>
 
@@ -258,7 +258,7 @@
         
           
   <li class="menu-item menu-item-archives">
-    <a href="/archives/%20" rel="section">
+    <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
 </li>
 
@@ -267,7 +267,7 @@
         
           
   <li class="menu-item menu-item-schedule">
-    <a href="/schedule/%20" rel="section">
+    <a href="/schedule/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
 </li>
 
@@ -405,55 +405,45 @@
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>UML，Unified Modeing Language，统一建模语言，是个很庞大的概念，本篇想要讲的是UML中比较普遍的箭头即线条代表的具体含义，以便日后遇到UML图能了解不同类及对象之间的关系。</p>
 <span id="more"></span>
-
 <h2 id="UML中的六种关系"><a href="#UML中的六种关系" class="headerlink" title="UML中的六种关系"></a>UML中的六种关系</h2><h3 id="泛化"><a href="#泛化" class="headerlink" title="泛化"></a>泛化</h3><p>概念：<strong>泛化</strong>描述的是一般与特殊<strong>、</strong>一般与具体，<strong>具体描叙建立在一般描述基础之上，并对其进行了扩展</strong>。在Java中用来表示<strong>继承</strong>关系。</p>
 <p>表示：实线空心三角箭头表示，箭头由<strong>子类</strong>指向<strong>父类</strong>。</p>
 <p>示例代码及图形</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">A</span> &#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">doSomthing</span><span class="params">()</span> &#123;</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">B</span> <span class="keyword">extends</span> <span class="title class_">A</span> &#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">eatSomthing</span><span class="params">()</span> &#123;</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">A</span> &#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">doSomthing</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">B</span> <span class="keyword">extends</span> <span class="title class_">A</span> &#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">eatSomthing</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>类图</p>
-<p><img src="/../images/C210601/%E6%B3%9B%E5%8C%96%E5%85%B3%E7%B3%BB.png" alt="泛化关系"></p>
+<p><img src="../images/C210601/泛化关系.png" alt="泛化关系"></p>
 <h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>概念：<strong>实现</strong>描述的是一种<strong>类与接口</strong>的关系，表示类是接口所有特征和行为的实现，在程序中一般通过类实现接口来描述。</p>
 <p>表示：虚线空心三角箭头表示，箭头由<strong>接口实现类</strong>指向<strong>接口</strong>。</p>
 <p>示例代码及图形</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">IBird</span> &#123;</span><br><span class="line">  <span class="keyword">void</span> <span class="title function_">fly</span><span class="params">()</span>;</span><br><span class="line">  <span class="keyword">void</span> <span class="title function_">sleep</span><span class="params">()</span>;</span><br><span class="line">  <span class="keyword">void</span> <span class="title function_">eat</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Bird</span> <span class="keyword">implements</span> <span class="title class_">IBird</span> &#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">fly</span><span class="params">()</span> &#123;</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sleep</span><span class="params">()</span> &#123;</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">eat</span><span class="params">()</span> &#123;</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>类图<img src="/../images/C210601/%E5%AE%9E%E7%8E%B0%E5%85%B3%E7%B3%BB.png" alt="实现关系"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">IBird</span> &#123;</span><br><span class="line">  <span class="keyword">void</span> <span class="title function_">fly</span><span class="params">()</span>;</span><br><span class="line">  <span class="keyword">void</span> <span class="title function_">sleep</span><span class="params">()</span>;</span><br><span class="line">  <span class="keyword">void</span> <span class="title function_">eat</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Bird</span> <span class="keyword">implements</span> <span class="title class_">IBird</span> &#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">fly</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sleep</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">eat</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>类图<img src="../images/C210601/实现关系.png" alt="实现关系"></p>
 <h3 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h3><p>概念：<strong>依赖</strong>描述的是一种<strong>使用</strong>的关系，即一个类的实现需要另一个类的协助。如类A的某个方法中的参数类型为类B，则类A依赖于类B。</p>
 <p>表示：虚线箭头，由依赖方（类A）指向被依赖方（类B）。</p>
 <p>示例代码及图形</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">B</span> &#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">eat</span><span class="params">()</span> &#123;</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A</span> &#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">doSomthing</span><span class="params">(B b)</span> &#123;</span><br><span class="line">	</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">B</span> &#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">eat</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A</span> &#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">doSomthing</span><span class="params">(B b)</span> &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>类图</p>
-<p><img src="/../images/C210601/%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB.png" alt="依赖关系"></p>
+<p><img src="../images/C210601/依赖关系.png" alt="依赖关系"></p>
 <h3 id="关联"><a href="#关联" class="headerlink" title="关联"></a>关联</h3><p>概念：<strong>关联</strong>描述的是类与类之间的联接,它使<strong>一个类知道另一个类的属性和方法</strong>，这种关系比依赖更强、不存在依赖关系的偶然性、关系也不是临时性的，一般是长期性的。如类A有一个成员变量的类型为类B，则类A就可以访问类B的所有非私有方法，这样我们就说类A关联于类B。</p>
 <p>表示：实现箭头，由关联（类A）方指向被关联方（类B）。</p>
 <p>示例代码及图形</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">B</span> &#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">A</span> &#123;</span><br><span class="line">  <span class="keyword">private</span> B b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">B</span> &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">A</span> &#123;</span><br><span class="line">  <span class="keyword">private</span> B b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>类图</p>
-<p><img src="/../images/C210601/%E5%85%B3%E8%81%94%E5%85%B3%E7%B3%BB.png" alt="关联关系"></p>
+<p><img src="../images/C210601/关联关系.png" alt="关联关系"></p>
 <p>上面表示的时单向关联，A即关联B，如果类B改为如下形式，则A和B就是双向关联，双向关联用不带箭头的实线表示</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">B</span> &#123;</span><br><span class="line">  <span class="keyword">private</span> A a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <h3 id="聚合"><a href="#聚合" class="headerlink" title="聚合"></a>聚合</h3><p>概念：聚合关联关系的一种特例，是强的关联关系。聚合是整体和个体之间的关系，即has-a的关系，<strong>整体与个体可以具有各自的生命周期</strong>，部分可以属于多个整体对象，也可以为多个整体对象共享。程序中聚合和关联关系是一致的，只能从语义级别来区分；</p>
 <p>表示：整体类端为空心菱形的实线。（关联关系不强，所以是空心的菱形）</p>
 <p>示例代码及图形</p>
 <p>一个老师（整体类Teacher）可以任多门课（不分类Course）、可以有多个学生（部分类Student）。在语义上，如果这个老师不在教书了，这门课还可以存在，由其他老师来带，它之前的学生也可以由其他的老师来教。Course和Student在代码上表现为Teacher的成员变量，这个与关联关系是一致的。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Course</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">courseName</span><span class="params">()</span> &#123;</span><br><span class="line">    </span><br><span class="line">  &#125;  </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Student</span> &#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">studentName</span><span class="params">()</span> &#123;</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Teacher</span> &#123;</span><br><span class="line">	<span class="keyword">private</span> List&lt;Course&gt; courses;</span><br><span class="line">  <span class="keyword">private</span> List&lt;Student&gt; students;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">public</span> <span class="title function_">Teacher</span><span class="params">()</span> &#123;</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Course</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">courseName</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">  &#125;  </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Student</span> &#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">studentName</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Teacher</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> List&lt;Course&gt; courses;</span><br><span class="line">  <span class="keyword">private</span> List&lt;Student&gt; students;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="title function_">Teacher</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>类图</p>
-<p><img src="/../images/C210601/%E8%81%9A%E5%90%88%E5%85%B3%E7%B3%BB.png" alt="关联关系"></p>
+<p><img src="../images/C210601/聚合关系.png" alt="关联关系"></p>
 <h3 id="组合"><a href="#组合" class="headerlink" title="组合"></a>组合</h3><p>概念：组合也是关联关系的一种特例。组合是一种整体与部分的关系，即contains-a的关系，比聚合更强。<strong>部分与整体的生命周期一致</strong>，整体的生命周期结束也就意味着部分的生命周期结束，<strong>组合关系不能共享</strong>。程序中组合和关联关系是一致的，只能从语义级别来区分。</p>
 <p>表示：整体类端为实心菱形的实线。（关联关系强，所以是实心的菱形）</p>
 <p>示例代码及图形</p>
 <p>一个人（整体类Human）有一个头（局部类Head），2只脚（局部类Foot），两只手（局部类Hand），这个头、脚、手一旦和某个人建立了关系，他就是这个人的了，直到这个人死亡化为灰烬，头手脚也随之而去了（当然现在医学发达了什么器官移植了另当别论）。Human和Head、Foot、Hand是同生共死的，这就是组合关系。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Head</span> &#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Foot</span> &#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Hand</span> &#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Human</span> &#123;</span><br><span class="line">  <span class="keyword">private</span> Head head;</span><br><span class="line">  <span class="keyword">private</span> Foot leftFoot, rightFoot;</span><br><span class="line">  <span class="keyword">private</span> Hand leftHand, rightHand;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">public</span> <span class="title function_">Human</span><span class="params">(Head head, Foot leftFoot, Foot rightFoot, Hand leftHand, Hand rightHand)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.head = head;</span><br><span class="line">    <span class="built_in">this</span>.leftFoot = leftFoot;</span><br><span class="line">    <span class="built_in">this</span>.rightFoot = rightFoot;</span><br><span class="line">    <span class="built_in">this</span>.leftHand = leftHand;</span><br><span class="line">    <span class="built_in">this</span>.rightHand = rightHand;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Head</span> &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Foot</span> &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Hand</span> &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Human</span> &#123;</span><br><span class="line">  <span class="keyword">private</span> Head head;</span><br><span class="line">  <span class="keyword">private</span> Foot leftFoot, rightFoot;</span><br><span class="line">  <span class="keyword">private</span> Hand leftHand, rightHand;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="title function_">Human</span><span class="params">(Head head, Foot leftFoot, Foot rightFoot, Hand leftHand, Hand rightHand)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.head = head;</span><br><span class="line">    <span class="built_in">this</span>.leftFoot = leftFoot;</span><br><span class="line">    <span class="built_in">this</span>.rightFoot = rightFoot;</span><br><span class="line">    <span class="built_in">this</span>.leftHand = leftHand;</span><br><span class="line">    <span class="built_in">this</span>.rightHand = rightHand;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>类图</p>
-<p><img src="/../images/C210601/%E7%BB%84%E5%90%88%E5%85%B3%E7%B3%BB.png" alt="关联关系"></p>
+<p><img src="../images/C210601/组合关系.png" alt="关联关系"></p>
 
       
     </div>
@@ -571,7 +561,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/%20%7C%7C%20archive">
+                  <a href="/archives/%7C%7C%20archive">
                 
                     <span class="site-state-item-count">205</span>
                     <span class="site-state-item-name">日志</span>

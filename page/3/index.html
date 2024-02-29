@@ -213,7 +213,7 @@
         
           
   <li class="menu-item menu-item-home">
-    <a href="/%20" rel="section">
+    <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
 </li>
 
@@ -222,7 +222,7 @@
         
           
   <li class="menu-item menu-item-about">
-    <a href="/about/%20" rel="section">
+    <a href="/about/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
 </li>
 
@@ -231,7 +231,7 @@
         
           
   <li class="menu-item menu-item-tags">
-    <a href="/tags/%20" rel="section">
+    <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
 </li>
 
@@ -240,7 +240,7 @@
         
           
   <li class="menu-item menu-item-categories">
-    <a href="/categories/%20" rel="section">
+    <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
 </li>
 
@@ -249,7 +249,7 @@
         
           
   <li class="menu-item menu-item-archives">
-    <a href="/archives/%20" rel="section">
+    <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
 </li>
 
@@ -258,7 +258,7 @@
         
           
   <li class="menu-item menu-item-schedule">
-    <a href="/schedule/%20" rel="section">
+    <a href="/schedule/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
 </li>
 
@@ -567,7 +567,6 @@
 <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><h2 id="问题记录"><a href="#问题记录" class="headerlink" title="问题记录"></a>问题记录</h2><ol>
 <li><p>Ideal 运行时提示</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">objc[7169]: Class JavaLaunchHelper is implemented in both /Library/Java/JavaVirtualMachines/jdk1.8.0</span><br><span class="line">and /Library/Java/JavaVirtualMachines/jdk1.8.0.jdk/Contents/Home/jre/lib/libinstrument.dylib (0x10ea194e0). One of the two will be used. Which one is undefined.</span><br></pre></td></tr></table></figure>
-
 <p>解决方案：</p>
 <p>Idea-&gt;Help-&gt;Edit Custom Propertis，打开ideal.properties文件，添加以下配置，然后重启即可</p>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">idea.no.launcher</span>=<span class="string">true</span></span><br></pre></td></tr></table></figure>
@@ -784,6 +783,176 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A210108.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/A210108.html" itemprop="url">Android 音视频基础7——MacOs下编译FFMpeg 4.2.2</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-10-13T00:06:46+08:00">2023-10-13</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/%E9%9F%B3%E8%A7%86%E9%A2%91%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">音视频基础</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>本文主要介绍Mac环境下FFMpeg的编译方法，同时还会简单介绍FFMpeg。</p>
+<p>FFmpeg是用于处理多媒体内容（例如音频，视频，字幕和相关元数据）的库和工具的集合。它包含的库有：</p>
+<ul>
+<li><code>libavcodec</code>，提供了多种编解码器的实现；</li>
+<li><code>libavformat</code>，实现流协议，容器格式和基本I / O访问；</li>
+<li><code>libavutil</code>，包括哈希，解压缩器和其他实用程序功能；</li>
+<li><code>libavfilter</code>，提供了一种通过滤波器链来更改解码的音频和视频的方法；</li>
+<li><code>libavdevice</code>，提供采用硬件设备进行图片补货和视频播放的抽象封装；</li>
+<li><code>libswresample</code>，实现了音频混合和重采样工作；</li>
+<li><code>libswscale</code>，实现了色彩转换和缩放等工作；</li>
+</ul>
+<p>它包含的工具有：</p>
+<ul>
+<li>ffmpeg，处理，转换和流式传输多媒体内容的命令行工具箱。</li>
+<li>ffplay，mini多媒体播放器；</li>
+<li>ffprobe，检查多媒体内容的简单分析工具；</li>
+<li>其他小工具，例如aviocat，ismindex和qt-faststart</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/A210108.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A210109.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -887,176 +1056,6 @@
 <p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7052511816101920804">Android音频焦点管理</a></p>
 
           
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A210108.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/A210108.html" itemprop="url">Android 音视频基础7——MacOs下编译FFMpeg 4.2.2</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-10-13T00:06:46+08:00">2023-10-13</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/%E9%9F%B3%E8%A7%86%E9%A2%91%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">音视频基础</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>本文主要介绍Mac环境下FFMpeg的编译方法，同时还会简单介绍FFMpeg。</p>
-<p>FFmpeg是用于处理多媒体内容（例如音频，视频，字幕和相关元数据）的库和工具的集合。它包含的库有：</p>
-<ul>
-<li><code>libavcodec</code>，提供了多种编解码器的实现；</li>
-<li><code>libavformat</code>，实现流协议，容器格式和基本I &#x2F; O访问；</li>
-<li><code>libavutil</code>，包括哈希，解压缩器和其他实用程序功能；</li>
-<li><code>libavfilter</code>，提供了一种通过滤波器链来更改解码的音频和视频的方法；</li>
-<li><code>libavdevice</code>，提供采用硬件设备进行图片补货和视频播放的抽象封装；</li>
-<li><code>libswresample</code>，实现了音频混合和重采样工作；</li>
-<li><code>libswscale</code>，实现了色彩转换和缩放等工作；</li>
-</ul>
-<p>它包含的工具有：</p>
-<ul>
-<li>ffmpeg，处理，转换和流式传输多媒体内容的命令行工具箱。</li>
-<li>ffplay，mini多媒体播放器；</li>
-<li>ffprobe，检查多媒体内容的简单分析工具；</li>
-<li>其他小工具，例如aviocat，ismindex和qt-faststart</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/A210108.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1375,8 +1374,8 @@
 </ol>
 </blockquote>
 <h2 id="MotionEvent"><a href="#MotionEvent" class="headerlink" title="MotionEvent"></a>MotionEvent</h2><h3 id="坐标相关"><a href="#坐标相关" class="headerlink" title="坐标相关"></a>坐标相关</h3><ul>
-<li>getX()&#x2F;getY()，相对于View左上角的坐标；</li>
-<li>getRawX()&#x2F;getRawY()，相对于屏幕左上角的坐标；</li>
+<li>getX()/getY()，相对于View左上角的坐标；</li>
+<li>getRawX()/getRawY()，相对于屏幕左上角的坐标；</li>
 </ul>
 <h3 id="Pointer"><a href="#Pointer" class="headerlink" title="Pointer"></a>Pointer</h3><ul>
 <li>id，id在过程中不回改变</li>
@@ -1387,7 +1386,7 @@
 </li>
 <li><p>getAction()，返回的是Pointer的index值和事件类型值组合而成的int值</p>
 <blockquote>
-<p>getActionmasked() &#x3D; getAction &amp; ACTION_MASK;</p>
+<p>getActionmasked() = getAction &amp; ACTION_MASK;</p>
 </blockquote>
 </li>
 </ul>
@@ -1541,11 +1540,11 @@
           
             <blockquote>
 <p>本文链接：<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210402.html">https://rainmonth.github.io/posts/A210402.html</a></p>
-</blockquote>
 <ul>
 <li>分析版本，OkHttp-3.12.10</li>
 <li>分析环境，IntellJIdeal</li>
 </ul>
+</blockquote>
 <p>通过本文，可以了解如下内容：</p>
 <ul>
 <li>OkHttp的基本使用；</li>
@@ -1556,29 +1555,22 @@
 <li>了解ArrayDeque，因为OkHttp中大量的使用ArrayDeque</li>
 </ul>
 <h2 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h2><h3 id="get请求"><a href="#get请求" class="headerlink" title="get请求"></a>get请求</h3><h4 id="同步get请求"><a href="#同步get请求" class="headerlink" title="同步get请求"></a>同步get请求</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">getSync</span><span class="params">(String url)</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;同步请求&quot;</span>);</span><br><span class="line">    <span class="type">OkHttpClient</span> <span class="variable">okHttpClient</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OkHttpClient</span>.Builder().build();</span><br><span class="line">    <span class="type">Request</span> <span class="variable">request</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Request</span>.Builder().url(url)</span><br><span class="line">            .build();</span><br><span class="line">    <span class="type">Call</span> <span class="variable">call</span> <span class="operator">=</span> okHttpClient.newCall(request);</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="type">Response</span> <span class="variable">response</span> <span class="operator">=</span> call.execute();</span><br><span class="line">        <span class="keyword">if</span> (response.isSuccessful()) &#123;</span><br><span class="line">            System.out.println(response.body().toString());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h4 id="异步get请求"><a href="#异步get请求" class="headerlink" title="异步get请求"></a>异步get请求</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">get</span><span class="params">(String url)</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;异步请求&quot;</span>);</span><br><span class="line">    <span class="type">OkHttpClient</span> <span class="variable">okHttpClient</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OkHttpClient</span>.Builder().build();</span><br><span class="line">    <span class="keyword">final</span> <span class="type">Request</span> <span class="variable">request</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Request</span>.Builder()</span><br><span class="line">            .url(url)</span><br><span class="line">            .get()</span><br><span class="line">            .build();</span><br><span class="line">    <span class="type">Call</span> <span class="variable">call</span> <span class="operator">=</span> okHttpClient.newCall(request);</span><br><span class="line">    call.enqueue(<span class="keyword">new</span> <span class="title class_">Callback</span>() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onFailure</span><span class="params">(Call call, IOException e)</span> &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onResponse</span><span class="params">(Call call, Response response)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">            <span class="keyword">if</span> (response.isSuccessful()) &#123;</span><br><span class="line">                System.out.println(response.body().toString());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h3 id="post请求"><a href="#post请求" class="headerlink" title="post请求"></a>post请求</h3><p>介绍post请求之前先了解下<code>MediaType</code>。</p>
 <p>MediaType指的是媒体类型，表示表示的时浏览器将以什么形式、什么编码对资源进行解析。主要包含三个信息：<strong>type</strong>、<strong>subType</strong>以<strong>charset</strong>，MediaType常见类型如下：</p>
 <ul>
-<li>text&#x2F;（html，HTML文本格式；plain，纯文本格式；xml，xml格式；x-markdown，Markdown格式；）</li>
-<li>image&#x2F;(gif，gif图片；jpeg，jpg图片；png，png图片；)</li>
-<li>application&#x2F;(json，json格式数据；x-www-form-urlencode，键值对形式编码的参数；xhtml+xml，xhtml文本格式；xml，xml格式；pdf，pdf格式；msword，word格式；octet-stream，二进制数据（常用用于下载）)</li>
-<li>multipart&#x2F;（form-data，不对字符编码发送大量二进制数据或包含non-ASCII字符的文本）</li>
+<li>text/（html，HTML文本格式；plain，纯文本格式；xml，xml格式；x-markdown，Markdown格式；）</li>
+<li>image/(gif，gif图片；jpeg，jpg图片；png，png图片；)</li>
+<li>application/(json，json格式数据；x-www-form-urlencode，键值对形式编码的参数；xhtml+xml，xhtml文本格式；xml，xml格式；pdf，pdf格式；msword，word格式；octet-stream，二进制数据（常用用于下载）)</li>
+<li>multipart/（form-data，不对字符编码发送大量二进制数据或包含non-ASCII字符的文本）</li>
 </ul>
 <blockquote>
-<p>上面每种格式的前半部分表示type（“&#x2F;”前的部分），后半部分表示subtype（“&#x2F;”后的部分）；</p>
+<p>上面每种格式的前半部分表示type（“/”前的部分），后半部分表示subtype（“/”后的部分）；</p>
 </blockquote>
 <h4 id="发送表单"><a href="#发送表单" class="headerlink" title="发送表单"></a>发送表单</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">postForm</span><span class="params">(String url)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;同步postForm&quot;</span>);</span><br><span class="line">    <span class="type">OkHttpClient</span> <span class="variable">okHttpClient</span> <span class="operator">=</span> ClientUtils.getOkHttpClient();</span><br><span class="line">    <span class="type">RequestBody</span> <span class="variable">requestBody</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FormBody</span>.Builder()</span><br><span class="line">            .add(<span class="string">&quot;user&quot;</span>, <span class="string">&quot;randy&quot;</span>)</span><br><span class="line">            .add(<span class="string">&quot;pwd&quot;</span>, <span class="string">&quot;xxx&quot;</span>)</span><br><span class="line">            .build();</span><br><span class="line">    <span class="keyword">final</span> <span class="type">Request</span> <span class="variable">request</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Request</span>.Builder()</span><br><span class="line">            .url(url)</span><br><span class="line">            .post(requestBody)</span><br><span class="line">            .build();</span><br><span class="line">    <span class="type">Response</span> <span class="variable">response</span> <span class="operator">=</span> okHttpClient.newCall(request).execute();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h4 id="发送json"><a href="#发送json" class="headerlink" title="发送json"></a>发送json</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">postJson</span><span class="params">(String url)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;同步postJson&quot;</span>);</span><br><span class="line">    <span class="type">String</span> <span class="variable">json</span> <span class="operator">=</span> <span class="string">&quot;&#123;\&quot;user\&quot;:\&quot;Randy\&quot;,\&quot;nick\&quot;:\&quot;荏苒追寻\&quot;&#125;&quot;</span>;</span><br><span class="line">    <span class="type">OkHttpClient</span> <span class="variable">okHttpClient</span> <span class="operator">=</span> ClientUtils.getOkHttpClient();</span><br><span class="line">    <span class="type">RequestBody</span> <span class="variable">requestBody</span> <span class="operator">=</span> RequestBody.create(MediaType.parse(<span class="string">&quot;application/json&quot;</span>), json);</span><br><span class="line">    <span class="keyword">final</span> <span class="type">Request</span> <span class="variable">request</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Request</span>.Builder()</span><br><span class="line">            .url(url)</span><br><span class="line">            .post(requestBody)</span><br><span class="line">            .build();</span><br><span class="line">    <span class="type">Response</span> <span class="variable">response</span> <span class="operator">=</span> okHttpClient.newCall(request).execute();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <h4 id="发送Multipart"><a href="#发送Multipart" class="headerlink" title="发送Multipart"></a>发送Multipart</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">postMultiPart</span><span class="params">(String url)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;同步 postMultiPart&quot;</span>);</span><br><span class="line">    <span class="type">OkHttpClient</span> <span class="variable">okHttpClient</span> <span class="operator">=</span> ClientUtils.getOkHttpClient();</span><br><span class="line">    <span class="type">RequestBody</span> <span class="variable">requestBody</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MultipartBody</span>.Builder()</span><br><span class="line">            .addFormDataPart(<span class="string">&quot;user&quot;</span>, <span class="string">&quot;randy&quot;</span>)</span><br><span class="line">            .addFormDataPart(<span class="string">&quot;nick&quot;</span>, <span class="string">&quot;xxx&quot;</span>)</span><br><span class="line">            .addFormDataPart(<span class="string">&quot;file&quot;</span>, <span class="string">&quot;file.txt&quot;</span>,</span><br><span class="line">                    RequestBody.create(MediaType.parse(<span class="string">&quot;application/octet-stream&quot;</span>), <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;filePath&quot;</span>)))</span><br><span class="line">            .build();</span><br><span class="line">    <span class="type">Request</span> <span class="variable">request</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Request</span>.Builder()</span><br><span class="line">            .url(url)</span><br><span class="line">            .post(requestBody)</span><br><span class="line">            .build();</span><br><span class="line">    <span class="type">Response</span> <span class="variable">response</span> <span class="operator">=</span> okHttpClient.newCall(request).execute();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="建立WebSocket连接"><a href="#建立WebSocket连接" class="headerlink" title="建立WebSocket连接"></a>建立WebSocket连接</h3><p>OkHttpClient 可以直接发送WebSocket连接请求，代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> url webSocket 链接地址</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> WebSocket <span class="title function_">webSocket</span><span class="params">(String url)</span> &#123;</span><br><span class="line">    <span class="type">Request</span> <span class="variable">request</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Request</span>.Builder()</span><br><span class="line">            .url(url)</span><br><span class="line">            .get()</span><br><span class="line">            .build();</span><br><span class="line"></span><br><span class="line">    <span class="type">OkHttpClient</span> <span class="variable">okHttpClient</span> <span class="operator">=</span> ClientUtils.getOkHttpClient();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> okHttpClient.newWebSocket(request, <span class="keyword">new</span> <span class="title class_">WebSocketListener</span>() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onOpen</span><span class="params">(WebSocket webSocket, Response response)</span> &#123;</span><br><span class="line">            <span class="built_in">super</span>.onOpen(webSocket, response);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onMessage</span><span class="params">(WebSocket webSocket, String text)</span> &#123;</span><br><span class="line">            <span class="built_in">super</span>.onMessage(webSocket, text);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onMessage</span><span class="params">(WebSocket webSocket, ByteString bytes)</span> &#123;</span><br><span class="line">            <span class="built_in">super</span>.onMessage(webSocket, bytes);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onClosing</span><span class="params">(WebSocket webSocket, <span class="type">int</span> code, String reason)</span> &#123;</span><br><span class="line">            <span class="built_in">super</span>.onClosing(webSocket, code, reason);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onClosed</span><span class="params">(WebSocket webSocket, <span class="type">int</span> code, String reason)</span> &#123;</span><br><span class="line">            <span class="built_in">super</span>.onClosed(webSocket, code, reason);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onFailure</span><span class="params">(WebSocket webSocket, Throwable t, Response response)</span> &#123;</span><br><span class="line">            <span class="built_in">super</span>.onFailure(webSocket, t, response);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h3 id="建立WebSocket连接"><a href="#建立WebSocket连接" class="headerlink" title="建立WebSocket连接"></a>建立WebSocket连接</h3><p>OkHttpClient 可以直接发送WebSocket连接请求，代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> url webSocket 链接地址</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> WebSocket <span class="title function_">webSocket</span><span class="params">(String url)</span> &#123;</span><br><span class="line">    <span class="type">Request</span> <span class="variable">request</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Request</span>.Builder()</span><br><span class="line">            .url(url)</span><br><span class="line">            .get()</span><br><span class="line">            .build();</span><br><span class="line"></span><br><span class="line">    <span class="type">OkHttpClient</span> <span class="variable">okHttpClient</span> <span class="operator">=</span> ClientUtils.getOkHttpClient();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> okHttpClient.newWebSocket(request, <span class="keyword">new</span> <span class="title class_">WebSocketListener</span>() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onOpen</span><span class="params">(WebSocket webSocket, Response response)</span> &#123;</span><br><span class="line">            <span class="built_in">super</span>.onOpen(webSocket, response);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onMessage</span><span class="params">(WebSocket webSocket, String text)</span> &#123;</span><br><span class="line">            <span class="built_in">super</span>.onMessage(webSocket, text);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onMessage</span><span class="params">(WebSocket webSocket, ByteString bytes)</span> &#123;</span><br><span class="line">            <span class="built_in">super</span>.onMessage(webSocket, bytes);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onClosing</span><span class="params">(WebSocket webSocket, <span class="type">int</span> code, String reason)</span> &#123;</span><br><span class="line">            <span class="built_in">super</span>.onClosing(webSocket, code, reason);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onClosed</span><span class="params">(WebSocket webSocket, <span class="type">int</span> code, String reason)</span> &#123;</span><br><span class="line">            <span class="built_in">super</span>.onClosed(webSocket, code, reason);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onFailure</span><span class="params">(WebSocket webSocket, Throwable t, Response response)</span> &#123;</span><br><span class="line">            <span class="built_in">super</span>.onFailure(webSocket, t, response);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>具体的OkHttpClent WebSocket 说明，参考文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/57a91bd2b68f">OkHttp3实现WebSocket连接</a></p>
 <h3 id="基本使用小结"><a href="#基本使用小结" class="headerlink" title="基本使用小结"></a>基本使用小结</h3><p>上面就是使用OkHttp进行网络请求的常用场景，总结下来就是：</p>
 <ol>
@@ -1593,14 +1585,12 @@
 </ol>
 <h2 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h2><p>拦截器是OkHttpClient设计的精髓所在，它采用采用<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J180324.html">责任链模式</a>。责任链代码具体体现在如下地方：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// RealCall.java</span></span><br><span class="line">Response <span class="title function_">getResponseWithInterceptorChain</span><span class="params">()</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    List&lt;Interceptor&gt; interceptors = <span class="keyword">new</span> <span class="title class_">ArrayList</span>();</span><br><span class="line">    <span class="comment">// 添加一系列的拦截器</span></span><br><span class="line">  	...</span><br><span class="line">  	<span class="comment">// 构造责任链</span></span><br><span class="line">    <span class="type">Chain</span> <span class="variable">chain</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RealInterceptorChain</span>(interceptors, (StreamAllocation)<span class="literal">null</span>, (HttpCodec)<span class="literal">null</span>, (RealConnection)<span class="literal">null</span>, <span class="number">0</span>, <span class="built_in">this</span>.originalRequest, <span class="built_in">this</span>, <span class="built_in">this</span>.eventListener, <span class="built_in">this</span>.client.connectTimeoutMillis(), <span class="built_in">this</span>.client.readTimeoutMillis(), <span class="built_in">this</span>.client.writeTimeoutMillis());</span><br><span class="line">  	<span class="comment">// 开始责任链处理</span></span><br><span class="line">    <span class="type">Response</span> <span class="variable">response</span> <span class="operator">=</span> chain.proceed(<span class="built_in">this</span>.originalRequest);</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// RealInterceptorChain.java</span></span><br><span class="line"><span class="keyword">public</span> Response <span class="title function_">proceed</span><span class="params">(Request request, StreamAllocation streamAllocation, HttpCodec httpCodec,</span></span><br><span class="line"><span class="params">    RealConnection connection)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">  <span class="comment">// 一系列的检查，不合条件抛出异常</span></span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 重新构建责任链</span></span><br><span class="line">  <span class="type">RealInterceptorChain</span> <span class="variable">next</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RealInterceptorChain</span>(interceptors, streamAllocation, httpCodec,</span><br><span class="line">      connection, index + <span class="number">1</span>, request, call, eventListener, connectTimeout, readTimeout,</span><br><span class="line">      writeTimeout);</span><br><span class="line">  <span class="type">Interceptor</span> <span class="variable">interceptor</span> <span class="operator">=</span> interceptors.get(index);</span><br><span class="line">  <span class="comment">// 在intercept(next)调用后责任链开始执行</span></span><br><span class="line">  <span class="type">Response</span> <span class="variable">response</span> <span class="operator">=</span> interceptor.intercept(next);</span><br><span class="line">  <span class="comment">// 一系列的检查，不合条件抛出异常</span></span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> response;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>责任的传递是通过调用获取到的拦截器的<code>intercept(Chain chain)</code>方法，并在方法内部调用<code>Chain.proceed(Request request)</code>方法来实现的，最后一个拦截器<code>CallServerInterceptor</code>的<code>intercept(Chain chain)</code>方法中没有调用<code>proceed(Request request)</code>方法，说明任务到这个拦截器的处理工作完毕了。</p>
 <h3 id="拦截器的种类"><a href="#拦截器的种类" class="headerlink" title="拦截器的种类"></a>拦截器的种类</h3><p>要了解拦截器的种类，还是得看<code>RealCall</code>的<code>getResponseWithInterceptorChain()</code>方法：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Response <span class="title function_">getResponseWithInterceptorChain</span><span class="params">()</span> <span class="keyword">throw</span> IOException &#123;</span><br><span class="line">    List&lt;Interceptor&gt; interceptors = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    interceptors.addAll(client.interceptors());</span><br><span class="line">    interceptors.add(retryAndFollowUpInterceptor);</span><br><span class="line">    interceptors.add(<span class="keyword">new</span> <span class="title class_">BridgeInterceptor</span>(client.cookieJar()));</span><br><span class="line">    interceptors.add(<span class="keyword">new</span> <span class="title class_">CacheInterceptor</span>(client.internalCache()));</span><br><span class="line">    interceptors.add(<span class="keyword">new</span> <span class="title class_">ConnectInterceptor</span>(client));</span><br><span class="line">    <span class="keyword">if</span> (!forWebSocket) &#123;</span><br><span class="line">        interceptors.addAll(client.networkInterceptors());</span><br><span class="line">    &#125;</span><br><span class="line">    interceptors.add(<span class="keyword">new</span> <span class="title class_">CallServerInterceptor</span>(forWebSocket));  </span><br><span class="line"></span><br><span class="line">  ...</span><br><span class="line">  <span class="keyword">return</span> response</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>总结下责任链中各个节点拦截器的作用，如下：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -1608,7 +1598,8 @@
 <th>作用</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>应用拦截器</td>
 <td>拿到的是原始请求，可以添加一些自定义header、通用参数、参数加密、网关接入等等。</td>
 </tr>
@@ -1636,7 +1627,9 @@
 <td>CallServerInterceptor</td>
 <td>请求拦截器，在前置准备工作完成后，真正发起了网络请求。</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h4 id="RetryAndFollowUpInterceptor"><a href="#RetryAndFollowUpInterceptor" class="headerlink" title="RetryAndFollowUpInterceptor"></a>RetryAndFollowUpInterceptor</h4><p>处理错误和重定向。核心方法是<code>followUpRequest(Response userResponse, Route route)</code>，该方法会根据返回的responseCode来进行相应的逻辑处理，最终得到相应的Request对象。这里主要看那些导致重试和重定向的responseCode：</p>
 <ul>
 <li>重试，<code>HTTP_CLIENT_TIMEOUT</code>和<code>HTTP_UNAVAILABLE</code>（重试一次）；</li>
@@ -1644,9 +1637,7 @@
 </ul>
 <p>还有一个比较核心的点就是，该拦截器的intercept方法中，完成了<code>StreamAllocation</code>对象的创建，并将其值传递到了RealInterceptorChain中。</p>
 <h4 id="BridgeInterceptor"><a href="#BridgeInterceptor" class="headerlink" title="BridgeInterceptor"></a>BridgeInterceptor</h4><p>说明见上面的表格，需要注意的是，如果我们没有指定<code>Accept-Encoding: gzip</code>，OkHttpClient在Response的header中存在<code>Accept-Encoding: gzip</code>的情况下会默认帮我们处理Gzip压缩。<strong>但是</strong>如果我们制定了<code>Accept-Encoding: gzip</code>，则需要我们自己进行Response的Gzip压缩处理了。</p>
-<h4 id="CacheInterceptor"><a href="#CacheInterceptor" class="headerlink" title="CacheInterceptor"></a>CacheInterceptor</h4><p>为什么说命中缓存就不会发起网络请求呢？看看CacheInterceptor的Intercept(Chain chain)方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 命中了缓存，直接return了，此时没有执行责任链，即这次网络请求的任务已经完成了。所以此时不会再执行网络请求了，因为负责建立连接ConnectInterceptor和真正执行网络请求CallServerInterceptor的拦截器都没有执行。</span></span><br><span class="line"><span class="keyword">if</span> (networkRequest == <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> cacheResponse.newBuilder()</span><br><span class="line">        .cacheResponse(stripBody(cacheResponse))</span><br><span class="line">        .build();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">Response</span> <span class="variable">networkResponse</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    networkResponse = chain.proceed(networkRequest);</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="comment">// If we&#x27;re crashing on I/O or otherwise, don&#x27;t leak the cache body.</span></span><br><span class="line">    <span class="keyword">if</span> (networkResponse == <span class="literal">null</span> &amp;&amp; cacheCandidate != <span class="literal">null</span>) &#123;</span><br><span class="line">    closeQuietly(cacheCandidate.body());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>OkHttpClient 的缓存设计算法采用的是Lru，基于Okio实现（相当于基于依据Http的缓存设计思路，用Okio进行了实现）。关于OkHttpClient的缓存，打算单独分析。</p>
+<h4 id="CacheInterceptor"><a href="#CacheInterceptor" class="headerlink" title="CacheInterceptor"></a>CacheInterceptor</h4><p>为什么说命中缓存就不会发起网络请求呢？看看CacheInterceptor的Intercept(Chain chain)方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 命中了缓存，直接return了，此时没有执行责任链，即这次网络请求的任务已经完成了。所以此时不会再执行网络请求了，因为负责建立连接ConnectInterceptor和真正执行网络请求CallServerInterceptor的拦截器都没有执行。</span></span><br><span class="line"><span class="keyword">if</span> (networkRequest == <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> cacheResponse.newBuilder()</span><br><span class="line">        .cacheResponse(stripBody(cacheResponse))</span><br><span class="line">        .build();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">Response</span> <span class="variable">networkResponse</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    networkResponse = chain.proceed(networkRequest);</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="comment">// If we&#x27;re crashing on I/O or otherwise, don&#x27;t leak the cache body.</span></span><br><span class="line">    <span class="keyword">if</span> (networkResponse == <span class="literal">null</span> &amp;&amp; cacheCandidate != <span class="literal">null</span>) &#123;</span><br><span class="line">    closeQuietly(cacheCandidate.body());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>OkHttpClient 的缓存设计算法采用的是Lru，基于Okio实现（相当于基于依据Http的缓存设计思路，用Okio进行了实现）。关于OkHttpClient的缓存，打算单独分析。</p>
 <h4 id="ConnectInterceptor"><a href="#ConnectInterceptor" class="headerlink" title="ConnectInterceptor"></a>ConnectInterceptor</h4><p>拦截器作用于职责：内部会维护一个连接池，负责连接复用、创建连接（三次握手等等）、释放连接以及创建连接上的socket流。整个ConnectInterceptor的代码还是比较简洁的，但是主要的处理都封装到了<code>StreamAllocation</code>这个类中了。<code>StreamAllocation</code><br>建立连接的流程</p>
 <ol>
 <li><code>StreamAllocation</code>的<code>newStream(...)</code>；</li>
@@ -1675,15 +1666,12 @@
 </ol>
 </blockquote>
 </li>
-<li><p>OkHttpClient 的Dispatcher是如何管理三个请求的队列的?<br>首先这三个队列分别是：正在运行的同步双端队列（runningSyncCalls）、准备就绪的异步双端队列（readyAsyncCalls）、正在运行的异步双端队列（runningAsyncCalls）</p>
-</li>
 </ol>
-<p><code>client.dispatcher().executed(this)</code>干了什么呢？</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title function_">executed</span><span class="params">(RealCall call)</span> &#123;</span><br><span class="line">    runningSyncCalls.add(call);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<p>将RealCall对象加入到正在运行的同步队列中，这样在<code>getResponseWithInterceptorChain()</code>调用结束得到Response对象后，最终运行finally块时，调用<code>client.dispatcher().finished(this);</code>，那么看看这个方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> <span class="title function_">finished</span><span class="params">(RealCall call)</span> &#123;</span><br><span class="line">    finished(runningSyncCalls, call);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> &lt;T&gt; <span class="keyword">void</span> <span class="title function_">finished</span><span class="params">(Deque&lt;T&gt; calls, T call)</span> &#123;</span><br><span class="line">    Runnable idleCallback;</span><br><span class="line">    <span class="keyword">synchronized</span> (<span class="built_in">this</span>) &#123;</span><br><span class="line">        <span class="comment">// 移除之前加入的同步请求</span></span><br><span class="line">        <span class="keyword">if</span> (!calls.remove(call)) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">AssertionError</span>(<span class="string">&quot;Call wasn&#x27;t in-flight!&quot;</span>);</span><br><span class="line">        idleCallback = <span class="built_in">this</span>.idleCallback;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 尝试在readyAsynCall队列中获取待运行的任务，然后加入到runningAsynCall队列中运行</span></span><br><span class="line">    <span class="type">boolean</span> <span class="variable">isRunning</span> <span class="operator">=</span> promoteAndExecute();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!isRunning &amp;&amp; idleCallback != <span class="literal">null</span>) &#123;</span><br><span class="line">      idleCallback.run();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 从就绪的异步任务中按规则取出一定数量异步任务，加入到可运行的异步任务队列中，然后将运行中的异步任务丢该线程池运行</span></span><br><span class="line"><span class="comment"> * 这里的获取规则如下：</span></span><br><span class="line"><span class="comment"> * 1. 当前运行的异步任务书超过最大请求数时，直接break；</span></span><br><span class="line"><span class="comment"> * 2. 当前的异步任务超过美国host的最大限制是，直接跳过；</span></span><br><span class="line"><span class="comment"> * 这就说明了一个问题：随缘OkHttpClient采用的Dispatcher中的线程池核心线程为0，工作线程为Integer.MAX_VALUE，但通过 maxRequests （默认值为64）进行了线程数量的控制，不至于因线程过多导致</span></span><br><span class="line"><span class="comment"> * OOM的发生</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="type">boolean</span> <span class="title function_">promoteAndExecute</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">assert</span> (!Thread.holdsLock(<span class="built_in">this</span>));</span><br><span class="line"></span><br><span class="line">    List&lt;AsyncCall&gt; executableCalls = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    <span class="type">boolean</span> isRunning;</span><br><span class="line">    <span class="keyword">synchronized</span> (<span class="built_in">this</span>) &#123;</span><br><span class="line">      <span class="keyword">for</span> (Iterator&lt;AsyncCall&gt; i = readyAsyncCalls.iterator(); i.hasNext(); ) &#123;</span><br><span class="line">        <span class="type">AsyncCall</span> <span class="variable">asyncCall</span> <span class="operator">=</span> i.next();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (runningAsyncCalls.size() &gt;= maxRequests) <span class="keyword">break</span>; <span class="comment">// Max capacity.</span></span><br><span class="line">        <span class="keyword">if</span> (runningCallsForHost(asyncCall) &gt;= maxRequestsPerHost) <span class="keyword">continue</span>; <span class="comment">// Host max capacity.</span></span><br><span class="line"></span><br><span class="line">        i.remove();</span><br><span class="line">        executableCalls.add(asyncCall);</span><br><span class="line">        runningAsyncCalls.add(asyncCall);</span><br><span class="line">      &#125;</span><br><span class="line">      isRunning = runningCallsCount() &gt; <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>, size = executableCalls.size(); i &lt; size; i++) &#123;</span><br><span class="line">      <span class="type">AsyncCall</span> <span class="variable">asyncCall</span> <span class="operator">=</span> executableCalls.get(i);</span><br><span class="line">      asyncCall.executeOn(executorService());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> isRunning;`</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
+<ol>
+<li>OkHttpClient 的Dispatcher是如何管理三个请求的队列的?<br>首先这三个队列分别是：正在运行的同步双端队列（runningSyncCalls）、准备就绪的异步双端队列（readyAsyncCalls）、正在运行的异步双端队列（runningAsyncCalls）</li>
+</ol>
+<p><code>client.dispatcher().executed(this)</code>干了什么呢？<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title function_">executed</span><span class="params">(RealCall call)</span> &#123;</span><br><span class="line">    runningSyncCalls.add(call);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure><br>将RealCall对象加入到正在运行的同步队列中，这样在<code>getResponseWithInterceptorChain()</code>调用结束得到Response对象后，最终运行finally块时，调用<code>client.dispatcher().finished(this);</code>，那么看看这个方法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> <span class="title function_">finished</span><span class="params">(RealCall call)</span> &#123;</span><br><span class="line">    finished(runningSyncCalls, call);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> &lt;T&gt; <span class="keyword">void</span> <span class="title function_">finished</span><span class="params">(Deque&lt;T&gt; calls, T call)</span> &#123;</span><br><span class="line">    Runnable idleCallback;</span><br><span class="line">    <span class="keyword">synchronized</span> (<span class="built_in">this</span>) &#123;</span><br><span class="line">        <span class="comment">// 移除之前加入的同步请求</span></span><br><span class="line">        <span class="keyword">if</span> (!calls.remove(call)) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">AssertionError</span>(<span class="string">&quot;Call wasn&#x27;t in-flight!&quot;</span>);</span><br><span class="line">        idleCallback = <span class="built_in">this</span>.idleCallback;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 尝试在readyAsynCall队列中获取待运行的任务，然后加入到runningAsynCall队列中运行</span></span><br><span class="line">    <span class="type">boolean</span> <span class="variable">isRunning</span> <span class="operator">=</span> promoteAndExecute();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!isRunning &amp;&amp; idleCallback != <span class="literal">null</span>) &#123;</span><br><span class="line">      idleCallback.run();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 从就绪的异步任务中按规则取出一定数量异步任务，加入到可运行的异步任务队列中，然后将运行中的异步任务丢该线程池运行</span></span><br><span class="line"><span class="comment"> * 这里的获取规则如下：</span></span><br><span class="line"><span class="comment"> * 1. 当前运行的异步任务书超过最大请求数时，直接break；</span></span><br><span class="line"><span class="comment"> * 2. 当前的异步任务超过美国host的最大限制是，直接跳过；</span></span><br><span class="line"><span class="comment"> * 这就说明了一个问题：随缘OkHttpClient采用的Dispatcher中的线程池核心线程为0，工作线程为Integer.MAX_VALUE，但通过 maxRequests （默认值为64）进行了线程数量的控制，不至于因线程过多导致</span></span><br><span class="line"><span class="comment"> * OOM的发生</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="type">boolean</span> <span class="title function_">promoteAndExecute</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">assert</span> (!Thread.holdsLock(<span class="built_in">this</span>));</span><br><span class="line"></span><br><span class="line">    List&lt;AsyncCall&gt; executableCalls = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    <span class="type">boolean</span> isRunning;</span><br><span class="line">    <span class="keyword">synchronized</span> (<span class="built_in">this</span>) &#123;</span><br><span class="line">      <span class="keyword">for</span> (Iterator&lt;AsyncCall&gt; i = readyAsyncCalls.iterator(); i.hasNext(); ) &#123;</span><br><span class="line">        <span class="type">AsyncCall</span> <span class="variable">asyncCall</span> <span class="operator">=</span> i.next();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (runningAsyncCalls.size() &gt;= maxRequests) <span class="keyword">break</span>; <span class="comment">// Max capacity.</span></span><br><span class="line">        <span class="keyword">if</span> (runningCallsForHost(asyncCall) &gt;= maxRequestsPerHost) <span class="keyword">continue</span>; <span class="comment">// Host max capacity.</span></span><br><span class="line"></span><br><span class="line">        i.remove();</span><br><span class="line">        executableCalls.add(asyncCall);</span><br><span class="line">        runningAsyncCalls.add(asyncCall);</span><br><span class="line">      &#125;</span><br><span class="line">      isRunning = runningCallsCount() &gt; <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>, size = executableCalls.size(); i &lt; size; i++) &#123;</span><br><span class="line">      <span class="type">AsyncCall</span> <span class="variable">asyncCall</span> <span class="operator">=</span> executableCalls.get(i);</span><br><span class="line">      asyncCall.executeOn(executorService());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> isRunning;`</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<ol>
 <li><code>getResponseWithInterceptorChain()</code>如何实现递归调用的？<br>先看<code>getResponseWithInterceptorChain()</code>代码：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">Response <span class="title function_">getResponseWithInterceptorChain</span><span class="params">()</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    <span class="comment">// Build a full stack of interceptors.</span></span><br><span class="line">    List&lt;Interceptor&gt; interceptors = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    interceptors.addAll(client.interceptors());</span><br><span class="line">    interceptors.add(retryAndFollowUpInterceptor);</span><br><span class="line">    interceptors.add(<span class="keyword">new</span> <span class="title class_">BridgeInterceptor</span>(client.cookieJar()));</span><br><span class="line">    interceptors.add(<span class="keyword">new</span> <span class="title class_">CacheInterceptor</span>(client.internalCache()));</span><br><span class="line">    interceptors.add(<span class="keyword">new</span> <span class="title class_">ConnectInterceptor</span>(client));</span><br><span class="line">    <span class="keyword">if</span> (!forWebSocket) &#123;</span><br><span class="line">      interceptors.addAll(client.networkInterceptors());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 注意：这个interceptors的列表中最后都会添加一个 CallServerInterceptor ，这个 CallServerInterceptor 的Intercept方法中是不调用 Chain.proceed(Request request)方法的。</span></span><br><span class="line">    <span class="comment">// 递归就是通过不停的调用Chain.process(Chain chain)方法的。相当于CallServerinterceptor是递归的终止条件。</span></span><br><span class="line">    interceptors.add(<span class="keyword">new</span> <span class="title class_">CallServerInterceptor</span>(forWebSocket));</span><br><span class="line"></span><br><span class="line">    Interceptor.<span class="type">Chain</span> <span class="variable">chain</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RealInterceptorChain</span>(interceptors, <span class="literal">null</span>, <span class="literal">null</span>, <span class="literal">null</span>, <span class="number">0</span>,</span><br><span class="line">        originalRequest, <span class="built_in">this</span>, eventListener, client.connectTimeoutMillis(),</span><br><span class="line">        client.readTimeoutMillis(), client.writeTimeoutMillis());</span><br><span class="line"></span><br><span class="line">    <span class="type">Response</span> <span class="variable">response</span> <span class="operator">=</span> chain.proceed(originalRequest);</span><br><span class="line">    <span class="keyword">if</span> (retryAndFollowUpInterceptor.isCanceled()) &#123;</span><br><span class="line">      closeQuietly(response);</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IOException</span>(<span class="string">&quot;Canceled&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> response;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 所以递归是不断的调用<code>RealInterceptorChain</code>的<code>proceed(Request request)</code>方法的，而递归终止的条件就是最终会走到<code>CallServerInterceptor</code>的intercept(Chain chain)方法，而该方法不会再调用Chain.proceed(Request request)</li>
 </ol>
@@ -1844,8 +1832,6 @@
           
             <blockquote>
 <p>本文链接：<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A211027.html">https://rainmonth.github.io/posts/A211027.html</a><br>Android greenDAO使用</p>
-</blockquote>
-<blockquote>
 <p>参考内容：<a target="_blank" rel="noopener" href="https://greenrobot.org/greendao/">官方网站</a>，打开官网发现官网极力推荐<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/7706996b10a2">ObjectBox使用</a>，后面会对ObjectBox页做一个简单的说明。</p>
 </blockquote>
 <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p><code>greenDAO</code>是一款开源高效的<code>ORM</code>数据库，极大的降低开发者编写sql查询的时间（使用greenDAO后会自动生成对应的dao，可以进行CRUD操作）。而greenDAO的使用也极其简单。greenDAO具有以下特点：</p>
@@ -1867,45 +1853,49 @@
 <p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/papima/article/details/78219000">ORM框架简介</a></p>
 <h2 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h2><p>配置greedDAO环境</p>
 <ol>
-<li>根目录的build.gradle添加如下代码：<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">buildscript &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        jcenter()</span><br><span class="line">        mavenCentral() <span class="comment">// 添加仓库地址</span></span><br><span class="line">    &#125;</span><br><span class="line">    dependencies &#123;</span><br><span class="line">        classpath <span class="string">&#x27;com.android.tools.build:gradle:3.5.3&#x27;</span></span><br><span class="line">        classpath <span class="string">&#x27;org.greenrobot:greendao-gradle-plugin:3.3.0&#x27;</span> <span class="comment">// 添加插件</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>应用module的build.gradle文件添加如下代码<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">apply <span class="attr">plugin:</span> <span class="string">&#x27;com.android.application&#x27;</span></span><br><span class="line">apply <span class="attr">plugin:</span> <span class="string">&#x27;org.greenrobot.greendao&#x27;</span> <span class="comment">// apply plugin</span></span><br><span class="line"> </span><br><span class="line">dependencies &#123;</span><br><span class="line">    implementation <span class="string">&#x27;org.greenrobot:greendao:3.3.0&#x27;</span> <span class="comment">// add library</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>greenDAO的一些配置<br>通过上面两步就可以在项目中使用greenDAO，在app module中添加greendao闭包处理，如下：<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">apply <span class="attr">plugin:</span> <span class="string">&#x27;com.android.application&#x27;</span></span><br><span class="line">apply <span class="attr">plugin:</span> <span class="string">&#x27;org.greenrobot.greendao&#x27;</span> <span class="comment">// apply plugin</span></span><br><span class="line">greendao &#123;</span><br><span class="line">    <span class="comment">// 数据库版本，很重要，后面数据库的升级需要用到它</span></span><br><span class="line">    schemaVersion <span class="number">1</span></span><br><span class="line">    <span class="comment">// 指定dao文件所在的包名</span></span><br><span class="line">    daoPackage <span class="string">&#x27;com.rainmonth.notebook.dao&#x27;</span></span><br><span class="line">    <span class="comment">// 指定插件自动生成java文件存放的目录</span></span><br><span class="line">    targetGenDir <span class="string">&#x27;src/main/java&#x27;</span></span><br><span class="line">    <span class="comment">// 是否自动生成单元测试</span></span><br><span class="line">    generateTests <span class="literal">true</span></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">    implementation <span class="string">&#x27;org.greenrobot:greendao:3.3.0&#x27;</span> <span class="comment">// add library</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>根目录的build.gradle添加如下代码：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">buildscript &#123;</span><br><span class="line"> repositories &#123;</span><br><span class="line">     jcenter()</span><br><span class="line">     mavenCentral() <span class="comment">// 添加仓库地址</span></span><br><span class="line"> &#125;</span><br><span class="line"> dependencies &#123;</span><br><span class="line">     classpath <span class="string">&#x27;com.android.tools.build:gradle:3.5.3&#x27;</span></span><br><span class="line">     classpath <span class="string">&#x27;org.greenrobot:greendao-gradle-plugin:3.3.0&#x27;</span> <span class="comment">// 添加插件</span></span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>应用module的build.gradle文件添加如下代码</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apply <span class="attr">plugin:</span> <span class="string">&#x27;com.android.application&#x27;</span></span><br><span class="line">apply <span class="attr">plugin:</span> <span class="string">&#x27;org.greenrobot.greendao&#x27;</span> <span class="comment">// apply plugin</span></span><br></pre></td></tr></table></figure>
+</li>
 </ol>
+<p>dependencies {<br>    implementation ‘org.greenrobot:greendao:3.3.0’ // add library<br>}</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">3. greenDAO的一些配置</span><br><span class="line">通过上面两步就可以在项目中使用greenDAO，在app module中添加greendao闭包处理，如下：</span><br><span class="line">```groovy</span><br><span class="line">apply plugin: &#x27;com.android.application&#x27;</span><br><span class="line">apply plugin: &#x27;org.greenrobot.greendao&#x27; // apply plugin</span><br><span class="line">greendao &#123;</span><br><span class="line">    // 数据库版本，很重要，后面数据库的升级需要用到它</span><br><span class="line">    schemaVersion 1</span><br><span class="line">    // 指定dao文件所在的包名</span><br><span class="line">    daoPackage &#x27;com.rainmonth.notebook.dao&#x27;</span><br><span class="line">    // 指定插件自动生成java文件存放的目录</span><br><span class="line">    targetGenDir &#x27;src/main/java&#x27;</span><br><span class="line">    // 是否自动生成单元测试</span><br><span class="line">    generateTests true</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">    implementation &#x27;org.greenrobot:greendao:3.3.0&#x27; // add library</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="基础注解说明"><a href="#基础注解说明" class="headerlink" title="基础注解说明"></a>基础注解说明</h3><ul>
-<li>@Entity，加在类上，声明表的实体类型，加上给注解后会根据类的属性生成必要的表，字段就是类的属性；该注解有如下属性<ul>
+<li><p>@Entity，加在类上，声明表的实体类型，加上给注解后会根据类的属性生成必要的表，字段就是类的属性；该注解有如下属性</p>
+<ul>
 <li>nameInDb， 表在数据库中的别名，不指定默认就是实体类名；</li>
 <li>Index[]，索引，可以跨列；</li>
 <li>createInDb，默认true，标记在数据库中刚创建表；</li>
 <li>schema，表的schema；</li>
 <li>active，默认为true，实体（表）是否处于活跃状态，活跃状态的有更新删除和刷新的方法；</li>
 <li>generateConstructors，默认true，是否生成构造函数；</li>
-<li>generateGettersSetters，默认true，标记是否生成相应的get&#x2F;set方法；</li>
+<li>generateGettersSetters，默认true，标记是否生成相应的get/set方法；</li>
 <li>protobuf，默认为<code>void.class</code>，为实体类提供一个额外的class以生成一个特殊的DAO</li>
 </ul>
 </li>
-<li>@Id，加载实体类的属性上，定义自增id，有一个autoincrement属性，默认为false；</li>
-<li>@Index，加载实体类属性上，表示索引，有value、name、unique三个属性；</li>
-<li>@Generated，表明是属性、方法或构造方法是由greenDAO自己生成的代码；</li>
-<li>@JoinEntity，用于建立多对多关系<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Product</span> &#123;</span><br><span class="line">    <span class="meta">@Id</span> <span class="keyword">private</span> Long id;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ToMany</span></span><br><span class="line">    <span class="meta">@JoinEntity(</span></span><br><span class="line"><span class="meta">            entity = JoinProductsWithOrders.class,</span></span><br><span class="line"><span class="meta">            sourceProperty = &quot;productId&quot;,</span></span><br><span class="line"><span class="meta">            targetProperty = &quot;orderId&quot;</span></span><br><span class="line"><span class="meta">    )</span></span><br><span class="line">    <span class="keyword">private</span> List ordersWithThisProduct;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JoinProductsWithOrders</span> &#123;</span><br><span class="line">    <span class="meta">@Id</span> <span class="keyword">private</span> Long id;</span><br><span class="line">    <span class="keyword">private</span> Long productId;</span><br><span class="line">    <span class="keyword">private</span> Long orderId;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Order</span> &#123;</span><br><span class="line">    <span class="meta">@Id</span> <span class="keyword">private</span> Long id;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>@JoinProperty，用来定义Join的的两个属性分别是name和referenceName</li>
-<li>@Keep，表明下次greenDAO再次生成代码是要不能修改被@Keep修饰的属性、方法或类型；</li>
-<li>@NotNull，非空注解；</li>
-<li>@OrderBy，跟排序相关，某字段加上了该注解，就根据该字段排序；</li>
-<li>@Property，定义@Entity实体类某个字段在数据库表中对应的名字；</li>
-<li>@ToMany，一对多或多对多；</li>
-<li>@ToOne，一对一；<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Order</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Id</span> <span class="keyword">private</span> Long id;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="type">long</span> customerId;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ToOne(joinProperty = &quot;customerId&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> Customer customer;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Customer</span> &#123;</span><br><span class="line">    <span class="meta">@Id</span> </span><br><span class="line">    <span class="keyword">private</span> Long id;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>@Id，加载实体类的属性上，定义自增id，有一个autoincrement属性，默认为false；</p>
+</li>
+<li><p>@Index，加载实体类属性上，表示索引，有value、name、unique三个属性；</p>
+</li>
+<li><p>@Generated，表明是属性、方法或构造方法是由greenDAO自己生成的代码；</p>
+</li>
+<li><p>@JoinEntity，用于建立多对多关系</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Product</span> &#123;</span><br><span class="line">  <span class="meta">@Id</span> <span class="keyword">private</span> Long id;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@ToMany</span></span><br><span class="line">  <span class="meta">@JoinEntity(</span></span><br><span class="line"><span class="meta">          entity = JoinProductsWithOrders.class,</span></span><br><span class="line"><span class="meta">          sourceProperty = &quot;productId&quot;,</span></span><br><span class="line"><span class="meta">          targetProperty = &quot;orderId&quot;</span></span><br><span class="line"><span class="meta">  )</span></span><br><span class="line">  <span class="keyword">private</span> List ordersWithThisProduct;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JoinProductsWithOrders</span> &#123;</span><br><span class="line"> <span class="meta">@Id</span> <span class="keyword">private</span> Long id;</span><br><span class="line"> <span class="keyword">private</span> Long productId;</span><br><span class="line"> <span class="keyword">private</span> Long orderId;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Order</span> &#123;</span><br><span class="line"> <span class="meta">@Id</span> <span class="keyword">private</span> Long id;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">- @JoinProperty，用来定义Join的的两个属性分别是name和referenceName</span><br><span class="line">- @Keep，表明下次greenDAO再次生成代码是要不能修改被@Keep修饰的属性、方法或类型；</span><br><span class="line">- @NotNull，非空注解；</span><br><span class="line">- @OrderBy，跟排序相关，某字段加上了该注解，就根据该字段排序；</span><br><span class="line">- @Property，定义@Entity实体类某个字段在数据库表中对应的名字；</span><br><span class="line">- @ToMany，一对多或多对多；</span><br><span class="line">- @ToOne，一对一；</span><br><span class="line">```java</span><br><span class="line">@Entity</span><br><span class="line">public class Order &#123;</span><br><span class="line"></span><br><span class="line">    @Id private Long id;</span><br><span class="line"></span><br><span class="line">    private long customerId;</span><br><span class="line"></span><br><span class="line">    @ToOne(joinProperty = &quot;customerId&quot;)</span><br><span class="line">    private Customer customer;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Entity</span><br><span class="line">public class Customer &#123;</span><br><span class="line">    @Id </span><br><span class="line">    private Long id;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
 <li>@Transient，不会被greenDAO持久化到数据库中；</li>
 <li>@Unique，创建表的时候被@Unique注释的属性需遵循唯一性约束；</li>
 </ul>
 <h3 id="实体类支持的字段类型"><a href="#实体类支持的字段类型" class="headerlink" title="实体类支持的字段类型"></a>实体类支持的字段类型</h3><p>greenDAO默认支持的字段类型有如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">boolean, Boolean</span><br><span class="line">int, Integer</span><br><span class="line">short, Short</span><br><span class="line">long, Long</span><br><span class="line">float, Float</span><br><span class="line">double, Double</span><br><span class="line">byte, Byte</span><br><span class="line">byte[]</span><br><span class="line">String</span><br><span class="line">Date</span><br></pre></td></tr></table></figure>
-
-
-
 <h3 id="核心类"><a href="#核心类" class="headerlink" title="核心类"></a>核心类</h3><p>greenDAO 使用是否简单，在使用@Entity注解定义好实体后，编译就可以自动生成一些用来进行数据库操作的处理。正常的主要类有<code>DaoMaster</code>、<code>DaoSession</code>、<code>XxxEntity</code></p>
 <h4 id="DaoMaster"><a href="#DaoMaster" class="headerlink" title="DaoMaster"></a>DaoMaster</h4><p>负责管理数据库对象和EntityDAO对象的关系，可以通过其内部类OpenHelper、DevOpenHelper、SQLiteOpenHelper创建不同模式的数据库。负责表的创建、更新，负责数据库的升级，负责DaoSession的创建</p>
 <h4 id="DaoSession"><a href="#DaoSession" class="headerlink" title="DaoSession"></a>DaoSession</h4><p>管理者所有的EntityDAO，提供了公用的实体CRUD方法（实际上是在AbstractDAOSession中实现的）</p>
-<h4 id="XxxEntity"><a href="#XxxEntity" class="headerlink" title="XxxEntity"></a>XxxEntity</h4><p>根据定义的java类（@Entity注解修饰的类）生成的类文件，会根据@Entity注解的属性按需生成类方法（如是否需要生成构造函数，是否需要生成getter&#x2F;setter方法等。</p>
+<h4 id="XxxEntity"><a href="#XxxEntity" class="headerlink" title="XxxEntity"></a>XxxEntity</h4><p>根据定义的java类（@Entity注解修饰的类）生成的类文件，会根据@Entity注解的属性按需生成类方法（如是否需要生成构造函数，是否需要生成getter/setter方法等。</p>
 <h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>由于<code>greenDAO</code>是一个<code>ORM</code>框架，干的就是对象关系映射这件事，所以要搞清楚对象到关系的映射是如何生成的。这里原理分析部分主要分析代码自动生成，这样以后自己也可以写插件自动生成代码了。</p>
 <ol>
 <li>greenDAO的api就是其定义的那些注解，开发者在原始的类中根据要在数据库中建立的表的关系，将api（即注解应用上去），这样开发者的工作就完成了，箱单简单；</li>
@@ -1924,14 +1914,14 @@
 </ol>
 <p>用到的技术</p>
 <ol>
-<li>gradle插件技术，gradle插件开发介绍：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d53399cd507b%EF%BC%9B">https://www.jianshu.com/p/d53399cd507b；</a></li>
+<li>gradle插件技术，gradle插件开发介绍：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d53399cd507b；">https://www.jianshu.com/p/d53399cd507b；</a></li>
 <li>Android注解相关技术</li>
 <li>JDT注解处理与收集，JDT介绍：<a target="_blank" rel="noopener" href="http://www.eclipse.org/jdt/overview.php">http://www.eclipse.org/jdt/overview.php</a></li>
 <li>代码生成框架FreeMaker，FreeMarker快速入门：<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000011768799">https://segmentfault.com/a/1190000011768799</a></li>
 </ol>
 <h2 id="greeDAO-数据库升级"><a href="#greeDAO-数据库升级" class="headerlink" title="greeDAO 数据库升级"></a>greeDAO 数据库升级</h2><p>为什么会要单独拎一节来讲数据库升级呢？首先，面试中经常会被问到，哈哈；其次这个是开发中很容易遇到的问题，下面来介绍下。</p>
 <p>greenDAO的数据库升级处理主要是在DaoMaster中进行的，主要是：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Calls &#123;<span class="doctag">@link</span> #createAllTables(Database, boolean)&#125; in &#123;<span class="doctag">@link</span> #onCreate(Database)&#125; -</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">OpenHelper</span> <span class="keyword">extends</span> <span class="title class_">DatabaseOpenHelper</span> &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="title function_">OpenHelper</span><span class="params">(Context context, String name)</span> &#123;</span><br><span class="line">            <span class="built_in">super</span>(context, name, SCHEMA_VERSION);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="title function_">OpenHelper</span><span class="params">(Context context, String name, CursorFactory factory)</span> &#123;</span><br><span class="line">            <span class="built_in">super</span>(context, name, factory, SCHEMA_VERSION);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onCreate</span><span class="params">(Database db)</span> &#123;</span><br><span class="line">            Log.i(<span class="string">&quot;greenDAO&quot;</span>, <span class="string">&quot;Creating tables for schema version &quot;</span> + SCHEMA_VERSION);</span><br><span class="line">            createAllTables(db, <span class="literal">false</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onUpgrade</span><span class="params">(SQLiteDatabase db, <span class="type">int</span> oldVersion, <span class="type">int</span> newVersion)</span> &#123;</span><br><span class="line">            <span class="built_in">super</span>.onUpgrade(db, oldVersion, newVersion);</span><br><span class="line">            <span class="comment">//todo 这里进行的时数据库升级操作</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Calls &#123;<span class="doctag">@link</span> #createAllTables(Database, boolean)&#125; in &#123;<span class="doctag">@link</span> #onCreate(Database)&#125; -</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">OpenHelper</span> <span class="keyword">extends</span> <span class="title class_">DatabaseOpenHelper</span> &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="title function_">OpenHelper</span><span class="params">(Context context, String name)</span> &#123;</span><br><span class="line">            <span class="built_in">super</span>(context, name, SCHEMA_VERSION);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="title function_">OpenHelper</span><span class="params">(Context context, String name, CursorFactory factory)</span> &#123;</span><br><span class="line">            <span class="built_in">super</span>(context, name, factory, SCHEMA_VERSION);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onCreate</span><span class="params">(Database db)</span> &#123;</span><br><span class="line">            Log.i(<span class="string">&quot;greenDAO&quot;</span>, <span class="string">&quot;Creating tables for schema version &quot;</span> + SCHEMA_VERSION);</span><br><span class="line">            createAllTables(db, <span class="literal">false</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onUpgrade</span><span class="params">(SQLiteDatabase db, <span class="type">int</span> oldVersion, <span class="type">int</span> newVersion)</span> &#123;</span><br><span class="line">            <span class="built_in">super</span>.onUpgrade(db, oldVersion, newVersion);</span><br><span class="line">            <span class="comment">//todo 这里进行的时数据库升级操作</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p>当我们数据表发生更改的时候，我们需要在app的build.gradle下的greendao{}升级schemaVersion版本，版本改变后，最终就会走到<code>onUpgrade(...)</code>里面。<br>粗暴的策略：删掉所有老的表，然后创建新的，然后所有的数据都丢了，然后该滚蛋了…….</p>
 <p>通常的升级策略</p>
 <ol>
@@ -1944,7 +1934,14 @@
 </ol>
 <h2 id="greenDAO降级处理"><a href="#greenDAO降级处理" class="headerlink" title="greenDAO降级处理"></a>greenDAO降级处理</h2><p>降级处理比较简单，删除表然后重新创建</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onDowngrade</span><span class="params">(SQLiteDatabase db, <span class="type">int</span> oldVersion, <span class="type">int</span> newVersion)</span> &#123;</span><br><span class="line">    LogHelper.i(TAG, <span class="string">&quot;主数据库降级 [&quot;</span> + mDbName + <span class="string">&quot;] from version &quot;</span> + oldVersion + <span class="string">&quot; to &quot;</span> + newVersion);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="type">DaoMaster</span> <span class="variable">daoMaster</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DaoMaster</span>(db);</span><br><span class="line">        <span class="type">Database</span> <span class="variable">database</span> <span class="operator">=</span> daoMaster.getDatabase();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 数据库版本号降级时，先删除所有表，然后重新创建</span></span><br><span class="line">        DaoMaster.dropAllTables(database, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">        DaoMaster.createAllTables(database, <span class="literal">true</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Throwable e) &#123;</span><br><span class="line">        LogHelper.e(TAG, mDbName + <span class="string">&quot;onDowngrade from version &quot;</span> + oldVersion + <span class="string">&quot; to &quot;</span> + newVersion + <span class="string">&quot; err: &quot;</span> + e.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h2 id="疑问"><a href="#疑问" class="headerlink" title="疑问"></a>疑问</h2><ol>
+<li><p>不定义主键会发生什么？</p>
+</li>
+<li><p>SqlLite数据库操作需要加锁吗？</p>
+</li>
+<li><p>SqlLite数据库不同字段的限制条件是什么？</p>
+</li>
+</ol>
 <h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>了解了greenDAO的基本使用，特点及性能情况，同时对greenDAO整体的处理流程做了一个梳理，至于具体每个流程，如插件编写、注解处理、FreeMarker的具体使用细节，后面有机会单独介绍，这里不做赘述。</p>
 <p>本文知识greenDAO的基本使用及原理介绍，高级使用请移步<a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903486107172871">Android ORM 框架：GreenDao 使用详解（进阶篇）</a></p>
 
@@ -2204,7 +2201,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/%20%7C%7C%20archive">
+                  <a href="/archives/%7C%7C%20archive">
                 
                     <span class="site-state-item-count">205</span>
                     <span class="site-state-item-name">日志</span>

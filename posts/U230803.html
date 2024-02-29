@@ -214,7 +214,7 @@
         
           
   <li class="menu-item menu-item-home">
-    <a href="/%20" rel="section">
+    <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
 </li>
 
@@ -223,7 +223,7 @@
         
           
   <li class="menu-item menu-item-about">
-    <a href="/about/%20" rel="section">
+    <a href="/about/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
 </li>
 
@@ -232,7 +232,7 @@
         
           
   <li class="menu-item menu-item-tags">
-    <a href="/tags/%20" rel="section">
+    <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
 </li>
 
@@ -241,7 +241,7 @@
         
           
   <li class="menu-item menu-item-categories">
-    <a href="/categories/%20" rel="section">
+    <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
 </li>
 
@@ -250,7 +250,7 @@
         
           
   <li class="menu-item menu-item-archives">
-    <a href="/archives/%20" rel="section">
+    <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
 </li>
 
@@ -259,7 +259,7 @@
         
           
   <li class="menu-item menu-item-schedule">
-    <a href="/schedule/%20" rel="section">
+    <a href="/schedule/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
 </li>
 
@@ -402,7 +402,6 @@
 </blockquote>
 <p>可以通过WASD控制角色的移动，空格控制跳跃，鼠标控制摄像机的视角，这里需要分析下这里的代码实现：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. WASD控制角色的移动很好实现，通过InputManager的GetAxis来获取相应的轴，然后进行位移即可；</span><br><span class="line">2. 空格键控制跳跃，同样也是捕获空格键按下事件，然后进行跳跃相关操作即可。跳跃涉及到一下几点：</span><br><span class="line">2.1 跳跃过程中的位移实现（需进一步了解）；</span><br><span class="line">2.2 跳跃过程中角色的动画实现（需进一步了解）；</span><br></pre></td></tr></table></figure>
-
 <h2 id="使用预制件"><a href="#使用预制件" class="headerlink" title="使用预制件"></a>使用预制件</h2><p>Game Kit提供了很多预制件，有可交互的，也有不可交互的，对于这些预制件，可以拖动到场景中，然后看看他都有哪些Component组成，在具体看看哪些脚本组件的具体实现代码。</p>
 <h2 id="ProBuilder的使用"><a href="#ProBuilder的使用" class="headerlink" title="ProBuilder的使用"></a>ProBuilder的使用</h2><p>ProBuilder是Unity自带的建模工具。参考链接：</p>
 <ol>
@@ -520,7 +519,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/%20%7C%7C%20archive">
+                  <a href="/archives/%7C%7C%20archive">
                 
                     <span class="site-state-item-count">205</span>
                     <span class="site-state-item-name">日志</span>

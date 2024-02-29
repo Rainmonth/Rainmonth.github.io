@@ -214,7 +214,7 @@
         
           
   <li class="menu-item menu-item-home">
-    <a href="/%20" rel="section">
+    <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
 </li>
 
@@ -223,7 +223,7 @@
         
           
   <li class="menu-item menu-item-about">
-    <a href="/about/%20" rel="section">
+    <a href="/about/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
 </li>
 
@@ -232,7 +232,7 @@
         
           
   <li class="menu-item menu-item-tags">
-    <a href="/tags/%20" rel="section">
+    <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
 </li>
 
@@ -241,7 +241,7 @@
         
           
   <li class="menu-item menu-item-categories">
-    <a href="/categories/%20" rel="section">
+    <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
 </li>
 
@@ -250,7 +250,7 @@
         
           
   <li class="menu-item menu-item-archives">
-    <a href="/archives/%20" rel="section">
+    <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
 </li>
 
@@ -259,7 +259,7 @@
         
           
   <li class="menu-item menu-item-schedule">
-    <a href="/schedule/%20" rel="section">
+    <a href="/schedule/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
 </li>
 
@@ -417,7 +417,6 @@
 </li>
 </ul>
 <span id="more"></span>
-
 <h2 id="re-模块"><a href="#re-模块" class="headerlink" title="re 模块"></a>re 模块</h2><p>re 模块是python内置的模块，代码都在<code>re.py</code>文件中，是Python用来进行正则处理的。如果没有正则基础，在文件的头部有正则表达式最基本的说明，这个更通过网络搜索的结果是一样的，而且每个说明都有例子说明。</p>
 <p>常用的正则使用示例</p>
 <ul>
@@ -428,19 +427,13 @@
 <li><p>是否包含数字</p>
 </li>
 </ul>
-<h2 id="requests"><a href="#requests" class="headerlink" title="requests"></a><a target="_blank" rel="noopener" href="https://requests.readthedocs.io/en/latest/">requests</a></h2><p>首先需要能拿到网页的内容，这需要用到 <code>requests</code> 库，安装requests库后，会自动安装[urllib3](<a target="_blank" rel="noopener" href="https://urllib3.readthedocs.io/en/stable/">urllib3 2.1.0 documentation</a>)库</p>
+<h2 id="requests"><a href="#requests" class="headerlink" title="requests"></a><a target="_blank" rel="noopener" href="https://requests.readthedocs.io/en/latest/">requests</a></h2><p>首先需要能拿到网页的内容，这需要用到 <code>requests</code> 库，安装requests库后，会自动安装<a href="[urllib3 2.1.0 documentation](https://urllib3.readthedocs.io/en/stable/">urllib3</a>)库</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install requests</span><br></pre></td></tr></table></figure>
-
 <p>基础使用方法如下，其他方法看源码无非就是<code>request</code>的调用</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">response = requests.request()</span><br></pre></td></tr></table></figure>
-
 <h2 id="urllib3"><a href="#urllib3" class="headerlink" title="urllib3"></a><a target="_blank" rel="noopener" href="https://urllib3.readthedocs.io/en/stable/">urllib3</a></h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install urllib3</span><br></pre></td></tr></table></figure>
-
 <p>当安装<code>requests</code>库时，就会自动安装<code>urllib3</code>库，因为<code>requests</code>库就依赖于<code>urllib3</code>库，<code>urllib3</code>的简单实用：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib3</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">http = urllib3.PoolManager()</span><br><span class="line"></span><br><span class="line">resp = http.request</span><br><span class="line"><span class="built_in">print</span>(resp.status)<span class="comment"># 打印请求状态</span></span><br><span class="line"><span class="built_in">print</span>(resp.data)<span class="comment"># 打印二进制数据</span></span><br><span class="line"><span class="built_in">print</span>(resp.headers)<span class="comment"># 打印响应头</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h2 id="lxml"><a href="#lxml" class="headerlink" title="lxml"></a><a target="_blank" rel="noopener" href="https://lxml.de/">lxml</a></h2><p>lxml是一个功能丰富并易于使用的用来处理xml或HTML文件的库。</p>
 
       
@@ -469,8 +462,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/L180130.html" rel="next" title="Linux杂谈">
-                <i class="fa fa-chevron-left"></i> Linux杂谈
+              <a href="/posts/P200202.html" rel="next" title="Python 资料收录">
+                <i class="fa fa-chevron-left"></i> Python 资料收录
               </a>
             
           </div>
@@ -479,8 +472,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/posts/P200202.html" rel="prev" title="Python 资料收录">
-                Python 资料收录 <i class="fa fa-chevron-right"></i>
+              <a href="/posts/L180130.html" rel="prev" title="Linux杂谈">
+                Linux杂谈 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -553,7 +546,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/%20%7C%7C%20archive">
+                  <a href="/archives/%7C%7C%20archive">
                 
                     <span class="site-state-item-count">205</span>
                     <span class="site-state-item-name">日志</span>

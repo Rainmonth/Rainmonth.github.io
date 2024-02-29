@@ -99,12 +99,12 @@
 
 
 
-  <meta name="description" content="本文链接：https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A180413.html  摘要 虽说Android硬件水平在不断的提高在App开发过程中，性能优化似乎是一个经常性的话题，本文将从内存的角度来分析如何对Android App的性能进行优化。">
+  <meta name="description" content="本文链接：https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A180413.html 摘要虽说Android硬件水平在不断的提高在App开发过程中，性能优化似乎是一个经常性的话题，本文将从内存的角度来分析如何对Android App的性能进行优化。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 性能优化——内存优化">
 <meta property="og:url" content="http://yoursite.com/posts/A180413.html">
 <meta property="og:site_name" content="荏苒追寻个人博客">
-<meta property="og:description" content="本文链接：https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A180413.html  摘要 虽说Android硬件水平在不断的提高在App开发过程中，性能优化似乎是一个经常性的话题，本文将从内存的角度来分析如何对Android App的性能进行优化。">
+<meta property="og:description" content="本文链接：https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A180413.html 摘要虽说Android硬件水平在不断的提高在App开发过程中，性能优化似乎是一个经常性的话题，本文将从内存的角度来分析如何对Android App的性能进行优化。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2018-04-13T02:54:12.000Z">
 <meta property="article:modified_time" content="2023-10-12T16:06:46.956Z">
@@ -215,7 +215,7 @@
         
           
   <li class="menu-item menu-item-home">
-    <a href="/%20" rel="section">
+    <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
 </li>
 
@@ -224,7 +224,7 @@
         
           
   <li class="menu-item menu-item-about">
-    <a href="/about/%20" rel="section">
+    <a href="/about/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
 </li>
 
@@ -233,7 +233,7 @@
         
           
   <li class="menu-item menu-item-tags">
-    <a href="/tags/%20" rel="section">
+    <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
 </li>
 
@@ -242,7 +242,7 @@
         
           
   <li class="menu-item menu-item-categories">
-    <a href="/categories/%20" rel="section">
+    <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
 </li>
 
@@ -251,7 +251,7 @@
         
           
   <li class="menu-item menu-item-archives">
-    <a href="/archives/%20" rel="section">
+    <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
 </li>
 
@@ -260,7 +260,7 @@
         
           
   <li class="menu-item menu-item-schedule">
-    <a href="/schedule/%20" rel="section">
+    <a href="/schedule/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
 </li>
 
@@ -405,12 +405,9 @@
       
         <blockquote>
 <p>本文链接：<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180413.html">https://rainmonth.github.io/posts/A180413.html</a></p>
-</blockquote>
-<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><blockquote>
-<p>虽说Android硬件水平在不断的提高在App开发过程中，性能优化似乎是一个经常性的话题，本文将从内存的角度来分析如何对Android App的性能进行优化。</p>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>虽说Android硬件水平在不断的提高在App开发过程中，性能优化似乎是一个经常性的话题，本文将从内存的角度来分析如何对Android App的性能进行优化。</p>
 </blockquote>
 <span id="more"></span>
-
 <h2 id="内存优化"><a href="#内存优化" class="headerlink" title="内存优化"></a>内存优化</h2><p>内存优化，说直白点就是高效的使用内存、高效的回收内存及有效的避免内存泄漏。</p>
 <h3 id="高效的使用内存"><a href="#高效的使用内存" class="headerlink" title="高效的使用内存"></a>高效的使用内存</h3><p>为了更好的适用于Android手机（内存小，CPU资源紧张）这个应用场景，Google 封装了一些比较常用的数据结构（在android.util包下），如ArrayMap、ArraySet、SparseArray(SparseBooleanArray、SparseIntArray、SparseLongArray)等。</p>
 <h4 id="SparseArray"><a href="#SparseArray" class="headerlink" title="SparseArray"></a>SparseArray</h4><p>在Android中当<code>HashMap&lt;Key, Value&gt;</code>中的<code>Key</code>为<code>Integer</code>类型时，可以采用<code>SparseArray</code>类替换以提高效率（在<strong>数据量很大</strong>的时候还是<code>HashMap</code>效率更高）。</p>
@@ -431,10 +428,8 @@
 </li>
 <li><p>使用BlockCanary监测UI卡顿</p>
 </li>
-<li><p>使用SystemTrace分析卡顿</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u011240877/article/details/54347396">使用Traceview进行性能分析</a></p>
-</li>
+<li>使用SystemTrace分析卡顿</li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/u011240877/article/details/54347396">使用Traceview进行性能分析</a></li>
 </ul>
 <h4 id="常见的内存泄漏情景"><a href="#常见的内存泄漏情景" class="headerlink" title="常见的内存泄漏情景"></a>常见的内存泄漏情景</h4><ol>
 <li>使用非静态内部类（或匿名内部类）</li>
@@ -564,7 +559,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/%20%7C%7C%20archive">
+                  <a href="/archives/%7C%7C%20archive">
                 
                     <span class="site-state-item-count">205</span>
                     <span class="site-state-item-name">日志</span>

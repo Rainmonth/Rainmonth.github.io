@@ -216,7 +216,7 @@
         
           
   <li class="menu-item menu-item-home">
-    <a href="/%20" rel="section">
+    <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
 </li>
 
@@ -225,7 +225,7 @@
         
           
   <li class="menu-item menu-item-about">
-    <a href="/about/%20" rel="section">
+    <a href="/about/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
 </li>
 
@@ -234,7 +234,7 @@
         
           
   <li class="menu-item menu-item-tags">
-    <a href="/tags/%20" rel="section">
+    <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
 </li>
 
@@ -243,7 +243,7 @@
         
           
   <li class="menu-item menu-item-categories">
-    <a href="/categories/%20" rel="section">
+    <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
 </li>
 
@@ -252,7 +252,7 @@
         
           
   <li class="menu-item menu-item-archives">
-    <a href="/archives/%20" rel="section">
+    <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
 </li>
 
@@ -261,7 +261,7 @@
         
           
   <li class="menu-item menu-item-schedule">
-    <a href="/schedule/%20" rel="section">
+    <a href="/schedule/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
 </li>
 
@@ -410,7 +410,6 @@
 <h2 id="Android中MVP模式、MVC模式"><a href="#Android中MVP模式、MVC模式" class="headerlink" title="Android中MVP模式、MVC模式"></a>Android中MVP模式、MVC模式</h2><h3 id="模式简介"><a href="#模式简介" class="headerlink" title="模式简介"></a>模式简介</h3><h4 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h4><p>Model-View-Controller简称，将数据模型（数据的定义及相关操作）、界面显示（接受用户的操作）与业务逻辑（接受界面操作并控制操作数据）分离的方式组织代码；</p>
 <h4 id="MVP"><a href="#MVP" class="headerlink" title="MVP"></a>MVP</h4><p>Model-View-Presenter简称，将MVC中的C层采用P层来换， 该模式下，M层和V层不再像MVC中的那样，他们不发生联系，沟通都是通过P层来实现的。</p>
 <span id="more"></span>
-
 <h3 id="通信方式"><a href="#通信方式" class="headerlink" title="通信方式"></a>通信方式</h3><h4 id="MVC-1"><a href="#MVC-1" class="headerlink" title="MVC"></a>MVC</h4><ul>
 <li>View层接受到用户交互请求；</li>
 <li>View层将请求传递给Controller层；</li>
@@ -428,7 +427,7 @@
 <h3 id="进化历史"><a href="#进化历史" class="headerlink" title="进化历史"></a>进化历史</h3><p>MVC-&gt;MVP，这种改变的原因主要就是MVC中，Model不依赖于View，但View依赖于Model，V层可以直接访问M层，不可避免的V层就会包含数据逻辑处理，这样当V层在某个需求变化下需要更改时，就会变的麻烦（需要考虑View 层之前包含的那部分逻辑），于是MVP就产生了，他阻断了Model和View之间的直接通信，二者要联系起来必须都依赖于Presenter，即MP间可上相交互，PV间也可双向交互。</p>
 <p>发现美团的一篇讲解MVVM模式的文章：</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://tech.meituan.com/android_mvvm.html">如何构建Android MVVM 应用框架</a></li>
+<li><a target="_blank" rel="noopener" href="https://tech.meituan.com/android_mvvm.html">如何构建Android MVVM 应用框架</a> </li>
 </ul>
 <h4 id="MVVM"><a href="#MVVM" class="headerlink" title="MVVM"></a>MVVM</h4><ul>
 <li><p>Model</p>
@@ -560,7 +559,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/%20%7C%7C%20archive">
+                  <a href="/archives/%7C%7C%20archive">
                 
                     <span class="site-state-item-count">205</span>
                     <span class="site-state-item-name">日志</span>

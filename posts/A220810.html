@@ -214,7 +214,7 @@
         
           
   <li class="menu-item menu-item-home">
-    <a href="/%20" rel="section">
+    <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
 </li>
 
@@ -223,7 +223,7 @@
         
           
   <li class="menu-item menu-item-about">
-    <a href="/about/%20" rel="section">
+    <a href="/about/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
 </li>
 
@@ -232,7 +232,7 @@
         
           
   <li class="menu-item menu-item-tags">
-    <a href="/tags/%20" rel="section">
+    <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
 </li>
 
@@ -241,7 +241,7 @@
         
           
   <li class="menu-item menu-item-categories">
-    <a href="/categories/%20" rel="section">
+    <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
 </li>
 
@@ -250,7 +250,7 @@
         
           
   <li class="menu-item menu-item-archives">
-    <a href="/archives/%20" rel="section">
+    <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
 </li>
 
@@ -259,7 +259,7 @@
         
           
   <li class="menu-item menu-item-schedule">
-    <a href="/schedule/%20" rel="section">
+    <a href="/schedule/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
 </li>
 
@@ -404,7 +404,6 @@
       
         <p>前面的三篇文章中讲述了OpenGL中的一些基本概念、物体的创建、着色及纹理的应用，使物体的细节表现的更丰富，但是它始终还是一个静态物体，那么如何使物体动起来了，一种方案是在每一帧中改变物体的顶点属性值，重新渲染，这个可以实现功能，但每次都要重新想GPU传递数据，这个性能上会有很大的浪费，于是就催生了一种新的方案，通过一定方式（通常是数学中的<strong>矩阵</strong>运算来动态变换一个物体。这就是本篇的主题——<strong>变换</strong>。这里主要介绍变换时长用到的一些数学概念及这些概念涉及到的数学运算，主要就是向量和矩阵。</p>
 <span id="more"></span>
-
 <p>系列文章</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A220802.html">Android OpenGL基础1——常用概念及方法解释</a></li>
@@ -418,14 +417,29 @@
 <li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/261750408">Typora数学公式汇总（Markdown）</a></li>
 </ul>
 <h2 id="向量"><a href="#向量" class="headerlink" title="向量"></a>向量</h2><p>向量有一个<strong>方向</strong>（Direction）和<strong>大小</strong>（Magnitude）。向量可以是任意维度的，但通常指研究二维到四维向量。由于向量是一个方向，所以有些时候会很难形象地将它们用位置(Position)表示出来。为了让其更为直观，我们通常设定这个方向的原点为(0, 0, 0)，然后指向一个方向，对应一个点，使其变为位置向量(Position Vector)。</p>
-<h3 id="向量与标量运算"><a href="#向量与标量运算" class="headerlink" title="向量与标量运算"></a>向量与标量运算</h3><p><strong>标量</strong>只是一个数字（或者是仅有一个分量的向量）。当把一个向量加减乘除一个标量是，可以简单的把向量的每个分量分别进行该运算，下面演示一下向量的加法：<br>$$<br>\left (<br>\begin{matrix}<br>    1\<br>    2\<br>    3<br>\end{matrix}<br>\right) + x &#x3D; </p>
-<p>\left(<br>\begin{matrix}<br>1+x\<br>2+x\<br>3+x<br>\end{matrix}<br>\right)<br>$$<br>上面的加号可以换成 “+”、“-”、“·” 、“÷”。其中“-”、“÷”运算是不能调换前后属性（即不能换成 <strong>标量 -&#x2F;÷ 向量</strong>），因为这样颠倒是没有意义的。其实数学上是没有向量和标量相加这个运算的，只不过许多线性代数的库提供了对它的支持。</p>
-<h3 id="向量取反"><a href="#向量取反" class="headerlink" title="向量取反"></a>向量取反</h3><p>向量取反就是对象量的每个分量进行取反，如$$\left(\begin{matrix}1\2\3\end{matrix}\right)$$ 取反操作后得到的就是$$\left(\begin{matrix}-1\-2 \-3\end{matrix}\right)$$。</p>
-<h3 id="向量加减"><a href="#向量加减" class="headerlink" title="向量加减"></a>向量加减</h3><p>向量的加法可以定义为向量每个分量相加，即$$\vec a &#x3D; (4, 2), \vec b &#x3D; (1, 2)$$，那么$$\vec a + \vec b$$的结果为：(4 + 1, 2+ 2) &#x3D; (5, 4)。</p>
-<p>向量的减法相当于$$\vec a + (-\vec b)$$，其结果为：（4-1， 2-1） &#x3D; （3,1）。</p>
+<h3 id="向量与标量运算"><a href="#向量与标量运算" class="headerlink" title="向量与标量运算"></a>向量与标量运算</h3><p><strong>标量</strong>只是一个数字（或者是仅有一个分量的向量）。当把一个向量加减乘除一个标量是，可以简单的把向量的每个分量分别进行该运算，下面演示一下向量的加法：</p>
+<script type="math/tex; mode=display">
+\left (
+\begin{matrix}
+    1\\
+    2\\
+    3
+\end{matrix}
+\right) + x = 
+
+\left(
+\begin{matrix}
+1+x\\
+2+x\\
+3+x
+\end{matrix}
+\right)</script><p>上面的加号可以换成 “+”、“-”、“·” 、“÷”。其中“-”、“÷”运算是不能调换前后属性（即不能换成 <strong>标量 -/÷ 向量</strong>），因为这样颠倒是没有意义的。其实数学上是没有向量和标量相加这个运算的，只不过许多线性代数的库提供了对它的支持。</p>
+<h3 id="向量取反"><a href="#向量取反" class="headerlink" title="向量取反"></a>向量取反</h3><p>向量取反就是对象量的每个分量进行取反，如<script type="math/tex">\left(\begin{matrix}1\\2\\3\end{matrix}\right)</script> 取反操作后得到的就是<script type="math/tex">\left(\begin{matrix}-1\\-2 \\-3\end{matrix}\right)</script>。</p>
+<h3 id="向量加减"><a href="#向量加减" class="headerlink" title="向量加减"></a>向量加减</h3><p>向量的加法可以定义为向量每个分量相加，即<script type="math/tex">\vec a = (4, 2), \vec b = (1, 2)</script>，那么<script type="math/tex">\vec a + \vec b</script>的结果为：(4 + 1, 2+ 2) = (5, 4)。</p>
+<p>向量的减法相当于<script type="math/tex">\vec a + (-\vec b)</script>，其结果为：（4-1， 2-1） = （3,1）。</p>
 <p>注意向量加减后的结果认为向量。</p>
-<h3 id="向量长度"><a href="#向量长度" class="headerlink" title="向量长度"></a>向量长度</h3><p>二维向量的长度是通过利用勾股定理来计算出来的，例如向量$$\vec a &#x3D; (3,4)$$，那么$$\vec a$$的长度就为：$$\sqrt{3^2 + 4^2} &#x3D; 5 $$，所以向量$$\vec a$$的长度为5。类似的三维向量$$\vec b &#x3D; (x,y,z)$$的长度计算公式为：$$\overline {b}&#x3D;\sqrt{x^2 + y^2 + z^2}$$。</p>
-<p>说道向量长度，这里要说一下一个特殊的向量，单位向量（即长度为1的向量），用$$\hat {n}$$表示。</p>
+<h3 id="向量长度"><a href="#向量长度" class="headerlink" title="向量长度"></a>向量长度</h3><p>二维向量的长度是通过利用勾股定理来计算出来的，例如向量<script type="math/tex">\vec a = (3,4)</script>，那么<script type="math/tex">\vec a</script>的长度就为：<script type="math/tex">\sqrt{3^2 + 4^2} = 5</script>，所以向量<script type="math/tex">\vec a</script>的长度为5。类似的三维向量<script type="math/tex">\vec b = (x,y,z)</script>的长度计算公式为：<script type="math/tex">\overline {b}=\sqrt{x^2 + y^2 + z^2}</script>。</p>
+<p>说道向量长度，这里要说一下一个特殊的向量，单位向量（即长度为1的向量），用<script type="math/tex">\hat {n}</script>表示。</p>
 <p>由于单位向量的长度为1，那么很容易将普通向量转换为单位向量，具体方式就是，用向量的每一个分量除以这个向量的长度即可。这个过程叫<strong>标准化</strong>过程（想想OpenGL的坐标系统的范围）</p>
 <h3 id="向量相乘"><a href="#向量相乘" class="headerlink" title="向量相乘"></a>向量相乘</h3><h2 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h2><h2 id="矩阵向量相乘"><a href="#矩阵向量相乘" class="headerlink" title="矩阵向量相乘"></a>矩阵向量相乘</h2>
       
@@ -538,7 +552,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/%20%7C%7C%20archive">
+                  <a href="/archives/%7C%7C%20archive">
                 
                     <span class="site-state-item-count">205</span>
                     <span class="site-state-item-name">日志</span>

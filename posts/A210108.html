@@ -99,12 +99,12 @@
 
 
 
-  <meta name="description" content="简介本文主要介绍Mac环境下FFMpeg的编译方法，同时还会简单介绍FFMpeg。 FFmpeg是用于处理多媒体内容（例如音频，视频，字幕和相关元数据）的库和工具的集合。它包含的库有：  libavcodec，提供了多种编解码器的实现； libavformat，实现流协议，容器格式和基本I &#x2F; O访问； libavutil，包括哈希，解压缩器和其他实用程序功能； libavfilter，">
+  <meta name="description" content="简介本文主要介绍Mac环境下FFMpeg的编译方法，同时还会简单介绍FFMpeg。 FFmpeg是用于处理多媒体内容（例如音频，视频，字幕和相关元数据）的库和工具的集合。它包含的库有：  libavcodec，提供了多种编解码器的实现； libavformat，实现流协议，容器格式和基本I &#x2F; O访问； libavutil，包括哈希，解压缩器和其他实用程序功能； libavfilter，提供了一种">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 音视频基础7——MacOs下编译FFMpeg 4.2.2">
 <meta property="og:url" content="http://yoursite.com/posts/A210108.html">
 <meta property="og:site_name" content="荏苒追寻个人博客">
-<meta property="og:description" content="简介本文主要介绍Mac环境下FFMpeg的编译方法，同时还会简单介绍FFMpeg。 FFmpeg是用于处理多媒体内容（例如音频，视频，字幕和相关元数据）的库和工具的集合。它包含的库有：  libavcodec，提供了多种编解码器的实现； libavformat，实现流协议，容器格式和基本I &#x2F; O访问； libavutil，包括哈希，解压缩器和其他实用程序功能； libavfilter，">
+<meta property="og:description" content="简介本文主要介绍Mac环境下FFMpeg的编译方法，同时还会简单介绍FFMpeg。 FFmpeg是用于处理多媒体内容（例如音频，视频，字幕和相关元数据）的库和工具的集合。它包含的库有：  libavcodec，提供了多种编解码器的实现； libavformat，实现流协议，容器格式和基本I &#x2F; O访问； libavutil，包括哈希，解压缩器和其他实用程序功能； libavfilter，提供了一种">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-10-12T16:06:46.962Z">
 <meta property="article:modified_time" content="2023-10-12T16:06:46.962Z">
@@ -214,7 +214,7 @@
         
           
   <li class="menu-item menu-item-home">
-    <a href="/%20" rel="section">
+    <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
 </li>
 
@@ -223,7 +223,7 @@
         
           
   <li class="menu-item menu-item-about">
-    <a href="/about/%20" rel="section">
+    <a href="/about/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
 </li>
 
@@ -232,7 +232,7 @@
         
           
   <li class="menu-item menu-item-tags">
-    <a href="/tags/%20" rel="section">
+    <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
 </li>
 
@@ -241,7 +241,7 @@
         
           
   <li class="menu-item menu-item-categories">
-    <a href="/categories/%20" rel="section">
+    <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
 </li>
 
@@ -250,7 +250,7 @@
         
           
   <li class="menu-item menu-item-archives">
-    <a href="/archives/%20" rel="section">
+    <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
 </li>
 
@@ -259,7 +259,7 @@
         
           
   <li class="menu-item menu-item-schedule">
-    <a href="/schedule/%20" rel="section">
+    <a href="/schedule/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
 </li>
 
@@ -406,7 +406,7 @@
 <p>FFmpeg是用于处理多媒体内容（例如音频，视频，字幕和相关元数据）的库和工具的集合。它包含的库有：</p>
 <ul>
 <li><code>libavcodec</code>，提供了多种编解码器的实现；</li>
-<li><code>libavformat</code>，实现流协议，容器格式和基本I &#x2F; O访问；</li>
+<li><code>libavformat</code>，实现流协议，容器格式和基本I / O访问；</li>
 <li><code>libavutil</code>，包括哈希，解压缩器和其他实用程序功能；</li>
 <li><code>libavfilter</code>，提供了一种通过滤波器链来更改解码的音频和视频的方法；</li>
 <li><code>libavdevice</code>，提供采用硬件设备进行图片补货和视频播放的抽象封装；</li>
@@ -421,16 +421,15 @@
 <li>其他小工具，例如aviocat，ismindex和qt-faststart</li>
 </ul>
 <span id="more"></span>
-
 <ul>
-<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210101.html">音视频基础0——目录</a></li>
-<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210102.html">音视频基础1——AudioTrack、AudioRecorder、MediaRecorder音频数据采集播放处理</a></li>
-<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210103.html">音视频基础2——Android Camera API及Camera2 API的使用</a></li>
-<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210104.html">音视频基础3——Android Camera API及Camera2 采集视频数据</a></li>
-<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210105.html">音视频基础4——Android MediaCodec API学习</a></li>
-<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210306.html">音视频基础5——Android 实现rtmp推流</a></li>
-<li><input checked disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210307.html">音视频基础6——交叉编译动态库</a></li>
-<li><input disabled type="checkbox"> <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210308.html">音视频基础7——MacOs下编译FFMpeg4.2.2</a></li>
+<li>[x] <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210101.html">音视频基础0——目录</a></li>
+<li>[x] <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210102.html">音视频基础1——AudioTrack、AudioRecorder、MediaRecorder音频数据采集播放处理</a></li>
+<li>[ ] <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210103.html">音视频基础2——Android Camera API及Camera2 API的使用</a></li>
+<li>[ ] <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210104.html">音视频基础3——Android Camera API及Camera2 采集视频数据</a></li>
+<li>[ ] <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210105.html">音视频基础4——Android MediaCodec API学习</a></li>
+<li>[ ] <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210306.html">音视频基础5——Android 实现rtmp推流</a></li>
+<li>[x] <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210307.html">音视频基础6——交叉编译动态库</a></li>
+<li>[ ] <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210308.html">音视频基础7——MacOs下编译FFMpeg4.2.2</a></li>
 </ul>
 <h2 id="FFmpeg编译"><a href="#FFmpeg编译" class="headerlink" title="FFmpeg编译"></a>FFmpeg编译</h2><p>在Mac上获取FFmpeg，有以下三种方式（<a target="_blank" rel="noopener" href="https://trac.ffmpeg.org/wiki/CompilationGuide/macOS">CompilationGuide on MacOs</a>）：</p>
 <ol>
@@ -442,37 +441,33 @@
 <ol>
 <li><p>没有安装Homebrew的，先运行如下明龙安装Homebrew：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)&quot;</span><br></pre></td></tr></table></figure>
-
-
 </li>
+</ol>
+<ol>
 <li><p>Homebrew安装好后，运行如下命令安装ffmpeg：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install ffmpeg</span><br></pre></td></tr></table></figure>
-
 <p>如果需要获取最新的master版本，运行如下命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install ffmpeg --HEAD</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install ffmpeg --HEAD</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
 <h3 id="Homebrew安装额外选项的配置方法"><a href="#Homebrew安装额外选项的配置方法" class="headerlink" title="Homebrew安装额外选项的配置方法"></a>Homebrew安装额外选项的配置方法</h3><p>由于从2.0版本后开始，Homebrew不在提供核心功能以外的选下支持，要想通过Homebrew来编译支持额外库选下的FFmpeg，需要使用第三方库来实现。这个库就是<a target="_blank" rel="noopener" href="https://github.com/homebrew-ffmpeg/homebrew-ffmpeg">homebrew-ffmpeg</a>，（可参考该项目的readme文件）具体运行命令如下：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">brew tab homebrew-ffmpeg/ffmpeg</span><br><span class="line">brew install homebrew-ffmpeg/ffmpeg/ffmpeg</span><br><span class="line">// 在运行下面命令就可以配置选项了</span><br><span class="line">brew options homebrew-ffmpeg/ffmpeg/ffmpeg</span><br></pre></td></tr></table></figure>
-
 <h3 id="ffmpeg的更新"><a href="#ffmpeg的更新" class="headerlink" title="ffmpeg的更新"></a>ffmpeg的更新</h3><p>运行如下命令可以将ffmpeg更新只最新版本：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew update &amp;&amp; brew upgrade ffmpeg</span><br></pre></td></tr></table></figure>
-
 <p>如果安装的是HEAD版本，运行如下命令：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew upgrade --fetch-HEAD ffmpeg</span><br></pre></td></tr></table></figure>
-
 <h3 id="手动安装"><a href="#手动安装" class="headerlink" title="手动安装"></a>手动安装</h3><ol>
 <li><p>安装XCode，安装好后，然后安装Command Line Tools，命令如下：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xcode-select --install</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>利用Homebrew安装编译ffmpeg以来所需要的库，命令如下：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew install automake fdk-aac git lame libass libtool libvorbis libvpx \</span><br><span class="line">opus sdl shtool texi2html theora wget x264 x265 xvid nasm</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>这一步也可以借助其他工具安装，需要下载并编译如下工具：</p>
 <ul>
 <li>Pkg-config &amp; GLIb</li>
 <li>NAsm</li>
-<li>Additional libraries （具体可通过.&#x2F;configure –help查看）<ul>
+<li>Additional libraries （具体可通过./configure —help查看）<ul>
 <li><a target="_blank" rel="noopener" href="http://www.videolan.org/developers/x264.html">x264</a> encodes H.264 video. Use <code>--enable-gpl --enable-libx264</code>.</li>
 <li><a target="_blank" rel="noopener" href="http://sourceforge.net/projects/opencore-amr/files/fdk-aac/">fdk-aac</a> encodes AAC audio. Use <code>--enable-libfdk-aac</code>.</li>
 <li><a target="_blank" rel="noopener" href="https://code.google.com/p/webm/downloads/list">libvpx</a> is a VP8 and VP9 encoder. Use <code>--enable-libvpx</code>.</li>
@@ -489,7 +484,6 @@
 <li><p>编译</p>
 <p>在必要的编码库和依赖库编译完成后，就可以下载ffmpeg源码，下载源码后，切换至ffmpeg目录，运行<code>./configure --help</code> ，查看支持的选项，打开需要包含的选项，示例如下：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git clone https://git.ffmpeg.org/ffmpeg.git ffmpeg</span><br><span class="line">cd ffmpeg</span><br><span class="line">./configure  --prefix=/usr/local --enable-gpl --enable-nonfree --enable-libass \</span><br><span class="line">--enable-libfdk-aac --enable-libfreetype --enable-libmp3lame \</span><br><span class="line">--enable-libtheora --enable-libvorbis --enable-libvpx --enable-libx264 --enable-libx265 --enable-libopus --enable-libxvid \</span><br><span class="line">--samples=fate-suite/</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
-
 <p>在编译成功后，运行<code>sudo make install</code>（需要超级用户权限验证情形） 或<code>make install</code>（不需要超级用户权限验证情形），这样就完成了ffmpeg的编译了。</p>
 </li>
 </ol>
@@ -527,8 +521,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/A230808.html" rel="next" title="Android 适配——资源整理">
-                <i class="fa fa-chevron-left"></i> Android 适配——资源整理
+              <a href="/posts/A210109.html" rel="next" title="Android 音视频基础——音频焦点管理">
+                <i class="fa fa-chevron-left"></i> Android 音视频基础——音频焦点管理
               </a>
             
           </div>
@@ -537,8 +531,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/posts/A210109.html" rel="prev" title="Android 音视频基础——音频焦点管理">
-                Android 音视频基础——音频焦点管理 <i class="fa fa-chevron-right"></i>
+              <a href="/posts/J191108.html" rel="prev" title="Java 杂谈——取文件夹大小的几种方式">
+                Java 杂谈——取文件夹大小的几种方式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -611,7 +605,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/%20%7C%7C%20archive">
+                  <a href="/archives/%7C%7C%20archive">
                 
                     <span class="site-state-item-count">205</span>
                     <span class="site-state-item-name">日志</span>

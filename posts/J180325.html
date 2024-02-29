@@ -214,7 +214,7 @@
         
           
   <li class="menu-item menu-item-home">
-    <a href="/%20" rel="section">
+    <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
 </li>
 
@@ -223,7 +223,7 @@
         
           
   <li class="menu-item menu-item-about">
-    <a href="/about/%20" rel="section">
+    <a href="/about/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
 </li>
 
@@ -232,7 +232,7 @@
         
           
   <li class="menu-item menu-item-tags">
-    <a href="/tags/%20" rel="section">
+    <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
 </li>
 
@@ -241,7 +241,7 @@
         
           
   <li class="menu-item menu-item-categories">
-    <a href="/categories/%20" rel="section">
+    <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
 </li>
 
@@ -250,7 +250,7 @@
         
           
   <li class="menu-item menu-item-archives">
-    <a href="/archives/%20" rel="section">
+    <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
 </li>
 
@@ -259,7 +259,7 @@
         
           
   <li class="menu-item menu-item-schedule">
-    <a href="/schedule/%20" rel="section">
+    <a href="/schedule/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
 </li>
 
@@ -411,7 +411,6 @@
 <li>想定制一个分布在多个类中的行为，又不想生成太多的子类（如根据某种行为定义一个接口，让想拥有该行为的类实现该接口）</li>
 </ol>
 <span id="more"></span>
-
 <h2 id="模式参与者"><a href="#模式参与者" class="headerlink" title="模式参与者"></a>模式参与者</h2><ul>
 <li><p>Mediator</p>
 <blockquote>
@@ -441,23 +440,22 @@
 <ol>
 <li><p>抽象出员工都需要的抽象行为</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">Mediator</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title function_">sayHi</span><span class="params">(String message, Employee employee)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
 </li>
+</ol>
+<ol>
 <li><p>抽象行为的具体实现</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ConcreteMediator</span> <span class="keyword">extends</span> <span class="title class_">Mediator</span> &#123;</span><br><span class="line">    EmployeeA employeeA;</span><br><span class="line">    EmployeeB employeeB;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> EmployeeA <span class="title function_">getEmployeeA</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> employeeA;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setEmployeeA</span><span class="params">(EmployeeA employeeA)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.employeeA = employeeA;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> EmployeeB <span class="title function_">getEmployeeB</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> employeeB;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setEmployeeB</span><span class="params">(EmployeeB employeeB)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.employeeB = employeeB;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sayHi</span><span class="params">(String message, Employee employee)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (employee == employeeA) &#123;</span><br><span class="line">            employeeB.sayHi(message);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            employeeA.sayHi(message);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
 </li>
+</ol>
+<ol>
 <li><p>员工的抽象</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Employee</span> &#123;</span><br><span class="line">    <span class="keyword">protected</span> String name;</span><br><span class="line">    <span class="keyword">protected</span> Mediator mediator;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Employee</span><span class="params">(String name, Mediator mediator)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">        <span class="built_in">this</span>.mediator = mediator;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">4. 员工的具体实现</span><br><span class="line"></span><br><span class="line">   ```java</span><br><span class="line">   class EmployeeA extends Employee &#123;</span><br><span class="line"></span><br><span class="line">       public EmployeeA(String name, Mediator mediator) &#123;</span><br><span class="line">           super(name, mediator);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       public void getMessage(String message) &#123;</span><br><span class="line">           System.out.println(&quot;员工&quot; + name + &quot;说:&quot; + message);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       public void sayHi(String message) &#123;</span><br><span class="line">           mediator.sayHi(message, this);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   class EmployeeB extends Employee &#123;</span><br><span class="line"></span><br><span class="line">       public EmployeeB(String name, Mediator mediator) &#123;</span><br><span class="line">           super(name, mediator);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       public void getMessage(String message) &#123;</span><br><span class="line">           System.out.println(&quot;员工&quot; + name + &quot;说:&quot; + message);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       public void sayHi(String message) &#123;</span><br><span class="line">           mediator.sayHi(message, this);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 </li>
+</ol>
+   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">4. 员工的具体实现</span><br><span class="line"></span><br><span class="line">   ```java</span><br><span class="line">   class EmployeeA extends Employee &#123;</span><br><span class="line"></span><br><span class="line">       public EmployeeA(String name, Mediator mediator) &#123;</span><br><span class="line">           super(name, mediator);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       public void getMessage(String message) &#123;</span><br><span class="line">           System.out.println(&quot;员工&quot; + name + &quot;说:&quot; + message);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       public void sayHi(String message) &#123;</span><br><span class="line">           mediator.sayHi(message, this);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   class EmployeeB extends Employee &#123;</span><br><span class="line"></span><br><span class="line">       public EmployeeB(String name, Mediator mediator) &#123;</span><br><span class="line">           super(name, mediator);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       public void getMessage(String message) &#123;</span><br><span class="line">           System.out.println(&quot;员工&quot; + name + &quot;说:&quot; + message);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       public void sayHi(String message) &#123;</span><br><span class="line">           mediator.sayHi(message, this);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<ol>
 <li><p>安排一个会议室，让他们彼此打招呼（即定义客户端，运行代码测试）</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Client</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">ConcreteMediator</span> <span class="variable">mediator</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ConcreteMediator</span>();</span><br><span class="line"></span><br><span class="line">        <span class="type">EmployeeA</span> <span class="variable">employeeA</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">EmployeeA</span>(<span class="string">&quot;张三&quot;</span>, mediator);</span><br><span class="line">        <span class="type">EmployeeB</span> <span class="variable">employeeB</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">EmployeeB</span>(<span class="string">&quot;李四&quot;</span>, mediator);</span><br><span class="line"></span><br><span class="line">        mediator.setEmployeeA(employeeA);</span><br><span class="line">        mediator.setEmployeeB(employeeB);</span><br><span class="line"></span><br><span class="line">        employeeA.sayHi(<span class="string">&quot;我有事要和李四说。&quot;</span>);</span><br><span class="line">        employeeB.sayHi(<span class="string">&quot;我下午有时间，下午商量。&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>例子可能不当，请见谅！</p>
 </li>
 </ol>
@@ -574,7 +572,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/%20%7C%7C%20archive">
+                  <a href="/archives/%7C%7C%20archive">
                 
                     <span class="site-state-item-count">205</span>
                     <span class="site-state-item-name">日志</span>

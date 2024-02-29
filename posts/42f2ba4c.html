@@ -214,7 +214,7 @@
         
           
   <li class="menu-item menu-item-home">
-    <a href="/%20" rel="section">
+    <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
 </li>
 
@@ -223,7 +223,7 @@
         
           
   <li class="menu-item menu-item-about">
-    <a href="/about/%20" rel="section">
+    <a href="/about/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
 </li>
 
@@ -232,7 +232,7 @@
         
           
   <li class="menu-item menu-item-tags">
-    <a href="/tags/%20" rel="section">
+    <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
 </li>
 
@@ -241,7 +241,7 @@
         
           
   <li class="menu-item menu-item-categories">
-    <a href="/categories/%20" rel="section">
+    <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
 </li>
 
@@ -250,7 +250,7 @@
         
           
   <li class="menu-item menu-item-archives">
-    <a href="/archives/%20" rel="section">
+    <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
 </li>
 
@@ -259,7 +259,7 @@
         
           
   <li class="menu-item menu-item-schedule">
-    <a href="/schedule/%20" rel="section">
+    <a href="/schedule/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
 </li>
 
@@ -409,17 +409,16 @@
 <li>init 进程的属性服务这块具体是如何工作的；</li>
 </ul>
 <span id="more"></span>
-
 <p>在分析init进程之前，先得知道init进程是如何启动的，参考文章</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_19923217/article/details/81240302">Android 8.1开机流程分析</a></p>
 <h2 id="init-分析"><a href="#init-分析" class="headerlink" title="init 分析"></a>init 分析</h2><p>涉及到的文件（基于Android 6.0.0_r1）</p>
 <ul>
-<li>&#x2F;system&#x2F;core&#x2F;init&#x2F;init.h</li>
-<li>&#x2F;system&#x2F;core&#x2F;init&#x2F;init.cpp</li>
-<li>&#x2F;system&#x2F;core&#x2F;init&#x2F;parser.h</li>
-<li>&#x2F;system&#x2F;core&#x2F;init&#x2F;parser.cpp</li>
-<li>&#x2F;system&#x2F;core&#x2F;rootdir&#x2F;init.rc(&#x2F;system&#x2F;core&#x2F;rootdir&#x2F;init.*.rc)</li>
-<li>&#x2F;system&#x2F;core&#x2F;init&#x2F;keywords.h</li>
+<li>/system/core/init/init.h</li>
+<li>/system/core/init/init.cpp</li>
+<li>/system/core/init/parser.h</li>
+<li>/system/core/init/parser.cpp</li>
+<li>/system/core/rootdir/init.rc(/system/core/rootdir/init.*.rc)</li>
+<li>/system/core/init/keywords.h</li>
 </ul>
 <p>在了解init 之前，可以先看看<code>system/core/init/readme.txt</code>，这个文件有init的一些详细说明。</p>
 <blockquote>
@@ -428,7 +427,6 @@
 <p>init进程是Linux用户空间的第一个进程，进程号固定为1，内核启动后，在用户控件启动init进程，并调用init进程的main方法，开始工作，履行其作为第一个用户控件进程的职责。主要包括以下几个内容：</p>
 <h3 id="解析配置文件"><a href="#解析配置文件" class="headerlink" title="解析配置文件"></a>解析配置文件</h3><h4 id="什么配置文件"><a href="#什么配置文件" class="headerlink" title="什么配置文件"></a>什么配置文件</h4><p>这个配置文件就是<code>init.rc</code>,位于<code>/system/core/rootdir/init.rc</code>，这个文件的内容比较多，先节选部分来进行分析</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import /init.environ.rc</span><br><span class="line">import /init.usb.rc</span><br><span class="line">import /init.$&#123;ro.hardware&#125;.rc</span><br><span class="line">import /init.$&#123;ro.zygote&#125;.rc</span><br><span class="line">import /init.trace.rc</span><br></pre></td></tr></table></figure>
-
 <p>init进程要解析的配置文件有两个：</p>
 <ul>
 <li>init.rc</li>
@@ -442,7 +440,6 @@
 <li>boot</li>
 </ul>
 <h4 id="如何解析配置文件"><a href="#如何解析配置文件" class="headerlink" title="如何解析配置文件"></a>如何解析配置文件</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">init.cpp-&gt;main</span><br><span class="line">init_parser.cpp-&gt;init_parse_config_file(&quot;/init.rc&quot;)</span><br><span class="line">init_parser.cpp-&gt;parse_config</span><br><span class="line">init_parser.cpp-&gt;parse_new_section</span><br><span class="line"></span><br><span class="line">//init.rc文件中有三个关键字对应为section，分别是service、on、import，所以</span><br><span class="line">//parse_new_section中会根据关键字区分</span><br><span class="line">init_parser.cpp-&gt;parse_service</span><br><span class="line">                             -&gt;parse_line_service</span><br><span class="line">init_parser.cpp-&gt;parse_action</span><br><span class="line">                          -&gt;parse_line_action</span><br><span class="line">init_parser.cpp-&gt;parse_import</span><br></pre></td></tr></table></figure>
-
 <h3 id="解析service"><a href="#解析service" class="headerlink" title="解析service"></a>解析service</h3><h3 id="init控制service"><a href="#init控制service" class="headerlink" title="init控制service"></a>init控制service</h3><h3 id="属性服务"><a href="#属性服务" class="headerlink" title="属性服务"></a>属性服务</h3><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2>
       
     </div>
@@ -554,7 +551,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/%20%7C%7C%20archive">
+                  <a href="/archives/%7C%7C%20archive">
                 
                     <span class="site-state-item-count">205</span>
                     <span class="site-state-item-name">日志</span>

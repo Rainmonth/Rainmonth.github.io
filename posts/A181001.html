@@ -214,7 +214,7 @@
         
           
   <li class="menu-item menu-item-home">
-    <a href="/%20" rel="section">
+    <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
 </li>
 
@@ -223,7 +223,7 @@
         
           
   <li class="menu-item menu-item-about">
-    <a href="/about/%20" rel="section">
+    <a href="/about/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
 </li>
 
@@ -232,7 +232,7 @@
         
           
   <li class="menu-item menu-item-tags">
-    <a href="/tags/%20" rel="section">
+    <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
 </li>
 
@@ -241,7 +241,7 @@
         
           
   <li class="menu-item menu-item-categories">
-    <a href="/categories/%20" rel="section">
+    <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
 </li>
 
@@ -250,7 +250,7 @@
         
           
   <li class="menu-item menu-item-archives">
-    <a href="/archives/%20" rel="section">
+    <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
 </li>
 
@@ -259,7 +259,7 @@
         
           
   <li class="menu-item menu-item-schedule">
-    <a href="/schedule/%20" rel="section">
+    <a href="/schedule/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
 </li>
 
@@ -405,14 +405,13 @@
         <blockquote>
 <p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A181001.html">https://rainmonth.github.io/posts/A181001.html</a></p>
 </blockquote>
-<h1 id="Android-SdkVersion那些事儿"><a href="#Android-SdkVersion那些事儿" class="headerlink" title="Android SdkVersion那些事儿"></a>Android SdkVersion那些事儿</h1><p><em><strong>本文对android项目中的compileSdkVersion、targetSdkVersion、minSdkVersion、maxSdkVersion和buildTarget等概念做一个说明。</strong></em></p>
+<h1 id="Android-SdkVersion那些事儿"><a href="#Android-SdkVersion那些事儿" class="headerlink" title="Android SdkVersion那些事儿"></a>Android SdkVersion那些事儿</h1><p><strong><em>本文对android项目中的compileSdkVersion、targetSdkVersion、minSdkVersion、maxSdkVersion和buildTarget等概念做一个说明。</em></strong></p>
 <h2 id="compileSdkVersion"><a href="#compileSdkVersion" class="headerlink" title="compileSdkVersion"></a>compileSdkVersion</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><blockquote>
 <p>编译或构件时采用的API版本，你在项目中查看的android系统相关的源码与这个compileSdkVersion指定的是一致的。</p>
 </blockquote>
 <span id="more"></span>
-
 <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><ol>
-<li>在eclipse中位于项目根目录中的project.properties文件中(target&#x3D;xx);</li>
+<li>在eclipse中位于项目根目录中的project.properties文件中(target=xx);</li>
 <li>在android studio中位于项目中的build.gradle中；</li>
 <li>强烈推荐总是使用最新的 SDK 进行编译（默认就是最新的）；</li>
 <li>修改 compileSdkVersion 不会改变运行时的行，但可能会出现新的编译警告、编译错误；</li>
@@ -426,11 +425,11 @@
 <ol>
 <li>如果不设置，默认值和minSdkVersion相同；</li>
 <li>应用程序仍然能在低于targetSdkVersion的系统上运行；</li>
-<li>系统API高于targetSdkVersion，系统会开启向前兼容模式；反之，系统将不采用兼容模式，认为<em><strong>开发者已做兼容处理</strong></em>，而直接正常运行这个程序；</li>
+<li>系统API高于targetSdkVersion，系统会开启向前兼容模式；反之，系统将不采用兼容模式，认为<strong><em>开发者已做兼容处理</em></strong>，而直接正常运行这个程序；</li>
 <li>targetSdkVersion这个值是在运行时起作用的，该值告诉系统到底要不要采用向前兼容模式来运行程序；</li>
 </ol>
 <blockquote>
-<p><em><strong>建议开发时将targetSdkVersion设置为最新的值，这样就可以应用新功能，并对新功能做兼容性测试</strong></em></p>
+<p><strong><em>建议开发时将targetSdkVersion设置为最新的值，这样就可以应用新功能，并对新功能做兼容性测试</em></strong></p>
 </blockquote>
 <h2 id="minSdkVersion"><a href="#minSdkVersion" class="headerlink" title="minSdkVersion"></a>minSdkVersion</h2><h3 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h3><blockquote>
 <p>运行应用程序所需要的最低Sdk 版本</p>
@@ -444,7 +443,7 @@
 <h3 id="maxSdkVersion"><a href="#maxSdkVersion" class="headerlink" title="maxSdkVersion"></a>maxSdkVersion</h3><blockquote>
 <p>运行应用程序支持的最高版本（超过该版本运行不了）</p>
 </blockquote>
-<h3 id="说明-2"><a href="#说明-2" class="headerlink" title="说明"></a>说明</h3><p><em><strong>显然这个属性不符合事物发展的规律，现已不推荐使用，或者说已经失效了</strong></em>。</p>
+<h3 id="说明-2"><a href="#说明-2" class="headerlink" title="说明"></a>说明</h3><p><strong><em>显然这个属性不符合事物发展的规律，现已不推荐使用，或者说已经失效了</em></strong>。</p>
 <h2 id="高版本方法在低版本系统上的兼容性处理"><a href="#高版本方法在低版本系统上的兼容性处理" class="headerlink" title="高版本方法在低版本系统上的兼容性处理"></a>高版本方法在低版本系统上的兼容性处理</h2><ol>
 <li><p>采用注解的方式</p>
 <ul>
@@ -460,6 +459,7 @@
 </li>
 </ol>
 <p>下表列出了各 Android 平台版本支持的 API 级别：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -469,7 +469,8 @@
 <th>备注</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><a target="_blank" rel="noopener" href="https://developer.android.google.cn/about/versions/nougat/android-7.0.html">Android 7.0</a></td>
 <td><a target="_blank" rel="noopener" href="https://developer.android.google.cn/sdk/api_diff/24/changes.html">24</a></td>
 <td><code>N</code></td>
@@ -613,7 +614,9 @@
 <td><code>BASE</code></td>
 <td></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 
       
     </div>
@@ -725,7 +728,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/%20%7C%7C%20archive">
+                  <a href="/archives/%7C%7C%20archive">
                 
                     <span class="site-state-item-count">205</span>
                     <span class="site-state-item-name">日志</span>

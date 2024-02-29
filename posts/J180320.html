@@ -216,7 +216,7 @@
         
           
   <li class="menu-item menu-item-home">
-    <a href="/%20" rel="section">
+    <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
 </li>
 
@@ -225,7 +225,7 @@
         
           
   <li class="menu-item menu-item-about">
-    <a href="/about/%20" rel="section">
+    <a href="/about/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
 </li>
 
@@ -234,7 +234,7 @@
         
           
   <li class="menu-item menu-item-tags">
-    <a href="/tags/%20" rel="section">
+    <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
 </li>
 
@@ -243,7 +243,7 @@
         
           
   <li class="menu-item menu-item-categories">
-    <a href="/categories/%20" rel="section">
+    <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
 </li>
 
@@ -252,7 +252,7 @@
         
           
   <li class="menu-item menu-item-archives">
-    <a href="/archives/%20" rel="section">
+    <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
 </li>
 
@@ -261,7 +261,7 @@
         
           
   <li class="menu-item menu-item-schedule">
-    <a href="/schedule/%20" rel="section">
+    <a href="/schedule/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
 </li>
 
@@ -409,7 +409,6 @@
 </blockquote>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文分析的代码对应的JDK版本为1.8，采用的IDE环境为IntellJ IDEA，注意本文不做细致分析，所以不会对源码细节做过多说明，而是指出使用HashMap前需要了解哪些方面的内容，可能会发生什么问题，细节可以自己参考JDK源码。</p>
 <span id="more"></span>
-
 <h2 id="基本数据结构"><a href="#基本数据结构" class="headerlink" title="基本数据结构"></a>基本数据结构</h2><p>数组和链表的结合，</p>
 <ul>
 <li>数组用来存放每个链表的头节点（数组的元素俗称桶（Bucket））；</li>
@@ -417,33 +416,29 @@
 </ul>
 <p>数组说明</p>
 <ol>
-<li>长度大小需为2^n^(n为整数，n&gt;&#x3D; 0)（默认为16），至于为什么有这个要求，后面说明；</li>
+<li>长度大小需为2^n^(n为整数，n&gt;= 0)（默认为16），至于为什么有这个要求，后面说明；</li>
 <li>有一个关联的加载因子loadFactor（默认为0.75），默认的可用的桶为12个，由一个threshold变量记录；长度大于数组length * loadFactor 会重新resize；</li>
 </ol>
 <h2 id="元素如何添加进HashMap的"><a href="#元素如何添加进HashMap的" class="headerlink" title="元素如何添加进HashMap的"></a>元素如何添加进HashMap的</h2><p>添加元素，采用put方法，put方法实现如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> V <span class="title function_">put</span><span class="params">(K key, V value)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> putVal(hash(key), key, value, <span class="literal">false</span>, <span class="literal">true</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
 <p>调用之前，先通过hash()方法获取hash值，hash函数如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="title function_">hash</span><span class="params">(Object key)</span> &#123;</span><br><span class="line">        <span class="type">int</span> h;</span><br><span class="line">        <span class="keyword">return</span> (key == <span class="literal">null</span>) ? <span class="number">0</span> : (h = key.hashCode()) ^ (h &gt;&gt;&gt; <span class="number">16</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
 <p>这里是HashMap支持Key为空的关键，Key值为空时，其对应的hashCode被置为0，也就放在了数组的第一个元素。</p>
 <p>内部调用putVal方法：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> V <span class="title function_">putVal</span><span class="params">(<span class="type">int</span> hash, K key, V value, <span class="type">boolean</span> onlyIfAbsent,</span></span><br><span class="line"><span class="params">                   <span class="type">boolean</span> evict)</span> &#123;</span><br><span class="line">        Node&lt;K,V&gt;[] tab; Node&lt;K,V&gt; p; <span class="type">int</span> n, i;</span><br><span class="line">        <span class="keyword">if</span> ((tab = table) == <span class="literal">null</span> || (n = tab.length) == <span class="number">0</span>)</span><br><span class="line">            n = (tab = resize()).length;</span><br><span class="line">        <span class="keyword">if</span> ((p = tab[i = (n - <span class="number">1</span>) &amp; hash]) == <span class="literal">null</span>)</span><br><span class="line">            tab[i] = newNode(hash, key, value, <span class="literal">null</span>);</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            Node&lt;K,V&gt; e; K k;</span><br><span class="line">            <span class="keyword">if</span> (p.hash == hash &amp;&amp;</span><br><span class="line">                ((k = p.key) == key || (key != <span class="literal">null</span> &amp;&amp; key.equals(k))))</span><br><span class="line">                e = p;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (p <span class="keyword">instanceof</span> TreeNode)</span><br><span class="line">                e = ((TreeNode&lt;K,V&gt;)p).putTreeVal(<span class="built_in">this</span>, tab, hash, key, value);</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">binCount</span> <span class="operator">=</span> <span class="number">0</span>; ; ++binCount) &#123;</span><br><span class="line">                    <span class="keyword">if</span> ((e = p.next) == <span class="literal">null</span>) &#123;</span><br><span class="line">                        p.next = newNode(hash, key, value, <span class="literal">null</span>);</span><br><span class="line">                        <span class="keyword">if</span> (binCount &gt;= TREEIFY_THRESHOLD - <span class="number">1</span>) <span class="comment">// -1 for 1st</span></span><br><span class="line">                            treeifyBin(tab, hash);</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span> (e.hash == hash &amp;&amp;</span><br><span class="line">                        ((k = e.key) == key || (key != <span class="literal">null</span> &amp;&amp; key.equals(k))))</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    p = e;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (e != <span class="literal">null</span>) &#123; <span class="comment">// existing mapping for key</span></span><br><span class="line">                <span class="type">V</span> <span class="variable">oldValue</span> <span class="operator">=</span> e.value;</span><br><span class="line">                <span class="keyword">if</span> (!onlyIfAbsent || oldValue == <span class="literal">null</span>)</span><br><span class="line">                    e.value = value;</span><br><span class="line">                afterNodeAccess(e);</span><br><span class="line">                <span class="keyword">return</span> oldValue;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        ++modCount;</span><br><span class="line">        <span class="keyword">if</span> (++size &gt; threshold)</span><br><span class="line">            resize();</span><br><span class="line">        afterNodeInsertion(evict);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
 <p>依据putVal()函数的源码，来说明为什么需要2^n^的长度，看putVal()代码片段</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ((p = tab[i = (n - <span class="number">1</span>) &amp; hash]) == <span class="literal">null</span>)</span><br><span class="line">    tab[i] = newNode(hash, key, value, <span class="literal">null</span>);</span><br></pre></td></tr></table></figure>
-
-<p>以默认的数组容量16为例，n-1&#x3D;15，对应二进制为00001111，那么：</p>
+<p>以默认的数组容量16为例，n-1=15，对应二进制为00001111，那么：</p>
 <ul>
 <li>hash&gt;15，位运算后结果为hash和（n-1)后面三维位运算的结果其实就是%运算</li>
-<li>hash&lt;&#x3D;15，位运算结果为hash本身。</li>
+<li>hash&lt;=15，位运算结果为hash本身。</li>
 </ul>
 <p>这应该就是数组长度要求2^n^的原因，方便进行位运算（用空间换时间）</p>
 <h2 id="为什么说HashMap不是线程安全的"><a href="#为什么说HashMap不是线程安全的" class="headerlink" title="为什么说HashMap不是线程安全的"></a>为什么说HashMap不是线程安全的</h2><p>因为多线程都rehash时，可能会导致循环链表的形成，可能形成条件竞争。</p>
 <h2 id="为什么推荐使用String、Integer这样的类作为Key"><a href="#为什么推荐使用String、Integer这样的类作为Key" class="headerlink" title="为什么推荐使用String、Integer这样的类作为Key"></a>为什么推荐使用String、Integer这样的类作为Key</h2><p>因为这些类的对象是不可变的，也是final的，并且都自己实现了hashCode和equals方法，这就保证了同一个对象其HashCode不会发生改变，减少了hash碰撞发生的几率，可以提高HashMap的性能。</p>
-<h2 id="hash碰撞"><a href="#hash碰撞" class="headerlink" title="hash碰撞"></a>hash碰撞</h2><p>当向HashMap中添加&lt;K,V&gt;对象时，如果两次K对应的hashCode相同，就会发生hash碰撞，发生hash碰撞后，可能会发生如下操作：</p>
+<h2 id="hash碰撞"><a href="#hash碰撞" class="headerlink" title="hash碰撞"></a>hash碰撞</h2><p>当向HashMap中添加<K,V>对象时，如果两次K对应的hashCode相同，就会发生hash碰撞，发生hash碰撞后，可能会发生如下操作：</K,V></p>
 <ul>
-<li>两次的hashCode相同，但K值不相等（调用equals()判断），就将后加入的&lt;K,V&gt;添加到先加入的&lt;K,V&gt;的尾部；</li>
+<li>两次的hashCode相同，但K值不相等（调用equals()判断），就将后加入的<K,V>添加到先加入的<K,V>的尾部；</K,V></K,V></li>
 <li>两次hashCode相同，且K值相等（调用equals()判断），后加入的就取而代之。</li>
 </ul>
 <h2 id="顺便谈谈LinkedHashMap"><a href="#顺便谈谈LinkedHashMap" class="headerlink" title="顺便谈谈LinkedHashMap"></a>顺便谈谈LinkedHashMap</h2><p>LinkedHashMap其实就是HashMap和双向链表的综合体，其中：</p>
@@ -455,7 +450,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="有序性原理"><a href="#有序性原理" class="headerlink" title="有序性原理"></a>有序性原理</h3><p>在调用put和get方法时会分别调用<code>afterNodeInsertion</code> <code>afterNodeAccess</code>方法，这两个方法起着记录相关顺序的作用（插入顺序和访问顺序），本质上就是双向链表的操作。然后，就是通过重写迭代器将LinkedHashMap中的所有Entry按照记录的顺序迭代输出，所以<em><strong>迭代器的重写</strong></em>是关键</p>
+<h3 id="有序性原理"><a href="#有序性原理" class="headerlink" title="有序性原理"></a>有序性原理</h3><p>在调用put和get方法时会分别调用<code>afterNodeInsertion</code> <code>afterNodeAccess</code>方法，这两个方法起着记录相关顺序的作用（插入顺序和访问顺序），本质上就是双向链表的操作。然后，就是通过重写迭代器将LinkedHashMap中的所有Entry按照记录的顺序迭代输出，所以<strong><em>迭代器的重写</em></strong>是关键</p>
 
       
     </div>
@@ -575,7 +570,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/%20%7C%7C%20archive">
+                  <a href="/archives/%7C%7C%20archive">
                 
                     <span class="site-state-item-count">205</span>
                     <span class="site-state-item-name">日志</span>

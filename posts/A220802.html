@@ -214,7 +214,7 @@
         
           
   <li class="menu-item menu-item-home">
-    <a href="/%20" rel="section">
+    <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
 </li>
 
@@ -223,7 +223,7 @@
         
           
   <li class="menu-item menu-item-about">
-    <a href="/about/%20" rel="section">
+    <a href="/about/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
 </li>
 
@@ -232,7 +232,7 @@
         
           
   <li class="menu-item menu-item-tags">
-    <a href="/tags/%20" rel="section">
+    <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
 </li>
 
@@ -241,7 +241,7 @@
         
           
   <li class="menu-item menu-item-categories">
-    <a href="/categories/%20" rel="section">
+    <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
 </li>
 
@@ -250,7 +250,7 @@
         
           
   <li class="menu-item menu-item-archives">
-    <a href="/archives/%20" rel="section">
+    <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
 </li>
 
@@ -259,7 +259,7 @@
         
           
   <li class="menu-item menu-item-schedule">
-    <a href="/schedule/%20" rel="section">
+    <a href="/schedule/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
 </li>
 
@@ -405,7 +405,6 @@
         <h2 id="OpenGL-对象"><a href="#OpenGL-对象" class="headerlink" title="OpenGL 对象"></a>OpenGL 对象</h2><p>在顶点数据定义好了之后，通常这些属性会作为输入发送给<strong>图形渲染管线</strong>的第一个处理阶段：<strong>顶点着色器</strong>。它会在GPU上创建内存用于存储顶点数据，同时还要告诉OpenGL如何去解释内存中的这些数据，并且指定如何发送到显卡。顶点着色器接下来会处理内存中指定数量的顶点。通常会采用<strong>VBO对象</strong>来管理这个GPU上分配的内存。</p>
 <h3 id="VBO对象"><a href="#VBO对象" class="headerlink" title="VBO对象"></a>VBO对象</h3><p>VBO，即顶点缓冲对象（Vertex Buffer Object），主要作用就是可以一次性发送大批顶点数据到显卡上，而不是每个顶点发送一次。原因是CPU传送数据给GPU其实是比较耗时的，所以尽可能的一次性把需要的顶点数据全部传给GPU，这样顶点着色器几乎能立即访问到顶点，有助于加快顶点着色器效率。</p>
 <span id="more"></span>
-
 <p>系列文章</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A220802.html">Android OpenGL基础1——常用概念及方法解释</a></li>
@@ -417,13 +416,13 @@
 <h4 id="创建步骤"><a href="#创建步骤" class="headerlink" title="创建步骤"></a>创建步骤</h4><ul>
 <li><p>生成一个（或多个）缓冲类型的id</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 生成一个vbo id</span></span><br><span class="line"><span class="type">unsigned</span> <span class="type">int</span> vbo;</span><br><span class="line"><span class="built_in">glGenBuffers</span>(<span class="number">1</span>, &amp;vbo);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或者 生成3个 vbo id</span></span><br><span class="line"><span class="type">unsigned</span> <span class="type">int</span> vbos[<span class="number">3</span>];</span><br><span class="line"><span class="built_in">glGenBuffers</span>(<span class="number">3</span>, &amp;vbos);</span><br></pre></td></tr></table></figure>
-
 <blockquote>
-<p>glGenBuffers(GLsizei n, GLuint * buffers)，生成缓冲对象名字，n为缓冲对象名字个数， buffers为存放名字的数组，<strong>n和数组长度需要一直</strong></p>
+<p>glGenBuffers(GLsizei n, GLuint <em> buffers)，生成缓冲对象名字，n为缓冲对象名字个数， buffers为存放名字的数组，<em>*n和数组长度需要一直</em></em></p>
 </blockquote>
 </li>
 <li><p>将缓冲对象id绑定给指定的缓冲类型</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">glBindBuffers</span>(GL_ARRAY_BUFFER, vbo)</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">glBindBuffers</span>(GL_ARRAY_BUFFER, vbo)</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 <blockquote>
 <p>缓冲类型通常有：GL_ARRAY_BUFFER, GL_COPY_READ_BUFFER,<br>           GL_COPY_WRITE_BUFFER, GL_ELEMENT_ARRAY_BUFFER,<br>           GL_PIXEL_PACK_BUFFER, GL_PIXEL_UNPACK_BUFFER, GL_TEXTURE_BUFFER,<br>           GL_TRANSFORM_FEEDBACK_BUFFER, or GL_UNIFORM_BUFFER.</p>
@@ -437,7 +436,6 @@
 </ol>
 <h4 id="赋值操作"><a href="#赋值操作" class="headerlink" title="赋值操作"></a>赋值操作</h4><p>VBO 对象的赋值主要利用<code>glBufferData</code>函数来进行：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param target 	指定VBO的缓冲类型</span></span><br><span class="line"><span class="comment"> * @param size		表示缓冲数据的大小	 </span></span><br><span class="line"><span class="comment"> * @param data		实际缓冲的数据</span></span><br><span class="line"><span class="comment"> * @param usage		表示数据的在GL 的实现中是如何被访问的</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">glBufferData</span><span class="params">(GLenum target, GLsizeiptr size, <span class="type">const</span> GLvoid * data, GLenum usage)</span></span>;</span><br></pre></td></tr></table></figure>
-
 <p>上面的usage参数，常用的有如下几个值：</p>
 <ul>
 <li>STREAM，modified once and used at most a few times；</li>
@@ -446,11 +444,9 @@
 </ul>
 <p>示例：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义顶点数据</span></span><br><span class="line"><span class="type">float</span> vertices[] = &#123;</span><br><span class="line">		<span class="comment">// 位置              // 颜色</span></span><br><span class="line">		<span class="number">0.5f</span>, <span class="number">-0.5f</span>, <span class="number">0.0f</span>,  <span class="number">1.0f</span>, <span class="number">0.0f</span>, <span class="number">0.0f</span>,   <span class="comment">// 右下</span></span><br><span class="line">		<span class="number">-0.5f</span>, <span class="number">-0.5f</span>, <span class="number">0.0f</span>,  <span class="number">0.0f</span>, <span class="number">1.0f</span>, <span class="number">0.0f</span>,   <span class="comment">// 左下</span></span><br><span class="line">		<span class="number">0.0f</span>,  <span class="number">0.5f</span>, <span class="number">0.0f</span>,  <span class="number">0.0f</span>, <span class="number">0.0f</span>, <span class="number">1.0f</span>    <span class="comment">// 顶部</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 调用glBufferData 来完成 VBO对象 的赋值</span></span><br><span class="line"><span class="built_in">glBufferData</span>(GL_ARRAY_BUFFER, <span class="built_in">sizeof</span>(vertices), vertices, GL_STATIC_DRAW);</span><br></pre></td></tr></table></figure>
-
 <p>支持数据就已经推送到GPU中去了，一个VBO过程就结束了。</p>
 <h4 id="数据的处理"><a href="#数据的处理" class="headerlink" title="数据的处理"></a>数据的处理</h4><p>上面通过一些列的接口调用，最终完成了想GPU数据的推送，那么GL是怎么告诉GPU如何处理这些数据的呢，毕竟上面的<code>vertices</code>数组描述了顶点数据两种类型的信息：位置和颜色。要处理上面的数据（vertices），需要如下代码：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 位置属性</span></span><br><span class="line"><span class="built_in">glVertexAttribPointer</span>(<span class="number">0</span>, <span class="number">3</span>, GL_FLOAT, GL_FALSE, <span class="number">6</span> * <span class="built_in">sizeof</span>(<span class="type">float</span>), (<span class="type">void</span>*)<span class="number">0</span>);</span><br><span class="line"><span class="built_in">glEnableVertexAttribArray</span>(<span class="number">0</span>);</span><br><span class="line"><span class="comment">// 颜色属性</span></span><br><span class="line"><span class="built_in">glVertexAttribPointer</span>(<span class="number">1</span>, <span class="number">3</span>, GL_FLOAT, GL_FALSE, <span class="number">6</span> * <span class="built_in">sizeof</span>(<span class="type">float</span>), (<span class="type">void</span>*)(<span class="number">3</span> * <span class="built_in">sizeof</span>(<span class="type">float</span>)));</span><br><span class="line"><span class="built_in">glEnableVertexAttribArray</span>(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>glEnableVertexAttribArray，开启对应位置的顶点属性；</li>
 <li>glDisableVertexAttribArray，关闭随影位置的顶点属性；</li>
@@ -458,9 +454,8 @@
 </ul>
 <p>OpenGL中，主要通过<code>glVertexAttribPointer</code>这个函数来说明该如何解析传递给GPU的数据的。参数说明：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">glVertexAttribPointer</span><span class="params">(GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride,</span></span></span><br><span class="line"><span class="params"><span class="function">                                 <span class="type">const</span> GLvoid * pointer)</span></span>;</span><br></pre></td></tr></table></figure>
-
 <ul>
-<li>index，指定哪个顶点属性奖杯修改，通常对应如顶点Shader中layout(position &#x3D; 0)这个position；</li>
+<li>index，指定哪个顶点属性奖杯修改，通常对应如顶点Shader中layout(position = 0)这个position；</li>
 <li>size，表示顶点属性指的大小，上面<code>vertices</code>位置和颜色都是有三个float型数据组成的，所以是3；</li>
 <li>type，指的是数据的类型，上面<code>vertices</code>对应的时GL_FLOAT；</li>
 <li>normalized，是否希望数据标准化。如果我们设置为GL_TRUE，所有数据都会被映射到0（对于有符号型signed数据是-1）到1之间。我们把它设置为GL_FALSE；</li>
@@ -469,11 +464,9 @@
 </ul>
 <h3 id="VAO对象"><a href="#VAO对象" class="headerlink" title="VAO对象"></a>VAO对象</h3><p>VAO，即顶点数组对象（Vertex Array Object），VAO作用就是顶点属性调用都会存储在VAO中。这样的好处就是，当配置顶点属性指针时，你只需要将那些调用执行一次，之后再绘制物体的时候只需要绑定相应的VAO就行了。简单来说有点类似复用的概念。 那么VAO到底复用了哪些过程呢，先看物体绘制的一般过程：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 0. 复制顶点数组到缓冲中供OpenGL使用</span></span><br><span class="line"><span class="built_in">glBindBuffer</span>(GL_ARRAY_BUFFER, VBO);</span><br><span class="line"><span class="built_in">glBufferData</span>(GL_ARRAY_BUFFER, <span class="built_in">sizeof</span>(vertices), vertices, GL_STATIC_DRAW);</span><br><span class="line"><span class="comment">// 1. 设置顶点属性指针</span></span><br><span class="line"><span class="built_in">glVertexAttribPointer</span>(<span class="number">0</span>, <span class="number">3</span>, GL_FLOAT, GL_FALSE, <span class="number">3</span> * <span class="built_in">sizeof</span>(<span class="type">float</span>), (<span class="type">void</span>*)<span class="number">0</span>);</span><br><span class="line"><span class="built_in">glEnableVertexAttribArray</span>(<span class="number">0</span>);</span><br><span class="line"><span class="comment">// 2. 当我们渲染一个物体时要使用着色器程序</span></span><br><span class="line"><span class="built_in">glUseProgram</span>(shaderProgram);</span><br><span class="line"><span class="comment">// 3. 绘制物体</span></span><br><span class="line"><span class="built_in">someOpenGLFunctionThatDrawsOurTriangle</span>();</span><br></pre></td></tr></table></figure>
-
 <p>如果使用VAO，任何绑定VAO后的顶点属性调用都会储存在这个VAO中。这样的好处就是，当配置顶点属性指针时，你只需要将那些调用执行一次，之后再绘制物体的时候只需要绑定相应的VAO就行了。</p>
 <h4 id="创建及使用"><a href="#创建及使用" class="headerlink" title="创建及使用"></a>创建及使用</h4><p>生成一个id并绑定，然后进行VBO的复制操作，再进行顶点指针的设置操作，</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义一个 id，用来存储生成的VAO对象名称</span></span><br><span class="line">GLuint m_SkyBoxVboId;</span><br><span class="line"><span class="comment">// 生成一个VAO对象，并把这个名称存储到上面定义的id中</span></span><br><span class="line"><span class="built_in">glGenVertexArrays</span>(<span class="number">1</span>, &amp;m_SkyBoxVaoId);</span><br><span class="line"><span class="comment">// 1. 绑定VAO对象</span></span><br><span class="line"><span class="built_in">glBindVertexArray</span>(m_SkyBoxVboId);</span><br><span class="line"><span class="built_in">glBindBuffer</span>(GL_ARRAY_BUFFER, VBO);</span><br><span class="line"><span class="comment">// 2. 把顶点数据复制到缓冲数据中供OpenGL使用</span></span><br><span class="line"><span class="built_in">glBufferData</span>(GL_ARRAY_BUFFER, <span class="built_in">sizeof</span>(vertices), vertices, GL_STATIC_DRAW);</span><br><span class="line"><span class="comment">// 3. 设置顶点属性指针</span></span><br><span class="line"><span class="built_in">glVertexAttribPointer</span>(<span class="number">0</span>, <span class="number">3</span>, GL_FLOAT, GL_FALSE, <span class="number">3</span> * <span class="built_in">sizeof</span>(<span class="type">float</span>), (<span class="type">void</span>*)<span class="number">0</span>);</span><br><span class="line"><span class="built_in">glEnableVertexAttribArray</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">[...]</span><br><span class="line"></span><br><span class="line"><span class="comment">// ..:: 绘制代码（渲染循环中） :: ..</span></span><br><span class="line"><span class="comment">// 4. 绘制物体</span></span><br><span class="line"><span class="built_in">glUseProgram</span>(shaderProgram);</span><br><span class="line"><span class="built_in">glBindVertexArray</span>(m_SkyBoxVboId);</span><br><span class="line"><span class="built_in">someOpenGLFunctionThatDrawsOurTriangle</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当不在使用VAO时，解绑</span></span><br><span class="line"><span class="built_in">glBindVertexArray</span>(<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
-
 <h3 id="Sample对象"><a href="#Sample对象" class="headerlink" title="Sample对象"></a>Sample对象</h3><p>Sample对象，即采样器对象，它是GLSL有一个供纹理对象使用的内建数据结构，在Shader定义好Sample对象后，后面这个对象就可以接收外面传递进来的纹理对象的值了。</p>
 <p>根据纹理的类型，Sample对象也有相对应的类型：</p>
 <ul>
@@ -600,7 +593,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/%20%7C%7C%20archive">
+                  <a href="/archives/%7C%7C%20archive">
                 
                     <span class="site-state-item-count">205</span>
                     <span class="site-state-item-name">日志</span>

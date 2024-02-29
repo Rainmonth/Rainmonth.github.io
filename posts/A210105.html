@@ -99,12 +99,12 @@
 
 
 
-  <meta name="description" content="目标 了解MediaCodec API的基本使用，熟悉使用MediaCodec编解码的一般流程；  使用MediaCodec硬解码AAC音频文件；  使用MediaCodec硬解码H.264视频文件；    音视频基础0——目录    音视频基础1——AudioTrack、AudioRecorder、MediaRecorder音频数据采集播放处理    音视频基础2——Android Camera">
+  <meta name="description" content="目标 了解MediaCodec API的基本使用，熟悉使用MediaCodec编解码的一般流程； 使用MediaCodec硬解码AAC音频文件； 使用MediaCodec硬解码H.264视频文件；  [x] 音视频基础0——目录  [x] 音视频基础1——AudioTrack、AudioRecorder、MediaRecorder音频数据采集播放处理 [ ] 音视频基础2——Android Cam">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 音视频基础——Android MediaCodec API学习">
 <meta property="og:url" content="http://yoursite.com/posts/A210105.html">
 <meta property="og:site_name" content="荏苒追寻个人博客">
-<meta property="og:description" content="目标 了解MediaCodec API的基本使用，熟悉使用MediaCodec编解码的一般流程；  使用MediaCodec硬解码AAC音频文件；  使用MediaCodec硬解码H.264视频文件；    音视频基础0——目录    音视频基础1——AudioTrack、AudioRecorder、MediaRecorder音频数据采集播放处理    音视频基础2——Android Camera">
+<meta property="og:description" content="目标 了解MediaCodec API的基本使用，熟悉使用MediaCodec编解码的一般流程； 使用MediaCodec硬解码AAC音频文件； 使用MediaCodec硬解码H.264视频文件；  [x] 音视频基础0——目录  [x] 音视频基础1——AudioTrack、AudioRecorder、MediaRecorder音频数据采集播放处理 [ ] 音视频基础2——Android Cam">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/images/A210115/MediaCodec%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
 <meta property="og:image" content="http://yoursite.com/images/A210115/MediaCodec%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%9B%BE.png">
@@ -217,7 +217,7 @@
         
           
   <li class="menu-item menu-item-home">
-    <a href="/%20" rel="section">
+    <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
 </li>
 
@@ -226,7 +226,7 @@
         
           
   <li class="menu-item menu-item-about">
-    <a href="/about/%20" rel="section">
+    <a href="/about/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
 </li>
 
@@ -235,7 +235,7 @@
         
           
   <li class="menu-item menu-item-tags">
-    <a href="/tags/%20" rel="section">
+    <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
 </li>
 
@@ -244,7 +244,7 @@
         
           
   <li class="menu-item menu-item-categories">
-    <a href="/categories/%20" rel="section">
+    <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
 </li>
 
@@ -253,7 +253,7 @@
         
           
   <li class="menu-item menu-item-archives">
-    <a href="/archives/%20" rel="section">
+    <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
 </li>
 
@@ -262,7 +262,7 @@
         
           
   <li class="menu-item menu-item-schedule">
-    <a href="/schedule/%20" rel="section">
+    <a href="/schedule/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
 </li>
 
@@ -406,52 +406,30 @@
 
       
         <h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><ul>
-<li><p>了解<code>MediaCodec</code> API的基本使用，熟悉使用<code>MediaCodec</code>编解码的一般流程；</p>
-</li>
-<li><p>使用<code>MediaCodec</code>硬解码<code>AAC</code>音频文件；</p>
-</li>
+<li>了解<code>MediaCodec</code> API的基本使用，熟悉使用<code>MediaCodec</code>编解码的一般流程；</li>
+<li>使用<code>MediaCodec</code>硬解码<code>AAC</code>音频文件；</li>
 <li><p>使用<code>MediaCodec</code>硬解码<code>H.264</code>视频文件；</p>
 </li>
-<li><p><input checked disabled type="checkbox"> 
-<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210101.html">音视频基础0——目录</a></p>
+<li><p>[x] <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210101.html">音视频基础0——目录</a></p>
 </li>
-<li><p><input checked disabled type="checkbox"> 
-<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210102.html">音视频基础1——AudioTrack、AudioRecorder、MediaRecorder音频数据采集播放处理</a></p>
-</li>
-<li><p><input disabled type="checkbox"> 
-<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210103.html">音视频基础2——Android Camera API及Camera2 API的使用</a></p>
-</li>
-<li><p><input disabled type="checkbox"> 
-<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210104.html">音视频基础3——Android Camera API及Camera2 采集视频数据</a></p>
-</li>
-<li><p><input disabled type="checkbox"> 
-<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210105.html">音视频基础4——Android MediaCodec API学习</a></p>
-</li>
-<li><p><input disabled type="checkbox"> 
-<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210306.html">音视频基础5——Android 实现rtmp推流</a></p>
-</li>
-<li><p><input checked disabled type="checkbox"> 
-<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210307.html">音视频基础6——交叉编译动态库</a></p>
-</li>
-<li><p><input disabled type="checkbox"> 
-<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210308.html">音视频基础7——MacOs下编译FFMpeg4.2.2</a></p>
-</li>
+<li>[x] <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210102.html">音视频基础1——AudioTrack、AudioRecorder、MediaRecorder音频数据采集播放处理</a></li>
+<li>[ ] <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210103.html">音视频基础2——Android Camera API及Camera2 API的使用</a></li>
+<li>[ ] <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210104.html">音视频基础3——Android Camera API及Camera2 采集视频数据</a></li>
+<li>[ ] <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210105.html">音视频基础4——Android MediaCodec API学习</a></li>
+<li>[ ] <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210306.html">音视频基础5——Android 实现rtmp推流</a></li>
+<li>[x] <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210307.html">音视频基础6——交叉编译动态库</a></li>
+<li>[ ] <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210308.html">音视频基础7——MacOs下编译FFMpeg4.2.2</a></li>
 </ul>
 <span id="more"></span>
-
 <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>两张图，一张是<code>MediaCodec</code>处理的流程图，一张是<code>MediaCodec</code>生命周期图，如下：</p>
-<h3 id="处理流程图"><a href="#处理流程图" class="headerlink" title="处理流程图"></a>处理流程图</h3><img src="../images/A210115/MediaCodec处理流程图.png" alt="MidiaCodec处理流程图" style="zoom:75%;">
-
+<h3 id="处理流程图"><a href="#处理流程图" class="headerlink" title="处理流程图"></a>处理流程图</h3><p><img src="../images/A210115/MediaCodec处理流程图.png" alt="MidiaCodec处理流程图" style="zoom:75%;"></p>
 <p>简单来说，就是客户端从MediaCodec请求一段内存空间，用来填充数据，填充好后，交给MediaCodec处理，处理完毕后，MediaCodec讲处理结果填充到自己分配一段空内存中，然后由客户端自己去拉取。</p>
 <ul>
 <li>用来进行数据填充的内存空间，在<code>MediaCodec</code>中由<code>ByteBuffer</code>来实现；</li>
 <li>提交给<code>MediaCodec</code>处理由一个<code>BufferMap</code>（<code>HashMap</code>的简单封装实现）来实现，代码对应于<code>mDequeuedInputBuffers</code>，相应的操作方法是<code>queueInputBuffer</code>和<code>dequeueInputBuffer</code> ；</li>
 <li>从MediaCodec拉取处理结果由一个<code>BufferMap</code>（<code>HashMap</code>的简单封装实现）来实现，代码对应于<code>mDequeuedOutputBuffers</code>， 相应的操作方法是<code>dequeueOutputBuffer</code>；</li>
 </ul>
-<h3 id="生命周期图"><a href="#生命周期图" class="headerlink" title="生命周期图"></a>生命周期图</h3><img src="../images/A210115/MediaCodec生命周期图.png" alt="MediaCodec生命周期图" style="zoom:80%;">
-
-
-
+<h3 id="生命周期图"><a href="#生命周期图" class="headerlink" title="生命周期图"></a>生命周期图</h3><p><img src="../images/A210115/MediaCodec生命周期图.png" alt="MediaCodec生命周期图" style="zoom:80%;"></p>
 <p>从上图可以看出，MediaCodec共三种大状态：</p>
 <ul>
 <li><code>Stopped</code>，分三种子状态：<ul>
@@ -470,7 +448,7 @@
 </ul>
 <h2 id="基本API"><a href="#基本API" class="headerlink" title="基本API"></a>基本API</h2><h3 id="实例创建API"><a href="#实例创建API" class="headerlink" title="实例创建API"></a>实例创建API</h3><ul>
 <li><code>createByCodecName</code>，知道组件的确切名称是可以采用此方法创建<code>MediaCodec</code>，一般很少使用（关于支持的组件，可以通过<code>android.media.MediaCodecList</code>来获取）；</li>
-<li><code>createDecoderByType</code>&#x2F;<code>createEncoderByType</code>，根据<code>mime type</code>来创建指定用于的解码和编码的<code>MediaCodec</code>实例，通常采用的时这个方法来构造<code>MediaCodec</code>实例；</li>
+<li><code>createDecoderByType</code>/<code>createEncoderByType</code>，根据<code>mime type</code>来创建指定用于的解码和编码的<code>MediaCodec</code>实例，通常采用的时这个方法来构造<code>MediaCodec</code>实例；</li>
 </ul>
 <h3 id="生命周期相关API"><a href="#生命周期相关API" class="headerlink" title="生命周期相关API"></a>生命周期相关API</h3><ul>
 <li><p><code>configure</code>，调用之后一般进入<code>Configured</code>状态</p>
@@ -609,7 +587,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/%20%7C%7C%20archive">
+                  <a href="/archives/%7C%7C%20archive">
                 
                     <span class="site-state-item-count">205</span>
                     <span class="site-state-item-name">日志</span>

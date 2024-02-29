@@ -214,7 +214,7 @@
         
           
   <li class="menu-item menu-item-home">
-    <a href="/%20" rel="section">
+    <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
 </li>
 
@@ -223,7 +223,7 @@
         
           
   <li class="menu-item menu-item-about">
-    <a href="/about/%20" rel="section">
+    <a href="/about/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
 </li>
 
@@ -232,7 +232,7 @@
         
           
   <li class="menu-item menu-item-tags">
-    <a href="/tags/%20" rel="section">
+    <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
 </li>
 
@@ -241,7 +241,7 @@
         
           
   <li class="menu-item menu-item-categories">
-    <a href="/categories/%20" rel="section">
+    <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
 </li>
 
@@ -250,7 +250,7 @@
         
           
   <li class="menu-item menu-item-archives">
-    <a href="/archives/%20" rel="section">
+    <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
 </li>
 
@@ -259,7 +259,7 @@
         
           
   <li class="menu-item menu-item-schedule">
-    <a href="/schedule/%20" rel="section">
+    <a href="/schedule/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
 </li>
 
@@ -388,29 +388,19 @@
 <h2 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h2><p>已经成功的下载并编译出了Android的某个版本</p>
 <h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>先修改Android Studio 支持的内存上限，因为android 源码是是否巨大的,找到Android Studio的根目录，更改bin子目录下的studio.vmoptions文件</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">--Xms1024m</span><br><span class="line">--Xmm 1280m</span><br></pre></td></tr></table></figure>
-<h3 id="生成支持导入的文件"><a href="#生成支持导入的文件" class="headerlink" title="生成支持导入的文件"></a>生成支持导入的文件</h3><p>android源码编译成功后，看看有没有out&#x2F;host&#x2F;linux-x86&#x2F;framework&#x2F;idegen.jar文件生成，如果没有执行以下命令生成一个：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">source build/envsetup.sh</span><br><span class="line">lunch</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">输入之前编译源码时采用的那个编号，我的是5</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">再运行下面的命令</span></span><br><span class="line">mmm development/tools/idegen/</span><br></pre></td></tr></table></figure>
-<p>我执行上面的命令的时候报错如下：</p>
+<h3 id="生成支持导入的文件"><a href="#生成支持导入的文件" class="headerlink" title="生成支持导入的文件"></a>生成支持导入的文件</h3><p>android源码编译成功后，看看有没有out/host/linux-x86/framework/idegen.jar文件生成，如果没有执行以下命令生成一个：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">source build/envsetup.sh</span><br><span class="line">lunch</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">输入之前编译源码时采用的那个编号，我的是5</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">再运行下面的命令</span></span><br><span class="line">mmm development/tools/idegen/</span><br></pre></td></tr></table></figure><br>我执行上面的命令的时候报错如下：</p>
 <blockquote>
-<p>build&#x2F;core&#x2F;config.mk:692: error: Error: could not find jdk tools.jar at &#x2F;System&#x2F;Library&#x2F;Frameworks&#x2F;JavaVM.framework&#x2F;Versions&#x2F;Current&#x2F;Commands&#x2F;..&#x2F;lib&#x2F;tools.jar, please check if your JDK was installed correctly.</p>
+<p>build/core/config.mk:692: error: Error: could not find jdk tools.jar at /System/Library/Frameworks/JavaVM.framework/Versions/Current/Commands/../lib/tools.jar, please check if your JDK was installed correctly.</p>
 </blockquote>
-<p>出现这个错误是因为JDK环境没有配置成功，Mac自带的Java没有tools.jar这个文件，<br>将自己安装的Java添加到PATH即可，运行如下命令可以快速查看用户安装的JDK目录：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/libexec/java_home -V</span><br></pre></td></tr></table></figure>
-<p>输出：<code>/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home</code>，这正是我的JDK安装目录，将其加入到PATH，加入后再次运行命令<code>mmm development/tools/idegen/</code>，看到如下输出</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#### build completed successfully (02:18 (mm:ss)) ####</span></span><br></pre></td></tr></table></figure>
-
-<p>就会生成<code>out/host/linux-x86/framework/idegen.jar</code>，然后在根目录执行：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">development/tools/idegen/idegen.sh</span><br></pre></td></tr></table></figure>
-<p>我这边执行这个命令花的时间比较长</p>
+<p>出现这个错误是因为JDK环境没有配置成功，Mac自带的Java没有tools.jar这个文件，<br>将自己安装的Java添加到PATH即可，运行如下命令可以快速查看用户安装的JDK目录：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/libexec/java_home -V</span><br></pre></td></tr></table></figure><br>输出：<code>/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home</code>，这正是我的JDK安装目录，将其加入到PATH，加入后再次运行命令<code>mmm development/tools/idegen/</code>，看到如下输出<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#### build completed successfully (02:18 (mm:ss)) ####</span></span><br></pre></td></tr></table></figure></p>
+<p>就会生成<code>out/host/linux-x86/framework/idegen.jar</code>，然后在根目录执行：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">development/tools/idegen/idegen.sh</span><br></pre></td></tr></table></figure><br>我这边执行这个命令花的时间比较长</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Read excludes: 27ms</span><br><span class="line">Traversed tree: 1189735ms</span><br></pre></td></tr></table></figure>
 <p>该命令执行后，会在根目录下生成如下两个文件：</p>
 <ul>
 <li>android.iml，用来描述modules。它包括modules路径、 依赖关系，顺序设置等。一个项目可以包含多个 *.iml 文件。</li>
-<li>android.ipr，一般保存了工程相关的设置，比如modules和modules libraries的路径，编译器配置，入口点等<br>到上面这一步其实就可以将源码导入到Android Studio了，但为了优化导入速度（不优化的话导入的时间会相当长），请接着往下看</li>
+<li>android.ipr，一般保存了工程相关的设置，比如modules和modules libraries的路径，编译器配置，入口点等<br>到上面这一步其实就可以将源码导入到Android Studio了，但为了优化导入速度（不优化的话导入的时间会相当长），请接着往下看<h3 id="优化导入的速度"><a href="#优化导入的速度" class="headerlink" title="优化导入的速度"></a>优化导入的速度</h3>修改android.xml文件，找到excludeFolder标签，加入如下内容<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">    &lt;excludeFolder url=&quot;file://$MODULE_DIR$/.repo&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/abi&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/frameworks/base/docs&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/art&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/bionic&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/bootable&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/build&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/cts&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/dalvik&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/developers&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/development&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/device&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/docs&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/external&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/hardware&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/kernel-3.18&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/libcore&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/libnativehelper&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/ndk&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/out&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/pdk&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/platform_testing&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/prebuilts&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/rc_projects&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/sdk&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/system&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/tools&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/trusty&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/vendor&quot;/&gt;</span><br></pre></td></tr></table></figure>
+然后再开始导入。</li>
 </ul>
-<h3 id="优化导入的速度"><a href="#优化导入的速度" class="headerlink" title="优化导入的速度"></a>优化导入的速度</h3><p>修改android.xml文件，找到excludeFolder标签，加入如下内容</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">    &lt;excludeFolder url=&quot;file://$MODULE_DIR$/.repo&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/abi&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/frameworks/base/docs&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/art&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/bionic&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/bootable&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/build&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/cts&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/dalvik&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/developers&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/development&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/device&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/docs&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/external&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/hardware&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/kernel-3.18&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/libcore&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/libnativehelper&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/ndk&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/out&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/pdk&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/platform_testing&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/prebuilts&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/rc_projects&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/sdk&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/system&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/tools&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/trusty&quot;/&gt;</span><br><span class="line">&lt;excludeFolder url=&quot;file://$MODULE_DIR$/vendor&quot;/&gt;</span><br></pre></td></tr></table></figure>
-<p>然后再开始导入。</p>
 <h3 id="支持调试"><a href="#支持调试" class="headerlink" title="支持调试"></a>支持调试</h3>
       
     </div>
@@ -438,8 +428,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/C191017.html" rel="next" title="通用功能——Mac 使用tree打印目录结构">
-                <i class="fa fa-chevron-left"></i> 通用功能——Mac 使用tree打印目录结构
+              <a href="/posts/C201010.html" rel="next" title="通用功能——Mac 使用技巧">
+                <i class="fa fa-chevron-left"></i> 通用功能——Mac 使用技巧
               </a>
             
           </div>
@@ -522,7 +512,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/%20%7C%7C%20archive">
+                  <a href="/archives/%7C%7C%20archive">
                 
                     <span class="site-state-item-count">205</span>
                     <span class="site-state-item-name">日志</span>

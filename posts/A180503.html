@@ -99,12 +99,12 @@
 
 
 
-  <meta name="description" content="https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A180503.html  状态栏攻略[TOC] 本文目标 MaterialDesign 状态栏 沉浸式效果（视觉上就是toolbar和status bar颜色相同） 全屏（带状态栏的全屏）  基本概念 colorPrimary，一般指ActionBar的颜色 textColorPrimary，一般指ActionBar上标题文字">
+  <meta name="description" content="https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A180503.html 状态栏攻略 [TOC] 本文目标 MaterialDesign 状态栏 沉浸式效果（视觉上就是toolbar和status bar颜色相同） 全屏（带状态栏的全屏）  基本概念 colorPrimary，一般指ActionBar的颜色 textColorPrimary，一般指ActionBar上标题文字">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 适配——状态栏攻略">
 <meta property="og:url" content="http://yoursite.com/posts/A180503.html">
 <meta property="og:site_name" content="荏苒追寻个人博客">
-<meta property="og:description" content="https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A180503.html  状态栏攻略[TOC] 本文目标 MaterialDesign 状态栏 沉浸式效果（视觉上就是toolbar和status bar颜色相同） 全屏（带状态栏的全屏）  基本概念 colorPrimary，一般指ActionBar的颜色 textColorPrimary，一般指ActionBar上标题文字">
+<meta property="og:description" content="https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A180503.html 状态栏攻略 [TOC] 本文目标 MaterialDesign 状态栏 沉浸式效果（视觉上就是toolbar和status bar颜色相同） 全屏（带状态栏的全屏）  基本概念 colorPrimary，一般指ActionBar的颜色 textColorPrimary，一般指ActionBar上标题文字">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2018-05-02T16:00:00.000Z">
 <meta property="article:modified_time" content="2023-10-12T16:06:46.961Z">
@@ -215,7 +215,7 @@
         
           
   <li class="menu-item menu-item-home">
-    <a href="/%20" rel="section">
+    <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
 </li>
 
@@ -224,7 +224,7 @@
         
           
   <li class="menu-item menu-item-about">
-    <a href="/about/%20" rel="section">
+    <a href="/about/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
 </li>
 
@@ -233,7 +233,7 @@
         
           
   <li class="menu-item menu-item-tags">
-    <a href="/tags/%20" rel="section">
+    <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
 </li>
 
@@ -242,7 +242,7 @@
         
           
   <li class="menu-item menu-item-categories">
-    <a href="/categories/%20" rel="section">
+    <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
 </li>
 
@@ -251,7 +251,7 @@
         
           
   <li class="menu-item menu-item-archives">
-    <a href="/archives/%20" rel="section">
+    <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
 </li>
 
@@ -260,7 +260,7 @@
         
           
   <li class="menu-item menu-item-schedule">
-    <a href="/schedule/%20" rel="section">
+    <a href="/schedule/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
 </li>
 
@@ -405,8 +405,8 @@
       
         <blockquote>
 <p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180503.html">https://rainmonth.github.io/posts/A180503.html</a></p>
-</blockquote>
-<h1 id="状态栏攻略"><a href="#状态栏攻略" class="headerlink" title="状态栏攻略"></a>状态栏攻略</h1><p>[TOC]</p>
+<h1 id="状态栏攻略"><a href="#状态栏攻略" class="headerlink" title="状态栏攻略"></a>状态栏攻略</h1></blockquote>
+<p>[TOC]</p>
 <h4 id="本文目标"><a href="#本文目标" class="headerlink" title="本文目标"></a>本文目标</h4><ol>
 <li>MaterialDesign 状态栏</li>
 <li>沉浸式效果（视觉上就是toolbar和status bar颜色相同）</li>
@@ -420,25 +420,17 @@
 <li><em>windowBackground</em>，视图背景颜色</li>
 </ol>
 <span id="more"></span>
-
 <h4 id="MaterialDesign"><a href="#MaterialDesign" class="headerlink" title="MaterialDesign"></a>MaterialDesign</h4><p>Material Design认为状态栏的颜色应该比actionbar的颜色深一点 5.0以上可以直接用colorPrimaryDark改变状态栏颜色，但是如果要去4.4也一样的话就得借助<a target="_blank" rel="noopener" href="https://github.com/jgilfelt/SystemBarTint">SystemBarTintManager</a>了。</p>
 <p>styles.xml:</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">&quot;AppTheme&quot;</span> <span class="attr">parent</span>=<span class="string">&quot;Theme.AppCompat.Light.DarkActionBar&quot;</span>&gt;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">  	<span class="comment">&lt;!-- Customize your theme here. --&gt;</span></span></span><br><span class="line"><span class="language-xml">  	<span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;colorPrimary&quot;</span>&gt;</span>@color/colorPrimary<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  	<span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;colorPrimaryDark&quot;</span>&gt;</span>@color/colorPrimaryDark<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  	<span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;colorAccent&quot;</span>&gt;</span>@color/colorAccent<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">&quot;AppTheme.NoActionBar&quot;</span>&gt;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">	<span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;windowActionBar&quot;</span>&gt;</span>false<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">	<span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;windowNoTitle&quot;</span>&gt;</span>true<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
 <p>v19 styles.xml:</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">&quot;AppTheme.NoActionBar&quot;</span>&gt;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;windowActionBar&quot;</span>&gt;</span>false<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;windowNoTitle&quot;</span>&gt;</span>true<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;android:windowTranslucentNavigation&quot;</span>&gt;</span>true<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;android:windowTranslucentStatus&quot;</span>&gt;</span>true<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
 <p>v21 styles.xml:</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">&quot;AppTheme.NoActionBar&quot;</span>&gt;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;windowActionBar&quot;</span>&gt;</span>false<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;windowNoTitle&quot;</span>&gt;</span>true<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;android:windowDrawsSystemBarBackgrounds&quot;</span>&gt;</span>true<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;android:statusBarColor&quot;</span>&gt;</span>@android:color/transparent<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
 <p>布局文件 activity_main.xml</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">android.support.design.widget.CoordinatorLayout</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:tools</span>=<span class="string">&quot;http://schemas.android.com/tools&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:fitsSystemWindows</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">tools:context</span>=<span class="string">&quot;com.rainmonth.statusbardemo.MainActivity&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">android.support.v7.widget.Toolbar</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/toolbar&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;?attr/actionBarSize&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:background</span>=<span class="string">&quot;?attr/colorPrimary&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_gravity</span>=<span class="string">&quot;center&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">&quot;Hello World!&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">android.support.design.widget.FloatingActionButton</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/fab&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_gravity</span>=<span class="string">&quot;bottom|end&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_margin</span>=<span class="string">&quot;16dp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:src</span>=<span class="string">&quot;@android:drawable/ic_dialog_email&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">android.support.design.widget.CoordinatorLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
 <p>MainActivity.java</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.rainmonth.statusbardemo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.os.Build;</span><br><span class="line"><span class="keyword">import</span> android.support.v7.app.ActionBar;</span><br><span class="line"><span class="keyword">import</span> android.support.v7.app.AppCompatActivity;</span><br><span class="line"><span class="keyword">import</span> android.os.Bundle;</span><br><span class="line"><span class="keyword">import</span> android.support.v7.widget.Toolbar;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.readystatesoftware.systembartint.SystemBarTintManager;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainActivity</span> <span class="keyword">extends</span> <span class="title class_">AppCompatActivity</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onCreate</span><span class="params">(Bundle savedInstanceState)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">        <span class="type">Toolbar</span> <span class="variable">toolbar</span> <span class="operator">=</span> (Toolbar) findViewById(R.id.toolbar);</span><br><span class="line">        setSupportActionBar(toolbar);</span><br><span class="line">        <span class="type">ActionBar</span> <span class="variable">actionBar</span> <span class="operator">=</span> getSupportActionBar();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        fitVer19();</span><br><span class="line">        <span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.KITKAT &amp;&amp; Build.VERSION.SDK_INT &lt; Build.VERSION_CODES.LOLLIPOP) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="literal">null</span> != actionBar)</span><br><span class="line">                actionBar.setTitle(<span class="string">&quot;19-21(无21)&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.LOLLIPOP) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="literal">null</span> != actionBar)</span><br><span class="line">                actionBar.setTitle(<span class="string">&quot;21以上&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="literal">null</span> != actionBar)</span><br><span class="line">                actionBar.setTitle(<span class="string">&quot;19以下(无19)&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">fitVer19</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">//对19-21的做适配</span></span><br><span class="line">        <span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.KITKAT &amp;&amp; Build.VERSION.SDK_INT &lt; Build.VERSION_CODES.LOLLIPOP) &#123;</span><br><span class="line">            <span class="type">SystemBarTintManager</span> <span class="variable">tintManager</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SystemBarTintManager</span>(<span class="built_in">this</span>);</span><br><span class="line">            tintManager.setStatusBarTintResource(R.color.colorPrimaryDark);</span><br><span class="line">            tintManager.setStatusBarTintEnabled(<span class="literal">true</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><p><em>v21改变状态栏颜色的方法</em></p>
 <ol>
@@ -447,21 +439,20 @@
 <li><p>通过colorPrimaryDark设置</p>
 </li>
 <li><p>通过Java代码来修改设置</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getWindow().setStatusBarColor(getResources().getColor(R.color.colorRed));</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getWindow().setStatusBarColor(getResources().getColor(R.color.colorRed));</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
 </li>
 <li><p>v19 改变状态栏颜色的方法</p>
 <p>先用android:windowTranslucentStatus让状态栏透明，在用依赖库<a target="_blank" rel="noopener" href="https://github.com/jgilfelt/SystemBarTint">SystemBarTintManager</a>来改变状态栏的颜色，主要原理：</p>
-<p>​	<em>在decorview内加了一个view跟状态栏叠在一起（其实在contentview里加也是可以的）</em></p>
-</li>
+<p>​    <em>在decorview内加了一个view跟状态栏叠在一起（其实在contentview里加也是可以的）</em></p>
+<h4 id="沉浸式效果"><a href="#沉浸式效果" class="headerlink" title="沉浸式效果"></a>沉浸式效果</h4></li>
 </ul>
-<h4 id="沉浸式效果"><a href="#沉浸式效果" class="headerlink" title="沉浸式效果"></a>沉浸式效果</h4><p>给人视觉上就是toolbar和status bar颜色相同，所以要想实现所谓的沉浸式效果，就要把<em>状态栏和toolbar弄成同色</em>。理论上把colorPrimaryDark和colorPrimary的值改为一样就行了，结果4.4(v19)没问题，但是5.0(v21)，statusbar下边会有一层阴影。</p>
+<p>给人视觉上就是toolbar和status bar颜色相同，所以要想实现所谓的沉浸式效果，就要把<em>状态栏和toolbar弄成同色</em>。理论上把colorPrimaryDark和colorPrimary的值改为一样就行了，结果4.4(v19)没问题，但是5.0(v21)，statusbar下边会有一层阴影。</p>
 <p>解决方案，去掉颜色透明，修改v21 styles.xml文件如下</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">&quot;AppTheme.NoActionBar&quot;</span>&gt;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;windowActionBar&quot;</span>&gt;</span>false<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;windowNoTitle&quot;</span>&gt;</span>true<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;android:windowDrawsSystemBarBackgrounds&quot;</span>&gt;</span>true<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;android:statusBarColor&quot;</span>&gt;</span>@android:color/transparent<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="带有状态栏的全屏"><a href="#带有状态栏的全屏" class="headerlink" title="带有状态栏的全屏"></a>带有状态栏的全屏</h4><p>App主题依然使用AppTheme.NoActionBar，去掉根布局里面的*android:fitSystemWindow&#x3D;”true”*，对于v21的，在Window上附加如下属性：</p>
+<h4 id="带有状态栏的全屏"><a href="#带有状态栏的全屏" class="headerlink" title="带有状态栏的全屏"></a>带有状态栏的全屏</h4><p>App主题依然使用AppTheme.NoActionBar，去掉根布局里面的<em>android:fitSystemWindow=”true”</em>，对于v21的，在Window上附加如下属性：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FLAG_TRANSLUCENT_NAVIGATION</span><br></pre></td></tr></table></figure>
-
 <h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><p><a target="_blank" rel="noopener" href="https://github.com/laobie/StatusBarUtil">StatusBarUtil</a>提供了一个状态栏颜色相关的库，很不错。</p>
 <p>扩展阅读文章：</p>
 <p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/932568ed31af">Android修改状态栏颜色全方位教程</a></p>
@@ -585,7 +576,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/%20%7C%7C%20archive">
+                  <a href="/archives/%7C%7C%20archive">
                 
                     <span class="site-state-item-count">205</span>
                     <span class="site-state-item-name">日志</span>
