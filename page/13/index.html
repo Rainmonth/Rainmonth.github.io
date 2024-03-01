@@ -2200,7 +2200,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/J1911172.html">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/J1911174.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -2219,7 +2219,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/posts/J1911172.html" itemprop="url">Java 并发——CountDownLatch</a></h1>
+                <a class="post-title-link" href="/posts/J1911174.html" itemprop="url">Java 并发——Atomic相关类</a></h1>
         
 
         <div class="post-meta">
@@ -2296,8 +2296,20 @@
         
           
             <blockquote>
-<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J1911172.html">https://rainmonth.github.io/posts/J1911172.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J1911174.html">https://rainmonth.github.io/posts/J1911174.html</a></p>
 </blockquote>
+<p>为什么会有Atomic类</p>
+<p>在单一的变量上应用对象锁（采用synchronized关键字）、ReentrantLock（可重入锁）有点大材小用了，于是Java针对单一变量就推出了一种<code>lock-free-thread-safe</code>工具集合，这就是Atomic相关类。Atomic相关类实现的核心思想就是CAS（compareAndSet）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> expect</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> update</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="type">boolean</span> <span class="title function_">compareAndSet</span><span class="params">(<span class="type">int</span> expect, <span class="type">int</span> update)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> unsafe.compareAndSwapInt(<span class="built_in">this</span>, valueOffset, expect, update);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中valueOffset和Atomic类对象的内存地址有关，用来供底层获取Atomic对象当前的值（real值），所以这个过程是有三个值的：</p>
+<ol>
+<li>内存中的实际值real；</li>
+<li>compareAndSet执行时期待expect值；</li>
+<li>更新的值update；</li>
+</ol>
+<p>更新的条件：<br>如果内存的值real和expect的值相同，说明符合条件，将update的值写入到内存。那么如果real值和expect不等咋办呢？不相等就一直等待，知道相等为止，这个过程中具有排他性，只有当compareAndSet执行完毕了，其他线程才有机会执行。</p>
+<p>所以Atomic实现了高效无锁（不过底层还是用的排它锁，但底层处理比Java层处理效果要好得多），注意他的value字段是volatile的，任何线程修改后都会直接写到主内存中，保证了可见性。</p>
+<h2 id="Atomic-相关类"><a href="#Atomic-相关类" class="headerlink" title="Atomic 相关类"></a>Atomic 相关类</h2><p>Atomic相关类主要有：<code>AtomicInteger</code>、<code>AtomicBoolean</code>、<code>AtomicLong</code></p>
 
           
         

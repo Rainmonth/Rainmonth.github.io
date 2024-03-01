@@ -310,6 +310,181 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/U2023/08/03.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/U2023/08/03.html" itemprop="url">Unity杂项记录</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-10-13T00:06:46+08:00">2023-10-13</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Unity/" itemprop="url" rel="index"><span itemprop="name">Unity</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Unity-Editor-Basic"><a href="#Unity-Editor-Basic" class="headerlink" title="Unity Editor Basic"></a>Unity Editor Basic</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.unity3d.com/Manual/SceneViewNavigation.html">Unity 界面导航</a></li>
+</ul>
+<p>官方Game Kit类型的资源学习感受</p>
+<ol>
+<li>不跟着教程一步步操作的话，自己去摸索是浪费时间；</li>
+<li>通过Game Kit来了解资源包中的具体资源的使用，包括prefab、camera、material、script的使用，使用过程中根据效果看看具体的实现（点击具体的GameObject，通过Inspector 来查看该GameObject上使用的具体 组件的实现，了解组件都有哪些属性；</li>
+<li>熟练使用组件定制的菜单，来完成自己的关卡设计，从易到难，逐步加大场景的复杂度。</li>
+</ol>
+<h2 id="捕鱼达人"><a href="#捕鱼达人" class="headerlink" title="捕鱼达人"></a>捕鱼达人</h2><ol>
+<li>捕鱼达人各种实现<ol>
+<li>鱼群生成算法；</li>
+<li>鱼的生成、按路径游动、鱼的转向；</li>
+<li>武器、等级、装备变化实现；</li>
+<li>捕鱼概率及伤害实现；</li>
+</ol>
+</li>
+</ol>
+<h2 id="跑酷游戏"><a href="#跑酷游戏" class="headerlink" title="跑酷游戏"></a>跑酷游戏</h2><ol>
+<li>背景的移动；</li>
+<li>障碍物的生成；</li>
+<li>角色的控制<ol>
+<li>跳跃及二级跳；</li>
+<li>滑行</li>
+<li>冲刺实现</li>
+</ol>
+</li>
+<li>道具奖励</li>
+</ol>
+<p>跑酷游戏二级跳</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">bool</span> isOnGround = <span class="literal">true</span>;</span><br><span class="line"><span class="built_in">int</span> jumpCount = <span class="number">0</span>;</span><br><span class="line"><span class="built_in">int</span> jumpMaxCount = <span class="number">2</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Update</span>()</span> </span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">if</span> (Input.GetKeyDown(KeyCode.Space) &amp;&amp; (isOnGround || jumpCount &lt; jumpMaxCount)) </span><br><span class="line">  &#123;</span><br><span class="line">    jumpCount++;</span><br><span class="line">    playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnCollisionEnter</span>(<span class="params">Collision collision</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">if</span> (collision.gameObject.CompareTag(<span class="string">&quot;Ground&quot;</span>))</span><br><span class="line">  &#123;</span><br><span class="line">    dirtParticle.Play();</span><br><span class="line">    isOnGround = <span class="literal">true</span>;</span><br><span class="line">    jumpCount = <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="二级跳问题"><a href="#二级跳问题" class="headerlink" title="二级跳问题"></a>二级跳问题</h3><ol>
+<li>第一次跳跃下降时进行二级跳无法跳高</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/U230804.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -578,181 +753,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/U2023/08/03.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/U2023/08/03.html" itemprop="url">Unity杂项记录</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-10-13T00:06:46+08:00">2023-10-13</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Unity/" itemprop="url" rel="index"><span itemprop="name">Unity</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Unity-Editor-Basic"><a href="#Unity-Editor-Basic" class="headerlink" title="Unity Editor Basic"></a>Unity Editor Basic</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://docs.unity3d.com/Manual/SceneViewNavigation.html">Unity 界面导航</a></li>
-</ul>
-<p>官方Game Kit类型的资源学习感受</p>
-<ol>
-<li>不跟着教程一步步操作的话，自己去摸索是浪费时间；</li>
-<li>通过Game Kit来了解资源包中的具体资源的使用，包括prefab、camera、material、script的使用，使用过程中根据效果看看具体的实现（点击具体的GameObject，通过Inspector 来查看该GameObject上使用的具体 组件的实现，了解组件都有哪些属性；</li>
-<li>熟练使用组件定制的菜单，来完成自己的关卡设计，从易到难，逐步加大场景的复杂度。</li>
-</ol>
-<h2 id="捕鱼达人"><a href="#捕鱼达人" class="headerlink" title="捕鱼达人"></a>捕鱼达人</h2><ol>
-<li>捕鱼达人各种实现<ol>
-<li>鱼群生成算法；</li>
-<li>鱼的生成、按路径游动、鱼的转向；</li>
-<li>武器、等级、装备变化实现；</li>
-<li>捕鱼概率及伤害实现；</li>
-</ol>
-</li>
-</ol>
-<h2 id="跑酷游戏"><a href="#跑酷游戏" class="headerlink" title="跑酷游戏"></a>跑酷游戏</h2><ol>
-<li>背景的移动；</li>
-<li>障碍物的生成；</li>
-<li>角色的控制<ol>
-<li>跳跃及二级跳；</li>
-<li>滑行</li>
-<li>冲刺实现</li>
-</ol>
-</li>
-<li>道具奖励</li>
-</ol>
-<p>跑酷游戏二级跳</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">bool</span> isOnGround = <span class="literal">true</span>;</span><br><span class="line"><span class="built_in">int</span> jumpCount = <span class="number">0</span>;</span><br><span class="line"><span class="built_in">int</span> jumpMaxCount = <span class="number">2</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Update</span>()</span> </span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">if</span> (Input.GetKeyDown(KeyCode.Space) &amp;&amp; (isOnGround || jumpCount &lt; jumpMaxCount)) </span><br><span class="line">  &#123;</span><br><span class="line">    jumpCount++;</span><br><span class="line">    playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnCollisionEnter</span>(<span class="params">Collision collision</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">if</span> (collision.gameObject.CompareTag(<span class="string">&quot;Ground&quot;</span>))</span><br><span class="line">  &#123;</span><br><span class="line">    dirtParticle.Play();</span><br><span class="line">    isOnGround = <span class="literal">true</span>;</span><br><span class="line">    jumpCount = <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="二级跳问题"><a href="#二级跳问题" class="headerlink" title="二级跳问题"></a>二级跳问题</h3><ol>
-<li>第一次跳跃下降时进行二级跳无法跳高</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/L180130.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -852,6 +852,157 @@
 <li><p>socketpair，创建了一对无名的套接字描述符（只能在AF_UNIX域中使用），描述符存储于一个二元数组,eg. s[2] .这对套接字可以进行双工通信，每一个描述符既可以读也可以写</p>
 </li>
 </ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/c455eeb0.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/c455eeb0.html" itemprop="url">Python 爬虫——爬取宅男女神网图片</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-10-13T00:06:46+08:00">2023-10-13</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/%E7%88%AC%E8%99%AB/" itemprop="url" rel="index"><span itemprop="name">爬虫</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/c455eeb0.html">https://rainmonth.github.io/posts/c455eeb0.html</a></p>
+</blockquote>
 
           
         
@@ -1071,7 +1222,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/c455eeb0.html">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/0.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -1090,7 +1241,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/posts/c455eeb0.html" itemprop="url">Python 爬虫——爬取宅男女神网图片</a></h1>
+                <a class="post-title-link" href="/posts/0.html" itemprop="url">未命名</a></h1>
         
 
         <div class="post-meta">
@@ -1111,31 +1262,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/%E7%88%AC%E8%99%AB/" itemprop="url" rel="index"><span itemprop="name">爬虫</span></a></span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -1166,9 +1292,38 @@
       
         
           
-            <blockquote>
-<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/c455eeb0.html">https://rainmonth.github.io/posts/c455eeb0.html</a></p>
+            <ol>
+<li>问题：错误 CS8357 指定的版本字符串中包含与确定性不兼容的通配符。从版本字符串删除通配符，或者禁用此编译的确定性</li>
+</ol>
+<blockquote>
+<p>C#脚本中版本号中使用了通配符，如<code>1.0.*</code>与确定性不兼容，将通配符改成具体的版本号就可以。</p>
 </blockquote>
+<ol>
+<li>问题：No cloud project ID was found by the Analytics SDK. This means Analytics events will not be sent. Please make sure to link your cloud project in the Unity editor to fix this problem.</li>
+</ol>
+<blockquote>
+<p>解决方案：在Unity的 Services菜单中找到配置，填写一些信息后就可以了</p>
+</blockquote>
+<ol>
+<li>问题：Deterministic compilation failed. You can disable Deterministic builds in Player Settings</li>
+</ol>
+<blockquote>
+<p>确定性编译失败。您可以在播放器设置中禁用确定性构建。Edit-&gt;Project Setting，左边找到Player，然后右边Other Setting，进度条拖动到最底部，Use deterministic compilation 取消勾选即可</p>
+</blockquote>
+<ol>
+<li><p>问题：下载了一个可在Windows、Mac以及Android跑的demo，想更改下build设置跑起来看看下过，结果发现切换到Android平台是，右下方的<code>build and run</code>不可点击</p>
+<blockquote>
+<p>解决方案：先点击<code>switch platform</code>，然后等切换编译完成后，<code>build and run</code>即可点击</p>
+</blockquote>
+</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://learn.unity.com/project/tanks-tutorial?language=en">Tanks 教程官网地址</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/UnityTechnologies/AngryBots2">Angry Bots2教程地址</a></p>
+<p><a target="_blank" rel="noopener" href="https://connect-cdn-public-prd.unitychina.cn/h1/20190226/8099b21d-6563-424c-9e01-958fe16bdbf7_TanksTutorialSlideDeck_v1.pdf">教程PDF文件地址</a></p>
+<p>知乎</p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/318297984">Unity有哪些适合拿来练手的游戏项目？</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/column/c_1383091320982958080">Unity技术交流</a></p>
+<p><a target="_blank" rel="noopener" href="https://learn.unity.com/course/teaching-game-design-and-development">官方入门教程</a></p>
 
           
         
@@ -1314,161 +1469,6 @@
 <p>本文链接：<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/c455eeb0.html">https://rainmonth.github.io/posts/c455eeb0.html</a></p>
 </blockquote>
 <p>这里主要收集Python相关的项目、文章。文章通常来源于微信公众号、掘金社区等。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/0.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/0.html" itemprop="url">未命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-10-13T00:06:46+08:00">2023-10-13</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>问题：错误 CS8357 指定的版本字符串中包含与确定性不兼容的通配符。从版本字符串删除通配符，或者禁用此编译的确定性</li>
-</ol>
-<blockquote>
-<p>C#脚本中版本号中使用了通配符，如<code>1.0.*</code>与确定性不兼容，将通配符改成具体的版本号就可以。</p>
-</blockquote>
-<ol>
-<li>问题：No cloud project ID was found by the Analytics SDK. This means Analytics events will not be sent. Please make sure to link your cloud project in the Unity editor to fix this problem.</li>
-</ol>
-<blockquote>
-<p>解决方案：在Unity的 Services菜单中找到配置，填写一些信息后就可以了</p>
-</blockquote>
-<ol>
-<li>问题：Deterministic compilation failed. You can disable Deterministic builds in Player Settings</li>
-</ol>
-<blockquote>
-<p>确定性编译失败。您可以在播放器设置中禁用确定性构建。Edit-&gt;Project Setting，左边找到Player，然后右边Other Setting，进度条拖动到最底部，Use deterministic compilation 取消勾选即可</p>
-</blockquote>
-<ol>
-<li><p>问题：下载了一个可在Windows、Mac以及Android跑的demo，想更改下build设置跑起来看看下过，结果发现切换到Android平台是，右下方的<code>build and run</code>不可点击</p>
-<blockquote>
-<p>解决方案：先点击<code>switch platform</code>，然后等切换编译完成后，<code>build and run</code>即可点击</p>
-</blockquote>
-</li>
-</ol>
-<p><a target="_blank" rel="noopener" href="https://learn.unity.com/project/tanks-tutorial?language=en">Tanks 教程官网地址</a></p>
-<p><a target="_blank" rel="noopener" href="https://github.com/UnityTechnologies/AngryBots2">Angry Bots2教程地址</a></p>
-<p><a target="_blank" rel="noopener" href="https://connect-cdn-public-prd.unitychina.cn/h1/20190226/8099b21d-6563-424c-9e01-958fe16bdbf7_TanksTutorialSlideDeck_v1.pdf">教程PDF文件地址</a></p>
-<p>知乎</p>
-<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/318297984">Unity有哪些适合拿来练手的游戏项目？</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/column/c_1383091320982958080">Unity技术交流</a></p>
-<p><a target="_blank" rel="noopener" href="https://learn.unity.com/course/teaching-game-design-and-development">官方入门教程</a></p>
 
           
         
