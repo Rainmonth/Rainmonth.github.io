@@ -767,156 +767,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A240229.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/A240229.html" itemprop="url">通用功能——Markdown常用格式说明</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-02-28T11:32:24+08:00">2024-02-28</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/%E9%80%9A%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">通用</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>写技术总结的时候，发现自己要用Markdown语法表示一下常用的数学公式，于是便总结了一下一些常用的数学方面的内容（如矩阵、方程、极限等）在Markdown语法上的实现，当然，文章不断在不断完善与整理中…</p>
-<p>Markdown表示数学公式，主要分行内数学公式，和块数学公式，表现形式如下：</p>
-<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">$</span>行内公式内容<span class="built_in">$</span></span><br></pre></td></tr></table></figure>
-<p>行间数学公式</p>
-<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br><span class="line">块公式内容</span><br><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/A240229.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A240228.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1004,9 +854,24 @@
 
       
         
-          
-            
-          
+          <p>写这篇文章，是为了重温一下还给老师的数学知识，加上前段时间 Android 开发过程中自定义View时设计到矩阵的变换，就找了一下资料，重新复习复习，内容大多数来自百度百科，记录下来一是熟悉一下概念，另外是熟悉下Markdown下数学公式的书写。</p>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>由 $m \times n$ 个数$a_{ij}$排成的m行n列的数表称为$m$行$n$列的矩阵，简称$m\times n$矩阵。记作：</p>
+<script type="math/tex; mode=display">
+A = \begin{bmatrix}
+{a_{11}}&{a_{12}}&{\cdots}&{a_{1n}}\\
+{a_{21}}&{a_{22}}&{\cdots}&{a_{2n}}\\
+{\vdots}&{\vdots}&{\ddots}&{a_{1n}}\\
+{a_{m1}}&{a_{m2}}&{\cdots}&{a_{mn}}\\
+\end{bmatrix}</script><p>这$m \times n$ 个数称为矩阵$A$的元素，简称为<strong>元</strong>，数$a_{ij}$位于矩阵$A$的第$i$行第$j$列，称为矩阵$A$的$(i,j)$元，以数 $a_{ij}$为$(i,j)$元的矩阵可记为$(a_{ij})$或$(a_{ij})m \times n$，$m\times n$矩阵$A$也记作$Amn$。</p>
+<p>元素是<strong>实数</strong>的矩阵称为<strong>实矩阵</strong>，元素是<strong>复数</strong>的矩阵称为<strong>复矩阵</strong>。而<strong>行数与列数都等于n</strong>的矩阵称为<strong>n阶矩阵</strong>或<strong>n阶方阵</strong></p>
+<h2 id="基本运算"><a href="#基本运算" class="headerlink" title="基本运算"></a>基本运算</h2><p>矩阵的基本运算包括<strong>加法，减法，数乘，转置，共轭和共轭转置</strong>。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/A240228.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1077,7 +942,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/posts/C240205.html" itemprop="url">通用功能——Mac 使用tree打印目录结构</a></h1>
+                <a class="post-title-link" href="/posts/C240205.html" itemprop="url">通用功能——Mac自定义脚本并全局运行</a></h1>
         
 
         <div class="post-meta">
@@ -1145,8 +1010,7 @@
 
       
         
-          
-            <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>移动项目开发工作中总是有一些固定的工作流程，比如：</p>
+          <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>移动项目开发工作中总是有一些固定的工作流程，比如：</p>
 <ol>
 <li><p>本地分支正在工作中，需要拉去远程分支的代码；</p>
 </li>
@@ -1159,33 +1023,13 @@
 </ol>
 <p>这些都是很常用的操作，作为一个coder，这些固定的流程肯定有程序化的解决思路，如是就想着用shell脚本来完成这个自动化操作的过程。</p>
 <p>这个功能之前自己在另一台Mac上实现过，但是换电脑后，自己想重新实现一下结果鼓捣了好久，好在最后还是搞出来了，这里姑且记录下，免得日后忘记了自己有得在网上找了。</p>
-<h2 id="shell脚本的编写"><a href="#shell脚本的编写" class="headerlink" title="shell脚本的编写"></a>shell脚本的编写</h2><p>这里就贴一个自己写的很简单的脚本，文件名：common.sh</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">safePush() &#123;</span><br><span class="line">    echo &quot;切换到项目工作目录：&quot;</span><br><span class="line">    cd ~/StudioProjects/RandyWorks/KadaForAndroid</span><br><span class="line">    git stash</span><br><span class="line">    git pull --rebase</span><br><span class="line">    git stash pop</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">safePull() &#123;</span><br><span class="line">    echo &quot;切换到项目工作目录：&quot;</span><br><span class="line">    cd ~/StudioProjects/RandyWorks/KadaForAndroid</span><br><span class="line">    git status</span><br><span class="line">    git stash</span><br><span class="line">    git pull --rebase</span><br><span class="line">    git stash pop</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">startApp() &#123;</span><br><span class="line">    echo &quot;请输入要启动的 App的包名：&quot;</span><br><span class="line">    read package_name</span><br><span class="line">    echo &quot;请输入要启动的 Activity路径&quot;</span><br><span class="line">    read launch_activity_path</span><br><span class="line">    if [ -z &quot;$launch_activity_path&quot; ]</span><br><span class="line">    then</span><br><span class="line">      launch_activity_path=&quot;.main.ui.activity.LaunchActivity&quot;</span><br><span class="line">    else</span><br><span class="line">      echo &quot;启动的activity：$launch_activity_path&quot;</span><br><span class="line">    fi</span><br><span class="line">    adb shell am start &quot;$package_name/.main.ui.activity.LaunchActivity&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>脚本的内容很简单，就不做详述了，接下来才是重点，怎没做到脚本文件的全局运行</p>
-<h2 id="全局运行脚本文件"><a href="#全局运行脚本文件" class="headerlink" title="全局运行脚本文件"></a>全局运行脚本文件</h2><p>这里肯定有很多的方案，我只说我自己的方案，我电脑上撞了<code>oh-my-zsh</code>，个人感觉挺好用的，有一天在修改 <code>.zshrc</code>文件时发现 这个文件里面有如下内容</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">...</span></span><br><span class="line">source $ZSH/oh-my-zsh.sh</span><br><span class="line">source ~/.bash_profile</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">...</span></span><br></pre></td></tr></table></figure>
-<p>我稍微查阅了一下，这个是在该文件中一用 <code>oh-my-zsh.sh</code> 这个文件的写法，如是我就把自定义的脚本的文件也写在这里了，这个<code>.zshrc</code>文件就变成了下面这样：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">...</span></span><br><span class="line">source $ZSH/oh-my-zsh.sh</span><br><span class="line">source &quot;自定义脚本的路径&quot;</span><br><span class="line">source ~/.bash_profile</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">...</span></span><br></pre></td></tr></table></figure>
-<p>加上后，重启一下终端，直接输入自定义脚本中定义的函数名就可以运行函数了，非常简单！</p>
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>这里可能会碰到几个问题</p>
-<ol>
-<li><p>提示自定义shell脚本没有运行权限，直接更改权限即可：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x 自定义脚本路径</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>提示函数找不到，原因肯能是：</p>
-<ol>
-<li><p>脚本没有保存；</p>
-</li>
-<li><p>改动脚本后没有让其生效（这个我试过了，如果是在.zshrc文件中按上面修改，只要保持就会生效的；</p>
-</li>
-<li><p>提示函数找不到，先检查一下拼写，确认无误后，在重启下终端即可。</p>
-</li>
-</ol>
-</li>
-</ol>
-<p>好了，这篇文章就写完了，也算是一个小小的收获吧，多少能提高一下工作的效率！</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/C240205.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1915,6 +1759,147 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/U230804.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/U230804.html" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-10-13T00:06:46+08:00">2023-10-13</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Unity/" itemprop="url" rel="index"><span itemprop="name">Unity</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -1962,7 +1947,7 @@
                 
                   <a href="/archives/%7C%7C%20archive">
                 
-                    <span class="site-state-item-count">205</span>
+                    <span class="site-state-item-count">204</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
