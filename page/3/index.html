@@ -310,6 +310,167 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/J191110.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/J191110.html" itemprop="url">Java杂谈——不同Java版本的特性比较说明</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-10-13T00:06:46+08:00">2023-10-13</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/%E6%9D%82%E8%B0%88/" itemprop="url" rel="index"><span itemprop="name">杂谈</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J191110.html">https://rainmonth.github.io/posts/J191110.html</a></p>
+</blockquote>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><h2 id="问题记录"><a href="#问题记录" class="headerlink" title="问题记录"></a>问题记录</h2><ol>
+<li><p>Ideal 运行时提示</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">objc[7169]: Class JavaLaunchHelper is implemented in both /Library/Java/JavaVirtualMachines/jdk1.8.0</span><br><span class="line">and /Library/Java/JavaVirtualMachines/jdk1.8.0.jdk/Contents/Home/jre/lib/libinstrument.dylib (0x10ea194e0). One of the two will be used. Which one is undefined.</span><br></pre></td></tr></table></figure>
+<p>解决方案：</p>
+<p>Idea-&gt;Help-&gt;Edit Custom Propertis，打开ideal.properties文件，添加以下配置，然后重启即可</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">idea.no.launcher</span>=<span class="string">true</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看虚拟机类型</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/J191203.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1574,180 +1735,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A211010.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/A211010.html" itemprop="url">Android 开源库分析——图片加载库的比较与封装</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-10-13T00:06:46+08:00">2023-10-13</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/%E5%BC%80%E6%BA%90%E5%BA%93%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">开源库分析</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>本文链接：<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A211010.html">https://rainmonth.github.io/posts/A211010.html</a></p>
-</blockquote>
-<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>图片加载时App开发过程中很重要的应用场景，几乎任何应用都离不开图片的加载展示，本文先分析主流的图片加载框架，对其进行比较，然后在此基础上利用Java设计模式封装一个可以灵活配置、实时切换图片加载内核的图片加载框架。目前，主流的图片加载库有：<a target="_blank" rel="noopener" href="https://github.com/nostra13/Android-Universal-Image-Loader">UniversalImageLoader</a>，<a target="_blank" rel="noopener" href="https://github.com/square/picasso">Picasso</a>，<a target="_blank" rel="noopener" href="https://github.com/bumptech/glide">Glide</a>，<a target="_blank" rel="noopener" href="https://www.fresco-cn.org/">Fresco</a>（按推出时间排序）。</p>
-<h3 id="UniversalImageLoader"><a href="#UniversalImageLoader" class="headerlink" title="UniversalImageLoader"></a><a target="_blank" rel="noopener" href="https://github.com/nostra13/Android-Universal-Image-Loader">UniversalImageLoader</a></h3><h3 id="Picasso"><a href="#Picasso" class="headerlink" title="Picasso"></a><a target="_blank" rel="noopener" href="https://github.com/square/picasso">Picasso</a></h3><h3 id="Glide"><a href="#Glide" class="headerlink" title="Glide"></a><a target="_blank" rel="noopener" href="https://github.com/bumptech/glide">Glide</a></h3><ul>
-<li><code>RequestManager</code>，</li>
-<li><code>RequestBuilder</code>，</li>
-<li><code>GlideBuilder</code>，</li>
-<li><code>Target</code>，</li>
-</ul>
-<h3 id="Fresco"><a href="#Fresco" class="headerlink" title="Fresco"></a><a target="_blank" rel="noopener" href="https://www.fresco-cn.org/">Fresco</a></h3><h2 id="比较维度"><a href="#比较维度" class="headerlink" title="比较维度"></a>比较维度</h2><ol>
-<li>异步加载机制</li>
-<li>缓存设计</li>
-<li>格式支持</li>
-<li>显示效果</li>
-<li>其他（包大小、支持Android版本）</li>
-<li>根据应用场景进行库的选择</li>
-</ol>
-<p>疑难杂症</p>
-<ol>
-<li>大图加载</li>
-</ol>
-<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ol>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_34203494/article/details/54292098">图片加载库的比较和选型</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/a4caabfd567d">Android 图片加载库如何封装</a></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A211027.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2010,7 +1997,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A191130.html">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A211010.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -2029,7 +2016,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/posts/A191130.html" itemprop="url">Android 开源库分析——ExoPlayer的Timeline</a></h1>
+                <a class="post-title-link" href="/posts/A211010.html" itemprop="url">Android 开源库分析——图片加载库的比较与封装</a></h1>
         
 
         <div class="post-meta">
@@ -2104,19 +2091,35 @@
 
       
         
-          <blockquote>
-<p>本文链接：<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191130.html">https://rainmonth.github.io/posts/A191130.html</a></p>
+          
+            <blockquote>
+<p>本文链接：<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A211010.html">https://rainmonth.github.io/posts/A211010.html</a></p>
 </blockquote>
-<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>刚开始分析ExoPlayer源码时，对于Timeline的概念不是很理解，这几天重新看了下，这里对Timeline及其相关概念做个简单分析</p>
-<h2 id="Timeline"><a href="#Timeline" class="headerlink" title="Timeline"></a>Timeline</h2><p>Timeline是一种数据结构，可以灵活的代表各种媒体的结构，Timeline的实例不可修改，对于直播流媒体，Timeline提供的是当前状态的快照。</p>
-<p>Timeline由Timeline.Period和Timeline.Window组成。Period是Media逻辑上的代表（可以是单个的媒体文件、也可以是包含掺入广告的播放信息的插入广告的媒体文件）。Window可以横跨多个Period，定义了默认的播放开始位置，所在Period可以播放的范围。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/A191130.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>图片加载时App开发过程中很重要的应用场景，几乎任何应用都离不开图片的加载展示，本文先分析主流的图片加载框架，对其进行比较，然后在此基础上利用Java设计模式封装一个可以灵活配置、实时切换图片加载内核的图片加载框架。目前，主流的图片加载库有：<a target="_blank" rel="noopener" href="https://github.com/nostra13/Android-Universal-Image-Loader">UniversalImageLoader</a>，<a target="_blank" rel="noopener" href="https://github.com/square/picasso">Picasso</a>，<a target="_blank" rel="noopener" href="https://github.com/bumptech/glide">Glide</a>，<a target="_blank" rel="noopener" href="https://www.fresco-cn.org/">Fresco</a>（按推出时间排序）。</p>
+<h3 id="UniversalImageLoader"><a href="#UniversalImageLoader" class="headerlink" title="UniversalImageLoader"></a><a target="_blank" rel="noopener" href="https://github.com/nostra13/Android-Universal-Image-Loader">UniversalImageLoader</a></h3><h3 id="Picasso"><a href="#Picasso" class="headerlink" title="Picasso"></a><a target="_blank" rel="noopener" href="https://github.com/square/picasso">Picasso</a></h3><h3 id="Glide"><a href="#Glide" class="headerlink" title="Glide"></a><a target="_blank" rel="noopener" href="https://github.com/bumptech/glide">Glide</a></h3><ul>
+<li><code>RequestManager</code>，</li>
+<li><code>RequestBuilder</code>，</li>
+<li><code>GlideBuilder</code>，</li>
+<li><code>Target</code>，</li>
+</ul>
+<h3 id="Fresco"><a href="#Fresco" class="headerlink" title="Fresco"></a><a target="_blank" rel="noopener" href="https://www.fresco-cn.org/">Fresco</a></h3><h2 id="比较维度"><a href="#比较维度" class="headerlink" title="比较维度"></a>比较维度</h2><ol>
+<li>异步加载机制</li>
+<li>缓存设计</li>
+<li>格式支持</li>
+<li>显示效果</li>
+<li>其他（包大小、支持Android版本）</li>
+<li>根据应用场景进行库的选择</li>
+</ol>
+<p>疑难杂症</p>
+<ol>
+<li>大图加载</li>
+</ol>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_34203494/article/details/54292098">图片加载库的比较和选型</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/a4caabfd567d">Android 图片加载库如何封装</a></li>
+</ol>
+
+          
         
       
     </div>
@@ -2200,7 +2203,7 @@
                 
                   <a href="/archives/%7C%7C%20archive">
                 
-                    <span class="site-state-item-count">204</span>
+                    <span class="site-state-item-count">205</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
