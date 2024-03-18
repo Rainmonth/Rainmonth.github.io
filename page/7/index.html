@@ -310,6 +310,238 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/U220902.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/U220902.html" itemprop="url">Unity官方教程1——Playground学习记录</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-09-02T00:00:00+08:00">2022-09-02</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Unity/" itemprop="url" rel="index"><span itemprop="name">Unity</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>文章链接</p>
+<ul>
+<li><a href>Unity官方教程0——系列内容汇总</a></li>
+<li><a href>Unity官方教程1——Playground学习记录</a></li>
+<li><a href>Unity官方教程2——Creator Kit Puzzle学习记录</a></li>
+<li><a href>Unity官方教程3——Creator Kit FPS学习记录</a></li>
+<li><a href>Unity官方教程4——Creator Kit RPG学习记录</a></li>
+<li><a href>Unity官方教程5——Creator Kit Beginner Code学习记录</a></li>
+</ul>
+<p>Unity</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/004c3e00aeec">Rigidbody2D使用与优化</a></li>
+</ul>
+<h2 id="Unity编辑器"><a href="#Unity编辑器" class="headerlink" title="Unity编辑器"></a>Unity编辑器</h2><h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><ul>
+<li>AddComponentMenu，通过该属性，可以在Unity的Component菜单下添加子菜单；</li>
+<li>AssemblyIsEditorAssembly，程序集级别的属性，具有该属性的程序集中的任何类都将被视为编辑器类；</li>
+<li>MenuItem，通过该属性，可以在Unity的菜单栏上添加菜单项；</li>
+<li>SerializeField，强制Unity对脚本的私有字段进行序列化（Unity对脚本进行序列化时，仅对公共非静态的字段进行序列化，如果需要序列化私有非静态字段，则需要用<code>SerializeField</code>属性来指定）；</li>
+<li>TooltipAttribute，通过该属性，可以在Inspector窗口中为组件的属性指定工具提示（鼠标悬停在上面会有一个工具气泡提示）；</li>
+<li>DisallowMultipleComponent，通过该属性，可以防止将相同类型（或子类型）的 MonoBehaviour 多次添加到 GameObject；</li>
+</ul>
+<h2 id="精灵"><a href="#精灵" class="headerlink" title="精灵"></a>精灵</h2><p>在2D工作控件中，精灵的实质就是<strong>2D图形对象</strong>，在3D控件中，精灵的实质就是<strong>标准纹理</strong>，精灵不同于纹理的地方在于可以通过一些特殊技巧在开发过程中组合和管理精灵纹理从而达到提高效率和方便性的目的。</p>
+<p>刚体（<strong>RigidBody2D</strong>）的四个属性：</p>
+<ul>
+<li>Mass，质量，物体的质量</li>
+<li>Friction， 摩擦力，摩擦力越大，物体运动的阻力越大</li>
+<li>Angular Friction，</li>
+<li>Gravity，重力，重力为0是GameObject不会掉下来；</li>
+</ul>
+<p>MonoBehaviour</p>
+<p>Unity 脚本的基类，继承它的脚本才能被作为组件加入到GameObject中，同时它还提供了基本的事件回调。除此之外：</p>
+<pre><code>1. Coroutines，MonoBehaviour允许开启、停止和管理协程；
+ 2. Events，提供了一个事件集合，可以根据具体回调的时机选择执行相应的脚步代码
+     1. Start，当GameObject开始存在于场景中，或者GameObject开始实例化时。
+     2. Update，每一帧都会调用
+     3. FixedUpdate，每一个物理时间段都为调用，调用频率低于Update
+     4. OnBecameVisible 和 OnBecameInvisible，当游戏对象的渲染器进入或离开摄像机视图时回调
+     5. OnCollisionEnter 和 OnTriggerEnter，碰撞进入或者触发器进入时回调
+     6. OnDestroy，游戏对象被销毁时回调
+</code></pre><p>Playground简介</p>
+<p>Playground包含的内容：</p>
+<ol>
+<li><p>5个完整的小游戏示例；</p>
+</li>
+<li><p>上面5个小游戏示例所需要的图片资源（精灵）</p>
+</li>
+<li><p>上面5个小游戏中用到的预制件（Prefab），包括角色预制件和粒子效果预制件；</p>
+</li>
+<li><p>包含了四种类型的脚本，分别是：</p>
+<ol>
+<li><p>Attributes脚本</p>
+</li>
+<li><p>Conditions脚本</p>
+</li>
+<li><p>GamePlay脚本</p>
+</li>
+<li><p>MoveMent脚本</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ol>
+<li><p>问：Maze游戏新建关卡时，先添加背景图片，然后添加砖块，但砖块被背景图片遮挡住了</p>
+<p>答：注意场景中层的概念，图片精灵添加到场景中后，除了每个组件都会有的Transform组件，还会生成一个SpriteRender组件，同时还会多出一个Additional Setting选项，这里面可以设置它在场景中的层级，值越小，越在下面，所以只要把砖块的层级设置的比背景的大就可以了。</p>
+</li>
+<li><p>问：Maze游戏中，触碰到旗子后如何进行场景的切换的</p>
+<p>答： 采用了Condition Area<code>组件，然后在组件中执行</code>EndOfLevel<strong>GameplayAction</strong></p>
+</li>
+<li><p>问： UserInterface（游戏界面)的UI层级是如何保证的？</p>
+<p>答：</p>
+</li>
+<li><p>问：为关卡添加背景音效？</p>
+<p>答：<a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_46434080/article/details/118642785">添加背景音效</a></p>
+</li>
+</ol>
+<p>什么是Condition Area组件？</p>
+<p>即条件判定区域组件，</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> System.Collections;</span><br><span class="line"><span class="keyword">using</span> UnityEngine.Events;</span><br><span class="line"></span><br><span class="line">[<span class="meta">AddComponentMenu(<span class="string">&quot;Playground/Conditions/Condition Area&quot;</span>)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ConditionArea</span> : <span class="title">ConditionBase</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// the amount of times (in seconds) that this Condition will call OnTriggerStay</span></span><br><span class="line">    <span class="comment">// i.e. if it&#x27;s 1, it means that OnTriggerStay will be called every second</span></span><br><span class="line">    <span class="comment">// i.e. if it&#x27;s 4, it means that it will be called every 4 seconds</span></span><br><span class="line">    <span class="comment">// ... and so on...</span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">float</span> frequency = <span class="number">1f</span>;</span><br><span class="line">    <span class="comment">//not used in case of ColliderEventTypes.Enter and ColliderEventTypes.Exit</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//the type of event to check for</span></span><br><span class="line">    [<span class="meta">Header(<span class="string">&quot;Type of Event&quot;</span>)</span>]</span><br><span class="line">    <span class="keyword">public</span> ColliderEventTypes eventType = ColliderEventTypes.Enter;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">float</span> lastTimeTriggerStayCalled;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// This function will be called at the beginning</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        lastTimeTriggerStayCalled = -frequency;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//This will create a dialog window asking for which dialog to add</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Reset</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Utils.Collider2DDialogWindow(<span class="keyword">this</span>.gameObject, <span class="literal">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//this function is called every time another collider enters this trigger</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnTriggerEnter2D</span>(<span class="params">Collider2D otherCollider</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//is this the type of event we need?</span></span><br><span class="line">        <span class="keyword">if</span>(eventType == ColliderEventTypes.Enter)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//check for the tag of the object which entered the area, if necessary</span></span><br><span class="line">            <span class="keyword">if</span>(otherCollider.CompareTag(filterTag) || !filterByTag)</span><br><span class="line">            &#123;</span><br><span class="line">                ExecuteAllActions(otherCollider.gameObject);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// This will be called EVERY FRAME when something stays inside the trigger collider</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">OnTriggerStay2D</span>(<span class="params">Collider2D otherCollider</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//is this the type of event we need?</span></span><br><span class="line">        <span class="keyword">if</span>(eventType == ColliderEventTypes.StayInside</span><br><span class="line">            &amp;&amp; Time.time &gt;= lastTimeTriggerStayCalled + frequency) <span class="comment">//check also the frequency</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//check for the tag of the object which entered the area, if necessary</span></span><br><span class="line">            <span class="keyword">if</span>(otherCollider.CompareTag(filterTag) || !filterByTag)</span><br><span class="line">            &#123;</span><br><span class="line">                ExecuteAllActions(otherCollider.gameObject);</span><br><span class="line">                lastTimeTriggerStayCalled = Time.time;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//this function is called every time another collider exits this trigger</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnTriggerExit2D</span>(<span class="params">Collider2D otherCollider</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//is this the type of event we need?</span></span><br><span class="line">        <span class="keyword">if</span>(eventType == ColliderEventTypes.Exit)</span><br><span class="line">        &#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//check for the tag of the object which entered the area, if necessary</span></span><br><span class="line">            <span class="keyword">if</span>(otherCollider.CompareTag(filterTag)</span><br><span class="line">                || !filterByTag)</span><br><span class="line">            &#123;</span><br><span class="line">                ExecuteAllActions(otherCollider.gameObject);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">enum</span> ColliderEventTypes</span><br><span class="line">    &#123;</span><br><span class="line">        Enter,</span><br><span class="line">        Exit,</span><br><span class="line">        StayInside</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述代码中，类开头的<code>[AddComponentMenu(&quot;Playground/Conditions/Condition Area&quot;)]</code>、属性上面的<code>[Header(&quot;Type of Event&quot;)]</code>,这些类似于Java中的注解，在C#中这个叫特性，继承于<code>System.Attribute</code>类，通常用作限定</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> System.Collections;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> UnityEngine.Events;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title">ConditionBase</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//actionitems can be connected to GameplayAction scripts, and execute their one action (the method ExecuteAction implemented in each child class)</span></span><br><span class="line">    [<span class="meta">SerializeField</span>]</span><br><span class="line">    <span class="keyword">public</span> List&lt;Action&gt; actions = <span class="keyword">new</span> List&lt;Action&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="comment">//custom actions are more complicated to setup but more powerful, and appear only if useCustomActions is enabled</span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">bool</span> useCustomActions = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">public</span> UnityEvent customActions;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//to perform the actions only once</span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">bool</span> happenOnlyOnce = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">bool</span> alreadyHappened = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">bool</span> filterByTag = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> filterTag = <span class="string">&quot;Player&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//dataObject is usually the other object in the collision</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ExecuteAllActions</span>(<span class="params">GameObject dataObject</span>)</span></span><br><span class="line">    &#123;        </span><br><span class="line">        <span class="comment">//first check if the action has already been executed</span></span><br><span class="line">        <span class="keyword">if</span>(happenOnlyOnce &amp;&amp; alreadyHappened)</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//first execute the simple GameplayActions, if present</span></span><br><span class="line">        <span class="built_in">bool</span> actionResult;</span><br><span class="line">        <span class="keyword">foreach</span>(Action ga <span class="keyword">in</span> actions)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(ga != <span class="literal">null</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                actionResult = ga.ExecuteAction(dataObject);</span><br><span class="line">                <span class="keyword">if</span>(actionResult == <span class="literal">false</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    Debug.LogWarning(<span class="string">&quot;An action failed and interrupted the chain of Actions&quot;</span>);</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//execute the custom actions, if present and enabled</span></span><br><span class="line">        <span class="keyword">if</span>(useCustomActions)</span><br><span class="line">        &#123;</span><br><span class="line">            customActions.Invoke();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        alreadyHappened = <span class="literal">true</span>; <span class="comment">//will prevent re-executing the actions if happenOnlyOnce is true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>什么是GameplayAction？</p>
+<p>Playground 作业</p>
+<p><strong>注意</strong>：在学习如何制作游戏时，模仿 80 年代老游戏（例如小行星、打砖块、太空侵略者、青蛙等等……）的玩法一般来说是很不错的做法，因为这些游戏很简单。然后，随着你的水平不断提升，你可以添加越来越多的细节并优化互动方式。</p>
+<p>如果你需要灵感，请打开 Examples 文件夹并启动其中一个游戏。检查游戏对象，看看我们是如何制作这些游戏对象的，然后尝试创建类似的游戏对象。</p>
+<p>todo</p>
+<p>打印高级概念中的PDF资料</p>
+<p>利用瓦片地图构建关卡</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://docs.unity3d.com/Manual/class-Tilemap.html">瓦片地图</a></li>
+<li><a target="_blank" rel="noopener" href="https://learn.unity.com/tutorials/?k=%5B%22q%3Atilemap%22%5D">官网TileMap相关教程</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/U220901.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1748,162 +1980,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A220222.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/A220222.html" itemprop="url">Android 杂谈——Interview Prepare</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-22T00:00:00+08:00">2022-02-22</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A220222.html">https://rainmonth.github.io/posts/A220222.html</a></p>
-</blockquote>
-<p><a target="_blank" rel="noopener" href="https://github.com/Moosphan/Android-Daily-Interview">Android Daily Interview</a>，<a target="_blank" rel="noopener" href="https://opensourcelibs.com/lib/android-daily-interview">备用地址</a></p>
-<h2 id="Java方面"><a href="#Java方面" class="headerlink" title="Java方面"></a>Java方面</h2><h3 id="Java基础部分"><a href="#Java基础部分" class="headerlink" title="Java基础部分"></a>Java基础部分</h3><h4 id="抽象类与接口的区别别"><a href="#抽象类与接口的区别别" class="headerlink" title="抽象类与接口的区别别"></a>抽象类与接口的区别别</h4><blockquote>
-<ul>
-<li>抽象类，采用 修饰符 + abstract class来定义，和普通类一样，可以定义常量、方法、抽象方法、一般方法和构造方法，是类共性的提取</li>
-<li>接口, 采用 修饰符 + interface来定义，可以定义常量(默认就是public static的），可以声明方法（java 8以后方法可以有默认实现，不过需要加上default关键字），是一种规范，实现接口的类必须提供接口中定义方法的实现。</li>
-<li>Java是单继承，多实现的</li>
-</ul>
-</blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/A220222.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1951,7 +2027,7 @@
                 
                   <a href="/archives/%7C%7C%20archive">
                 
-                    <span class="site-state-item-count">205</span>
+                    <span class="site-state-item-count">206</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2048,7 +2124,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">42</span>
+                      
+                    
+                    <span class="site-state-item-count">43</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
