@@ -107,7 +107,7 @@
 <meta property="og:description" content="https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A180123.html  [TOC]  Q：git访问github的rate limit问题如何解决由于现在Github的开放访问有每小时60个请求的限制，很多应用下载、安装、使用过程中会访问Github，导致超限而报错403 rate limit等等。通过授权后，可以提高到每小时5000次。方法是：到github的setti">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2018-01-22T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-11-23T09:47:30.427Z">
+<meta property="article:modified_time" content="2025-01-08T06:14:00.767Z">
 <meta property="article:author" content="Randy Zhang">
 <meta name="twitter:card" content="summary">
 
@@ -440,6 +440,7 @@
 </ol>
 <h2 id="权限适配问题"><a href="#权限适配问题" class="headerlink" title="权限适配问题"></a>权限适配问题</h2><ul>
 <li>索尼手机，debug模式打开webView就崩溃</li>
+<li>同一个WebView，多次加载一个包含“#”的地址，如果在“#”后面的参数发生变化而“#”前面内容不变时，WebView<strong>不会重新加载</strong>；</li>
 </ul>
 <h2 id="控件问题"><a href="#控件问题" class="headerlink" title="控件问题"></a>控件问题</h2><ul>
 <li><p>Group控件设置可见性的时候，存在设置不生效的问题</p>
@@ -507,6 +508,11 @@
 </li>
 </ul>
 <h2 id="编译配置问题"><a href="#编译配置问题" class="headerlink" title="编译配置问题"></a>编译配置问题</h2><ul>
+<li><p>升级到Android Studio Hedgehog 以后，老版本项目运行老是包错，各种类不能访问等？</p>
+<blockquote>
+<p>原因：Android Studio Hedgehog 新增了一个 GRADLE_LOCAL_JAVA_HOME，用于制定当前项目的JDK 路径，默认会只想Android Studio 内置的JDK版本，这个版本与通常 使用的JDK 1.8 版本 不同，它执行的是 Android Studio 内置的 JDK版本（JDK 17），所以就会各种老项目运行不起来，这个是欧之遥制定 gradle 编译时 的JDK版本为 1.8的就可以了；</p>
+</blockquote>
+</li>
 <li><p>Android Studio 升级后以前的老项目运行报错：<code>com.android.ide.common.signing.KeytoolException: Failed to read key AndroidDebugKey from store &quot;/Users/RandyZhang/.android/debug.keystore&quot;: Invalid keystore format</code>？</p>
 <blockquote>
 <p>删除.android目录下的debug.keystore文件，以及相应的.lock文件，然后重启Android Studio即可；</p>
@@ -945,7 +951,7 @@
                 
                   <a href="/archives/%7C%7C%20archive">
                 
-                    <span class="site-state-item-count">206</span>
+                    <span class="site-state-item-count">216</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1208,7 +1214,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
   <span class="with-love" id="animate"> 
     <i class="fa fa-user"></i>
   </span>

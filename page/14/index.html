@@ -310,7 +310,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/J1911174.html">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A210102.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -329,7 +329,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/posts/J1911174.html" itemprop="url">Java 并发——Atomic相关类</a></h1>
+                <a class="post-title-link" href="/posts/A210102.html" itemprop="url">Android 音视频基础1——AudioTrack、AudioRecorder、MediaRecorder音频数据采集播放处理</a></h1>
         
 
         <div class="post-meta">
@@ -341,7 +341,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-17T00:00:00+08:00">2019-11-17</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-02T00:00:00+08:00">2021-01-02</time>
             
 
             
@@ -362,14 +362,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
 
                 
                 
                   ， 
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/%E5%B9%B6%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">并发</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/%E9%9F%B3%E8%A7%86%E9%A2%91%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">音视频基础</span></a></span>
 
                 
                 
@@ -404,793 +404,14 @@
 
       
         
-          
-            <blockquote>
-<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J1911174.html">https://rainmonth.github.io/posts/J1911174.html</a></p>
-</blockquote>
-<p>为什么会有Atomic类</p>
-<p>在单一的变量上应用对象锁（采用synchronized关键字）、ReentrantLock（可重入锁）有点大材小用了，于是Java针对单一变量就推出了一种<code>lock-free-thread-safe</code>工具集合，这就是Atomic相关类。Atomic相关类实现的核心思想就是CAS（compareAndSet）</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> expect</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> update</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="type">boolean</span> <span class="title function_">compareAndSet</span><span class="params">(<span class="type">int</span> expect, <span class="type">int</span> update)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> unsafe.compareAndSwapInt(<span class="built_in">this</span>, valueOffset, expect, update);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其中valueOffset和Atomic类对象的内存地址有关，用来供底层获取Atomic对象当前的值（real值），所以这个过程是有三个值的：</p>
-<ol>
-<li>内存中的实际值real；</li>
-<li>compareAndSet执行时期待expect值；</li>
-<li>更新的值update；</li>
-</ol>
-<p>更新的条件：<br>如果内存的值real和expect的值相同，说明符合条件，将update的值写入到内存。那么如果real值和expect不等咋办呢？不相等就一直等待，知道相等为止，这个过程中具有排他性，只有当compareAndSet执行完毕了，其他线程才有机会执行。</p>
-<p>所以Atomic实现了高效无锁（不过底层还是用的排它锁，但底层处理比Java层处理效果要好得多），注意他的value字段是volatile的，任何线程修改后都会直接写到主内存中，保证了可见性。</p>
-<h2 id="Atomic-相关类"><a href="#Atomic-相关类" class="headerlink" title="Atomic 相关类"></a>Atomic 相关类</h2><p>Atomic相关类主要有：<code>AtomicInteger</code>、<code>AtomicBoolean</code>、<code>AtomicLong</code></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/J1911172.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/J1911172.html" itemprop="url">Java 并发——CountDownLatch</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-17T00:00:00+08:00">2019-11-17</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/%E5%B9%B6%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">并发</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J1911172.html">https://rainmonth.github.io/posts/J1911172.html</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/J1911173.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/J1911173.html" itemprop="url">Java 并发——Semaphore</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-17T00:00:00+08:00">2019-11-17</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/%E5%B9%B6%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">并发</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J1911173.html">https://rainmonth.github.io/posts/J1911173.html</a></p>
-</blockquote>
-<p>引子</p>
-<p>开启N个线程顺序打印a-z和A-Z如何实现？</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/J191117.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/J191117.html" itemprop="url">Java 并发——基础</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-17T00:00:00+08:00">2019-11-17</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/%E5%B9%B6%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">并发</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J191117.html">https://rainmonth.github.io/posts/J191117.html</a></p>
-</blockquote>
-<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>说实话，本人在平常工作中关于Java并发的使用还是比较少的，为了提升下自己，就打算看看Java中对并发的支持，本文主要介绍一下java.util.concurrent包下并发相关的内容。该包下的内容大多数是java.util包下对应集合类的并发实现，可以通过比较来看看并发的妙处。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/J191117.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/J1911171.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/J1911171.html" itemprop="url">Java 并发——死锁</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-17T00:00:00+08:00">2019-11-17</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/%E5%B9%B6%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">并发</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J1911171.html">https://rainmonth.github.io/posts/J1911171.html</a></p>
-</blockquote>
-<h2 id="Java死锁"><a href="#Java死锁" class="headerlink" title="Java死锁"></a>Java死锁</h2><p>多个线程同时被阻塞，它们中的一个或者全部都在等待某个资源被释放。由于线程被无限期地阻塞，因此程序不可能正常终止。</p>
-<h2 id="死锁发生的条件"><a href="#死锁发生的条件" class="headerlink" title="死锁发生的条件"></a>死锁发生的条件</h2><h2 id="手写一个死锁"><a href="#手写一个死锁" class="headerlink" title="手写一个死锁"></a>手写一个死锁</h2><h2 id="线程池死锁"><a href="#线程池死锁" class="headerlink" title="线程池死锁"></a>线程池死锁</h2><h2 id="揭开死锁"><a href="#揭开死锁" class="headerlink" title="揭开死锁"></a>揭开死锁</h2><p>参考原因：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_38126177/article/details/78587845">Java 死锁产生的原因及如何避免</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_34277853/article/details/88126236?utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-4.baidujs&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-4.baidujs">Java面试必问-死锁终极篇</a></li>
+          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul>
+<li>AudioRecorder，可以采集PCM格式的原始音频文件，对PCM格式数据，根据一定的协议约定，可以转换成wav格式等其他格式；</li>
+<li>AudioTrack，可以直接播放PCM格式的文件，也就是说上面利用AudioRecorder生成的原始文件可以通过AudioTrack直接播放；</li>
+<li>MediaRecorder，可以录制音频，也可以配合相机（Camera）录制视频，相比较而言，MediaRecorder功能更丰富，更易用，使用场景也更多，而AudioRecorder和AudioTrack则更底层一点，且功能存在局限性。</li>
 </ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/J19111701.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/J19111701.html" itemprop="url">Java 并发——线程池</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-17T00:00:00+08:00">2019-11-17</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/%E5%B9%B6%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">并发</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J19111701.html">https://rainmonth.github.io/posts/J19111701.html</a></p>
-</blockquote>
-<h2 id="Java-线程池"><a href="#Java-线程池" class="headerlink" title="Java 线程池"></a>Java 线程池</h2>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/posts/J19111701.html#more" rel="contents">
+            <a class="btn" href="/posts/A210102.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1246,7 +467,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/J191115.html">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A201231.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -1265,7 +486,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/posts/J191115.html" itemprop="url">Java 注解</a></h1>
+                <a class="post-title-link" href="/posts/A201231.html" itemprop="url">Android 工具命令——发布项目到Maven</a></h1>
         
 
         <div class="post-meta">
@@ -1277,7 +498,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-15T00:00:00+08:00">2019-11-15</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-31T00:00:00+08:00">2020-12-31</time>
             
 
             
@@ -1298,14 +519,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
 
                 
                 
                   ， 
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/%E6%B3%A8%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">注解</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/%E5%B7%A5%E5%85%B7%E5%91%BD%E4%BB%A4/" itemprop="url" rel="index"><span itemprop="name">工具命令</span></a></span>
 
                 
                 
@@ -1341,12 +562,18 @@
       
         
           <blockquote>
-<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J191115.html">https://rainmonth.github.io/posts/J191115.html</a></p>
+<p>本文链接：<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A201231.html">https://rainmonth.github.io/posts/A201231.html</a></p>
 </blockquote>
-<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>在分析ARouter源码的时候，看到ARouter-compiler模块里面涉及到了大量的注解处理，在看看现在流行比较广的框架，如ButterKnife、Dagger2都大量的用到了注解，还有AOP编程，也离不开注解的使用，所以本文主要介绍下Java注解的特性，从源码实现角度来了解注解处理的一般流程。本文主要从三个部分来阐述，分别是注解的基本概念及使用、运行时注解、编译时注解。</p>
+<p>将项目发布到Maven，根据自己的需求，可以有以下三种方式：</p>
+<ul>
+<li>发布到本地Maven仓库，即在自己的电脑上共享；</li>
+<li>发布到本地局域网，即局域网内用户共享；</li>
+<li>发布到JCenter，即全网共享；</li>
+</ul>
+<p>上面三种方式大同小异，具体可继续往下看。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/posts/J191115.html#more" rel="contents">
+            <a class="btn" href="/posts/A201231.html#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1402,7 +629,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A191110.html">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A201230.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -1421,7 +648,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/posts/A191110.html" itemprop="url">Android 开源库分析——ARouter使用及源码解析</a></h1>
+                <a class="post-title-link" href="/posts/A201230.html" itemprop="url">Android 工具命令——发布项目到JitPack</a></h1>
         
 
         <div class="post-meta">
@@ -1433,7 +660,470 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-10T00:00:00+08:00">2019-11-10</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-30T00:00:00+08:00">2020-12-30</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/%E5%B7%A5%E5%85%B7%E5%91%BD%E4%BB%A4/" itemprop="url" rel="index"><span itemprop="name">工具命令</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>主要分以下几步：</p>
+<ol>
+<li>本地创建Library工具类；</li>
+<li>配置JitPack相关信息；</li>
+<li>排查Library中错误并上传至GitHub；</li>
+<li>创建release并在JitPack中编译；</li>
+<li>在项目中引用</li>
+</ol>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/A201230.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A200811.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/A200811.html" itemprop="url">Android 开源库分析——LeakCanary分析</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-11T00:00:00+08:00">2020-08-11</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>本文链接：<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A200811.html">https://rainmonth.github.io/posts/A200811.html</a><br>LeakCanary本质上就是一个基于MAT进行Android应用程序内存泄漏自动化检测的的开源工具。</p>
+<p>注意：本文基于<strong>1.6.3</strong>版本进行分析。</p>
+</blockquote>
+<h2 id="内存泄漏检测的原理"><a href="#内存泄漏检测的原理" class="headerlink" title="内存泄漏检测的原理"></a>内存泄漏检测的原理</h2><p>主要就是利用检测对象的声明周期（<code>Activity</code>和<code>Fragment</code>）回调中开启监听，依据弱引用在gc触发后会被加入到<code>ReferenceQueue</code>中，然后根据自己记录的要回收的对象key和已经加入到<code>ReferenceQueue</code>中的对象key做对比，如果自己记录的key中包含了ReferenceQueue中不存在的内容，则说明有内存泄漏发生了。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/A200811.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A200725.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/A200725.html" itemprop="url">Andorid 系统架构——Jetpack实践</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-25T15:47:00+08:00">2020-07-25</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/" itemprop="url" rel="index"><span itemprop="name">系统架构</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A200725.html">https://rainmonth.github.io/posts/A200725.html</a></p>
+</blockquote>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Jetpack 是一套库、工具和指南，可帮助开发者更轻松地编写优质应用。这些组件可帮助您遵循最佳做法、让您摆脱编写样板代码的工作并简化复杂任务，以便您将精力集中放在所需的代码上。</p>
+<p>Jetpack 包含与平台 API 解除捆绑的 <a target="_blank" rel="noopener" href="https://developer.android.google.cn/jetpack/androidx">androidx.*</a> 软件包库。这意味着，它可以提供向后兼容性，且比 Android 平台的更新频率更高，以此确保您始终可以获取最新且最好的 Jetpack 组件版本。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A200701.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/A200701.html" itemprop="url">Android 开源库分析——Dagger2简介</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-01T00:00:00+08:00">2020-07-01</time>
             
 
             
@@ -1497,20 +1187,349 @@
       
         
           <blockquote>
-<p>本文链接：<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191110.html">https://rainmonth.github.io/posts/A191110.html</a></p>
+<p>本文链接：<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A200701.html">https://rainmonth.github.io/posts/A200701.html</a></p>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2></blockquote>
+<p><a target="_blank" rel="noopener" href="https://dagger.dev/">Dagger</a>是一个编译时依赖注入框架。实现原理是在编译的时候根据注解生成相应的Java源代码，然后在利用这些源代码进行程序的处理，所以并不会降低程序运行时的性能。</p>
+<p>Dagger解决了什么问题呢？就是对象之间的耦合。将直接的组合方式造成的耦合，改为间接的依赖关系，从而降低耦合。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/A200701.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/C200424.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/C200424.html" itemprop="url">通用功能——Mac 常见问题及解决方案</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-24T00:00:00+08:00">2020-04-24</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/%E9%80%9A%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">通用</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>本文主要记录Mac使用及开发过程中遇到的一些常见问题及解决方案</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/C200424.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A200325.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/A200325.html" itemprop="url">Andorid 工具命令Repo 命令简介</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-25T00:00:00+08:00">2020-03-25</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/%E5%B7%A5%E5%85%B7%E5%91%BD%E4%BB%A4/" itemprop="url" rel="index"><span itemprop="name">工具命令</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>本文链接：<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A200325.html">https://rainmonth.github.io/posts/A200325.html</a></p>
 </blockquote>
-<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>最近在学习项目组件化时用到了<a target="_blank" rel="noopener" href="https://github.com/alibaba/ARouter">ARouter</a>，本文先介绍ARouter的特性及基本使用，然后从源码的角度分析ARouter的实现原理。<br>注意本文分析的版本分别为：</p>
+<p>Android Repo 命令简介</p>
+<p>通用讲解参见<a target="_blank" rel="noopener" href="https://source.android.google.cn/setup/develop/repo">官方文档</a></p>
+<p>常用格式如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">repo command option</span><br></pre></td></tr></table></figure>
+<h2 id="help"><a href="#help" class="headerlink" title="help"></a>help</h2><p>查看帮助，使用如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 查看所有帮助</span><br><span class="line">repo help</span><br><span class="line"># 查看init命令的帮助</span><br><span class="line">repo help init</span><br><span class="line"># 查看init命令支持哪些选项</span><br><span class="line">repo init --help</span><br></pre></td></tr></table></figure>
+<h2 id="init"><a href="#init" class="headerlink" title="init"></a>init</h2><p>类似于git的<code>init</code>，该命令在当前目录创建一个<code>.repo</code>文件夹，常用options：</p>
 <ul>
-<li>arouter-api，1.5.0；</li>
-<li>arouter-compiler，1.2.2</li>
+<li>-u， 指定要更新manifest 仓库的位置，可见这是一个manifest的地址</li>
+<li>-m，指定初始化的manifest文件</li>
+<li>-b，指定manifest的分支或版本</li>
 </ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/A191110.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+<p>主要用来切换分支，切换分支的一般步骤：</p>
+<ol>
+<li>在aosp（源码根目录）下，执行如下命令即可查看可切换的分支</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd .repo/manifests</span><br><span class="line">git branch -a | cut -d / -f 3</span><br></pre></td></tr></table></figure>
+<ol>
+<li>切换分支(以android-7.0.0_r1为例)，这里的地址记得换成自己的镜像源</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">repo init -u https://android.googlesource.com/platform/manifest -b android-7.0.0_r1</span><br></pre></td></tr></table></figure>
+<ol>
+<li>同步代码</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">repo sync</span><br></pre></td></tr></table></figure>
+<h2 id="sync"><a href="#sync" class="headerlink" title="sync"></a>sync</h2><p>常用方式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">repo sync [project_list]</span><br></pre></td></tr></table></figure>
+<p>从remote端下载新近更改并更新本地工作目录，相当于对所有git项目运行<code>git fetch</code>命令。如果没指定参数，同步所有项目。直接运行<code>repo sync</code>，可能会发生如下结果：</p>
+<ul>
+<li><p>若从未同步过项目，<code>repo sync</code>等同于<code>git clone</code>，remote上的所有分支都将下载到本地；</p>
+</li>
+<li><p>若同步过，<code>repo sync</code>等同于以下命令的组合：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">  </span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+          
         
       
     </div>
@@ -1562,7 +1581,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A191106.html">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A200312.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -1581,7 +1600,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/posts/A191106.html" itemprop="url">Android 工具命令——Gradle学习day2 Android项目里面的gradle配置解析</a></h1>
+                <a class="post-title-link" href="/posts/A200312.html" itemprop="url">Android 适配——全局悬浮窗的实现</a></h1>
         
 
         <div class="post-meta">
@@ -1593,7 +1612,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-06T00:00:00+08:00">2019-11-06</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-12T00:00:00+08:00">2020-03-12</time>
             
 
             
@@ -1621,7 +1640,7 @@
                   ， 
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/Gradle%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">Gradle学习</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/%E9%80%82%E9%85%8D/" itemprop="url" rel="index"><span itemprop="name">适配</span></a></span>
 
                 
                 
@@ -1656,17 +1675,121 @@
 
       
         
-          <blockquote>
-<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191106.html">https://rainmonth.github.io/posts/A191106.html</a></p>
+          
+            <blockquote>
+<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A200312.html">https://rainmonth.github.io/posts/A200312.html</a></p>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2></blockquote>
+<p>悬浮窗是App开发中比较常用的功能，本文就探究下Android中悬浮窗的实现方案。这里主要讨论以下两种方案：全局悬浮窗和应用内悬浮窗。两种实现方式各有优缺点（后面会有所比较），本文先对两种方案的实现思路分析，然后给出具体的编码实现，最后将二者封装完成，做成轮子可以按需使用。</p>
+<h2 id="要实现的功能"><a href="#要实现的功能" class="headerlink" title="要实现的功能"></a>要实现的功能</h2><p>封装后的悬浮窗需具备以下功能：</p>
+<ul>
+<li>[x] 支持应用内所有页面悬浮；</li>
+<li>[x] 支持应用外全局悬浮；</li>
+<li>[x] 支持可跟随手指移动；</li>
+<li>[ ] 支持配置吸附效果；</li>
+<li>[x] 支持设置悬浮View动效；</li>
+<li>[x] 悬浮窗权限适配问题</li>
+<li>[ ] 显示黑名单与白名单</li>
+<li>[ ] 支持数据绑定（采用泛型实现）</li>
+<li>[x] 同时支持多个悬浮窗，并且可以对他们进行管理</li>
+<li>[x] 支持自定义视图</li>
+</ul>
+<h2 id="需要解决的问题"><a href="#需要解决的问题" class="headerlink" title="需要解决的问题"></a>需要解决的问题</h2><p>要完成上述功能，需要解决以下几个问题</p>
+<ul>
+<li>权限适配的问题（全局悬浮窗在Android API 在23（Android 6.0）以上时需要动态请求权限，其他情况下不需要请求权限）；</li>
+<li>悬浮窗的降级处理（在权限未获取到的情况下，如果请求的时全局悬浮窗，则直接采用应用内悬浮窗实现，目前好多主流大厂都是这样实现的）；</li>
+<li>多个悬浮窗的管理（悬浮窗管理类中维护一个Map，key为悬浮窗的id，value为悬浮窗的配置，id唯一，可以通过这个id来对悬浮窗进行管理）；</li>
+<li>悬浮窗的内存管理（管理类采用单例模式实现，而这个单例里面存在悬浮View的使用，所以要注意内存的管理，主要是要防止内存泄漏）；</li>
+</ul>
+<h2 id="全局悬浮窗"><a href="#全局悬浮窗" class="headerlink" title="全局悬浮窗"></a>全局悬浮窗</h2><h3 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h3><p>请求权限，然后通过WindowManager的addView来添加悬浮View，同时通过WindowManager.LayoutParams类进行View配置的更新</p>
+<h3 id="权限请求"><a href="#权限请求" class="headerlink" title="权限请求"></a>权限请求</h3><p>全局悬浮窗需要动态申请权限，主要注意一下两点。</p>
+<ol>
+<li><p>不管哪个Android系统版本，AndroidManifest.xml文件中必须要声明<code>android.permission.SYSTEM_ALERT_WINDOW</code>权限的使用；</p>
+</li>
+<li><p>Android 6.0以上，除要声明上述权限外，还要再运行时动态申请权限，权限请求代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Intent</span> <span class="variable">intent</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Intent</span>(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);</span><br><span class="line">intent.setData(Uri.parse(<span class="string">&quot;package:&quot;</span> + Utils.getApp().getPackageName()));</span><br><span class="line"><span class="keyword">if</span> (!UtilsBridge.isIntentAvailable(intent)) &#123;</span><br><span class="line">  launchAppDetailsSettings();</span><br><span class="line">  <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line">activity.startActivityForResult(intent, requestCode);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：Android 6.0后系统对某些敏感权限要求动态请求，仅仅在AndroidManifest.xml中声明是远远不够的，需要运行时动态申请，而这种动态请求权限中又有两个权限的请求方式比较特殊，悬浮窗权限就是其中之一，不能通过Activity.requestPermissions方法来完成，而是需要通过Intent打开页面来进行设置</p>
 </blockquote>
-<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191004.html">Gradle学习day1——基本的gradle命令</a>中介绍了gradle的基本使用，本文从Android项目的角度来分析gradle在Android中的应用。新建Android项目后一般至少有两个build.gradle文件和一个setting.gradle文件，本文主要分析的就是这三个.gradle文件</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/A191106.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+</li>
+</ol>
+<h3 id="全局悬浮View的配置"><a href="#全局悬浮View的配置" class="headerlink" title="全局悬浮View的配置"></a>全局悬浮View的配置</h3><p>全局悬浮View的显示配置主要通过WindowManager.LayoutParams来进行控制，对于这个WindowManager.LayoutParams，有几点需要注意：</p>
+<ul>
+<li><code>type</code>指定的时悬浮窗的类型，这里需要注意的时Android 6.0以上这个值需要指定为<code>TYPE_APPLICATION_OVERLAY</code>，其他指定为<code>TYPE_PHONE</code>即可；</li>
+<li><code>gravity</code>默认值为Gravity.START | Gravity.TOP，采用默认值可以避免不必要的坐标转换计算，<code>WindowManager.LayoutParams</code>中<code>gravity</code>的默认值为<code>Gravity.CENTER</code>，如果要想使下面的通过x、y来控制窗口的显示位置，那么久必须设置这个值并且这个值不能是<code>Gravity.CENTER</code>；</li>
+<li><code>x</code>，设置window的x轴偏移值（在Gravity未设置或者未默认值Gravity.CENTER时不生效）；</li>
+<li><code>y</code>，设置window的y轴偏移值（在Gravity未设置或者未默认值Gravity.CENTER时不生效）；</li>
+</ul>
+<blockquote>
+<ol>
+<li>通过WindowManager添加的View无法显示在屏幕以外的区域，而通过ViewGroup添加的View可以；</li>
+<li>上面的参数中，同一个悬浮窗的<code>type</code>是不能更改的；</li>
+</ol>
+</blockquote>
+<p>View的配置例如位置更新等，主要通过WindowManager的<code>updateViewLayout(View view, ViewGroup.LayoutParams params)</code>方法来实现，其中有一个参数需要注意</p>
+<h2 id="应用内全局悬浮"><a href="#应用内全局悬浮" class="headerlink" title="应用内全局悬浮"></a>应用内全局悬浮</h2><h3 id="实现方式-1"><a href="#实现方式-1" class="headerlink" title="实现方式"></a>实现方式</h3><p>通过动态的向Activity根布局添加或移除View来实现悬浮窗；</p>
+<h3 id="悬浮View的配置"><a href="#悬浮View的配置" class="headerlink" title="悬浮View的配置"></a>悬浮View的配置</h3><p>通过FrameLayout.LayoutParams类进行View配置（位置相关的配置）的更新。</p>
+<h2 id="两种方式总结"><a href="#两种方式总结" class="headerlink" title="两种方式总结"></a>两种方式总结</h2><p>全局悬浮</p>
+<ul>
+<li>优点，可以始终显示在最上端，不存在应用内悬浮页面切换闪烁的问题；</li>
+<li>缺点，6.0以上需要动态申请权限，如果用户拒绝该权限，需要做相应的降级处理</li>
+</ul>
+<p>应用内悬浮</p>
+<ul>
+<li>优点，无需申请权限，所有版本完美运行；</li>
+<li>缺点，不能做到应用外悬浮（即应用推到后台后不能悬浮），由于是动态的添加和移除View，在切面切换时会出现闪烁的现象（需要在旧的页面移除，然后在新的页面添加），5.0之后可以共享元素来进行避免。</li>
+</ul>
+<h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><h3 id="关键的类"><a href="#关键的类" class="headerlink" title="关键的类"></a>关键的类</h3><ul>
+<li><code>FloatViewManager</code>，悬浮View管理（采用单例模式），<code>FloatViewManager</code>中根据悬浮窗id来记录相应的FloatView，同时也根据悬浮窗id记录相应的FloatView配置；</li>
+<li><code>FloatViewConfig</code>，悬浮View配置项管理（采用Builder模式）</li>
+<li><code>FloatViewContainer</code>，主要负责实现随手指滑动、停靠功能，这里全局悬浮和应用内悬浮需要分开设置，应为全局悬浮更新的时<code>Window</code>的坐标，而应用内悬浮跟新的时View的坐标，每个<code>FloatViewContainer</code>都有一个与之对应的FloatViewConfig</li>
+<li>FloatPermissionUtils，主要负责全县请求方面的工作</li>
+<li>Utils，主要负责实现常用的工具方法</li>
+</ul>
+<h3 id="悬浮View的设计"><a href="#悬浮View的设计" class="headerlink" title="悬浮View的设计"></a>悬浮View的设计</h3><p>悬浮View的配置</p>
+<p>悬浮View的配置交给<code>FloatViewConfig</code>类来实现，将上面要实现的功能<br>采用Builder模式</p>
+<ol>
+<li>支持配置是否可以应用外悬浮（应用外悬浮需要支持动态配置，同时要提供关闭的选项）；</li>
+<li>支持配置自动停靠（配置了就会就近停靠到相应的位置）；</li>
+<li>支持自定义View；</li>
+<li>支持配置悬浮View的大小；</li>
+<li>支持是否显示关闭按钮（为什么会有这么一个设计呢？因为做demo的时候，发现如果申请了弹窗权限，存在应用销毁了，但是悬浮窗仍存在的现象，这有点流氓）</li>
+</ol>
+<p>这里指的就是<code>FloatDragLayout</code>的设计，核心就是一个ViewGroup，需要支持一下功能：</p>
+<ol>
+<li>支持随手指移动；</li>
+<li>支持自动靠边停靠；</li>
+<li>支持几种简单的动效<ol>
+<li>上下浮动；</li>
+<li>左右抖动；</li>
+<li>旋转动效</li>
+</ol>
+</li>
+</ol>
+<h2 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c0d4c23089cd">Android应用内悬浮窗的实现方案</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/98eb2f70e3a5">Android应用内悬浮窗从入门到放弃/妥协</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/18cbc862ba7b">Andorid 应用内悬浮控件实践方案总结</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/18cbc862ba7b">Andorid 应用内悬浮控件实践方案总结</a></li>
+<li><a href="[https://juejin.im/search?query=%E5%BA%94%E7%94%A8%E5%86%85%E6%82%AC%E6%B5%AE%E7%AA%97&amp;type=all](https://juejin.im/search?query=应用内悬浮窗&amp;type=all">应用内悬浮窗（不请求权限）</a>)</li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/167fd5f47d5c">Android无需权限显示悬浮窗, 兼谈逆向分析app</a></li>
+</ul>
+<h2 id="问题记录"><a href="#问题记录" class="headerlink" title="问题记录"></a>问题记录</h2><ol>
+<li><p>调用<code>requestPermission</code>方法获取<code>SYSTEM_ALERT_WINDOW</code>权限一直失败，失败的原因就是这个权限不能通过<code>requestPermission</code>来申请，需要先在<code>AndroidManifest.xml</code>文件中声明，然后通过隐式<code>Intent</code>来请求权限，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Intent</span> <span class="variable">intent</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Intent</span>(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);</span><br><span class="line">intent.setData(Uri.parse(<span class="string">&quot;package:&quot;</span> + Utils.getApp().getPackageName()));</span><br><span class="line"><span class="keyword">if</span> (!UtilsBridge.isIntentAvailable(intent)) &#123;</span><br><span class="line">  launchAppDetailsSettings();</span><br><span class="line">  <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line">activity.startActivityForResult(intent, requestCode);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>悬浮窗显示出来后，除了悬浮窗显示的View及物理按键，其他区域都无法响应事件，问题原因是因为WindowManager.LayoutParams中的flags参数设置有问题，需要添加如下设置：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">layoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>应用销毁了，但悬浮窗仍然存在</p>
+</li>
+<li><p><code>Android permission denied for window type 2002</code></p>
+<blockquote>
+<p>Android M (6.0)全局悬浮窗（通过请求SYSTEM_ALERT_WINDWO权限）window的type不能设置为PHONE，可以设置成<code>APPLICATION_OVERLAY</code></p>
+</blockquote>
+</li>
+</ol>
+
+          
         
       
     </div>
@@ -1718,7 +1841,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A191103.html">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A191208.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -1737,7 +1860,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/posts/A191103.html" itemprop="url">Android SurfaceView详解</a></h1>
+                <a class="post-title-link" href="/posts/A191208.html" itemprop="url">Android 音视频基础——官方关于多媒体的说明介绍</a></h1>
         
 
         <div class="post-meta">
@@ -1749,7 +1872,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-03T00:00:00+08:00">2019-11-03</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-08T00:00:00+08:00">2019-12-08</time>
             
 
             
@@ -1777,7 +1900,7 @@
                   ， 
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/%E6%8E%A7%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">控件</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/%E9%9F%B3%E8%A7%86%E9%A2%91%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">音视频基础</span></a></span>
 
                 
                 
@@ -1812,17 +1935,389 @@
 
       
         
-          <blockquote>
-<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191103.html">https://rainmonth.github.io/posts/A191103.html</a></p>
+          
+            <blockquote>
+<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191208.html">https://rainmonth.github.io/posts/A191208.html</a></p>
 </blockquote>
-<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>本文分析的是API 24版本的SurfaceView（即Android N版本）通常情况下程序的View和用户响应都是在同一个线程（即主线程）中处理的，这就要求一些耗时操作（如网络请求、数据库查询）需要放在非UI线程中造作，否则就会造成ANR。View是通过刷新来重绘视图，系统通过发送VSSYNC信号来进行屏幕的重绘，这个信号的发送间隔是16ms，如果我们16ms内不能完成了绘制，就会表现出UI上的卡段。这就使得在一些逻辑很复杂或频繁更新的视图绘制方面显得比较吃力。那么到底能不能在非UI线程中进行绘制、更新、渲染UI的操作呢？怎么应对那种复杂层级或者频繁更新的UI绘制呢？关于这两个问题，接下来的SurfaceView会给我们答案。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/A191103.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>最近在研究Android多媒体开发，于是就看了下官方关于多媒体的一些开发指南，本文对指南的主要内容做一些记录，以便实际开发时参考。参考文章：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://developer.android.google.cn/reference/android/media/MediaPlayer.html">点击查看MediaPlayer的API介绍</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.android.google.cn/guide/topics/media">点击查看官方多媒体开发指南</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/ckwccc/article/details/80363674">打造基于MediaSessionCompat的音乐播放器</a></li>
+</ul>
+<h2 id="MediaPlayer介绍"><a href="#MediaPlayer介绍" class="headerlink" title="MediaPlayer介绍"></a>MediaPlayer介绍</h2><h3 id="状态机"><a href="#状态机" class="headerlink" title="状态机"></a>状态机</h3><p>音视频文件（或流）的播放控制是通过下图所示的状态机来管理的，图例说明：</p>
+<ul>
+<li>椭圆代表的是播放器可能达到的状态；</li>
+<li>弧线代表的是驱动状态改变的控制操作；<ul>
+<li>单箭头的弧线代表的是同步调用；</li>
+<li>双箭头的弧线代表的是异步调用；</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://developer.android.google.cn/images/mediaplayer_state_diagram.gif" alt="MediaPlayer状态图"></p>
+<p>关于播放器状态图的几点说明：</p>
+<ul>
+<li>生命周期(Idle开始，End结束），当采用<code>new</code>关键字创建播放器或者调用播放器的<code>reset</code>方法后，它将处于Idle状态，当播放器调用<code>release()</code>方法后，它将处于End状态。从Idle到End这个过程，就是播放器的生命周期。<ul>
+<li>Idle状态下（不论是new创建的还是调用reset得到的）调用播放器操作（如<code>play</code>、<code>pause</code>等）被认为是<strong>编码错误</strong>，这种情况（即一新建对象就调用<code>prepare</code>等方法）。但两种情况有些许区别，通过new达到的Idle状态时用户提供的<code>OnErrorListener.onError()</code>不会被播放器内核调用，并且播放器状态不会改变；但通过<code>reset</code>达到Idle时<code>OnErrorListener.onError()</code>会被调用，并且播放器状态且切换至<code>Error</code>状态；</li>
+<li>当不再使用播放器是，强烈建议调用<code>release</code>方法以释放播放器对象关联的播放内核引擎资源。原因是这些资源会持有硬件加速组件的单例引用。当调用<code>release</code>失败时会让播放器回滚至软件加速实现（或者两者都失败），这样就进入到了End状态，而一旦播放器进入End状态，就不能再改变其状态了。</li>
+<li>补充一点，使用<code>new</code>得到的播放器处于Idle状态，但使用重载的create系列方法得到的播放器却处于prepared状态（前提是创建成功了）。</li>
+</ul>
+</li>
+<li>导致播放操作调用失败的原因有很多，如播放格式不支持、分辨率不支持（太高）、播放流响应时间太长等，因此<strong>错误报告处理</strong>和<strong>播放器状态恢复</strong>就十分重要。但是上面说了，错误的调用时有发生（如上面提到的情况），为了保证这种情况我们能获取到回到通知，我们可以通过<code>setOnErrorListener</code>相关提前注册错误监听器，这样即使是由于我们在错误的状态调用博昂起操作，也能得到错误通知。<ul>
+<li>通常情况下，即使我们没有提供错误监听器，播放器一旦错误就会进入Error状态（当然上面提到的那种情形除外）；</li>
+<li>为了复用对象，一旦错误，我们可以调用<code>reset</code>方法来进行恢复；</li>
+<li>在应用中提前注册错误监听是个好习惯；</li>
+<li>为防止编码错误，在错误的状态调用<code>prepare</code>、<code>prepareAsync</code>、<code>setDataSource</code>等方法，会抛出IllegalStateException；</li>
+</ul>
+</li>
+<li>Idle状态下调用setDataSource系列方法成功后会将播放器状态从Idle改变成Initialized；</li>
+<li>在播放之前，播放器必须先到到Prepared状态，达到后如果有注册OnPreparedLister，其onPrepared()方法会被调用，有两种途径：<ul>
+<li>通过调用<code>prepare</code>方法和通过调用<code>prepareAsync</code>方法（先到Preparing状态，再到Prepared状态）</li>
+<li>Preparing是一个过渡状态</li>
+<li>非Initialize和Stopped状态下调用<code>prepare</code>和<code>prepareAsync</code>会抛出IllegalStateException异常；</li>
+<li>Prepared状态下，可以通过调用相应方法来调整音量、保持屏幕常亮、循环控制等；</li>
+</ul>
+</li>
+<li>成功调用<code>start</code>方法后进入Started状态，可以通过<code>isPlaying()</code>来判断是否处于Started状态<ul>
+<li>Started状态下可以通过设置的<code>OnBufferingUpdateListener.onBufferingUpdate</code>来跟踪缓存的状态；</li>
+<li>播放器已经处于Started状态是再调用start方法对播放状态没有影响；</li>
+</ul>
+</li>
+<li>播放时可以暂停和停止，同时可以调整播放的位置（分别对应<code>pause</code>、<code>stop</code>、<code>seekTo</code>三个方法），<code>pause</code>成功调用后，便进入了Paused状态，从Started状态到Paused状态的过程是<strong>异步的</strong>，所以<strong>状态改变时立即调用<code>isPlaying</code>来判断可能不准确</strong>。<ul>
+<li>从Paused状态恢复到播放状态是，其位置是暂停时的位置，<code>start</code>调用成功后，播放器将恢复至Started状态；</li>
+<li>Paused状态下再调用<code>pause</code>对播放器状态无影响；</li>
+</ul>
+</li>
+<li>调用<code>stop()</code>可以让播放器从Started、Paused、Prepared和PlaybackCompleted状态切换至Stopped状态；<ul>
+<li>Stopped状态下只有调用<code>prepare</code>和<code>prepareAsync</code>成功后进入Prepared状态才可以再次进入Started状态；</li>
+<li>Stopped状态下再调用<code>stop</code>无影响；</li>
+</ul>
+</li>
+<li>可以通过<code>seekTo</code>来调整播放位置：<ul>
+<li>虽然异步调用<code>seekTo</code>能很快的返回，但实际的seek操作会花费一定时间，尤其是在线的音视频流情况下。当seek真正完成时，注册的OnSeekComplete.onSeekComplete()会被调用；</li>
+<li>Prepared、Paused和PlaybackCompleted状态下也可以调用<code>seekTo</code>方法；</li>
+<li>可以通过<code>getCurrentPosition</code>来获取当前播放的位置；</li>
+</ul>
+</li>
+<li>当播放到音视频流的结尾时，播放就完成了，此时：<ul>
+<li>如果是循环模式，播放器就仍处于Started状态；</li>
+<li>如果是非循环模式，播放器就调用注册的<code>OnCompletion.onCompletion()</code>回调，并进入PlaybackCompleted状态；</li>
+<li>播放完成后调用<code>start</code>可以从头播放</li>
+</ul>
+</li>
+</ul>
+<h3 id="合法与非法的状态"><a href="#合法与非法的状态" class="headerlink" title="合法与非法的状态"></a>合法与非法的状态</h3><p>MediaPlayer的成员方法大多都有属于其合法的调用状态和非法的调用状态，这个可以通过上面的状态机来查看，也可以查看官方提供的表格。如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Method Name</th>
+<th>Valid States</th>
+<th>Invalid States</th>
+<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>attachAuxEffect</td>
+<td>{Initialized, Prepared, Started, Paused, Stopped, PlaybackCompleted}</td>
+<td>{Idle, Error}</td>
+<td>This method must be called after setDataSource. Calling it does not change the object state.</td>
+</tr>
+<tr>
+<td>getAudioSessionId</td>
+<td>any</td>
+<td>{}</td>
+<td>This method can be called in any state and calling it does not change the object state.</td>
+</tr>
+<tr>
+<td>getCurrentPosition</td>
+<td>{Idle, Initialized, Prepared, Started, Paused, Stopped, PlaybackCompleted}</td>
+<td>{Error}</td>
+<td>Successful invoke of this method in a valid state does not change the state. Calling this method in an invalid state transfers the object to the <em>Error</em> state.</td>
+</tr>
+<tr>
+<td>getDuration</td>
+<td>{Prepared, Started, Paused, Stopped, PlaybackCompleted}</td>
+<td>{Idle, Initialized, Error}</td>
+<td>Successful invoke of this method in a valid state does not change the state. Calling this method in an invalid state transfers the object to the <em>Error</em> state.</td>
+</tr>
+<tr>
+<td>getVideoHeight</td>
+<td>{Idle, Initialized, Prepared, Started, Paused, Stopped, PlaybackCompleted}</td>
+<td>{Error}</td>
+<td>Successful invoke of this method in a valid state does not change the state. Calling this method in an invalid state transfers the object to the <em>Error</em> state.</td>
+</tr>
+<tr>
+<td>getVideoWidth</td>
+<td>{Idle, Initialized, Prepared, Started, Paused, Stopped, PlaybackCompleted}</td>
+<td>{Error}</td>
+<td>Successful invoke of this method in a valid state does not change the state. Calling this method in an invalid state transfers the object to the <em>Error</em> state.</td>
+</tr>
+<tr>
+<td>isPlaying</td>
+<td>{Idle, Initialized, Prepared, Started, Paused, Stopped, PlaybackCompleted}</td>
+<td>{Error}</td>
+<td>Successful invoke of this method in a valid state does not change the state. Calling this method in an invalid state transfers the object to the <em>Error</em> state.</td>
+</tr>
+<tr>
+<td>pause</td>
+<td>{Started, Paused, PlaybackCompleted}</td>
+<td>{Idle, Initialized, Prepared, Stopped, Error}</td>
+<td>Successful invoke of this method in a valid state transfers the object to the <em>Paused</em> state. Calling this method in an invalid state transfers the object to the <em>Error</em> state.</td>
+</tr>
+<tr>
+<td>prepare</td>
+<td>{Initialized, Stopped}</td>
+<td>{Idle, Prepared, Started, Paused, PlaybackCompleted, Error}</td>
+<td>Successful invoke of this method in a valid state transfers the object to the <em>Prepared</em> state. Calling this method in an invalid state throws an IllegalStateException.</td>
+</tr>
+<tr>
+<td>prepareAsync</td>
+<td>{Initialized, Stopped}</td>
+<td>{Idle, Prepared, Started, Paused, PlaybackCompleted, Error}</td>
+<td>Successful invoke of this method in a valid state transfers the object to the <em>Preparing</em> state. Calling this method in an invalid state throws an IllegalStateException.</td>
+</tr>
+<tr>
+<td>release</td>
+<td>any</td>
+<td>{}</td>
+<td>After <code>release()</code>, the object is no longer available.</td>
+</tr>
+<tr>
+<td>reset</td>
+<td>{Idle, Initialized, Prepared, Started, Paused, Stopped, PlaybackCompleted, Error}</td>
+<td>{}</td>
+<td>After <code>reset()</code>, the object is like being just created.</td>
+</tr>
+<tr>
+<td>seekTo</td>
+<td>{Prepared, Started, Paused, PlaybackCompleted}</td>
+<td>{Idle, Initialized, Stopped, Error}</td>
+<td>Successful invoke of this method in a valid state does not change the state. Calling this method in an invalid state transfers the object to the <em>Error</em> state.</td>
+</tr>
+<tr>
+<td>setAudioAttributes</td>
+<td>{Idle, Initialized, Stopped, Prepared, Started, Paused, PlaybackCompleted}</td>
+<td>{Error}</td>
+<td>Successful invoke of this method does not change the state. In order for the target audio attributes type to become effective, this method must be called before prepare() or prepareAsync().</td>
+</tr>
+<tr>
+<td>setAudioSessionId</td>
+<td>{Idle}</td>
+<td>{Initialized, Prepared, Started, Paused, Stopped, PlaybackCompleted, Error}</td>
+<td>This method must be called in idle state as the audio session ID must be known before calling setDataSource. Calling it does not change the object state.</td>
+</tr>
+<tr>
+<td>setAudioStreamType (deprecated)</td>
+<td>{Idle, Initialized, Stopped, Prepared, Started, Paused, PlaybackCompleted}</td>
+<td>{Error}</td>
+<td>Successful invoke of this method does not change the state. In order for the target audio stream type to become effective, this method must be called before prepare() or prepareAsync().</td>
+</tr>
+<tr>
+<td>setAuxEffectSendLevel</td>
+<td>any</td>
+<td>{}</td>
+<td>Calling this method does not change the object state.</td>
+</tr>
+<tr>
+<td>setDataSource</td>
+<td>{Idle}</td>
+<td>{Initialized, Prepared, Started, Paused, Stopped, PlaybackCompleted, Error}</td>
+<td>Successful invoke of this method in a valid state transfers the object to the <em>Initialized</em> state. Calling this method in an invalid state throws an IllegalStateException.</td>
+</tr>
+<tr>
+<td>setDisplay</td>
+<td>any</td>
+<td>{}</td>
+<td>This method can be called in any state and calling it does not change the object state.</td>
+</tr>
+<tr>
+<td>setSurface</td>
+<td>any</td>
+<td>{}</td>
+<td>This method can be called in any state and calling it does not change the object state.</td>
+</tr>
+<tr>
+<td>setVideoScalingMode</td>
+<td>{Initialized, Prepared, Started, Paused, Stopped, PlaybackCompleted}</td>
+<td>{Idle, Error}</td>
+<td>Successful invoke of this method does not change the state.</td>
+</tr>
+<tr>
+<td>setLooping</td>
+<td>{Idle, Initialized, Stopped, Prepared, Started, Paused, PlaybackCompleted}</td>
+<td>{Error}</td>
+<td>Successful invoke of this method in a valid state does not change the state. Calling this method in an invalid state transfers the object to the <em>Error</em> state.</td>
+</tr>
+<tr>
+<td>isLooping</td>
+<td>any</td>
+<td>{}</td>
+<td>This method can be called in any state and calling it does not change the object state.</td>
+</tr>
+<tr>
+<td>setOnBufferingUpdateListener</td>
+<td>any</td>
+<td>{}</td>
+<td>This method can be called in any state and calling it does not change the object state.</td>
+</tr>
+<tr>
+<td>setOnCompletionListener</td>
+<td>any</td>
+<td>{}</td>
+<td>This method can be called in any state and calling it does not change the object state.</td>
+</tr>
+<tr>
+<td>setOnErrorListener</td>
+<td>any</td>
+<td>{}</td>
+<td>This method can be called in any state and calling it does not change the object state.</td>
+</tr>
+<tr>
+<td>setOnPreparedListener</td>
+<td>any</td>
+<td>{}</td>
+<td>This method can be called in any state and calling it does not change the object state.</td>
+</tr>
+<tr>
+<td>setOnSeekCompleteListener</td>
+<td>any</td>
+<td>{}</td>
+<td>This method can be called in any state and calling it does not change the object state.</td>
+</tr>
+<tr>
+<td>setPlaybackParams</td>
+<td>{Initialized, Prepared, Started, Paused, PlaybackCompleted, Error}</td>
+<td>{Idle, Stopped}</td>
+<td>This method will change state in some cases, depending on when it’s called.</td>
+</tr>
+<tr>
+<td>setScreenOnWhilePlaying</td>
+<td>any</td>
+<td>{}</td>
+<td>This method can be called in any state and calling it does not change the object state.</td>
+</tr>
+<tr>
+<td>setVolume</td>
+<td>{Idle, Initialized, Stopped, Prepared, Started, Paused, PlaybackCompleted}</td>
+<td>{Error}</td>
+<td>Successful invoke of this method does not change the state.</td>
+</tr>
+<tr>
+<td>setWakeMode</td>
+<td>any</td>
+<td>{}</td>
+<td>This method can be called in any state and calling it does not change the object state.</td>
+</tr>
+<tr>
+<td>start</td>
+<td>{Prepared, Started, Paused, PlaybackCompleted}</td>
+<td>{Idle, Initialized, Stopped, Error}</td>
+<td>Successful invoke of this method in a valid state transfers the object to the <em>Started</em> state. Calling this method in an invalid state transfers the object to the <em>Error</em> state.</td>
+</tr>
+<tr>
+<td>stop</td>
+<td>{Prepared, Started, Stopped, Paused, PlaybackCompleted}</td>
+<td>{Idle, Initialized, Error}</td>
+<td>Successful invoke of this method in a valid state transfers the object to the <em>Stopped</em> state. Calling this method in an invalid state transfers the object to the <em>Error</em> state.</td>
+</tr>
+<tr>
+<td>getTrackInfo</td>
+<td>{Prepared, Started, Stopped, Paused, PlaybackCompleted}</td>
+<td>{Idle, Initialized, Error}</td>
+<td>Successful invoke of this method does not change the state.</td>
+</tr>
+<tr>
+<td>addTimedTextSource</td>
+<td>{Prepared, Started, Stopped, Paused, PlaybackCompleted}</td>
+<td>{Idle, Initialized, Error}</td>
+<td>Successful invoke of this method does not change the state.</td>
+</tr>
+<tr>
+<td>selectTrack</td>
+<td>{Prepared, Started, Stopped, Paused, PlaybackCompleted}</td>
+<td>{Idle, Initialized, Error}</td>
+<td>Successful invoke of this method does not change the state.</td>
+</tr>
+<tr>
+<td>deselectTrack</td>
+<td>{Prepared, Started, Stopped, Paused, PlaybackCompleted}</td>
+<td>{Idle, Initialized, Error}</td>
+<td>Successful invoke of this method does not change the state.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="权限相关"><a href="#权限相关" class="headerlink" title="权限相关"></a>权限相关</h3><p>媒体播放需要的权限根据其实现的功能主要有以下三个：</p>
+<ul>
+<li>播放网络媒体需要INTERNET权限；</li>
+<li>播放时保持屏幕常亮需要WAKE_LOCK权限；</li>
+<li>实现播放缓存功能可能需要读写SD卡权限；</li>
+</ul>
+<h3 id="回调处理"><a href="#回调处理" class="headerlink" title="回调处理"></a>回调处理</h3><p>MediaPlayer提供了比较多的回调监听处理，具体有：</p>
+<ul>
+<li>setOnPreparedListener，播放器准备完毕；</li>
+<li>setOnVideoSizeChangedListener，播放器尺寸改变；</li>
+<li>setOnSeekCompleteListener，拖动完成；</li>
+<li>setOnCompletionListener，播放完成；</li>
+<li>setOnBufferingUpdateListener，缓存更新；</li>
+<li>setOnInfoListener，有可用信息或警告时；</li>
+<li>setOnErrorListener，发生错误时；</li>
+</ul>
+<p>MediaPlayer需要在拥有自己Looper的线程中创建。</p>
+<h2 id="开发指南"><a href="#开发指南" class="headerlink" title="开发指南"></a>开发指南</h2><p>Android的多媒体框架支持播放大多数媒体类型，可以很方便的在应用中整合多媒体播放功能。</p>
+<h3 id="基础部分"><a href="#基础部分" class="headerlink" title="基础部分"></a>基础部分</h3><p>Android多媒体框架有两个主要的类：MediaPlayer和AudioManager，前者主要负责音视频播放的基础API，后者主要管理设备上的音频资源和音频输出。</p>
+<h3 id="权限相关-1"><a href="#权限相关-1" class="headerlink" title="权限相关"></a>权限相关</h3><p>上面已经提到了，主要需要以下几种权限：</p>
+<ul>
+<li>网络权限，播放网络资源时需要；</li>
+<li>WAKE_LOCK权限，保持屏幕常亮时需要（为了防止电量消耗，在不需要是请记得取消屏幕常亮的设置）</li>
+<li>存储权限，缓存功能需要</li>
+</ul>
+<h3 id="MediaPlayer的使用"><a href="#MediaPlayer的使用" class="headerlink" title="MediaPlayer的使用"></a>MediaPlayer的使用</h3><p>可以用来播放以下三种类型：</p>
+<ul>
+<li>Local Resource，即<code>raw</code>目录下的资源；</li>
+<li>本机资源，即通过<code>ContentResolver</code>获取到的手机上存在的音视频资源；</li>
+<li>网络资源，即网络音视频流；</li>
+</ul>
+<p>播放raw资源</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">MediaPlayer</span> <span class="variable">mediaPlayer</span> <span class="operator">=</span> MediaPlayer.create(context, R.raw.sound_file_1);</span><br><span class="line">mediaPlayer.start(); <span class="comment">// 上面讲了，通过create得到的MediaPlayer实例无需prepare</span></span><br></pre></td></tr></table></figure>
+<p>播放本机资源</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Uri</span> <span class="variable">myUri</span> <span class="operator">=</span> ....; <span class="comment">// 获取本机资源的Uri</span></span><br><span class="line"><span class="type">MediaPlayer</span> <span class="variable">mediaPlayer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MediaPlayer</span>();</span><br><span class="line">mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);</span><br><span class="line">mediaPlayer.setDataSource(getApplicationContext(), myUri);</span><br><span class="line">mediaPlayer.prepare();</span><br><span class="line">mediaPlayer.start();</span><br></pre></td></tr></table></figure>
+<p>播放网络资源</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> <span class="string">&quot;http://........&quot;</span>; <span class="comment">// 网络资源地址</span></span><br><span class="line"><span class="type">MediaPlayer</span> <span class="variable">mediaPlayer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MediaPlayer</span>();</span><br><span class="line">mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);</span><br><span class="line">mediaPlayer.setDataSource(url);</span><br><span class="line">mediaPlayer.prepare(); <span class="comment">// 这里由于缓冲可能需要的时间比较久</span></span><br><span class="line">mediaPlayer.start();</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：播放的网络资源必须是可以逐步下载的。同时要捕获IllegalArgumentException和IOException因为请求的网络资源可能是不存在的。</p>
+</blockquote>
+<h4 id="异步资源准备"><a href="#异步资源准备" class="headerlink" title="异步资源准备"></a>异步资源准备</h4><p>原则上可以直接使用MediaPlayer进行媒体播放，但是考虑到资源的准备可能花费较长时间，如果直接<strong>在UI线程调用，会阻塞UI，导致ANR的产生</strong>。所以我们在子线程中进行资源的准备，在准备好后发出通知即可。虽然我们可以自己进行相关的线程切换管理，但是MediaPlayer已经提供了已由的Api给我们调用，我们可以通过<code>prepareAsync()</code>来准备，然后再OnPreparedListener的onPrepared()方法中进行处理。OnPreparedListener可以通过setOnPreparedListener来设置。</p>
+<h4 id="状态管理"><a href="#状态管理" class="headerlink" title="状态管理"></a>状态管理</h4><p>MediaPlayer是基于状态类的，所以在编码时要十分注意<strong>状态管理</strong>，通常情况下状态是按如下节奏变化的：<br>Idle-&gt;Initialized(-&gt;Preparing)-&gt;Prepared-&gt;Started(-&gt;Paused-&gt;PlaybackCompleted)-&gt;Stopped，等，状态的变化都是有相应的方法驱动的。</p>
+<h4 id="资源释放"><a href="#资源释放" class="headerlink" title="资源释放"></a>资源释放</h4><p>由于MediaPlayer及其消耗系统资源，在不再使用它是请及时进行资源的释放。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mediaPlayer.release();</span><br><span class="line">mediaPlayer = <span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="在Service中使用MediaPlayer"><a href="#在Service中使用MediaPlayer" class="headerlink" title="在Service中使用MediaPlayer"></a>在Service中使用MediaPlayer</h3><p>如果需要支持后台播放的功能，那么就要使用Service进行MediaPlayer的播放操作。官方建议使用MediaBrowserServiceCompat和MediaBrowserCompat来实现，它是一种C/S架构。通常是一个持有MediaPlayer的Service实例来进行播放的。</p>
+<h4 id="异步执行"><a href="#异步执行" class="headerlink" title="异步执行"></a>异步执行</h4><p>即使是后台播放，因为Service通常和Activity一样默认运行在主线程的，所以Service中同样也不能进行耗时操作。所以Service播放时同样要采用异步，并在准备完成后通知播放器进行播放。通常实现如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyService</span> <span class="keyword">extends</span> <span class="title class_">Service</span> <span class="keyword">implements</span> <span class="title class_">MediaPlayer</span>.OnPreparedListener &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">ACTION_PLAY</span> <span class="operator">=</span> <span class="string">&quot;com.example.action.PLAY&quot;</span>;</span><br><span class="line">    <span class="type">MediaPlayer</span> <span class="variable">mediaPlayer</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">onStartCommand</span><span class="params">(Intent intent, <span class="type">int</span> flags, <span class="type">int</span> startId)</span> &#123;</span><br><span class="line">        ...</span><br><span class="line">        <span class="keyword">if</span> (intent.getAction().equals(ACTION_PLAY)) &#123;</span><br><span class="line">            mediaPlayer = ... <span class="comment">// 初始化</span></span><br><span class="line">            mediaPlayer.setOnPreparedListener(<span class="built_in">this</span>);</span><br><span class="line">            mediaPlayer.prepareAsync(); <span class="comment">// 异步prepare</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 准备好后开始播放 */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onPrepared</span><span class="params">(MediaPlayer player)</span> &#123;</span><br><span class="line">        player.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="异步过程中的错误处理"><a href="#异步过程中的错误处理" class="headerlink" title="异步过程中的错误处理"></a>异步过程中的错误处理</h4><p>同步的播放操作在发生错误或异常后马上就会得到通知，但异步的情形是就需要我们自己在错误回调里面进行处理了，在Service里处理异步错误的代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyService</span> <span class="keyword">extends</span> <span class="title class_">Service</span> <span class="keyword">implements</span> <span class="title class_">MediaPlayer</span>.OnErrorListener &#123;</span><br><span class="line">    MediaPlayer mediaPlayer;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">initMediaPlayer</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 初始化媒体播放器</span></span><br><span class="line">        <span class="comment">// 设置错误监听</span></span><br><span class="line">        mediaPlayer.setOnErrorListener(<span class="built_in">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">onError</span><span class="params">(MediaPlayer mp, <span class="type">int</span> what, <span class="type">int</span> extra)</span> &#123;</span><br><span class="line">        <span class="comment">// 错误后的处理</span></span><br><span class="line">        <span class="comment">// 播放器已经进入错误的状态，需要重置后才能继续使用</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="WakeLock处理"><a href="#WakeLock处理" class="headerlink" title="WakeLock处理"></a>WakeLock处理</h4><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/67ccdac38271">WakeLock说明</a><br>后台播放之所以需要请求Wakelock，是因为当设备休眠是，系统为了省电，通常会关闭哪些不必要的服务，如CPU、WiFi，然而我们播放的时候是不希望这种情况发生的，所以我们就要自己处理下WakeLock，MediaPlayer处理WakeLock很简单，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mediaPlayer = <span class="keyword">new</span> <span class="title class_">MediaPlayer</span>();</span><br><span class="line"><span class="comment">// ... other initialization here ...</span></span><br><span class="line">mediaPlayer.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);</span><br></pre></td></tr></table></figure>
+<p>播放网络资源时，要防止WiFi被关，请求WiFi的WakeLock代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 请求WiFi 的WakeLock</span></span><br><span class="line"><span class="type">WifiLock</span> <span class="variable">wifiLock</span> <span class="operator">=</span> ((WifiManager) getSystemService(Context.WIFI_SERVICE))</span><br><span class="line">    .createWifiLock(WifiManager.WIFI_MODE_FULL, <span class="string">&quot;mylock&quot;</span>);</span><br><span class="line"></span><br><span class="line">wifiLock.acquire();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在合适的时机释放WakeLock</span></span><br><span class="line">wifiLock.release();</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意我们在不必要的时候就要及时释放WakeLock，毕竟WakeLock会减少设备电池的寿命。</p>
+</blockquote>
+<h4 id="资源清理"><a href="#资源清理" class="headerlink" title="资源清理"></a>资源清理</h4><p>前面已经提到了，MediaPlayer会消耗大量系统资源，所以我们在不再使用时要及时进行资源的释放，在后台播放的情形下，通常用如下的方式来进行资源的清理：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyService</span> <span class="keyword">extends</span> <span class="title class_">Service</span> &#123;</span><br><span class="line">   MediaPlayer mediaPlayer;</span><br><span class="line">   <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onDestroy</span><span class="params">()</span> &#123;</span><br><span class="line">       <span class="built_in">super</span>.onDestroy();</span><br><span class="line">       <span class="keyword">if</span> (mediaPlayer != <span class="literal">null</span>) mediaPlayer.release();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="DRM管理"><a href="#DRM管理" class="headerlink" title="DRM管理"></a>DRM管理</h3><p>即Digital Right Management，数字版权管理，Android 8.0（API 26）提供了支持播放拥有数字版本的多媒体文件的Api，它与<code>MediaDrm</code>相似，但更抽象，且只实现了<code>MediaDrm</code>的部分功能。下面的代码片段展示了同步使用DRM MediaPlayer的一般过程：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">setDataSource();</span><br><span class="line">setOnDrmConfigHelper();       <span class="comment">// 可选项，用于个性化配置</span></span><br><span class="line">prepare();                    <span class="comment">// 资源准备（实际使用时这里是异步调用的）</span></span><br><span class="line"><span class="keyword">if</span> (getDrmInfo() != <span class="literal">null</span>) &#123;   <span class="comment">// 获取DRM信息，如果不为空就处理</span></span><br><span class="line">  prepareDrm();               <span class="comment">// 准备drm信息（这个过程通常需要异步处理，避免阻塞，通过OnDrmPreparedListener获取回调通知）</span></span><br><span class="line">  getKeyRequest();            <span class="comment">// 获取不透明的密钥请求字节数组以发送到许可证服务器</span></span><br><span class="line">  provideKeyResponse();       <span class="comment">// 将获取到的密钥响应通知到DRM引擎</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// MediaPlayer is now ready to use</span></span><br><span class="line">start();</span><br><span class="line"><span class="comment">// ...play/pause/resume...</span></span><br><span class="line">stop();</span><br><span class="line">releaseDrm();</span><br></pre></td></tr></table></figure>
+<h4 id="异步初始化DRM信息"><a href="#异步初始化DRM信息" class="headerlink" title="异步初始化DRM信息"></a>异步初始化DRM信息</h4><p>通过注册OnDrmInfoListener和OnDrmPreparedListener来获取异步调用完毕后的回调，然后再相应的回调中进行后续操作。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">setOnPreparedListener();</span><br><span class="line">setOnDrmInfoListener();</span><br><span class="line">setDataSource();</span><br><span class="line">prepareAsync();</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果是受版权保护的内容，在这个回调方法里面进行处理</span></span><br><span class="line">onDrmInfo() &#123;</span><br><span class="line">  prepareDrm();</span><br><span class="line">  getKeyRequest();</span><br><span class="line">  provideKeyResponse();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当prepareAsync()结束后，将收到onPrepared()回调通知，如果是一个DRM内容，onDrmInfo()会优先于onPrepared()被调用，所以这里可以开始播放了</span></span><br><span class="line">onPrepared() &#123;</span><br><span class="line"></span><br><span class="line">start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="加密资源处理"><a href="#加密资源处理" class="headerlink" title="加密资源处理"></a>加密资源处理</h3><p>Android 8.0（API 26）MediaPlayer开始部分支持解密Common Encryption Scheme（CENC）、H.264（METHOD=SAMPLE-AES)和AAC，之前就支持Full-segment encrypted media (METHOD=AES-128)。</p>
+<blockquote>
+<p>支持不完善，一般不采用。</p>
+</blockquote>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文主要介绍了Android官方播放器MediaPlayer的一般使用方法及使用的一些注意事项，还对一些常见的播放场景做了说明，对刚接触android多媒体开发的还是是否有帮助的。</p>
+
+          
         
       
     </div>
@@ -1863,7 +2358,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/13/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot; aria-label&#x3D;&quot;上一页&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/15/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot; aria-label&#x3D;&quot;下一页&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/13/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot; aria-label&#x3D;&quot;上一页&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/15/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot; aria-label&#x3D;&quot;下一页&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -1906,7 +2401,7 @@
                 
                   <a href="/archives/%7C%7C%20archive">
                 
-                    <span class="site-state-item-count">206</span>
+                    <span class="site-state-item-count">216</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2153,7 +2648,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
   <span class="with-love" id="animate"> 
     <i class="fa fa-user"></i>
   </span>

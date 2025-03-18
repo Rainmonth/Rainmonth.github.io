@@ -99,15 +99,15 @@
 
 
 
-  <meta name="description" content="本文链接：https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A210823.html   Android 实现QQ、钉钉等多人聊天头像；  背景 最近要做一个看图找字功能的游戏化场景，决定采用原生实现，具体就是利用放大镜找到图片中的汉字，识别当前区域和目标区域，在松手后给出判断。要实现这个demo需要解决如下问题：  得到要进行放大操作的目标位图（Bitmap）注意 Bitma">
+  <meta name="description" content="本文链接：https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A210823.html  背景最近要做一个看图找字功能的游戏化场景，决定采用原生实现，具体就是利用放大镜找到图片中的汉字，识别当前区域和目标区域，在松手后给出判断。要实现这个demo需要解决如下问题：  得到要进行放大操作的目标位图（Bitmap）注意 Bitmap 的加载优化，避免OOM； 像素放大的实现方式（目前">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 控件——放大镜实现">
 <meta property="og:url" content="http://yoursite.com/posts/A210823.html">
 <meta property="og:site_name" content="荏苒追寻个人博客">
-<meta property="og:description" content="本文链接：https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A210823.html   Android 实现QQ、钉钉等多人聊天头像；  背景 最近要做一个看图找字功能的游戏化场景，决定采用原生实现，具体就是利用放大镜找到图片中的汉字，识别当前区域和目标区域，在松手后给出判断。要实现这个demo需要解决如下问题：  得到要进行放大操作的目标位图（Bitmap）注意 Bitma">
+<meta property="og:description" content="本文链接：https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A210823.html  背景最近要做一个看图找字功能的游戏化场景，决定采用原生实现，具体就是利用放大镜找到图片中的汉字，识别当前区域和目标区域，在松手后给出判断。要实现这个demo需要解决如下问题：  得到要进行放大操作的目标位图（Bitmap）注意 Bitmap 的加载优化，避免OOM； 像素放大的实现方式（目前">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-08-23T01:44:00.000Z">
-<meta property="article:modified_time" content="2024-03-04T05:36:19.030Z">
+<meta property="article:modified_time" content="2025-03-10T03:43:54.020Z">
 <meta property="article:author" content="Randy Zhang">
 <meta name="twitter:card" content="summary">
 
@@ -405,11 +405,7 @@
         <blockquote>
 <p>本文链接：<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210823.html">https://rainmonth.github.io/posts/A210823.html</a></p>
 </blockquote>
-<ul>
-<li>Android 实现QQ、钉钉等多人聊天头像；</li>
-</ul>
-<p>背景</p>
-<p>最近要做一个看图找字功能的游戏化场景，决定采用原生实现，具体就是利用放大镜找到图片中的汉字，识别当前区域和目标区域，在松手后给出判断。要实现这个demo需要解决如下问题：</p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近要做一个看图找字功能的游戏化场景，决定采用原生实现，具体就是利用放大镜找到图片中的汉字，识别当前区域和目标区域，在松手后给出判断。要实现这个demo需要解决如下问题：</p>
 <ol>
 <li>得到要进行放大操作的目标位图（Bitmap）注意 Bitmap 的加载优化，避免OOM；</li>
 <li>像素放大的实现方式（目前可采用<code>ShaderDrawable</code>和<code>Path</code>；</li>
@@ -420,24 +416,95 @@
 <li>UI细节上的处理</li>
 <li>利用合适的设计模式封装使用；</li>
 </ol>
-<p>实现方式</p>
-<p>基本原理都是将要放大区域的目标像素按一定的比例通过矩阵变化来进行放大处理。</p>
+<h2 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h2><p>基本原理都是将要放大区域的目标像素按一定的比例通过矩阵变化来进行放大处理。</p>
 <ol>
-<li>采用<code>BitmapShader</code>，这里先简单介绍一下<code>BitmapShader</code>。</li>
+<li>利用<code>ShapeDrawable</code>来确定放大的区域，然后采用<code>BitmapShader</code> 来实现区域的放大。（<code>BitmapShader</code>，Shader的一种，作用是将Bitmap以纹理的方式绘制出来）</li>
 <li>采用<code>Path</code>，利用clipPath获取要放大的区域，然后在放大的区域中绘制放大后的像素；</li>
+<li>采用系统的<code>Magnifier</code>组件来实现（API 28以上，即Android 9系统以上系统才有系统级支持，API 29以上支持Builder配置）；</li>
 </ol>
-<p>获取位图的方式</p>
-<p>获取位图的方式主要是通过 <code>View</code> 的<code>setDrawingCacheEnabled(boolean enabled)</code>方法</p>
-<p>BitmapShader</p>
-<p>通过BitmapShader，可以将位图以Texture（纹理）的方式绘制到Canvas中，有三种绘制模式：</p>
+<h3 id="ShapeDrawable-BitmapShader方式"><a href="#ShapeDrawable-BitmapShader方式" class="headerlink" title="ShapeDrawable+BitmapShader方式"></a>ShapeDrawable+BitmapShader方式</h3><p>这种方式主要利用ShapeDrawable来确定位置，利用BitmapShader来处理放大效果，具体实现方式也分一下几个步骤：</p>
+<ol>
+<li><p>获取源bitmap，即获取要放大处理的bitmap；</p>
+</li>
+<li><p>设置放大区域，并根据放大区域来创建相应的<code>ShapeDrawable</code>（<code>ShapeDrawable</code>支持不同的形状，具体可以参考<code>ShapeDrawable</code>的API）；</p>
+</li>
+<li><p>根据放大区域，从源bitmap裁剪出对应范围的cutBitmap，然后对cutBitmap进行放大处理得到scaledBitmap（调用<code>Bitmap.createScaledBitmap</code>方法）；</p>
+</li>
+<li><p>这时候的scaledBitmap就有放大效果了，只需要将scaledBitmap设置到<code>BitmapShader</code>中去即可（<code>BitmapShader</code>支持纹理的绘制方式，具体参见<code>TileMode</code>；</p>
+</li>
+<li><p>将得到的<code>BitmapShader</code>设置到<code>ShapeDrawable</code>的<code>Paint</code>中；</p>
+</li>
+<li><p>绘制出<code>ShapeDrawable</code>；</p>
+</li>
+</ol>
+<h3 id="clipPath-Matrix方式"><a href="#clipPath-Matrix方式" class="headerlink" title="clipPath + Matrix方式"></a>clipPath + Matrix方式</h3><p>这种方式主要采用Path来确定位置，然后利用Matrix来实现放大、平移操作，关于Matrix相关说明，见底部知识储备Matrix相关。</p>
+<p>具体实现步骤：</p>
+<ol>
+<li><p>根据需要的放大配置（如放大倍数factor，放大位置，确定Path）</p>
+</li>
+<li><p>通过clipPath裁剪出要放大的区域；</p>
+</li>
+<li><p>根据放大倍数，通过Matrix的setScale方法来设置放大系数</p>
+</li>
+<li><p>通过Matrix的postTranslate来修正放大中心</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">float dx = -curX*(factor-1);</span><br><span class="line">float dy = -curY*(facgtor-1);</span><br><span class="line">matrix.postTranslate(dy, dy);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取放大后的bitmap</p>
+</li>
+<li><p>调用canvas 包含matrix的drawBitmap方法，进行bitmap绘制；</p>
+</li>
+</ol>
+<h3 id="Magnifier方式"><a href="#Magnifier方式" class="headerlink" title="Magnifier方式"></a>Magnifier方式</h3><p>根据文档的说法，这个放大效果可以应用到任何View上。这个组件有几个关键的内部类</p>
 <ul>
-<li><code>CLAMP</code>，拉伸，位图大小不够时，重复最右、最下边的像素；</li>
-<li><code>REPEAT</code>，重复，横向和纵向不断重复绘制位图；</li>
-<li><code>MIRROR</code>，镜像，横向和纵向不断翻转重复绘制位图；</li>
+<li><p><code>Magnifier.Builder</code>，放大镜效果的配置参数都在这个Builder对象里；</p>
+</li>
+<li><p><code>InternalPopupWindow</code>，内部实现的一个<code>PopupWindow</code></p>
+</li>
+<li><p><code>SurfaceInfo</code>，放大镜效果用到的Surface和与Surface相关的信息；</p>
+</li>
 </ul>
-<p><code>BitmapShader</code>继承自<code>Shader</code>，使用的时候同样是传递给<code>Paint</code>对象</p>
-<p>Matrix相关知识详解 <a target="_blank" rel="noopener" href="https://blog.csdn.net/feather_wch/article/details/79622095">android matrix 最全方法详解</a></p>
-
+<p>Magnifier类在被加载的时候就启动了一个 sPixelCopyHandlerThread 的线程，即像素拷贝线程，由此可见Magnifier的实现方式应该和像素拷贝有关，后面会分析到</p>
+<p>下面结合Magnifier的使用，来对Magnifier的源码进行分析。</p>
+<h4 id="Magnifier的创建"><a href="#Magnifier的创建" class="headerlink" title="Magnifier的创建"></a>Magnifier的创建</h4><p>API 28 之前，通过 Magnifier的构造函数来创建：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">Magnifier</span><span class="params">(<span class="meta">@NonNull</span> View view)</span> &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>API 29 之前，可以通过 Magnifier.Builder来构建：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Magnifier</span> <span class="variable">magnifier</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Magnifier</span>.Builder(targetView)</span><br><span class="line">    .setSize(width, height)<span class="comment">// 设置放大区域的宽、高</span></span><br><span class="line">    .setInitialZoom(<span class="number">2</span>)<span class="comment">//设置初始放大倍数，和 Magnifier的setZoom效果一样，都设置了以后者为准</span></span><br><span class="line">    .setCornerRadius(<span class="number">150</span>)<span class="comment">// 设置放大区域的圆角</span></span><br><span class="line">    .setOverlay(overlayDrawable)<span class="comment">// 设置覆盖物</span></span><br><span class="line">    .setClippingEnabled(<span class="literal">false</span>)<span class="comment">// false 时放大区域可以超出屏幕，true 时放大区域不能超出屏幕</span></span><br><span class="line">    .build();</span><br></pre></td></tr></table></figure>
+<h4 id="Magnifier的显示"><a href="#Magnifier的显示" class="headerlink" title="Magnifier的显示"></a>Magnifier的显示</h4><p>调用Magnifier的show方法可以显示出放大镜，有两个show方法，分别是</p>
+<ul>
+<li><p><code>public void show(float sourceCenterX, float sourceCenterY)</code></p>
+</li>
+<li><p><code>public void show(float sourceCenterX,  float sourceCenterY, float magnifierCenterX, float magnifierCenterY)</code></p>
+</li>
+</ul>
+<p>参数的意义分别表示要放大内容的中心x坐标、要放大内容的中心y坐标，放大镜的中心x坐标、放大镜的中心y坐标。</p>
+<p>下面分析一下show方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">(<span class="meta">@FloatRange(from = 0)</span> <span class="type">float</span> sourceCenterX,</span></span><br><span class="line"><span class="params">        <span class="meta">@FloatRange(from = 0)</span> <span class="type">float</span> sourceCenterY,</span></span><br><span class="line"><span class="params">        <span class="type">float</span> magnifierCenterX, <span class="type">float</span> magnifierCenterY)</span> &#123;</span><br><span class="line">    <span class="comment">// 获取surface</span></span><br><span class="line">    obtainSurfaces();</span><br><span class="line">    <span class="comment">// 获取内容坐标信息</span></span><br><span class="line">    obtainContentCoordinates(sourceCenterX, sourceCenterY);</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> <span class="variable">startX</span> <span class="operator">=</span> mClampedCenterZoomCoords.x - mSourceWidth / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">final</span> <span class="type">int</span> <span class="variable">startY</span> <span class="operator">=</span> mClampedCenterZoomCoords.y - mSourceHeight / <span class="number">2</span>;</span><br><span class="line">    <span class="comment">// 鱼眼效果相关配置</span></span><br><span class="line">    <span class="keyword">if</span> (mIsFishEyeStyle) &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 获取Window坐标信息</span></span><br><span class="line">    obtainWindowCoordinates(magnifierCenterX, magnifierCenterY);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (sourceCenterX != mPrevShowSourceCoords.x || sourceCenterY != mPrevShowSourceCoords.y</span><br><span class="line">            || mDirtyState) &#123;</span><br><span class="line">        <span class="keyword">if</span> (mWindow == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (mLock) &#123;</span><br><span class="line">                mWindow = <span class="keyword">new</span> <span class="title class_">InternalPopupWindow</span>(mView.getContext(), mView.getDisplay(),</span><br><span class="line">                        mParentSurface.mSurfaceControl, mWindowWidth, mWindowHeight, mZoom,</span><br><span class="line">                        mRamp, mWindowElevation, mWindowCornerRadius,</span><br><span class="line">                        mOverlay != <span class="literal">null</span> ? mOverlay : <span class="keyword">new</span> <span class="title class_">ColorDrawable</span>(Color.TRANSPARENT),</span><br><span class="line">                        Handler.getMain() <span class="comment">/* draw the magnifier on the UI thread */</span>, mLock,</span><br><span class="line">                        mCallback, mIsFishEyeStyle);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 进行像素拷贝</span></span><br><span class="line">        performPixelCopy(startX, startY, <span class="literal">true</span> <span class="comment">/* update window position */</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (magnifierCenterX != mPrevShowWindowCoords.x</span><br><span class="line">            || magnifierCenterY != mPrevShowWindowCoords.y) &#123;</span><br><span class="line">        <span class="keyword">final</span> <span class="type">Point</span> <span class="variable">windowCoords</span> <span class="operator">=</span> getCurrentClampedWindowCoordinates();</span><br><span class="line">        <span class="keyword">final</span> <span class="type">InternalPopupWindow</span> <span class="variable">currentWindowInstance</span> <span class="operator">=</span> mWindow;</span><br><span class="line">        sPixelCopyHandlerThread.getThreadHandler().post(() -&gt; &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (mLock) &#123;</span><br><span class="line">                <span class="keyword">if</span> (mWindow != currentWindowInstance) &#123;</span><br><span class="line">                    <span class="comment">// The magnifier was dismissed (and maybe shown again) in the meantime.</span></span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                mWindow.setContentPositionForNextDraw(windowCoords.x, windowCoords.y);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    mPrevShowSourceCoords.x = sourceCenterX;</span><br><span class="line">    mPrevShowSourceCoords.y = sourceCenterY;</span><br><span class="line">    mPrevShowWindowCoords.x = magnifierCenterX;</span><br><span class="line">    mPrevShowWindowCoords.y = magnifierCenterY;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在<code>performPixelCopy</code>像素拷贝成功后，会调用<code>mWindow.updateContent()</code>，这个方法内部会进行时图内容的更新</p>
+<h2 id="知识储备"><a href="#知识储备" class="headerlink" title="知识储备"></a>知识储备</h2><h3 id="Bitmap获取"><a href="#Bitmap获取" class="headerlink" title="Bitmap获取"></a>Bitmap获取</h3><p>获取bitmap的方式这里不赘述，根据不同的业务场景，有不同的获取方式：</p>
+<ol>
+<li><p>BitmapFactory.decodeXXX方法，支持从文件、drawable资源、byte[]、InputStream中获取Bitmap</p>
+</li>
+<li><p>Fresco图片加载框架获取最终展示的bitmap方式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">BaseControllerListener</span>&lt;Object&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onFinalImageSet</span><span class="params">(String id, <span class="meta">@Nullable</span> Object imageInfo, <span class="meta">@Nullable</span> Animatable animatable)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.onFinalImageSet(id, imageInfo, animatable);</span><br><span class="line">        <span class="keyword">if</span> (imageInfo <span class="keyword">instanceof</span> CloseableStaticBitmap) &#123;</span><br><span class="line">            <span class="type">CloseableStaticBitmap</span> <span class="variable">staticBitmap</span> <span class="operator">=</span> (CloseableStaticBitmap) imageInfo;</span><br><span class="line">            <span class="comment">// 获取到最终展示的bitmap</span></span><br><span class="line">            <span class="type">Bitmap</span> <span class="variable">bitmap</span> <span class="operator">=</span> staticBitmap.getUnderlyingBitmap();</span><br><span class="line">        &#125;                </span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>View</code> 的<code>setDrawingCacheEnabled(boolean enabled)</code>方法</p>
+</li>
+</ol>
+<h3 id="Matrix相关"><a href="#Matrix相关" class="headerlink" title="Matrix相关"></a>Matrix相关</h3><p>Matrix相关知识详解 <a target="_blank" rel="noopener" href="https://blog.csdn.net/feather_wch/article/details/79622095">android matrix 最全方法详解</a></p>
+<h3 id="Shader相关"><a href="#Shader相关" class="headerlink" title="Shader相关"></a>Shader相关</h3><p>Shader 是一个基类对象，在绘制时会返回一个水平跨越的颜色对象，主要功能是在绘制时通过setShader方法设置着色器的子类对象之后，任何对象(除了位图之外)都可从着色器中得到它的想要的颜色。系统提供的子类有：</p>
+<ul>
+<li><p>BitmapShader，位图的图像渲染器，上述就利用了Bitmap Shader来实现了放大镜效果；</p>
+</li>
+<li><p>ComposeShader ，组合渲染器；</p>
+</li>
+<li><p>LinearGradient，线性渲染器；</p>
+</li>
+<li><p>SweepGradient，梯度渲染器（即扫描渲染），可以使用该渲染器实现，如：微信等雷达扫描效果、手机卫士垃圾扫描。</p>
+</li>
+<li><p>RadialGradient，环形渲染器，一般的水波纹效果，充电水波纹扩散效果、调色板都可以使用该渲染器实现。</p>
+</li>
+</ul>
+<h3 id="RenderNode"><a href="#RenderNode" class="headerlink" title="RenderNode"></a>RenderNode</h3><h3 id="RecordingCanvas"><a href="#RecordingCanvas" class="headerlink" title="RecordingCanvas"></a>RecordingCanvas</h3>
       
     </div>
 
@@ -525,8 +592,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -541,7 +617,7 @@
                 
                   <a href="/archives/%7C%7C%20archive">
                 
-                    <span class="site-state-item-count">206</span>
+                    <span class="site-state-item-count">216</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -775,6 +851,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">实现方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ShapeDrawable-BitmapShader%E6%96%B9%E5%BC%8F"><span class="nav-number">2.1.</span> <span class="nav-text">ShapeDrawable+BitmapShader方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#clipPath-Matrix%E6%96%B9%E5%BC%8F"><span class="nav-number">2.2.</span> <span class="nav-text">clipPath + Matrix方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Magnifier%E6%96%B9%E5%BC%8F"><span class="nav-number">2.3.</span> <span class="nav-text">Magnifier方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Magnifier%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="nav-number">2.3.1.</span> <span class="nav-text">Magnifier的创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Magnifier%E7%9A%84%E6%98%BE%E7%A4%BA"><span class="nav-number">2.3.2.</span> <span class="nav-text">Magnifier的显示</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E5%82%A8%E5%A4%87"><span class="nav-number">3.</span> <span class="nav-text">知识储备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Bitmap%E8%8E%B7%E5%8F%96"><span class="nav-number">3.1.</span> <span class="nav-text">Bitmap获取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Matrix%E7%9B%B8%E5%85%B3"><span class="nav-number">3.2.</span> <span class="nav-text">Matrix相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Shader%E7%9B%B8%E5%85%B3"><span class="nav-number">3.3.</span> <span class="nav-text">Shader相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RenderNode"><span class="nav-number">3.4.</span> <span class="nav-text">RenderNode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RecordingCanvas"><span class="nav-number">3.5.</span> <span class="nav-text">RecordingCanvas</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -788,7 +880,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
   <span class="with-love" id="animate"> 
     <i class="fa fa-user"></i>
   </span>

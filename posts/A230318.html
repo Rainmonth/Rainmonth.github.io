@@ -107,7 +107,7 @@
 <meta property="og:description" content="泛型Kotlin 的泛型与 Java 一样，都是一种语法糖，即只在源代码中有泛型定义，到了class级别就被擦除了。 泛型（Generics）其实就是把类型参数化，真正的名字叫做类型参数，它的引入给强类型编程语言加入了更强的灵活性。 泛型的好处 增强代码的通用性 熟悉泛型有助于理解其他框架源码 增加代码的健壮性，避免运行时类型转换异常；">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-03-17T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-10-12T16:06:46.966Z">
+<meta property="article:modified_time" content="2025-01-15T07:05:55.794Z">
 <meta property="article:author" content="Randy Zhang">
 <meta name="twitter:card" content="summary">
 
@@ -411,8 +411,8 @@
 <span id="more"></span>
 <p>说道泛型，在Java中，通常指的是泛型接口/类、泛型参数、泛型方法和泛型属性，Kotlin的泛型继承了Java的泛型系统，同时有所加强。</p>
 <h3 id="几种泛型的表现"><a href="#几种泛型的表现" class="headerlink" title="几种泛型的表现"></a>几种泛型的表现</h3><p>泛型类、接口</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 泛型接口</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// </span></span><br><span class="line">  </span><br></pre></td></tr></table></figure>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Box</span>&lt;<span class="type">T</span>&gt;(t:T) &#123;</span><br><span class="line">  <span class="keyword">var</span> value = t</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> box : Box&lt;<span class="built_in">Int</span>&gt; = Box&lt;<span class="built_in">Int</span>&gt;(<span class="number">1</span>)</span><br><span class="line"><span class="comment">// 等价于</span></span><br><span class="line"><span class="keyword">var</span> box = Box(<span class="number">1</span>)<span class="comment">// 因为类型参数可以直接推断出来</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 泛型接口</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// </span></span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Box</span>&lt;<span class="type">T</span>&gt;(t:T) &#123;</span><br><span class="line">  <span class="keyword">var</span> value = t</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> box : Box&lt;<span class="built_in">Int</span>&gt; = Box&lt;<span class="built_in">Int</span>&gt;(<span class="number">1</span>)</span><br><span class="line"><span class="comment">// 等价于</span></span><br><span class="line"><span class="keyword">var</span> box = Box(<span class="number">1</span>)<span class="comment">// 因为类型参数可以直接推断出来</span></span><br></pre></td></tr></table></figure>
 <h3 id="型变"><a href="#型变" class="headerlink" title="型变"></a>型变</h3><h4 id="声明处型变"><a href="#声明处型变" class="headerlink" title="声明处型变"></a>声明处型变</h4><p>假设有一个泛型接口 <code>Source&lt;T&gt;</code>，该接口中不存在任何以 <code>T</code> 作为参数的方法，只是方法返回 <code>T</code> 类型值：</p>
 <p>先看看Java这样实现会遇到什么样的问题</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">Source</span>&lt;T&gt; &#123;</span><br><span class="line">  T <span class="title function_">nextT</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -447,8 +447,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/A220317.html" rel="next" title="Android 开源库分析——Fresco源码分析">
-                <i class="fa fa-chevron-left"></i> Android 开源库分析——Fresco源码分析
+              <a href="/posts/A230320.html" rel="next" title="Kotlin——协程">
+                <i class="fa fa-chevron-left"></i> Kotlin——协程
               </a>
             
           </div>
@@ -457,8 +457,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/posts/A230320.html" rel="prev" title="Kotlin——协程">
-                Kotlin——协程 <i class="fa fa-chevron-right"></i>
+              <a href="/posts/A230330.html" rel="prev" title="Flutter——Android开发基础">
+                Flutter——Android开发基础 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -533,7 +533,7 @@
                 
                   <a href="/archives/%7C%7C%20archive">
                 
-                    <span class="site-state-item-count">206</span>
+                    <span class="site-state-item-count">216</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -796,7 +796,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
   <span class="with-love" id="animate"> 
     <i class="fa fa-user"></i>
   </span>

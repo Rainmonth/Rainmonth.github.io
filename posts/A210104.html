@@ -107,7 +107,7 @@
 <meta property="og:description" content="背景音视频学习的视频学习部分，必须熟练掌握Camera API的原理即使用，而Android在5.0（API&gt;&#x3D;21）就提供了Camera2 API，并且建议应用使用Comera2 API，在androidX支持库中还提供了CameraX包，本文主要就是介绍Camera API、Camera2 API 以及androidX中CameraX的使用  [x] 音视频基础0——目录 [x] 音视频">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-01-03T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-02-28T09:49:44.711Z">
+<meta property="article:modified_time" content="2024-05-31T02:13:28.054Z">
 <meta property="article:author" content="Randy Zhang">
 <meta name="twitter:card" content="summary">
 
@@ -411,10 +411,8 @@
 <li>[ ] <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210105.html">音视频基础4——Android MediaCodec API学习</a></li>
 <li>[ ] <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210306.html">音视频基础5——Android 实现rtmp推流</a></li>
 <li>[x] <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210307.html">音视频基础6——交叉编译动态库</a></li>
-<li>[ ] <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210308.html">音视频基础7——MacOs下编译FFMpeg4.2.2</a></li>
+<li>[ ] [音视频基础7——MacOs下编译FFMpeg4.2.2</li>
 </ul>
-<span id="more"></span>
-<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>在了解Camera</p>
 <h2 id="Camera-API使用"><a href="#Camera-API使用" class="headerlink" title="Camera API使用"></a>Camera API使用</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>在Google提出Camera2 API之前，所有的相机操作，都是通过Camera这个类完成的，Camera类独自承接了以下以下工作：</p>
 <ul>
 <li>Camera的直接操作，如获取实例open，释放实例release，开始预览startPreview，停止预览stopPreview,拍照takePicture等等。</li>
@@ -578,7 +576,7 @@
                 
                   <a href="/archives/%7C%7C%20archive">
                 
-                    <span class="site-state-item-count">206</span>
+                    <span class="site-state-item-count">216</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -821,7 +819,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%86%E5%A4%87"><span class="nav-number">2.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Camera-API%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">Camera API使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">3.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C"><span class="nav-number">3.2.</span> <span class="nav-text">常用操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">3.3.</span> <span class="nav-text">注意事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Camera2-API%E4%BD%BF%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">Camera2 API使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B-1"><span class="nav-number">4.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9-1"><span class="nav-number">4.2.</span> <span class="nav-text">注意事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6"><span class="nav-number">5.</span> <span class="nav-text">错误集锦</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0%EF%BC%9A"><span class="nav-number">6.</span> <span class="nav-text">参考文章：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Camera-API%E4%BD%BF%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">Camera API使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">2.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C"><span class="nav-number">2.2.</span> <span class="nav-text">常用操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">2.3.</span> <span class="nav-text">注意事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Camera2-API%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">Camera2 API使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B-1"><span class="nav-number">3.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9-1"><span class="nav-number">3.2.</span> <span class="nav-text">注意事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6"><span class="nav-number">4.</span> <span class="nav-text">错误集锦</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0%EF%BC%9A"><span class="nav-number">5.</span> <span class="nav-text">参考文章：</span></a></li></ol></div>
             
 
           </div>
@@ -841,7 +839,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
   <span class="with-love" id="animate"> 
     <i class="fa fa-user"></i>
   </span>

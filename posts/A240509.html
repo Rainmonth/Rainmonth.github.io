@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.1.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.1.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '6.1.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A240509.html  摘要音视频相关开发时，如果碰到音频文件或视频文件较大时，通常需要对文件进行压缩，那么音视频文件为什么可以压缩、以什么方法方式压缩等，这些都是音视频压缩需要解决的问题，这篇文章通过从各方面搜集资料来，来大致了解音视频文件压缩的原理，从而加深自己对音视频开发的理解。 所谓压缩，应该就是将文件中冗余的信息（">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 音视频基础——音视频压缩原理">
+<meta property="og:url" content="http://yoursite.com/posts/A240509.html">
+<meta property="og:site_name" content="荏苒追寻个人博客">
+<meta property="og:description" content="https:&#x2F;&#x2F;rainmonth.github.io&#x2F;posts&#x2F;A240509.html  摘要音视频相关开发时，如果碰到音频文件或视频文件较大时，通常需要对文件进行压缩，那么音视频文件为什么可以压缩、以什么方法方式压缩等，这些都是音视频压缩需要解决的问题，这篇文章通过从各方面搜集资料来，来大致了解音视频文件压缩的原理，从而加深自己对音视频开发的理解。 所谓压缩，应该就是将文件中冗余的信息（">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/images/A240509/%E9%9F%B3%E9%A2%91%E5%8E%8B%E7%BC%A9%E7%BC%96%E7%A0%81%E6%B5%81%E7%A8%8B.jpg">
+<meta property="og:image" content="http://yoursite.com/images/A240509/%E4%B8%80%E4%B8%AA%E5%AE%9E%E9%99%858*8%E5%9B%BE%E5%83%8F%E5%9D%97.jpeg">
+<meta property="og:image" content="http://yoursite.com/Users/randy/Documents/RandyBlog/source/images/A240509/%E5%9B%BE%E5%83%8F%E5%9D%97%E7%BB%8F%E8%BF%87DCT%E5%8F%98%E6%8D%A2%E5%90%8E%E7%9A%84%E7%B3%BB%E6%95%B0.jpeg">
+<meta property="article:published_time" content="2024-05-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-05-10T15:06:34.178Z">
+<meta property="article:author" content="Randy Zhang">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/images/A240509/%E9%9F%B3%E9%A2%91%E5%8E%8B%E7%BC%A9%E7%BC%96%E7%A0%81%E6%B5%81%E7%A8%8B.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/posts/A240509.html"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Android 音视频基础——音视频压缩原理 | 荏苒追寻个人博客</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> 
+
+<div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">荏苒追寻个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">做一个有追求的青年</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+          
+  <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+</li>
+
+      
+        
+        
+          
+  <li class="menu-item menu-item-schedule">
+    <a href="/schedule/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
+</li>
+
+      
+
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A240509.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android 音视频基础——音视频压缩原理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-05-09T00:00:00+08:00">2024-05-09</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/%E9%9F%B3%E8%A7%86%E9%A2%91%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">音视频基础</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A240509.html">https://rainmonth.github.io/posts/A240509.html</a></p>
+</blockquote>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>音视频相关开发时，如果碰到音频文件或视频文件较大时，通常需要对文件进行压缩，那么音视频文件为什么可以压缩、以什么方法方式压缩等，这些都是音视频压缩需要解决的问题，这篇文章通过从各方面搜集资料来，来大致了解音视频文件压缩的原理，从而加深自己对音视频开发的理解。</p>
+<p>所谓压缩，应该就是将文件中冗余的信息（如无关紧要的、或者人无法识别的）去掉，或者以一种更节省空间的方式来重新编码文件。也就是需要从两个方面来入手：</p>
+<ul>
+<li><p>根据使用场景，确定哪些是冗余信息，并通过技术手段见冗余信息去掉；</p>
+</li>
+<li><p>找到一种更合适的算法，来缩小音视频内容占用的空间。</p>
+</li>
+</ul>
+<h2 id="音频压缩的原理"><a href="#音频压缩的原理" class="headerlink" title="音频压缩的原理"></a>音频压缩的原理</h2><p>在了解音频压缩原理之前，先介绍一下音频相关的几个概念：<strong>采样和采样频率、采样位数、声道、码率、音频采集和播放</strong>。</p>
+<h4 id="采样和采样频率"><a href="#采样和采样频率" class="headerlink" title="采样和采样频率"></a>采样和采样频率</h4><p>音频采样 指的是 <strong>将现有录音的一部分作为音色或片段，直接或经过处理、重建再运用在新作品中的过程</strong>。</p>
+<p><strong>一秒钟内采样的次数称为采样频率</strong>。采样频率越高，越接近原始信号，但是也加大了运算处理的复杂度。根据Nyquist采样定理，要想重建原始信号，采样频率必须大于信号中最高频率的两倍。人能感受到的频率范围为<strong>20HZ——20kHZ</strong>, 一般音乐的采样频率为44.1kHZ, 更高的可以是48kHZ和96kHZ，不过一般人用耳听感觉不出差别了。语音主要是以沟通为主，不需要像音乐那样清晰，用16k采样的语音就称为高清语音了。现在主流的语音采样频率为16kHz。</p>
+<h4 id="采样位数"><a href="#采样位数" class="headerlink" title="采样位数"></a>采样位数</h4><p>数字信号是用0和1来表示的。采样位数就是采样值用多少位0和1来表示，也叫采样精度，用的位数越多就越接近真实声音。如用8位表示，采样值取值范围就是<code>-128——127</code>，如用16位表示，采样值取值范围就是<code>-32768——32767</code>。现在一般都用16位采样位数。</p>
+<h4 id="声道"><a href="#声道" class="headerlink" title="声道"></a>声道</h4><p><strong>声道(Sound Channel)</strong> 是指声音在录制或播放时在不同空间位置采集或回放的相互独立的音频信号，所以声道数也就是声音录制时的音源数量或回放时相应的扬声器数量。</p>
+<h4 id="码率"><a href="#码率" class="headerlink" title="码率"></a>码率</h4><p><strong>码率就是比特率，即每秒传送的比特（bit）数</strong>。码率=采样率 x 采样位数 x 声道数。</p>
+<h4 id="音频采集和播放"><a href="#音频采集和播放" class="headerlink" title="音频采集和播放"></a>音频采集和播放</h4><p>一般用专门的芯片（通常叫codec芯片）采集音频，做AD转换（Analog-to-Digital Converter），然后把数字信号通过I2S总线（主流用I2S总线，也可以用其他总线，比如PCM总线）送给CPU处理（也有的会把codec芯片与CPU芯片集成在一块芯片中）。当要播放时CPU会把音频数字信号通过I2S总线送给codec芯片，然后做DA转换得到模拟信号再播放出来。</p>
+<h3 id="音频信号的冗余信息"><a href="#音频信号的冗余信息" class="headerlink" title="音频信号的冗余信息"></a>音频信号的冗余信息</h3><p>假如现在有一个 双声道、采样率为44.1KHz、采样位数为16的音频流，那么它的码率就是：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span> * <span class="number">44.1</span> * <span class="number">1000</span> * <span class="number">16</span>  = <span class="number">1411200</span> bit/s （约等于 <span class="number">1.</span>411M/s) </span><br></pre></td></tr></table></figure>
+<p>也就是说，这样的音频 每秒要传递 1.411M的数据，这将占用超级大的带宽，所以需要进行音频压缩。</p>
+<p>数字音频压缩 指的就是 在保证音频信号在听觉方面不失真的情形下，对音频信号做最大程度的压缩。那么怎么实现呢？数字音频压缩 采用的是 去除声音信号中冗余成分的方法来实现。这里的冗余成分指的是 <strong>音频中不能被人耳感知到的信号</strong>，它们对确定声音的音色，音调等信息没有任何的帮助。</p>
+<p>冗余信号包含<strong>人耳听觉范围外的音频信号</strong>以及<strong>被掩蔽掉的音频信号</strong>等。例如，人耳所能察觉的声音信号的频率范围为20Hz～20KHz，除此之外的其它频率人耳无法察觉，都可视为冗余信号。此外，根据人耳听觉的生理和心理声学现象，当一个强音信号与一个弱音信号同时存在时，弱音信号将被强音信号所掩蔽而听不见，这样弱音信号就可以视为冗余信号而不用传送。这就是人耳听觉的掩蔽效应，主要表现在<strong>频谱掩蔽效应</strong>和<strong>时域掩蔽效应</strong>，现分别介绍如下：</p>
+<h4 id="频谱掩蔽效应"><a href="#频谱掩蔽效应" class="headerlink" title="频谱掩蔽效应"></a>频谱掩蔽效应</h4><p>一个频率的声音能量小于某个阈值之后，人耳就会听不到，这个阈值称为最小可闻阈。当有另外能量较大的声音出现的时候，该声音频率附近的阈值会提高很多，即所谓的掩蔽效应。</p>
+<h4 id="时域掩蔽效应"><a href="#时域掩蔽效应" class="headerlink" title="时域掩蔽效应"></a>时域掩蔽效应</h4><p>当强音信号和弱音信号同时出现时，还存在时域掩蔽效应。即两者发生时间很接近的时候，也会发生掩蔽效应。时域掩蔽过程曲线如图所示，分为前掩蔽、同时掩蔽和后掩蔽三部分。</p>
+<ul>
+<li><p>前掩蔽是指人耳在听到强信号之前的短暂时间内，已经存在的弱信号会被掩蔽而听不到；</p>
+</li>
+<li><p>同时掩蔽是指当强信号与弱信号同时存在时，弱信号会被强信号所掩蔽而听不到；</p>
+</li>
+<li><p>后掩蔽是指当强信号消失后，需经过较长的一段时间才能重新听见弱信号，称为后掩蔽；</p>
+</li>
+</ul>
+<h4 id="音频压缩编码的方法"><a href="#音频压缩编码的方法" class="headerlink" title="音频压缩编码的方法"></a>音频压缩编码的方法</h4><p>当前数字音频编码领域存在着不同的编码方案和实现方式, 但基本的编码思路大同小异, 如图所示。</p>
+<p><img src="../images/A240509/音频压缩编码流程.jpg" alt></p>
+<p>对每一个音频声道中的音频采样信号,首先都要将它们映射到频域中,这种时域到频域的映射可通过子带滤波器实现。每个声道中的音频采样块首先要根据心理声学模型来计算掩蔽门限值, 然后由计算出的掩蔽门限值决定从公共比特池中分配给该声道的不同频率域中多少比特数，接着进行量化以及编码工作，最后将控制参数及辅助数据加入数据之中，产生编码后的数据流。</p>
+<h2 id="视频压缩的原理"><a href="#视频压缩的原理" class="headerlink" title="视频压缩的原理"></a>视频压缩的原理</h2><h4 id="视频信号的冗余信息"><a href="#视频信号的冗余信息" class="headerlink" title="视频信号的冗余信息"></a>视频信号的冗余信息</h4><p>以记录数字视频的<strong>YUV</strong>分量格式为例，<strong>YUV</strong>分别代表亮度与两个色差信号。例如对于现有的PAL制电视系统，其亮度信号采样频率为<code>13.5MHz</code>；色度信号的频带通常为亮度信号的一半或更少，为<code>6.75MHz</code>或3.375MHz。以4：2：2的采样频率为例，Y信号采用<code>13.5MHz</code>，色度信号U和V采用<code>6.75MHz</code>采样，采样信号以8bit量化，则可以计算出数字视频的码率为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">13.5</span>*<span class="number">8</span> + <span class="number">6.75</span>*<span class="number">8</span> + <span class="number">6.75</span>*<span class="number">8</span>= 216Mbit/s</span><br></pre></td></tr></table></figure>
+<p>如此大的数据量如果直接进行存储或传输将会遇到很大困难，因此必须采用压缩技术以减少码率。数字化后的视频信号能进行压缩主要依据两个基本条件：</p>
+<ul>
+<li><p><strong>数据冗余</strong>。例如如空间冗余、时间冗余、结构冗余、信息熵冗余等，即图像的各像素之间存在着很强的相关性。消除这些冗余并不会导致信息损失，属于无损压缩。</p>
+</li>
+<li><p><strong>视觉冗余</strong>。人眼的一些特性比如亮度辨别阈值，视觉阈值，对亮度和色度的敏感度不同，使得在编码的时候引入适量的误差，也不会被察觉出来。可以利用人眼的视觉特性，以一定的客观失真换取数据压缩。这种压缩属于有损压缩。</p>
+</li>
+</ul>
+<p><strong>数字视频信号的压缩</strong>正是基于上述两种条件，使得视频数据量得以极大的压缩，有利于传输和存储。一般的数字视频压缩编码方法都是混合编码，即将变换编码，运动估计和运动补偿，以及熵编码三种方式相结合来进行压缩编码。通常使用变换编码来消去除图像的帧内冗余，用运动估计和运动补偿来去除图像的帧间冗余，用熵编码来进一步提高压缩的效率。下文简单介绍这三种压缩编码方法。</p>
+<h4 id="压缩编码的方法"><a href="#压缩编码的方法" class="headerlink" title="压缩编码的方法"></a>压缩编码的方法</h4><h5 id="变化编码"><a href="#变化编码" class="headerlink" title="变化编码"></a>变化编码</h5><p><strong>变换编码</strong>的作用是<strong>将空间域描述的图像信号变换到频率域，然后对变换后的系数进行编码处理</strong>。一般来说，图像在空间上具有较强的相关性，变换到频率域可以实现<strong>去相关</strong>和<strong>能量集中</strong>。常用的正交变换有<strong>离散傅里叶变换</strong>，<strong>离散余弦变换</strong>等等。数字视频压缩过程中应用广泛的是离散余弦变换。</p>
+<p>离散余弦变换简称为DCT变换，离散余弦变换的一般步骤：分块、块DCT变换、对DCT变化后的块信息进行量化、对量化结果的非0部分进行压缩编码。</p>
+<ul>
+<li><p>分块，即将视频的帧图像划分成若干个大小相等的块（块中数字表示图像像素的亮度）。</p>
+<p><img src="../images/A240509/一个实际8*8图像块.jpeg" alt></p>
+</li>
+<li><p>块DCT变化</p>
+<p><img src="/Users/randy/Documents/RandyBlog/source/images/A240509/图像块经过DCT变换后的系数.jpeg" alt></p>
+<p>通过上图可以看出，经过DCT变换后，左上角的低频系数集中了大量能量，而右下角的高频系数上的能量很小。</p>
+</li>
+<li><p>量化，信号经过DCT变换后需要进行量化。<strong>由于人的眼睛对图像的低频特性比如物体的总体亮度之类的信息很敏感，而对图像中的高频细节信息不敏感，因此在传送过程中可以少传或不传送高频信息，只传送低频部分</strong>。量化过程通过<strong>对低频区的系数进行细量化，高频区的系数进行粗量化</strong>，去除了人眼不敏感的高频信息，从而降低信息传送量。因此，量化是一个有损压缩的过程，而且是视频压缩编码中质量损伤的主要原因。</p>
+</li>
+</ul>
+<p>  量化过长时有一个公式的，经过量化后，途中的块区域大多数的值都变成了0，既可以舍弃的部分，接下来只需要对非0部分进行压缩就可以了。</p>
+<ul>
+<li>量化后的非零部分压缩</li>
+</ul>
+<h5 id="熵编码"><a href="#熵编码" class="headerlink" title="熵编码"></a>熵编码</h5><p>熵编码是因编码后的平均码长接近信源熵值而得名。熵编码多用可变字长编码（VLC，Variable Length Coding）实现。其基本原理是对信源中出现概率大的符号赋予短码，对于出现概率小的符号赋予长码，从而在统计上获得较短的平均码长。可变字长编码通常有霍夫曼编码、算术编码、游程编码等。其中游程编码是一种十分简单的压缩方法，它的压缩效率不高，但编码、解码速度快，仍被得到广泛的应用，特别在变换编码之后使用游程编码，有很好的效果。</p>
+<p>首先要在量化器输出直流系数后对紧跟其后的交流系数进行Z型扫描（如图箭头线所示）。Z型扫描将二维的量化系数转换为一维的序列，并在此基础上进行游程编码。最后再对游程编码后的数据进行另一种变长编码，例如霍夫曼编码。通过这种变长编码，进一步提高编码的效率。</p>
+<h5 id="运动估计和运动补偿"><a href="#运动估计和运动补偿" class="headerlink" title="运动估计和运动补偿"></a>运动估计和运动补偿</h5><p>运动估计（Motion Estimation）和运动补偿（Motion Compensation）是消除图像序列时间方向相关性的有效手段。</p>
+<p>上文介绍的DCT变换、量化、熵编码的方法是在一帧图像的基础上进行，通过这些方法可以消除图像内部各像素间在空间上的相关性。实际上图像信号除了空间上的相关性之外，还有时间上的相关性。例如对于像新闻联播这种背景静止，画面主体运动较小的数字视频，每一幅画面之间的区别很小，画面之间的相关性很大。对于这种情况我们没有必要对每一帧图像单独进行编码，而是可以只对相邻视频帧中变化的部分进行编码，从而进一步减小数据量，这方面的工作是由运动估计和运动补偿来实现的。</p>
+<p>运动估计技术一般将当前的输入图像分割成若干彼此不相重叠的小图像子块，例如一帧图像的大小为1280<em>720，首先将其以网格状的形式分成40</em>45个尺寸为16*16的彼此没有重叠的图像块，然后在前一图像或者后一个图像某个搜索窗口的范围内为每一个图像块寻找一个与之最为相似的图像块。这个搜寻的过程叫做运动估计。通过计算最相似的图像块与该图像块之间的位置信息，可以得到一个运动矢量。这样在编码过程中就可以将当前图像中的块与参考图像运动矢量所指向的最相似的图像块相减，得到一个残差图像块，由于残差图像块中的每个像素值很小，所以在压缩编码中可以获得更高的压缩比。这个相减过程叫运动补偿。</p>
+<h5 id="混合编码"><a href="#混合编码" class="headerlink" title="混合编码"></a>混合编码</h5><p>混合编码的一般流程如下：</p>
+<p>当前输入的图像首先要经过分块，分块得到的图像块要与经过运动补偿的预测图像相减得到差值图像X，然后对该差值图像块进行DCT变换和量化，量化输出的数据有两个不同的去处：一个是送给熵编码器进行编码，编码后的码流输出到一个缓存器中保存，等待传送出去。另一个应用是进行反量化和反变化后的到信号X’，该信号将与运动补偿输出的图像块相加得到新的预测图像信号，并将新的预测图像块送至帧存储器。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文主要介绍了音频视频压缩的基本原理，涉及到了音视频压缩的一些基本概念，这为之后学习音视频开发做一个预热，不至于后面谈到音视频压缩以及音视频压缩相关概念而摸不着北。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/A240507.html" rel="next" title="Android 对象池的使用">
+                <i class="fa fa-chevron-left"></i> Android 对象池的使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/db331371.html" rel="prev" title="Unity游戏示例1——消消乐游戏">
+                Unity游戏示例1——消消乐游戏 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/%7C%7C%20archive">
+                
+                    <span class="site-state-item-count">216</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">43</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">43</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Rainmonth" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9F%B3%E9%A2%91%E5%8E%8B%E7%BC%A9%E7%9A%84%E5%8E%9F%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">音频压缩的原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%87%E6%A0%B7%E5%92%8C%E9%87%87%E6%A0%B7%E9%A2%91%E7%8E%87"><span class="nav-number">2.0.1.</span> <span class="nav-text">采样和采样频率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%87%E6%A0%B7%E4%BD%8D%E6%95%B0"><span class="nav-number">2.0.2.</span> <span class="nav-text">采样位数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A3%B0%E9%81%93"><span class="nav-number">2.0.3.</span> <span class="nav-text">声道</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A0%81%E7%8E%87"><span class="nav-number">2.0.4.</span> <span class="nav-text">码率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9F%B3%E9%A2%91%E9%87%87%E9%9B%86%E5%92%8C%E6%92%AD%E6%94%BE"><span class="nav-number">2.0.5.</span> <span class="nav-text">音频采集和播放</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9F%B3%E9%A2%91%E4%BF%A1%E5%8F%B7%E7%9A%84%E5%86%97%E4%BD%99%E4%BF%A1%E6%81%AF"><span class="nav-number">2.1.</span> <span class="nav-text">音频信号的冗余信息</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%91%E8%B0%B1%E6%8E%A9%E8%94%BD%E6%95%88%E5%BA%94"><span class="nav-number">2.1.1.</span> <span class="nav-text">频谱掩蔽效应</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%97%B6%E5%9F%9F%E6%8E%A9%E8%94%BD%E6%95%88%E5%BA%94"><span class="nav-number">2.1.2.</span> <span class="nav-text">时域掩蔽效应</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9F%B3%E9%A2%91%E5%8E%8B%E7%BC%A9%E7%BC%96%E7%A0%81%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">2.1.3.</span> <span class="nav-text">音频压缩编码的方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%86%E9%A2%91%E5%8E%8B%E7%BC%A9%E7%9A%84%E5%8E%9F%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">视频压缩的原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%86%E9%A2%91%E4%BF%A1%E5%8F%B7%E7%9A%84%E5%86%97%E4%BD%99%E4%BF%A1%E6%81%AF"><span class="nav-number">3.0.1.</span> <span class="nav-text">视频信号的冗余信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%8B%E7%BC%A9%E7%BC%96%E7%A0%81%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">3.0.2.</span> <span class="nav-text">压缩编码的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8F%98%E5%8C%96%E7%BC%96%E7%A0%81"><span class="nav-number">3.0.2.1.</span> <span class="nav-text">变化编码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%86%B5%E7%BC%96%E7%A0%81"><span class="nav-number">3.0.2.2.</span> <span class="nav-text">熵编码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%BF%90%E5%8A%A8%E4%BC%B0%E8%AE%A1%E5%92%8C%E8%BF%90%E5%8A%A8%E8%A1%A5%E5%81%BF"><span class="nav-number">3.0.2.3.</span> <span class="nav-text">运动估计和运动补偿</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B7%B7%E5%90%88%E7%BC%96%E7%A0%81"><span class="nav-number">3.0.2.4.</span> <span class="nav-text">混合编码</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
+  <span class="with-love" id="animate"> 
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Randy Zhang</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.1.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

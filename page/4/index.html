@@ -310,6 +310,1687 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/J191110.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/J191110.html" itemprop="url">Java杂谈——不同Java版本的特性比较说明</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-10-13T00:06:46+08:00">2023-10-13</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/%E6%9D%82%E8%B0%88/" itemprop="url" rel="index"><span itemprop="name">杂谈</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J191110.html">https://rainmonth.github.io/posts/J191110.html</a></p>
+</blockquote>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><h2 id="问题记录"><a href="#问题记录" class="headerlink" title="问题记录"></a>问题记录</h2><ol>
+<li><p>Ideal 运行时提示</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">objc[7169]: Class JavaLaunchHelper is implemented in both /Library/Java/JavaVirtualMachines/jdk1.8.0</span><br><span class="line">and /Library/Java/JavaVirtualMachines/jdk1.8.0.jdk/Contents/Home/jre/lib/libinstrument.dylib (0x10ea194e0). One of the two will be used. Which one is undefined.</span><br></pre></td></tr></table></figure>
+<p>解决方案：</p>
+<p>Idea-&gt;Help-&gt;Edit Custom Propertis，打开ideal.properties文件，添加以下配置，然后重启即可</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">idea.no.launcher</span>=<span class="string">true</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看虚拟机类型</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/J191108.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/J191108.html" itemprop="url">Java 杂谈——取文件夹大小的几种方式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-10-13T00:06:46+08:00">2023-10-13</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/%E6%9D%82%E8%B0%88/" itemprop="url" rel="index"><span itemprop="name">杂谈</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J191108.html">https://rainmonth.github.io/posts/J191108.html</a></p>
+</blockquote>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/J191108.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/J191203.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/J191203.html" itemprop="url">Java之AOP简介及简单使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-10-13T00:06:46+08:00">2023-10-13</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/AOP/" itemprop="url" rel="index"><span itemprop="name">AOP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J191203.html">https://rainmonth.github.io/posts/J191203.html</a></p>
+</blockquote>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>参考文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/innost/article/details/49387395">深入理解Android之AOP</a></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/J191203.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A210109.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/A210109.html" itemprop="url">Android 音视频基础——音频焦点管理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-10-13T00:06:46+08:00">2023-10-13</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/%E9%9F%B3%E8%A7%86%E9%A2%91%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">音视频基础</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210109.html">https://rainmonth.github.io/posts/A210109.html</a></p>
+</blockquote>
+<h2 id="为什么要音频焦点管理"><a href="#为什么要音频焦点管理" class="headerlink" title="为什么要音频焦点管理"></a>为什么要音频焦点管理</h2><p>Android系统是支持多个应用同时播放声音的（这点能力还是有的）只不过这样就会同一时间出现多个音频，并且声音大小还没有什么区分，导致了十分糟糕的使用体验，因此音频焦点管理便有了必要。</p>
+<h2 id="如何进行焦点管理"><a href="#如何进行焦点管理" class="headerlink" title="如何进行焦点管理"></a>如何进行焦点管理</h2><p>Android系统通过AudioManager类来完成音频焦点管理，其中请求音频焦点用 requestAudioFocus方法，释放音频焦点用 abandonAudioFocus方法，焦点的改变监听实现 OnAudioFocusChangeListener即可。</p>
+<h3 id="音频的类型"><a href="#音频的类型" class="headerlink" title="音频的类型"></a>音频的类型</h3><p>既然需要进行音频焦点管理，就需要知道Android 系统中音频的类型，针对具体的音频类型，采用具体的管理策略，那么Android系统通常的音频类型如下，都在 <code>AudioManager</code>中有定义：</p>
+<ul>
+<li><code>STREAM_VOICE_CALL</code>，通话的声音，这类通常是不允许打断的；</li>
+<li><code>STREAM_SYSTEM</code>，系统声音；</li>
+<li><code>STREAM_RING</code>，电话铃声；</li>
+<li><code>STREAM_MUSIC</code>，音乐软件的歌曲播放等；</li>
+<li><code>STREAM_ALARM</code>，闹钟铃声；</li>
+<li><code>STREAM_NOTIFICATION</code>，通知声音；</li>
+<li><code>STREAM_DTMF</code>，双音多频铃声（DTMF，Dural Tone Multi Frequency）；</li>
+</ul>
+<p>还有几种App不可用（系统内部使用的）以及需要申请权限才能使用的，这些不是重点。</p>
+<ul>
+<li><code>STREAM_BLUETOOTH_SCO</code>，蓝牙通话声音；（外部不可用）</li>
+<li><code>STREAM_SYSTEM_ENFORCED</code>，某些国家或地区的系统强制声音；（外部不可用）</li>
+<li><code>STREAM_TTS</code>，文本转语音类型声音；</li>
+<li><code>STREAM_ACCESSIBILITY</code>，需要申请权限（<code>android.Manifest.permission.MODIFY_AUDIO_ROUTING</code>）</li>
+</ul>
+<blockquote>
+<p>这个类型的值通常是用来构造 AudioAttributes 对象的，用来告诉系统，当前要请求音频焦点的音频流是何种类型的音频。</p>
+</blockquote>
+<h3 id="请求音频焦点"><a href="#请求音频焦点" class="headerlink" title="请求音频焦点"></a>请求音频焦点</h3><p>通过<code>AudioManager</code>的<code>requestAudioFocus()</code>来进行音频焦点的获取，所有的重载方法最终都会调用到 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">requestAudioFocus</span><span class="params">(<span class="meta">@NonNull</span> AudioFocusRequest afr, <span class="meta">@Nullable</span> AudioPolicy ap)</span></span><br></pre></td></tr></table></figure>
+<p>常用的请求焦点方法有：</p>
+<ul>
+<li><p><strong>8.0之前</strong>：<code>public int requestAudioFocus(OnAudioFocusChangeListener l, int streamType, int durationHint)</code></p>
+</li>
+<li><p><strong>8.0以后</strong>：<code>public int requestAudioFocus(@NonNull AudioFocusRequest focusRequest)</code></p>
+</li>
+</ul>
+<h4 id="音频焦点的请求参数"><a href="#音频焦点的请求参数" class="headerlink" title="音频焦点的请求参数"></a>音频焦点的请求参数</h4><ul>
+<li><p>OnAudioFocusChangeListener，音频焦点改变监听；</p>
+</li>
+<li><p>streamType，请求的音频类型；</p>
+</li>
+<li><p>durationHint，请求的音频焦点类型，通常有一下几个值：</p>
+<ul>
+<li><p><code>AUDIOFOCUS_GAIN</code>，音频焦点持续时间是未知的，通常表示长时间持有音频焦点，例如播放音乐、录音等</p>
+</li>
+<li><p><code>AUDIOFOCUS_GAIN_TRANSIENT_EXCLUSIVE</code>，段时间获取焦点，并希望其他应用不再播放声音；</p>
+</li>
+<li><p><code>AUDIOFOCUS_GAIN_TRANSIENT</code>，短时间获取焦点，如播放导航声音或者播放通知声音；</p>
+</li>
+<li><p><code>AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK</code>，短时间获取焦点，并希望其他应用以较低的音量播放声音；</p>
+</li>
+</ul>
+</li>
+<li><p><code>AudioFocusRequest</code>，专门用来封装音频焦点请求的类，可以通过Builder模式来构造，上面的三个参数，AudioFocusRequest 中都有，都可以通过AudioFocusRequest来设置；</p>
+</li>
+</ul>
+<h4 id="焦点请求结果处理"><a href="#焦点请求结果处理" class="headerlink" title="焦点请求结果处理"></a>焦点请求结果处理</h4><p><strong>8.0（API&lt;26)之前</strong>，请求音频焦点只会返回两种结果：</p>
+<ul>
+<li><p><code>AUDIOFOCUS_REQUEST_GRANTED</code>，请求成功</p>
+</li>
+<li><p><code>AUDIOFOCUS_REQUEST_FAILED</code>，请求失败</p>
+</li>
+</ul>
+<p>8.0（API&gt;=26)之后，请求结果多了一个值：</p>
+<ul>
+<li><code>AUDIOFOCUS_REQUEST_DELAYED</code>，这个表示延时请求成功，注意，要想获得这个请求结果，必须先调用<code>AudioFocusRequest.Builder#setAcceptsDelayedFocusGain(true)</code>方法，否则不会返回该结果。</li>
+</ul>
+<blockquote>
+<p>注意，通常在调用 requestAudioFocus相关方法请求音频焦点时，系统并没有强制要求一定要等待收到 AUDIOFOCUS_REQUEST_GRANTED 返回结果时才能进行播放，没有请求到也可以播放的，只不过播放体验不好。</p>
+</blockquote>
+<h3 id="请求焦点后其他音频自动降低音量"><a href="#请求焦点后其他音频自动降低音量" class="headerlink" title="请求焦点后其他音频自动降低音量"></a>请求焦点后其他音频自动降低音量</h3><p>在8.0之前，当请求焦点使用 <code>AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK</code>时，表明希望 请求焦点的应用在请求到焦点后，其他应用降低音量，但是很可能由于其他应用开发这忘记了这么做，导致达不到预期的效果（其他音频自动降低音量），因为系统并没有强制要求这么做。</p>
+<p>在8.0之后，这个自动降低音量的行为，是系统默认的了，也就是说，如果其他应用没有处理音频焦点的变化，当其他应用以<code>AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK</code>方式获取到焦点后，系统会自动降低其他应用的音量。</p>
+<h3 id="释放音频焦点"><a href="#释放音频焦点" class="headerlink" title="释放音频焦点"></a>释放音频焦点</h3><p>通过调用 <code>AudioManager</code>的<code>abandonAudioFocusRequest(@NonNull AudioFocusRequest focusRequest)</code>方法来释放音频焦点，注意：这个focusRequest 参数必须是请求时用到的 </p>
+<p>focusRequest。</p>
+<blockquote>
+<p>PS：通请求焦点一样，释放焦点针对8.0以前和8.0以后的也要区分对待，需要做好兼容。</p>
+</blockquote>
+<p>参考文章</p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7052511816101920804">Android音频焦点管理</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A210108.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/A210108.html" itemprop="url">Android 音视频基础7——MacOs下编译FFMpeg 4.2.2</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-10-13T00:06:46+08:00">2023-10-13</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/%E9%9F%B3%E8%A7%86%E9%A2%91%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">音视频基础</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>本文主要介绍Mac环境下FFMpeg的编译方法，同时还会简单介绍FFMpeg。</p>
+<p>FFmpeg是用于处理多媒体内容（例如音频，视频，字幕和相关元数据）的库和工具的集合。它包含的库有：</p>
+<ul>
+<li><code>libavcodec</code>，提供了多种编解码器的实现；</li>
+<li><code>libavformat</code>，实现流协议，容器格式和基本I / O访问；</li>
+<li><code>libavutil</code>，包括哈希，解压缩器和其他实用程序功能；</li>
+<li><code>libavfilter</code>，提供了一种通过滤波器链来更改解码的音频和视频的方法；</li>
+<li><code>libavdevice</code>，提供采用硬件设备进行图片补货和视频播放的抽象封装；</li>
+<li><code>libswresample</code>，实现了音频混合和重采样工作；</li>
+<li><code>libswscale</code>，实现了色彩转换和缩放等工作；</li>
+</ul>
+<p>它包含的工具有：</p>
+<ul>
+<li>ffmpeg，处理，转换和流式传输多媒体内容的命令行工具箱。</li>
+<li>ffplay，mini多媒体播放器；</li>
+<li>ffprobe，检查多媒体内容的简单分析工具；</li>
+<li>其他小工具，例如aviocat，ismindex和qt-faststart</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/A210108.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A230808.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/A230808.html" itemprop="url">Android 适配——资源整理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-10-13T00:06:46+08:00">2023-10-13</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/%E9%80%82%E9%85%8D/" itemprop="url" rel="index"><span itemprop="name">适配</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A230808.html">https://rainmonth.github.io/posts/A230808.html</a></p>
+</blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180427.html">Android适配——动态权限管理</a></li>
+<li><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A18042702.html">Android适配——屏幕适配方案研究</a></li>
+<li><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A200312.html">Android适配——全局悬浮窗的实现</a></li>
+<li><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180415.html">Android适配——原生与H5交互</a></li>
+<li><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A180503.html">Android适配——状态栏攻略</a></li>
+<li><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210906.html">Android适配——Notification适配指南</a></li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7231835495557890106">Android 14快速适配要点</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A191019.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/A191019.html" itemprop="url">Android 系统源码分析——MotionEvent</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-10-13T00:06:46+08:00">2023-10-13</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/%E7%B3%BB%E7%BB%9F%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">系统源码分析</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191019.html">https://rainmonth.github.io/posts/A191019.html</a></p>
+</blockquote>
+<p>Android MotionEvent与GestureDetector</p>
+<blockquote>
+<p>参考文章：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/0c863bbde8eb">Android MotionEvent详解</a>；</li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c2e26c6d4ac1">Android 应用处理MotionEvent的过程</a>;</li>
+</ol>
+</blockquote>
+<h2 id="MotionEvent"><a href="#MotionEvent" class="headerlink" title="MotionEvent"></a>MotionEvent</h2><h3 id="坐标相关"><a href="#坐标相关" class="headerlink" title="坐标相关"></a>坐标相关</h3><ul>
+<li>getX()/getY()，相对于View左上角的坐标；</li>
+<li>getRawX()/getRawY()，相对于屏幕左上角的坐标；</li>
+</ul>
+<h3 id="Pointer"><a href="#Pointer" class="headerlink" title="Pointer"></a>Pointer</h3><ul>
+<li>id，id在过程中不回改变</li>
+<li>index，index可以改变</li>
+</ul>
+<h3 id="getActionMasked-与getAction"><a href="#getActionMasked-与getAction" class="headerlink" title="getActionMasked()与getAction()"></a><code>getActionMasked()</code>与<code>getAction()</code></h3><ul>
+<li><p>getActionMasked()，返回的是事件的类型所代表的int值；</p>
+</li>
+<li><p>getAction()，返回的是Pointer的index值和事件类型值组合而成的int值</p>
+<blockquote>
+<p>getActionmasked() = getAction &amp; ACTION_MASK;</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="GestureDetector"><a href="#GestureDetector" class="headerlink" title="GestureDetector"></a>GestureDetector</h2>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A210402.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/A210402.html" itemprop="url">Android 开源库分析——OkHttp3</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-10-13T00:06:46+08:00">2023-10-13</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/%E5%BC%80%E6%BA%90%E5%BA%93%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">开源库分析</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>本文链接：<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210402.html">https://rainmonth.github.io/posts/A210402.html</a></p>
+</blockquote>
+<ul>
+<li>分析版本，OkHttp-3.12.10</li>
+<li>分析环境，IntellJIdeal</li>
+</ul>
+<p>通过本文，可以了解如下内容：</p>
+<ul>
+<li>OkHttp的基本使用；</li>
+<li>OkHttp三次握手实现；</li>
+<li>OkHttp的拦截器实现；</li>
+<li>OkHttp的缓存实现；</li>
+<li>OkHttp如何实现WebSocket；</li>
+<li>了解ArrayDeque，因为OkHttp中大量的使用ArrayDeque</li>
+</ul>
+<h2 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h2><h3 id="get请求"><a href="#get请求" class="headerlink" title="get请求"></a>get请求</h3><h4 id="同步get请求"><a href="#同步get请求" class="headerlink" title="同步get请求"></a>同步get请求</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">getSync</span><span class="params">(String url)</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;同步请求&quot;</span>);</span><br><span class="line">    <span class="type">OkHttpClient</span> <span class="variable">okHttpClient</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OkHttpClient</span>.Builder().build();</span><br><span class="line">    <span class="type">Request</span> <span class="variable">request</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Request</span>.Builder().url(url)</span><br><span class="line">            .build();</span><br><span class="line">    <span class="type">Call</span> <span class="variable">call</span> <span class="operator">=</span> okHttpClient.newCall(request);</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="type">Response</span> <span class="variable">response</span> <span class="operator">=</span> call.execute();</span><br><span class="line">        <span class="keyword">if</span> (response.isSuccessful()) &#123;</span><br><span class="line">            System.out.println(response.body().toString());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="异步get请求"><a href="#异步get请求" class="headerlink" title="异步get请求"></a>异步get请求</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">get</span><span class="params">(String url)</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;异步请求&quot;</span>);</span><br><span class="line">    <span class="type">OkHttpClient</span> <span class="variable">okHttpClient</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OkHttpClient</span>.Builder().build();</span><br><span class="line">    <span class="keyword">final</span> <span class="type">Request</span> <span class="variable">request</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Request</span>.Builder()</span><br><span class="line">            .url(url)</span><br><span class="line">            .get()</span><br><span class="line">            .build();</span><br><span class="line">    <span class="type">Call</span> <span class="variable">call</span> <span class="operator">=</span> okHttpClient.newCall(request);</span><br><span class="line">    call.enqueue(<span class="keyword">new</span> <span class="title class_">Callback</span>() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onFailure</span><span class="params">(Call call, IOException e)</span> &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onResponse</span><span class="params">(Call call, Response response)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">            <span class="keyword">if</span> (response.isSuccessful()) &#123;</span><br><span class="line">                System.out.println(response.body().toString());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="post请求"><a href="#post请求" class="headerlink" title="post请求"></a>post请求</h3><p>介绍post请求之前先了解下<code>MediaType</code>。</p>
+<p>MediaType指的是媒体类型，表示表示的时浏览器将以什么形式、什么编码对资源进行解析。主要包含三个信息：<strong>type</strong>、<strong>subType</strong>以<strong>charset</strong>，MediaType常见类型如下：</p>
+<ul>
+<li>text/（html，HTML文本格式；plain，纯文本格式；xml，xml格式；x-markdown，Markdown格式；）</li>
+<li>image/(gif，gif图片；jpeg，jpg图片；png，png图片；)</li>
+<li>application/(json，json格式数据；x-www-form-urlencode，键值对形式编码的参数；xhtml+xml，xhtml文本格式；xml，xml格式；pdf，pdf格式；msword，word格式；octet-stream，二进制数据（常用用于下载）)</li>
+<li>multipart/（form-data，不对字符编码发送大量二进制数据或包含non-ASCII字符的文本）</li>
+</ul>
+<blockquote>
+<p>上面每种格式的前半部分表示type（“/”前的部分），后半部分表示subtype（“/”后的部分）；</p>
+</blockquote>
+<h4 id="发送表单"><a href="#发送表单" class="headerlink" title="发送表单"></a>发送表单</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">postForm</span><span class="params">(String url)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;同步postForm&quot;</span>);</span><br><span class="line">    <span class="type">OkHttpClient</span> <span class="variable">okHttpClient</span> <span class="operator">=</span> ClientUtils.getOkHttpClient();</span><br><span class="line">    <span class="type">RequestBody</span> <span class="variable">requestBody</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FormBody</span>.Builder()</span><br><span class="line">            .add(<span class="string">&quot;user&quot;</span>, <span class="string">&quot;randy&quot;</span>)</span><br><span class="line">            .add(<span class="string">&quot;pwd&quot;</span>, <span class="string">&quot;xxx&quot;</span>)</span><br><span class="line">            .build();</span><br><span class="line">    <span class="keyword">final</span> <span class="type">Request</span> <span class="variable">request</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Request</span>.Builder()</span><br><span class="line">            .url(url)</span><br><span class="line">            .post(requestBody)</span><br><span class="line">            .build();</span><br><span class="line">    <span class="type">Response</span> <span class="variable">response</span> <span class="operator">=</span> okHttpClient.newCall(request).execute();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="发送json"><a href="#发送json" class="headerlink" title="发送json"></a>发送json</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">postJson</span><span class="params">(String url)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;同步postJson&quot;</span>);</span><br><span class="line">    <span class="type">String</span> <span class="variable">json</span> <span class="operator">=</span> <span class="string">&quot;&#123;\&quot;user\&quot;:\&quot;Randy\&quot;,\&quot;nick\&quot;:\&quot;荏苒追寻\&quot;&#125;&quot;</span>;</span><br><span class="line">    <span class="type">OkHttpClient</span> <span class="variable">okHttpClient</span> <span class="operator">=</span> ClientUtils.getOkHttpClient();</span><br><span class="line">    <span class="type">RequestBody</span> <span class="variable">requestBody</span> <span class="operator">=</span> RequestBody.create(MediaType.parse(<span class="string">&quot;application/json&quot;</span>), json);</span><br><span class="line">    <span class="keyword">final</span> <span class="type">Request</span> <span class="variable">request</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Request</span>.Builder()</span><br><span class="line">            .url(url)</span><br><span class="line">            .post(requestBody)</span><br><span class="line">            .build();</span><br><span class="line">    <span class="type">Response</span> <span class="variable">response</span> <span class="operator">=</span> okHttpClient.newCall(request).execute();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="发送Multipart"><a href="#发送Multipart" class="headerlink" title="发送Multipart"></a>发送Multipart</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">postMultiPart</span><span class="params">(String url)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;同步 postMultiPart&quot;</span>);</span><br><span class="line">    <span class="type">OkHttpClient</span> <span class="variable">okHttpClient</span> <span class="operator">=</span> ClientUtils.getOkHttpClient();</span><br><span class="line">    <span class="type">RequestBody</span> <span class="variable">requestBody</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MultipartBody</span>.Builder()</span><br><span class="line">            .addFormDataPart(<span class="string">&quot;user&quot;</span>, <span class="string">&quot;randy&quot;</span>)</span><br><span class="line">            .addFormDataPart(<span class="string">&quot;nick&quot;</span>, <span class="string">&quot;xxx&quot;</span>)</span><br><span class="line">            .addFormDataPart(<span class="string">&quot;file&quot;</span>, <span class="string">&quot;file.txt&quot;</span>,</span><br><span class="line">                    RequestBody.create(MediaType.parse(<span class="string">&quot;application/octet-stream&quot;</span>), <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;filePath&quot;</span>)))</span><br><span class="line">            .build();</span><br><span class="line">    <span class="type">Request</span> <span class="variable">request</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Request</span>.Builder()</span><br><span class="line">            .url(url)</span><br><span class="line">            .post(requestBody)</span><br><span class="line">            .build();</span><br><span class="line">    <span class="type">Response</span> <span class="variable">response</span> <span class="operator">=</span> okHttpClient.newCall(request).execute();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="建立WebSocket连接"><a href="#建立WebSocket连接" class="headerlink" title="建立WebSocket连接"></a>建立WebSocket连接</h3><p>OkHttpClient 可以直接发送WebSocket连接请求，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> url webSocket 链接地址</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> WebSocket <span class="title function_">webSocket</span><span class="params">(String url)</span> &#123;</span><br><span class="line">    <span class="type">Request</span> <span class="variable">request</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Request</span>.Builder()</span><br><span class="line">            .url(url)</span><br><span class="line">            .get()</span><br><span class="line">            .build();</span><br><span class="line"></span><br><span class="line">    <span class="type">OkHttpClient</span> <span class="variable">okHttpClient</span> <span class="operator">=</span> ClientUtils.getOkHttpClient();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> okHttpClient.newWebSocket(request, <span class="keyword">new</span> <span class="title class_">WebSocketListener</span>() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onOpen</span><span class="params">(WebSocket webSocket, Response response)</span> &#123;</span><br><span class="line">            <span class="built_in">super</span>.onOpen(webSocket, response);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onMessage</span><span class="params">(WebSocket webSocket, String text)</span> &#123;</span><br><span class="line">            <span class="built_in">super</span>.onMessage(webSocket, text);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onMessage</span><span class="params">(WebSocket webSocket, ByteString bytes)</span> &#123;</span><br><span class="line">            <span class="built_in">super</span>.onMessage(webSocket, bytes);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onClosing</span><span class="params">(WebSocket webSocket, <span class="type">int</span> code, String reason)</span> &#123;</span><br><span class="line">            <span class="built_in">super</span>.onClosing(webSocket, code, reason);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onClosed</span><span class="params">(WebSocket webSocket, <span class="type">int</span> code, String reason)</span> &#123;</span><br><span class="line">            <span class="built_in">super</span>.onClosed(webSocket, code, reason);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onFailure</span><span class="params">(WebSocket webSocket, Throwable t, Response response)</span> &#123;</span><br><span class="line">            <span class="built_in">super</span>.onFailure(webSocket, t, response);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>具体的OkHttpClent WebSocket 说明，参考文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/57a91bd2b68f">OkHttp3实现WebSocket连接</a></p>
+<h3 id="基本使用小结"><a href="#基本使用小结" class="headerlink" title="基本使用小结"></a>基本使用小结</h3><p>上面就是使用OkHttp进行网络请求的常用场景，总结下来就是：</p>
+<ol>
+<li>获取<code>OkHttpClient</code>实例（一般是单例模式）；</li>
+<li>构建<code>Request</code>，post请求需要先构建<code>RequestBody</code>；</li>
+<li>调用OkHttpClient的<code>newCall(Request request)</code>方法获取<code>Call</code>；</li>
+<li>获取Call对象后，<ol>
+<li>同步请求调用<code>Call.execute()</code>获取Response对象，并处理请求结果；</li>
+<li>异步请求调用<code>Call.enqueue(Callback callback)</code>，并在回调中处理结果；</li>
+</ol>
+</li>
+</ol>
+<h2 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h2><p>拦截器是OkHttpClient设计的精髓所在，它采用采用<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J180324.html">责任链模式</a>。责任链代码具体体现在如下地方：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// RealCall.java</span></span><br><span class="line">Response <span class="title function_">getResponseWithInterceptorChain</span><span class="params">()</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    List&lt;Interceptor&gt; interceptors = <span class="keyword">new</span> <span class="title class_">ArrayList</span>();</span><br><span class="line">    <span class="comment">// 添加一系列的拦截器</span></span><br><span class="line">      ...</span><br><span class="line">      <span class="comment">// 构造责任链</span></span><br><span class="line">    <span class="type">Chain</span> <span class="variable">chain</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RealInterceptorChain</span>(interceptors, (StreamAllocation)<span class="literal">null</span>, (HttpCodec)<span class="literal">null</span>, (RealConnection)<span class="literal">null</span>, <span class="number">0</span>, <span class="built_in">this</span>.originalRequest, <span class="built_in">this</span>, <span class="built_in">this</span>.eventListener, <span class="built_in">this</span>.client.connectTimeoutMillis(), <span class="built_in">this</span>.client.readTimeoutMillis(), <span class="built_in">this</span>.client.writeTimeoutMillis());</span><br><span class="line">      <span class="comment">// 开始责任链处理</span></span><br><span class="line">    <span class="type">Response</span> <span class="variable">response</span> <span class="operator">=</span> chain.proceed(<span class="built_in">this</span>.originalRequest);</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// RealInterceptorChain.java</span></span><br><span class="line"><span class="keyword">public</span> Response <span class="title function_">proceed</span><span class="params">(Request request, StreamAllocation streamAllocation, HttpCodec httpCodec,</span></span><br><span class="line"><span class="params">    RealConnection connection)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">  <span class="comment">// 一系列的检查，不合条件抛出异常</span></span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 重新构建责任链</span></span><br><span class="line">  <span class="type">RealInterceptorChain</span> <span class="variable">next</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RealInterceptorChain</span>(interceptors, streamAllocation, httpCodec,</span><br><span class="line">      connection, index + <span class="number">1</span>, request, call, eventListener, connectTimeout, readTimeout,</span><br><span class="line">      writeTimeout);</span><br><span class="line">  <span class="type">Interceptor</span> <span class="variable">interceptor</span> <span class="operator">=</span> interceptors.get(index);</span><br><span class="line">  <span class="comment">// 在intercept(next)调用后责任链开始执行</span></span><br><span class="line">  <span class="type">Response</span> <span class="variable">response</span> <span class="operator">=</span> interceptor.intercept(next);</span><br><span class="line">  <span class="comment">// 一系列的检查，不合条件抛出异常</span></span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> response;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>责任的传递是通过调用获取到的拦截器的<code>intercept(Chain chain)</code>方法，并在方法内部调用<code>Chain.proceed(Request request)</code>方法来实现的，最后一个拦截器<code>CallServerInterceptor</code>的<code>intercept(Chain chain)</code>方法中没有调用<code>proceed(Request request)</code>方法，说明任务到这个拦截器的处理工作完毕了。</p>
+<h3 id="拦截器的种类"><a href="#拦截器的种类" class="headerlink" title="拦截器的种类"></a>拦截器的种类</h3><p>要了解拦截器的种类，还是得看<code>RealCall</code>的<code>getResponseWithInterceptorChain()</code>方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Response <span class="title function_">getResponseWithInterceptorChain</span><span class="params">()</span> <span class="keyword">throw</span> IOException &#123;</span><br><span class="line">    List&lt;Interceptor&gt; interceptors = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    interceptors.addAll(client.interceptors());</span><br><span class="line">    interceptors.add(retryAndFollowUpInterceptor);</span><br><span class="line">    interceptors.add(<span class="keyword">new</span> <span class="title class_">BridgeInterceptor</span>(client.cookieJar()));</span><br><span class="line">    interceptors.add(<span class="keyword">new</span> <span class="title class_">CacheInterceptor</span>(client.internalCache()));</span><br><span class="line">    interceptors.add(<span class="keyword">new</span> <span class="title class_">ConnectInterceptor</span>(client));</span><br><span class="line">    <span class="keyword">if</span> (!forWebSocket) &#123;</span><br><span class="line">        interceptors.addAll(client.networkInterceptors());</span><br><span class="line">    &#125;</span><br><span class="line">    interceptors.add(<span class="keyword">new</span> <span class="title class_">CallServerInterceptor</span>(forWebSocket));  </span><br><span class="line"></span><br><span class="line">  ...</span><br><span class="line">  <span class="keyword">return</span> response</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>总结下责任链中各个节点拦截器的作用，如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>拦截器</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>应用拦截器</td>
+<td>拿到的是原始请求，可以添加一些自定义header、通用参数、参数加密、网关接入等等。</td>
+</tr>
+<tr>
+<td>RetryAndFollowUpInterceptor</td>
+<td>处理错误重试和重定向</td>
+</tr>
+<tr>
+<td>BridgeInterceptor</td>
+<td>应用层和网络层的桥接拦截器，主要工作是为请求添加cookie、添加固定的header，比如Host、Content-Length、Content-Type、User-Agent等等，然后保存响应结果的cookie，如果响应使用gzip压缩过，则还需要进行解压。</td>
+</tr>
+<tr>
+<td>CacheInterceptor</td>
+<td>缓存拦截器，如果命中缓存则不会发起网络请求。</td>
+</tr>
+<tr>
+<td>ConnectInterceptor</td>
+<td>连接拦截器，内部会维护一个连接池，负责连接复用、创建连接（三次握手等等）、释放连接以及创建连接上的socket流。</td>
+</tr>
+<tr>
+<td>networkInterceptors（网络拦截器）</td>
+<td>用户自定义拦截器，通常用于监控网络层的数据传输。</td>
+</tr>
+<tr>
+<td>CallServerInterceptor</td>
+<td>请求拦截器，在前置准备工作完成后，真正发起了网络请求。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="RetryAndFollowUpInterceptor"><a href="#RetryAndFollowUpInterceptor" class="headerlink" title="RetryAndFollowUpInterceptor"></a>RetryAndFollowUpInterceptor</h4><p>处理错误和重定向。核心方法是<code>followUpRequest(Response userResponse, Route route)</code>，该方法会根据返回的responseCode来进行相应的逻辑处理，最终得到相应的Request对象。这里主要看那些导致重试和重定向的responseCode：</p>
+<ul>
+<li>重试，<code>HTTP_CLIENT_TIMEOUT</code>和<code>HTTP_UNAVAILABLE</code>（重试一次）；</li>
+<li>重定向，<code>HTTP_MULT_CHOICE</code>、<code>HTTP_MOVED_PERM</code>、<code>HTTP_MOVED_TEMP</code>、<code>HTTP_SEE_OTHER</code>，会进行重定向的尝试；</li>
+</ul>
+<p>还有一个比较核心的点就是，该拦截器的intercept方法中，完成了<code>StreamAllocation</code>对象的创建，并将其值传递到了RealInterceptorChain中。</p>
+<h4 id="BridgeInterceptor"><a href="#BridgeInterceptor" class="headerlink" title="BridgeInterceptor"></a>BridgeInterceptor</h4><p>说明见上面的表格，需要注意的是，如果我们没有指定<code>Accept-Encoding: gzip</code>，OkHttpClient在Response的header中存在<code>Accept-Encoding: gzip</code>的情况下会默认帮我们处理Gzip压缩。<strong>但是</strong>如果我们制定了<code>Accept-Encoding: gzip</code>，则需要我们自己进行Response的Gzip压缩处理了。</p>
+<h4 id="CacheInterceptor"><a href="#CacheInterceptor" class="headerlink" title="CacheInterceptor"></a>CacheInterceptor</h4><p>为什么说命中缓存就不会发起网络请求呢？看看CacheInterceptor的Intercept(Chain chain)方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 命中了缓存，直接return了，此时没有执行责任链，即这次网络请求的任务已经完成了。所以此时不会再执行网络请求了，因为负责建立连接ConnectInterceptor和真正执行网络请求CallServerInterceptor的拦截器都没有执行。</span></span><br><span class="line"><span class="keyword">if</span> (networkRequest == <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> cacheResponse.newBuilder()</span><br><span class="line">        .cacheResponse(stripBody(cacheResponse))</span><br><span class="line">        .build();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">Response</span> <span class="variable">networkResponse</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    networkResponse = chain.proceed(networkRequest);</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="comment">// If we&#x27;re crashing on I/O or otherwise, don&#x27;t leak the cache body.</span></span><br><span class="line">    <span class="keyword">if</span> (networkResponse == <span class="literal">null</span> &amp;&amp; cacheCandidate != <span class="literal">null</span>) &#123;</span><br><span class="line">    closeQuietly(cacheCandidate.body());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>OkHttpClient 的缓存设计算法采用的是Lru，基于Okio实现（相当于基于依据Http的缓存设计思路，用Okio进行了实现）。关于OkHttpClient的缓存，打算单独分析。</p>
+<h4 id="ConnectInterceptor"><a href="#ConnectInterceptor" class="headerlink" title="ConnectInterceptor"></a>ConnectInterceptor</h4><p>拦截器作用于职责：内部会维护一个连接池，负责连接复用、创建连接（三次握手等等）、释放连接以及创建连接上的socket流。整个ConnectInterceptor的代码还是比较简洁的，但是主要的处理都封装到了<code>StreamAllocation</code>这个类中了。<code>StreamAllocation</code><br>建立连接的流程</p>
+<ol>
+<li><p><code>StreamAllocation</code>的<code>newStream(...)</code>；</p>
+</li>
+<li><p><code>StreamAllocation</code>的<code>findHealthyConnection(...)</code>，找到<code>RealConnection</code>；</p>
+</li>
+<li><p><code>findHealthyConnection(...)</code>的while(true)循环中调用<code>findConnection(...)</code>，直到找到了一个<strong>健康的、可用的</strong><code>RealConnection</code>才退出循环；</p>
+<ol>
+<li><code>StreamAllocation</code>本身可以标记找到的RealConnection，方便下次查找；</li>
+<li>先通过当前请求地址，从ConnectionPool中找；</li>
+<li>通过全局路由路径，从ConnectionPool中找；</li>
+<li>都找不到，就要新建一个连接，完成TCP+TLS了（）</li>
+</ol>
+</li>
+<li><p>调用RealConnection的connect(…)方法，里面会根据情况调用<code>connectTunnel</code>和<code>connectSocket</code>，这个过程是阻塞的（一个while(true)循环，但最终都是调用<code>connectSocket</code>，方法内部会调用不同平台的<code>connectSocket</code>方法，创建成功后，将创建出来的RealConnection放入ConnectionPool。而<strong>三次握手</strong>也就发生在这个建立socket连接的过程中了，因此OkHttp的三次握手实现时依赖于socket的。</p>
+<blockquote>
+<p>了解三次握手</p>
+</blockquote>
+</li>
+</ol>
+<p>ConnectionPool内部有一个线程池，用来定期清理尝时间不用的RealConnection（毕竟RealConnection是系统资源）</p>
+<h4 id="CallServerInterceptor"><a href="#CallServerInterceptor" class="headerlink" title="CallServerInterceptor"></a>CallServerInterceptor</h4><p>真正发起网络请求的地方</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ol>
+<li><p><code>addInterceptor(Interceptor interceptor)</code>和<code>addNetworkInterceptor(Interceptor interceptor)</code>区别？</p>
+<blockquote>
+<ol>
+<li>目的：前者是添加应用拦截器（此时请求还未真正发起，是一些与处理过程），后者是添加网络拦截器，它位于<code>ConnectInterceptor</code>和<code>CallServerIntercptor</code>之间（此时网络链路已经准备好，只带请求发送了）</li>
+<li>执行时机：前者最先执行，后者在链接建立之后，请求发送之前；</li>
+<li>调用：应用拦截器和网络拦截器的proceed(Chain chain)</li>
+</ol>
+</blockquote>
+</li>
+<li><p>OkHttpClient 的Dispatcher是如何管理三个请求的队列的?<br>首先这三个队列分别是：正在运行的同步双端队列（runningSyncCalls）、准备就绪的异步双端队列（readyAsyncCalls）、正在运行的异步双端队列（runningAsyncCalls）</p>
+</li>
+</ol>
+<p><code>client.dispatcher().executed(this)</code>干了什么呢？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title function_">executed</span><span class="params">(RealCall call)</span> &#123;</span><br><span class="line">    runningSyncCalls.add(call);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>将RealCall对象加入到正在运行的同步队列中，这样在<code>getResponseWithInterceptorChain()</code>调用结束得到Response对象后，最终运行finally块时，调用<code>client.dispatcher().finished(this);</code>，那么看看这个方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> <span class="title function_">finished</span><span class="params">(RealCall call)</span> &#123;</span><br><span class="line">    finished(runningSyncCalls, call);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> &lt;T&gt; <span class="keyword">void</span> <span class="title function_">finished</span><span class="params">(Deque&lt;T&gt; calls, T call)</span> &#123;</span><br><span class="line">    Runnable idleCallback;</span><br><span class="line">    <span class="keyword">synchronized</span> (<span class="built_in">this</span>) &#123;</span><br><span class="line">        <span class="comment">// 移除之前加入的同步请求</span></span><br><span class="line">        <span class="keyword">if</span> (!calls.remove(call)) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">AssertionError</span>(<span class="string">&quot;Call wasn&#x27;t in-flight!&quot;</span>);</span><br><span class="line">        idleCallback = <span class="built_in">this</span>.idleCallback;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 尝试在readyAsynCall队列中获取待运行的任务，然后加入到runningAsynCall队列中运行</span></span><br><span class="line">    <span class="type">boolean</span> <span class="variable">isRunning</span> <span class="operator">=</span> promoteAndExecute();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!isRunning &amp;&amp; idleCallback != <span class="literal">null</span>) &#123;</span><br><span class="line">      idleCallback.run();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 从就绪的异步任务中按规则取出一定数量异步任务，加入到可运行的异步任务队列中，然后将运行中的异步任务丢该线程池运行</span></span><br><span class="line"><span class="comment"> * 这里的获取规则如下：</span></span><br><span class="line"><span class="comment"> * 1. 当前运行的异步任务书超过最大请求数时，直接break；</span></span><br><span class="line"><span class="comment"> * 2. 当前的异步任务超过美国host的最大限制是，直接跳过；</span></span><br><span class="line"><span class="comment"> * 这就说明了一个问题：随缘OkHttpClient采用的Dispatcher中的线程池核心线程为0，工作线程为Integer.MAX_VALUE，但通过 maxRequests （默认值为64）进行了线程数量的控制，不至于因线程过多导致</span></span><br><span class="line"><span class="comment"> * OOM的发生</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="type">boolean</span> <span class="title function_">promoteAndExecute</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">assert</span> (!Thread.holdsLock(<span class="built_in">this</span>));</span><br><span class="line"></span><br><span class="line">    List&lt;AsyncCall&gt; executableCalls = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    <span class="type">boolean</span> isRunning;</span><br><span class="line">    <span class="keyword">synchronized</span> (<span class="built_in">this</span>) &#123;</span><br><span class="line">      <span class="keyword">for</span> (Iterator&lt;AsyncCall&gt; i = readyAsyncCalls.iterator(); i.hasNext(); ) &#123;</span><br><span class="line">        <span class="type">AsyncCall</span> <span class="variable">asyncCall</span> <span class="operator">=</span> i.next();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (runningAsyncCalls.size() &gt;= maxRequests) <span class="keyword">break</span>; <span class="comment">// Max capacity.</span></span><br><span class="line">        <span class="keyword">if</span> (runningCallsForHost(asyncCall) &gt;= maxRequestsPerHost) <span class="keyword">continue</span>; <span class="comment">// Host max capacity.</span></span><br><span class="line"></span><br><span class="line">        i.remove();</span><br><span class="line">        executableCalls.add(asyncCall);</span><br><span class="line">        runningAsyncCalls.add(asyncCall);</span><br><span class="line">      &#125;</span><br><span class="line">      isRunning = runningCallsCount() &gt; <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>, size = executableCalls.size(); i &lt; size; i++) &#123;</span><br><span class="line">      <span class="type">AsyncCall</span> <span class="variable">asyncCall</span> <span class="operator">=</span> executableCalls.get(i);</span><br><span class="line">      asyncCall.executeOn(executorService());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> isRunning;`</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p><code>getResponseWithInterceptorChain()</code>如何实现递归调用的？<br>先看<code>getResponseWithInterceptorChain()</code>代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">Response <span class="title function_">getResponseWithInterceptorChain</span><span class="params">()</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line"> <span class="comment">// Build a full stack of interceptors.</span></span><br><span class="line"> List&lt;Interceptor&gt; interceptors = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line"> interceptors.addAll(client.interceptors());</span><br><span class="line"> interceptors.add(retryAndFollowUpInterceptor);</span><br><span class="line"> interceptors.add(<span class="keyword">new</span> <span class="title class_">BridgeInterceptor</span>(client.cookieJar()));</span><br><span class="line"> interceptors.add(<span class="keyword">new</span> <span class="title class_">CacheInterceptor</span>(client.internalCache()));</span><br><span class="line"> interceptors.add(<span class="keyword">new</span> <span class="title class_">ConnectInterceptor</span>(client));</span><br><span class="line"> <span class="keyword">if</span> (!forWebSocket) &#123;</span><br><span class="line">   interceptors.addAll(client.networkInterceptors());</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="comment">// 注意：这个interceptors的列表中最后都会添加一个 CallServerInterceptor ，这个 CallServerInterceptor 的Intercept方法中是不调用 Chain.proceed(Request request)方法的。</span></span><br><span class="line"> <span class="comment">// 递归就是通过不停的调用Chain.process(Chain chain)方法的。相当于CallServerinterceptor是递归的终止条件。</span></span><br><span class="line"> interceptors.add(<span class="keyword">new</span> <span class="title class_">CallServerInterceptor</span>(forWebSocket));</span><br><span class="line"></span><br><span class="line"> Interceptor.<span class="type">Chain</span> <span class="variable">chain</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RealInterceptorChain</span>(interceptors, <span class="literal">null</span>, <span class="literal">null</span>, <span class="literal">null</span>, <span class="number">0</span>,</span><br><span class="line">     originalRequest, <span class="built_in">this</span>, eventListener, client.connectTimeoutMillis(),</span><br><span class="line">     client.readTimeoutMillis(), client.writeTimeoutMillis());</span><br><span class="line"></span><br><span class="line"> <span class="type">Response</span> <span class="variable">response</span> <span class="operator">=</span> chain.proceed(originalRequest);</span><br><span class="line"> <span class="keyword">if</span> (retryAndFollowUpInterceptor.isCanceled()) &#123;</span><br><span class="line">   closeQuietly(response);</span><br><span class="line">   <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IOException</span>(<span class="string">&quot;Canceled&quot;</span>);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> response;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>所以递归是不断的调用<code>RealInterceptorChain</code>的<code>proceed(Request request)</code>方法的，而递归终止的条件就是最终会走到<code>CallServerInterceptor</code>的intercept(Chain chain)方法，而该方法不会再调用Chain.proceed(Request request)</p>
+</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>至此OkHttpClient的基本内容就介绍完毕了，OkHttpClient十分强大强大，</p>
+<ul>
+<li>从设计模式角度，如对Http1和Http2的支持（采用的是策略模式），拦截器的处理（采用的是责任链模式），各种对象的创建如OkHttpClient、Request、Response（采用的Builder模式）</li>
+<li>从同步处理的角度，ConnectionPool中的同步处理、三个请求队列的操作处理；</li>
+<li>从线程池的角度，有Dispatcher（负责请求的分发调度）、ConnectionPool中的线程池（负责定期按规则清理不需要连接对象）</li>
+<li>从缓存设计的角度，采用Okio将http的缓存策略实现，并通过LRU算法（DiskLruCache）来维护缓存的更新。</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A211010.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/A211010.html" itemprop="url">Android 开源库分析——图片加载库的比较与封装</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-10-13T00:06:46+08:00">2023-10-13</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/%E5%BC%80%E6%BA%90%E5%BA%93%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">开源库分析</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>本文链接：<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A211010.html">https://rainmonth.github.io/posts/A211010.html</a></p>
+</blockquote>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>图片加载时App开发过程中很重要的应用场景，几乎任何应用都离不开图片的加载展示，本文先分析主流的图片加载框架，对其进行比较，然后在此基础上利用Java设计模式封装一个可以灵活配置、实时切换图片加载内核的图片加载框架。目前，主流的图片加载库有：<a target="_blank" rel="noopener" href="https://github.com/nostra13/Android-Universal-Image-Loader">UniversalImageLoader</a>，<a target="_blank" rel="noopener" href="https://github.com/square/picasso">Picasso</a>，<a target="_blank" rel="noopener" href="https://github.com/bumptech/glide">Glide</a>，<a target="_blank" rel="noopener" href="https://www.fresco-cn.org/">Fresco</a>（按推出时间排序）。</p>
+<h3 id="UniversalImageLoader"><a href="#UniversalImageLoader" class="headerlink" title="UniversalImageLoader"></a><a target="_blank" rel="noopener" href="https://github.com/nostra13/Android-Universal-Image-Loader">UniversalImageLoader</a></h3><h3 id="Picasso"><a href="#Picasso" class="headerlink" title="Picasso"></a><a target="_blank" rel="noopener" href="https://github.com/square/picasso">Picasso</a></h3><h3 id="Glide"><a href="#Glide" class="headerlink" title="Glide"></a><a target="_blank" rel="noopener" href="https://github.com/bumptech/glide">Glide</a></h3><ul>
+<li><code>RequestManager</code>，</li>
+<li><code>RequestBuilder</code>，</li>
+<li><code>GlideBuilder</code>，</li>
+<li><code>Target</code>，</li>
+</ul>
+<h3 id="Fresco"><a href="#Fresco" class="headerlink" title="Fresco"></a><a target="_blank" rel="noopener" href="https://www.fresco-cn.org/">Fresco</a></h3><h2 id="比较维度"><a href="#比较维度" class="headerlink" title="比较维度"></a>比较维度</h2><ol>
+<li>异步加载机制</li>
+<li>缓存设计</li>
+<li>格式支持</li>
+<li>显示效果</li>
+<li>其他（包大小、支持Android版本）</li>
+<li>根据应用场景进行库的选择</li>
+</ol>
+<p>疑难杂症</p>
+<ol>
+<li>大图加载</li>
+</ol>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_34203494/article/details/54292098">图片加载库的比较和选型</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/a4caabfd567d">Android 图片加载库如何封装</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A211027.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -557,1465 +2238,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A191224.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/A191224.html" itemprop="url">Android 开源库分析——ExoPlayer封装的音视频播放器</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-10-13T00:06:46+08:00">2023-10-13</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/%E5%BC%80%E6%BA%90%E5%BA%93%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">开源库分析</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>本文链接：<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191224.html">https://rainmonth.github.io/posts/A191224.html</a></p>
-<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2></blockquote>
-<h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><p>需要有以下功能</p>
-<ul>
-<li>要有良好的可移植性</li>
-<li>基本的播放控制（播放、暂停、拖动、播放状态判断、播放模式选择）</li>
-<li>支持列表播放</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A191130.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/A191130.html" itemprop="url">Android 开源库分析——ExoPlayer的Timeline</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-10-13T00:06:46+08:00">2023-10-13</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/%E5%BC%80%E6%BA%90%E5%BA%93%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">开源库分析</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>本文链接：<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191130.html">https://rainmonth.github.io/posts/A191130.html</a></p>
-</blockquote>
-<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>刚开始分析ExoPlayer源码时，对于Timeline的概念不是很理解，这几天重新看了下，这里对Timeline及其相关概念做个简单分析</p>
-<h2 id="Timeline"><a href="#Timeline" class="headerlink" title="Timeline"></a>Timeline</h2><p>Timeline是一种数据结构，可以灵活的代表各种媒体的结构，Timeline的实例不可修改，对于直播流媒体，Timeline提供的是当前状态的快照。</p>
-<p>Timeline由Timeline.Period和Timeline.Window组成。Period是Media逻辑上的代表（可以是单个的媒体文件、也可以是包含掺入广告的播放信息的插入广告的媒体文件）。Window可以横跨多个Period，定义了默认的播放开始位置，所在Period可以播放的范围。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/A191130.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A191206.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/A191206.html" itemprop="url">Android 开源库分析——IjkPlayer简介</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-10-13T00:06:46+08:00">2023-10-13</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>本文链接：<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A191206.html">https://rainmonth.github.io/posts/A191206.html</a></p>
-<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>结合源码，分析下ijkplayer的初始化流程，并对这个过程中的一些关键点（如消息循环、线程创建C层和Java层的通信几个方面来）做了一个详细分析。</p>
-</blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/A191206.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A210219.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/A210219.html" itemprop="url">Android基础——View 知识点</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-10-13T00:06:46+08:00">2023-10-13</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/%E6%9D%82%E8%B0%88/" itemprop="url" rel="index"><span itemprop="name">杂谈</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A210219.html">https://rainmonth.github.io/posts/A210219.html</a></p>
-</blockquote>
-<h2 id="View-大小相关"><a href="#View-大小相关" class="headerlink" title="View 大小相关"></a>View 大小相关</h2><h3 id="getWidth-与getMeasuredWidth-的区别"><a href="#getWidth-与getMeasuredWidth-的区别" class="headerlink" title="getWidth()与getMeasuredWidth()的区别"></a><code>getWidth()</code>与<code>getMeasuredWidth()</code>的区别</h3><blockquote>
-<p>View 的<code>width</code>和<code>height</code>、<code>measuredWidth</code>和<code>measuredHeight</code>的意义，分别的使用场景和赋值时机？</p>
-</blockquote>
-<p><code>getWidth()</code>代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="type">int</span> <span class="title function_">getWidth</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> mRight - mLeft;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>getMeasuredWidth()代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="type">int</span> <span class="title function_">getMeasuredWidth</span><span class="params">()</span> &#123;</span><br><span class="line">  <span class="comment">// mMeasuredWidth在onMeasure调用过程中赋值</span></span><br><span class="line">    <span class="keyword">return</span> mMeasuredWidth &amp; MEASURED_SIZE_MASK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>getWidth()</code>的值在<code>layout(int l, int t, int r, int b)</code>执行完成后真正确定;</li>
-<li><code>getMeasureWidth()</code>的值是在<code>onMeasure(int widthMeasureSpec, int heightMeasureSpec)</code>中的<code>setMeasuredDimension(int measureWidth, int measrueHeight)</code>执行完成后确定的，<code>mMeasureWidth</code>本身是包含测量模式和测量的具体值的，但在调用<code>getMeasureWidth()</code>后，进行了掩码操作，将高两位移除了；</li>
-</ul>
-<p>结论：<strong>子View最终的位置是在onLayout 中确定的，但子View的宽高是在onMeasure中确定的</strong></p>
-<h2 id="MeasureSpec相关"><a href="#MeasureSpec相关" class="headerlink" title="MeasureSpec相关"></a><code>MeasureSpec</code>相关</h2><blockquote>
-<p>到底是个啥？各种值的含义？mode和size分别代表什么意思？</p>
-</blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/cecd0de7ec27">MeasureSpec详解</a></p>
-<p><code>MeasureSpec</code>表示的是View的测量结果，用一个int值表示（int值四个字节）其中高两位用来表示mode（测量模式），低30位用来表示size（测量的值），测量模式有三种：</p>
-<ul>
-<li><code>UNSPECIFIED</code>：不对View大小做限制，如：<code>ListView</code>，<code>ScrollView</code></li>
-<li><code>EXACTLY</code>：确切的大小，如：100dp或者<code>march_parent</code></li>
-<li><code>AT_MOST</code>：大小不可超过某数值，如：<code>wrap_content</code></li>
-</ul>
-<p>着重看一下ViewGroup的<code>getChildMeasureSpec(int spec, int padding, int childDimension)</code>方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> spec The requirements for this view</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> padding padding</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> childDimension How big the child wants to be in the current</span></span><br><span class="line"><span class="comment"> *        dimension</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">getChildMeasureSpec</span><span class="params">(<span class="type">int</span> spec, <span class="type">int</span> padding, <span class="type">int</span> childDimension)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">specMode</span> <span class="operator">=</span> MeasureSpec.getMode(spec);</span><br><span class="line">    <span class="type">int</span> <span class="variable">specSize</span> <span class="operator">=</span> MeasureSpec.getSize(spec);</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> <span class="variable">size</span> <span class="operator">=</span> Math.max(<span class="number">0</span>, specSize - padding);</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> <span class="variable">resultSize</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">resultMode</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">switch</span> (specMode) &#123;</span><br><span class="line">    <span class="comment">// Parent has imposed an exact size on us</span></span><br><span class="line">    <span class="keyword">case</span> MeasureSpec.EXACTLY:</span><br><span class="line">        <span class="keyword">if</span> (childDimension &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            resultSize = childDimension;</span><br><span class="line">            resultMode = MeasureSpec.EXACTLY;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (childDimension == LayoutParams.MATCH_PARENT) &#123;</span><br><span class="line">            <span class="comment">// Child wants to be our size. So be it.</span></span><br><span class="line">            resultSize = size;</span><br><span class="line">            resultMode = MeasureSpec.EXACTLY;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (childDimension == LayoutParams.WRAP_CONTENT) &#123;</span><br><span class="line">            <span class="comment">// Child wants to determine its own size. It can&#x27;t be</span></span><br><span class="line">            <span class="comment">// bigger than us.</span></span><br><span class="line">            resultSize = size;</span><br><span class="line">            resultMode = MeasureSpec.AT_MOST;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Parent has imposed a maximum size on us</span></span><br><span class="line">    <span class="keyword">case</span> MeasureSpec.AT_MOST:</span><br><span class="line">        <span class="keyword">if</span> (childDimension &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment">// Child wants a specific size... so be it</span></span><br><span class="line">            resultSize = childDimension;</span><br><span class="line">            resultMode = MeasureSpec.EXACTLY;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (childDimension == LayoutParams.MATCH_PARENT) &#123;</span><br><span class="line">            <span class="comment">// Child wants to be our size, but our size is not fixed.</span></span><br><span class="line">            <span class="comment">// Constrain child to not be bigger than us.</span></span><br><span class="line">            resultSize = size;</span><br><span class="line">            resultMode = MeasureSpec.AT_MOST;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (childDimension == LayoutParams.WRAP_CONTENT) &#123;</span><br><span class="line">            <span class="comment">// Child wants to determine its own size. It can&#x27;t be</span></span><br><span class="line">            <span class="comment">// bigger than us.</span></span><br><span class="line">            resultSize = size;</span><br><span class="line">            resultMode = MeasureSpec.AT_MOST;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Parent asked to see how big we want to be</span></span><br><span class="line">    <span class="keyword">case</span> MeasureSpec.UNSPECIFIED:</span><br><span class="line">        <span class="keyword">if</span> (childDimension &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment">// Child wants a specific size... let him have it</span></span><br><span class="line">            resultSize = childDimension;</span><br><span class="line">            resultMode = MeasureSpec.EXACTLY;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (childDimension == LayoutParams.MATCH_PARENT) &#123;</span><br><span class="line">            <span class="comment">// Child wants to be our size... find out how big it should</span></span><br><span class="line">            <span class="comment">// be</span></span><br><span class="line">            resultSize = View.sUseZeroUnspecifiedMeasureSpec ? <span class="number">0</span> : size;</span><br><span class="line">            resultMode = MeasureSpec.UNSPECIFIED;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (childDimension == LayoutParams.WRAP_CONTENT) &#123;</span><br><span class="line">            <span class="comment">// Child wants to determine its own size.... find out how</span></span><br><span class="line">            <span class="comment">// big it should be</span></span><br><span class="line">            resultSize = View.sUseZeroUnspecifiedMeasureSpec ? <span class="number">0</span> : size;</span><br><span class="line">            resultMode = MeasureSpec.UNSPECIFIED;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//noinspection ResourceType</span></span><br><span class="line">    <span class="keyword">return</span> MeasureSpec.makeMeasureSpec(resultSize, resultMode);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>针对以上ViewGroup的getChildMeasureSpec代码做个小结：</p>
-<ol>
-<li>不管父View是何模式，若子View有<strong>确切数值</strong>，则子View大小就是其本身大小，且mode是<code>EXACTLY</code></li>
-<li>若子View是<code>match_parent</code>，则模式与父View相同，且大小同父View（若父View是<code>UNSPECIFIED</code>，则子View大小为0）</li>
-<li>若子View是<code>wrap_content</code>，则模式是AT_MOST，大小同父View，表示不可超过父View大小（若父View是<code>UNSPECIFIED</code>，则子View大小为0）</li>
-</ol>
-<ol>
-<li><p>View的一般绘制流程是什么？</p>
-<blockquote>
-<p>measure-&gt;layout-&gt;draw</p>
-</blockquote>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/androidtalent/article/details/80465501">源码分析自定义ViewGroup onDraw方法无效</a></p>
-</li>
-</ol>
-<h2 id="事件分发"><a href="#事件分发" class="headerlink" title="事件分发"></a>事件分发</h2><p>事件分发机制（参考<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/238d1b753e64">一文读懂Android View事件分发机制</a>）</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">dispatchTouchEvent</span><span class="params">(MotionEvent ev)</span> &#123;</span><br><span class="line">  <span class="type">boolean</span> <span class="variable">consume</span> <span class="operator">=</span> <span class="literal">false</span>;<span class="comment">//事件是否被消费</span></span><br><span class="line">  <span class="keyword">if</span> (onInterceptTouchEvent(ev))&#123;<span class="comment">//调用onInterceptTouchEvent判断是否拦截事件</span></span><br><span class="line">    consume = onTouchEvent(ev);<span class="comment">//如果拦截则调用自身的onTouchEvent方法</span></span><br><span class="line">  &#125; <span class="keyword">else</span>&#123;</span><br><span class="line">    consume = child.dispatchTouchEvent(ev);<span class="comment">//不拦截调用子View的dispatchTouchEvent方法</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> consume;<span class="comment">//返回值表示事件是否被消费，true事件终止，false调用父View的onTouchEvent方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol>
-<li>RecyclerView中嵌套横向的RecyclerView，外层RecyclerView竖直滑动时，内层的不能保持原来的位置</li>
-<li>RecyclerView的PagerSnapHelper的用法</li>
-<li>ViewPager直接调用setCurrentItem，不触发<code>ViewPager.OnPageChangeListener</code>的<code>onPageScrollStateChanged</code>，但触发<code>onPageSelected</code></li>
-<li>子View最终的位置是在onLayout 中确定的，但子View的宽高是在onMeasure中确定的</li>
-<li>ViewPager的PageTransform效果在调用Adapter的notifyDataChanged方法后会失效，需要重新setAdapter</li>
-<li>ViewPager中显示单独的View时，调用notifyDataChange时View里面的内容不会更，原因是ViewPager的Adapter被设计成在其显示的Item增加删除时起作用，即<code>instantiateItem</code>和<code>destroyItem</code>两个方法</li>
-</ol>
-<blockquote>
-<p>这个时候可以重写Adapter的getItemPostion方法，让其返回POSITION_NONE（该方法默认放回UNCHANGED，但这个时候需要自己解决显示View列表的缓存问题</p>
-<p>如果不解决，那么ViewPager中的View就会越来越多</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A220131.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/A220131.html" itemprop="url">Android 基础——Canvas</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-10-13T00:06:46+08:00">2023-10-13</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A220131.html">https://rainmonth.github.io/posts/A220131.html</a></p>
-</blockquote>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yongdaimi/p/13711119.html">Canvas drawText() 文本居中</a></li>
-</ul>
-<p>自定义View永远逃不了一个话题，就时View的绘制，而View的绘制就逃不了要同今天的主角——Canvas来打交道。</p>
-<p>Canvas控制着view绘制相关的所有调用，也就是说，view上显示的元素都需要通过Canvas调用形影的drawXX方法来绘制出来，当然要想完成View的绘制，需要一下四要素：</p>
-<ol>
-<li>一个Bitmap来存储绘制的像素对象；</li>
-<li>一个Canvas来控制draw相关方法调用（将内容像素绘制到1中的Bitmap中去）；</li>
-<li>一个基础的绘制元素（比如Rect、text、Path、Bitmap等）；</li>
-<li>用来进行绘制的画笔Paint；</li>
-</ol>
-<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><h3 id="绘制操作"><a href="#绘制操作" class="headerlink" title="绘制操作"></a>绘制操作</h3><p>Canvas可以通过一系列的<code>drawXXX</code>方法来进行基本元素的绘制，下面进行简单说明：</p>
-<ul>
-<li>drawArc，画弧；</li>
-<li>drawARGB，将Canvas内部维护的multable Bitmap涂色；</li>
-<li>drawBitmap,  绘制Bitmap；</li>
-<li>drawCircle，绘制圆形；</li>
-<li>drawColor，以指定的混合模式为Canvas涂色（默认<code>SRC_OVER</code>混合模式)；</li>
-<li>drawline(s)，绘制线段或者线段组；</li>
-<li>drawOval，绘制椭圆；</li>
-<li>drawPaint，用指定的画笔填充 Canvas内部的Bitmap，等同于用画笔绘制一个Canvas大小的矩形，但是drawPaint效率更高；</li>
-<li>drawPatch，绘制.9图片；</li>
-<li>drawPath，绘制路径，非常重要；</li>
-<li>drawPoint(s)，绘制一个或多个点；</li>
-</ul>
-<h3 id="变换操作"><a href="#变换操作" class="headerlink" title="变换操作"></a>变换操作</h3><p>Canvas的变化操作主要包括：平移、缩放、旋转、错切，分别对应一下方法：</p>
-<ul>
-<li><code>translate(float dx, float dy)</code>，canvas上的对象X、Y分别都平移 dx 和 dy；</li>
-<li><code>scale(float sx, float sy)</code>，canvas上的对象X、Y分别都乘以 sx 和 sy；</li>
-<li><code>rotate(float degrees, float px, float py)</code></li>
-<li><code>skew(float x, float y)</code></li>
-<li><code>concat(Matrix matrix)</code>，将matrix 矩阵变换应用到 canvas的所有对象上；</li>
-</ul>
-<h3 id="这里顺便说下Matrix"><a href="#这里顺便说下Matrix" class="headerlink" title="这里顺便说下Matrix"></a>这里顺便说下Matrix</h3><p><code>Matrix</code>是一个3*3的矩阵（<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/269245898">如何在Markdown中表示矩阵</a>），</p>
-<script type="math/tex; mode=display">
-\begin{Bmatrix}
-scaleX&skewX&transX\\
-scaleY&skewY&transY\\
-persp0&persp1&persp2\\
-\end{Bmatrix}</script><p>矩阵各个值的含义：</p>
-<ul>
-<li><p>scaleX(Y)、skewX(Y)、transX(Y)，分别代表X、Y轴上相应的 scale（缩放）、skew（错切）、translate（平移）操作；</p>
-</li>
-<li><p>persp0、persp1、persp2 这三个值和透视有关，一般很少用到；</p>
-</li>
-</ul>
-<p>注意：</p>
-<ol>
-<li><p>如果需要 通过矩阵 进行旋转造作，需要同时修改scaleX、skewX、scaleY、skewY。</p>
-</li>
-<li><p><code>pre</code>开头的表示要进行 矩阵的 <strong>左乘</strong>， <code>post</code>开头的表示要进行 矩阵的 <strong>右乘</strong></p>
-</li>
-</ol>
-<h3 id="状态栈管理操作"><a href="#状态栈管理操作" class="headerlink" title="状态栈管理操作"></a>状态栈管理操作</h3><h3 id="clip操作"><a href="#clip操作" class="headerlink" title="clip操作"></a>clip操作</h3><h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ol>
-<li><p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A240228.html">通用功能——矩阵的操作</a>（todo）；</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A240229.html">通用功能——Markdown常用格式说明</a>；</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/U230807.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/U230807.html" itemprop="url">Unity基础——使用原生的基本物体创建项目</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-08-07T00:00:00+08:00">2023-08-07</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Unity/" itemprop="url" rel="index"><span itemprop="name">Unity</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/U230803.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/U230803.html" itemprop="url">Unity官方教程7——3D Game Kit学习记录</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-08-03T00:00:00+08:00">2023-08-03</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Unity/" itemprop="url" rel="index"><span itemprop="name">Unity</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>官方教程地址：<a target="_blank" rel="noopener" href="https://learn.unity.com/project/zi-yuan-guan-li-qi-3d-you-xi-tao-jian">3D Game Kit</a></p>
-<h2 id="创建场景"><a href="#创建场景" class="headerlink" title="创建场景"></a>创建场景</h2><p>资源包中，提供了一个菜单Kit Tools，点击该菜单，然后选择Create New Scece就可以创建一个包含了主角Ellen和地面的简单场景了。</p>
-<blockquote>
-<p>注意：Unity可以自定义编辑器，官方出的Game Kit，都通过代码方式，对编辑器进行了修改，添加了好多功能菜单，这就是为什么这个3D Game Kit为什么说不用编码也能开始游戏设计的原因，因为需要编码的部分都被“组件化”了，只需要利用已经封装好的功能</p>
-</blockquote>
-<p>可以通过WASD控制角色的移动，空格控制跳跃，鼠标控制摄像机的视角，这里需要分析下这里的代码实现：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. WASD控制角色的移动很好实现，通过InputManager的GetAxis来获取相应的轴，然后进行位移即可；</span><br><span class="line">2. 空格键控制跳跃，同样也是捕获空格键按下事件，然后进行跳跃相关操作即可。跳跃涉及到一下几点：</span><br><span class="line">2.1 跳跃过程中的位移实现（需进一步了解）；</span><br><span class="line">2.2 跳跃过程中角色的动画实现（需进一步了解）；</span><br></pre></td></tr></table></figure>
-<h2 id="使用预制件"><a href="#使用预制件" class="headerlink" title="使用预制件"></a>使用预制件</h2><p>Game Kit提供了很多预制件，有可交互的，也有不可交互的，对于这些预制件，可以拖动到场景中，然后看看他都有哪些Component组成，在具体看看哪些脚本组件的具体实现代码。</p>
-<h2 id="ProBuilder的使用"><a href="#ProBuilder的使用" class="headerlink" title="ProBuilder的使用"></a>ProBuilder的使用</h2><p>ProBuilder是Unity自带的建模工具。参考链接：</p>
-<ol>
-<li><a target="_blank" rel="noopener" href="https://unity.com/cn/features/probuilder">Unity官方ProBuilder介绍</a></li>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/441858743">Unity建模工具ProBuilder，可提引擎内实现白盒关卡</a></li>
-</ol>
-<h2 id="PolyBrush的使用"><a href="#PolyBrush的使用" class="headerlink" title="PolyBrush的使用"></a>PolyBrush的使用</h2>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A230407.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/A230407.html" itemprop="url">Android 控件——一个示例展示View的事件处理机制</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-04-07T00:00:00+08:00">2023-04-07</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A230330.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/A230330.html" itemprop="url">Flutter——Android开发基础</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-03-30T00:00:00+08:00">2023-03-30</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Flutter/" itemprop="url" rel="index"><span itemprop="name">Flutter</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Flutter——Android开发基础"><a href="#Flutter——Android开发基础" class="headerlink" title="Flutter——Android开发基础"></a>Flutter——Android开发基础</h1><p>先看看官方给Android开发者的指南</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://flutter.cn/docs/get-started/flutter-for/android-devs">给 Android 开发者的 Flutter 指南</a></li>
-<li><a target="_blank" rel="noopener" href="https://flutter.cn/docs/get-started/flutter-for/declarative">声明式UI介绍</a></li>
-<li><a target="_blank" rel="noopener" href="https://dart.cn/overview">Dart概览</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot; aria-label&#x3D;&quot;上一页&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/5/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot; aria-label&#x3D;&quot;下一页&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/3/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot; aria-label&#x3D;&quot;上一页&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/5/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot; aria-label&#x3D;&quot;下一页&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -2058,7 +2285,7 @@ persp0&persp1&persp2\\
                 
                   <a href="/archives/%7C%7C%20archive">
                 
-                    <span class="site-state-item-count">206</span>
+                    <span class="site-state-item-count">216</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2305,7 +2532,7 @@ persp0&persp1&persp2\\
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
   <span class="with-love" id="animate"> 
     <i class="fa fa-user"></i>
   </span>

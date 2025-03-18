@@ -310,7 +310,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/F2102192.html">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/J210611.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -329,7 +329,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/posts/F2102192.html" itemprop="url">小白学理财——股票仓位管理</a></h1>
+                <a class="post-title-link" href="/posts/J210611.html" itemprop="url">Java 设计模式10——外观模式</a></h1>
         
 
         <div class="post-meta">
@@ -341,7 +341,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-19T00:00:00+08:00">2021-02-19</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-06-11T23:10:10+08:00">2021-06-11</time>
             
 
             
@@ -362,14 +362,1378 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/%E7%90%86%E8%B4%A2/" itemprop="url" rel="index"><span itemprop="name">理财</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
 
                 
                 
                   ， 
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/%E7%90%86%E8%B4%A2/%E8%82%A1%E7%A5%A8/" itemprop="url" rel="index"><span itemprop="name">股票</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index"><span itemprop="name">设计模式</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="模式定义"><a href="#模式定义" class="headerlink" title="模式定义"></a>模式定义</h2><p>外观模式，结构型模式，隐藏系统的复杂性，并向客户端提供了一个客户端可以访问系统的接口。通过这个接口来向客户端隐藏系统内部的复杂性。简单来说，就是通过一个类来讲复杂系统的访问简化，使得客户端只用通过这个类来访问（通常是方法调用）系统，而无需关系系统该功能的具体实现。</p>
+<h2 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h2><p>现在有一个绘图系统，可以绘制圆形、长方形、三角形，现在有一个只认识几个字的小白，要让他使用系统，我们就要创建一个小白页面，告诉他按那个可以画圆形，按哪个可以画长方形，这样这个小白在使用系统时，只需要简单的点击界面上的几个按钮就可以使用绘图系统，根本不需要掌握系统到底是则呢实现的。我的提供的这个小白页面就是系统功能的抽象外观。具体实现如下：</p>
+<ol>
+<li>建立绘图系统，提供圆形、长方形、三角形的绘制方法；</li>
+<li>建立一个小白界面，让小白用户直接使用；</li>
+<li>小白通过小白界面调用系统。</li>
+</ol>
+<p>首先建立绘图系统</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Shape</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">draw</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Circle</span> <span class="keyword">implements</span> <span class="title class_">Shape</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">draw</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Circle::draw()&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Rectangle</span> <span class="keyword">implements</span> <span class="title class_">Shape</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">draw</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Rectangle::draw()&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Triangle</span> <span class="keyword">implements</span> <span class="title class_">Shape</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">draw</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Triangle::draw()&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后，建立小白页面（绘图系统的使用终端）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ShapeMaker</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Shape circle;</span><br><span class="line">    <span class="keyword">private</span> Shape rectangle;</span><br><span class="line">    <span class="keyword">private</span> Shape triangle;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">ShapeMaker</span><span class="params">()</span> &#123;</span><br><span class="line">        circle = <span class="keyword">new</span> <span class="title class_">Circle</span>();</span><br><span class="line">        rectangle = <span class="keyword">new</span> <span class="title class_">Rectangle</span>();</span><br><span class="line">        triangle = <span class="keyword">new</span> <span class="title class_">Triangle</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">draw</span><span class="params">()</span> &#123;</span><br><span class="line">        drawCircle();</span><br><span class="line">        drawRectangle();</span><br><span class="line">        drawTriangle();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">drawCircle</span><span class="params">()</span>&#123;</span><br><span class="line">        circle.draw();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">drawRectangle</span><span class="params">()</span>&#123;</span><br><span class="line">        rectangle.draw();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">drawTriangle</span><span class="params">()</span>&#123;</span><br><span class="line">        triangle.draw();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>小白用户调用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FacadeClient</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">ShapeMaker</span> <span class="variable">shapeMaker</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ShapeMaker</span>();</span><br><span class="line"></span><br><span class="line">        shapeMaker.draw();</span><br><span class="line"></span><br><span class="line">        shapeMaker.drawCircle();</span><br><span class="line">        shapeMaker.drawRectangle();</span><br><span class="line">        shapeMaker.drawTriangle();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 输出结果</span></span><br><span class="line">Circle::draw()</span><br><span class="line">Rectangle::draw()</span><br><span class="line">Triangle::draw()</span><br><span class="line">Circle::draw()</span><br><span class="line">Rectangle::draw()</span><br><span class="line">Triangle::draw()</span><br></pre></td></tr></table></figure>
+<h2 id="模式总结"><a href="#模式总结" class="headerlink" title="模式总结"></a>模式总结</h2><p>外观模式，其实就是让客户端与系统不耦合，让外观类（上例中的<code>ShapeMaker</code>）与系统耦合。</p>
+<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><ul>
+<li>优点<ul>
+<li>使用简单，用户只需要通过终端调用操作即可；</li>
+<li>客户端与具体的系统实现解耦了，具体系统只与小白界面（外观）耦合</li>
+<li>灵活，需要增加新的图形绘制，只需要系统增加新图形绘制能力，然后小白界面增加功能调用即可；</li>
+<li>安全，用户无法直接接触到系统。</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>违反了开闭原则，要扩展功能，就必须修改系统代码，必修修改小白界面的外观。</li>
+</ul>
+</li>
+</ul>
+<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p>单系统存在多个环节，多个功能，能独立调用时，为了规避使用的复杂性，可以使用外观模式，让使用者通过一个提供了系统功能访问能了的小白界面（外观）来使用系统，既安全又易用。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/J210610.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/J210610.html" itemprop="url">Java 设计模式08——组合模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-06-10T23:10:10+08:00">2021-06-10</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index"><span itemprop="name">设计模式</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="模式定义"><a href="#模式定义" class="headerlink" title="模式定义"></a>模式定义</h2><p>合模式（Composite Pattern），又叫<strong>部分整体模式</strong>，是用于把一组相似的对象当作一个单一的对象。组合模式依据<strong>树形结构来组合对象，用来表示部分以及整体层次</strong>。这种类型的设计模式属于结构型模式，它创建了对象组的树形结构。</p>
+<p>这种模式创建了一个包含自己对象组的类。该类提供了修改相同对象组的方式。</p>
+<p>从上面的定义可以提取到以下关键词：部分与整体、树形结构。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/J210610.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/J210609.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/J210609.html" itemprop="url">Java 设计模式07——桥接模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-06-09T23:10:10+08:00">2021-06-09</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index"><span itemprop="name">设计模式</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>假设有一个绘制图形并上色的需求，要绘制的图形有三种：圆形、正方形、三角形，可以上的颜色有三种：红色、绿色和蓝色。也就是说最终可能有九种组合，这时有多种实现方式：</p>
+<ol>
+<li>定义相应的图形，通过<strong>继承</strong>，分别实现红色圆形、绿色圆形、蓝色圆形等，这样子类就有9个；</li>
+<li>按图形和颜色两个<strong>维度</strong>，定义好图形和颜色，然后按需要将他们进行组合；</li>
+</ol>
+<p>上面的方式一实现很简单，也容易理解，但会导致类的数据过多，而且如果我需要新增一种图形或颜色，就需要重新写子类，导致类的结构过于臃肿，而方式二利用的就是<strong>桥接模式</strong>的思想，能很好的解决这种场景下的问题。</p>
+<h2 id="模式定义"><a href="#模式定义" class="headerlink" title="模式定义"></a>模式定义</h2><p>桥接模式，结构性模式，即<strong>将抽象部分与实现部分分离，使他们可以独立变化</strong>。那上面的场景来说，我们要实现的部分是绘制<strong>带有颜色的形状</strong>，那么要实现的部分就可以抽象出<strong>形状</strong>和<strong>颜色</strong>两个类，然后将形状和颜色关联起来，这样就可以将形状和颜色自由组合了。</p>
+<p>将抽象部分与他的实现部分分离套用《大话设计模式》里面的就是实现系统可能有多个角度分类，每一种角度都可能变化，那么把这种多角度分类给分离出来让他们独立变化，减少他们之间耦合。</p>
+<p>桥接模式中的所谓脱耦，就是指在一个软件系统的抽象化和实现化之间使用关联关系（组合或者聚合关系）而不是继承关系，从而使两者可以相对独立地变化，这就是桥接模式的用意。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/J210609.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/J210608.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/J210608.html" itemprop="url">Java 设计模式06——适配器模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-06-08T23:10:10+08:00">2021-06-08</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index"><span itemprop="name">设计模式</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="模式定义"><a href="#模式定义" class="headerlink" title="模式定义"></a>模式定义</h2><p>适配器模式，属于结构型模式，是将一个类的接口（源接口）转换成客户希望的另外一个接口（目标接口）。使得原本由于接口不兼容而不能一起工作的那些类可以一起工作，经过适配后，通过适配类可以使源接口目标接口一起工作。根据适配的写法不同，主要分为通过类型适配和通过对象适配。</p>
+<h3 id="类型适配"><a href="#类型适配" class="headerlink" title="类型适配"></a>类型适配</h3><p>适配类<strong>继承源接口的<em>实现类</em></strong>，并<strong>实现目标接口</strong>，通过类型继承来实现。</p>
+<h3 id="对象适配"><a href="#对象适配" class="headerlink" title="对象适配"></a>对象适配</h3><p>适配类<strong>持有源接口实现类的对象引用</strong>，并通过构造函数传入，并<strong>实现目标接口</strong>。Java中<code>ForkJoinTask</code>中就大量的运用了这种类型适配方法，有了这些适配方法，像<code>Runnable</code>、<code>Callable</code>都可以在适配后作为<code>ForkJoinTask</code>提交到<code>ForkJoinPool</code>中。</p>
+<h2 id="模式示例"><a href="#模式示例" class="headerlink" title="模式示例"></a>模式示例</h2><p>ForkJoinPool中接收的任务类型是ForkJoinTask，如果我们要将实现Runnable的对象和实现Callable接口的对象（二者都是可执行的）提交到ForkJoinPool中，我们就需要对Runnable和Callable进行适配。下面看具体代码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Adaptor for Runnables. This implements RunnableFuture</span></span><br><span class="line"><span class="comment"> * to be compliant with AbstractExecutorService constraints</span></span><br><span class="line"><span class="comment"> * when used in ForkJoinPool.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">class</span> <span class="title class_">AdaptedRunnable</span>&lt;T&gt; <span class="keyword">extends</span> <span class="title class_">ForkJoinTask</span>&lt;T&gt;</span><br><span class="line">    <span class="keyword">implements</span> <span class="title class_">RunnableFuture</span>&lt;T&gt; &#123;</span><br><span class="line">    <span class="keyword">final</span> Runnable runnable;</span><br><span class="line">    T result;</span><br><span class="line">    AdaptedRunnable(Runnable runnable, T result) &#123;</span><br><span class="line">        <span class="keyword">if</span> (runnable == <span class="literal">null</span>) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">NullPointerException</span>();</span><br><span class="line">        <span class="built_in">this</span>.runnable = runnable;</span><br><span class="line">        <span class="built_in">this</span>.result = result; <span class="comment">// OK to set this even before completion</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">final</span> T <span class="title function_">getRawResult</span><span class="params">()</span> &#123; <span class="keyword">return</span> result; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title function_">setRawResult</span><span class="params">(T v)</span> &#123; result = v; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="type">boolean</span> <span class="title function_">exec</span><span class="params">()</span> &#123; runnable.run(); <span class="keyword">return</span> <span class="literal">true</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123; invoke(); &#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">long</span> <span class="variable">serialVersionUID</span> <span class="operator">=</span> <span class="number">5232453952276885070L</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Adaptor for Runnables without results</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">class</span> <span class="title class_">AdaptedRunnableAction</span> <span class="keyword">extends</span> <span class="title class_">ForkJoinTask</span>&lt;Void&gt;</span><br><span class="line">    <span class="keyword">implements</span> <span class="title class_">RunnableFuture</span>&lt;Void&gt; &#123;</span><br><span class="line">    <span class="keyword">final</span> Runnable runnable;</span><br><span class="line">    AdaptedRunnableAction(Runnable runnable) &#123;</span><br><span class="line">        <span class="keyword">if</span> (runnable == <span class="literal">null</span>) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">NullPointerException</span>();</span><br><span class="line">        <span class="built_in">this</span>.runnable = runnable;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">final</span> Void <span class="title function_">getRawResult</span><span class="params">()</span> &#123; <span class="keyword">return</span> <span class="literal">null</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title function_">setRawResult</span><span class="params">(Void v)</span> &#123; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="type">boolean</span> <span class="title function_">exec</span><span class="params">()</span> &#123; runnable.run(); <span class="keyword">return</span> <span class="literal">true</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123; invoke(); &#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">long</span> <span class="variable">serialVersionUID</span> <span class="operator">=</span> <span class="number">5232453952276885070L</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Adaptor for Runnables in which failure forces worker exception</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">class</span> <span class="title class_">RunnableExecuteAction</span> <span class="keyword">extends</span> <span class="title class_">ForkJoinTask</span>&lt;Void&gt; &#123;</span><br><span class="line">    <span class="keyword">final</span> Runnable runnable;</span><br><span class="line">    RunnableExecuteAction(Runnable runnable) &#123;</span><br><span class="line">        <span class="keyword">if</span> (runnable == <span class="literal">null</span>) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">NullPointerException</span>();</span><br><span class="line">        <span class="built_in">this</span>.runnable = runnable;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">final</span> Void <span class="title function_">getRawResult</span><span class="params">()</span> &#123; <span class="keyword">return</span> <span class="literal">null</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title function_">setRawResult</span><span class="params">(Void v)</span> &#123; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="type">boolean</span> <span class="title function_">exec</span><span class="params">()</span> &#123; runnable.run(); <span class="keyword">return</span> <span class="literal">true</span>; &#125;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">internalPropagateException</span><span class="params">(Throwable ex)</span> &#123;</span><br><span class="line">        rethrow(ex); <span class="comment">// rethrow outside exec() catches.</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">long</span> <span class="variable">serialVersionUID</span> <span class="operator">=</span> <span class="number">5232453952276885070L</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Adaptor for Callables</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">class</span> <span class="title class_">AdaptedCallable</span>&lt;T&gt; <span class="keyword">extends</span> <span class="title class_">ForkJoinTask</span>&lt;T&gt;</span><br><span class="line">    <span class="keyword">implements</span> <span class="title class_">RunnableFuture</span>&lt;T&gt; &#123;</span><br><span class="line">    <span class="keyword">final</span> Callable&lt;? <span class="keyword">extends</span> <span class="title class_">T</span>&gt; callable;</span><br><span class="line">    T result;</span><br><span class="line">    AdaptedCallable(Callable&lt;? <span class="keyword">extends</span> <span class="title class_">T</span>&gt; callable) &#123;</span><br><span class="line">        <span class="keyword">if</span> (callable == <span class="literal">null</span>) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">NullPointerException</span>();</span><br><span class="line">        <span class="built_in">this</span>.callable = callable;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">final</span> T <span class="title function_">getRawResult</span><span class="params">()</span> &#123; <span class="keyword">return</span> result; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title function_">setRawResult</span><span class="params">(T v)</span> &#123; result = v; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="type">boolean</span> <span class="title function_">exec</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            result = callable.call();</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Error err) &#123;</span><br><span class="line">            <span class="keyword">throw</span> err;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (RuntimeException rex) &#123;</span><br><span class="line">            <span class="keyword">throw</span> rex;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception ex) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(ex);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123; invoke(); &#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">long</span> <span class="variable">serialVersionUID</span> <span class="operator">=</span> <span class="number">2838392045355241008L</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面采用的都是对象适配的方式，这也是更推荐的适配器模式实现方式，它采用的时组合方式，而设计模式的基本原则第6条推荐优先使用组合而不是继承。</p>
+<p>再看看另一个例子。</p>
+<p>定义两个接口：FlyAnimal（飞行动物）和CrawlAnimal（爬行动物）；定义两个类：飞行动物实现类Bird以及爬行动物实现类Pig。</p>
+<p>假设现在有一个飞行动物的聚会，而我们想让Pig这个爬行动物参加，这时我们就需要将Pig伪装（适配）成飞行动物。这样Pig就可以用伪装的身份去参加飞行动物的聚会了，具体代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">CrawlAnimal</span> &#123;</span><br><span class="line">    String <span class="title function_">crawlKindName</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">crawl</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">FlyAnimal</span> &#123;</span><br><span class="line">    String <span class="title function_">flyKindName</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">fly</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Pig</span> <span class="keyword">implements</span> <span class="title class_">CrawlAnimal</span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">crawlKindName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;My kind is Pig&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">crawl</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;I can crawl&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Bird</span> <span class="keyword">implements</span> <span class="title class_">FlyAnimal</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">flyKindName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;My kind is Bird&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">fly</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;I can fly&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下面通过两种形式对Pig进行伪装，让其能参加飞行类动物的聚会。</p>
+<p>类型适配</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PigClassAdapter</span> <span class="keyword">extends</span> <span class="title class_">Pig</span> <span class="keyword">implements</span> <span class="title class_">FlyAnimal</span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">flyKindName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">super</span>.crawlKindName();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">fly</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.crawl();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对象适配</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PigObjectAdapter</span> <span class="keyword">implements</span> <span class="title class_">FlyAnimal</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Pig pig;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">PigObjectAdapter</span><span class="params">(Pig pig)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.pig = pig;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">flyKindName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> pig.crawlKindName();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">fly</span><span class="params">()</span> &#123;</span><br><span class="line">        pig.crawl();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="模式总结"><a href="#模式总结" class="headerlink" title="模式总结"></a>模式总结</h2><p>适配器模式为只能相似的类或接口之间的兼容提供了一个兼容性方案，这种方案的代价就是在通过建立新的适配类以类型适配或对象适配的方式来让本来不能一起工作的类或接口能在一起工作。</p>
+<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><ul>
+<li>优点<ul>
+<li>1、可以让任何两个没有关联的类一起运行。 </li>
+<li>2、提高了类的复用。 </li>
+<li>3、增加了类的透明度。 </li>
+<li>4、灵活性好。</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>过多地使用适配器，会让系统非常零乱，不易整体进行把握。比如，明明看到调用的是 A 接口，其实内部被适配成了 B 接口的实现，一个系统如果太多出现这种情况，无异于一场灾难。因此如果不是很有必要，可以不使用适配器，而是直接对系统进行重构。 （<strong>过于灵活的东西通常都会存在类似问题</strong>）</li>
+<li>2.由于 JAVA 至多继承一个类，所以至多只能适配一个适配者类，而且目标类必须是抽象类。</li>
+</ul>
+</li>
+</ul>
+<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p>不能因为适配器模式的灵活性而滥用，适配器模式一般是对现有系统的一种兼容，当我们目标明确的要让正在运行的某个接口能使用另一个接口的某些功能时，我们可以使用适配器模式。</p>
+<p>适配器模式是为了解决正在运行的系统问题而提出来的，只是一种解决现有问题的一种兼容措施。在系统设计的时候应该尽量避免这种情况的出现，而不是将适配器模式考虑在内。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/J210607.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/J210607.html" itemprop="url">Java 设计模式05——原型模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-06-07T23:10:10+08:00">2021-06-07</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index"><span itemprop="name">设计模式</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="模式定义"><a href="#模式定义" class="headerlink" title="模式定义"></a>模式定义</h2><p><strong>原型模式属于对象的创建模式。通过给出一个原型对象来指明所有创建的对象的类型，然后用复制这个原型对象的办法创建出更多同类型的对象。</strong></p>
+<h2 id="模式结构"><a href="#模式结构" class="headerlink" title="模式结构"></a>模式结构</h2><p>原型模式最主要的一点就是要求 原型对象 拥有克隆自己的能力，这样就可以调用其克隆方法来创建一个和原型对象类型相同的实例。原型模式主要有两种结构：简单形式和登记形式。</p>
+<h3 id="简单形式"><a href="#简单形式" class="headerlink" title="简单形式"></a>简单形式</h3><p>简单形式中的三个角色：</p>
+<ol>
+<li>客户角色，即提出创建对象请求的类；</li>
+<li>抽象原型，即提供创建对象能力的角色，通常是接口或抽象类，通常可以使用Java提供的<code>Cloneable</code>接口，也可以自己实现；</li>
+<li>具体原型，具体要创建出来的对象类型，实现（或覆盖）了抽象原型定义的接口方法。</li>
+</ol>
+<p>具体代码示例：</p>
+<p>抽象原型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">AbsPrototype</span> &#123;</span><br><span class="line">    Object <span class="title function_">clone</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>具体原型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RealPrototype</span> <span class="keyword">implements</span> <span class="title class_">AbsPrototype</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> <span class="string">&quot;real&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setName</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">clone</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">RealPrototype</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>客户角色</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SimpleClient</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> AbsPrototype prototype;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">SimpleClient</span><span class="params">(AbsPrototype prototype)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.prototype = prototype;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> AbsPrototype <span class="title function_">makePrototype</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (AbsPrototype) prototype.clone();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">RealPrototype</span> <span class="variable">realPrototype</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RealPrototype</span>();</span><br><span class="line"></span><br><span class="line">        <span class="type">SimpleClient</span> <span class="variable">client</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SimpleClient</span>(realPrototype);</span><br><span class="line">        <span class="type">RealPrototype</span> <span class="variable">copy</span> <span class="operator">=</span> (RealPrototype) client.makePrototype();</span><br><span class="line">        copy.setName(<span class="string">&quot;copyOne&quot;</span>);</span><br><span class="line">        System.out.println(realPrototype.getName());</span><br><span class="line">        System.out.println(copy.getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="登记形式"><a href="#登记形式" class="headerlink" title="登记形式"></a>登记形式</h3><p>大体上和简单形式相同，只不过多了一个管理类，用键值对来将 <strong>抽象原型对象</strong> 不同的实现保存起来，然后要创建不同类型的 <strong>具体原型对象</strong>，只要根据相应的<strong>键</strong>来进行复制即可。</p>
+<p>抽象原型对象的另一种实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AnotherPrototype</span> <span class="keyword">implements</span> <span class="title class_">AbsPrototype</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> <span class="string">&quot;another&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setName</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">clone</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">AnotherPrototype</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不同类型原型对象管理角色</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PrototypeManager</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> PrototypeManager instance;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> PrototypeManager <span class="title function_">getInstance</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (PrototypeManager.class) &#123;</span><br><span class="line">                <span class="keyword">if</span> (instance == <span class="literal">null</span>) &#123;</span><br><span class="line">                    instance = <span class="keyword">new</span> <span class="title class_">PrototypeManager</span>();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">PrototypeManager</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.prototypeMap = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, AbsPrototype&gt; prototypeMap;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setPrototype</span><span class="params">(String prototypeId, AbsPrototype prototype)</span> &#123;</span><br><span class="line">        prototypeMap.put(prototypeId, prototype);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">removePrototype</span><span class="params">(String prototypeId)</span> &#123;</span><br><span class="line">        prototypeMap.remove(prototypeId);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> AbsPrototype <span class="title function_">getPrototype</span><span class="params">(String prototypeId)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> prototypeMap.get(prototypeId);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>客户端角色</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CheckoutClient</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">AbsPrototype</span> <span class="variable">p1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RealPrototype</span>();</span><br><span class="line">        PrototypeManager.getInstance().setPrototype(<span class="string">&quot;p1&quot;</span>, p1);</span><br><span class="line"></span><br><span class="line">        <span class="type">AbsPrototype</span> <span class="variable">p2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">AnotherPrototype</span>();</span><br><span class="line">        PrototypeManager.getInstance().setPrototype(<span class="string">&quot;p2&quot;</span>, p2);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 得到 RealPrototype的对象</span></span><br><span class="line">        <span class="type">RealPrototype</span> <span class="variable">copyReal</span> <span class="operator">=</span> (RealPrototype) PrototypeManager.getInstance().getPrototype(<span class="string">&quot;p1&quot;</span>);</span><br><span class="line">        <span class="type">AnotherPrototype</span> <span class="variable">copyAnother</span> <span class="operator">=</span> (AnotherPrototype) PrototypeManager.getInstance().getPrototype(<span class="string">&quot;p2&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        * 由此例可以看出原型这种几种管理的几个明显缺点：</span></span><br><span class="line"><span class="comment">        * 1. 容易产生 NullPointerException，得到的基础原型对象可能会被移除而不复存在了</span></span><br><span class="line"><span class="comment">        * 2. 容易产生 ClassCastException，得到的对象可能是抽象原型的另一种实现</span></span><br><span class="line"><span class="comment">        *</span></span><br><span class="line"><span class="comment">        * 所以要保证只有一种类型的具体对象，这样就可以避免可能发生的类型转换问题。</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>改进版</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PrototypeManager</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">PROTOTYPE_REAL</span> <span class="operator">=</span> <span class="string">&quot;real&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">PROTOTYPE_ANOTHER</span> <span class="operator">=</span> <span class="string">&quot;another&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> PrototypeManager instance;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> PrototypeManager <span class="title function_">getInstance</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (PrototypeManager.class) &#123;</span><br><span class="line">                <span class="keyword">if</span> (instance == <span class="literal">null</span>) &#123;</span><br><span class="line">                    instance = <span class="keyword">new</span> <span class="title class_">PrototypeManager</span>();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">PrototypeManager</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.prototypeMap = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, AbsPrototype&gt; prototypeMap;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">removePrototype</span><span class="params">(String prototypeId)</span> &#123;</span><br><span class="line">        prototypeMap.remove(prototypeId);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> AbsPrototype <span class="title function_">getPrototype</span><span class="params">(String prototypeId)</span> &#123;</span><br><span class="line">        <span class="type">AbsPrototype</span> <span class="variable">absPrototype</span> <span class="operator">=</span> prototypeMap.get(prototypeId);</span><br><span class="line">        <span class="keyword">if</span> (absPrototype == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (PROTOTYPE_REAL.equals(prototypeId)) &#123;</span><br><span class="line">                absPrototype = <span class="keyword">new</span> <span class="title class_">RealPrototype</span>();</span><br><span class="line">                prototypeMap.put(PROTOTYPE_REAL, absPrototype);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (PROTOTYPE_ANOTHER.equals(prototypeId))&#123;</span><br><span class="line">                absPrototype = <span class="keyword">new</span> <span class="title class_">AnotherPrototype</span>();</span><br><span class="line">                prototypeMap.put(PROTOTYPE_ANOTHER, absPrototype);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;prototypeId:&quot;</span> + prototypeId + <span class="string">&quot; not supported, please check it out!&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> absPrototype;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>相应的<code>CheckoutClient</code>改为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CheckoutClient</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 得到 RealPrototype的对象</span></span><br><span class="line">        <span class="type">RealPrototype</span> <span class="variable">copyReal</span> <span class="operator">=</span> (RealPrototype) PrototypeManager.getInstance().getPrototype(PrototypeManager.PROTOTYPE_REAL);</span><br><span class="line">        <span class="type">AnotherPrototype</span> <span class="variable">copyAnother</span> <span class="operator">=</span> (AnotherPrototype) PrototypeManager.getInstance().getPrototype(PrototypeManager.PROTOTYPE_ANOTHER);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>原型对象的创建都集中在<code>PrototypeManager</code>中，新增支持的原型对象只需要定义新增的原型对象，然后相应的添加到<code>PrototypeManager</code>中即可。</p>
+<h2 id="模式总结"><a href="#模式总结" class="headerlink" title="模式总结"></a>模式总结</h2><ol>
+<li>应用场景，当需要大范围的或者平凡的创建某类对象时；</li>
+<li>应用先决条件，原型对象必须支持克隆自己的方法；</li>
+</ol>
+<h2 id="延伸拓展"><a href="#延伸拓展" class="headerlink" title="延伸拓展"></a>延伸拓展</h2><p>上面说了，原型模式实现的前提是原型对象必须支持克隆自己的方法。这里的克隆有两种形式：浅克隆和深克隆。</p>
+<h3 id="浅克隆与深克隆"><a href="#浅克隆与深克隆" class="headerlink" title="浅克隆与深克隆"></a>浅克隆与深克隆</h3><p>浅克隆：只负责克隆按值传递的数据（比如基本数据类型、String类型），而不复制它所引用的对象，换言之，所有的对其他对象的引用都仍然指向原来的对象。</p>
+<p>深克隆：除了浅度克隆要克隆的值外，还负责克隆引用类型的数据。那些引用其他对象的变量将指向被复制过的新对象，而不再是原有的那些被引用的对象。换言之，深度克隆把要复制的对象所引用的对象都复制了一遍，而这种对被引用到的对象的复制叫做间接复制。</p>
+<blockquote>
+<p>深度克隆要深入到多少层，是一个不易确定的问题。在决定以深度克隆的方式复制一个对象的时候，必须决定对间接复制的对象时采取浅度克隆还是继续采用深度克隆。因此，在采取深度克隆时，需要决定多深才算深。此外，在深度克隆的过程中，很可能会出现<strong>循环引用</strong>的问题，必须小心处理。</p>
+</blockquote>
+<p>一般的Object的<code>clone()</code>就是浅克隆，而Java中通常通过序列化来实现对象的深克隆，即先将对象序列化到流中，然后再从反序列化读出对象。对于不能被序列化的对象，需要用<code>transient</code>将其排除在克隆之外。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/J210606.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/J210606.html" itemprop="url">Java 设计模式03——抽象工厂模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-06-06T00:00:00+08:00">2021-06-06</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index"><span itemprop="name">设计模式</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="模式定义"><a href="#模式定义" class="headerlink" title="模式定义"></a>模式定义</h2><p>抽象工厂模式，提供一个创建<strong>一系列</strong>相关或相互依赖对象的接口，而无需指定他们具体的类；理解起来就是抽象工厂的接口定义中可以有多个接口方法，这些接口方法分别用来创建不同的对象。</p>
+<h2 id="模式示例"><a href="#模式示例" class="headerlink" title="模式示例"></a>模式示例</h2><p>以台式电脑组装为例，不同的电脑厂商会选用不同的电脑配件，这里的主要配件有CPU、显示器、主板等，不同的品牌采用的不同的配件组装成电脑售卖，当然我们也可以自己组装电脑。这里就简单列出几个品牌，如惠普、苹果以及自己组装。这三个品牌对应的就是三个具体的工厂。</p>
+<ol>
+<li>定义好配件，如CPU、显示器、主板等；</li>
+<li>定义好抽象工厂，即创建CPU、创建显示器和创建主板；</li>
+<li>定义好具体工厂，即华为电脑工厂、苹果电脑工厂；</li>
+<li>示例检验客户端定义。</li>
+</ol>
+<h2 id="具体代码"><a href="#具体代码" class="headerlink" title="具体代码"></a>具体代码</h2><h3 id="配件的定义"><a href="#配件的定义" class="headerlink" title="配件的定义"></a>配件的定义</h3><p>CPU基类</p>
+<p><code>Cpu.java</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">Cpu</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> String <span class="title function_">cpuName</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>HuaweiCpu.java</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HuaweiCpu</span> <span class="keyword">extends</span> <span class="title class_">Cpu</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">cpuName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;华为自研芯片&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>XiaoLongCpu.java</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">XiaoLongCpu</span> <span class="keyword">extends</span> <span class="title class_">Cpu</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">cpuName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;骁龙855芯片&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>显示器基类</p>
+<p><code>Monitor.java</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">Monitor</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> String <span class="title function_">monitorName</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>RetinaMonitor.java</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RetinaMonitor</span> <span class="keyword">extends</span> <span class="title class_">Monitor</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">monitorName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Retina显示器&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>PhilipsMonitor.java</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PhilipsMonitor</span> <span class="keyword">extends</span> <span class="title class_">Monitor</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">monitorName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;飞利浦显示器&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>主板基类</p>
+<p><code>MainBoard.java</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">MainBoard</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> String <span class="title function_">mainBoardName</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>AsusMainBoard.java</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AsusMainBoard</span> <span class="keyword">extends</span> <span class="title class_">MainBoard</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">mainBoardName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;华硕主板&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>GigaMainBoard.java</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">GigaByteMainBoard</span> <span class="keyword">extends</span> <span class="title class_">MainBoard</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">mainBoardName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;技嘉主板&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="定义抽象工厂"><a href="#定义抽象工厂" class="headerlink" title="定义抽象工厂"></a>定义抽象工厂</h3><p><code>ComputerFactory.java</code>，代表抽象的电脑生成线。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">ComputerFactory</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> Cpu <span class="title function_">createCpu</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> MainBoard <span class="title function_">createMainBoard</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> Monitor <span class="title function_">createMonitor</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">computerInfo</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;生产的电脑型号描述：CPU-&gt;&quot;</span> + createCpu().cpuName() +</span><br><span class="line">                <span class="string">&quot;, 主板-&gt;&quot;</span> + createMainBoard().mainBoardName() + <span class="string">&quot;, 显示器-&gt;&quot;</span> + createMonitor().monitorName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="定义具体的工厂"><a href="#定义具体的工厂" class="headerlink" title="定义具体的工厂"></a>定义具体的工厂</h3><p><code>AppleComputerFactory.java</code>，代表苹果电脑生产线。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AppleComputerFactory</span> <span class="keyword">extends</span> <span class="title class_">ComputerFactory</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Cpu <span class="title function_">createCpu</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">A14Cpu</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> MainBoard <span class="title function_">createMainBoard</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">GigaByteMainBoard</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Monitor <span class="title function_">createMonitor</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">RetinaMonitor</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>HuaweiComputerFactory.java</code>，代表华为电脑生产线。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HuaweiComputerFactory</span> <span class="keyword">extends</span> <span class="title class_">ComputerFactory</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Cpu <span class="title function_">createCpu</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">HuaweiCpu</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> MainBoard <span class="title function_">createMainBoard</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">AsusMainBoard</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Monitor <span class="title function_">createMonitor</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">PhilipsMonitor</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="定义示例客户端"><a href="#定义示例客户端" class="headerlink" title="定义示例客户端"></a>定义示例客户端</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AbsFactoryClient</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">ComputerFactory</span> <span class="variable">computerFactory</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">AppleComputerFactory</span>();</span><br><span class="line"></span><br><span class="line">        computerFactory.computerInfo();</span><br><span class="line"></span><br><span class="line">        <span class="type">ComputerFactory</span> <span class="variable">computerFactory1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HuaweiComputerFactory</span>();</span><br><span class="line"></span><br><span class="line">        computerFactory1.computerInfo();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 输出结果</span></span><br><span class="line">生产的电脑型号描述：CPU-&gt;苹果A14放生芯片, 主板-&gt;技嘉主板, 显示器-&gt;Retina显示器</span><br><span class="line">生产的电脑型号描述：CPU-&gt;华为自研芯片, 主板-&gt;华硕主板, 显示器-&gt;飞利浦显示器</span><br></pre></td></tr></table></figure>
+<h2 id="模式总结"><a href="#模式总结" class="headerlink" title="模式总结"></a>模式总结</h2><p>通过比较抽象工厂模式和工厂方法模式，你会发现抽象工厂模式中工厂的实现类中提供了创建不同对象的方法，这些不同的对象间存在着一种外在的联系，如本例中同一个工厂中穿件的对象属于一条电脑生产线上的。如果我们要为电脑生产线增加键盘这种流水化操作，那么我们同样需要修改所有的工厂类，但是如果我们要开辟一条新的生产线，我们就不用动原来的代码，而是直接将这个生产线（具体工厂类）定义出来即可。可见抽象工厂模式有如下特点：</p>
+<ol>
+<li>改变生产线同样会违背“开闭原则”，新增生产线可以不需要修改代码，符合“开闭原则”；</li>
+<li>不用关心对象的创建过程，改变生产线中某个配件就十分方便。</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/C210601.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/C210601.html" itemprop="url">通用功能——UML 类图箭头和线条详解</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-06-01T00:00:00+08:00">2021-06-01</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/%E9%80%9A%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">通用</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>UML，Unified Modeing Language，统一建模语言，是个很庞大的概念，本篇想要讲的是UML中比较普遍的箭头即线条代表的具体含义，以便日后遇到UML图能了解不同类及对象之间的关系。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/C210601.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/J210531.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/J210531.html" itemprop="url">Java 设计模式12——代理模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-05-31T00:00:00+08:00">2021-05-31</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index"><span itemprop="name">设计模式</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/J210531.html">https://rainmonth.github.io/posts/J210531.html</a></p>
+</blockquote>
+<h2 id="模式定义"><a href="#模式定义" class="headerlink" title="模式定义"></a>模式定义</h2><p>给某一个对象（源对象）提供一个代理对象，对这个对象（源对象）的访问都通过这个代理对象来进行。这样的话对源对象的访问都可以通过代理对象来进行，代理对象可以在不改变源对象的基础上，控制对这个源对象的访问。这类似于明星（源对象）和明星经纪人（代理对象）的关系。某公司想请某明星A做形象代言人，于是就找到了明星A的经纪人B，B若代言费用合理，就允许其代言，不合理就不为其代言。隔离了外界对明星A的干扰。</p>
+<h2 id="代理实现方式"><a href="#代理实现方式" class="headerlink" title="代理实现方式"></a>代理实现方式</h2><p>代理模式主要分三种：静态代理、动态代理和Cglib代理。</p>
+<ul>
+<li>静态代理，为代理的类在额外写一个类（或者用工具生成一个类），这个类实现了被代理的类的所有功能。这就导致了要为一个对象设置代理对象，必须就在对象类的基础上再写一个类，显得不够灵活；</li>
+<li>动态代理，动态代理实际上是程序在运行中，根据被代理的接口来动态生成代理类的class文件，并加载class文件运行的过程。<strong>由于动态生成的类已经继承了Proxy这个类，就不能在继承其他类了，从而只能通过接口的方式来实现了。（Java是单继承，多实现的）</strong></li>
+<li>Cglib代理，通过为被代理的类生成一个子类并重写被代理的方法实现代码的动态植入，因此，<strong>Cglib</strong>无法代理被<code>final</code>修饰的类或方法以及静态方法。</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/J210531.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A2102200.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="荏苒追寻个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/A2102200.html" itemprop="url">Android 进程保活——守护进程</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-20T00:00:00+08:00">2021-02-20</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/%E8%BF%9B%E7%A8%8B%E4%BF%9D%E6%B4%BB/" itemprop="url" rel="index"><span itemprop="name">进程保活</span></a></span>
 
                 
                 
@@ -406,1214 +1770,18 @@
         
           
             <blockquote>
-<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/F2102192.html">https://rainmonth.github.io/posts/F2102192.html</a></p>
+<p>本文链接：<a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/A2102200.html">https://rainmonth.github.io/posts/A2102200.html</a></p>
 </blockquote>
-<h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>当根据一些标准选定出心仪的股票后，常常会碰到一下几个问题：</p>
-<ol>
-<li>我买的xx股票最近跌了10%，我该加仓吗？加多少？</li>
-<li>我买的xx集团最近涨了20%，我该卖吗？卖多少？</li>
-<li>我手上又来了一笔闲钱，该买点什么？</li>
-</ol>
-<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BB%93%E4%BD%8D%E7%AE%A1%E7%90%86">仓位管理</a>，</p>
-<p>仓位管理的作用:</p>
-<ol>
-<li>为本金保平安</li>
-<li>让收益更高更持久</li>
-<li>平和的应对市场波动</li>
-</ol>
-<p>仓位管理的原则:</p>
-<ol>
-<li>有钱烦恼多，没钱烦恼少</li>
-<li>有钱也别太烦恼</li>
-<li>吸引力优先法则</li>
-</ol>
-<p>即我们要适度分散，但不能过度分散，便宜的多买点，啥时候便宜啥时候多买点</p>
-<h3 id="宏观仓位管理"><a href="#宏观仓位管理" class="headerlink" title="宏观仓位管理"></a><strong>宏观仓位管理</strong></h3><p>根据市场的热度和贵贱程度，来管理整体仓位，<strong>即整体上要投多少钱在股市</strong></p>
-<h3 id="微观仓位管理"><a href="#微观仓位管理" class="headerlink" title="微观仓位管理"></a><strong>微观仓位管理</strong></h3><p>根据市场情况变化，来管理某只股票的仓位，<strong>即具体在某只股票上要买多少钱，该如何一步步加仓</strong>。</p>
-<p>小鹅投资者要避免尿频试加减仓。针对小鹅投资者，操作思路如下:</p>
-<ol>
-<li>将仓位分为轻仓（小于总预算投资金额50%）和重仓（大于总预算投资金额50%）</li>
-<li>只要股市不是太贵，你能找到一些便宜的股票，都重仓（如7至九成买入操作），如果股市贵了，就轻就轻三成如，对应卖出操作</li>
-</ol>
-<p>3.将每个月的闲钱根据市场贵贱继续加仓或减仓</p>
-<p>如果遇到大牛市或大熊市需要清仓或满仓</p>
-<p><strong>便宜的时候重仓，贵的时候轻仓</strong></p>
-<p><strong>吸引力法则:</strong></p>
-<p><strong>市场便宜的时候多买点，市场贵的时候少买一点，</strong></p>
-<p>由于股权投资长期看投资收益率是超过所有其他资产的，因此除非市场特别贵不然不要轻易将钱从股市撤出来！</p>
-<p>判断市场贵贱的指标:</p>
-<ol>
-<li>股市吸引力指数</li>
-</ol>
-<p>简单来说就是沪深300股息率和国债收益率对比，吸引力只是越高，股市越有吸引力（越便宜）</p>
-<p>吸引力指数越低，股市越没有吸引力（越贵）</p>
-<ol>
-<li>看各大股市的PE和分位点信息</li>
-</ol>
-<p>如分位点（有时候也叫温度）在30%以下时，往往是偏便宜的。</p>
-<p>分位点在40%-60%时，往往是较合理的。</p>
-<p>分位点在60%以上时，才是贵的。</p>
-<p>计算各类关注股票的N</p>
-<p>如果我们在股市中还能找到不少看得懂的股票，他们的N都比较好（如15%以上），</p>
-<p>那股市还是便宜的</p>
-<p>4、市场热度、成交量等信息。</p>
-<p>单看一个指标，容易有盲点和误判，但综合以上各类信息，可以得到一个比较综合的意见。</p>
-<p>这么设计仓位的理由:</p>
-<p>1、不这么做的话，对于小鹅来说，如果过度轻仓，好不容易发现一只好的股票，涨了一大波，结果自己只买了一手……那就尴尬了。</p>
-<p>2、更重要的，对于小鹅人，自己（以及自己的脑子）就是最重要的资产。</p>
-<p>趁着鹅小，投身市场，多多积累经验，是性价比极高的。</p>
-<p>重中之重</p>
-<p>用闲钱投资！</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/F202102191.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/F202102191.html" itemprop="url">小白学理财——股票基础知识</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-19T00:00:00+08:00">2021-02-19</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/%E7%90%86%E8%B4%A2/" itemprop="url" rel="index"><span itemprop="name">理财</span></a></span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/%E7%90%86%E8%B4%A2/%E8%82%A1%E7%A5%A8/" itemprop="url" rel="index"><span itemprop="name">股票</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/F202102191.html">https://rainmonth.github.io/posts/F202102191.html</a></p>
-</blockquote>
-<h1 id="股票基础知识"><a href="#股票基础知识" class="headerlink" title="股票基础知识"></a>股票基础知识</h1><p>基础概念</p>
-<p>基本类型</p>
-<p>几种常用的图说明</p>
-<p>均衡配置</p>
-<p>将进攻型、攻守兼备型和防御型的股票按一定的比例进行配置已达到掌控全局且不用承担过大风险从而赚取收益的目的。</p>
-<ul>
-<li>攻守兼备型股票，牛市涨的多，熊市跌的少，俗称”大暖男；</li>
-<li>进攻型股票，牛市涨的多，但熊市跌的也多，俗称“凤凰男”；</li>
-<li>防御型股票，牛市涨得少，但熊市跌的也少，俗称“备胎男”。</li>
-</ul>
-<p>三种类型目前对应的行业（只是参考）：</p>
-<ul>
-<li>攻守兼备型，确定性高，前景好的行业，如白酒、医药、消费、先进制造业，建议配置比例35~50%；<ul>
-<li>白酒，老茅</li>
-<li>医药，恒瑞</li>
-<li>消费，伊利</li>
-<li>先进制造，隆基</li>
-</ul>
-</li>
-<li>防御型，前景一般，未来成长空间有限，缺乏想象力，估值低，典型代表如家电、三傻（银行、保险、地产）、传统制造业，建议配置比例20~40%<ul>
-<li>家电，格力、美的；</li>
-<li>银行，招行，宁波银行；</li>
-<li>地产，万科、保利</li>
-<li>传统制造业，三一重工；</li>
-</ul>
-</li>
-<li>进攻型，不确定性大，充满想象，典型行业如科技、疫苗、新能源等新兴产业建议配置比例10~15%<ul>
-<li>科技，立讯精密；</li>
-<li>疫苗，智飞生物；</li>
-<li>新能源，宁德时代；</li>
-</ul>
-</li>
-</ul>
-<p>总结一下建议的资产均衡配置：</p>
-<ul>
-<li>攻守兼备的大暖男：35~50%</li>
-<li>防御型的备胎男：20~40%</li>
-<li>进攻型的凤凰男：10~15%</li>
-</ul>
-<p>相关文章</p>
-<ul>
-<li><p>[ ] <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/F2102190">小白学理财——开篇</a></p>
-</li>
-<li><p>[ ] <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/F2102191">小白学理财——基金基础知识</a></p>
-</li>
-<li><p>[ ] <a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/F2102192">小白学理财——股票基础知识</a></p>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A210208.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/A210208.html" itemprop="url">Android 通用功能封装7——广播管理</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-08T00:00:00+08:00">2021-02-08</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/%E9%80%9A%E7%94%A8%E5%8A%9F%E8%83%BD/" itemprop="url" rel="index"><span itemprop="name">通用功能</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p><a target="_blank" rel="noopener" href="http://rainmonth.github.io/posts/A210208.html">http://rainmonth.github.io/posts/A210208.html</a></p>
-</blockquote>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/A210208.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A210207.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/A210207.html" itemprop="url">Android 通用功能封装6——数据库封装</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-07T00:00:00+08:00">2021-02-07</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/%E9%80%9A%E7%94%A8%E5%8A%9F%E8%83%BD/" itemprop="url" rel="index"><span itemprop="name">通用功能</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p><a target="_blank" rel="noopener" href="http://rainmonth.github.io/posts/A210207.html">http://rainmonth.github.io/posts/A210207.html</a></p>
-</blockquote>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/A210207.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A210206.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/A210206.html" itemprop="url">Android 通用功能封装5——网络库封装</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-06T00:00:00+08:00">2021-02-06</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/%E9%80%9A%E7%94%A8%E5%8A%9F%E8%83%BD/" itemprop="url" rel="index"><span itemprop="name">通用功能</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p><a target="_blank" rel="noopener" href="http://rainmonth.github.io/posts/A210206.html">http://rainmonth.github.io/posts/A210206.html</a></p>
-</blockquote>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/A210206.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A210205.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/A210205.html" itemprop="url">Android 通用功能封装4——文件下载</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-05T00:00:00+08:00">2021-02-05</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/%E9%80%9A%E7%94%A8%E5%8A%9F%E8%83%BD/" itemprop="url" rel="index"><span itemprop="name">通用功能</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p><a target="_blank" rel="noopener" href="http://rainmonth.github.io/posts/A210205.html">http://rainmonth.github.io/posts/A210205.html</a></p>
-</blockquote>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/A210205.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A210204.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/A210204.html" itemprop="url">Android 通用功能封装3——文件选择</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-04T00:00:00+08:00">2021-02-04</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/%E9%80%9A%E7%94%A8%E5%8A%9F%E8%83%BD/" itemprop="url" rel="index"><span itemprop="name">通用功能</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p><a target="_blank" rel="noopener" href="http://rainmonth.github.io/posts/A21020r.html">http://rainmonth.github.io/posts/A21020r.html</a></p>
-</blockquote>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Android是一个系统，肯定会有类似于Windows的资源管理器，那么Android系统的文件资源管理器是什么呢？它就是<code>MediaStore</code>，<code>MediaStore</code>是Android系统提供的一个<strong>多媒体数据库</strong>，通过<code>ContentResolver</code>即可对数据库进行操作。</p>
-<h2 id="要实现的功能"><a href="#要实现的功能" class="headerlink" title="要实现的功能"></a>要实现的功能</h2><ol>
-<li>采用链式调用，用Builder模式；</li>
-<li>支持选择不同类型的文件（指定文件类型，即可显示所有对应的文件）；</li>
-<li>支持只提供数据不提供UI展示（UI可以让使用者自己定制）</li>
-<li>友好的基础UI展示；</li>
-<li>友好的权限请求提示；</li>
-<li>良好的版本兼容性；</li>
-</ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/A210204.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A210203.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/A210203.html" itemprop="url">Android 通用功能封装2——图片加载</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-03T00:00:00+08:00">2021-02-03</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/%E9%80%9A%E7%94%A8%E5%8A%9F%E8%83%BD/" itemprop="url" rel="index"><span itemprop="name">通用功能</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p><a target="_blank" rel="noopener" href="http://rainmonth.github.io/posts/A210203.html">http://rainmonth.github.io/posts/A210203.html</a></p>
-</blockquote>
-<ul>
-<li>[ ] <a target="_blank" rel="noopener" href="http://rainmonth.github.io/posts/A210201.html">Android通用功能封装0——开篇</a></li>
-<li>[ ] <a target="_blank" rel="noopener" href="http://rainmonth.github.io/posts/A210202.html">Android通用功能封装1——通用工具类封装</a></li>
-<li>[ ] <a target="_blank" rel="noopener" href="http://rainmonth.github.io/posts/A210203.html">Android 通用功能封装2——图片加载</a></li>
-<li>[ ] <a target="_blank" rel="noopener" href="http://rainmonth.github.io/posts/A21020r.html">Android 通用功能封装3——文件选择</a></li>
-<li>[ ] <a target="_blank" rel="noopener" href="http://rainmonth.github.io/posts/A210205.html">Android 通用功能封装4——文件下载</a></li>
-<li>[ ] <a target="_blank" rel="noopener" href="http://rainmonth.github.io/posts/A210206.html">Android 通用功能封装5——网络库封装</a></li>
-<li>[ ] <a target="_blank" rel="noopener" href="http://rainmonth.github.io/posts/A210207.html">Android 通用功能封装6——数据库封装</a></li>
-<li>[ ] <a target="_blank" rel="noopener" href="http://rainmonth.github.io/posts/A210208.html">Android 通用功能封装7——广播管理</a></li>
-</ul>
+<p>Android守护进程</p>
+<p>背景</p>
+<p>最近项目有个需求，需要在App进程被干掉时，向服务器提交一些数据，一脸懵逼，寻思着看Android系统是否提供了进程被干掉的监听，发现没有（iOS同学表示他们时有的），如是就搜集了些资料，达到一些曲线救国的实现方式。</p>
+<p>要实现进程保活，就需要进程的分类及优先级（什么样的进程容易被系统杀死，什么样的不容易被进程杀死），以下按优先级从高到低的顺序（越高越不容易杀死）排列：</p>
 <p>参考文章</p>
-<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/a4caabfd567d">Android 图片加载库如何封装</a></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/a61ecc016aa5">Android进程保活之一个像素保活</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/6bb4fe44ce5d">android保活进程总结—双进程保活策略</a></li>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904023955341319">Android后台运行白名单，优雅实现进程保活</a></li>
+</ul>
 
           
         
@@ -1667,7 +1835,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A210202.html">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/F202102200.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -1686,7 +1854,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/posts/A210202.html" itemprop="url">Android 通用功能封装1——通用工具类封装</a></h1>
+                <a class="post-title-link" href="/posts/F202102200.html" itemprop="url">小白学理财——基金基础知识</a></h1>
         
 
         <div class="post-meta">
@@ -1698,7 +1866,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-02T00:00:00+08:00">2021-02-02</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-20T00:00:00+08:00">2021-02-20</time>
             
 
             
@@ -1719,14 +1887,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/%E7%90%86%E8%B4%A2/" itemprop="url" rel="index"><span itemprop="name">理财</span></a></span>
 
                 
                 
                   ， 
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/%E9%80%9A%E7%94%A8%E5%8A%9F%E8%83%BD/" itemprop="url" rel="index"><span itemprop="name">通用功能</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/%E7%90%86%E8%B4%A2/%E5%9F%BA%E9%87%91/" itemprop="url" rel="index"><span itemprop="name">基金</span></a></span>
 
                 
                 
@@ -1763,177 +1931,10 @@
         
           
             <blockquote>
-<p><a target="_blank" rel="noopener" href="http://rainmonth.github.io/posts/A210202.html">http://rainmonth.github.io/posts/A210202.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://rainmonth.github.io/posts/F202102200.html">https://rainmonth.github.io/posts/F202102200.html</a></p>
 </blockquote>
-<ul>
-<li>[ ] <a target="_blank" rel="noopener" href="http://rainmonth.github.io/posts/A210201.html">Android通用功能封装0——开篇</a></li>
-<li>[ ] <a target="_blank" rel="noopener" href="http://rainmonth.github.io/posts/A210202.html">Android通用功能封装1——通用工具类封装</a></li>
-<li>[ ] <a target="_blank" rel="noopener" href="http://rainmonth.github.io/posts/A210203.html">Android 通用功能封装2——图片加载</a></li>
-<li>[ ] <a target="_blank" rel="noopener" href="http://rainmonth.github.io/posts/A21020r.html">Android 通用功能封装3——文件选择</a></li>
-<li>[ ] <a target="_blank" rel="noopener" href="http://rainmonth.github.io/posts/A210205.html">Android 通用功能封装4——文件下载</a></li>
-<li>[ ] <a target="_blank" rel="noopener" href="http://rainmonth.github.io/posts/A210206.html">Android 通用功能封装5——网络库封装</a></li>
-<li>[ ] <a target="_blank" rel="noopener" href="http://rainmonth.github.io/posts/A210207.html">Android 通用功能封装6——数据库封装</a></li>
-<li>[ ] <a target="_blank" rel="noopener" href="http://rainmonth.github.io/posts/A210208.html">Android 通用功能封装7——广播管理</a></li>
-</ul>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>主要完成Android开发过程中常用操作的封装，避免重复造轮子，达到便捷快速开发，提高开发效率的目的。</p>
-<h2 id="功能介绍"><a href="#功能介绍" class="headerlink" title="功能介绍"></a>功能介绍</h2><h2 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h2><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/A210201.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="荏苒追寻个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/A210201.html" itemprop="url">Android 通用功能封装——开篇</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-01T00:00:00+08:00">2021-02-01</time>
-            
-
-            
-            
-
-            
-          </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/%E9%80%9A%E7%94%A8%E5%8A%9F%E8%83%BD/" itemprop="url" rel="index"><span itemprop="name">通用功能</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p><a target="_blank" rel="noopener" href="http://rainmonth.github.io/posts/A210201.html">http://rainmonth.github.io/posts/A210201.html</a></p>
-</blockquote>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Android开发这么多年，总觉得要积累点什么，这不，不管是从网上搜到的，还是自己开发过程中积累的，讲开发一个Android App常用的功能都进行封装下，既能提升自己代码封装的功力，又能形成知识的沉淀，所以写写这些还是不错的。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/A210201.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1974,7 +1975,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/10/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot; aria-label&#x3D;&quot;上一页&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/12/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot; aria-label&#x3D;&quot;下一页&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/10/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot; aria-label&#x3D;&quot;上一页&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/12/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot; aria-label&#x3D;&quot;下一页&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -2017,7 +2018,7 @@
                 
                   <a href="/archives/%7C%7C%20archive">
                 
-                    <span class="site-state-item-count">206</span>
+                    <span class="site-state-item-count">216</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2264,7 +2265,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
   <span class="with-love" id="animate"> 
     <i class="fa fa-user"></i>
   </span>
